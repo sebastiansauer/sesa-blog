@@ -105,7 +105,7 @@ The [half-normal distribution](https://en.wikipedia.org/wiki/Half-normal_distrib
 
 From the Wikipedia page:
 
-![](https://en.wikipedia.org/wiki/Half-normal_distribution#/media/File:Half_normal_pdf.svg)
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Standard_deviation_diagram.svg/2880px-Standard_deviation_diagram.svg.png)
 
 
 
