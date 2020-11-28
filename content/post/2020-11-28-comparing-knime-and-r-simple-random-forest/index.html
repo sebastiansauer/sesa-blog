@@ -1,0 +1,176 @@
+---
+title: 'Comparing Knime and R: Simple Random Forest'
+author: Sebastian Sauer
+date: '2020-11-28'
+slug: comparing-knime-and-r-simple-random-forest
+categories:
+  - rstats
+tags:
+  - comparison
+---
+
+<script src="index_files/header-attrs/header-attrs.js"></script>
+<link href="index_files/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="index_files/anchor-sections/anchor-sections.js"></script>
+
+
+<div id="knime-workflow" class="section level1">
+<h1>Knime Workflow</h1>
+<p>Consider <a href="">this</a> Knime workflow:</p>
+<p><img src="https://i.postimg.cc/fLDcGmML/knime-rf.png" /></p>
+<p>That’s a simple Random Forest workflow.</p>
+</div>
+<div id="translate-it-to-r" class="section level1">
+<h1>Translate it to R!</h1>
+<div id="setup" class="section level2">
+<h2>Setup</h2>
+<pre class="r"><code>library(tidyverse)
+library(tidymodels)
+library(conflicted)
+library(caret)</code></pre>
+</div>
+<div id="load-data" class="section level2">
+<h2>Load Data</h2>
+<pre class="r"><code>data(iris)</code></pre>
+<pre class="r"><code>glimpse(iris)</code></pre>
+<pre><code>## Rows: 150
+## Columns: 5
+## $ Sepal.Length &lt;dbl&gt; 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4…
+## $ Sepal.Width  &lt;dbl&gt; 3.5, 3.0, 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3…
+## $ Petal.Length &lt;dbl&gt; 1.4, 1.4, 1.3, 1.5, 1.4, 1.7, 1.4, 1.5, 1.4, 1.5, 1.5, 1…
+## $ Petal.Width  &lt;dbl&gt; 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0…
+## $ Species      &lt;fct&gt; setosa, setosa, setosa, setosa, setosa, setosa, setosa, …</code></pre>
+</div>
+<div id="stratified-sampling" class="section level2">
+<h2>Stratified sampling</h2>
+<pre class="r"><code>split_vector &lt;- initial_split(iris,
+                              strata = Species)</code></pre>
+<pre class="r"><code>traindata &lt;- training(split_vector)
+
+testdata &lt;- testing(split_vector)</code></pre>
+</div>
+<div id="define-and-run-random-forest-model" class="section level2">
+<h2>Define and run Random Forest model</h2>
+<p>First define the model:</p>
+<pre class="r"><code>rf_mod &lt;- 
+  rand_forest(trees = 100) %&gt;% 
+  set_engine(&quot;ranger&quot;) %&gt;% 
+  set_mode(&quot;classification&quot;)</code></pre>
+<pre class="r"><code>rf_recipe &lt;-
+  recipe(Species ~ ., data = traindata)
+
+rf_prep &lt;- prep(rf_recipe)</code></pre>
+<pre class="r"><code>workflow() %&gt;% 
+  add_recipe(rf_recipe) %&gt;% 
+  add_model(rf_mod) -&gt; rf_wf
+
+rf_wf</code></pre>
+<pre><code>## ══ Workflow ════════════════════════════════════════════════════════════════════
+## Preprocessor: Recipe
+## Model: rand_forest()
+## 
+## ── Preprocessor ────────────────────────────────────────────────────────────────
+## 0 Recipe Steps
+## 
+## ── Model ───────────────────────────────────────────────────────────────────────
+## Random Forest Model Specification (classification)
+## 
+## Main Arguments:
+##   trees = 100
+## 
+## Computational engine: ranger</code></pre>
+<p>Then fit it:</p>
+<pre class="r"><code>set.seed(123)
+
+rf_fit &lt;-
+  rf_wf %&gt;% 
+  fit(data = traindata)</code></pre>
+</div>
+<div id="oob-results" class="section level2">
+<h2>OOB results</h2>
+<pre class="r"><code>rf_fit</code></pre>
+<pre><code>## ══ Workflow [trained] ══════════════════════════════════════════════════════════
+## Preprocessor: Recipe
+## Model: rand_forest()
+## 
+## ── Preprocessor ────────────────────────────────────────────────────────────────
+## 0 Recipe Steps
+## 
+## ── Model ───────────────────────────────────────────────────────────────────────
+## Ranger result
+## 
+## Call:
+##  ranger::ranger(x = maybe_data_frame(x), y = y, num.trees = ~100,      num.threads = 1, verbose = FALSE, seed = sample.int(10^5,          1), probability = TRUE) 
+## 
+## Type:                             Probability estimation 
+## Number of trees:                  100 
+## Sample size:                      114 
+## Number of independent variables:  4 
+## Mtry:                             2 
+## Target node size:                 10 
+## Variable importance mode:         none 
+## Splitrule:                        gini 
+## OOB prediction error (Brier s.):  0.0267927</code></pre>
+</div>
+<div id="classification-results" class="section level2">
+<h2>Classification results</h2>
+<pre class="r"><code>testdata %&gt;% 
+  bind_cols(predict(rf_fit, testdata, type = &quot;prob&quot;)) %&gt;% 
+  bind_cols(predict(rf_fit, testdata)) -&gt; testdata_augmented</code></pre>
+<div id="multiclass-accuracy" class="section level3">
+<h3>Multiclass accuracy</h3>
+<pre class="r"><code>testdata_augmented %&gt;% 
+  roc_auc(truth = Species, .pred_setosa:.pred_virginica)</code></pre>
+<pre><code>## # A tibble: 1 x 3
+##   .metric .estimator .estimate
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+## 1 roc_auc hand_till      0.999</code></pre>
+<pre class="r"><code>testdata_augmented %&gt;% 
+  metrics(truth = Species, .pred_class)</code></pre>
+<pre><code>## # A tibble: 2 x 3
+##   .metric  .estimator .estimate
+##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy multiclass     0.944
+## 2 kap      multiclass     0.917</code></pre>
+</div>
+<div id="roc" class="section level3">
+<h3>ROC</h3>
+<pre class="r"><code>testdata_augmented %&gt;% 
+  roc_curve(truth = Species, .pred_setosa:.pred_virginica) %&gt;% 
+  autoplot()</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<pre class="r"><code>confusionMatrix(data = testdata_augmented$.pred_class,
+                reference = testdata_augmented$Species)</code></pre>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##             Reference
+## Prediction   setosa versicolor virginica
+##   setosa         12          0         0
+##   versicolor      0         10         0
+##   virginica       0          2        12
+## 
+## Overall Statistics
+##                                           
+##                Accuracy : 0.9444          
+##                  95% CI : (0.8134, 0.9932)
+##     No Information Rate : 0.3333          
+##     P-Value [Acc &gt; NIR] : 1.728e-14       
+##                                           
+##                   Kappa : 0.9167          
+##                                           
+##  Mcnemar&#39;s Test P-Value : NA              
+## 
+## Statistics by Class:
+## 
+##                      Class: setosa Class: versicolor Class: virginica
+## Sensitivity                 1.0000            0.8333           1.0000
+## Specificity                 1.0000            1.0000           0.9167
+## Pos Pred Value              1.0000            1.0000           0.8571
+## Neg Pred Value              1.0000            0.9231           1.0000
+## Prevalence                  0.3333            0.3333           0.3333
+## Detection Rate              0.3333            0.2778           0.3333
+## Detection Prevalence        0.3333            0.2778           0.3889
+## Balanced Accuracy           1.0000            0.9167           0.9583</code></pre>
+</div>
+</div>
+</div>

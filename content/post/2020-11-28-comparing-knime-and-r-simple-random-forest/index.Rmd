@@ -1,0 +1,169 @@
+---
+title: 'Comparing Knime and R: Simple Random Forest'
+author: Sebastian Sauer
+date: '2020-11-28'
+slug: comparing-knime-and-r-simple-random-forest
+categories:
+  - rstats
+tags:
+  - comparison
+---
+
+
+# Knime Workflow
+
+Consider [this]() Knime workflow:
+
+
+![](https://i.postimg.cc/fLDcGmML/knime-rf.png)
+
+That's a simple Random Forest workflow.
+
+
+# Translate it to R!
+
+
+## Setup
+
+```{r message= FALSE}
+library(tidyverse)
+library(tidymodels)
+library(conflicted)
+library(caret)
+```
+
+## Load Data
+
+```{r}
+data(iris)
+```
+
+
+```{r}
+glimpse(iris)
+```
+
+
+## Stratified sampling
+
+
+```{r}
+split_vector <- initial_split(iris,
+                              strata = Species)
+```
+
+
+```{r}
+traindata <- training(split_vector)
+
+testdata <- testing(split_vector)
+```
+
+
+## Define and run Random Forest model
+
+
+First define the model:
+
+```{r}
+rf_mod <- 
+  rand_forest(trees = 100) %>% 
+  set_engine("ranger") %>% 
+  set_mode("classification")
+```
+
+
+```{r}
+rf_recipe <-
+  recipe(Species ~ ., data = traindata)
+
+rf_prep <- prep(rf_recipe)
+```
+
+
+
+```{r}
+workflow() %>% 
+  add_recipe(rf_recipe) %>% 
+  add_model(rf_mod) -> rf_wf
+
+rf_wf
+```
+
+
+
+
+Then fit it:
+
+```{r}
+set.seed(123)
+
+rf_fit <-
+  rf_wf %>% 
+  fit(data = traindata)
+
+```
+
+
+
+## OOB results
+
+
+```{r}
+rf_fit
+```
+
+
+## Classification results
+
+```{r}
+testdata %>% 
+  bind_cols(predict(rf_fit, testdata, type = "prob")) %>% 
+  bind_cols(predict(rf_fit, testdata)) -> testdata_augmented
+
+```
+
+
+
+### Multiclass accuracy
+
+```{r}
+testdata_augmented %>% 
+  roc_auc(truth = Species, .pred_setosa:.pred_virginica)
+```
+
+
+
+```{r}
+testdata_augmented %>% 
+  metrics(truth = Species, .pred_class)
+```
+
+
+
+### ROC
+
+```{r}
+testdata_augmented %>% 
+  roc_curve(truth = Species, .pred_setosa:.pred_virginica) %>% 
+  autoplot()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+confusionMatrix(data = testdata_augmented$.pred_class,
+                reference = testdata_augmented$Species)
+```
+
+
+## Regression via Random Forests
