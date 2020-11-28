@@ -73,7 +73,7 @@ H = (N-1)\frac{\sum_{i=1}^g n_i(\bar{r}_{i\cdot} - \bar{r})^2}{\sum_{i=1}^g\sum_
 </div>
 <div id="kruskall-test-via-sbi" class="section level1">
 <h1>Kruskall test via SBI</h1>
-<pre class="r"><code>null1 &lt;- do(1000) * kruskal.test(tip ~ shuffle(day), 
+<pre class="r"><code>null1 &lt;- mosaic::do(1000) * kruskal.test(tip ~ shuffle(day), 
                                  data = tips)</code></pre>
 <p>Let’s check the results:</p>
 <pre class="r"><code>null1 %&gt;% 

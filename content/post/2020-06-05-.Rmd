@@ -31,7 +31,7 @@ knitr::opts_chunk$set(
 
 # Load packages
 
-```{r load-libs, message = FALSE, waring = FALSE}
+```{r load-libs, message = FALSE, warning = FALSE}
 library(tidyverse)
 library(mosaic)
 ```
@@ -103,7 +103,7 @@ And this statistic is asymptotically $\chi^2$ distributed.
 
 
 ```{r}
-null1 <- do(1000) * kruskal.test(tip ~ shuffle(day), 
+null1 <- mosaic::do(1000) * kruskal.test(tip ~ shuffle(day), 
                                  data = tips)
 ```
 
