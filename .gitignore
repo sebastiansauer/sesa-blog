@@ -19,6 +19,8 @@ Untitled*
 *_cache/
 *.Rproj
 
+.Rproj.user/
+
 
 public/
 
