@@ -1,0 +1,21 @@
+---
+title: 'Comparing Knime and R: ETL_Basics'
+author: Sebastian Sauer
+date: '2020-11-28'
+slug: comparing-knime-and-r-etl-basics
+categories:
+  - rstats
+tags:
+  - comparison
+---
+
+
+# Knime workflow
+
+Consider this Knime workflow:
+
+
+![](https://knime-hubprod-catalog-service-eu-central-1.s3.eu-central-1.amazonaws.com/images/00/00/0000000060F2.svg.gz?response-content-disposition=inline&response-content-encoding=gzip&response-content-type=image%2Fsvg%2Bxml&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201128T213257Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=AKIAIGX2XVTJTREMXFYA%2F20201128%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Signature=61b0b1fd41f6b0dc753e170a52b360ed6eee633014ddb95b2b69b59ed5a444d8)
+
+
+
