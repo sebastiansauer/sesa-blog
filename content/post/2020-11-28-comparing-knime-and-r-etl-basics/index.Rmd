@@ -7,6 +7,8 @@ categories:
   - rstats
 tags:
   - comparison
+editor_options: 
+  chunk_output_type: console
 ---
 
 
@@ -15,7 +17,103 @@ tags:
 Consider this Knime workflow:
 
 
-![](https://knime-hubprod-catalog-service-eu-central-1.s3.eu-central-1.amazonaws.com/images/00/00/0000000060F2.svg.gz?response-content-disposition=inline&response-content-encoding=gzip&response-content-type=image%2Fsvg%2Bxml&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201128T213257Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=AKIAIGX2XVTJTREMXFYA%2F20201128%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Signature=61b0b1fd41f6b0dc753e170a52b360ed6eee633014ddb95b2b69b59ed5a444d8)
+![](https://i.postimg.cc/G273xn2Q/knime-etl.png)
+
+# R translation
 
 
+## Setup
+
+```{r message = FALSE}
+library(tidyverse)
+library(lubridate)
+library(knitr)
+```
+
+
+
+## Chunk 1: Read, sort, filter
+
+
+```{r}
+datafile <- "https://raw.githubusercontent.com/sebastiansauer/sesa-blog/main/static/datasets/sales_2008-2011.csv"
+
+d <- read_csv(datafile)
+```
+
+```{r}
+glimpse(d)
+```
+
+The data is already recognized as date; no need for transformation.
+
+
+```{r}
+d %>% 
+  arrange(date) %>% 
+  select(-card) -> d
+```
+
+
+## Chunk 2: group and aggregate
+
+```{r}
+d %>% 
+  group_by(Cust_ID) %>% 
+  summarise(amount_sum = sum(amount),
+            country = first(country),
+            start = min(date),
+            end = max(date),
+            duration = end - start) -> d_summarized
+```
+
+
+## Chunk 3: filter
+
+```{r}
+d_summarized %>% 
+  filter(amount_sum > 5000) %>% 
+  filter(country == "USA") -> d_summarized_filtered1
+```
+
+
+```{r}
+d_summarized %>% 
+  filter(between(amount_sum,1000, 2000)) %>% 
+  filter(country == "Germany") -> d_summarized_filtered2
+```
+
+
+# Chunk 4: concatenate
+
+
+```{r}
+d_summarized_filtered1 %>% 
+  bind_rows(d_summarized_filtered2) -> d_concatenated
+```
+
+
+# Chunk 5: join
+
+Join by ID
+
+
+```{r}
+d_concatenated %>% 
+  inner_join(d, by = "Cust_ID") -> d_joined
+```
+
+
+```{r}
+kable(d_joined)
+```
+
+
+
+# Chuunk 6: write to csv
+
+
+```{r eval = FALSE}
+write_csv(d_joined, file = "d_joined.csv")
+```
 
