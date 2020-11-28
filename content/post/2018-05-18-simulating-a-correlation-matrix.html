@@ -1,0 +1,56 @@
+---
+title: Simulating a correlation matrix.
+author: Sebastian Sauer
+date: '2018-05-18'
+slug: simulating-a-correlation-matrix
+draft: yes
+categories:
+  - rstats
+tags:
+  - rstats
+  - simulation
+  - inference
+---
+
+
+
+<p>Simulation based inference is a powerful tool as it lets you derive population estimates without having to solve difficult equations. As a more advanced example for simulation, consider the following situation. You are interested in the correlation of air time and delay of planes. More precisely you assume that this correlation is the same for different carriers (airlines). In other words, the (absolute) difference between all different pairs of correlation coefficient is zero, according to the hypothesis.</p>
+<p>First, some data and the usual culprits:</p>
+<pre class="r"><code>data(flights, package = &quot;nycflights13&quot;)
+library(tidyverse)</code></pre>
+<p>Let’s check the correlation matrix consisting of the correlations for different carriers.</p>
+<pre class="r"><code>flights %&gt;% 
+  select(dep_delay, air_time, carrier) %&gt;% 
+  drop_na() %&gt;% 
+  group_by(carrier) %&gt;% 
+  summarise(cor_delay_carrier = cor(dep_delay, air_time)) %&gt;% 
+  mutate(cor_delay_carrier_abs = abs(cor_delay_carrier)) -&gt; cor_df</code></pre>
+<p>Combining all correlations with all should give us this number to its square:</p>
+<pre class="r"><code>n_carriers &lt;- length(unique(flights$carrier))</code></pre>
+<p>Actually, we should subtract the redundant triangle of the matrix and the main diagonal, but let’s skip that here for the sake of brevity :smile: .</p>
+<p>Let’s prepare all 16*16 combinations:</p>
+<pre class="r"><code>cor_diff_grid &lt;- expand.grid(cor_df$cor_delay_carrier_abs,
+                             cor_df$cor_delay_carrier_abs)</code></pre>
+<p>What the difference in correlations in each case (row)?</p>
+<pre class="r"><code>cor_diff_grid %&gt;% 
+  mutate(diff_cor = Var1 - Var2) -&gt; cor_diff_grid
+
+head(cor_diff_grid)</code></pre>
+<pre><code>##          Var1       Var2     diff_cor
+## 1 0.022676575 0.02267657  0.000000000
+## 2 0.037877115 0.02267657  0.015200540
+## 3 0.012935020 0.02267657 -0.009741555
+## 4 0.007638039 0.02267657 -0.015038536
+## 5 0.031608228 0.02267657  0.008931653
+## 6 0.017721413 0.02267657 -0.004955162</code></pre>
+<p>Delete the 16 rows where the difference is exactly zero, because that’s the cases where a carrier is correlated with itself.</p>
+<pre class="r"><code>cor_diff_grid %&gt;% 
+  filter(diff_cor != 0) -&gt; cor_diff_grid
+
+nrow(cor_diff_grid)</code></pre>
+<pre><code>## [1] 240</code></pre>
+<p>Now we compute the mean of the the differences:</p>
+<pre class="r"><code>cor_diff_grid %&gt;% 
+  summarise(cor_diff_avg = mean(diff_cor))</code></pre>
+<pre><code>##   cor_diff_avg
+## 1            0</code></pre>

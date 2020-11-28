@@ -1,0 +1,63 @@
+---
+title: Visualizing decision trees
+author: Sebastian Sauer
+date: '2020-10-17'
+slug: visualizing-decision-trees
+categories:
+  - rstats
+tags:
+  - visualization
+  - machine-learning
+  - trees
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<link href="/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
+
+
+<div id="load-packages" class="section level1">
+<h1>Load packages</h1>
+<pre class="r"><code>library(tidyverse)
+#remotes::install_github(&quot;grantmcdermott/parttree&quot;)
+library(parttree)
+library(rpart)
+library(rpart.plot)
+library(parsnip)
+library(titanic) 
+library(tidyverse)</code></pre>
+</div>
+<div id="train-learner" class="section level1">
+<h1>Train learner</h1>
+<p>Build the tree using parsnip with rpart as the model engine:</p>
+<pre class="r"><code>set.seed(123) 
+
+titanic_train$Survived = as.factor(titanic_train$Survived)
+
+
+ti_tree =
+  decision_tree() %&gt;%
+  set_engine(&quot;rpart&quot;) %&gt;%
+  set_mode(&quot;classification&quot;) %&gt;%
+  fit(Survived ~ Pclass + Age, data = titanic_train)</code></pre>
+</div>
+<div id="plot-the-model-partitions" class="section level1">
+<h1>Plot the model partitions</h1>
+<pre class="r"><code>titanic_train %&gt;%
+  ggplot(aes(x=Pclass, y=Age)) +
+  geom_jitter(aes(col=Survived), alpha=0.7) +
+  geom_parttree(data = ti_tree, 
+                aes(fill=Survived), alpha = 0.1) +
+  theme_minimal()</code></pre>
+<p><img src="/post/2020-10-17-visualizing-decision-trees_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Plot the tree</p>
+<pre class="r"><code>rpart.plot(ti_tree[[&quot;fit&quot;]], 
+           box.palette=&quot;RdBu&quot;, 
+           shadow.col=&quot;gray&quot;, 
+           nn=TRUE)</code></pre>
+<p><img src="/post/2020-10-17-visualizing-decision-trees_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="sources" class="section level1">
+<h1>Sources</h1>
+<p>The <a href="https://www.r-bloggers.com/2020/03/visualizing-decision-tree-partition-and-decision-boundaries/">recursive partitioning plot</a> was designed by Grant McDermott. The tree plot is from the <a href="https://cran.r-project.org/web/packages/rpart.plot/index.html">rpart.plot</a> package written by Stephen Milborrow.</p>
+</div>

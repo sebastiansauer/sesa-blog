@@ -1,0 +1,112 @@
+---
+title: Plotting a logistic regression - some considerations
+author: ''
+draft: FALSE
+date: '2018-09-03'
+slug: plotting-a-logistic-regression-some-considerations
+categories:
+  - rstats
+tags:
+  - plotting
+  - rstats
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = TRUE,
+  out.width = "70%",
+  fig.align = 'center',
+  fig.width = 6,
+  fig.asp =  1,  #0.618,  # 1 / phi
+  fig.show = "hold",
+  size = "tiny"
+)
+```
+
+
+```{r}
+library(mosaic)
+data(tips, package = "reshape2")
+```
+
+
+Recode `sex`:
+
+```{r}
+tips %>% 
+  mutate(sex_n = case_when(
+    sex == "Female" ~ 0,
+    sex == "Male" ~ 1
+  )) -> tips2
+
+```
+
+
+Fit model:
+
+```{r}
+glm1 <- glm(sex_n ~ total_bill, data = tips2,
+            family = "binomial")
+```
+
+
+# Way 1
+
+```{r}
+plotModel(glm1)
+```
+
+
+# Way 2
+
+Add predictions to data frame:
+```{r}
+tips2 %>% 
+  mutate(pred = predict(glm1, newdata = tips, type = "response")) %>% 
+  mutate(predict_Male = pred > .5) -> tips3
+```
+
+
+Check values of predictions:
+
+
+```{r}
+gf_histogram(~pred, data = tips3)
+```
+
+
+Plot jittered observed values (as points) plus prediction (as line):
+
+```{r}
+
+gf_point(sex_n ~ total_bill, data = tips3,
+         shape = ~sex,
+         color = ~sex,
+         size = 3,
+         alpha = .5,
+         position = "jitter") %>% 
+  gf_line(pred ~ total_bill, color = "grey40")
+```
+
+
+
+# Way 3
+
+Plot predicted values as points
+
+```{r}
+gf_point(pred ~ total_bill, data = tips3,
+         color = ~sex,
+         shape = ~sex,
+         size = 3,
+         alpha = .5) +
+  labs(y = "Predicted probabality of being Male")
+```
+

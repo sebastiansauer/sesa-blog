@@ -1,0 +1,82 @@
+---
+title: Simulating a correlation matrix.
+author: Sebastian Sauer
+date: '2018-05-18'
+slug: simulating-a-correlation-matrix
+draft: yes
+categories:
+  - rstats
+tags:
+  - rstats
+  - simulation
+  - inference
+---
+
+
+Simulation based inference is a powerful tool as it lets you derive population estimates without having to solve difficult equations. As a more advanced example for simulation, consider the following situation. You are interested in the correlation of air time and delay of planes. More precisely you assume that this correlation is the same for different carriers (airlines). In other words, the (absolute) difference between all different pairs of correlation coefficient is zero, according to the hypothesis.
+
+First, some data and the usual culprits:
+
+```{r message = FALSE, warning=FALSE}
+data(flights, package = "nycflights13")
+library(tidyverse)
+```
+
+
+Let's check the correlation matrix consisting of the correlations for different carriers.
+
+```{r}
+flights %>% 
+  select(dep_delay, air_time, carrier) %>% 
+  drop_na() %>% 
+  group_by(carrier) %>% 
+  summarise(cor_delay_carrier = cor(dep_delay, air_time)) %>% 
+  mutate(cor_delay_carrier_abs = abs(cor_delay_carrier)) -> cor_df
+
+```
+
+
+
+
+Combining all correlations with all should give us this number to its square:
+
+
+```{r}
+n_carriers <- length(unique(flights$carrier))
+```
+
+Actually, we should subtract the redundant triangle of the matrix and the main diagonal, but let's skip that here for the sake of brevity :smile: .
+
+Let's prepare all 16*16 combinations:
+
+```{r}
+cor_diff_grid <- expand.grid(cor_df$cor_delay_carrier_abs,
+                             cor_df$cor_delay_carrier_abs)
+```
+
+What the difference in correlations in each case (row)?
+
+```{r}
+cor_diff_grid %>% 
+  mutate(diff_cor = Var1 - Var2) -> cor_diff_grid
+
+head(cor_diff_grid)
+```
+
+Delete the 16 rows where the difference is exactly zero, because that's the cases where a carrier is correlated with itself.
+
+```{r}
+cor_diff_grid %>% 
+  filter(diff_cor != 0) -> cor_diff_grid
+
+nrow(cor_diff_grid)
+```
+
+
+Now we compute the mean of the the differences:
+
+```{r}
+cor_diff_grid %>% 
+  summarise(cor_diff_avg = mean(diff_cor))
+```
+

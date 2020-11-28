@@ -1,0 +1,27 @@
+---
+title: Visualizing a logistic regression the easy way
+author: Sebastian Sauer
+date: '2018-01-23'
+slug: visualizing-a-logistic-regression-the-easy-way
+categories:
+  - rstats
+  - dataviz
+tags:
+  - rstats
+  - dataviz
+---
+
+
+
+<p>Let’s visualize a GLM (logistic regression).</p>
+<p>First laod some data:</p>
+<pre class="r"><code>data(tips, package = &quot;reshape2&quot;)</code></pre>
+<p>Compute a glm:</p>
+<pre class="r"><code>glm_tips &lt;- glm(sex ~ tip, data = tips,
+            family = &quot;binomial&quot;)</code></pre>
+<p>Plot the model using <code>mosaic</code>:</p>
+<pre class="r"><code>library(mosaic)</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.5.1</code></pre>
+<pre class="r"><code>plotModel(glm_tips)</code></pre>
+<p><img src="/post/2018-01-23-visualizing-a-logistic-regression-the-easy-way_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>The curve does not look really s-typed (ogive) but that’s ok because the data suggest not a strong trend. The plot is not very beautiful either, but hey - it’s quick to produce 😁.</p>

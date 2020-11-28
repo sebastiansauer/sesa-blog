@@ -1,0 +1,76 @@
+---
+title: Easy way to convert factors zu numbers
+author: Sebastian Sauer
+date: '2018-06-22'
+slug: easy-way-to-convert-factors-zu-numbers
+categories:
+  - rsta
+tags:
+  - tutorial
+  - rstats
+---
+
+
+
+<p>Converting factors to numbers in R can be frustrating. Consider the following sitation: We have some data, and try to convert a factor (<code>sex</code> in <code>tips</code>, see below) to a numeric variable:</p>
+<pre class="r"><code>library(tidyverse)
+library(sjmisc)   # for recoding
+data(tips, package = &quot;reshape2&quot;)
+glimpse(tips)
+#&gt; Observations: 244
+#&gt; Variables: 7
+#&gt; $ total_bill &lt;dbl&gt; 16.99, 10.34, 21.01, 23.68, 24.59, 25.29, 8.77, 26....
+#&gt; $ tip        &lt;dbl&gt; 1.01, 1.66, 3.50, 3.31, 3.61, 4.71, 2.00, 3.12, 1.9...
+#&gt; $ sex        &lt;fct&gt; Female, Male, Male, Male, Female, Male, Male, Male,...
+#&gt; $ smoker     &lt;fct&gt; No, No, No, No, No, No, No, No, No, No, No, No, No,...
+#&gt; $ day        &lt;fct&gt; Sun, Sun, Sun, Sun, Sun, Sun, Sun, Sun, Sun, Sun, S...
+#&gt; $ time       &lt;fct&gt; Dinner, Dinner, Dinner, Dinner, Dinner, Dinner, Din...
+#&gt; $ size       &lt;int&gt; 2, 3, 3, 2, 4, 4, 2, 4, 2, 2, 2, 4, 2, 4, 2, 2, 3, ...</code></pre>
+<p>Ok, here we go. Say, we want <code>&quot;Female&quot; = 1</code> and <code>&quot;Male&quot; = 0</code>.</p>
+<pre class="r"><code>tips &lt;- sjmisc::rec(tips, sex, rec = &quot;Female = 1; Male = 0&quot;)
+glimpse(tips)
+#&gt; Observations: 244
+#&gt; Variables: 8
+#&gt; $ total_bill &lt;dbl&gt; 16.99, 10.34, 21.01, 23.68, 24.59, 25.29, 8.77, 26....
+#&gt; $ tip        &lt;dbl&gt; 1.01, 1.66, 3.50, 3.31, 3.61, 4.71, 2.00, 3.12, 1.9...
+#&gt; $ sex        &lt;fct&gt; Female, Male, Male, Male, Female, Male, Male, Male,...
+#&gt; $ smoker     &lt;fct&gt; No, No, No, No, No, No, No, No, No, No, No, No, No,...
+#&gt; $ day        &lt;fct&gt; Sun, Sun, Sun, Sun, Sun, Sun, Sun, Sun, Sun, Sun, S...
+#&gt; $ time       &lt;fct&gt; Dinner, Dinner, Dinner, Dinner, Dinner, Dinner, Din...
+#&gt; $ size       &lt;int&gt; 2, 3, 3, 2, 4, 4, 2, 4, 2, 2, 2, 4, 2, 4, 2, 2, 3, ...
+#&gt; $ sex_r      &lt;fct&gt; 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, ...</code></pre>
+<p>Seems to have worked so far. Wait, <code>sex_r</code> ist still a factor, not numeric. So convert it using <code>as.numeric</code>:</p>
+<pre class="r"><code>tips$sex_num &lt;- as.numeric(tips$sex_r)
+glimpse(tips)
+#&gt; Observations: 244
+#&gt; Variables: 9
+#&gt; $ total_bill &lt;dbl&gt; 16.99, 10.34, 21.01, 23.68, 24.59, 25.29, 8.77, 26....
+#&gt; $ tip        &lt;dbl&gt; 1.01, 1.66, 3.50, 3.31, 3.61, 4.71, 2.00, 3.12, 1.9...
+#&gt; $ sex        &lt;fct&gt; Female, Male, Male, Male, Female, Male, Male, Male,...
+#&gt; $ smoker     &lt;fct&gt; No, No, No, No, No, No, No, No, No, No, No, No, No,...
+#&gt; $ day        &lt;fct&gt; Sun, Sun, Sun, Sun, Sun, Sun, Sun, Sun, Sun, Sun, S...
+#&gt; $ time       &lt;fct&gt; Dinner, Dinner, Dinner, Dinner, Dinner, Dinner, Din...
+#&gt; $ size       &lt;int&gt; 2, 3, 3, 2, 4, 4, 2, 4, 2, 2, 2, 4, 2, 4, 2, 2, 3, ...
+#&gt; $ sex_r      &lt;fct&gt; 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, ...
+#&gt; $ sex_num    &lt;dbl&gt; 2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 2, ...</code></pre>
+<p>Oh no! That’s not what we wanted! R has messed the thing up (?). The reason is that R sees the first factor level internally as the number 1 . The second level as number two. What’s the first factor level in our case? Let’s see:</p>
+<pre class="r"><code>factor(tips$sex) %&gt;% head()
+#&gt; [1] Female Male   Male   Male   Female Male  
+#&gt; Levels: Female Male
+factor(tips$sex_r) %&gt;% head()
+#&gt; [1] 1 0 0 0 1 0
+#&gt; Levels: 0 1</code></pre>
+<p>That’s confusing: “0” is the first level of <code>sex_r</code> - internally for R represented by “1”. The second level of <code>sex_r</code> is “1” - internally represented by “2”. That’s why we get these numbers:</p>
+<pre class="r"><code>head(tips$sex_num)
+#&gt; [1] 2 1 1 1 2 1</code></pre>
+<div id="solution" class="section level2">
+<h2>Solution</h2>
+<p>One solution is to use <code>readr::parse_number()</code>:</p>
+<pre class="r"><code>tips$sex_num &lt;- parse_number(tips$sex_r)
+head(tips$sex_num)
+#&gt; [1] 1 0 0 0 1 0
+head(tips$sex_r)
+#&gt; [1] 1 0 0 0 1 0
+#&gt; Levels: 0 1</code></pre>
+<p>Worked!</p>
+</div>

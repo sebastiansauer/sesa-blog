@@ -1,0 +1,43 @@
+---
+title: Visualizing a logistic regression the easy way
+author: Sebastian Sauer
+date: '2018-01-23'
+slug: visualizing-a-logistic-regression-the-easy-way
+categories:
+  - rstats
+  - dataviz
+tags:
+  - rstats
+  - dataviz
+---
+
+
+Let's visualize a GLM (logistic regression). 
+
+First laod some data:
+
+
+```{r}
+data(tips, package = "reshape2")
+```
+
+
+Compute a glm:
+
+```{r cache = FALSE}
+glm_tips <- glm(sex ~ tip, data = tips,
+            family = "binomial")
+```
+
+Plot the model using `mosaic`:
+
+```{r message = FALSE, cache=FALSE}
+library(mosaic)
+plotModel(glm_tips)
+```
+
+The curve does not look really s-typed (ogive) but that's ok because the data suggest not a strong trend. The plot is not very beautiful either, but hey - it's quick to produce `r emo::ji("grin")`. 
+
+
+
+

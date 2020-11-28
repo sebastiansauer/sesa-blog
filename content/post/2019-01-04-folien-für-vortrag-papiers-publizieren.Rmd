@@ -1,0 +1,18 @@
+---
+title: "Folien für Vortrag 'Papers publizieren'"
+author: Sebastian Sauer
+date: '2019-01-04'
+slug: folien-für-vortrag-papiers-publizieren
+categories:
+  - Slides
+tags:
+  - tutorial
+---
+
+
+
+Die Folien für meinen Vortrag "Papers publizieren" zum Dozententreffen 2019 der FOM Hochschule liegen [hier](https://data-se.netlify.com/slides/papers-publizieren/papers-publizieren2.html#1).
+
+
+
+
