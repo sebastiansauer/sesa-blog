@@ -91,7 +91,7 @@ df %>%
             md_half = median(x),
             iqr_half = IQR(x),
             aad_half = aad(x),
-            n_hlaf = n())
+            n_half = n())
 ```
 
 

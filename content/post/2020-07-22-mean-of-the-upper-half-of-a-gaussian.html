@@ -10,6 +10,8 @@ tags:
 ---
 
 <script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<link href="/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
 
 
 <div id="load-packages" class="section level1">
@@ -32,11 +34,11 @@ library(lsr)</code></pre>
 x &lt;- rnorm(n)</code></pre>
 <p>Mean and SD in our sample are quite close to what can be expected:</p>
 <pre class="r"><code>mean(x)
-#&gt; [1] -0.03428717
+#&gt; [1] 0.002953451
 sd(x)
-#&gt; [1] 0.979225
+#&gt; [1] 0.9992983
 aad(x)
-#&gt; [1] 0.782511</code></pre>
+#&gt; [1] 0.7972097</code></pre>
 <p>Note that the aad is 0.8 in a standard normal distribution.</p>
 </div>
 <div id="upper-half" class="section level1">
@@ -52,12 +54,12 @@ aad(x)
             md_half = median(x),
             iqr_half = IQR(x),
             aad_half = aad(x),
-            n_hlaf = n())
+            n_half = n())
 #&gt; # A tibble: 2 x 8
-#&gt;   upper_half avg_half sd_half var_half md_half iqr_half aad_half n_hlaf
+#&gt;   upper_half avg_half sd_half var_half md_half iqr_half aad_half n_half
 #&gt;   &lt;lgl&gt;         &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;  &lt;int&gt;
-#&gt; 1 FALSE        -0.798   0.607    0.368  -0.674    0.832    0.487    512
-#&gt; 2 TRUE          0.767   0.569    0.324   0.654    0.771    0.450    488</code></pre>
+#&gt; 1 FALSE        -0.797   0.604    0.365  -0.672    0.826    0.483  49822
+#&gt; 2 TRUE          0.797   0.601    0.361   0.676    0.831    0.482  50178</code></pre>
 <p>As can be seen the average in the halves is about 0.8 standard units away from the cut point (zero).</p>
 </div>
 <div id="some-theory-half-normal-distribution" class="section level1">
@@ -95,5 +97,5 @@ Var2
 <p>According to <a href="https://en.wikipedia.org/wiki/Half-normal_distribution">Wikipedia</a>, the <span class="math inline">\(\sigma\)</span> can be estimated as such:</p>
 <pre class="r"><code>sigma_hat = sqrt((1/n) * sum(x^2))
 sigma_hat
-#&gt; [1] 1.002571</code></pre>
+#&gt; [1] 0.9992977</code></pre>
 </div>
