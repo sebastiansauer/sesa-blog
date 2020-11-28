@@ -34,7 +34,7 @@ knitr::opts_chunk$set(
 
 ```{r load-libs, message = FALSE, waring = FALSE}
 library(tidyverse)
-
+library(e1071)
 ```
 
 
@@ -168,7 +168,7 @@ X %>%
 Quite similar, but: do we have thicker tails in $e$ compared to $e|X$? We have effectively mixed three distributions,so we might expect fatter tails. 
 
 ```{r}
-kurtosis(X)
+e1071::kurtosis(X$X)
 ```
 
 Recall that the kurtosis of the normal distribution [is 3](https://en.wikipedia.org/wiki/Kurtosis).

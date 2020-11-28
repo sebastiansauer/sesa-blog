@@ -11,6 +11,8 @@ tags:
 ---
 
 <script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<link href="/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
 
 
 <div id="load-packages" class="section level1">
@@ -56,12 +58,12 @@ dag1
 #&gt; # A tibble: 6 x 8
 #&gt;   name       x     y direction to     xend  yend circular
 #&gt;   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;     &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;   
-#&gt; 1 bw      15.6  9.34 -&gt;        mort   14.7  9.17 FALSE   
-#&gt; 2 defect  15.4  8.28 -&gt;        bw     15.6  9.34 FALSE   
-#&gt; 3 defect  15.4  8.28 -&gt;        mort   14.7  9.17 FALSE   
-#&gt; 4 smoke   15.0 10.2  -&gt;        bw     15.6  9.34 FALSE   
-#&gt; 5 smoke   15.0 10.2  -&gt;        mort   14.7  9.17 FALSE   
-#&gt; 6 mort    14.7  9.17 &lt;NA&gt;      &lt;NA&gt;   NA   NA    FALSE</code></pre>
+#&gt; 1 bw      10.1  4.08 -&gt;        mort   11.0  4.04 FALSE   
+#&gt; 2 defect  10.5  3.07 -&gt;        bw     10.1  4.08 FALSE   
+#&gt; 3 defect  10.5  3.07 -&gt;        mort   11.0  4.04 FALSE   
+#&gt; 4 smoke   10.6  5.05 -&gt;        bw     10.1  4.08 FALSE   
+#&gt; 5 smoke   10.6  5.05 -&gt;        mort   11.0  4.04 FALSE   
+#&gt; 6 mort    11.0  4.04 &lt;NA&gt;      &lt;NA&gt;   NA   NA    FALSE</code></pre>
 <pre class="r"><code>ggdag(dag1) + theme_dag_blank()</code></pre>
 <p><img src="/post/2020-06-11-birth-weight-paradoxon-a-simulation-for-intuition_files/figure-html/unnamed-chunk-3-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ggdag_adjustment_set(dag1, node_size = 14) + 
@@ -70,7 +72,8 @@ dag1
 <p>If no variable is controlled for, then the association of <code>smoke</code> to <code>bw</code> shows the true causal effect (given this DAG).</p>
 <p>Let’s check the causal effect from <code>smoke</code> with <code>mort</code> as the outcome variable.</p>
 <pre class="r"><code>dag1 %&gt;% 
-  ggdag_adjustment_set(exposure = &quot;smoke&quot;, outcome = &quot;mort&quot;) +
+  ggdag_adjustment_set(exposure = &quot;smoke&quot;, 
+                       outcome = &quot;mort&quot;) +
   theme_dag()</code></pre>
 <p><img src="/post/2020-06-11-birth-weight-paradoxon-a-simulation-for-intuition_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Again, the backdoors are closed. The association of <code>smoke</code> with <code>mort</code> denotes the true causal effect (given this DAG).</p>
@@ -93,14 +96,14 @@ dag1
 #&gt; # A tibble: 8 x 10
 #&gt;   set   name       x     y direction to     xend  yend circular path     
 #&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;     &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;    &lt;chr&gt;    
-#&gt; 1 1     defect  15.4  8.28 -&gt;        bw     15.6  9.34 FALSE    open path
-#&gt; 2 1     defect  15.4  8.28 -&gt;        mort   14.7  9.17 FALSE    open path
-#&gt; 3 1     smoke   15.0 10.2  -&gt;        bw     15.6  9.34 FALSE    open path
-#&gt; 4 1     mort    14.7  9.17 &lt;NA&gt;      &lt;NA&gt;   NA   NA    FALSE    open path
-#&gt; 5 1     smoke   15.0 10.2  -&gt;        bw     15.6  9.34 FALSE    open path
-#&gt; 6 2     smoke   15.0 10.2  -&gt;        mort   14.7  9.17 FALSE    open path
-#&gt; 7 2     mort    14.7  9.17 &lt;NA&gt;      &lt;NA&gt;   NA   NA    FALSE    open path
-#&gt; 8 2     smoke   15.0 10.2  -&gt;        bw     15.6  9.34 FALSE    open path</code></pre>
+#&gt; 1 1     defect  10.5  3.07 -&gt;        bw     10.1  4.08 FALSE    open path
+#&gt; 2 1     defect  10.5  3.07 -&gt;        mort   11.0  4.04 FALSE    open path
+#&gt; 3 1     smoke   10.6  5.05 -&gt;        bw     10.1  4.08 FALSE    open path
+#&gt; 4 1     mort    11.0  4.04 &lt;NA&gt;      &lt;NA&gt;   NA   NA    FALSE    open path
+#&gt; 5 1     smoke   10.6  5.05 -&gt;        bw     10.1  4.08 FALSE    open path
+#&gt; 6 2     smoke   10.6  5.05 -&gt;        mort   11.0  4.04 FALSE    open path
+#&gt; 7 2     mort    11.0  4.04 &lt;NA&gt;      &lt;NA&gt;   NA   NA    FALSE    open path
+#&gt; 8 2     smoke   10.6  5.05 -&gt;        bw     10.1  4.08 FALSE    open path</code></pre>
 <pre class="r"><code>ggdag_paths(dag1, from = &quot;smoke&quot;, to = &quot;mort&quot;,
             shadow = FALSE) +
   theme(legend.position = &quot;bottom&quot;,)</code></pre>
@@ -115,11 +118,11 @@ dag1
 #&gt; # A tibble: 6 x 11
 #&gt;   name      x     y direction to     xend  yend circular collider_line adjusted
 #&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;     &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;    &lt;lgl&gt;         &lt;chr&gt;   
-#&gt; 1 bw     15.6  9.34 -&gt;        mort   14.7  9.17 FALSE    FALSE         unadjus…
-#&gt; 2 defe…  15.4  8.28 -&gt;        bw     15.6  9.34 FALSE    FALSE         unadjus…
-#&gt; 3 defe…  15.4  8.28 -&gt;        mort   14.7  9.17 FALSE    FALSE         unadjus…
-#&gt; 4 smoke  15.0 10.2  -&gt;        bw     15.6  9.34 FALSE    FALSE         unadjus…
-#&gt; 5 smoke  15.0 10.2  -&gt;        mort   14.7  9.17 FALSE    FALSE         unadjus…
-#&gt; 6 mort   14.7  9.17 &lt;NA&gt;      &lt;NA&gt;   NA   NA    FALSE    FALSE         unadjus…
+#&gt; 1 bw     10.1  4.08 -&gt;        mort   11.0  4.04 FALSE    FALSE         unadjus…
+#&gt; 2 defe…  10.5  3.07 -&gt;        bw     10.1  4.08 FALSE    FALSE         unadjus…
+#&gt; 3 defe…  10.5  3.07 -&gt;        mort   11.0  4.04 FALSE    FALSE         unadjus…
+#&gt; 4 smoke  10.6  5.05 -&gt;        bw     10.1  4.08 FALSE    FALSE         unadjus…
+#&gt; 5 smoke  10.6  5.05 -&gt;        mort   11.0  4.04 FALSE    FALSE         unadjus…
+#&gt; 6 mort   11.0  4.04 &lt;NA&gt;      &lt;NA&gt;   NA   NA    FALSE    FALSE         unadjus…
 #&gt; # … with 1 more variable: d_relationship &lt;fct&gt;</code></pre>
 </div>

@@ -99,7 +99,8 @@ Let's check the causal effect from `smoke` with `mort` as the outcome variable.
 
 ```{r}
 dag1 %>% 
-  ggdag_adjustment_set(exposure = "smoke", outcome = "mort") +
+  ggdag_adjustment_set(exposure = "smoke", 
+                       outcome = "mort") +
   theme_dag()
 ```
 

@@ -11,11 +11,14 @@ tags:
 ---
 
 <script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<link href="/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
 
 
 <div id="load-packages" class="section level1">
 <h1>Load packages</h1>
-<pre class="r"><code>library(tidyverse)</code></pre>
+<pre class="r"><code>library(tidyverse)
+library(e1071)</code></pre>
 </div>
 <div id="my-y-is-not-distributed-according-to-my-wishes" class="section level1">
 <h1>My <span class="math inline">\(y\)</span> is not distributed according to my wishes!</h1>
@@ -93,9 +96,8 @@ Y_hat &lt;- 0.02 + 0.5*X + e</code></pre>
   geom_density()</code></pre>
 <p><img src="/post/2020-06-09-distribution-of-residuals-is-of-interest-for-linear-models-not-the-distribution-of-y_files/figure-html/unnamed-chunk-9-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Quite similar, but: do we have thicker tails in <span class="math inline">\(e\)</span> compared to <span class="math inline">\(e|X\)</span>? We have effectively mixed three distributions,so we might expect fatter tails.</p>
-<pre class="r"><code>kurtosis(X)
-#&gt;        X        Y    Y_hat        e 
-#&gt; 1.563956 1.563956 1.728705 2.717126</code></pre>
+<pre class="r"><code>e1071::kurtosis(X$X)
+#&gt; [1] -1.439171</code></pre>
 <p>Recall that the kurtosis of the normal distribution <a href="https://en.wikipedia.org/wiki/Kurtosis">is 3</a>.</p>
 <p>As a side note (same source as above):</p>
 <blockquote>
@@ -110,11 +112,11 @@ Y_hat &lt;- 0.02 + 0.5*X + e</code></pre>
   group_by(X) %&gt;% 
   summarise(kurtY = kurtosis(e))
 #&gt; # A tibble: 3 x 2
-#&gt;       X kurtY
-#&gt;   &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1     1  2.40
-#&gt; 2     2  2.95
-#&gt; 3     3  2.70</code></pre>
+#&gt;       X   kurtY
+#&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+#&gt; 1     1 -0.615 
+#&gt; 2     2 -0.0636
+#&gt; 3     3 -0.319</code></pre>
 <p>There does not appear to be any difference in the kurtosis between <span class="math inline">\(e\)</span> and <span class="math inline">\(e|X\)</span>.</p>
 </div>
 <div id="conclusion-1" class="section level1">

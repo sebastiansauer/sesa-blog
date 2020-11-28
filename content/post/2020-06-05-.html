@@ -10,6 +10,8 @@ tags:
 ---
 
 <script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<link href="/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
 
 
 <div id="load-packages" class="section level1">
@@ -92,9 +94,9 @@ H = (N-1)\frac{\sum_{i=1}^g n_i(\bar{r}_{i\cdot} - \bar{r})^2}{\sum_{i=1}^g\sum_
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">7.0528110</td>
+<td align="right">3.1688452</td>
 <td align="right">3</td>
-<td align="right">0.0702334</td>
+<td align="right">0.3663180</td>
 <td align="left">Kruskal-Wallis rank sum test</td>
 <td align="left">NA</td>
 <td align="left">tip by shuffle(day)</td>
@@ -102,9 +104,9 @@ H = (N-1)\frac{\sum_{i=1}^g n_i(\bar{r}_{i\cdot} - \bar{r})^2}{\sum_{i=1}^g\sum_
 <td align="right">1</td>
 </tr>
 <tr class="even">
-<td align="right">4.7100088</td>
+<td align="right">0.0094803</td>
 <td align="right">3</td>
-<td align="right">0.1943056</td>
+<td align="right">0.9997552</td>
 <td align="left">Kruskal-Wallis rank sum test</td>
 <td align="left">NA</td>
 <td align="left">tip by shuffle(day)</td>
@@ -112,9 +114,9 @@ H = (N-1)\frac{\sum_{i=1}^g n_i(\bar{r}_{i\cdot} - \bar{r})^2}{\sum_{i=1}^g\sum_
 <td align="right">2</td>
 </tr>
 <tr class="odd">
-<td align="right">1.7082816</td>
+<td align="right">11.7318235</td>
 <td align="right">3</td>
-<td align="right">0.6350942</td>
+<td align="right">0.0083606</td>
 <td align="left">Kruskal-Wallis rank sum test</td>
 <td align="left">NA</td>
 <td align="left">tip by shuffle(day)</td>
@@ -122,9 +124,9 @@ H = (N-1)\frac{\sum_{i=1}^g n_i(\bar{r}_{i\cdot} - \bar{r})^2}{\sum_{i=1}^g\sum_
 <td align="right">3</td>
 </tr>
 <tr class="even">
-<td align="right">1.6742686</td>
+<td align="right">4.3075100</td>
 <td align="right">3</td>
-<td align="right">0.6426696</td>
+<td align="right">0.2301161</td>
 <td align="left">Kruskal-Wallis rank sum test</td>
 <td align="left">NA</td>
 <td align="left">tip by shuffle(day)</td>
@@ -132,9 +134,9 @@ H = (N-1)\frac{\sum_{i=1}^g n_i(\bar{r}_{i\cdot} - \bar{r})^2}{\sum_{i=1}^g\sum_
 <td align="right">4</td>
 </tr>
 <tr class="odd">
-<td align="right">2.3733175</td>
+<td align="right">1.5435937</td>
 <td align="right">3</td>
-<td align="right">0.4986209</td>
+<td align="right">0.6722461</td>
 <td align="left">Kruskal-Wallis rank sum test</td>
 <td align="left">NA</td>
 <td align="left">tip by shuffle(day)</td>
@@ -142,9 +144,9 @@ H = (N-1)\frac{\sum_{i=1}^g n_i(\bar{r}_{i\cdot} - \bar{r})^2}{\sum_{i=1}^g\sum_
 <td align="right">5</td>
 </tr>
 <tr class="even">
-<td align="right">0.5323401</td>
+<td align="right">1.4203264</td>
 <td align="right">3</td>
-<td align="right">0.9117311</td>
+<td align="right">0.7007771</td>
 <td align="left">Kruskal-Wallis rank sum test</td>
 <td align="left">NA</td>
 <td align="left">tip by shuffle(day)</td>
@@ -213,14 +215,14 @@ emp_F_value
 <pre class="r"><code>boot1 &lt;- do(1000) * lm(tip ~ day, data = resample(tips))
 
 confint(boot1)
-#&gt;        name        lower      upper level     method   estimate
-#&gt; 1 Intercept  2.244986111 3.16854386  0.95 percentile 2.73473684
-#&gt; 2    daySat -0.277850907 0.87533265  0.95 percentile 0.25836661
-#&gt; 3    daySun  0.024210182 1.07589364  0.95 percentile 0.52039474
-#&gt; 4   dayThur -0.503510671 0.60336794  0.95 percentile 0.03671477
-#&gt; 5     sigma  1.159307959 1.58166629  0.95 percentile 1.37793112
-#&gt; 6 r.squared  0.004987298 0.07738975  0.95 percentile 0.02047639
-#&gt; 7         F  0.400983682 6.71050426  0.95 percentile 1.67235520</code></pre>
+#&gt;        name        lower     upper level     method   estimate
+#&gt; 1 Intercept  2.270318182 3.2140346  0.95 percentile 2.73473684
+#&gt; 2    daySat -0.304165972 0.8272075  0.95 percentile 0.25836661
+#&gt; 3    daySun  0.030470180 1.0744534  0.95 percentile 0.52039474
+#&gt; 4   dayThur -0.480811080 0.6252964  0.95 percentile 0.03671477
+#&gt; 5     sigma  1.157816369 1.5729610  0.95 percentile 1.37793112
+#&gt; 6 r.squared  0.005899732 0.0758314  0.95 percentile 0.02047639
+#&gt; 7         F  0.474779633 6.5642919  0.95 percentile 1.67235520</code></pre>
 </div>
 <div id="pluck-the-r-squared-from-the-lm-object" class="section level1">
 <h1>Pluck the r-squared from the lm object</h1>
@@ -264,8 +266,8 @@ gf_histogram(~ F, data = null2,
 <p>As can be seen, the F value is not significant.</p>
 <p>Some summary statistics to this distribution:</p>
 <pre class="r"><code>favstats(~ F, data = null2)
-#&gt;        min        Q1    median       Q3      max      mean        sd    n
-#&gt;  0.0092523 0.4050921 0.7621598 1.356379 5.611243 0.9925849 0.8319289 1000
+#&gt;          min        Q1    median       Q3      max      mean        sd    n
+#&gt;  0.006571185 0.3887514 0.7581193 1.293386 5.553417 0.9314424 0.7433274 1000
 #&gt;  missing
 #&gt;        0</code></pre>
 </div>
