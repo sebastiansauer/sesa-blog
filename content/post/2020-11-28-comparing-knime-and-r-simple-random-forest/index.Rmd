@@ -3,6 +3,9 @@ title: 'Comparing Knime and R: Simple Random Forest'
 author: Sebastian Sauer
 date: '2020-11-28'
 slug: comparing-knime-and-r-simple-random-forest
+output:
+  blogdown::html_page:
+    toc: true
 categories:
   - rstats
 tags:
@@ -23,13 +26,15 @@ That's a simple Random Forest workflow.
 # Translate it to R!
 
 
-## Setup
+## Load Packages
 
 ```{r message= FALSE}
-library(tidyverse)
-library(tidymodels)
-library(conflicted)
-library(caret)
+library(tidyverse)  # data wrangling
+library(tidymodels)  # modelling
+library(conflicted)  # name clashes
+library(caret)  # confusion matrix
+library(vip)  # variance importance plots
+library(gt)  # nice table formatting
 ```
 
 ## Load Data
@@ -60,7 +65,14 @@ testdata <- testing(split_vector)
 ```
 
 
-## Define and run Random Forest model
+# Random Forest classification model in R
+
+
+## Define and run Random Forest classification model
+
+
+
+### Define learner (model)
 
 
 First define the model:
@@ -73,6 +85,9 @@ rf_mod <-
 ```
 
 
+
+### Define recipe
+
 ```{r}
 rf_recipe <-
   recipe(Species ~ ., data = traindata)
@@ -81,6 +96,7 @@ rf_prep <- prep(rf_recipe)
 ```
 
 
+### Put workflow together
 
 ```{r}
 workflow() %>% 
@@ -91,7 +107,7 @@ rf_wf
 ```
 
 
-
+### Fit the model to the train data
 
 Then fit it:
 
@@ -114,7 +130,7 @@ rf_fit
 ```
 
 
-## Classification results
+## Model results in test data
 
 ```{r}
 testdata %>% 
@@ -136,7 +152,8 @@ testdata_augmented %>%
 
 ```{r}
 testdata_augmented %>% 
-  metrics(truth = Species, .pred_class)
+  metrics(truth = Species, 
+          estimate = .pred_class)
 ```
 
 
@@ -145,7 +162,8 @@ testdata_augmented %>%
 
 ```{r}
 testdata_augmented %>% 
-  roc_curve(truth = Species, .pred_setosa:.pred_virginica) %>% 
+  roc_curve(truth = Species, 
+            estimate = .pred_setosa:.pred_virginica) %>% 
   autoplot()
 ```
 
@@ -156,7 +174,7 @@ testdata_augmented %>%
 
 
 
-
+### Confusion Matrix
 
 
 
@@ -166,4 +184,98 @@ confusionMatrix(data = testdata_augmented$.pred_class,
 ```
 
 
-## Regression via Random Forests
+# Random Forest regression model in R
+
+
+## Define and run the model
+
+### Update model to regression
+
+
+Update the classification model to regression
+
+```{r}
+rf_mod  %>%  
+  set_mode("regression") %>% 
+  set_args(mtry = 3, importance = "impurity") -> rf_mod_regr
+```
+
+
+
+
+### Define recipe
+
+```{r}
+rf_recipe_regr <-
+  recipe(Petal.Width ~ ., data = traindata)
+```
+
+
+
+
+### Put workflow together
+
+
+```{r}
+workflow() %>% 
+  add_recipe(rf_recipe_regr) %>% 
+  add_model(rf_mod_regr)  -> rf_wf_regr
+
+rf_wf_regr
+```
+
+
+
+## OOB results
+
+
+Then fit the model:
+
+```{r}
+set.seed(123)
+
+rf_fit_regr <-
+  rf_wf_regr %>% 
+  fit(data = traindata)
+
+```
+
+
+
+```{r}
+rf_fit_regr
+```
+
+
+
+## Model results in test data
+
+```{r}
+testdata %>% 
+  bind_cols(predict(rf_fit_regr, testdata)) -> testdata_augmented
+
+```
+
+
+
+
+## Variabble importance
+
+```{r}
+pull_workflow_fit(rf_fit_regr) %>% 
+  vip()
+```
+
+
+
+## Collect performance metrics
+
+
+```{r}
+testdata %>% 
+  bind_cols(rf_fit_regr %>% predict(testdata)) %>% 
+  metrics(truth = Petal.Width,
+          estimate = .pred) %>% 
+  gt()
+```
+
