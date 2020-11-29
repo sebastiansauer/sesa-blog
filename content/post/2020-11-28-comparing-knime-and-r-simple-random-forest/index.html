@@ -60,9 +60,9 @@ tags:
 
 <div id="knime-workflow" class="section level1">
 <h1>Knime Workflow</h1>
-<p>Consider <a href="">this</a> Knime workflow:</p>
-<p><img src="https://i.postimg.cc/fLDcGmML/knime-rf.png" /></p>
-<p>That’s a simple Random Forest workflow.</p>
+<p>Consider <a href="https://hub.knime.com/knime/spaces/Examples/latest/04_Analytics/13_Meta_Learning/02_Learning_a_Random_Forest">this</a> Knime workflow:</p>
+<p><a href="https://ibb.co/7j3crnM"><img src="https://i.ibb.co/djN9kPC/knime-rf.png" alt="knime-rf" border="0"></a><br /><a target='_blank' href='https://de.imgbb.com/'>de picture</a><br /></p>
+<p>That’s a simple Random Forest workflow, you can download the Knime worfklow <a href="https://kni.me/w/Sim-pKlioDWrgj_T">here</a>.</p>
 </div>
 <div id="translate-it-to-r" class="section level1">
 <h1>Translate it to R!</h1>
@@ -171,7 +171,7 @@ rf_fit &lt;-
 ## Target node size:                 10 
 ## Variable importance mode:         none 
 ## Splitrule:                        gini 
-## OOB prediction error (Brier s.):  0.02924134</code></pre>
+## OOB prediction error (Brier s.):  0.0199251</code></pre>
 </div>
 <div id="model-results-in-test-data" class="section level2">
 <h2>Model results in test data</h2>
@@ -185,15 +185,15 @@ rf_fit &lt;-
 <pre><code>## # A tibble: 1 x 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 roc_auc hand_till          1</code></pre>
+## 1 roc_auc hand_till      0.991</code></pre>
 <pre class="r"><code>testdata_augmented %&gt;% 
   metrics(truth = Species, 
           estimate = .pred_class)</code></pre>
 <pre><code>## # A tibble: 2 x 3
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy multiclass     0.944
-## 2 kap      multiclass     0.917</code></pre>
+## 1 accuracy multiclass     0.917
+## 2 kap      multiclass     0.875</code></pre>
 </div>
 <div id="roc" class="section level3">
 <h3>ROC</h3>
@@ -212,31 +212,31 @@ rf_fit &lt;-
 ##             Reference
 ## Prediction   setosa versicolor virginica
 ##   setosa         12          0         0
-##   versicolor      0         10         0
-##   virginica       0          2        12
+##   versicolor      0          9         0
+##   virginica       0          3        12
 ## 
 ## Overall Statistics
 ##                                           
-##                Accuracy : 0.9444          
-##                  95% CI : (0.8134, 0.9932)
+##                Accuracy : 0.9167          
+##                  95% CI : (0.7753, 0.9825)
 ##     No Information Rate : 0.3333          
-##     P-Value [Acc &gt; NIR] : 1.728e-14       
+##     P-Value [Acc &gt; NIR] : 3.978e-13       
 ##                                           
-##                   Kappa : 0.9167          
+##                   Kappa : 0.875           
 ##                                           
 ##  Mcnemar&#39;s Test P-Value : NA              
 ## 
 ## Statistics by Class:
 ## 
 ##                      Class: setosa Class: versicolor Class: virginica
-## Sensitivity                 1.0000            0.8333           1.0000
-## Specificity                 1.0000            1.0000           0.9167
-## Pos Pred Value              1.0000            1.0000           0.8571
-## Neg Pred Value              1.0000            0.9231           1.0000
+## Sensitivity                 1.0000            0.7500           1.0000
+## Specificity                 1.0000            1.0000           0.8750
+## Pos Pred Value              1.0000            1.0000           0.8000
+## Neg Pred Value              1.0000            0.8889           1.0000
 ## Prevalence                  0.3333            0.3333           0.3333
-## Detection Rate              0.3333            0.2778           0.3333
-## Detection Prevalence        0.3333            0.2778           0.3889
-## Balanced Accuracy           1.0000            0.9167           0.9583</code></pre>
+## Detection Rate              0.3333            0.2500           0.3333
+## Detection Prevalence        0.3333            0.2500           0.4167
+## Balanced Accuracy           1.0000            0.8750           0.9375</code></pre>
 </div>
 </div>
 </div>
@@ -313,8 +313,8 @@ rf_fit_regr &lt;-
 ## Target node size:                 5 
 ## Variable importance mode:         impurity 
 ## Splitrule:                        variance 
-## OOB prediction error (MSE):       0.03181864 
-## R squared (OOB):                  0.9452525</code></pre>
+## OOB prediction error (MSE):       0.03521464 
+## R squared (OOB):                  0.9372999</code></pre>
 </div>
 <div id="model-results-in-test-data-1" class="section level2">
 <h2>Model results in test data</h2>
@@ -683,17 +683,17 @@ rf_fit_regr &lt;-
     <tr>
       <td class="gt_row gt_left">rmse</td>
       <td class="gt_row gt_left">standard</td>
-      <td class="gt_row gt_right">0.1710008</td>
+      <td class="gt_row gt_right">0.1745278</td>
     </tr>
     <tr>
       <td class="gt_row gt_left">rsq</td>
       <td class="gt_row gt_left">standard</td>
-      <td class="gt_row gt_right">0.9495973</td>
+      <td class="gt_row gt_right">0.9627769</td>
     </tr>
     <tr>
       <td class="gt_row gt_left">mae</td>
       <td class="gt_row gt_left">standard</td>
-      <td class="gt_row gt_right">0.1297074</td>
+      <td class="gt_row gt_right">0.1324681</td>
     </tr>
   </tbody>
   

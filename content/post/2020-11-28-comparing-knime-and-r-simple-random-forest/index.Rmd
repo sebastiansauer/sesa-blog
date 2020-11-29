@@ -15,12 +15,19 @@ tags:
 
 # Knime Workflow
 
-Consider [this]() Knime workflow:
+Consider [this](https://hub.knime.com/knime/spaces/Examples/latest/04_Analytics/13_Meta_Learning/02_Learning_a_Random_Forest) Knime workflow:
+
+<a href="https://ibb.co/7j3crnM"><img src="https://i.ibb.co/djN9kPC/knime-rf.png" alt="knime-rf" border="0"></a><br /><a target='_blank' href='https://de.imgbb.com/'>de picture</a><br />
 
 
-![](https://i.postimg.cc/fLDcGmML/knime-rf.png)
 
-That's a simple Random Forest workflow.
+
+
+
+
+
+
+That's a simple Random Forest workflow, you can download the Knime worfklow [here](https://kni.me/w/Sim-pKlioDWrgj_T).
 
 
 # Translate it to R!
