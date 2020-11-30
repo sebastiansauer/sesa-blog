@@ -7,12 +7,52 @@ categories:
   - rstats
 tags:
   - tutorial
+output:
+  blogdown::html_page:
+    toc: TRUE
 ---
 
 <script src="index_files/header-attrs/header-attrs.js"></script>
 <link href="index_files/anchor-sections/anchor-sections.css" rel="stylesheet" />
 <script src="index_files/anchor-sections/anchor-sections.js"></script>
 
+<div id="TOC">
+<ul>
+<li><a href="#pakete-laden">Pakete laden</a></li>
+<li><a href="#daten-laden">Daten laden</a></li>
+<li><a href="#forschungsfrage">Forschungsfrage</a></li>
+<li><a href="#ihre-salvatorische-klausel">Ihre salvatorische Klausel</a></li>
+<li><a href="#überblick-über-die-kennzahlen">Überblick über die Kennzahlen</a></li>
+<li><a href="#fehlende-werte">Fehlende Werte</a></li>
+<li><a href="#verteilung-der-output-variablen">Verteilung der Output-Variablen</a></li>
+<li><a href="#verteilung-der-input-variablen">Verteilung der Input-Variablen</a></li>
+<li><a href="#explorative-analyse">Explorative Analyse</a></li>
+<li><a href="#budget-logarithmieren">Budget logarithmieren</a></li>
+<li><a href="#datensatz-umbauen-pivotieren-moderierender-effekt-von-genre">Datensatz umbauen (pivotieren): Moderierender Effekt von Genre</a></li>
+<li><a href="#korrelation-zwischen-den-gruppen">Korrelation zwischen den Gruppen</a></li>
+<li><a href="#einfluss-von-genre">Einfluss von Genre</a></li>
+<li><a href="#datensatz-vereinfachen">Datensatz vereinfachen</a></li>
+<li><a href="#datensatz-aufteilen-train--und-test">Datensatz aufteilen (Train- und Test)</a></li>
+<li><a href="#modell-0-nullmodell">Modell 0 (“Nullmodell”)</a></li>
+<li><a href="#modell-1-budget_log10">Modell 1: <code>budget_log10</code></a></li>
+<li><a href="#unendliche-werte-entfernen">Unendliche Werte entfernen</a></li>
+<li><a href="#model-1-ergebnisse">Model 1 Ergebnisse</a></li>
+<li><a href="#anzahl-der-stimmen-votes">Anzahl der Stimmen (<code>votes</code>)</a></li>
+<li><a href="#modell-2-anzahl-der-stimmen-linear">Modell 2: Anzahl der Stimmen, linear</a></li>
+<li><a href="#modell-3-anzahl-der-stimmen-als-polynomialmodell-quadratisch">Modell 3: Anzahl der Stimmen als Polynomialmodell, quadratisch</a></li>
+<li><a href="#modell-4-anzahl-der-stimmen-als-polynomialmodell-3.-grades">Modell 4: Anzahl der Stimmen als Polynomialmodell, 3. Grades</a></li>
+<li><a href="#korrelationsmatrix-visualisieren">Korrelationsmatrix (visualisieren)</a></li>
+<li><a href="#modell-5-multiple-regression">Modell 5: Multiple Regression</a></li>
+<li><a href="#d-visualisierung">3D-Visualisierung</a></li>
+<li><a href="#modell-6-interaktionsmodell">Modell 6: Interaktionsmodell</a></li>
+<li><a href="#rohe-kraft-schrittweise-regression">Rohe Kraft: Schrittweise Regression</a></li>
+<li><a href="#modellselektion-modellwahl-anova">Modellselektion (Modellwahl) – anova</a></li>
+<li><a href="#modellselektion-modellwahl-prädiktion">Modellselektion (Modellwahl) – Prädiktion</a></li>
+<li><a href="#hm">Hm</a></li>
+<li><a href="#vielleicht-so-vergleich-der-modellgüten">Vielleicht so: Vergleich der Modellgüten</a></li>
+<li><a href="#prüfung-der-voraussetzungen">Prüfung der Voraussetzungen</a></li>
+</ul>
+</div>
 
 <div id="pakete-laden" class="section level1">
 <h1>Pakete laden</h1>
