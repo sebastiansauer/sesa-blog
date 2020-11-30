@@ -97,9 +97,20 @@ rf_mod <-
 
 ```{r}
 rf_recipe <-
-  recipe(Species ~ ., data = traindata)
+  recipe(Species ~ ., data = traindata) %>% 
+  step_zv(all_predictors())  # filter zero variance variables
+```
 
-rf_prep <- prep(rf_recipe)
+
+A recipe only contains 
+
+- names of variables
+- their roles
+- planned prepossing steps (here only filter all zero variance variables)
+
+
+```{r}
+rf_recipe
 ```
 
 
@@ -152,7 +163,8 @@ testdata %>%
 
 ```{r}
 testdata_augmented %>% 
-  roc_auc(truth = Species, .pred_setosa:.pred_virginica)
+  roc_auc(truth = Species, 
+          .pred_setosa:.pred_virginica)
 ```
 
 

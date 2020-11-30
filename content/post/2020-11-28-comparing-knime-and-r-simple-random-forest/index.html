@@ -111,9 +111,26 @@ testdata &lt;- testing(split_vector)</code></pre>
 <div id="define-recipe" class="section level3">
 <h3>Define recipe</h3>
 <pre class="r"><code>rf_recipe &lt;-
-  recipe(Species ~ ., data = traindata)
-
-rf_prep &lt;- prep(rf_recipe)</code></pre>
+  recipe(Species ~ ., data = traindata) %&gt;% 
+  step_zv(all_predictors())  # filter zero variance variables</code></pre>
+<p>A recipe only contains</p>
+<ul>
+<li>names of variables</li>
+<li>their roles</li>
+<li>planned prepossing steps (here only filter all zero variance variables)</li>
+</ul>
+<pre class="r"><code>rf_recipe</code></pre>
+<pre><code>## Data Recipe
+## 
+## Inputs:
+## 
+##       role #variables
+##    outcome          1
+##  predictor          4
+## 
+## Operations:
+## 
+## Zero variance filter on all_predictors()</code></pre>
 </div>
 <div id="put-workflow-together" class="section level3">
 <h3>Put workflow together</h3>
@@ -127,7 +144,9 @@ rf_wf</code></pre>
 ## Model: rand_forest()
 ## 
 ## ── Preprocessor ────────────────────────────────────────────────────────────────
-## 0 Recipe Steps
+## 1 Recipe Step
+## 
+## ● step_zv()
 ## 
 ## ── Model ───────────────────────────────────────────────────────────────────────
 ## Random Forest Model Specification (classification)
@@ -155,7 +174,9 @@ rf_fit &lt;-
 ## Model: rand_forest()
 ## 
 ## ── Preprocessor ────────────────────────────────────────────────────────────────
-## 0 Recipe Steps
+## 1 Recipe Step
+## 
+## ● step_zv()
 ## 
 ## ── Model ───────────────────────────────────────────────────────────────────────
 ## Ranger result
@@ -171,7 +192,7 @@ rf_fit &lt;-
 ## Target node size:                 10 
 ## Variable importance mode:         none 
 ## Splitrule:                        gini 
-## OOB prediction error (Brier s.):  0.0199251</code></pre>
+## OOB prediction error (Brier s.):  0.04269909</code></pre>
 </div>
 <div id="model-results-in-test-data" class="section level2">
 <h2>Model results in test data</h2>
@@ -181,19 +202,20 @@ rf_fit &lt;-
 <div id="multiclass-accuracy" class="section level3">
 <h3>Multiclass accuracy</h3>
 <pre class="r"><code>testdata_augmented %&gt;% 
-  roc_auc(truth = Species, .pred_setosa:.pred_virginica)</code></pre>
+  roc_auc(truth = Species, 
+          .pred_setosa:.pred_virginica)</code></pre>
 <pre><code>## # A tibble: 1 x 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 roc_auc hand_till      0.991</code></pre>
+## 1 roc_auc hand_till          1</code></pre>
 <pre class="r"><code>testdata_augmented %&gt;% 
   metrics(truth = Species, 
           estimate = .pred_class)</code></pre>
 <pre><code>## # A tibble: 2 x 3
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy multiclass     0.917
-## 2 kap      multiclass     0.875</code></pre>
+## 1 accuracy multiclass         1
+## 2 kap      multiclass         1</code></pre>
 </div>
 <div id="roc" class="section level3">
 <h3>ROC</h3>
@@ -201,7 +223,7 @@ rf_fit &lt;-
   roc_curve(truth = Species, 
             estimate = .pred_setosa:.pred_virginica) %&gt;% 
   autoplot()</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 </div>
 <div id="confusion-matrix" class="section level3">
 <h3>Confusion Matrix</h3>
@@ -212,31 +234,31 @@ rf_fit &lt;-
 ##             Reference
 ## Prediction   setosa versicolor virginica
 ##   setosa         12          0         0
-##   versicolor      0          9         0
-##   virginica       0          3        12
+##   versicolor      0         12         0
+##   virginica       0          0        12
 ## 
 ## Overall Statistics
-##                                           
-##                Accuracy : 0.9167          
-##                  95% CI : (0.7753, 0.9825)
-##     No Information Rate : 0.3333          
-##     P-Value [Acc &gt; NIR] : 3.978e-13       
-##                                           
-##                   Kappa : 0.875           
-##                                           
-##  Mcnemar&#39;s Test P-Value : NA              
+##                                      
+##                Accuracy : 1          
+##                  95% CI : (0.9026, 1)
+##     No Information Rate : 0.3333     
+##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16  
+##                                      
+##                   Kappa : 1          
+##                                      
+##  Mcnemar&#39;s Test P-Value : NA         
 ## 
 ## Statistics by Class:
 ## 
 ##                      Class: setosa Class: versicolor Class: virginica
-## Sensitivity                 1.0000            0.7500           1.0000
-## Specificity                 1.0000            1.0000           0.8750
-## Pos Pred Value              1.0000            1.0000           0.8000
-## Neg Pred Value              1.0000            0.8889           1.0000
+## Sensitivity                 1.0000            1.0000           1.0000
+## Specificity                 1.0000            1.0000           1.0000
+## Pos Pred Value              1.0000            1.0000           1.0000
+## Neg Pred Value              1.0000            1.0000           1.0000
 ## Prevalence                  0.3333            0.3333           0.3333
-## Detection Rate              0.3333            0.2500           0.3333
-## Detection Prevalence        0.3333            0.2500           0.4167
-## Balanced Accuracy           1.0000            0.8750           0.9375</code></pre>
+## Detection Rate              0.3333            0.3333           0.3333
+## Detection Prevalence        0.3333            0.3333           0.3333
+## Balanced Accuracy           1.0000            1.0000           1.0000</code></pre>
 </div>
 </div>
 </div>
@@ -313,8 +335,8 @@ rf_fit_regr &lt;-
 ## Target node size:                 5 
 ## Variable importance mode:         impurity 
 ## Splitrule:                        variance 
-## OOB prediction error (MSE):       0.03521464 
-## R squared (OOB):                  0.9372999</code></pre>
+## OOB prediction error (MSE):       0.03710244 
+## R squared (OOB):                  0.9355139</code></pre>
 </div>
 <div id="model-results-in-test-data-1" class="section level2">
 <h2>Model results in test data</h2>
@@ -325,7 +347,7 @@ rf_fit_regr &lt;-
 <h2>Variabble importance</h2>
 <pre class="r"><code>pull_workflow_fit(rf_fit_regr) %&gt;% 
   vip()</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 </div>
 <div id="collect-performance-metrics" class="section level2">
 <h2>Collect performance metrics</h2>
@@ -683,17 +705,17 @@ rf_fit_regr &lt;-
     <tr>
       <td class="gt_row gt_left">rmse</td>
       <td class="gt_row gt_left">standard</td>
-      <td class="gt_row gt_right">0.1745278</td>
+      <td class="gt_row gt_right">0.1543815</td>
     </tr>
     <tr>
       <td class="gt_row gt_left">rsq</td>
       <td class="gt_row gt_left">standard</td>
-      <td class="gt_row gt_right">0.9627769</td>
+      <td class="gt_row gt_right">0.9727964</td>
     </tr>
     <tr>
       <td class="gt_row gt_left">mae</td>
       <td class="gt_row gt_left">standard</td>
-      <td class="gt_row gt_right">0.1324681</td>
+      <td class="gt_row gt_right">0.1024894</td>
     </tr>
   </tbody>
   

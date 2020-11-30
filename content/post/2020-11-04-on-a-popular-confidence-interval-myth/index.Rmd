@@ -7,7 +7,12 @@ categories:
   - rstats
 tags:
   - inference
+output:
+  blogdown::html_page:
+    toc: true
 ---
+
+
 
 
 
@@ -28,6 +33,14 @@ knitr::opts_chunk$set(
 ```
 
 
+
+
+
+---
+
+**UPDATE** 2020-11-30 based on discussion with Norman Markgraf, see disqus below.
+
+---
 
 # Load packages
 
@@ -60,7 +73,10 @@ flights_sample <- sample_n(drop_na(flights, arr_delay),
                            size = 30)
 ```
 
-Compute the descriptives:
+Note that it does not matter which particular sample we draw. Our argument is: Given some sample, what can we derive for a confidence interval?
+
+
+Compute the discriptives:
 
 ```{r}
 favstats(~ arr_delay, 
@@ -90,8 +106,8 @@ Wonderful. Now walk on to the CI.
 flights_summary %>% 
   mutate(delay_n = nrow(flights_sample),
          delay_sem = delay_sd / sqrt(delay_n),
-         delay_95ci_lower = delay_avg - 2 * delay_sem,
-         delay_95ci_upper = delay_avg + 2 * delay_sem) -> flights_summary
+         delay_95ci_lower = delay_avg - 1.96 * delay_sem,
+         delay_95ci_upper = delay_avg + 1.96 * delay_sem) -> flights_summary
 
 flights_summary
 ```
@@ -118,8 +134,8 @@ stat_function(fun = dnorm, n = 1000,
                       round(flights_avg, 2),
                                    ",\nSE: ", round(flights_sem, 2)),
     caption = "Vertical dashed bars indicate the confidence interval borders") +
-  geom_vline(xintercept = c(flights_avg + 2* flights_sem,
-             flights_avg - 2* flights_sem), 
+  geom_vline(xintercept = c(flights_avg + 1.96 * flights_sem,
+             flights_avg - 1.96 * flights_sem), 
              color = "blue", linetype = "dashed")
 ```
 
@@ -128,7 +144,7 @@ stat_function(fun = dnorm, n = 1000,
 
 
 ```{r cache = TRUE}
-boot1 <- do(1000) * mean(~ arr_delay, na.rm = T, 
+boot1 <- do(10000) * mean(~ arr_delay, na.rm = T, 
                          data = resample(flights_sample))
 ```
 
@@ -276,4 +292,5 @@ Well, some critics say that the CI is rather useless. In fact, Danial Kaplan adv
 
 # Now what?
 
-Seek shelter in Bayesian inference where a "confidence" interval is actually what everybody would expect it is: The interval where the parameter ($\mu$) is with a probability of 95% (assuming the model is correct).
+Seek shelter in Bayesian inference where a "confidence" (credible) interval is actually what everybody would expect it is: The interval where the parameter ($\mu$) is with a probability of 95% ( $1-\alpha$, assuming the model is correct).
+
