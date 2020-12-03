@@ -1,0 +1,853 @@
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  error = TRUE,
+  cache = TRUE,
+  echo = FALSE,
+  out.width = "70%",
+  fig.align = 'center',
+  fig.width = 6,
+  fig.asp =  0.618,  # 1 / phi
+  fig.show = "hold",
+  size = "tiny"
+)
+```
+
+
+
+```{r libs, echo = FALSE}
+library(tidyverse)
+library(tidyr)
+library(DiagrammeR)
+library(rethinking)
+library(knitr)
+library(kableExtra)
+```
+
+
+class: center, middle, inverse
+
+# Menace to society
+
+Right-wing populism then and now
+
+
+
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<link href="/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
+<script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/viz/viz.js"></script>
+<link href="/rmarkdown-libs/DiagrammeR-styles/styles.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/grViz-binding/grViz.js"></script>
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+<link href="/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<link href="/rmarkdown-libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/datatables-binding/datatables.js"></script>
+<link href="/rmarkdown-libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="/rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/dt-core/js/jquery.dataTables.min.js"></script>
+<link href="/rmarkdown-libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/crosstalk/js/crosstalk.min.js"></script>
+<link href="/rmarkdown-libs/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
+
+
+<table>
+<tbody>
+<tr class="odd">
+<td>tle: “Predictors of AfD party success in the 2017 elections”</td>
+</tr>
+<tr class="even">
+<td>btitle: “A Bayesian modeling approach”</td>
+</tr>
+<tr class="odd">
+<td>thor: |</td>
+</tr>
+<tr class="even">
+<td>Sebastian Sauer,</td>
+</tr>
+<tr class="odd">
+<td>Sandra Sülzenbrück,</td>
+</tr>
+<tr class="even">
+<td>Yvonne Ferreira,</td>
+</tr>
+<tr class="odd">
+<td>Rüdiger Buchkremer</td>
+</tr>
+<tr class="even">
+<td>te: “FOM<br>DGPs 2018”</td>
+</tr>
+<tr class="odd">
+<td>s: [“default-fonts”, “default”]</td>
+</tr>
+<tr class="even">
+<td>tput:</td>
+</tr>
+<tr class="odd">
+<td>xaringan::moon_reader:</td>
+</tr>
+<tr class="even">
+<td>lib_dir: libs</td>
+</tr>
+<tr class="odd">
+<td>nature:</td>
+</tr>
+<tr class="even">
+<td>highlightStyle: github</td>
+</tr>
+<tr class="odd">
+<td>highlightLines: true</td>
+</tr>
+<tr class="even">
+<td>countIncrementalSlides: false</td>
+</tr>
+<tr class="odd">
+<td>itor_options:</td>
+</tr>
+<tr class="even">
+<td>chunk_output_type: console</td>
+</tr>
+</tbody>
+</table>
+<p>class: center, middle, inverse</p>
+<div id="menace-to-society" class="section level1">
+<h1>Menace to society</h1>
+<p>Right-wing populism then and now</p>
+<hr />
+<p>class: top, left
+# Causes of 20th century world wars</p>
+<ul>
+<li><p><em>nationalism</em></p></li>
+<li><p>authoritarianism</p></li>
+<li><p>racism</p></li>
+<li><p>territorial disputes</p></li>
+<li><p>class conflicts</p></li>
+<li><p>crisis of capitalism</p></li>
+</ul>
+<p>.small[.footnote[Source: Kershaw, I. (2016). To hell and back: Europe 1914-1949. New York City, NW: Penguin.]]</p>
+<p>???</p>
+<p>Image credit:Wikipedia, RIA Novosti archive, image #44732 / Zelma / CC-BY-SA 3.0</p>
+<hr />
+<p>class: top, left</p>
+</div>
+<div id="right-wing-populism-varies-greatly-but" class="section level1">
+<h1>Right-wing populism varies greatly, but…</h1>
+<ul>
+<li><p>shows <em>anti-establishment</em> attitude</p></li>
+<li><p>the <em>people</em> is thought of as a <em>homogeneous body</em></p></li>
+<li><p><em>elites</em> are portrayed as <em>corrupt</em>, the <em>people</em> as <em>morally pure</em></p></li>
+<li><p>favors <em>anti-pluralism</em></p></li>
+<li><p>provides <em>low complexity solutions</em> to societal questions</p></li>
+<li><p>narrative of <em>“forgotton man Joe Plumber”</em></p></li>
+<li><p>sees threat in <em>cultural outsiders</em></p></li>
+</ul>
+<p>.footnote[Source: Decker, F. (2003). Der neue Rechtspopulismus. Wiesbaden: VS Verlag für Sozialwissenschaften. Nicole Berbuir, Marcel Lewandowsky &amp; Jasmin Siri (2015) The AfD and its Sympathisers: Finally a Right-Wing Populist Movement in Germany?, German Politics, 24:2,
+154-178, DOI: 10.1080/09644008.2014.982546]</p>
+<hr />
+</div>
+<div id="afd-as-a-nucleus-of-the-german-right-wing-movement" class="section level1">
+<h1>AfD as a nucleus of the German right-wing movement</h1>
+<p>The AfD …</p>
+<ul>
+<li><p>engages in <em>close contacts to far-right</em></p></li>
+<li><p>recruits (ex-)<em>nazis</em></p></li>
+<li><p>Indirect <em>support of violence</em> towards minorities:</p></li>
+</ul>
+<blockquote>
+<p>“Wenn der Staat die Bürger nicht mehr schützen kann,
+gehen die Menschen auf die Straße und schützen sich selber.”</p>
+</blockquote>
+<p>.small<span class="citation">[— Tweet by Markus Frohnmaier (@Frohnmaier_AfD) on August, 26th 2018 in reaction to Chemnitz riots]</span></p>
+<p>.footnote[Source: Fuchs, C., &amp; Middelhoff, P. (2018, May 12). Neue Rechte - Bis in den letzten, rechten Winkel. Retrieved from <a href="https://www.zeit.de/politik/deutschland/2018-05/neue-rechte-verteilung-deutschlandkarte" class="uri">https://www.zeit.de/politik/deutschland/2018-05/neue-rechte-verteilung-deutschlandkarte</a>]</p>
+<hr />
+<p>class: top, left
+# Popular theories on AfD success</p>
+<p>Populist party support is fueled by …</p>
+<ul>
+<li><p>weak economy (“rust belt hypothesis”)</p></li>
+<li><p>high immigration (“flooding hypothesis”)</p></li>
+<li><p>cultural patterns (“Saxonia hypothesis”)</p></li>
+</ul>
+<p>.footnote[Source: Franz, Christian; Fratzscher, Marcel; Kritikos, Alexander S. (2018) : German right-wing party AfD finds more support in rural areas with aging populations, DIW Weekly Report, ISSN 2568-7697, Deutsches Institut für Wirtschaftsforschung (DIW), Berlin, Vol. 8, Iss. 7/8, pp. 69-79]</p>
+<hr />
+</div>
+<div id="our-research-model" class="section level1">
+<h1>Our research model</h1>
+<p>.center[
+<div id="htmlwidget-1" style="width:100%;height:622.08px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"diagram":"digraph research_mdoel {\n  \n  \n  graph [layout = dot,\n  rankdir = LR];\n  \n  node [fontname = Helvetica, fontcolor = darkslategray,\n  shape = rectangle, fixedsize = true, width = 3,\n  color = darkslategray]; unemployment; foreigners; east_west; AfD\n\n  node [fontname = Helvetica, fontcolor = darkslategray,\n  shape = circle, fixedsize = true, width = 3,\n  color = darkslategray]; economy; immigration; culture\n\n  economy -> unemployment -> AfD\n  immigration -> foreigners -> AfD\n  culture -> east_west -> AfD}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>]</p>
+<pre><code>#&gt; [1] &quot;&lt;?xml version=\&quot;1.0\&quot; encoding=\&quot;UTF-8\&quot; standalone=\&quot;no\&quot;?&gt;\n&lt;!DOCTYPE svg PUBLIC \&quot;-//W3C//DTD SVG 1.1//EN\&quot;\n \&quot;http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\&quot;&gt;\n&lt;!-- Generated by graphviz version 2.40.1 (20161225.0304)\n --&gt;\n&lt;!-- Title: research_mdoel Pages: 1 --&gt;\n&lt;svg width=\&quot;728pt\&quot; height=\&quot;692pt\&quot;\n viewBox=\&quot;0.00 0.00 728.00 692.00\&quot; xmlns=\&quot;http://www.w3.org/2000/svg\&quot; xmlns:xlink=\&quot;http://www.w3.org/1999/xlink\&quot;&gt;\n&lt;g id=\&quot;graph0\&quot; class=\&quot;graph\&quot; transform=\&quot;scale(1 1) rotate(0) translate(4 688)\&quot;&gt;\n&lt;title&gt;research_mdoel&lt;/title&gt;\n&lt;polygon fill=\&quot;#ffffff\&quot; stroke=\&quot;transparent\&quot; points=\&quot;-4,4 -4,-688 724,-688 724,4 -4,4\&quot;/&gt;\n&lt;!-- unemployment --&gt;\n&lt;g id=\&quot;node1\&quot; class=\&quot;node\&quot;&gt;\n&lt;title&gt;unemployment&lt;/title&gt;\n&lt;polygon fill=\&quot;none\&quot; stroke=\&quot;#2f4f4f\&quot; points=\&quot;468,-216 252,-216 252,-180 468,-180 468,-216\&quot;/&gt;\n&lt;text text-anchor=\&quot;middle\&quot; x=\&quot;360\&quot; y=\&quot;-193.8\&quot; font-family=\&quot;Helvetica,sans-Serif\&quot; font-size=\&quot;14.00\&quot; fill=\&quot;#2f4f4f\&quot;&gt;unemployment&lt;/text&gt;\n&lt;/g&gt;\n&lt;!-- AfD --&gt;\n&lt;g id=\&quot;node4\&quot; class=\&quot;node\&quot;&gt;\n&lt;title&gt;AfD&lt;/title&gt;\n&lt;polygon fill=\&quot;none\&quot; stroke=\&quot;#2f4f4f\&quot; points=\&quot;720,-360 504,-360 504,-324 720,-324 720,-360\&quot;/&gt;\n&lt;text text-anchor=\&quot;middle\&quot; x=\&quot;612\&quot; y=\&quot;-337.8\&quot; font-family=\&quot;Helvetica,sans-Serif\&quot; font-size=\&quot;14.00\&quot; fill=\&quot;#2f4f4f\&quot;&gt;AfD&lt;/text&gt;\n&lt;/g&gt;\n&lt;!-- unemployment&amp;#45;&amp;gt;AfD --&gt;\n&lt;g id=\&quot;edge2\&quot; class=\&quot;edge\&quot;&gt;\n&lt;title&gt;unemployment&amp;#45;&amp;gt;AfD&lt;/title&gt;\n&lt;path fill=\&quot;none\&quot; stroke=\&quot;#000000\&quot; d=\&quot;M391.6608,-216.0919C437.208,-242.1188 521.2381,-290.1361 571.3293,-318.7596\&quot;/&gt;\n&lt;polygon fill=\&quot;#000000\&quot; stroke=\&quot;#000000\&quot; points=\&quot;569.8515,-321.9463 580.2705,-323.8689 573.3246,-315.8686 569.8515,-321.9463\&quot;/&gt;\n&lt;/g&gt;\n&lt;!-- foreigners --&gt;\n&lt;g id=\&quot;node2\&quot; class=\&quot;node\&quot;&gt;\n&lt;title&gt;foreigners&lt;/title&gt;\n&lt;polygon fill=\&quot;none\&quot; stroke=\&quot;#2f4f4f\&quot; points=\&quot;468,-504 252,-504 252,-468 468,-468 468,-504\&quot;/&gt;\n&lt;text text-anchor=\&quot;middle\&quot; x=\&quot;360\&quot; y=\&quot;-481.8\&quot; font-family=\&quot;Helvetica,sans-Serif\&quot; font-size=\&quot;14.00\&quot; fill=\&quot;#2f4f4f\&quot;&gt;foreigners&lt;/text&gt;\n&lt;/g&gt;\n&lt;!-- foreigners&amp;#45;&amp;gt;AfD --&gt;\n&lt;g id=\&quot;edge4\&quot; class=\&quot;edge\&quot;&gt;\n&lt;title&gt;foreigners&amp;#45;&amp;gt;AfD&lt;/title&gt;\n&lt;path fill=\&quot;none\&quot; stroke=\&quot;#000000\&quot; d=\&quot;M391.6608,-467.9081C437.208,-441.8812 521.2381,-393.8639 571.3293,-365.2404\&quot;/&gt;\n&lt;polygon fill=\&quot;#000000\&quot; stroke=\&quot;#000000\&quot; points=\&quot;573.3246,-368.1314 580.2705,-360.1311 569.8515,-362.0537 573.3246,-368.1314\&quot;/&gt;\n&lt;/g&gt;\n&lt;!-- east_west --&gt;\n&lt;g id=\&quot;node3\&quot; class=\&quot;node\&quot;&gt;\n&lt;title&gt;east_west&lt;/title&gt;\n&lt;polygon fill=\&quot;none\&quot; stroke=\&quot;#2f4f4f\&quot; points=\&quot;468,-360 252,-360 252,-324 468,-324 468,-360\&quot;/&gt;\n&lt;text text-anchor=\&quot;middle\&quot; x=\&quot;360\&quot; y=\&quot;-337.8\&quot; font-family=\&quot;Helvetica,sans-Serif\&quot; font-size=\&quot;14.00\&quot; fill=\&quot;#2f4f4f\&quot;&gt;east_west&lt;/text&gt;\n&lt;/g&gt;\n&lt;!-- east_west&amp;#45;&amp;gt;AfD --&gt;\n&lt;g id=\&quot;edge6\&quot; class=\&quot;edge\&quot;&gt;\n&lt;title&gt;east_west&amp;#45;&amp;gt;AfD&lt;/title&gt;\n&lt;path fill=\&quot;none\&quot; stroke=\&quot;#000000\&quot; d=\&quot;M468.3332,-342C476.679,-342 485.1303,-342 493.5367,-342\&quot;/&gt;\n&lt;polygon fill=\&quot;#000000\&quot; stroke=\&quot;#000000\&quot; points=\&quot;493.7583,-345.5001 503.7583,-342 493.7583,-338.5001 493.7583,-345.5001\&quot;/&gt;\n&lt;/g&gt;\n&lt;!-- economy --&gt;\n&lt;g id=\&quot;node5\&quot; class=\&quot;node\&quot;&gt;\n&lt;title&gt;economy&lt;/title&gt;\n&lt;ellipse fill=\&quot;none\&quot; stroke=\&quot;#2f4f4f\&quot; cx=\&quot;108\&quot; cy=\&quot;-108\&quot; rx=\&quot;108\&quot; ry=\&quot;108\&quot;/&gt;\n&lt;text text-anchor=\&quot;middle\&quot; x=\&quot;108\&quot; y=\&quot;-103.8\&quot; font-family=\&quot;Helvetica,sans-Serif\&quot; font-size=\&quot;14.00\&quot; fill=\&quot;#2f4f4f\&quot;&gt;economy&lt;/text&gt;\n&lt;/g&gt;\n&lt;!-- economy&amp;#45;&amp;gt;unemployment --&gt;\n&lt;g id=\&quot;edge1\&quot; class=\&quot;edge\&quot;&gt;\n&lt;title&gt;economy&amp;#45;&amp;gt;unemployment&lt;/title&gt;\n&lt;path fill=\&quot;none\&quot; stroke=\&quot;#000000\&quot; d=\&quot;M209.7717,-144.347C240.3082,-155.2529 272.8178,-166.8635 299.7561,-176.4843\&quot;/&gt;\n&lt;polygon fill=\&quot;#000000\&quot; stroke=\&quot;#000000\&quot; points=\&quot;298.8202,-179.8665 309.4148,-179.9339 301.1746,-173.2743 298.8202,-179.8665\&quot;/&gt;\n&lt;/g&gt;\n&lt;!-- immigration --&gt;\n&lt;g id=\&quot;node6\&quot; class=\&quot;node\&quot;&gt;\n&lt;title&gt;immigration&lt;/title&gt;\n&lt;ellipse fill=\&quot;none\&quot; stroke=\&quot;#2f4f4f\&quot; cx=\&quot;108\&quot; cy=\&quot;-576\&quot; rx=\&quot;108\&quot; ry=\&quot;108\&quot;/&gt;\n&lt;text text-anchor=\&quot;middle\&quot; x=\&quot;108\&quot; y=\&quot;-571.8\&quot; font-family=\&quot;Helvetica,sans-Serif\&quot; font-size=\&quot;14.00\&quot; fill=\&quot;#2f4f4f\&quot;&gt;immigration&lt;/text&gt;\n&lt;/g&gt;\n&lt;!-- immigration&amp;#45;&amp;gt;foreigners --&gt;\n&lt;g id=\&quot;edge3\&quot; class=\&quot;edge\&quot;&gt;\n&lt;title&gt;immigration&amp;#45;&amp;gt;foreigners&lt;/title&gt;\n&lt;path fill=\&quot;none\&quot; stroke=\&quot;#000000\&quot; d=\&quot;M209.7717,-539.653C240.3082,-528.7471 272.8178,-517.1365 299.7561,-507.5157\&quot;/&gt;\n&lt;polygon fill=\&quot;#000000\&quot; stroke=\&quot;#000000\&quot; points=\&quot;301.1746,-510.7257 309.4148,-504.0661 298.8202,-504.1335 301.1746,-510.7257\&quot;/&gt;\n&lt;/g&gt;\n&lt;!-- culture --&gt;\n&lt;g id=\&quot;node7\&quot; class=\&quot;node\&quot;&gt;\n&lt;title&gt;culture&lt;/title&gt;\n&lt;ellipse fill=\&quot;none\&quot; stroke=\&quot;#2f4f4f\&quot; cx=\&quot;108\&quot; cy=\&quot;-342\&quot; rx=\&quot;108\&quot; ry=\&quot;108\&quot;/&gt;\n&lt;text text-anchor=\&quot;middle\&quot; x=\&quot;108\&quot; y=\&quot;-337.8\&quot; font-family=\&quot;Helvetica,sans-Serif\&quot; font-size=\&quot;14.00\&quot; fill=\&quot;#2f4f4f\&quot;&gt;culture&lt;/text&gt;\n&lt;/g&gt;\n&lt;!-- culture&amp;#45;&amp;gt;east_west --&gt;\n&lt;g id=\&quot;edge5\&quot; class=\&quot;edge\&quot;&gt;\n&lt;title&gt;culture&amp;#45;&amp;gt;east_west&lt;/title&gt;\n&lt;path fill=\&quot;none\&quot; stroke=\&quot;#000000\&quot; d=\&quot;M216.3332,-342C224.679,-342 233.1303,-342 241.5367,-342\&quot;/&gt;\n&lt;polygon fill=\&quot;#000000\&quot; stroke=\&quot;#000000\&quot; points=\&quot;241.7583,-345.5001 251.7583,-342 241.7583,-338.5001 241.7583,-345.5001\&quot;/&gt;\n&lt;/g&gt;\n&lt;/g&gt;\n&lt;/svg&gt;\n&quot;</code></pre>
+<hr />
+<p>class: middle, center, inverse</p>
+</div>
+<div id="afd-votes-and-socioenomic-factors-at-the-bundestagswahl-2017" class="section level1">
+<h1>AfD votes, and socioenomic factors at the Bundestagswahl 2017</h1>
+<hr />
+<p>class: top, left
+# AfD votes</p>
+<p><img src="img/afd.png" width="70%" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="unemployment" class="section level1">
+<h1>Unemployment</h1>
+<p><img src="img/unemp.png" width="70%" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="foreigners" class="section level1">
+<h1>Foreigners</h1>
+<p><img src="img/foreigner.png" width="70%" style="display: block; margin: auto;" /></p>
+<hr />
+<p>class: middle, center, inverse</p>
+</div>
+<div id="data-analysis" class="section level1">
+<h1>data analysis</h1>
+<hr />
+<p>class: top, left</p>
+</div>
+<div id="data-preparation" class="section level1">
+<h1>Data preparation</h1>
+<p>Data were…</p>
+<ul>
+<li><p>obtained from <a href="https://www.bundeswahlleiter.de/bundestagswahlen/2017/ergebnisse.html">Bundeswahlleiter 2017</a></p></li>
+<li><p>had no missings</p></li>
+<li><p>were z-transformed</p></li>
+<li><p>Details <a href="https://data-se.netlify.com/2018/08/25/bayesian-modeling-of-populist-party-success-in-german-federal-elections/">here</a></p></li>
+</ul>
+<hr />
+</div>
+<div id="bayes-modeling" class="section level1">
+<h1>Bayes modeling</h1>
+<ul>
+<li><p>Stan via the R packages <code>rstan</code> and <code>rethinking</code></p></li>
+<li><p>Hamiltonian Markov Chain Monte Carlo (MCMC)</p></li>
+<li><p>2000 iterations, 2 chains, 1/2 burn-in</p></li>
+<li><p>Information criteria (WAIC) used for model comparison</p></li>
+<li><p>🙀 some fitting issues with count models</p></li>
+<li><p>Details <a href="https://data-se.netlify.com/2018/08/25/bayesian-modeling-of-populist-party-success-in-german-federal-elections/">here</a></p></li>
+</ul>
+<p>.footnote[Guideline: McElreath, R. (2016). Statistical rethinking. New York City, NY: Apple Academic Press Inc.]</p>
+<hr />
+</div>
+<div id="model-specification" class="section level1">
+<h1>Model specification</h1>
+<p><span class="math display">\[\begin{aligned}
+\text{AfD}_i &amp;\sim \mathcal{N}(\mu_i, \sigma)\\
+\mu_i &amp;= \beta 0_{[east]} + \beta 1 \cdot \text{foreign_z} + \beta2 \cdot \text{unemp_z}\\
+\beta0_{[east]} &amp;\sim  \mathcal{N}(0, 1)\\
+\beta1  &amp;\sim  \mathcal{N}(0, 1)\\
+\beta2  &amp;\sim  \mathcal{N}(0, 1)\\
+\sigma &amp;\sim \mathcal{N}(0, 1)\\
+\end{aligned}\]</span></p>
+<hr />
+</div>
+<div id="model-diagnosis-traceplot" class="section level1">
+<h1>Model diagnosis: traceplot</h1>
+<p><img src="img/m9-traceplot.png" width="70%" style="display: block; margin: auto;" /></p>
+<hr />
+<p>class: middle, center, inverse</p>
+</div>
+<div id="results" class="section level1">
+<h1>Results</h1>
+<hr />
+</div>
+<div id="model-diagnosis-and-coefficients" class="section level1">
+<h1>Model diagnosis and coefficients</h1>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+coefficient
+</th>
+<th style="text-align:right;">
+Mean
+</th>
+<th style="text-align:right;">
+StdDev
+</th>
+<th style="text-align:right;">
+lower.0.89
+</th>
+<th style="text-align:right;">
+upper.0.89
+</th>
+<th style="text-align:right;">
+n_eff
+</th>
+<th style="text-align:right;">
+Rhat
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+beta0[1]
+</td>
+<td style="text-align:right;">
+-0.45
+</td>
+<td style="text-align:right;">
+5.74
+</td>
+<td style="text-align:right;">
+-9.26
+</td>
+<td style="text-align:right;">
+9.16
+</td>
+<td style="text-align:right;">
+260.42
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+beta0[2]
+</td>
+<td style="text-align:right;">
+1.43
+</td>
+<td style="text-align:right;">
+5.75
+</td>
+<td style="text-align:right;">
+-7.35
+</td>
+<td style="text-align:right;">
+11.05
+</td>
+<td style="text-align:right;">
+259.13
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+alpha
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+5.74
+</td>
+<td style="text-align:right;">
+-9.54
+</td>
+<td style="text-align:right;">
+8.84
+</td>
+<td style="text-align:right;">
+260.09
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+beta1
+</td>
+<td style="text-align:right;">
+-0.06
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+-0.13
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+520.19
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+beta2
+</td>
+<td style="text-align:right;">
+-0.21
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+-0.28
+</td>
+<td style="text-align:right;">
+-0.13
+</td>
+<td style="text-align:right;">
+556.18
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sigma
+</td>
+<td style="text-align:right;">
+0.68
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.64
+</td>
+<td style="text-align:right;">
+0.72
+</td>
+<td style="text-align:right;">
+623.57
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+<div id="the-whole-shabeng-multi-level-wins" class="section level1">
+<h1>The whole shabeng: Multi level wins</h1>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+model
+</th>
+<th style="text-align:left;">
+predictors
+</th>
+<th style="text-align:right;">
+WAIC
+</th>
+<th style="text-align:right;">
+pWAIC
+</th>
+<th style="text-align:right;">
+dWAIC
+</th>
+<th style="text-align:right;">
+weight
+</th>
+<th style="text-align:right;">
+SE
+</th>
+<th style="text-align:right;">
+dSE
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;color: blue !important;background-color: yellow !important;">
+m15_stan
+</td>
+<td style="text-align:left;font-weight: bold;color: blue !important;background-color: yellow !important;">
+state+for+unemp (ML)
+</td>
+<td style="text-align:right;font-weight: bold;color: blue !important;background-color: yellow !important;">
+-1356.32
+</td>
+<td style="text-align:right;font-weight: bold;color: blue !important;background-color: yellow !important;">
+21.73
+</td>
+<td style="text-align:right;font-weight: bold;color: blue !important;background-color: yellow !important;">
+0.00
+</td>
+<td style="text-align:right;font-weight: bold;color: blue !important;background-color: yellow !important;">
+1
+</td>
+<td style="text-align:right;font-weight: bold;color: blue !important;background-color: yellow !important;">
+34.91
+</td>
+<td style="text-align:right;font-weight: bold;color: blue !important;background-color: yellow !important;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+m13_stan
+</td>
+<td style="text-align:left;">
+state (ML)
+</td>
+<td style="text-align:right;">
+-1298.50
+</td>
+<td style="text-align:right;">
+19.17
+</td>
+<td style="text-align:right;">
+57.82
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+33.63
+</td>
+<td style="text-align:right;">
+15.03
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+m14_stan
+</td>
+<td style="text-align:left;">
+east+for+unemp (ML)
+</td>
+<td style="text-align:right;">
+-1136.45
+</td>
+<td style="text-align:right;">
+6.53
+</td>
+<td style="text-align:right;">
+219.87
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+30.24
+</td>
+<td style="text-align:right;">
+33.64
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+m12_stan
+</td>
+<td style="text-align:left;">
+area (ML)
+</td>
+<td style="text-align:right;">
+-951.15
+</td>
+<td style="text-align:right;">
+111.74
+</td>
+<td style="text-align:right;">
+405.16
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+31.27
+</td>
+<td style="text-align:right;">
+37.11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+m11c_stan
+</td>
+<td style="text-align:left;">
+unemp
+</td>
+<td style="text-align:right;">
+-894.09
+</td>
+<td style="text-align:right;">
+4.02
+</td>
+<td style="text-align:right;">
+462.23
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+37.03
+</td>
+<td style="text-align:right;">
+39.86
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+m16_stan
+</td>
+<td style="text-align:left;">
+null (intercept)
+</td>
+<td style="text-align:right;">
+-885.56
+</td>
+<td style="text-align:right;">
+3.35
+</td>
+<td style="text-align:right;">
+470.76
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+38.15
+</td>
+<td style="text-align:right;">
+40.53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+m10_stan
+</td>
+<td style="text-align:left;">
+for+unemp+east
+</td>
+<td style="text-align:right;">
+-533.01
+</td>
+<td style="text-align:right;">
+3.77
+</td>
+<td style="text-align:right;">
+823.31
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+16.02
+</td>
+<td style="text-align:right;">
+37.66
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+m11d_stan
+</td>
+<td style="text-align:left;">
+east
+</td>
+<td style="text-align:right;">
+-509.22
+</td>
+<td style="text-align:right;">
+0.59
+</td>
+<td style="text-align:right;">
+847.09
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+10.88
+</td>
+<td style="text-align:right;">
+36.40
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+m9_stan
+</td>
+<td style="text-align:left;">
+for+unemp+east[]
+</td>
+<td style="text-align:right;">
+625.56
+</td>
+<td style="text-align:right;">
+6.92
+</td>
+<td style="text-align:right;">
+1981.88
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+33.87
+</td>
+<td style="text-align:right;">
+38.82
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+m9a_stan
+</td>
+<td style="text-align:left;">
+for+unemp
+</td>
+<td style="text-align:right;">
+808.28
+</td>
+<td style="text-align:right;">
+4.72
+</td>
+<td style="text-align:right;">
+2164.60
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+34.09
+</td>
+<td style="text-align:right;">
+39.30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+m11a_stan
+</td>
+<td style="text-align:left;">
+for
+</td>
+<td style="text-align:right;">
+813.89
+</td>
+<td style="text-align:right;">
+4.14
+</td>
+<td style="text-align:right;">
+2170.21
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+35.22
+</td>
+<td style="text-align:right;">
+39.86
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+<div id="model-specification-of-most-favorable-model" class="section level1">
+<h1>Model specification of most favorable model</h1>
+<p><span class="math display">\[\begin{aligned}
+\text{AfD}_i &amp;\sim \mathcal{N}(\mu_i, \sigma)\\
+\mu_i &amp;= \beta 0_{[state]} + \beta 1 \cdot \text{foreign_z} + \beta2 \cdot \text{unemp_z}\\
+\beta0_{[state]} &amp;\sim  \mathcal{N}(0, \sigma_2)\\
+\beta1  &amp;\sim  \mathcal{N}(0, 1)\\
+\beta2  &amp;\sim  \mathcal{N}(0, 1)\\
+\sigma &amp;\sim \mathcal{N}(0, 1)\\
+\sigma_2 &amp;\sim \mathcal{N}(0, 1)
+\end{aligned}\]</span></p>
+<hr />
+</div>
+<div id="coefficients-of-the-most-favorable-model" class="section level1">
+<h1>Coefficients of the most favorable model</h1>
+<div id="htmlwidget-2" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],["beta0[1]","beta0[2]","beta0[3]","beta0[4]","beta0[5]","beta0[6]","beta0[7]","beta0[8]","beta0[9]","beta0[10]","beta0[11]","beta0[12]","beta0[13]","beta0[14]","beta0[15]","beta0[16]","sigma","sigma2","beta1","beta2"],[0.15,0.14,0.11,0.18,0.09,0.08,0.14,0.15,0.09,0.09,0.12,0.09,0.25,0.16,0.07,0.21,0.02,0.15,-0.01,0.02],[0.01,0,0.01,0.01,0.02,0.01,0.01,0.01,0,0,0.01,0.01,0.01,0.01,0.01,0.01,0,0.03,0,0],[0.14,0.14,0.1,0.16,0.06,0.06,0.13,0.13,0.08,0.08,0.11,0.07,0.24,0.15,0.06,0.19,0.02,0.11,-0.02,0.01],[0.16,0.15,0.12,0.19,0.11,0.09,0.14,0.16,0.09,0.09,0.13,0.11,0.26,0.17,0.08,0.22,0.03,0.2,-0.01,0.02],[2000,2000,2000,2000,2000,2000,2000,2000,2000,2000,2000,2000,2000,2000,2000,2000,2000,2000,1957.68,1702.87],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>coefficient<\/th>\n      <th>Mean<\/th>\n      <th>StdDev<\/th>\n      <th>lower.0.89<\/th>\n      <th>upper.0.89<\/th>\n      <th>n_eff<\/th>\n      <th>Rhat<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":8,"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6,7]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<hr />
+</div>
+<div id="traceplot-of-most-favorable-model" class="section level1">
+<h1>Traceplot of most favorable model</h1>
+<p><img src="img/M15-traceplot.png" width="70%" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="checking-model-additivity-assumption" class="section level1">
+<h1>Checking model additivity assumption</h1>
+<p><img src="img/best_model_pred_err.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>.footnote[Gelman, A., &amp; Hill, J. (2006). Data analysis using regression and multilevel/hierarchical models. Cambridge university press.]</p>
+<hr />
+</div>
+<div id="posterior-distributions-of-parameters" class="section level1">
+<h1>Posterior distributions of parameters</h1>
+<p><img src="img/post_params.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="footnoteonly-level-1-parameters-are-shown." class="section level2">
+<h2>.footnote[Only level 1 parameters are shown.]</h2>
+</div>
+</div>
+<div id="comparing-model-predictions" class="section level1">
+<h1>Comparing model predictions</h1>
+<p><img src="img/model_pred.png" width="100%" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="comparing-observed-and-estimated-afd-votes" class="section level1">
+<h1>Comparing observed and estimated AfD votes</h1>
+<p><img src="img/Model-est-vs-obs-afd.png" width="100%" style="display: block; margin: auto;" /></p>
+<hr />
+<p>class: middle, center, inverse</p>
+</div>
+<div id="conclusions" class="section level1">
+<h1>Conclusions</h1>
+<hr />
+<p>class: top, left</p>
+</div>
+<div id="theoretical-implications" class="section level1">
+<h1>Theoretical implications</h1>
+<ul>
+<li><p><em>Region related patterns</em> appear to play an important role</p>
+<ul>
+<li>more than unemployment rate and foreigner rate</li>
+<li>not yet well understood</li>
+<li>rural? aged society?</li>
+</ul></li>
+<li><p>The present model is <em>simplistic</em></p></li>
+<li><p><em>Future elections</em> will provide interesting opportunities for model improvements</p></li>
+</ul>
+<p>.footnote[Nicole Berbuir, Marcel Lewandowsky &amp; Jasmin Siri (2015) The AfD and its Sympathisers: Finally a Right-Wing Populist Movement in Germany?, German Politics, 24:2, 154-178, DOI: 10.1080/09644008.2014.982546]</p>
+<hr />
+</div>
+<div id="statistical-implications" class="section level1">
+<h1>Statistical implications</h1>
+<ul>
+<li><p><em>Observational research</em> is a very <em>limited</em> guide for <em>causal</em> interpretations</p></li>
+<li><p><em>Fitting issues</em> with <em>count</em> models warrant more investigation</p></li>
+<li><p><em>Overfitting</em> may be present (and underfitting)</p></li>
+</ul>
+<hr />
+</div>
+<div id="good-textbook" class="section level1">
+<h1>Good textbook</h1>
+<p><img src="https://images.tandf.co.uk/common/jackets/amazon/978148225/9781482253443.jpg" width="30%" style="display: block; margin: auto;" /></p>
+<hr />
+<p>class: middle, center, inverse</p>
+</div>
+<div id="thank-you" class="section level1">
+<h1>Thank you</h1>
+<p>Sebastian Sauer
+#### <i class="fab  fa-github "></i> <a href="https://github.com/sebastiansauer">sebastiansauer</a>
+#### <i class="fas  fa-link "></i> <a href="https://data-se.netlify.com/" class="uri">https://data-se.netlify.com/</a>
+#### <i class="fas  fa-envelope "></i> <a href="mailto:ssauer@posteo.de" class="email">ssauer@posteo.de</a>
+#### <i class="fab  fa-linkedin-in "></i> <a href="https://www.linkedin.com/in/dr-sebastian-sauer-4791762">Sebastian Sauer</a></p>
+<div class="section level4">
+<h4><i class="fas  fa-file "></i> Get slides here:</h4>
+<p><a href="http://data-se.netlify.com/slides/afd_dgps2018/afd_dgps2018.html#1" class="uri">http://data-se.netlify.com/slides/afd_dgps2018/afd_dgps2018.html#1</a></p>
+<p>CC-BY</p>
+<p>.footnote[Built using R, RMarkdown, Xaringan. Inspiration from and thanks to <a href="https://slides.yihui.name/2017-rmarkdown-UNL-Yihui-Xie.htm">Yihui Xie</a> and <a href="https://abichat.github.io/Slides/ScienceCommunicationSOTR/ScienceCommunicationSOTR.html">Antoine Bichat</a>, among others]</p>
+</div>
+</div>
