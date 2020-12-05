@@ -1,0 +1,29 @@
+---
+title: 'Comparison of R and Knime: Largish data set 1 (taxi rides 2020-06)'
+author: Sebastian Sauer
+date: '2020-12-05'
+slug: comparison-of-r-and-knime-largish-data-set-1-taxi-rides-2020-06
+categories: []
+tags:
+  - comparison
+---
+
+
+
+# Motivation
+
+Knime and R have their specific strengths (and weaknesses). Let's compare the R workflow in [this post](https://data-se.netlify.app/2020/12/05/execution-time-for-largish-data/#typical-data-wrangling) with this [knime workflow](https://github.com/sebastiansauer/sesa-blog/blob/main/static/div/largish-data-wrangling.knwf).
+
+
+
+```{r echo = FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/sebastiansauer/sesa-blog/main/static/images/knwf-largish1.png")
+```
+
+
+# Comparison
+
+What you think? As an old-fart R user I feel pressed to admit that Knime appears to be a useful and handy tool.
+
+
+
