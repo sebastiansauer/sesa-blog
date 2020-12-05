@@ -249,5 +249,5 @@ taxi2_summary1 %>%
 ```{r reproducibility, echo = FALSE}
 ## Reproducibility info
 options(width = 120)
-session_info()
+devtools::session_info()
 ```
