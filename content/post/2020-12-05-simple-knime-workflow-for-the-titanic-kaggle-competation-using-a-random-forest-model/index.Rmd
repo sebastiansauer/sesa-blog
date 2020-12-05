@@ -42,7 +42,7 @@ The [Titanic disaster Kaggle Competition](https://www.kaggle.com/c/titanic/overv
 Here, I present a simple Random Forest model for predicting Survival:
 
 
-![](https://raw.githubusercontent.com/sebastiansauer/sesa-blog/main/static/images/knwf-titanic-rf1.png){width=50%}
+![](https://raw.githubusercontent.com/sebastiansauer/sesa-blog/main/static/images/knwf-titanic-rf1.png){width=100%}
 
 The respective workflow can be found [here](https://github.com/sebastiansauer/sesa-blog/raw/main/static/div/titanic-rf1.knwf).
 
