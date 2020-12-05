@@ -10,6 +10,24 @@ tags:
 
 
 
+```{r knitr-setup, echo = FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = TRUE,
+  out.width = "100%",
+  fig.align = 'center',
+  fig.width = 6,
+  fig.asp = 0.618,  # 1 / phi
+  fig.show = "hold",
+  size = "tiny"
+)
+```
+
+
+
 # Motivation
 
 Knime and R have their specific strengths (and weaknesses). Let's compare the R workflow in [this post](https://data-se.netlify.app/2020/12/05/execution-time-for-largish-data/#typical-data-wrangling) with this [knime workflow](https://github.com/sebastiansauer/sesa-blog/blob/main/static/div/largish-data-wrangling.knwf).

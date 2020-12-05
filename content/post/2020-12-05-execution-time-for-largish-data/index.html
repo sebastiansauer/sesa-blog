@@ -55,35 +55,10 @@ output:
 </div>
 <div id="setup" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Setup</h1>
-<pre class="r"><code>library(tidyverse)  # data wrangling</code></pre>
-<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
-<pre><code>## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
-## ✓ tibble  3.0.4     ✓ dplyr   1.0.2
-## ✓ tidyr   1.1.2     ✓ stringr 1.4.0
-## ✓ readr   1.4.0     ✓ forcats 0.5.0</code></pre>
-<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code>library(data.table)  # fast data wrangling</code></pre>
-<pre><code>## 
-## Attaching package: &#39;data.table&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
-## 
-##     between, first, last</code></pre>
-<pre><code>## The following object is masked from &#39;package:purrr&#39;:
-## 
-##     transpose</code></pre>
-<pre class="r"><code>library(lubridate)  # time/data wrangling</code></pre>
-<pre><code>## 
-## Attaching package: &#39;lubridate&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:data.table&#39;:
-## 
-##     hour, isoweek, mday, minute, month, quarter, second, wday, week,
-##     yday, year</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     date, intersect, setdiff, union</code></pre>
-<pre class="r"><code>library(forcats)  # factor type variable wrangling
+<pre class="r"><code>library(tidyverse)  # data wrangling
+library(data.table)  # fast data wrangling
+library(lubridate)  # time/data wrangling
+library(forcats)  # factor type variable wrangling
 library(conflicted)  # name clashes</code></pre>
 </div>
 <div id="data-set-1" class="section level1" number="3">
@@ -95,32 +70,10 @@ library(conflicted)  # name clashes</code></pre>
 <div id="download-from-website" class="section level3" number="3.1.1">
 <h3><span class="header-section-number">3.1.1</span> Download from website</h3>
 <pre class="r"><code>t1 &lt;- Sys.time()
-taxi1 &lt;- read_csv(&quot;https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2020-06.csv&quot;)</code></pre>
-<pre><code>## 
-## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   VendorID = col_double(),
-##   tpep_pickup_datetime = col_datetime(format = &quot;&quot;),
-##   tpep_dropoff_datetime = col_datetime(format = &quot;&quot;),
-##   passenger_count = col_double(),
-##   trip_distance = col_double(),
-##   RatecodeID = col_double(),
-##   store_and_fwd_flag = col_character(),
-##   PULocationID = col_double(),
-##   DOLocationID = col_double(),
-##   payment_type = col_double(),
-##   fare_amount = col_double(),
-##   extra = col_double(),
-##   mta_tax = col_double(),
-##   tip_amount = col_double(),
-##   tolls_amount = col_double(),
-##   improvement_surcharge = col_double(),
-##   total_amount = col_double(),
-##   congestion_surcharge = col_double()
-## )</code></pre>
-<pre class="r"><code>t2 &lt;- Sys.time()
-t2-t1</code></pre>
-<pre><code>## Time difference of 8.7641 secs</code></pre>
+taxi1 &lt;- read_csv(&quot;https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2020-06.csv&quot;)
+t2 &lt;- Sys.time()
+t2-t1
+#&gt; Time difference of 8.448832 secs</code></pre>
 <p>This will depend on the speed of your internet connection.</p>
 </div>
 <div id="import-from-local-disk" class="section level3" number="3.1.2">
@@ -130,32 +83,10 @@ t2-t1</code></pre>
 <div id="using-read_csv" class="section level3" number="3.1.3">
 <h3><span class="header-section-number">3.1.3</span> using <code>read_csv()</code></h3>
 <pre class="r"><code>t1 &lt;- Sys.time()
-taxi1 &lt;- read_csv(d1_path)</code></pre>
-<pre><code>## 
-## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   VendorID = col_double(),
-##   tpep_pickup_datetime = col_datetime(format = &quot;&quot;),
-##   tpep_dropoff_datetime = col_datetime(format = &quot;&quot;),
-##   passenger_count = col_double(),
-##   trip_distance = col_double(),
-##   RatecodeID = col_double(),
-##   store_and_fwd_flag = col_character(),
-##   PULocationID = col_double(),
-##   DOLocationID = col_double(),
-##   payment_type = col_double(),
-##   fare_amount = col_double(),
-##   extra = col_double(),
-##   mta_tax = col_double(),
-##   tip_amount = col_double(),
-##   tolls_amount = col_double(),
-##   improvement_surcharge = col_double(),
-##   total_amount = col_double(),
-##   congestion_surcharge = col_double()
-## )</code></pre>
-<pre class="r"><code>t2 &lt;- Sys.time()
-t2 - t1</code></pre>
-<pre><code>## Time difference of 1.44612 secs</code></pre>
+taxi1 &lt;- read_csv(d1_path)
+t2 &lt;- Sys.time()
+t2 - t1
+#&gt; Time difference of 1.736037 secs</code></pre>
 </div>
 <div id="using-fread" class="section level3" number="3.1.4">
 <h3><span class="header-section-number">3.1.4</span> Using <code>fread()</code></h3>
@@ -163,17 +94,17 @@ t2 - t1</code></pre>
 taxi1 &lt;- fread(d1_path)
 t2 &lt;- Sys.time()
 
-t2-t1</code></pre>
-<pre><code>## Time difference of 0.8573768 secs</code></pre>
+t2-t1
+#&gt; Time difference of 0.8700159 secs</code></pre>
 </div>
 </div>
 <div id="data-set-size" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Data set size</h2>
-<pre class="r"><code>dim(taxi1)</code></pre>
-<pre><code>## [1] 549760     18</code></pre>
+<pre class="r"><code>dim(taxi1)
+#&gt; [1] 549760     18</code></pre>
 <p>Object size in MB:</p>
-<pre class="r"><code>object.size(taxi1) / 1024 / 1024</code></pre>
-<pre><code>## 133.3 bytes</code></pre>
+<pre class="r"><code>object.size(taxi1) / 1024 / 1024
+#&gt; 133.3 bytes</code></pre>
 </div>
 <div id="typical-data-wrangling" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> Typical data wrangling</h2>
@@ -186,30 +117,30 @@ taxi1 %&gt;%
          hour = lubridate::hour(tpep_pickup_datetime)) %&gt;% 
   group_by(payment_type, hour) %&gt;% 
   summarise(tip_prop_max = max(tip_proportion)) %&gt;% 
-  arrange(-tip_prop_max) -&gt; taxi1_summary1</code></pre>
-<pre><code>## `summarise()` regrouping output by &#39;payment_type&#39; (override with `.groups` argument)</code></pre>
-<pre class="r"><code>t2 &lt;- Sys.time()
+  arrange(-tip_prop_max) -&gt; taxi1_summary1
+
+t2 &lt;- Sys.time()
 time_taken &lt;- t2 - t1</code></pre>
 <p>Time taken:</p>
-<pre class="r"><code>time_taken</code></pre>
-<pre><code>## Time difference of 5.063507 secs</code></pre>
+<pre class="r"><code>time_taken
+#&gt; Time difference of 5.754155 secs</code></pre>
 <p>Output:</p>
-<pre class="r"><code>taxi1_summary1</code></pre>
-<pre><code>## # A tibble: 99 x 3
-## # Groups:   payment_type [5]
-##    payment_type  hour tip_prop_max
-##           &lt;int&gt; &lt;int&gt;        &lt;dbl&gt;
-##  1            1    22        0.978
-##  2            1     2        0.971
-##  3            1     5        0.968
-##  4            1     1        0.958
-##  5            1    21        0.949
-##  6            1     0        0.885
-##  7            1     7        0.874
-##  8            1    20        0.820
-##  9            1     4        0.811
-## 10            1    23        0.774
-## # … with 89 more rows</code></pre>
+<pre class="r"><code>taxi1_summary1
+#&gt; # A tibble: 99 x 3
+#&gt; # Groups:   payment_type [5]
+#&gt;    payment_type  hour tip_prop_max
+#&gt;           &lt;int&gt; &lt;int&gt;        &lt;dbl&gt;
+#&gt;  1            1    22        0.978
+#&gt;  2            1     2        0.971
+#&gt;  3            1     5        0.968
+#&gt;  4            1     1        0.958
+#&gt;  5            1    21        0.949
+#&gt;  6            1     0        0.885
+#&gt;  7            1     7        0.874
+#&gt;  8            1    20        0.820
+#&gt;  9            1     4        0.811
+#&gt; 10            1    23        0.774
+#&gt; # … with 89 more rows</code></pre>
 </div>
 </div>
 <div id="data-set-2" class="section level1" number="4">
@@ -221,32 +152,10 @@ time_taken &lt;- t2 - t1</code></pre>
 <div id="using-read_csv-1" class="section level3" number="4.1.1">
 <h3><span class="header-section-number">4.1.1</span> using <code>read_csv()</code></h3>
 <pre class="r"><code>t1 &lt;- Sys.time()
-taxi2 &lt;- read_csv(d2_path)</code></pre>
-<pre><code>## 
-## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   VendorID = col_double(),
-##   tpep_pickup_datetime = col_datetime(format = &quot;&quot;),
-##   tpep_dropoff_datetime = col_datetime(format = &quot;&quot;),
-##   passenger_count = col_double(),
-##   trip_distance = col_double(),
-##   RatecodeID = col_double(),
-##   store_and_fwd_flag = col_character(),
-##   PULocationID = col_double(),
-##   DOLocationID = col_double(),
-##   payment_type = col_double(),
-##   fare_amount = col_double(),
-##   extra = col_double(),
-##   mta_tax = col_double(),
-##   tip_amount = col_double(),
-##   tolls_amount = col_double(),
-##   improvement_surcharge = col_double(),
-##   total_amount = col_double(),
-##   congestion_surcharge = col_double()
-## )</code></pre>
-<pre class="r"><code>t2 &lt;- Sys.time()
-t2 - t1</code></pre>
-<pre><code>## Time difference of 16.83122 secs</code></pre>
+taxi2 &lt;- read_csv(d2_path)
+t2 &lt;- Sys.time()
+t2 - t1
+#&gt; Time difference of 19.12124 secs</code></pre>
 </div>
 <div id="using-fread-1" class="section level3" number="4.1.2">
 <h3><span class="header-section-number">4.1.2</span> Using <code>fread()</code></h3>
@@ -254,17 +163,17 @@ t2 - t1</code></pre>
 taxi2 &lt;- fread(d2_path)
 t2 &lt;- Sys.time()
 
-t2-t1</code></pre>
-<pre><code>## Time difference of 7.257009 secs</code></pre>
+t2-t1
+#&gt; Time difference of 7.067965 secs</code></pre>
 </div>
 </div>
 <div id="data-set-size-1" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Data set size</h2>
-<pre class="r"><code>dim(taxi2)</code></pre>
-<pre><code>## [1] 6405008      18</code></pre>
+<pre class="r"><code>dim(taxi2)
+#&gt; [1] 6405008      18</code></pre>
 <p>Object size in MB:</p>
-<pre class="r"><code>object.size(taxi2) / 1024 / 1024</code></pre>
-<pre><code>## 1058.9 bytes</code></pre>
+<pre class="r"><code>object.size(taxi2) / 1024 / 1024
+#&gt; 1058.9 bytes</code></pre>
 </div>
 <div id="typical-data-wrangling-1" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Typical data wrangling</h2>
@@ -277,30 +186,30 @@ taxi2 %&gt;%
          hour = lubridate::hour(tpep_pickup_datetime)) %&gt;% 
   group_by(payment_type, hour) %&gt;% 
   summarise(tip_prop_max = max(tip_proportion)) %&gt;% 
-  arrange(-tip_prop_max) -&gt; taxi2_summary1</code></pre>
-<pre><code>## `summarise()` regrouping output by &#39;payment_type&#39; (override with `.groups` argument)</code></pre>
-<pre class="r"><code>t2 &lt;- Sys.time()
+  arrange(-tip_prop_max) -&gt; taxi2_summary1
+
+t2 &lt;- Sys.time()
 time_taken &lt;- t2 - t1</code></pre>
 <p>Time taken:</p>
-<pre class="r"><code>time_taken</code></pre>
-<pre><code>## Time difference of 1.156456 mins</code></pre>
+<pre class="r"><code>time_taken
+#&gt; Time difference of 1.124933 mins</code></pre>
 <p>Output:</p>
-<pre class="r"><code>taxi2_summary1</code></pre>
-<pre><code>## # A tibble: 97 x 3
-## # Groups:   payment_type [5]
-##    payment_type  hour tip_prop_max
-##           &lt;int&gt; &lt;int&gt;        &lt;dbl&gt;
-##  1            4    21        0.641
-##  2            4     2        0.167
-##  3            4    22        0.167
-##  4            4     1        0.143
-##  5            4     0        0    
-##  6            4     3        0    
-##  7            4     5        0    
-##  8            4     6        0    
-##  9            1     0      NaN    
-## 10            1     1      NaN    
-## # … with 87 more rows</code></pre>
+<pre class="r"><code>taxi2_summary1
+#&gt; # A tibble: 97 x 3
+#&gt; # Groups:   payment_type [5]
+#&gt;    payment_type  hour tip_prop_max
+#&gt;           &lt;int&gt; &lt;int&gt;        &lt;dbl&gt;
+#&gt;  1            4    21        0.641
+#&gt;  2            4     2        0.167
+#&gt;  3            4    22        0.167
+#&gt;  4            4     1        0.143
+#&gt;  5            4     0        0    
+#&gt;  6            4     3        0    
+#&gt;  7            4     5        0    
+#&gt;  8            4     6        0    
+#&gt;  9            1     0      NaN    
+#&gt; 10            1     1      NaN    
+#&gt; # … with 87 more rows</code></pre>
 </div>
 <div id="data-viz" class="section level2" number="4.4">
 <h2><span class="header-section-number">4.4</span> Data viz</h2>
@@ -311,104 +220,104 @@ time_taken &lt;- t2 - t1</code></pre>
   mutate(hour = fct_reorder(hour, tip_prop_max, max)) %&gt;%
   ggplot(aes(x = hour, y = tip_prop_max)) +
   geom_point(color = &quot;red&quot;, alpha = .7, size = 5) </code></pre>
-<pre><code>## Warning: Removed 16 rows containing missing values (geom_point).</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="reproducibility" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> Reproducibility</h1>
-<pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
-##  setting  value                       
-##  version  R version 4.0.2 (2020-06-22)
-##  os       macOS Catalina 10.15.7      
-##  system   x86_64, darwin17.0          
-##  ui       X11                         
-##  language (EN)                        
-##  collate  en_US.UTF-8                 
-##  ctype    en_US.UTF-8                 
-##  tz       Europe/Berlin               
-##  date     2020-12-05                  
-## 
-## ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
-##  package     * version date       lib source        
-##  assertthat    0.2.1   2019-03-21 [1] CRAN (R 4.0.0)
-##  backports     1.2.0   2020-11-02 [1] CRAN (R 4.0.2)
-##  blogdown      0.21    2020-10-11 [1] CRAN (R 4.0.2)
-##  bookdown      0.21    2020-10-13 [1] CRAN (R 4.0.2)
-##  broom         0.7.2   2020-10-20 [1] CRAN (R 4.0.2)
-##  callr         3.5.1   2020-10-13 [1] CRAN (R 4.0.2)
-##  cellranger    1.1.0   2016-07-27 [1] CRAN (R 4.0.0)
-##  cli           2.2.0   2020-11-20 [1] CRAN (R 4.0.2)
-##  colorspace    2.0-0   2020-11-11 [1] CRAN (R 4.0.2)
-##  conflicted  * 1.0.4   2019-06-21 [1] CRAN (R 4.0.0)
-##  crayon        1.3.4   2017-09-16 [1] CRAN (R 4.0.0)
-##  curl          4.3     2019-12-02 [1] CRAN (R 4.0.0)
-##  data.table  * 1.13.2  2020-10-19 [1] CRAN (R 4.0.2)
-##  DBI           1.1.0   2019-12-15 [1] CRAN (R 4.0.0)
-##  dbplyr        2.0.0   2020-11-03 [1] CRAN (R 4.0.2)
-##  desc          1.2.0   2018-05-01 [1] CRAN (R 4.0.0)
-##  devtools      2.3.2   2020-09-18 [1] CRAN (R 4.0.2)
-##  digest        0.6.27  2020-10-24 [1] CRAN (R 4.0.2)
-##  dplyr       * 1.0.2   2020-08-18 [1] CRAN (R 4.0.2)
-##  ellipsis      0.3.1   2020-05-15 [1] CRAN (R 4.0.0)
-##  evaluate      0.14    2019-05-28 [1] CRAN (R 4.0.0)
-##  fansi         0.4.1   2020-01-08 [1] CRAN (R 4.0.0)
-##  farver        2.0.3   2020-01-16 [1] CRAN (R 4.0.0)
-##  forcats     * 0.5.0   2020-03-01 [1] CRAN (R 4.0.0)
-##  fs            1.5.0   2020-07-31 [1] CRAN (R 4.0.2)
-##  generics      0.1.0   2020-10-31 [1] CRAN (R 4.0.2)
-##  ggplot2     * 3.3.2   2020-06-19 [1] CRAN (R 4.0.0)
-##  glue          1.4.2   2020-08-27 [1] CRAN (R 4.0.2)
-##  gtable        0.3.0   2019-03-25 [1] CRAN (R 4.0.0)
-##  haven         2.3.1   2020-06-01 [1] CRAN (R 4.0.0)
-##  hms           0.5.3   2020-01-08 [1] CRAN (R 4.0.0)
-##  htmltools     0.5.0   2020-06-16 [1] CRAN (R 4.0.0)
-##  httr          1.4.2   2020-07-20 [1] CRAN (R 4.0.2)
-##  jsonlite      1.7.1   2020-09-07 [1] CRAN (R 4.0.2)
-##  knitr         1.30    2020-09-22 [1] CRAN (R 4.0.2)
-##  labeling      0.4.2   2020-10-20 [1] CRAN (R 4.0.2)
-##  lifecycle     0.2.0   2020-03-06 [1] CRAN (R 4.0.0)
-##  lubridate   * 1.7.9.2 2020-11-13 [1] CRAN (R 4.0.2)
-##  magrittr      2.0.1   2020-11-17 [1] CRAN (R 4.0.2)
-##  memoise       1.1.0   2017-04-21 [1] CRAN (R 4.0.0)
-##  modelr        0.1.8   2020-05-19 [1] CRAN (R 4.0.0)
-##  munsell       0.5.0   2018-06-12 [1] CRAN (R 4.0.0)
-##  pillar        1.4.7   2020-11-20 [1] CRAN (R 4.0.2)
-##  pkgbuild      1.1.0   2020-07-13 [1] CRAN (R 4.0.2)
-##  pkgconfig     2.0.3   2019-09-22 [1] CRAN (R 4.0.0)
-##  pkgload       1.1.0   2020-05-29 [1] CRAN (R 4.0.0)
-##  prettyunits   1.1.1   2020-01-24 [1] CRAN (R 4.0.0)
-##  processx      3.4.5   2020-11-30 [1] CRAN (R 4.0.2)
-##  ps            1.4.0   2020-10-07 [1] CRAN (R 4.0.2)
-##  purrr       * 0.3.4   2020-04-17 [1] CRAN (R 4.0.0)
-##  R6            2.5.0   2020-10-28 [1] CRAN (R 4.0.2)
-##  Rcpp          1.0.5   2020-07-06 [1] CRAN (R 4.0.2)
-##  readr       * 1.4.0   2020-10-05 [1] CRAN (R 4.0.2)
-##  readxl        1.3.1   2019-03-13 [1] CRAN (R 4.0.0)
-##  remotes       2.2.0   2020-07-21 [1] CRAN (R 4.0.2)
-##  reprex        0.3.0   2019-05-16 [1] CRAN (R 4.0.0)
-##  rlang         0.4.9   2020-11-26 [1] CRAN (R 4.0.2)
-##  rmarkdown     2.5     2020-10-21 [1] CRAN (R 4.0.2)
-##  rprojroot     2.0.2   2020-11-15 [1] CRAN (R 4.0.2)
-##  rstudioapi    0.13    2020-11-12 [1] CRAN (R 4.0.2)
-##  rvest         0.3.6   2020-07-25 [1] CRAN (R 4.0.2)
-##  scales        1.1.1   2020-05-11 [1] CRAN (R 4.0.0)
-##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 4.0.0)
-##  stringi       1.5.3   2020-09-09 [1] CRAN (R 4.0.2)
-##  stringr     * 1.4.0   2019-02-10 [1] CRAN (R 4.0.0)
-##  testthat      3.0.0   2020-10-31 [1] CRAN (R 4.0.2)
-##  tibble      * 3.0.4   2020-10-12 [1] CRAN (R 4.0.2)
-##  tidyr       * 1.1.2   2020-08-27 [1] CRAN (R 4.0.2)
-##  tidyselect    1.1.0   2020-05-11 [1] CRAN (R 4.0.0)
-##  tidyverse   * 1.3.0   2019-11-21 [1] CRAN (R 4.0.0)
-##  usethis       1.6.3   2020-09-17 [1] CRAN (R 4.0.2)
-##  utf8          1.1.4   2018-05-24 [1] CRAN (R 4.0.0)
-##  vctrs         0.3.5   2020-11-17 [1] CRAN (R 4.0.2)
-##  withr         2.3.0   2020-09-22 [1] CRAN (R 4.0.2)
-##  xfun          0.19    2020-10-30 [1] CRAN (R 4.0.2)
-##  xml2          1.3.2   2020-04-23 [1] CRAN (R 4.0.0)
-##  yaml          2.2.1   2020-02-01 [1] CRAN (R 4.0.0)
-## 
-## [1] /Users/sebastiansaueruser/Rlibs
-## [2] /Library/Frameworks/R.framework/Versions/4.0/Resources/library</code></pre>
+<pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
+#&gt;  setting  value                       
+#&gt;  version  R version 4.0.2 (2020-06-22)
+#&gt;  os       macOS Catalina 10.15.7      
+#&gt;  system   x86_64, darwin17.0          
+#&gt;  ui       X11                         
+#&gt;  language (EN)                        
+#&gt;  collate  en_US.UTF-8                 
+#&gt;  ctype    en_US.UTF-8                 
+#&gt;  tz       Europe/Berlin               
+#&gt;  date     2020-12-05                  
+#&gt; 
+#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
+#&gt;  package     * version date       lib source        
+#&gt;  assertthat    0.2.1   2019-03-21 [1] CRAN (R 4.0.0)
+#&gt;  backports     1.2.0   2020-11-02 [1] CRAN (R 4.0.2)
+#&gt;  blogdown      0.21    2020-10-11 [1] CRAN (R 4.0.2)
+#&gt;  bookdown      0.21    2020-10-13 [1] CRAN (R 4.0.2)
+#&gt;  broom         0.7.2   2020-10-20 [1] CRAN (R 4.0.2)
+#&gt;  callr         3.5.1   2020-10-13 [1] CRAN (R 4.0.2)
+#&gt;  cellranger    1.1.0   2016-07-27 [1] CRAN (R 4.0.0)
+#&gt;  cli           2.2.0   2020-11-20 [1] CRAN (R 4.0.2)
+#&gt;  codetools     0.2-16  2018-12-24 [2] CRAN (R 4.0.2)
+#&gt;  colorspace    2.0-0   2020-11-11 [1] CRAN (R 4.0.2)
+#&gt;  conflicted  * 1.0.4   2019-06-21 [1] CRAN (R 4.0.0)
+#&gt;  crayon        1.3.4   2017-09-16 [1] CRAN (R 4.0.0)
+#&gt;  curl          4.3     2019-12-02 [1] CRAN (R 4.0.0)
+#&gt;  data.table  * 1.13.2  2020-10-19 [1] CRAN (R 4.0.2)
+#&gt;  DBI           1.1.0   2019-12-15 [1] CRAN (R 4.0.0)
+#&gt;  dbplyr        2.0.0   2020-11-03 [1] CRAN (R 4.0.2)
+#&gt;  desc          1.2.0   2018-05-01 [1] CRAN (R 4.0.0)
+#&gt;  devtools      2.3.2   2020-09-18 [1] CRAN (R 4.0.2)
+#&gt;  digest        0.6.27  2020-10-24 [1] CRAN (R 4.0.2)
+#&gt;  dplyr       * 1.0.2   2020-08-18 [1] CRAN (R 4.0.2)
+#&gt;  ellipsis      0.3.1   2020-05-15 [1] CRAN (R 4.0.0)
+#&gt;  evaluate      0.14    2019-05-28 [1] CRAN (R 4.0.0)
+#&gt;  fansi         0.4.1   2020-01-08 [1] CRAN (R 4.0.0)
+#&gt;  farver        2.0.3   2020-01-16 [1] CRAN (R 4.0.0)
+#&gt;  forcats     * 0.5.0   2020-03-01 [1] CRAN (R 4.0.0)
+#&gt;  fs            1.5.0   2020-07-31 [1] CRAN (R 4.0.2)
+#&gt;  generics      0.1.0   2020-10-31 [1] CRAN (R 4.0.2)
+#&gt;  ggplot2     * 3.3.2   2020-06-19 [1] CRAN (R 4.0.0)
+#&gt;  glue          1.4.2   2020-08-27 [1] CRAN (R 4.0.2)
+#&gt;  gtable        0.3.0   2019-03-25 [1] CRAN (R 4.0.0)
+#&gt;  haven         2.3.1   2020-06-01 [1] CRAN (R 4.0.0)
+#&gt;  hms           0.5.3   2020-01-08 [1] CRAN (R 4.0.0)
+#&gt;  htmltools     0.5.0   2020-06-16 [1] CRAN (R 4.0.0)
+#&gt;  httr          1.4.2   2020-07-20 [1] CRAN (R 4.0.2)
+#&gt;  jsonlite      1.7.1   2020-09-07 [1] CRAN (R 4.0.2)
+#&gt;  knitr         1.30    2020-09-22 [1] CRAN (R 4.0.2)
+#&gt;  labeling      0.4.2   2020-10-20 [1] CRAN (R 4.0.2)
+#&gt;  lifecycle     0.2.0   2020-03-06 [1] CRAN (R 4.0.0)
+#&gt;  lubridate   * 1.7.9.2 2020-11-13 [1] CRAN (R 4.0.2)
+#&gt;  magrittr      2.0.1   2020-11-17 [1] CRAN (R 4.0.2)
+#&gt;  memoise       1.1.0   2017-04-21 [1] CRAN (R 4.0.0)
+#&gt;  modelr        0.1.8   2020-05-19 [1] CRAN (R 4.0.0)
+#&gt;  munsell       0.5.0   2018-06-12 [1] CRAN (R 4.0.0)
+#&gt;  pillar        1.4.7   2020-11-20 [1] CRAN (R 4.0.2)
+#&gt;  pkgbuild      1.1.0   2020-07-13 [1] CRAN (R 4.0.2)
+#&gt;  pkgconfig     2.0.3   2019-09-22 [1] CRAN (R 4.0.0)
+#&gt;  pkgload       1.1.0   2020-05-29 [1] CRAN (R 4.0.0)
+#&gt;  prettyunits   1.1.1   2020-01-24 [1] CRAN (R 4.0.0)
+#&gt;  processx      3.4.5   2020-11-30 [1] CRAN (R 4.0.2)
+#&gt;  ps            1.4.0   2020-10-07 [1] CRAN (R 4.0.2)
+#&gt;  purrr       * 0.3.4   2020-04-17 [1] CRAN (R 4.0.0)
+#&gt;  R6            2.5.0   2020-10-28 [1] CRAN (R 4.0.2)
+#&gt;  Rcpp          1.0.5   2020-07-06 [1] CRAN (R 4.0.2)
+#&gt;  readr       * 1.4.0   2020-10-05 [1] CRAN (R 4.0.2)
+#&gt;  readxl        1.3.1   2019-03-13 [1] CRAN (R 4.0.0)
+#&gt;  remotes       2.2.0   2020-07-21 [1] CRAN (R 4.0.2)
+#&gt;  reprex        0.3.0   2019-05-16 [1] CRAN (R 4.0.0)
+#&gt;  rlang         0.4.9   2020-11-26 [1] CRAN (R 4.0.2)
+#&gt;  rmarkdown     2.5     2020-10-21 [1] CRAN (R 4.0.2)
+#&gt;  rprojroot     2.0.2   2020-11-15 [1] CRAN (R 4.0.2)
+#&gt;  rstudioapi    0.13    2020-11-12 [1] CRAN (R 4.0.2)
+#&gt;  rvest         0.3.6   2020-07-25 [1] CRAN (R 4.0.2)
+#&gt;  scales        1.1.1   2020-05-11 [1] CRAN (R 4.0.0)
+#&gt;  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 4.0.0)
+#&gt;  stringi       1.5.3   2020-09-09 [1] CRAN (R 4.0.2)
+#&gt;  stringr     * 1.4.0   2019-02-10 [1] CRAN (R 4.0.0)
+#&gt;  testthat      3.0.0   2020-10-31 [1] CRAN (R 4.0.2)
+#&gt;  tibble      * 3.0.4   2020-10-12 [1] CRAN (R 4.0.2)
+#&gt;  tidyr       * 1.1.2   2020-08-27 [1] CRAN (R 4.0.2)
+#&gt;  tidyselect    1.1.0   2020-05-11 [1] CRAN (R 4.0.0)
+#&gt;  tidyverse   * 1.3.0   2019-11-21 [1] CRAN (R 4.0.0)
+#&gt;  usethis       1.6.3   2020-09-17 [1] CRAN (R 4.0.2)
+#&gt;  utf8          1.1.4   2018-05-24 [1] CRAN (R 4.0.0)
+#&gt;  vctrs         0.3.5   2020-11-17 [1] CRAN (R 4.0.2)
+#&gt;  withr         2.3.0   2020-09-22 [1] CRAN (R 4.0.2)
+#&gt;  xfun          0.19    2020-10-30 [1] CRAN (R 4.0.2)
+#&gt;  xml2          1.3.2   2020-04-23 [1] CRAN (R 4.0.0)
+#&gt;  yaml          2.2.1   2020-02-01 [1] CRAN (R 4.0.0)
+#&gt; 
+#&gt; [1] /Users/sebastiansaueruser/Rlibs
+#&gt; [2] /Library/Frameworks/R.framework/Versions/4.0/Resources/library</code></pre>
 </div>
