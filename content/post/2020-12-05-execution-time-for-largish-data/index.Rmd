@@ -24,8 +24,8 @@ In this post, we play around with some largish data set, approx. 1 GB, ~1.5 mio.
 # Setup
 
 
-```{r warning = FALSE, messages = FALSE}
-library(tidyverse)  #data wrangling
+```{r warning = FALSE, messages = FALSE, results="hold"}
+library(tidyverse)  # data wrangling
 library(data.table)  # fast data wrangling
 library(lubridate)  # time/data wrangling
 library(forcats)  # factor type variable wrangling

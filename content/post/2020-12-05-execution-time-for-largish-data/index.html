@@ -54,7 +54,7 @@ output:
 </div>
 <div id="setup" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Setup</h1>
-<pre class="r"><code>library(tidyverse)  #data wrangling</code></pre>
+<pre class="r"><code>library(tidyverse)  # data wrangling</code></pre>
 <pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
 <pre><code>## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
 ## ✓ tibble  3.0.4     ✓ dplyr   1.0.2
@@ -119,7 +119,7 @@ taxi1 &lt;- read_csv(&quot;https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tri
 ## )</code></pre>
 <pre class="r"><code>t2 &lt;- Sys.time()
 t2-t1</code></pre>
-<pre><code>## Time difference of 8.332677 secs</code></pre>
+<pre><code>## Time difference of 8.498094 secs</code></pre>
 <p>This will depend on the speed of your internet connection.</p>
 </div>
 <div id="import-from-local-disk" class="section level3" number="3.1.2">
@@ -154,7 +154,7 @@ taxi1 &lt;- read_csv(d1_path)</code></pre>
 ## )</code></pre>
 <pre class="r"><code>t2 &lt;- Sys.time()
 t2 - t1</code></pre>
-<pre><code>## Time difference of 1.508836 secs</code></pre>
+<pre><code>## Time difference of 1.523865 secs</code></pre>
 </div>
 <div id="using-fread" class="section level3" number="3.1.4">
 <h3><span class="header-section-number">3.1.4</span> Using <code>fread()</code></h3>
@@ -163,7 +163,7 @@ taxi1 &lt;- fread(d1_path)
 t2 &lt;- Sys.time()
 
 t2-t1</code></pre>
-<pre><code>## Time difference of 0.8900859 secs</code></pre>
+<pre><code>## Time difference of 0.836056 secs</code></pre>
 </div>
 </div>
 <div id="data-set-size" class="section level2" number="3.2">
@@ -191,7 +191,7 @@ taxi1 %&gt;%
 time_taken &lt;- t2 - t1</code></pre>
 <p>Time taken:</p>
 <pre class="r"><code>time_taken</code></pre>
-<pre><code>## Time difference of 5.163114 secs</code></pre>
+<pre><code>## Time difference of 5.414436 secs</code></pre>
 <p>Output:</p>
 <pre class="r"><code>taxi1_summary1</code></pre>
 <pre><code>## # A tibble: 99 x 3
@@ -245,7 +245,7 @@ taxi2 &lt;- read_csv(d2_path)</code></pre>
 ## )</code></pre>
 <pre class="r"><code>t2 &lt;- Sys.time()
 t2 - t1</code></pre>
-<pre><code>## Time difference of 13.44387 secs</code></pre>
+<pre><code>## Time difference of 17.30131 secs</code></pre>
 </div>
 <div id="using-fread-1" class="section level3" number="4.1.2">
 <h3><span class="header-section-number">4.1.2</span> Using <code>fread()</code></h3>
@@ -254,7 +254,7 @@ taxi2 &lt;- fread(d2_path)
 t2 &lt;- Sys.time()
 
 t2-t1</code></pre>
-<pre><code>## Time difference of 7.677013 secs</code></pre>
+<pre><code>## Time difference of 7.190438 secs</code></pre>
 </div>
 </div>
 <div id="data-set-size-1" class="section level2" number="4.2">
@@ -282,7 +282,7 @@ taxi2 %&gt;%
 time_taken &lt;- t2 - t1</code></pre>
 <p>Time taken:</p>
 <pre class="r"><code>time_taken</code></pre>
-<pre><code>## Time difference of 1.116396 mins</code></pre>
+<pre><code>## Time difference of 1.16038 mins</code></pre>
 <p>Output:</p>
 <pre class="r"><code>taxi2_summary1</code></pre>
 <pre><code>## # A tibble: 97 x 3
