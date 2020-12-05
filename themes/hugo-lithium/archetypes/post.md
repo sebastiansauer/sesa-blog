@@ -1,20 +1,22 @@
-+++
+---
 title = "{{ replace .TranslationBaseName "-" " " | title }}"
 date = {{ .Date }}
 draft = false
-
-# Tags and categories
-# For example, use `tags = []` for no tags, or the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
 tags = [rstats]
 categories = []
-+++
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: TRUE
+---
 
 
 ```{r setup, echo = FALSE, message = FALSE, warning = FALSE}
 ## Load frequently used packages for blog posts
 library('knitcitations')  # for citations
 library('devtools')  # for session_info()
-library('tidyverse')
+library('tidyverse')  # for data_wrangling
+library('BiocStyle')  # for CRANpkg() Biocpkg() Githubpkg()
 
 
 ## Load knitcitations with a clean bibliography
