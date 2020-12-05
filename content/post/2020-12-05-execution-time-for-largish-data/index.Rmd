@@ -24,7 +24,7 @@ In this post, we play around with some largish data set, approx. 1 GB, ~1.5 mio.
 # Setup
 
 
-```{r warning = FALSE, messages = FALSE, results="hold"}
+```{r warning = FALSE, messages = FALSE, results="hide"}
 library(tidyverse)  # data wrangling
 library(data.table)  # fast data wrangling
 library(lubridate)  # time/data wrangling
@@ -238,3 +238,16 @@ taxi2_summary1 %>%
   geom_point(color = "red", alpha = .7, size = 5) 
 ```
 
+
+
+
+
+
+
+# Reproducibility
+
+```{r reproducibility, echo = FALSE}
+## Reproducibility info
+options(width = 120)
+session_info()
+```
