@@ -7,6 +7,11 @@ categories:
   - rstats
 tags:
   - stats
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: TRUE
+    
 ---
 
 
@@ -19,11 +24,12 @@ In this post, we play around with some largish data set, approx. 1 GB, ~1.5 mio.
 # Setup
 
 
-```{r warning = FALSE}
+```{r warning = FALSE, messages = FALSE}
 library(tidyverse)  #data wrangling
 library(data.table)  # fast data wrangling
 library(lubridate)  # time/data wrangling
 library(forcats)  # factor type variable wrangling
+library(conflicted)  # name clashes
 ```
 
 
@@ -82,6 +88,18 @@ t2-t1
 
 ```
 
+## Data set size
+
+```{r}
+dim(taxi1)
+```
+
+Object size in MB:
+
+```{r}
+object.size(taxi1) / 1024 / 1024
+```
+
 
 
 ## Typical data wrangling
@@ -93,7 +111,7 @@ taxi1 %>%
   select(VendorID, tpep_pickup_datetime,payment_type, tip_amount, total_amount) %>%
   drop_na() %>% 
   mutate(tip_proportion = tip_amount / total_amount,
-         hour = hour(tpep_pickup_datetime)) %>% 
+         hour = lubridate::hour(tpep_pickup_datetime)) %>% 
   group_by(payment_type, hour) %>% 
   summarise(tip_prop_max = max(tip_proportion)) %>% 
   arrange(-tip_prop_max) -> taxi1_summary1
@@ -157,6 +175,23 @@ t2-t1
 ```
 
 
+
+
+## Data set size
+
+```{r}
+dim(taxi2)
+```
+
+
+
+Object size in MB:
+
+```{r}
+object.size(taxi2) / 1024 / 1024
+```
+
+
 ## Typical data wrangling
 
 ```{r}
@@ -166,7 +201,7 @@ taxi2 %>%
   select(VendorID, tpep_pickup_datetime,payment_type, tip_amount, total_amount) %>%
   drop_na() %>% 
   mutate(tip_proportion = tip_amount / total_amount,
-         hour = hour(tpep_pickup_datetime)) %>% 
+         hour = lubridate::hour(tpep_pickup_datetime)) %>% 
   group_by(payment_type, hour) %>% 
   summarise(tip_prop_max = max(tip_proportion)) %>% 
   arrange(-tip_prop_max) -> taxi2_summary1
@@ -196,7 +231,7 @@ This will be fast, as we work with the summarized data set.
 
 ```{r}
 taxi2_summary1 %>% 
-  filter(payment_type == 4) %>% 
+  dplyr::filter(payment_type == 4) %>% 
   mutate(hour = factor(hour)) %>% 
   mutate(hour = fct_reorder(hour, tip_prop_max, max)) %>%
   ggplot(aes(x = hour, y = tip_prop_max)) +

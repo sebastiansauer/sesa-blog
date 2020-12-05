@@ -7,19 +7,53 @@ categories:
   - rstats
 tags:
   - stats
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: TRUE
+    
 ---
 
 <script src="index_files/header-attrs/header-attrs.js"></script>
 <link href="index_files/anchor-sections/anchor-sections.css" rel="stylesheet" />
 <script src="index_files/anchor-sections/anchor-sections.js"></script>
 
+<div id="TOC">
+<ul>
+<li><a href="#motivation"><span class="toc-section-number">1</span> Motivation</a></li>
+<li><a href="#setup"><span class="toc-section-number">2</span> Setup</a></li>
+<li><a href="#data-set-1"><span class="toc-section-number">3</span> Data set 1</a>
+<ul>
+<li><a href="#import-data"><span class="toc-section-number">3.1</span> Import data</a>
+<ul>
+<li><a href="#download-from-website"><span class="toc-section-number">3.1.1</span> Download from website</a></li>
+<li><a href="#import-from-local-disk"><span class="toc-section-number">3.1.2</span> Import from local disk</a></li>
+<li><a href="#using-read_csv"><span class="toc-section-number">3.1.3</span> using <code>read_csv()</code></a></li>
+<li><a href="#using-fread"><span class="toc-section-number">3.1.4</span> Using <code>fread()</code></a></li>
+</ul></li>
+<li><a href="#data-set-size"><span class="toc-section-number">3.2</span> Data set size</a></li>
+<li><a href="#typical-data-wrangling"><span class="toc-section-number">3.3</span> Typical data wrangling</a></li>
+</ul></li>
+<li><a href="#data-set-2"><span class="toc-section-number">4</span> Data Set 2</a>
+<ul>
+<li><a href="#import-data-1"><span class="toc-section-number">4.1</span> Import data</a>
+<ul>
+<li><a href="#using-read_csv-1"><span class="toc-section-number">4.1.1</span> using <code>read_csv()</code></a></li>
+<li><a href="#using-fread-1"><span class="toc-section-number">4.1.2</span> Using <code>fread()</code></a></li>
+</ul></li>
+<li><a href="#data-set-size-1"><span class="toc-section-number">4.2</span> Data set size</a></li>
+<li><a href="#typical-data-wrangling-1"><span class="toc-section-number">4.3</span> Typical data wrangling</a></li>
+<li><a href="#data-viz"><span class="toc-section-number">4.4</span> Data viz</a></li>
+</ul></li>
+</ul>
+</div>
 
-<div id="motivation" class="section level1">
-<h1>Motivation</h1>
+<div id="motivation" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Motivation</h1>
 <p>In this post, we play around with some largish data set, approx. 1 GB, ~1.5 mio. rows. Primarily, we’ll have a look at execution times.</p>
 </div>
-<div id="setup" class="section level1">
-<h1>Setup</h1>
+<div id="setup" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Setup</h1>
 <pre class="r"><code>library(tidyverse)  #data wrangling</code></pre>
 <pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
 <pre><code>## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
@@ -48,16 +82,17 @@ tags:
 <pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
 ##     date, intersect, setdiff, union</code></pre>
-<pre class="r"><code>library(forcats)  # factor type variable wrangling</code></pre>
+<pre class="r"><code>library(forcats)  # factor type variable wrangling
+library(conflicted)  # name clashes</code></pre>
 </div>
-<div id="data-set-1" class="section level1">
-<h1>Data set 1</h1>
+<div id="data-set-1" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Data set 1</h1>
 <p>We’ll use the official NYC taxi commission data set(s), access from <a href="https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page">here</a>. Let’s take the most recent month available for Yellow cabs, that is the <a href="https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2020-06.csv">June 2020 data set</a>.</p>
 <p>For the sake of disk space usage, I’ll access my own copy. Please download yours on your own.</p>
-<div id="import-data" class="section level2">
-<h2>Import data</h2>
-<div id="download-from-website" class="section level3">
-<h3>Download from website</h3>
+<div id="import-data" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Import data</h2>
+<div id="download-from-website" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Download from website</h3>
 <pre class="r"><code>t1 &lt;- Sys.time()
 taxi1 &lt;- read_csv(&quot;https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2020-06.csv&quot;)</code></pre>
 <pre><code>## 
@@ -84,15 +119,15 @@ taxi1 &lt;- read_csv(&quot;https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tri
 ## )</code></pre>
 <pre class="r"><code>t2 &lt;- Sys.time()
 t2-t1</code></pre>
-<pre><code>## Time difference of 8.635534 secs</code></pre>
+<pre><code>## Time difference of 8.332677 secs</code></pre>
 <p>This will depend on the speed of your internet connection.</p>
 </div>
-<div id="import-from-local-disk" class="section level3">
-<h3>Import from local disk</h3>
+<div id="import-from-local-disk" class="section level3" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Import from local disk</h3>
 <pre class="r"><code>d1_path &lt;- &quot;/Users/sebastiansaueruser/datasets/NYC-taxi/yellow_tripdata_2020-06.csv&quot;</code></pre>
 </div>
-<div id="using-read_csv" class="section level3">
-<h3>using <code>read_csv()</code></h3>
+<div id="using-read_csv" class="section level3" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> using <code>read_csv()</code></h3>
 <pre class="r"><code>t1 &lt;- Sys.time()
 taxi1 &lt;- read_csv(d1_path)</code></pre>
 <pre><code>## 
@@ -119,27 +154,35 @@ taxi1 &lt;- read_csv(d1_path)</code></pre>
 ## )</code></pre>
 <pre class="r"><code>t2 &lt;- Sys.time()
 t2 - t1</code></pre>
-<pre><code>## Time difference of 1.442539 secs</code></pre>
+<pre><code>## Time difference of 1.508836 secs</code></pre>
 </div>
-<div id="using-fread" class="section level3">
-<h3>Using <code>fread()</code></h3>
+<div id="using-fread" class="section level3" number="3.1.4">
+<h3><span class="header-section-number">3.1.4</span> Using <code>fread()</code></h3>
 <pre class="r"><code>t1 &lt;- Sys.time()
 taxi1 &lt;- fread(d1_path)
 t2 &lt;- Sys.time()
 
 t2-t1</code></pre>
-<pre><code>## Time difference of 1.025411 secs</code></pre>
+<pre><code>## Time difference of 0.8900859 secs</code></pre>
 </div>
 </div>
-<div id="typical-data-wrangling" class="section level2">
-<h2>Typical data wrangling</h2>
+<div id="data-set-size" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Data set size</h2>
+<pre class="r"><code>dim(taxi1)</code></pre>
+<pre><code>## [1] 549760     18</code></pre>
+<p>Object size in MB:</p>
+<pre class="r"><code>object.size(taxi1) / 1024 / 1024</code></pre>
+<pre><code>## 133.3 bytes</code></pre>
+</div>
+<div id="typical-data-wrangling" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Typical data wrangling</h2>
 <pre class="r"><code>t1 &lt;- Sys.time()
 
 taxi1 %&gt;% 
   select(VendorID, tpep_pickup_datetime,payment_type, tip_amount, total_amount) %&gt;%
   drop_na() %&gt;% 
   mutate(tip_proportion = tip_amount / total_amount,
-         hour = hour(tpep_pickup_datetime)) %&gt;% 
+         hour = lubridate::hour(tpep_pickup_datetime)) %&gt;% 
   group_by(payment_type, hour) %&gt;% 
   summarise(tip_prop_max = max(tip_proportion)) %&gt;% 
   arrange(-tip_prop_max) -&gt; taxi1_summary1</code></pre>
@@ -148,7 +191,7 @@ taxi1 %&gt;%
 time_taken &lt;- t2 - t1</code></pre>
 <p>Time taken:</p>
 <pre class="r"><code>time_taken</code></pre>
-<pre><code>## Time difference of 5.298806 secs</code></pre>
+<pre><code>## Time difference of 5.163114 secs</code></pre>
 <p>Output:</p>
 <pre class="r"><code>taxi1_summary1</code></pre>
 <pre><code>## # A tibble: 99 x 3
@@ -168,14 +211,14 @@ time_taken &lt;- t2 - t1</code></pre>
 ## # … with 89 more rows</code></pre>
 </div>
 </div>
-<div id="data-set-2" class="section level1">
-<h1>Data Set 2</h1>
+<div id="data-set-2" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Data Set 2</h1>
 <p>Yellow taxi cab rides of 2020-01, some 500 MB. <a href="https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2020-01.csv">Here’s</a> the download link to the csv file.</p>
 <pre class="r"><code>d2_path &lt;- &quot;/Users/sebastiansaueruser/datasets/NYC-taxi/yellow_tripdata_2020-01.csv&quot;</code></pre>
-<div id="import-data-1" class="section level2">
-<h2>Import data</h2>
-<div id="using-read_csv-1" class="section level3">
-<h3>using <code>read_csv()</code></h3>
+<div id="import-data-1" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Import data</h2>
+<div id="using-read_csv-1" class="section level3" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> using <code>read_csv()</code></h3>
 <pre class="r"><code>t1 &lt;- Sys.time()
 taxi2 &lt;- read_csv(d2_path)</code></pre>
 <pre><code>## 
@@ -202,27 +245,35 @@ taxi2 &lt;- read_csv(d2_path)</code></pre>
 ## )</code></pre>
 <pre class="r"><code>t2 &lt;- Sys.time()
 t2 - t1</code></pre>
-<pre><code>## Time difference of 17.13798 secs</code></pre>
+<pre><code>## Time difference of 13.44387 secs</code></pre>
 </div>
-<div id="using-fread-1" class="section level3">
-<h3>Using <code>fread()</code></h3>
+<div id="using-fread-1" class="section level3" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Using <code>fread()</code></h3>
 <pre class="r"><code>t1 &lt;- Sys.time()
 taxi2 &lt;- fread(d2_path)
 t2 &lt;- Sys.time()
 
 t2-t1</code></pre>
-<pre><code>## Time difference of 7.626655 secs</code></pre>
+<pre><code>## Time difference of 7.677013 secs</code></pre>
 </div>
 </div>
-<div id="typical-data-wrangling-1" class="section level2">
-<h2>Typical data wrangling</h2>
+<div id="data-set-size-1" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Data set size</h2>
+<pre class="r"><code>dim(taxi2)</code></pre>
+<pre><code>## [1] 6405008      18</code></pre>
+<p>Object size in MB:</p>
+<pre class="r"><code>object.size(taxi2) / 1024 / 1024</code></pre>
+<pre><code>## 1058.9 bytes</code></pre>
+</div>
+<div id="typical-data-wrangling-1" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Typical data wrangling</h2>
 <pre class="r"><code>t1 &lt;- Sys.time()
 
 taxi2 %&gt;% 
   select(VendorID, tpep_pickup_datetime,payment_type, tip_amount, total_amount) %&gt;%
   drop_na() %&gt;% 
   mutate(tip_proportion = tip_amount / total_amount,
-         hour = hour(tpep_pickup_datetime)) %&gt;% 
+         hour = lubridate::hour(tpep_pickup_datetime)) %&gt;% 
   group_by(payment_type, hour) %&gt;% 
   summarise(tip_prop_max = max(tip_proportion)) %&gt;% 
   arrange(-tip_prop_max) -&gt; taxi2_summary1</code></pre>
@@ -231,7 +282,7 @@ taxi2 %&gt;%
 time_taken &lt;- t2 - t1</code></pre>
 <p>Time taken:</p>
 <pre class="r"><code>time_taken</code></pre>
-<pre><code>## Time difference of 1.138262 mins</code></pre>
+<pre><code>## Time difference of 1.116396 mins</code></pre>
 <p>Output:</p>
 <pre class="r"><code>taxi2_summary1</code></pre>
 <pre><code>## # A tibble: 97 x 3
@@ -250,16 +301,16 @@ time_taken &lt;- t2 - t1</code></pre>
 ## 10            1     1      NaN    
 ## # … with 87 more rows</code></pre>
 </div>
-<div id="data-viz" class="section level2">
-<h2>Data viz</h2>
+<div id="data-viz" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Data viz</h2>
 <p>This will be fast, as we work with the summarized data set.</p>
 <pre class="r"><code>taxi2_summary1 %&gt;% 
-  filter(payment_type == 4) %&gt;% 
+  dplyr::filter(payment_type == 4) %&gt;% 
   mutate(hour = factor(hour)) %&gt;% 
   mutate(hour = fct_reorder(hour, tip_prop_max, max)) %&gt;%
   ggplot(aes(x = hour, y = tip_prop_max)) +
   geom_point(color = &quot;red&quot;, alpha = .7, size = 5) </code></pre>
 <pre><code>## Warning: Removed 16 rows containing missing values (geom_point).</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 </div>
 </div>
