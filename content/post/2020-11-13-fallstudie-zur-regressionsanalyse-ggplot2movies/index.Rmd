@@ -7,9 +7,12 @@ categories:
   - rstats
 tags:
   - tutorial
+
 output:
   blogdown::html_page:
     toc: TRUE
+    code_download: true
+    number_sections: true
 ---
 
 
