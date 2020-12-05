@@ -1,0 +1,265 @@
+---
+title: Execution time for largish data
+author: Sebastian Sauer
+date: '2020-12-05'
+slug: execution-time-for-largish-data
+categories:
+  - rstats
+tags:
+  - stats
+---
+
+<script src="index_files/header-attrs/header-attrs.js"></script>
+<link href="index_files/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="index_files/anchor-sections/anchor-sections.js"></script>
+
+
+<div id="motivation" class="section level1">
+<h1>Motivation</h1>
+<p>In this post, we play around with some largish data set, approx. 1 GB, ~1.5 mio. rows. Primarily, we’ll have a look at execution times.</p>
+</div>
+<div id="setup" class="section level1">
+<h1>Setup</h1>
+<pre class="r"><code>library(tidyverse)  #data wrangling</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
+## ✓ tibble  3.0.4     ✓ dplyr   1.0.2
+## ✓ tidyr   1.1.2     ✓ stringr 1.4.0
+## ✓ readr   1.4.0     ✓ forcats 0.5.0</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(data.table)  # fast data wrangling</code></pre>
+<pre><code>## 
+## Attaching package: &#39;data.table&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     between, first, last</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     transpose</code></pre>
+<pre class="r"><code>library(lubridate)  # time/data wrangling</code></pre>
+<pre><code>## 
+## Attaching package: &#39;lubridate&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:data.table&#39;:
+## 
+##     hour, isoweek, mday, minute, month, quarter, second, wday, week,
+##     yday, year</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     date, intersect, setdiff, union</code></pre>
+<pre class="r"><code>library(forcats)  # factor type variable wrangling</code></pre>
+</div>
+<div id="data-set-1" class="section level1">
+<h1>Data set 1</h1>
+<p>We’ll use the official NYC taxi commission data set(s), access from <a href="https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page">here</a>. Let’s take the most recent month available for Yellow cabs, that is the <a href="https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2020-06.csv">June 2020 data set</a>.</p>
+<p>For the sake of disk space usage, I’ll access my own copy. Please download yours on your own.</p>
+<div id="import-data" class="section level2">
+<h2>Import data</h2>
+<div id="download-from-website" class="section level3">
+<h3>Download from website</h3>
+<pre class="r"><code>t1 &lt;- Sys.time()
+taxi1 &lt;- read_csv(&quot;https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2020-06.csv&quot;)</code></pre>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   VendorID = col_double(),
+##   tpep_pickup_datetime = col_datetime(format = &quot;&quot;),
+##   tpep_dropoff_datetime = col_datetime(format = &quot;&quot;),
+##   passenger_count = col_double(),
+##   trip_distance = col_double(),
+##   RatecodeID = col_double(),
+##   store_and_fwd_flag = col_character(),
+##   PULocationID = col_double(),
+##   DOLocationID = col_double(),
+##   payment_type = col_double(),
+##   fare_amount = col_double(),
+##   extra = col_double(),
+##   mta_tax = col_double(),
+##   tip_amount = col_double(),
+##   tolls_amount = col_double(),
+##   improvement_surcharge = col_double(),
+##   total_amount = col_double(),
+##   congestion_surcharge = col_double()
+## )</code></pre>
+<pre class="r"><code>t2 &lt;- Sys.time()
+t2-t1</code></pre>
+<pre><code>## Time difference of 8.635534 secs</code></pre>
+<p>This will depend on the speed of your internet connection.</p>
+</div>
+<div id="import-from-local-disk" class="section level3">
+<h3>Import from local disk</h3>
+<pre class="r"><code>d1_path &lt;- &quot;/Users/sebastiansaueruser/datasets/NYC-taxi/yellow_tripdata_2020-06.csv&quot;</code></pre>
+</div>
+<div id="using-read_csv" class="section level3">
+<h3>using <code>read_csv()</code></h3>
+<pre class="r"><code>t1 &lt;- Sys.time()
+taxi1 &lt;- read_csv(d1_path)</code></pre>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   VendorID = col_double(),
+##   tpep_pickup_datetime = col_datetime(format = &quot;&quot;),
+##   tpep_dropoff_datetime = col_datetime(format = &quot;&quot;),
+##   passenger_count = col_double(),
+##   trip_distance = col_double(),
+##   RatecodeID = col_double(),
+##   store_and_fwd_flag = col_character(),
+##   PULocationID = col_double(),
+##   DOLocationID = col_double(),
+##   payment_type = col_double(),
+##   fare_amount = col_double(),
+##   extra = col_double(),
+##   mta_tax = col_double(),
+##   tip_amount = col_double(),
+##   tolls_amount = col_double(),
+##   improvement_surcharge = col_double(),
+##   total_amount = col_double(),
+##   congestion_surcharge = col_double()
+## )</code></pre>
+<pre class="r"><code>t2 &lt;- Sys.time()
+t2 - t1</code></pre>
+<pre><code>## Time difference of 1.442539 secs</code></pre>
+</div>
+<div id="using-fread" class="section level3">
+<h3>Using <code>fread()</code></h3>
+<pre class="r"><code>t1 &lt;- Sys.time()
+taxi1 &lt;- fread(d1_path)
+t2 &lt;- Sys.time()
+
+t2-t1</code></pre>
+<pre><code>## Time difference of 1.025411 secs</code></pre>
+</div>
+</div>
+<div id="typical-data-wrangling" class="section level2">
+<h2>Typical data wrangling</h2>
+<pre class="r"><code>t1 &lt;- Sys.time()
+
+taxi1 %&gt;% 
+  select(VendorID, tpep_pickup_datetime,payment_type, tip_amount, total_amount) %&gt;%
+  drop_na() %&gt;% 
+  mutate(tip_proportion = tip_amount / total_amount,
+         hour = hour(tpep_pickup_datetime)) %&gt;% 
+  group_by(payment_type, hour) %&gt;% 
+  summarise(tip_prop_max = max(tip_proportion)) %&gt;% 
+  arrange(-tip_prop_max) -&gt; taxi1_summary1</code></pre>
+<pre><code>## `summarise()` regrouping output by &#39;payment_type&#39; (override with `.groups` argument)</code></pre>
+<pre class="r"><code>t2 &lt;- Sys.time()
+time_taken &lt;- t2 - t1</code></pre>
+<p>Time taken:</p>
+<pre class="r"><code>time_taken</code></pre>
+<pre><code>## Time difference of 5.298806 secs</code></pre>
+<p>Output:</p>
+<pre class="r"><code>taxi1_summary1</code></pre>
+<pre><code>## # A tibble: 99 x 3
+## # Groups:   payment_type [5]
+##    payment_type  hour tip_prop_max
+##           &lt;int&gt; &lt;int&gt;        &lt;dbl&gt;
+##  1            1    22        0.978
+##  2            1     2        0.971
+##  3            1     5        0.968
+##  4            1     1        0.958
+##  5            1    21        0.949
+##  6            1     0        0.885
+##  7            1     7        0.874
+##  8            1    20        0.820
+##  9            1     4        0.811
+## 10            1    23        0.774
+## # … with 89 more rows</code></pre>
+</div>
+</div>
+<div id="data-set-2" class="section level1">
+<h1>Data Set 2</h1>
+<p>Yellow taxi cab rides of 2020-01, some 500 MB. <a href="https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2020-01.csv">Here’s</a> the download link to the csv file.</p>
+<pre class="r"><code>d2_path &lt;- &quot;/Users/sebastiansaueruser/datasets/NYC-taxi/yellow_tripdata_2020-01.csv&quot;</code></pre>
+<div id="import-data-1" class="section level2">
+<h2>Import data</h2>
+<div id="using-read_csv-1" class="section level3">
+<h3>using <code>read_csv()</code></h3>
+<pre class="r"><code>t1 &lt;- Sys.time()
+taxi2 &lt;- read_csv(d2_path)</code></pre>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   VendorID = col_double(),
+##   tpep_pickup_datetime = col_datetime(format = &quot;&quot;),
+##   tpep_dropoff_datetime = col_datetime(format = &quot;&quot;),
+##   passenger_count = col_double(),
+##   trip_distance = col_double(),
+##   RatecodeID = col_double(),
+##   store_and_fwd_flag = col_character(),
+##   PULocationID = col_double(),
+##   DOLocationID = col_double(),
+##   payment_type = col_double(),
+##   fare_amount = col_double(),
+##   extra = col_double(),
+##   mta_tax = col_double(),
+##   tip_amount = col_double(),
+##   tolls_amount = col_double(),
+##   improvement_surcharge = col_double(),
+##   total_amount = col_double(),
+##   congestion_surcharge = col_double()
+## )</code></pre>
+<pre class="r"><code>t2 &lt;- Sys.time()
+t2 - t1</code></pre>
+<pre><code>## Time difference of 17.13798 secs</code></pre>
+</div>
+<div id="using-fread-1" class="section level3">
+<h3>Using <code>fread()</code></h3>
+<pre class="r"><code>t1 &lt;- Sys.time()
+taxi2 &lt;- fread(d2_path)
+t2 &lt;- Sys.time()
+
+t2-t1</code></pre>
+<pre><code>## Time difference of 7.626655 secs</code></pre>
+</div>
+</div>
+<div id="typical-data-wrangling-1" class="section level2">
+<h2>Typical data wrangling</h2>
+<pre class="r"><code>t1 &lt;- Sys.time()
+
+taxi2 %&gt;% 
+  select(VendorID, tpep_pickup_datetime,payment_type, tip_amount, total_amount) %&gt;%
+  drop_na() %&gt;% 
+  mutate(tip_proportion = tip_amount / total_amount,
+         hour = hour(tpep_pickup_datetime)) %&gt;% 
+  group_by(payment_type, hour) %&gt;% 
+  summarise(tip_prop_max = max(tip_proportion)) %&gt;% 
+  arrange(-tip_prop_max) -&gt; taxi2_summary1</code></pre>
+<pre><code>## `summarise()` regrouping output by &#39;payment_type&#39; (override with `.groups` argument)</code></pre>
+<pre class="r"><code>t2 &lt;- Sys.time()
+time_taken &lt;- t2 - t1</code></pre>
+<p>Time taken:</p>
+<pre class="r"><code>time_taken</code></pre>
+<pre><code>## Time difference of 1.138262 mins</code></pre>
+<p>Output:</p>
+<pre class="r"><code>taxi2_summary1</code></pre>
+<pre><code>## # A tibble: 97 x 3
+## # Groups:   payment_type [5]
+##    payment_type  hour tip_prop_max
+##           &lt;int&gt; &lt;int&gt;        &lt;dbl&gt;
+##  1            4    21        0.641
+##  2            4     2        0.167
+##  3            4    22        0.167
+##  4            4     1        0.143
+##  5            4     0        0    
+##  6            4     3        0    
+##  7            4     5        0    
+##  8            4     6        0    
+##  9            1     0      NaN    
+## 10            1     1      NaN    
+## # … with 87 more rows</code></pre>
+</div>
+<div id="data-viz" class="section level2">
+<h2>Data viz</h2>
+<p>This will be fast, as we work with the summarized data set.</p>
+<pre class="r"><code>taxi2_summary1 %&gt;% 
+  filter(payment_type == 4) %&gt;% 
+  mutate(hour = factor(hour)) %&gt;% 
+  mutate(hour = fct_reorder(hour, tip_prop_max, max)) %&gt;%
+  ggplot(aes(x = hour, y = tip_prop_max)) +
+  geom_point(color = &quot;red&quot;, alpha = .7, size = 5) </code></pre>
+<pre><code>## Warning: Removed 16 rows containing missing values (geom_point).</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+</div>
+</div>
