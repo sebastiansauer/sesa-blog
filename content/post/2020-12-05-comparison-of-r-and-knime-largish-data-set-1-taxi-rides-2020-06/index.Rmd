@@ -46,7 +46,9 @@ What you think? As an old-fart R user I feel pressed to admit that Knime appears
 
 # Caveat
 
-Repeating the workflow for a larger data set, [NYC yellow cabs 2019-01]( https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2020-01.csv), it seems that my Knime got stuck (on a 2020 MacBook Pro, 16 GB machine).
+Repeating the workflow for a larger data set, [NYC yellow cabs 2019-01]( https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2020-01.csv), it seems that my Knime got stuck (on a 2020 MacBook Pro, 16 GB machine). Error message: `Execute failed: Java heap space`. I'll check that later.
+
+
 
 
 
