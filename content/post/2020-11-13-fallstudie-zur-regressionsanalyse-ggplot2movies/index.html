@@ -7,9 +7,12 @@ categories:
   - rstats
 tags:
   - tutorial
+
 output:
   blogdown::html_page:
     toc: TRUE
+    #code_download: true
+    number_sections: true
 ---
 
 <script src="index_files/header-attrs/header-attrs.js"></script>
@@ -18,44 +21,44 @@ output:
 
 <div id="TOC">
 <ul>
-<li><a href="#pakete-laden">Pakete laden</a></li>
-<li><a href="#daten-laden">Daten laden</a></li>
-<li><a href="#forschungsfrage">Forschungsfrage</a></li>
-<li><a href="#ihre-salvatorische-klausel">Ihre salvatorische Klausel</a></li>
-<li><a href="#überblick-über-die-kennzahlen">Überblick über die Kennzahlen</a></li>
-<li><a href="#fehlende-werte">Fehlende Werte</a></li>
-<li><a href="#verteilung-der-output-variablen">Verteilung der Output-Variablen</a></li>
-<li><a href="#verteilung-der-input-variablen">Verteilung der Input-Variablen</a></li>
-<li><a href="#explorative-analyse">Explorative Analyse</a></li>
-<li><a href="#budget-logarithmieren">Budget logarithmieren</a></li>
-<li><a href="#datensatz-umbauen-pivotieren-moderierender-effekt-von-genre">Datensatz umbauen (pivotieren): Moderierender Effekt von Genre</a></li>
-<li><a href="#korrelation-zwischen-den-gruppen">Korrelation zwischen den Gruppen</a></li>
-<li><a href="#einfluss-von-genre">Einfluss von Genre</a></li>
-<li><a href="#datensatz-vereinfachen">Datensatz vereinfachen</a></li>
-<li><a href="#datensatz-aufteilen-train--und-test">Datensatz aufteilen (Train- und Test)</a></li>
-<li><a href="#modell-0-nullmodell">Modell 0 (“Nullmodell”)</a></li>
-<li><a href="#modell-1-budget_log10">Modell 1: <code>budget_log10</code></a></li>
-<li><a href="#unendliche-werte-entfernen">Unendliche Werte entfernen</a></li>
-<li><a href="#model-1-ergebnisse">Model 1 Ergebnisse</a></li>
-<li><a href="#anzahl-der-stimmen-votes">Anzahl der Stimmen (<code>votes</code>)</a></li>
-<li><a href="#modell-2-anzahl-der-stimmen-linear">Modell 2: Anzahl der Stimmen, linear</a></li>
-<li><a href="#modell-3-anzahl-der-stimmen-als-polynomialmodell-quadratisch">Modell 3: Anzahl der Stimmen als Polynomialmodell, quadratisch</a></li>
-<li><a href="#modell-4-anzahl-der-stimmen-als-polynomialmodell-3.-grades">Modell 4: Anzahl der Stimmen als Polynomialmodell, 3. Grades</a></li>
-<li><a href="#korrelationsmatrix-visualisieren">Korrelationsmatrix (visualisieren)</a></li>
-<li><a href="#modell-5-multiple-regression">Modell 5: Multiple Regression</a></li>
-<li><a href="#d-visualisierung">3D-Visualisierung</a></li>
-<li><a href="#modell-6-interaktionsmodell">Modell 6: Interaktionsmodell</a></li>
-<li><a href="#rohe-kraft-schrittweise-regression">Rohe Kraft: Schrittweise Regression</a></li>
-<li><a href="#modellselektion-modellwahl-anova">Modellselektion (Modellwahl) – anova</a></li>
-<li><a href="#modellselektion-modellwahl-prädiktion">Modellselektion (Modellwahl) – Prädiktion</a></li>
-<li><a href="#hm">Hm</a></li>
-<li><a href="#vielleicht-so-vergleich-der-modellgüten">Vielleicht so: Vergleich der Modellgüten</a></li>
-<li><a href="#prüfung-der-voraussetzungen">Prüfung der Voraussetzungen</a></li>
+<li><a href="#pakete-laden"><span class="toc-section-number">1</span> Pakete laden</a></li>
+<li><a href="#daten-laden"><span class="toc-section-number">2</span> Daten laden</a></li>
+<li><a href="#forschungsfrage"><span class="toc-section-number">3</span> Forschungsfrage</a></li>
+<li><a href="#ihre-salvatorische-klausel"><span class="toc-section-number">4</span> Ihre salvatorische Klausel</a></li>
+<li><a href="#überblick-über-die-kennzahlen"><span class="toc-section-number">5</span> Überblick über die Kennzahlen</a></li>
+<li><a href="#fehlende-werte"><span class="toc-section-number">6</span> Fehlende Werte</a></li>
+<li><a href="#verteilung-der-output-variablen"><span class="toc-section-number">7</span> Verteilung der Output-Variablen</a></li>
+<li><a href="#verteilung-der-input-variablen"><span class="toc-section-number">8</span> Verteilung der Input-Variablen</a></li>
+<li><a href="#explorative-analyse"><span class="toc-section-number">9</span> Explorative Analyse</a></li>
+<li><a href="#budget-logarithmieren"><span class="toc-section-number">10</span> Budget logarithmieren</a></li>
+<li><a href="#datensatz-umbauen-pivotieren-moderierender-effekt-von-genre"><span class="toc-section-number">11</span> Datensatz umbauen (pivotieren): Moderierender Effekt von Genre</a></li>
+<li><a href="#korrelation-zwischen-den-gruppen"><span class="toc-section-number">12</span> Korrelation zwischen den Gruppen</a></li>
+<li><a href="#einfluss-von-genre"><span class="toc-section-number">13</span> Einfluss von Genre</a></li>
+<li><a href="#datensatz-vereinfachen"><span class="toc-section-number">14</span> Datensatz vereinfachen</a></li>
+<li><a href="#datensatz-aufteilen-train--und-test"><span class="toc-section-number">15</span> Datensatz aufteilen (Train- und Test)</a></li>
+<li><a href="#modell-0-nullmodell"><span class="toc-section-number">16</span> Modell 0 (“Nullmodell”)</a></li>
+<li><a href="#modell-1-budget_log10"><span class="toc-section-number">17</span> Modell 1: <code>budget_log10</code></a></li>
+<li><a href="#unendliche-werte-entfernen"><span class="toc-section-number">18</span> Unendliche Werte entfernen</a></li>
+<li><a href="#model-1-ergebnisse"><span class="toc-section-number">19</span> Model 1 Ergebnisse</a></li>
+<li><a href="#anzahl-der-stimmen-votes"><span class="toc-section-number">20</span> Anzahl der Stimmen (<code>votes</code>)</a></li>
+<li><a href="#modell-2-anzahl-der-stimmen-linear"><span class="toc-section-number">21</span> Modell 2: Anzahl der Stimmen, linear</a></li>
+<li><a href="#modell-3-anzahl-der-stimmen-als-polynomialmodell-quadratisch"><span class="toc-section-number">22</span> Modell 3: Anzahl der Stimmen als Polynomialmodell, quadratisch</a></li>
+<li><a href="#modell-4-anzahl-der-stimmen-als-polynomialmodell-3.-grades"><span class="toc-section-number">23</span> Modell 4: Anzahl der Stimmen als Polynomialmodell, 3. Grades</a></li>
+<li><a href="#korrelationsmatrix-visualisieren"><span class="toc-section-number">24</span> Korrelationsmatrix (visualisieren)</a></li>
+<li><a href="#modell-5-multiple-regression"><span class="toc-section-number">25</span> Modell 5: Multiple Regression</a></li>
+<li><a href="#d-visualisierung"><span class="toc-section-number">26</span> 3D-Visualisierung</a></li>
+<li><a href="#modell-6-interaktionsmodell"><span class="toc-section-number">27</span> Modell 6: Interaktionsmodell</a></li>
+<li><a href="#rohe-kraft-schrittweise-regression"><span class="toc-section-number">28</span> Rohe Kraft: Schrittweise Regression</a></li>
+<li><a href="#modellselektion-modellwahl-anova"><span class="toc-section-number">29</span> Modellselektion (Modellwahl) – anova</a></li>
+<li><a href="#modellselektion-modellwahl-prädiktion"><span class="toc-section-number">30</span> Modellselektion (Modellwahl) – Prädiktion</a></li>
+<li><a href="#hm"><span class="toc-section-number">31</span> Hm</a></li>
+<li><a href="#vielleicht-so-vergleich-der-modellgüten"><span class="toc-section-number">32</span> Vielleicht so: Vergleich der Modellgüten</a></li>
+<li><a href="#prüfung-der-voraussetzungen"><span class="toc-section-number">33</span> Prüfung der Voraussetzungen</a></li>
 </ul>
 </div>
 
-<div id="pakete-laden" class="section level1">
-<h1>Pakete laden</h1>
+<div id="pakete-laden" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Pakete laden</h1>
 <p>Mit dem Paket <code>tidyverse</code> laden wir die gängigen “Datenjudo-Befehle”. Außerdem die Befehle zur Datenvisualisierung (d.h. das Paket <code>ggplot2</code> wird geladen).</p>
 <pre class="r"><code>library(tidyverse)
 
@@ -76,8 +79,8 @@ library(yardstick)  # Modellgüte berechnen
 library(ggfortify)  # Autoplot für Modellannahmen</code></pre>
 <p>Denken Sie daran, dass Pakete (einmalig) installiert sein müssen, bevor Sie sie laden können (mittels <code>library()</code>).</p>
 </div>
-<div id="daten-laden" class="section level1">
-<h1>Daten laden</h1>
+<div id="daten-laden" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Daten laden</h1>
 <p>Die Daten dieser Fallstudie “wohnen” in diesem Paket:</p>
 <pre class="r"><code>library(ggplot2movies)</code></pre>
 <p><a href="https://rdrr.io/cran/ggplot2movies/man/movies.html">Hier</a> finden Sie einige Erklärung zu dem Datensatz.</p>
@@ -119,22 +122,22 @@ library(ggfortify)  # Autoplot für Modellannahmen</code></pre>
 <p>Die Namen der Variablen sind (wie so oft) nicht selbsterklärend. Werfen wir einen Blick in die Hilfe.</p>
 <pre class="r"><code>help(movies)</code></pre>
 </div>
-<div id="forschungsfrage" class="section level1">
-<h1>Forschungsfrage</h1>
+<div id="forschungsfrage" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Forschungsfrage</h1>
 <ol style="list-style-type: decimal">
 <li><p>Wie gut kann man den Erfolg eines Films vorhersagen? Als Erfolg definieren wir die Höhe der Beurteilung (<code>rating</code>).</p></li>
 <li><p>Welche Faktoren sind nützlich für die Güte dieser Vorhersage?</p></li>
 </ol>
 </div>
-<div id="ihre-salvatorische-klausel" class="section level1">
-<h1>Ihre salvatorische Klausel</h1>
+<div id="ihre-salvatorische-klausel" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Ihre salvatorische Klausel</h1>
 <p>Es könnte sein, dass Sie in dieser Fallstudie auf Ideen (oder R-Syntax) treffen, die Sie nicht kennen. Lassen Sie sich nicht davon ins Boxhorn jagen. Verarbeiten Sie einfach die Teile, die Sie verstehen. Diese Fallstudie soll kein Lehrtext zu den theoretischen Hintergründen sein; daher habe ich auf Erklärungen und Theorie weitgehend verzichtet. Hier geht es um das praktische Tun. Ich wünsche Ihnen viel Freude und Erkenntnisse!</p>
 </div>
-<div id="überblick-über-die-kennzahlen" class="section level1">
-<h1>Überblick über die Kennzahlen</h1>
+<div id="überblick-über-die-kennzahlen" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Überblick über die Kennzahlen</h1>
 <pre class="r"><code>skim(movies)</code></pre>
 <table>
-<caption><span id="tab:unnamed-chunk-6">Table 1: </span>Data summary</caption>
+<caption><span id="tab:unnamed-chunk-6">Table 5.1: </span>Data summary</caption>
 <tbody>
 <tr class="odd">
 <td align="left">Name</td>
@@ -545,8 +548,8 @@ library(ggfortify)  # Autoplot für Modellannahmen</code></pre>
 </table>
 <p>Der <code>skim</code>-Befehl zeigt uns auch die fehlenden Werte an.</p>
 </div>
-<div id="fehlende-werte" class="section level1">
-<h1>Fehlende Werte</h1>
+<div id="fehlende-werte" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Fehlende Werte</h1>
 <p>Wichtig sind oft die Anzahl der fehlenden Werte, darum schauen wir da noch einmal genauer hin (wobei wir das oben mit <code>skim()</code> eigentlich auch schon gesehen haben).</p>
 <p>Man könnte jetzt für jede Spalte nach der Anzahl von <code>NA</code> suchen:</p>
 <pre class="r"><code>movies %&gt;% 
@@ -570,8 +573,8 @@ library(ggfortify)  # Autoplot für Modellannahmen</code></pre>
 #&gt; [1] 0.9112914</code></pre>
 <p>Wir stehen also vor einer schwierigen Entscheidung: Wenn wir <code>budget</code> nutzen möchten, können wir ca. 91% der übrigen Variablen nicht für die Vorhersage nutzen.</p>
 </div>
-<div id="verteilung-der-output-variablen" class="section level1">
-<h1>Verteilung der Output-Variablen</h1>
+<div id="verteilung-der-output-variablen" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Verteilung der Output-Variablen</h1>
 <p>Die Output-Variable ist die Variable, die uns besonders interessiert. Ihre Werte wollen wir vorhersagen. Grund genug, uns diese Variable genauer anzuschauen.</p>
 <pre class="r"><code>movies %&gt;% 
   ggplot() +
@@ -593,8 +596,8 @@ ggplot(aes(x = rating)) +
 <p>Hier weisen wir der Y-Achse die Dichte (Wahrscheinlichkeit) der jeweiligen Werte auf der X-Achse (d.h. von Rating) zu. Das Histogramm soll also als “Balkenhöhen” der relativen Wahrscheinlichkeit der Balken entsprechen. Das ist im Prinzip das, was das Dichtediagramm zeigt.</p>
 <p>Das Rating ist relativ normalverteilt. Das ist kaum überraschend, denn das Antwortformat von 1-10 erlaubt kaum Extremwerte und suggeriert damit eine Mitte. Ob damit die echte, psychologische Dimension “wie gut finde ich den Film” (“Gefallen”) gemessen wird, steht auf einem anderen Blatt. Etwas Skepsis ist berechtigt. Wenn aber unsere Operationalisierung von <em>Gefallen</em> supoptimal ist, also verrauscht, so brauchen wir nicht erwarten, dass unsere Vorhersagen spitze sein werden.</p>
 </div>
-<div id="verteilung-der-input-variablen" class="section level1">
-<h1>Verteilung der Input-Variablen</h1>
+<div id="verteilung-der-input-variablen" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Verteilung der Input-Variablen</h1>
 <p>So könnte man alle Verteilungen mit einem Aufruf darstellen:</p>
 <pre class="r"><code>movies %&gt;% 
   mutate(across(where(is.integer), as.numeric)) %&gt;%  # Integervariable als numerisch deklarieren
@@ -620,8 +623,8 @@ Male Facetten, nämlich für jede Variable eine.</p>
   select(where(is.numeric)) %&gt;% 
   map( ~ {ggplot(movies, aes(x = .)) + geom_density()})</code></pre>
 </div>
-<div id="explorative-analyse" class="section level1">
-<h1>Explorative Analyse</h1>
+<div id="explorative-analyse" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Explorative Analyse</h1>
 <p>Hier sind beispielhaft einige explorativen Analysen dargestellt.</p>
 <pre class="r"><code>movies %&gt;% 
   ggplot() + 
@@ -629,8 +632,8 @@ Male Facetten, nämlich für jede Variable eine.</p>
   geom_point(alpha = .2)</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="budget-logarithmieren" class="section level1">
-<h1>Budget logarithmieren</h1>
+<div id="budget-logarithmieren" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> Budget logarithmieren</h1>
 <p>Man sieht eine deutliche Konzentration im unteren Budget-Bereich. Das spricht für eine Transformation, um den Bereich zu “strecken”.</p>
 <pre class="r"><code>movies %&gt;% 
   mutate(budget_log10 = log10(budget)) -&gt; movies2</code></pre>
@@ -659,8 +662,8 @@ Male Facetten, nämlich für jede Variable eine.</p>
 <p>Vielleicht unterscheidet sich dieser Zusammenhang nach dem Genre?</p>
 <p>Dazu müssen wir den Datensatz umbauen.</p>
 </div>
-<div id="datensatz-umbauen-pivotieren-moderierender-effekt-von-genre" class="section level1">
-<h1>Datensatz umbauen (pivotieren): Moderierender Effekt von Genre</h1>
+<div id="datensatz-umbauen-pivotieren-moderierender-effekt-von-genre" class="section level1" number="11">
+<h1><span class="header-section-number">11</span> Datensatz umbauen (pivotieren): Moderierender Effekt von Genre</h1>
 <pre class="r"><code>movies2a %&gt;% 
   select(budget_log10, rating, Action:Short) %&gt;% 
   pivot_longer(cols = Action:Short, 
@@ -681,8 +684,8 @@ Male Facetten, nämlich für jede Variable eine.</p>
 <p>Mit <code>scale_fill_viridis_c()</code> haben wir noch ein schickeres Farbschema ausgewählt. 🏋️ Lassen Sie mal diese Zeile weg und vergleichen Sie das Ergebnis.</p>
 <p>👉 Insgesamt scheinen die Zusammenhänge in allen Genres ähnlich zu sein. Das heißt mit anderen Worten, dass wir keine/kaum Evidenz gefunden haben (in dieser Analyse), dass <code>genre</code> den Zusammenhang von Budget und Rating moderieren würde.</p>
 </div>
-<div id="korrelation-zwischen-den-gruppen" class="section level1">
-<h1>Korrelation zwischen den Gruppen</h1>
+<div id="korrelation-zwischen-den-gruppen" class="section level1" number="12">
+<h1><span class="header-section-number">12</span> Korrelation zwischen den Gruppen</h1>
 <pre class="r"><code>movies2_long %&gt;%
   drop_na(budget_log10, rating) %&gt;% 
   group_by(genre) %&gt;% 
@@ -698,8 +701,8 @@ Male Facetten, nämlich für jede Variable eine.</p>
 #&gt; 6 Romance      -0.161  
 #&gt; 7 Short         0.00966</code></pre>
 </div>
-<div id="einfluss-von-genre" class="section level1">
-<h1>Einfluss von Genre</h1>
+<div id="einfluss-von-genre" class="section level1" number="13">
+<h1><span class="header-section-number">13</span> Einfluss von Genre</h1>
 <p>Aber hat das Genre vielleicht einen generellen Effekt auf die Beurteilung? Werden vielleicht Actionfile generell besser bewertet als Kurzfilme?</p>
 <pre class="r"><code>movies2_long %&gt;% 
   ggplot() + 
@@ -723,8 +726,8 @@ Male Facetten, nämlich für jede Variable eine.</p>
 #&gt; 7 Short                   6.6</code></pre>
 <p>Da scheint’s keine (starken) statistischen Abhängigkeiten zu geben.</p>
 </div>
-<div id="datensatz-vereinfachen" class="section level1">
-<h1>Datensatz vereinfachen</h1>
+<div id="datensatz-vereinfachen" class="section level1" number="14">
+<h1><span class="header-section-number">14</span> Datensatz vereinfachen</h1>
 <p>Die Variable zum Titel ist ohne weitere Bearbeitung kaum nützlich (Stichwort “Feature Engineering”); besser wir entfernen sie der Einfachheit halber.</p>
 <pre class="r"><code>movies2a %&gt;% 
   select(-title) -&gt; movies2a</code></pre>
@@ -751,8 +754,8 @@ Male Facetten, nämlich für jede Variable eine.</p>
 <pre class="r"><code>movies2a %&gt;% 
   select(-mpaa) -&gt; movies2a</code></pre>
 </div>
-<div id="datensatz-aufteilen-train--und-test" class="section level1">
-<h1>Datensatz aufteilen (Train- und Test)</h1>
+<div id="datensatz-aufteilen-train--und-test" class="section level1" number="15">
+<h1><span class="header-section-number">15</span> Datensatz aufteilen (Train- und Test)</h1>
 <p>Möchte man eine Vorhersage machen, gehört es zum guten Ton, den Datensatz in einen Train- und einen Test-Teil aufzuteilen. Mit dem Train-Datensatz kann man nach Herzenslust rumbasteln (modellieren); der Test-Datensatz kommt nur einmal zum Schluss zum Einsatz, um die Güte des (besten) Modells zu überprüfen.</p>
 <p>Vielen Modelle können keine fehlenden Werte verdauen; daher entfernen wir hier jetzt pauschal alle fehlenden Werte.</p>
 <pre class="r"><code>movies2a %&gt;% 
@@ -776,8 +779,8 @@ dim(movies2_train)
 #&gt; [1] 0</code></pre>
 <p>Ok; keine fehlenden Werte mehr.</p>
 </div>
-<div id="modell-0-nullmodell" class="section level1">
-<h1>Modell 0 (“Nullmodell”)</h1>
+<div id="modell-0-nullmodell" class="section level1" number="16">
+<h1><span class="header-section-number">16</span> Modell 0 (“Nullmodell”)</h1>
 <p>Im Folgenden werden wir einige Modelle aufstellen und diese dann vergleichen. Zu Referenzzwecken erstellen wir zuerst ein “Nullmodell”, das null (keine) Prädiktoren beinhaltet. Mit diesem Modell vergleichen wir dann die folgenden Modelle.</p>
 <pre class="r"><code>m0 &lt;- lm(rating ~ 1, data = movies2_train)</code></pre>
 <p>Wir nehmen lieben nicht die “Langform” (<code>movies3</code>), da dort die Beobachtungseinheit nicht mehr ein Film ist, im Gegensatz zur Tabelle <code>movies2</code>.</p>
@@ -864,8 +867,8 @@ dim(movies2_train)
 #&gt;   .. .. .. ..- attr(*, &quot;names&quot;)= chr &quot;rating&quot;
 #&gt;  - attr(*, &quot;class&quot;)= chr &quot;lm&quot;</code></pre>
 </div>
-<div id="modell-1-budget_log10" class="section level1">
-<h1>Modell 1: <code>budget_log10</code></h1>
+<div id="modell-1-budget_log10" class="section level1" number="17">
+<h1><span class="header-section-number">17</span> Modell 1: <code>budget_log10</code></h1>
 <pre class="r"><code>movies2_train %&gt;% 
   drop_na(budget_log10, rating) %&gt;% 
   lm(rating ~ budget_log10, data = .)  -&gt; m1</code></pre>
@@ -882,8 +885,8 @@ dim(movies2_train)
 <pre class="r"><code>log(0)
 #&gt; [1] -Inf</code></pre>
 </div>
-<div id="unendliche-werte-entfernen" class="section level1">
-<h1>Unendliche Werte entfernen</h1>
+<div id="unendliche-werte-entfernen" class="section level1" number="18">
+<h1><span class="header-section-number">18</span> Unendliche Werte entfernen</h1>
 <p>Diese Null-Budgets hätten wir entfernen müssen. Na gut, dann machen wir es jetzt.</p>
 <pre class="r"><code>movies2_train %&gt;% 
   filter(budget_log10 != -Inf) -&gt; movies2_train</code></pre>
@@ -891,8 +894,8 @@ dim(movies2_train)
 <pre class="r"><code>movies2_train %&gt;% 
   lm(rating ~ budget_log10, data = .) -&gt; m1</code></pre>
 </div>
-<div id="model-1-ergebnisse" class="section level1">
-<h1>Model 1 Ergebnisse</h1>
+<div id="model-1-ergebnisse" class="section level1" number="19">
+<h1><span class="header-section-number">19</span> Model 1 Ergebnisse</h1>
 <pre class="r"><code>tidy(m1)
 #&gt; # A tibble: 2 x 5
 #&gt;   term         estimate std.error statistic    p.value
@@ -908,8 +911,8 @@ dim(movies2_train)
 #&gt; # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 <p>Also peinlich schlecht.</p>
 </div>
-<div id="anzahl-der-stimmen-votes" class="section level1">
-<h1>Anzahl der Stimmen (<code>votes</code>)</h1>
+<div id="anzahl-der-stimmen-votes" class="section level1" number="20">
+<h1><span class="header-section-number">20</span> Anzahl der Stimmen (<code>votes</code>)</h1>
 <p>Vielleicht lässt die Anzahl der abgegebenen Stimmen (<code>votes</code>) einen Rückschluss auf die spätere Beurteilung zu? Nach dem Motto: Wenn viele Leute eine Beurteilung abgeben, dann sind die Gemüter erhitzt und der Film muss spalten. Wobei diese Behauptung eigentlich nichts über den Mittelwert der Beurteilung aussagt, sondern über die Streuung. Aber schauen wir einfach mal.</p>
 <pre class="r"><code>p1 &lt;- movies2_train %&gt;% 
   ggplot(aes(x = votes)) +
@@ -953,8 +956,8 @@ Hier haben wir gleich eine Regressionsgerade in den Punkteschwarm gelegt.</p>
   geom_density_2d()</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-55-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="modell-2-anzahl-der-stimmen-linear" class="section level1">
-<h1>Modell 2: Anzahl der Stimmen, linear</h1>
+<div id="modell-2-anzahl-der-stimmen-linear" class="section level1" number="21">
+<h1><span class="header-section-number">21</span> Modell 2: Anzahl der Stimmen, linear</h1>
 <p>Erstellen wir die logarithmierte Version von <code>votes</code>:</p>
 <pre class="r"><code>movies2_train %&gt;% 
   mutate(votes_log10 = log10(votes)) %&gt;% 
@@ -978,8 +981,8 @@ glance(m2)
 #&gt; # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 <p>Tja. Unsere Erklärungskraft bleibt bescheiden.</p>
 </div>
-<div id="modell-3-anzahl-der-stimmen-als-polynomialmodell-quadratisch" class="section level1">
-<h1>Modell 3: Anzahl der Stimmen als Polynomialmodell, quadratisch</h1>
+<div id="modell-3-anzahl-der-stimmen-als-polynomialmodell-quadratisch" class="section level1" number="22">
+<h1><span class="header-section-number">22</span> Modell 3: Anzahl der Stimmen als Polynomialmodell, quadratisch</h1>
 <p>Betrachtet man das Streudiagramm mit den Anzahl der Stimmen, so könnte man auf die Idee kommen, der Zusammenhang sei durch ein Polynomialmodell gut zu beschreiben.</p>
 <p>Probieren wir ein quadratisches Modell (also zweiten Grades):</p>
 <pre class="r"><code>m3 &lt;- lm(rating ~ I(votes_log10^2) + votes_log10, data = movies2_train)</code></pre>
@@ -1007,8 +1010,8 @@ glance(m2)
                 formula = y ~ poly(x, 2))</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-61-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="modell-4-anzahl-der-stimmen-als-polynomialmodell-3.-grades" class="section level1">
-<h1>Modell 4: Anzahl der Stimmen als Polynomialmodell, 3. Grades</h1>
+<div id="modell-4-anzahl-der-stimmen-als-polynomialmodell-3.-grades" class="section level1" number="23">
+<h1><span class="header-section-number">23</span> Modell 4: Anzahl der Stimmen als Polynomialmodell, 3. Grades</h1>
 <p>Vielleicht ein Polynom 3. Grades?</p>
 <pre class="r"><code>movies2_train %&gt;% 
   ggplot(aes(x = votes_log10, y = rating)) +
@@ -1037,8 +1040,8 @@ glance(m4)
 #&gt; # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 <p>Es scheint keinen Unterschied zu machen, ob man ein Polynom 2. oder 3. Grades in die Daten anpasst.</p>
 </div>
-<div id="korrelationsmatrix-visualisieren" class="section level1">
-<h1>Korrelationsmatrix (visualisieren)</h1>
+<div id="korrelationsmatrix-visualisieren" class="section level1" number="24">
+<h1><span class="header-section-number">24</span> Korrelationsmatrix (visualisieren)</h1>
 <p>Vielleicht kann (nur) eine Kombination mehrerer Prädiktoren zu einer genauen Vorhersage führen? Probieren wir es aus.</p>
 <p>Zuerst betrachten wir die bivariaten Korrelation.</p>
 <pre class="r"><code>movies_corr &lt;- correlate(movies2_train) %&gt;% 
@@ -1111,8 +1114,8 @@ fashion(movies_corr)
 <pre class="r"><code>rplot(movies_corr)</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-67-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="modell-5-multiple-regression" class="section level1">
-<h1>Modell 5: Multiple Regression</h1>
+<div id="modell-5-multiple-regression" class="section level1" number="25">
+<h1><span class="header-section-number">25</span> Modell 5: Multiple Regression</h1>
 <p>Untersuchen wir ein Modell, das mehrere Prädiktoren vereint.</p>
 <pre class="r"><code>m5 &lt;- lm(rating ~ votes_log10 + budget_log10, data = movies2_train)</code></pre>
 <pre class="r"><code>glance(m5)
@@ -1122,8 +1125,8 @@ fashion(movies_corr)
 #&gt; 1    0.0845        0.0840  1.48      167. 2.84e-70     2 -6574. 13155. 13180.
 #&gt; # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 </div>
-<div id="d-visualisierung" class="section level1">
-<h1>3D-Visualisierung</h1>
+<div id="d-visualisierung" class="section level1" number="26">
+<h1><span class="header-section-number">26</span> 3D-Visualisierung</h1>
 <p>Verändern wir die Reihenfolge der Spalten, so dass die “wichtigen” Spalten vorne stehen:</p>
 <pre class="r"><code>movies2_train %&gt;% 
   select(rating, votes_log10, budget_log10, everything()) -&gt; movies2_train</code></pre>
@@ -1133,8 +1136,8 @@ fashion(movies_corr)
 <p><img src="index_files/figure-html/unnamed-chunk-71-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Die Farbe gibt die “Höhe” des Wertes in der Output-Variablen wider.</p>
 </div>
-<div id="modell-6-interaktionsmodell" class="section level1">
-<h1>Modell 6: Interaktionsmodell</h1>
+<div id="modell-6-interaktionsmodell" class="section level1" number="27">
+<h1><span class="header-section-number">27</span> Modell 6: Interaktionsmodell</h1>
 <pre class="r"><code>m6 &lt;- lm(rating ~ votes_log10 + budget_log10 + votes_log10:budget_log10,
          data = movies2_train)</code></pre>
 <pre class="r"><code>glance(m6)
@@ -1144,8 +1147,8 @@ fashion(movies_corr)
 #&gt; 1     0.116         0.116  1.46      159. 8.53e-97     3 -6510. 13029. 13060.
 #&gt; # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 </div>
-<div id="rohe-kraft-schrittweise-regression" class="section level1">
-<h1>Rohe Kraft: Schrittweise Regression</h1>
+<div id="rohe-kraft-schrittweise-regression" class="section level1" number="28">
+<h1><span class="header-section-number">28</span> Rohe Kraft: Schrittweise Regression</h1>
 <p>Wir könnten jetzt sagen, wir geben es auf, nach einzelnen netten Prädiktoren zu suchen. Schön wäre natürlich, wir hätten eine Theorie, die uns (kausal) sagt, welche Prädiktoren eine Rolle spielten. In Ermangelung derselben können wir auch rein datengetrieben vorgehen.</p>
 <p>Einfach gesprochen sagen wir zu R: “Berechne ein Modell mit einem Prädiktor; dabei probiere aus, welcher Prädiktor zum besten Modell führt. Dann wiederhole das mit 2 Prädiktoren und so weiter bis du zu einem Modell kommst, das alle Prädiktoren beinhaltet. Wenn aber irgendwann die Hinzunahme von einem Prädiktor nicht zu einem besseren Modell führt, dann brich ab.”</p>
 <p>Wir brauchen ein Nullmodell, das haben wir oben schon definiert (<code>m0</code>). Hier noch mal:</p>
@@ -1176,8 +1179,8 @@ fashion(movies_corr)
 #&gt; 10 Comedy        0.205     0.0499       4.10 4.16e-  5
 #&gt; 11 Action       -0.250     0.0632      -3.95 7.86e-  5</code></pre>
 </div>
-<div id="modellselektion-modellwahl-anova" class="section level1">
-<h1>Modellselektion (Modellwahl) – anova</h1>
+<div id="modellselektion-modellwahl-anova" class="section level1" number="29">
+<h1><span class="header-section-number">29</span> Modellselektion (Modellwahl) – anova</h1>
 <p>Es gibt verschiedene Methoden, um ein hoffentlich bestes Modell auszuwählen.</p>
 <pre class="r"><code>anova(m0,  m2, m3, m4)
 #&gt; Analysis of Variance Table
@@ -1204,8 +1207,8 @@ fashion(movies_corr)
 <p>Genau das wird mit <code>anova()</code> angezeigt.</p>
 <p><code>m1</code> und <code>m2</code> sind nicht ineinander verschachtelt; <code>m2</code> ist genau komplex wie <code>m1</code>; daher wird hier kein Test durchgeführt bzw. würden keine Koeffizienten von <code>anova()</code> ausgegeben.</p>
 </div>
-<div id="modellselektion-modellwahl-prädiktion" class="section level1">
-<h1>Modellselektion (Modellwahl) – Prädiktion</h1>
+<div id="modellselektion-modellwahl-prädiktion" class="section level1" number="30">
+<h1><span class="header-section-number">30</span> Modellselektion (Modellwahl) – Prädiktion</h1>
 <pre class="r"><code>modellist &lt;- list(m0, m1, m2, m3, m4, m5, m6, forward)</code></pre>
 <pre class="r"><code>model_preds &lt;- modellist %&gt;% 
   map( ~ predict(., movies2_test))
@@ -1251,12 +1254,12 @@ names(model_preds) &lt;- col_names</code></pre>
 #&gt; 2 rsq     standard      0.0176
 #&gt; 3 mae     standard      1.20</code></pre>
 </div>
-<div id="hm" class="section level1">
-<h1>Hm</h1>
+<div id="hm" class="section level1" number="31">
+<h1><span class="header-section-number">31</span> Hm</h1>
 <p>Wie kommt man jetzt elegant zu dem Modell mit den besten Modellkoeffizienten? Jemand eine gute Idee?</p>
 </div>
-<div id="vielleicht-so-vergleich-der-modellgüten" class="section level1">
-<h1>Vielleicht so: Vergleich der Modellgüten</h1>
+<div id="vielleicht-so-vergleich-der-modellgüten" class="section level1" number="32">
+<h1><span class="header-section-number">32</span> Vielleicht so: Vergleich der Modellgüten</h1>
 <p>Hier ist eine Funktion, die die Modellgüten berechnet:</p>
 <pre class="r"><code>get_rmse &lt;- function(est) {
   
@@ -1305,8 +1308,8 @@ names(model_preds) &lt;- col_names</code></pre>
   geom_point()</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-90-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="prüfung-der-voraussetzungen" class="section level1">
-<h1>Prüfung der Voraussetzungen</h1>
+<div id="prüfung-der-voraussetzungen" class="section level1" number="33">
+<h1><span class="header-section-number">33</span> Prüfung der Voraussetzungen</h1>
 <pre class="r"><code>ggplot2::autoplot(forward) + theme_minimal()</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-91-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
