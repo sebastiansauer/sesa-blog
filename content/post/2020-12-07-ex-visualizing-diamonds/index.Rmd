@@ -1,0 +1,101 @@
+---
+title: 'Ex: Visualizing diamonds'
+author: Sebastian Sauer
+date: '2020-12-07'
+slug: ex-visualizing-diamonds
+categories:
+  - rstats
+tags:
+  - visualization
+---
+
+
+
+```{r knitr-setup, echo = FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = TRUE,
+  out.width = "100%",
+  fig.align = 'center',
+  fig.width = 6,
+  fig.asp = 0.618,  # 1 / phi
+  fig.show = "hold",
+  size = "tiny"
+)
+```
+
+
+
+# Load packages
+
+```{r load-libs, message = FALSE, warning = FALSE}
+library(tidyverse)  # data wrangling
+```
+
+
+# Objective
+
+Visualise the distribution of the price, grouped by cut. Add the mean and/or the median to the picture for each subgroup.
+
+# Load data
+
+
+```{r}
+data_url <- "https://vincentarelbundock.github.io/Rdatasets/csv/ggplot2/diamonds.csv"
+```
+
+```{r}
+diamonds <- read_csv(data_url)
+```
+
+
+# Plot 1
+
+```{r}
+plot1 <- diamonds %>% 
+  ggplot() + 
+  aes(x = price) +
+  geom_histogram() +
+  facet_wrap(~ cut)
+
+plot1
+```
+
+# Plot 2
+
+Summarized data:
+
+```{r}
+diamonds %>% 
+  group_by(cut) %>% 
+  summarise(price_md_cut = median(price, na.rm = T),
+            price_max_cut = max(price, na.rm = T)) -> diamonds_summarized
+
+
+knitr::kable(diamonds_summarized)
+```
+
+
+
+```{r}
+plot1 + 
+  geom_vline(data = diamonds_summarized, aes(xintercept = price_md_cut)) +
+  geom_label(data = diamonds_summarized, aes(x = price_md_cut,
+                                             y = price_max_cut*0.07,
+                                             label = price_md_cut)) +
+  labs(caption = "verticals bars show the median per group")
+```
+
+
+
+# Reproducibility
+
+```{r reproducibility, echo = FALSE}
+## Reproducibility info
+options(width = 120)
+devtools::session_info()
+
+
