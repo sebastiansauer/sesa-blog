@@ -99,9 +99,18 @@ plot2
 
 
 ```{r}
-ggplotly(plot2)
+plot3 <- ggplotly(plot2)
+
+plot3
 ```
 
+
+# As widget
+
+```{r echo = FALSE}
+library(widgetframe)
+frameWidget(plot3)
+```
 
 
 
