@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
   message = FALSE,
   warning = FALSE,
   cache = TRUE,
-  out.width = "70%",
+  out.width = "100%",
   fig.align = 'center',
   fig.width = 6,
   fig.asp = 0.618,  # 1 / phi
@@ -33,11 +33,11 @@ knitr::opts_chunk$set(
 # Load packages
 
 ```{r load-libs, message = FALSE, waring = FALSE}
-library(tidyverse)
-library(mosaic)
-library(plotly)
-library(scatterplot3d)
-library(rsm)
+library(tidyverse)  # data wrangling
+library(mosaic)  # funplot
+library(plotly)  # interactive plots
+library(scatterplot3d)  # nomen est omen
+library(rsm)  # 3d scatterplots
 ```
 
 

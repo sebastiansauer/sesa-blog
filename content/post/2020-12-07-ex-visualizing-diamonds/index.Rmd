@@ -105,14 +105,6 @@ plot3
 ```
 
 
-# As widget
-
-```{r echo = FALSE}
-library(widgetframe)
-frameWidget(plot3)
-```
-
-
 
 
 # Reproducibility

@@ -2,6 +2,7 @@
 title: Plotting functions in 3D in R
 author: Sebastian Sauer
 date: '2019-11-19'
+draft: TRUE
 slug: plotting-functions-in-3d-in-r
 categories:
   - rstats

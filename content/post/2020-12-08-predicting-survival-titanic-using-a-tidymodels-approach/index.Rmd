@@ -1,0 +1,189 @@
+---
+title: Predicting survival (Titanic) using a tidymodels approach
+author: Sebastian Sauer
+date: '2020-12-08'
+draft: TRUE
+slug: predicting-survival-titanic-using-a-tidymodels-approach
+categories:
+  - rstats
+tags:
+  - prediction
+---
+
+
+
+```{r knitr-setup, echo = FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = TRUE,
+  out.width = "100%",
+  fig.align = 'center',
+  fig.width = 6,
+  fig.asp = 0.618,  # 1 / phi
+  fig.show = "hold",
+  size = "tiny"
+)
+```
+
+
+# Motivation
+
+Let's predict survival at the [Titanic disaster](https://www.kaggle.com/c/titanic) using the Kaggle competition data, download from [here](https://www.kaggle.com/c/titanic/data).
+
+We'll make use of the [tidymodels](https://www.tidymodels.org/start/models/) approach.
+
+
+
+# Load packages
+
+```{r load-libs, message = FALSE, warning = FALSE}
+library(tidyverse)  # data wrangling
+library(tidymodels)  # modelling
+library(broom)  # tidy model output
+```
+
+
+
+
+# Load data
+
+
+
+```{r}
+traindata_url <- "https://raw.githubusercontent.com/sebastiansauer/Statistiklehre/main/data/titanic/train.csv"
+testdata_url <- "https://raw.githubusercontent.com/sebastiansauer/Statistiklehre/main/data/titanic/test.csv" 
+```
+
+
+
+
+```{r}
+train <- read_csv(traindata_url)
+test <- read_csv(testdata_url)
+```
+
+
+
+```{r}
+glimpse(train)
+```
+
+
+
+# Data preprocessing
+
+
+```{r}
+train <-
+  train %>% 
+  mutate(Survived = factor(Survived))
+```
+
+
+
+
+
+# Define recipe
+
+```{r}
+titanic_recipe <- 
+  recipe(Survived ~ ., data = train) %>% 
+  update_role(Name, PassengerId,  new_role = "ID") %>% 
+  step_rm(Ticket, Cabin, Name, PassengerId) %>% 
+  step_dummy(all_nominal(), -all_outcomes()) %>% 
+  step_zv(all_predictors()) 
+```
+
+
+
+```{r}
+titanic_recipe
+```
+
+
+
+# Define model
+
+```{r}
+lr_mod <- 
+  logistic_reg() %>% 
+  set_engine("glm") %>% 
+  set_mode("classification")
+```
+
+
+```{r}
+lr_mod
+```
+
+
+
+# Define modelling workflow
+
+
+```{r}
+titanic_wf1 <-
+  workflow() %>% 
+  add_model(lr_mod) %>% 
+  add_recipe(titanic_recipe)
+```
+
+
+```{r}
+titanic_wf1
+```
+
+
+
+# Fit model
+
+
+```{r}
+titanic_fit_lr <-
+  titanic_wf1 %>% 
+  fit(data = train)
+```
+
+
+Model performance on *train* data:
+
+
+```{r}
+titanic_fit_lr %>% 
+  pull_workflow_fit() %>% 
+  tidy()
+```
+
+```{r}
+titanic_fit_lr %>% 
+  pull_workflow_fit() %>% 
+  glance()
+```
+
+
+
+
+
+# Predict
+
+
+```{r}
+test <-
+  test %>% 
+  bind_cols(predict(titanic_fit_lr, test, type = "class"))
+```
+
+
+
+
+# Reproducibility
+
+```{r reproducibility, echo = FALSE}
+## Reproducibility info
+options(width = 120)
+devtools::session_info()
+
+
