@@ -13,6 +13,9 @@ Untitled*
 *.rds
 *.Rdata
 *.icloud
+
+
+*.csv
   
 
 *_cache
