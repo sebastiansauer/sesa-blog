@@ -1,6 +1,11 @@
 ---
 title: ''
 date: ''
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: TRUE
+    
 ---
 
 
