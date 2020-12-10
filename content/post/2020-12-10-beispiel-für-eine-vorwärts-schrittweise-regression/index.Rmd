@@ -33,12 +33,21 @@ knitr::opts_chunk$set(
 
 
 
+
+# Hintergrund
+
+
+Diese Übung bezieht sich auf [ISRS](https://www.openintro.org/book/isrs/), Kap. 6.2.
+
+
+
 # Pakete
 
 ```{r load-libs, message = FALSE, warning = FALSE}
 library(tidyverse)  # data wrangling
-library(broom)  # tidy Regressionsoutput
+#library(broom)  # tidy Regressionsoutput
 library(skimr)  # EDA
+library(moderndive)  # Komfort
 ```
 
 
@@ -75,6 +84,7 @@ Fehlende Werte können Probleme bereiten. Entfernen wir einfach alle fehlenden W
 d_nona <- d %>%   # nona wie "no NA", keine fehlenden Werte
   drop_na()
 ```
+
 
 
 
