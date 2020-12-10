@@ -170,7 +170,11 @@ Es muss einen besseren Weg geben, das ist auf die Dauer zu umständlich.
 # Automatisiertes Vorwärts-Regression
 
 
-Zuerst legen wir fest, wie das maximal große Modell aussehen soll, bzw. welche Prädiktoren im maximal großen Modell enthalten sein sollen. Sagen wir, alle.
+Zuerst legen wir fest, wie das maximal große Modell aussehen soll, bzw. welche Prädiktoren im maximal großen Modell enthalten sein sollen. Sagen wir b alle.
+
+
+
+
 
 Dann sieht das Modell so aus.
 
@@ -187,6 +191,9 @@ vorwaerts <- step(object = lm0,
                   scope = formula(lm_alle), 
                   trace = 0)  # Infos zum Fortschritt ausdrucken?
 ```
+
+
+
 
 
 
@@ -210,6 +217,44 @@ glance(vorwaerts)
 ```
 
 Yeah!
+
+
+
+# Modellgüten der Modelle mit einem Prädiktor
+
+
+```{r}
+predictor_names <- 
+  d_nona %>% 
+  select(-c(id, total_pr)) %>% 
+  names()
+```
+
+
+```{r}
+predictor_names
+```
+
+
+```{r}
+modellguete_1pred <- 
+  d_nona %>% 
+  select(-c(id, total_pr)) %>% 
+  map_dfr( ~ lm(total_pr ~ .x, data = d_nona) %>% glance()) %>% 
+  mutate(predictor = predictor_names) %>% 
+  select(predictor, everything()) 
+
+modellguete_1pred  
+```
+
+
+
+```{r}
+modellguete_1pred %>% 
+  ggplot(aes(x = reorder(predictor, r.squared), y = r.squared)) +
+  geom_point(size = 5, color = "red", alpha = .7)
+```
+
 
 # Reproduzierbarkeit
 
