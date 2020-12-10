@@ -425,10 +425,12 @@ lm0_guete
 </div>
 <div id="modellgüten-der-modelle-mit-einem-prädiktor" class="section level1" number="8">
 <h1><span class="header-section-number">8</span> Modellgüten der Modelle mit einem Prädiktor</h1>
+<p>Wir speichern und mal die Namen der Prädiktoren in einem Vektor; kann man vielleicht ja noch später gebrauchen …</p>
 <pre class="r"><code>predictor_names &lt;- 
   d_nona %&gt;% 
   select(-c(id, total_pr)) %&gt;% 
   names()</code></pre>
+<p>Voila:</p>
 <pre class="r"><code>predictor_names
 #&gt;  [1] &quot;duration&quot;    &quot;n_bids&quot;      &quot;cond&quot;        &quot;start_pr&quot;    &quot;ship_pr&quot;    
 #&gt;  [6] &quot;ship_sp&quot;     &quot;seller_rate&quot; &quot;stock_photo&quot; &quot;wheels&quot;      &quot;title&quot;</code></pre>
@@ -455,10 +457,12 @@ modellguete_1pred
 #&gt; 10 title     0.987           0.970    4.43   59.5    1.15e-39    79  -354.  870.
 #&gt; # … with 4 more variables: BIC &lt;dbl&gt;, deviance &lt;dbl&gt;, df.residual &lt;int&gt;,
 #&gt; #   nobs &lt;int&gt;</code></pre>
+<p>Und dann stellen wir das grafisch dar:</p>
 <pre class="r"><code>modellguete_1pred %&gt;% 
-  ggplot(aes(x = reorder(predictor, r.squared), y = r.squared)) +
+  ggplot(aes(x = reorder(predictor, -r.squared), y = r.squared)) +
   geom_point(size = 5, color = &quot;red&quot;, alpha = .7)</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Welcher Prädiktor sollte also in einer Vorwärts-Regression als erstes aufgenommen werden (auf Basis dieser Ergebnisse)?</p>
 </div>
 <div id="reproduzierbarkeit" class="section level1" number="9">
 <h1><span class="header-section-number">9</span> Reproduzierbarkeit</h1>

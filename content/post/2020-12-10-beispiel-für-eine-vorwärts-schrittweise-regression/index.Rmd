@@ -222,6 +222,7 @@ Yeah!
 
 # Modellgüten der Modelle mit einem Prädiktor
 
+Wir speichern und mal die Namen der Prädiktoren in einem Vektor; kann man vielleicht ja noch später gebrauchen ...
 
 ```{r}
 predictor_names <- 
@@ -230,6 +231,7 @@ predictor_names <-
   names()
 ```
 
+Voila: 
 
 ```{r}
 predictor_names
@@ -247,13 +249,19 @@ modellguete_1pred <-
 modellguete_1pred  
 ```
 
-
+Und dann stellen wir das grafisch dar:
 
 ```{r}
 modellguete_1pred %>% 
-  ggplot(aes(x = reorder(predictor, r.squared), y = r.squared)) +
+  ggplot(aes(x = reorder(predictor, -r.squared), y = r.squared)) +
   geom_point(size = 5, color = "red", alpha = .7)
 ```
+
+Welcher Prädiktor sollte also in einer Vorwärts-Regression als erstes aufgenommen werden (auf Basis dieser Ergebnisse)?
+
+
+
+
 
 
 # Reproduzierbarkeit
