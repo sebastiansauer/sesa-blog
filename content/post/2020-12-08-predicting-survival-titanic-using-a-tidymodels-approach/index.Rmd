@@ -1,6 +1,6 @@
 ---
-title: Predicting survival (Titanic) using a tidymodels approach
-author: Sebastian Sauer
+title: "Predicting survival (Titanic) using a tidymodels approach"
+author: "Sebastian Sauer"
 date: '2020-12-08'
 draft: false
 slug: predicting-survival-titanic-using-a-tidymodels-approach
@@ -38,9 +38,9 @@ knitr::opts_chunk$set(
 
 # Motivation
 
-Let's predict survival at the [Titanic disaster](https://www.kaggle.com/c/titanic) using the Kaggle competition data, download from [here](https://www.kaggle.com/c/titanic/data).
+Let us predict survival at the [Titanic disaster](https://www.kaggle.com/c/titanic) using the Kaggle competition data, download from [here](https://www.kaggle.com/c/titanic/data).
 
-We'll make use of the [tidymodels](https://www.tidymodels.org/start/models/) approach.
+We will make use of the [tidymodels](https://www.tidymodels.org/start/models/) approach.
 
 
 
@@ -96,7 +96,7 @@ dim(test)
 ## Classification models
 
 
-We'll transform outcome variable from numeric to factor, which is necessary for many classification models. 
+We will transform outcome variable from numeric to factor, which is necessary for many classification models. 
 
 ```{r}
 train %>% 
@@ -207,7 +207,7 @@ summary(titanic_recipe)
 
 
 
-That's only the recipe, not the data (however the data are stored in the object too).
+That is only the recipe, not the data (however the data are stored in the object too).
 
 
 ```{r}
@@ -258,7 +258,7 @@ titanic_recipe_prepped
 ```
 
 
-For example, we see that the mean values for `Centering` have been `trained` during the `prep()` step. Note that the steps are still *not*  applied to the data set. That's what `bake()` is for. AFAIK, `train()` will do that automatically, so no action needed for the test set in that regard.
+For example, we see that the mean values for `Centering` have been `trained` during the `prep()` step. Note that the steps are still *not*  applied to the data set. That is what `bake()` is for. AFAIK, `train()` will do that automatically, so no action needed for the test set in that regard.
 
 
 See [here](https://www.tidymodels.org/find/recipes/) an complete of currently available preprocessing steps -- more than 100 as to date.
@@ -363,7 +363,7 @@ titanic_wf1
 ## Fit model
 
 
-```{r}
+```{r fit-rf1}
 titanic_fit_lr <-
   titanic_wf1 %>% 
   fit(data = train)
@@ -428,7 +428,7 @@ titanic_fit_lr %>%
 
 
 
-```{r}
+```{r rf1-pred}
 test_with_pred <-
   test %>% 
   bind_cols(predict(titanic_fit_lr, test_baked)) %>% 
@@ -459,7 +459,7 @@ test_with_pred %>%
 
 ## Define model
 
-```{r}
+```{r rf1-mod}
 rf_mod1 <- 
   rand_forest() %>% 
   set_engine("ranger") %>% 
@@ -477,7 +477,7 @@ rf_mod1
 ## Define workflow
 
 
-```{r}
+```{r rf1-workflow}
 rf_workflow1 <- 
   workflow() %>% 
   add_model(rf_mod1) %>% 
@@ -485,35 +485,43 @@ rf_workflow1 <-
 ```
 
 
-```{r}
-rf_workflow1
-```
 
 
 
 ## Fit model
 
-```{r}
+```{r fit-rf1}
 rf_fit1 <- 
   rf_workflow1 %>% 
   fit(data = train)
 ```
 
 
+```{r}
+rf_fit1
+```
+
+
+
+
 
 ## Predict test data
 
 
-```{r}
-test_with_pred <-
-  test %>% 
-  mutate(pred_rf1 = predict(rf_fit1, test_baked)) %>% 
-  unnest(pred_rf1) %>% 
-  unnest(pred_rf1)
+```{r rf1-pred}
+rf1_preds <- 
+  rf_fit1 %>% 
+  predict(new_data = test_baked) %>% 
+  bind_cols(test) %>% 
+  select(-Survived) %>% 
+  select(PassengerId, Survived = .pred_class)
 ```
 
+
+
+
 ```{r}
-glimpse(test_with_pred)
+glimpse(rf1_preds)
 ```
 
 
@@ -521,8 +529,7 @@ glimpse(test_with_pred)
 ## Save predictions to disk
 
 ```{r eval = FALSE}
-test_with_pred %>% 
-  select(PassengerId, Survived = pred_rf1) %>% 
+pred_rf1 %>% 
   write_csv(file = "titanic-rf1.csv")
 ```
 
@@ -547,7 +554,7 @@ cores
 
 ## Define model
 
-```{r}
+```{r def-rf2}
 rf_mod2 <- 
   rand_forest(mtry = tune(), min_n = tune(), trees = 1000) %>% 
   set_engine("ranger", num.threads = cores) %>% 
@@ -571,7 +578,7 @@ rf_mod2 %>%
 ## Define cross validation scheme
 
 
-```{r}
+```{r rf2-vfold-cv}
 train_cv <- vfold_cv(train, v = 10)
 ```
 
@@ -587,7 +594,7 @@ train_cv
 ## Define workflow
 
 
-```{r}
+```{r wf-rf2}
 rf_workflow2 <- 
   workflow() %>% 
   add_model(rf_mod2) %>% 
@@ -607,7 +614,7 @@ rf_workflow2
 ## Define and run tune grid
 
 
-```{r}
+```{r rf2-tune-grid}
 set.seed(42)
 
 t1 <- Sys.time()
@@ -656,7 +663,7 @@ autoplot(rf_res2)
 
 ## Get best model
 
-```{r}
+```{r r2f-get-best}
 rf_best2 <- 
   rf_res2 %>% 
   select_best(metric = "roc_auc")
@@ -669,18 +676,25 @@ rf_best2
 ## Final fit
 
 
-```{r}
+```{r rf2-finalize-wf}
 rf_final_wf2 <- 
   rf_workflow2 %>% 
   finalize_workflow(rf_best2)
 ```
 
+So, here is the best model:
 
 ```{r}
+rf_final_wf2
+```
+
+
+Let us fit this model to the train data:
+
+```{r rf-fit-final-model}
 last_rf_mod2 <- 
   rf_final_wf2 %>% 
   fit(data = train)
-
 ```
 
 
@@ -692,23 +706,23 @@ last_rf_mod2
 ## Legacy code, do not run
 
 ```{r eval = FALSE}
-  rand_forest(mtry = rf_best2[["mtry"]][1], 
-              min_n = rf_best2[["min_n"]][1], 
-              trees = 1000) %>% 
-  set_engine("ranger", 
-             num.threads = cores, 
-             importance = "impurity") %>% 
-  set_mode("classification")
+  # rand_forest(mtry = rf_best2[["mtry"]][1], 
+  #             min_n = rf_best2[["min_n"]][1], 
+  #             trees = 1000) %>% 
+  # set_engine("ranger", 
+  #            num.threads = cores, 
+  #            importance = "impurity") %>% 
+  # set_mode("classification")
 ```
 
 
 
 Update workflow with best fit parameters
 
-```{r}
-last_rf_workflow2 <- 
-  rf_workflow2 %>% 
-  update_model(last_rf_mod)
+```{r eval = FALSE}
+# last_rf_workflow2 <- 
+#   rf_workflow2 %>% 
+#   update_model(last_rf_mod)
 ```
 
 ## Fit final workflow
@@ -718,35 +732,32 @@ last_rf_workflow2 <-
 set.seed(345)
 last_rf_fit2 <- 
   last_rf_mod2 %>% 
-  fit(data = train)
+  last_fit(split_titanic)
 ```
 
 
 
 ## Predict test data
 
-
-```{r}
-test_with_pred <-
-  test %>% 
-  mutate(pred_rf2 = predict(last_rf_fit2, test_baked)) %>% 
-  unnest(pred_rf2) %>% 
-  unnest(pred_rf2)
-```
-
-```{r}
-glimpse(test_with_pred)
+```{r rf2-pred}
+rf2_preds <- 
+last_rf_fit2 %>% 
+  collect_predictions() %>% 
+  select(-Survived) %>% 
+  select(PassengerID = .row, Survived = .pred_class) 
 ```
 
 
+```{r}
+glimpse(rf2_preds)
+```
 
 
 
 ## Save predictions to disk
 
 ```{r eval = FALSE}
-test_with_pred %>% 
-  select(PassengerId, Survived = pred_rf2) %>% 
+rf2_preds %>% 
   write_csv(file = "titanic-rf2.csv")
 ```
 
@@ -766,7 +777,7 @@ test_with_pred %>%
 
 ## Define model
 
-```{r}
+```{r def-boost-mod}
 boost_mod <- 
   boost_tree(mtry = tune(), 
              min_n = tune(), 
@@ -802,7 +813,7 @@ boost_mod %>%
 ## Define workflow
 
 
-```{r}
+```{r def-boost-wf}
 boost_wf <- 
   workflow() %>% 
   add_model(boost_mod) %>% 
@@ -832,7 +843,7 @@ val_set <- validation_split(train,
 ## Define tune grid
 
 
-```{r}
+```{r boost-tune-grid}
 set.seed(42)
 
 t1 <- Sys.time()
@@ -866,7 +877,7 @@ autoplot(boost_fit)
 
 ## Get best model
 
-```{r}
+```{r boost-get-best-model}
 boost_best <- 
   boost_fit %>% 
   select_best(metric = "roc_auc")
@@ -878,16 +889,26 @@ boost_best
 ## Final fit
 
 
+```{r boost-finalize-wf}
+boost_final_wf <- 
+  boost_wf %>% 
+  finalize_workflow(boost_best)
+```
+
+
+## Legacy code, do not run
+
+
 ```{r}
-last_boost_mod <- 
-  boost_tree(mtry = boost_best[["mtry"]][1], 
-             min_n = boost_best[["min_n"]][1], 
-             tree_depth = boost_best[["tree_depth"]][1], 
-             trees = 1000) %>% 
-  set_engine("xgboost", 
-             num.threads = cores, 
-             importance = "impurity") %>% 
-  set_mode("classification")
+# last_boost_mod <- 
+#   boost_tree(mtry = boost_best[["mtry"]][1], 
+#              min_n = boost_best[["min_n"]][1], 
+#              tree_depth = boost_best[["tree_depth"]][1], 
+#              trees = 1000) %>% 
+#   set_engine("xgboost", 
+#              num.threads = cores, 
+#              importance = "impurity") %>% 
+#   set_mode("classification")
 ```
 
 
@@ -895,35 +916,55 @@ last_boost_mod <-
 Update workflow with best fit parameters
 
 ```{r}
-last_boost_workflow <- 
-  boost_wf %>% 
-  update_model(last_boost_mod)
+# last_boost_workflow <- 
+#   boost_wf %>% 
+#   update_model(last_boost_mod)
 ```
 
 
 
 ```{r}
-set.seed(345)
-last_boost_fit <- 
-  last_boost_workflow %>% 
-  fit(data = train)
+# set.seed(345)
+# last_boost_fit <- 
+#   last_boost_workflow %>% 
+#   fit(data = train)
 ```
 
 
+
+## Fit final workflow
+
+
+```{r boost-last-fit}
+set.seed(345)
+last_boost_results <- 
+  boost_final_wf %>% 
+  last_fit(split_titanic)
+```
+
+
+
+```{r}
+last_boost_results
+```
 
 ## Predict test data
 
 
-```{r}
-test_with_pred <-
-  test %>% 
-  mutate(pred_boost = predict(last_boost_fit, test_baked)) %>% 
-  unnest(pred_boost) %>% 
-  unnest(pred_boost)
+```{r boost-preds}
+boost_preds <- 
+  last_boost_results %>% 
+  collect_predictions() %>% 
+  select(-Survived) %>% 
+  select(PassengerID = .row, Survived = .pred_class)
 ```
 
+
+
+
+
 ```{r}
-glimpse(test_with_pred)
+glimpse(boost_preds)
 ```
 
 
@@ -932,8 +973,7 @@ glimpse(test_with_pred)
 ## Save predictions to disk
 
 ```{r eval = FALSE}
-test_with_pred %>% 
-  select(PassengerId, Survived = pred_boost) %>% 
+boost_preds %>% 
   write_csv(file = "titanic-boost.csv")
 ```
 
@@ -944,14 +984,14 @@ test_with_pred %>%
 # Conclusions
 
 
-`tidymodels` appear to be a nice framework, but not without some difficulties. I needed some time to wrap my head around it; in effect, I'm still picking it up.
+`tidymodels` appear to be a nice framework, but not without some difficulties. I needed some time to wrap my head around it; in effect, I am still picking it up.
 
 Computing many models in the way I worked here is bound to end up in disaster: Too many object to rename and to keep track off. There are better ways needed such as [this one](https://www.brodrigues.co/blog/2020-03-08-tidymodels/). Alternatively, one might seek shelter in object oriented programming, which is beautiful in theory, but not without complexites. See [mlr3](https://mlr3book.mlr-org.com/) for a great implementation.    
 
 
 # Similar work
 
-Here's a quite similar [case study on Kaggle](https://www.kaggle.com/stautxie/titanic-tidymodels-v1).
+Here is a quite similar [case study on Kaggle](https://www.kaggle.com/stautxie/titanic-tidymodels-v1).
 
 # More advanced work
 
@@ -973,5 +1013,12 @@ Here's a quite similar [case study on Kaggle](https://www.kaggle.com/stautxie/ti
 ## Reproducibility info
 options(width = 120)
 devtools::session_info()
+```
+
+
+
+
+
+
 
 
