@@ -20,20 +20,21 @@ output:
 <div id="TOC">
 <ul>
 <li><a href="#hintergrund"><span class="toc-section-number">1</span> Hintergrund</a></li>
-<li><a href="#pakete"><span class="toc-section-number">2</span> Pakete</a></li>
-<li><a href="#daten-laden"><span class="toc-section-number">3</span> Daten laden</a></li>
-<li><a href="#fehlende-werte"><span class="toc-section-number">4</span> Fehlende Werte</a></li>
-<li><a href="#modell-0"><span class="toc-section-number">5</span> Modell 0</a></li>
-<li><a href="#modelle-mit-einer-variablen-lm1"><span class="toc-section-number">6</span> Modelle mit einer Variablen (<code>lm1</code>)</a>
+<li><a href="#achtung"><span class="toc-section-number">2</span> Achtung</a></li>
+<li><a href="#pakete"><span class="toc-section-number">3</span> Pakete</a></li>
+<li><a href="#daten-laden"><span class="toc-section-number">4</span> Daten laden</a></li>
+<li><a href="#fehlende-werte"><span class="toc-section-number">5</span> Fehlende Werte</a></li>
+<li><a href="#modell-0"><span class="toc-section-number">6</span> Modell 0</a></li>
+<li><a href="#modelle-mit-einer-variablen-lm1"><span class="toc-section-number">7</span> Modelle mit einer Variablen (<code>lm1</code>)</a>
 <ul>
-<li><a href="#lm1a"><span class="toc-section-number">6.1</span> lm1a</a></li>
-<li><a href="#lm1b"><span class="toc-section-number">6.2</span> lm1b</a></li>
-<li><a href="#lm1c"><span class="toc-section-number">6.3</span> lm1c</a></li>
-<li><a href="#moment-mal"><span class="toc-section-number">6.4</span> Moment mal…</a></li>
+<li><a href="#lm1a"><span class="toc-section-number">7.1</span> lm1a</a></li>
+<li><a href="#lm1b"><span class="toc-section-number">7.2</span> lm1b</a></li>
+<li><a href="#lm1c"><span class="toc-section-number">7.3</span> lm1c</a></li>
+<li><a href="#moment-mal"><span class="toc-section-number">7.4</span> Moment mal…</a></li>
 </ul></li>
-<li><a href="#automatisiertes-vorwärts-regression"><span class="toc-section-number">7</span> Automatisiertes Vorwärts-Regression</a></li>
-<li><a href="#modellgüten-der-modelle-mit-einem-prädiktor"><span class="toc-section-number">8</span> Modellgüten der Modelle mit einem Prädiktor</a></li>
-<li><a href="#reproduzierbarkeit"><span class="toc-section-number">9</span> Reproduzierbarkeit</a></li>
+<li><a href="#automatisiertes-vorwärts-regression"><span class="toc-section-number">8</span> Automatisiertes Vorwärts-Regression</a></li>
+<li><a href="#modellgüten-der-modelle-mit-einem-prädiktor"><span class="toc-section-number">9</span> Modellgüten der Modelle mit einem Prädiktor</a></li>
+<li><a href="#reproduzierbarkeit"><span class="toc-section-number">10</span> Reproduzierbarkeit</a></li>
 </ul>
 </div>
 
@@ -41,15 +42,20 @@ output:
 <h1><span class="header-section-number">1</span> Hintergrund</h1>
 <p>Diese Übung bezieht sich auf <a href="https://www.openintro.org/book/isrs/">ISRS</a>, Kap. 6.2.</p>
 </div>
-<div id="pakete" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> Pakete</h1>
-<pre class="r"><code>library(tidyverse)  # data wrangling
-#library(broom)  # tidy Regressionsoutput
-library(skimr)  # EDA
-library(moderndive)  # Komfort</code></pre>
+<div id="achtung" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Achtung</h1>
+<p>Gelman hasst schrittweise Regression …</p>
 </div>
-<div id="daten-laden" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Daten laden</h1>
+<div id="pakete" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Pakete</h1>
+<pre class="r"><code>library(tidyverse)  # data wrangling
+library(broom)  # tidy Regressionsoutput
+library(skimr)  # EDA
+library(moderndive)  # Komfort
+library(olsrr)  # Schrittweise Regression</code></pre>
+</div>
+<div id="daten-laden" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Daten laden</h1>
 <p>Auf <a href="https://www.openintro.org/data/index.php?data=mariokart">dieser Seite</a> sind die Daten zu finden.</p>
 <pre class="r"><code>d &lt;- read_csv(&quot;https://www.openintro.org/data/csv/mariokart.csv&quot;)</code></pre>
 <p>(“d” wie <em>D</em>aten.)</p>
@@ -72,7 +78,7 @@ library(moderndive)  # Komfort</code></pre>
 <p>Oder lieber so:</p>
 <pre class="r"><code>skim(d)</code></pre>
 <table>
-<caption><span id="tab:unnamed-chunk-3">Table 3.1: </span>Data summary</caption>
+<caption><span id="tab:unnamed-chunk-3">Table 4.1: </span>Data summary</caption>
 <tbody>
 <tr class="odd">
 <td align="left">Name</td>
@@ -307,14 +313,14 @@ library(moderndive)  # Komfort</code></pre>
 </tbody>
 </table>
 </div>
-<div id="fehlende-werte" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Fehlende Werte</h1>
+<div id="fehlende-werte" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Fehlende Werte</h1>
 <p>Fehlende Werte können Probleme bereiten. Entfernen wir einfach alle fehlenden Werte, es sind ja nicht so viele.</p>
 <pre class="r"><code>d_nona &lt;- d %&gt;%   # nona wie &quot;no NA&quot;, keine fehlenden Werte
   drop_na()</code></pre>
 </div>
-<div id="modell-0" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> Modell 0</h1>
+<div id="modell-0" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Modell 0</h1>
 <pre class="r"><code>lm0 &lt;- lm(total_pr ~ 1, data = d_nona)</code></pre>
 <p>Wie ist das R-Quadrat?</p>
 <pre class="r"><code>summary(lm0)
@@ -349,11 +355,11 @@ lm0_guete
 #&gt;           &lt;dbl&gt;
 #&gt; 1             0</code></pre>
 </div>
-<div id="modelle-mit-einer-variablen-lm1" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> Modelle mit einer Variablen (<code>lm1</code>)</h1>
+<div id="modelle-mit-einer-variablen-lm1" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Modelle mit einer Variablen (<code>lm1</code>)</h1>
 <p>Jetzt probieren wir alle Prädiktoren aus, um zu sehen, welche zum höchsten <span class="math inline">\(R^2\)</span>-Wert führt.</p>
-<div id="lm1a" class="section level2" number="6.1">
-<h2><span class="header-section-number">6.1</span> lm1a</h2>
+<div id="lm1a" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> lm1a</h2>
 <pre class="r"><code>lm1a &lt;- lm(total_pr ~ duration, data = d_nona)</code></pre>
 <pre class="r"><code>glance(lm1a) %&gt;% 
   select(adj.r.squared)
@@ -362,8 +368,8 @@ lm0_guete
 #&gt;           &lt;dbl&gt;
 #&gt; 1      -0.00543</code></pre>
 </div>
-<div id="lm1b" class="section level2" number="6.2">
-<h2><span class="header-section-number">6.2</span> lm1b</h2>
+<div id="lm1b" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> lm1b</h2>
 <pre class="r"><code>lm1b &lt;- lm(total_pr ~ n_bids, data = d_nona)</code></pre>
 <pre class="r"><code>glance(lm1b) %&gt;% 
   select(adj.r.squared)
@@ -372,8 +378,8 @@ lm0_guete
 #&gt;           &lt;dbl&gt;
 #&gt; 1       0.00972</code></pre>
 </div>
-<div id="lm1c" class="section level2" number="6.3">
-<h2><span class="header-section-number">6.3</span> lm1c</h2>
+<div id="lm1c" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> lm1c</h2>
 <pre class="r"><code>lm1c &lt;- lm(total_pr ~ cond, data = d_nona)</code></pre>
 <pre class="r"><code>glance(lm1c) %&gt;% 
   select(adj.r.squared)
@@ -382,13 +388,13 @@ lm0_guete
 #&gt;           &lt;dbl&gt;
 #&gt; 1       0.00925</code></pre>
 </div>
-<div id="moment-mal" class="section level2" number="6.4">
-<h2><span class="header-section-number">6.4</span> Moment mal…</h2>
+<div id="moment-mal" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> Moment mal…</h2>
 <p>Es muss einen besseren Weg geben, das ist auf die Dauer zu umständlich.</p>
 </div>
 </div>
-<div id="automatisiertes-vorwärts-regression" class="section level1" number="7">
-<h1><span class="header-section-number">7</span> Automatisiertes Vorwärts-Regression</h1>
+<div id="automatisiertes-vorwärts-regression" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Automatisiertes Vorwärts-Regression</h1>
 <p>Zuerst legen wir fest, wie das maximal große Modell aussehen soll, bzw. welche Prädiktoren im maximal großen Modell enthalten sein sollen. Sagen wir b alle.</p>
 <p>Dann sieht das Modell so aus.</p>
 <pre class="r"><code>lm_alle &lt;- lm(total_pr ~ ., 
@@ -423,8 +429,8 @@ lm0_guete
 #&gt; # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 <p>Yeah!</p>
 </div>
-<div id="modellgüten-der-modelle-mit-einem-prädiktor" class="section level1" number="8">
-<h1><span class="header-section-number">8</span> Modellgüten der Modelle mit einem Prädiktor</h1>
+<div id="modellgüten-der-modelle-mit-einem-prädiktor" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Modellgüten der Modelle mit einem Prädiktor</h1>
 <p>Wir speichern und mal die Namen der Prädiktoren in einem Vektor; kann man vielleicht ja noch später gebrauchen …</p>
 <pre class="r"><code>predictor_names &lt;- 
   d_nona %&gt;% 
@@ -464,8 +470,8 @@ modellguete_1pred
 <p><img src="index_files/figure-html/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Welcher Prädiktor sollte also in einer Vorwärts-Regression als erstes aufgenommen werden (auf Basis dieser Ergebnisse)?</p>
 </div>
-<div id="reproduzierbarkeit" class="section level1" number="9">
-<h1><span class="header-section-number">9</span> Reproduzierbarkeit</h1>
+<div id="reproduzierbarkeit" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> Reproduzierbarkeit</h1>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value                       
 #&gt;  version  R version 4.0.2 (2020-06-22)

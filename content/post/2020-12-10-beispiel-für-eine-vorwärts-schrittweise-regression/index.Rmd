@@ -40,14 +40,21 @@ knitr::opts_chunk$set(
 Diese Übung bezieht sich auf [ISRS](https://www.openintro.org/book/isrs/), Kap. 6.2.
 
 
+# Achtung
+
+
+Gelman hasst schrittweise Regression ...
+
+
 
 # Pakete
 
 ```{r load-libs, message = FALSE, warning = FALSE}
 library(tidyverse)  # data wrangling
-#library(broom)  # tidy Regressionsoutput
+library(broom)  # tidy Regressionsoutput
 library(skimr)  # EDA
 library(moderndive)  # Komfort
+library(olsrr)  # Schrittweise Regression
 ```
 
 
@@ -182,6 +189,7 @@ Dann sieht das Modell so aus.
 lm_alle <- lm(total_pr ~ ., 
             data = d_nona)  # kann etwas Zeit brauchen
 ```
+
 
 
 
