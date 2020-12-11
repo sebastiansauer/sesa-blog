@@ -50,6 +50,7 @@ library(tidymodels)  # modelling
 library(broom)  # tidy model output
 library(DescTools)  # Pseudo R^2
 library(skimr)  # overview on descriptives
+library(gt) # nice tables
 ```
 
 
@@ -78,18 +79,53 @@ test <- read_csv(testdata_url)
 glimpse(train)
 ```
 
+The train data set lacks the "output" column, `Survived`,  which makes sense.
+
+```{r}
+dim(train)
+dim(test)
+```
+
 
 
 # Data preprocessing
 
 
-## Classification for outcome
+## Classification models
+
+
+We'll transform outcome variable from numeric to factor, which is necessary for many classification models. 
 
 ```{r}
-train <-
-  train %>% 
+train %>% 
+  summarise(Survived_n_dist = n_distinct(Survived))
+```
+
+
+```{r}
+head(train$Survived)
+```
+
+```{r}
+train <- train %>% 
+  mutate(Survived = as.numeric(Survived))
+```
+
+
+
+```{r}
+train <- train %>% 
   mutate(Survived = factor(Survived))
 ```
+
+
+```{r}
+head(train$Survived)
+```
+
+
+
+
 
 
 
@@ -100,26 +136,55 @@ train <-
 skim(train)
 ```
 
-OK, for age, cabin, and embarked, we have some NAs.
+OK, for age, cabin, and embarked, we have some NAs. No NAs for `Survived` (outcome).
 
 # Define recipe
 
 ```{r}
 titanic_recipe <- 
-  recipe(Survived ~ ., data = train) %>% 
-  update_role(Ticket, Cabin, Name, PassengerId, Embarked,  
-              new_role = "ID") %>%   # Use "ID" as ID, not as predictor
-  step_knnimpute(all_predictors(), neighbors = 3) %>%   # impute missing values
-  #step_rm() %>%   # remove these vars
-  step_dummy(all_predictors(), -all_outcomes()) %>%   # make dummy variables
-  step_nzv(all_predictors()) %>%   # exclude near zero variance predictors
-  step_corr(all_predictors()) %>%  # exclude highly correlated vars
-  step_center(all_predictors(), -all_outcomes()) %>%  # center
-  step_scale(all_predictors(), -all_outcomes()) # set sd=1
   
+  # define model formula:
+  recipe(Survived ~ ., data = train) %>%
+  
+  # Use "ID" etc as ID, not as predictor:
+  update_role(Ticket, Cabin, Name, PassengerId, Embarked,  
+              new_role = "ID") %>%   
+  
+  # Convert outcome variable from numeric to factor, to indicate classification
+  step_num2factor(Survived, levels = c("0", "1")) %>%  
+  
+  # impute missing values:
+  step_knnimpute(all_predictors(), neighbors = 3) %>%  
+  
+  # remove these vars:
+  step_rm(Ticket, Cabin, Name, PassengerId, Embarked) %>%   
+  
+  # convert character and factor type variables into dummy variables:
+  step_dummy(all_nominal(), -all_outcomes()) %>%   
+  
+  # exclude near zero variance predictors:
+  step_nzv(all_predictors()) %>%  
+  
+   # exclude highly correlated vars:
+  step_corr(all_predictors()) %>% 
+  
+  # center (set mean to zero):
+  step_center(all_predictors(), -all_outcomes()) %>%  
+  
+  # set sd=1 
+  step_scale(all_predictors(), -all_outcomes())   
 
 ```
 
+
+```{r}
+summary(titanic_recipe)
+```
+
+
+
+
+That's only the recipe, not the data (however the data are stored in the object too).
 
 
 ```{r}
@@ -127,13 +192,13 @@ titanic_recipe
 ```
 
 
-# Prepare the recipe
+# Prepare (`prep()`) the recipe
 
 
 ```{r}
 titanic_recipe_prepped <-
   titanic_recipe %>% 
-  prep()
+  prep(verbose = TRUE) 
 ```
 
 
@@ -141,6 +206,14 @@ titanic_recipe_prepped <-
 ```{r}
 titanic_recipe_prepped
 ```
+
+```{r}
+summary(titanic_recipe_prepped)
+```
+
+
+
+
 
 # Difference between a recipe and a prepped recipe
 
@@ -159,17 +232,63 @@ titanic_recipe_prepped
 ```
 
 
+For example, we see that the mean values for `Centering` have been `trained` during the `prep()` step. Note that the steps are still *not*  applied to the data set. That's what `bake()` is for. AFAIK, `train()` will do that automatically, so no action needed for the test set in that regard.
+
+
+See [here](https://www.tidymodels.org/find/recipes/) an complete of currently available preprocessing steps -- more than 100 as to date.
+
+
+# Check prepped data set
+
+Squize the juice out of the prepared recipe ...
+
+```{r}
+juice(titanic_recipe_prepped) %>% 
+  head
+```
+
+
+Are there any NAs in the prepped data set?
+
+```{r}
+juice(titanic_recipe_prepped) %>% 
+  map(~ sum(is.na(.x)))
+```
+
+
+# Juice the train data
+
+
+```{r}
+train_juice <- juice(titanic_recipe_prepped)
+```
+
+
+
+# Bake recipe to train data
+
+
+```{r}
+bake(titanic_recipe_prepped, new_data = NULL)
+```
 
 
 
 
 # Bake recipe to test data
 
-```{r}
-titanic_test_prepped <- 
-  prep(titanic_recipe, test) %>% 
-  bake()
+ERROR #todo
+
+```{r error = TRUE}
+titanic_test_prepped <-
+  titanic_recipe_prepped %>% 
+  bake(new_data = test)
 ```
+
+Note, from `help(prep)`: 
+
+>     training: A data frame or tibble that will be used to estimate parameters for preprocessing.
+
 
 
 
@@ -247,6 +366,12 @@ titanic_fit_lr %>%
 ```
 
 
+```{r}
+titanic_fit_lr %>% 
+  pull_workflow_fit() %>% 
+  summary() 
+```
+
 
 
 ```{r}
@@ -261,11 +386,23 @@ pull_workflow_fit %>%
   PseudoR2()
 ```
 
+## Extract fit    
+
+
+```{r}
+titanic_fit_lr %>% 
+  pluck("fit")
+```
+
+
 
 
 
 
 ## Predict test data
+
+
+
 
 
 ```{r}
@@ -358,9 +495,6 @@ glimpse(test_with_pred)
 
 
 
-
-
-
 ## Save predictions to disk
 
 ```{r eval = FALSE}
@@ -434,7 +568,7 @@ train_cv
 rf_workflow2 <- 
   workflow() %>% 
   add_model(rf_mod2) %>% 
-  add_recipe(titanic_recipe)
+  add_recipe(titanic_recipe_prepped)
 ```
 
 
@@ -463,6 +597,12 @@ rf_res2 <-
 t2 <- Sys.time()
 
 t2 - t1
+```
+
+It may be worthwhile to save the object to disk, in order to save computation time:
+
+```{r}
+saveRDS(rf_res2, file = "rf_res2.rds")
 ```
 
 
@@ -508,7 +648,9 @@ rf_best2
 
 ```{r}
 last_rf_mod <- 
-  rand_forest(mtry = 2, min_n = 5, trees = 1000) %>% 
+  rand_forest(mtry = rf_best2[["mtry"]][1], 
+              min_n = rf_best2[["min_n"]][1], 
+              trees = 1000) %>% 
   set_engine("ranger", num.threads = cores, importance = "impurity") %>% 
   set_mode("classification")
 ```
@@ -529,7 +671,7 @@ last_rf_workflow2 <-
 set.seed(345)
 last_rf_fit2 <- 
   last_rf_workflow2 %>% 
-  fit(data = train)
+  fit(data = test)
 ```
 
 
