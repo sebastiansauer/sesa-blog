@@ -363,7 +363,7 @@ titanic_wf1
 ## Fit model
 
 
-```{r fit-rf1}
+```{r fit-glm1}
 titanic_fit_lr <-
   titanic_wf1 %>% 
   fit(data = train)
@@ -428,7 +428,7 @@ titanic_fit_lr %>%
 
 
 
-```{r rf1-pred}
+```{r glm1-pred}
 test_with_pred <-
   test %>% 
   bind_cols(predict(titanic_fit_lr, test_baked)) %>% 
