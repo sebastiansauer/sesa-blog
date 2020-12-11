@@ -126,6 +126,15 @@ head(train$Survived)
 
 
 
+## Add Survived to test set
+
+```{r}
+test <- 
+  test %>% 
+  mutate(Survived = NA)
+```
+
+
 
 
 
