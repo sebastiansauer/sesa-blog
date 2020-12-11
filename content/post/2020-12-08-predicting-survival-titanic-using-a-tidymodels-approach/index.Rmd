@@ -2,7 +2,7 @@
 title: Predicting survival (Titanic) using a tidymodels approach
 author: Sebastian Sauer
 date: '2020-12-08'
-draft: TRUE
+draft: false
 slug: predicting-survival-titanic-using-a-tidymodels-approach
 categories:
   - rstats
@@ -131,6 +131,22 @@ test <-
 ```
 
 
+## Merge train and test
+
+```{r}
+data <-
+  train %>% 
+  bind_rows(test)
+```
+
+
+
+```{r}
+split_titanic <- initial_time_split(data = data, prop = 891/1309)
+train2 <- training(split_titanic)
+test2 <- testing(split_titanic)
+```
+
 
 
 
@@ -152,8 +168,8 @@ titanic_recipe <-
   recipe(Survived ~ Pclass + Age + SibSp + Parch + Fare, data = train) %>%
   
   # Use "ID" etc as ID, not as predictor:
-  # update_role(Ticket, Cabin, Name, PassengerId, Embarked,  
-    #          new_role = "ID") %>%   
+  #update_role(Ticket, Cabin, Name, PassengerId, Embarked,  
+   #         new_role = "ID") %>%   
   
   update_role( Pclass , Age , SibSp , Parch , Fare, new_role="predictor") %>%
   
@@ -219,6 +235,9 @@ summary(titanic_recipe_prepped)
 ```
 
 
+Note, from `help(prep)`: 
+
+>     training: A data frame or tibble that will be used to estimate parameters for preprocessing.
 
 
 
@@ -284,17 +303,14 @@ bake(titanic_recipe_prepped, new_data = NULL)
 
 # Bake recipe to test data
 
-ERROR #todo
+WARNING #todo
 
 ```{r error = TRUE}
-titanic_test_prepped <-
+test_baked <-
   titanic_recipe_prepped %>% 
   bake(new_data = test)
 ```
 
-Note, from `help(prep)`: 
-
->     training: A data frame or tibble that will be used to estimate parameters for preprocessing.
 
 
 
@@ -415,7 +431,7 @@ titanic_fit_lr %>%
 ```{r}
 test_with_pred <-
   test %>% 
-  bind_cols(predict(titanic_fit_lr, test)) %>% 
+  bind_cols(predict(titanic_fit_lr, test_baked)) %>% 
   rename(pred_glm1 = .pred_class)
 ```
 
@@ -491,7 +507,7 @@ rf_fit1 <-
 ```{r}
 test_with_pred <-
   test %>% 
-  mutate(pred_rf1 = predict(rf_fit1, test)) %>% 
+  mutate(pred_rf1 = predict(rf_fit1, test_baked)) %>% 
   unnest(pred_rf1) %>% 
   unnest(pred_rf1)
 ```
@@ -506,7 +522,7 @@ glimpse(test_with_pred)
 
 ```{r eval = FALSE}
 test_with_pred %>% 
-  select(PassengerId, Survived = .pred_rf2) %>% 
+  select(PassengerId, Survived = pred_rf1) %>% 
   write_csv(file = "titanic-rf1.csv")
 ```
 
@@ -575,7 +591,7 @@ train_cv
 rf_workflow2 <- 
   workflow() %>% 
   add_model(rf_mod2) %>% 
-  add_recipe(titanic_recipe_prepped)
+  add_recipe(titanic_recipe)
 ```
 
 
@@ -654,11 +670,34 @@ rf_best2
 
 
 ```{r}
-last_rf_mod <- 
+rf_final_wf2 <- 
+  rf_workflow2 %>% 
+  finalize_workflow(rf_best2)
+```
+
+
+```{r}
+last_rf_mod2 <- 
+  rf_final_wf2 %>% 
+  fit(data = train)
+
+```
+
+
+```{r}
+last_rf_mod2
+```
+
+
+## Legacy code, do not run
+
+```{r eval = FALSE}
   rand_forest(mtry = rf_best2[["mtry"]][1], 
               min_n = rf_best2[["min_n"]][1], 
               trees = 1000) %>% 
-  set_engine("ranger", num.threads = cores, importance = "impurity") %>% 
+  set_engine("ranger", 
+             num.threads = cores, 
+             importance = "impurity") %>% 
   set_mode("classification")
 ```
 
@@ -672,13 +711,14 @@ last_rf_workflow2 <-
   update_model(last_rf_mod)
 ```
 
+## Fit final workflow
 
 
 ```{r}
 set.seed(345)
 last_rf_fit2 <- 
-  last_rf_workflow2 %>% 
-  fit(data = test)
+  last_rf_mod2 %>% 
+  fit(data = train)
 ```
 
 
@@ -689,7 +729,7 @@ last_rf_fit2 <-
 ```{r}
 test_with_pred <-
   test %>% 
-  mutate(pred_rf2 = predict(last_rf_fit2, test)) %>% 
+  mutate(pred_rf2 = predict(last_rf_fit2, test_baked)) %>% 
   unnest(pred_rf2) %>% 
   unnest(pred_rf2)
 ```
@@ -802,7 +842,7 @@ boost_fit <-
             grid = 100,
             control = control_grid(save_pred = TRUE),
             metrics = metric_set(roc_auc))
-t2 <- Sys.time()
+  t2 <- Sys.time()
 
 t2 - t1
 ```
@@ -840,9 +880,9 @@ boost_best
 
 ```{r}
 last_boost_mod <- 
-  boost_tree(mtry = 4, 
-             min_n = 3, 
-             tree_depth = 5, 
+  boost_tree(mtry = boost_best[["mtry"]][1], 
+             min_n = boost_best[["min_n"]][1], 
+             tree_depth = boost_best[["tree_depth"]][1], 
              trees = 1000) %>% 
   set_engine("xgboost", 
              num.threads = cores, 
@@ -877,7 +917,7 @@ last_boost_fit <-
 ```{r}
 test_with_pred <-
   test %>% 
-  mutate(pred_boost = predict(last_boost_fit, test)) %>% 
+  mutate(pred_boost = predict(last_boost_fit, test_baked)) %>% 
   unnest(pred_boost) %>% 
   unnest(pred_boost)
 ```
@@ -909,9 +949,15 @@ test_with_pred %>%
 Computing many models in the way I worked here is bound to end up in disaster: Too many object to rename and to keep track off. There are better ways needed such as [this one](https://www.brodrigues.co/blog/2020-03-08-tidymodels/). Alternatively, one might seek shelter in object oriented programming, which is beautiful in theory, but not without complexites. See [mlr3](https://mlr3book.mlr-org.com/) for a great implementation.    
 
 
-# Further work
+# Similar work
+
+Here's a quite similar [case study on Kaggle](https://www.kaggle.com/stautxie/titanic-tidymodels-v1).
+
+# More advanced work
 
 [This is a great case study on tidymodels](https://www.brodrigues.co/blog/2020-03-08-tidymodels/), by Bruno Rodrigues. Similarly, by the same author, [this post](https://www.brodrigues.co/blog/2018-11-25-tidy_cv/).
+
+
 
 
 
