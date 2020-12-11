@@ -10,9 +10,11 @@ tags:
   - prediction
 output:
   blogdown::html_page:
+    
     toc: true
     number_sections: TRUE
-    
+editor_options: 
+  chunk_output_type: console
 ---
 
 
@@ -108,15 +110,9 @@ head(train$Survived)
 
 ```{r}
 train <- train %>% 
-  mutate(Survived = as.numeric(Survived))
+  mutate(Survived = as.factor(Survived))
 ```
 
-
-
-```{r}
-train <- train %>% 
-  mutate(Survived = factor(Survived))
-```
 
 
 ```{r}
@@ -153,20 +149,22 @@ OK, for age, cabin, and embarked, we have some NAs. No NAs for `Survived` (outco
 titanic_recipe <- 
   
   # define model formula:
-  recipe(Survived ~ ., data = train) %>%
+  recipe(Survived ~ Pclass + Age + SibSp + Parch + Fare, data = train) %>%
   
   # Use "ID" etc as ID, not as predictor:
-  update_role(Ticket, Cabin, Name, PassengerId, Embarked,  
-              new_role = "ID") %>%   
+  # update_role(Ticket, Cabin, Name, PassengerId, Embarked,  
+    #          new_role = "ID") %>%   
+  
+  update_role( Pclass , Age , SibSp , Parch , Fare, new_role="predictor") %>%
   
   # Convert outcome variable from numeric to factor, to indicate classification
-  step_num2factor(Survived, levels = c("0", "1")) %>%  
+  # step_num2factor(Survived, levels = c("0", "1")) %>%   # not working, #todo
   
   # impute missing values:
   step_knnimpute(all_predictors(), neighbors = 3) %>%  
   
   # remove these vars:
-  step_rm(Ticket, Cabin, Name, PassengerId, Embarked) %>%   
+  #step_rm(Ticket, Cabin, Name, PassengerId, Embarked) %>%   
   
   # convert character and factor type variables into dummy variables:
   step_dummy(all_nominal(), -all_outcomes()) %>%   
@@ -253,7 +251,7 @@ Squize the juice out of the prepared recipe ...
 
 ```{r}
 juice(titanic_recipe_prepped) %>% 
-  head
+  head()
 ```
 
 
