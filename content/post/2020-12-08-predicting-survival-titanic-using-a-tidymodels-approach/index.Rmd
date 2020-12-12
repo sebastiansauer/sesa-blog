@@ -52,7 +52,7 @@ library(tidymodels)  # modelling
 library(broom)  # tidy model output
 library(DescTools)  # Pseudo R^2
 library(skimr)  # overview on descriptives
-library(gt) # nice tables
+#library(gt) # nice tables
 ```
 
 
