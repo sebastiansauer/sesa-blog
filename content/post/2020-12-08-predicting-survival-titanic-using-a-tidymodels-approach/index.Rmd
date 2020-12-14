@@ -381,7 +381,7 @@ lr_mod
 titanic_wf1 <-
   workflow() %>% 
   add_model(lr_mod) %>% 
-  add_recipe(titanic_recipe)
+  add_recipe(titanic_recipe_prepped)
 ```
 
 
@@ -466,7 +466,7 @@ titanic_fit_lr %>%
 ```{r glm1-pred}
 test_with_pred <-
   test_baked %>% 
-  bind_cols(predict(titanic_fit_lr, test_baked)) %>% 
+  bind_cols(predict(titanic_fit_lr, test)) %>% 
   rename(pred_glm1 = .pred_class)
 ```
 
@@ -546,7 +546,7 @@ rf_fit1
 ```{r rf1-pred}
 rf1_preds <- 
   rf_fit1 %>% 
-  predict(new_data = test_baked) %>% 
+  predict(new_data = test) %>% 
   bind_cols(test) %>% 
   select(-Survived) %>% 
   select(PassengerId, Survived = .pred_class)
