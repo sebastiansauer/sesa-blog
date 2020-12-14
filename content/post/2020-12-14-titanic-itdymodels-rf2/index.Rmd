@@ -1,5 +1,5 @@
 ---
-title: 'titanic-itdymodels: rf2'
+title: 'titanic-tidymodels: rf2'
 author: Sebastian Sauer
 date: '2020-12-14'
 slug: titanic-itdymodels-rf2
