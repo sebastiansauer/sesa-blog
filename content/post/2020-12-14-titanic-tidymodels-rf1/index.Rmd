@@ -38,9 +38,6 @@ knitr::opts_chunk$set(
 ```{r load-libs, message = FALSE, warning = FALSE}
 library(tidyverse)  # data wrangling
 library(tidymodels)  # modelling
-library(broom)  # tidy model output
-library(skimr)  # overview on descriptives
-library(testthat)  # unit testing
 ```
 
 
