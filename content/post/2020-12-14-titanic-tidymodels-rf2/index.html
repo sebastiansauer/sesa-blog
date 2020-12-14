@@ -20,7 +20,7 @@ output:
 <div id="TOC">
 <ul>
 <li><a href="#objective"><span class="toc-section-number">1</span> Objective</a></li>
-<li><a href="#setup"><span class="toc-section-number">2</span> Setup</a></li>
+<li><a href="#detect-available-cores"><span class="toc-section-number">2</span> Detect available cores</a></li>
 <li><a href="#load-and-prepare-data"><span class="toc-section-number">3</span> Load and prepare data</a>
 <ul>
 <li><a href="#hide-details-in-a-function"><span class="toc-section-number">3.1</span> Hide details in a function</a></li>
@@ -53,8 +53,8 @@ library(parallel)  # multiple cores -- unix only</code></pre>
 <h1><span class="header-section-number">1</span> Objective</h1>
 <p>Predicting the survival in the Titanic disaster. We’ll be using a tidymodels approach.</p>
 </div>
-<div id="setup" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> Setup</h1>
+<div id="detect-available-cores" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Detect available cores</h1>
 <pre class="r"><code>cores &lt;- parallel::detectCores()
 cores
 #&gt; [1] 8</code></pre>
@@ -101,7 +101,9 @@ cores
 </div>
 <div id="split-data-into-train-and-test" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> Split data into train and test</h1>
-<pre class="r"><code>split_titanic &lt;- initial_time_split(data = data2, prop = 891/1309)
+<p>That’s kind of a dirty hack …</p>
+<pre class="r"><code>split_titanic &lt;- initial_time_split(data = data2, 
+                                    prop = 891/1309)
 train &lt;- training(split_titanic)
 test &lt;- testing(split_titanic)</code></pre>
 </div>
@@ -166,7 +168,8 @@ titanic_recipe &lt;-
 </div>
 <div id="define-cross-validation-scheme" class="section level1" number="7">
 <h1><span class="header-section-number">7</span> Define cross validation scheme</h1>
-<pre class="r"><code>train_cv &lt;- vfold_cv(train, v = 10)</code></pre>
+<pre class="r"><code>train_cv &lt;- vfold_cv(train, 
+                     v = 10)</code></pre>
 <p>Parameters that can be tuned:</p>
 <pre class="r"><code>boost_mod %&gt;%    
   parameters()  

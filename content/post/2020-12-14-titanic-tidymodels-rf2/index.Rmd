@@ -47,7 +47,7 @@ library(parallel)  # multiple cores -- unix only
 Predicting the survival in the Titanic disaster. We'll be using a tidymodels approach.
 
 
-# Setup
+# Detect available cores
 
 ```{r}
 cores <- parallel::detectCores()
@@ -109,8 +109,11 @@ data2 <- prepare_data()
 
 # Split data into train and test
 
+That's kind of a dirty hack ...
+
 ```{r}
-split_titanic <- initial_time_split(data = data2, prop = 891/1309)
+split_titanic <- initial_time_split(data = data2, 
+                                    prop = 891/1309)
 train <- training(split_titanic)
 test <- testing(split_titanic)
 ```
@@ -178,7 +181,8 @@ translate(boost_mod)
 
 
 ```{r vfold-cv}
-train_cv <- vfold_cv(train, v = 10)
+train_cv <- vfold_cv(train, 
+                     v = 10)
 ```
 
 
