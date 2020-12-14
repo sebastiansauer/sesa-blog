@@ -10,11 +10,10 @@ tags:
   - prediction
 output:
   blogdown::html_page:
-    
     toc: true
     number_sections: TRUE
 editor_options: 
-  chunk_output_type: console
+  chunk_output_type: inline
 ---
 
 
@@ -41,6 +40,7 @@ knitr::opts_chunk$set(
 Let us predict survival at the [Titanic disaster](https://www.kaggle.com/c/titanic) using the Kaggle competition data, download from [here](https://www.kaggle.com/c/titanic/data).
 
 We will make use of the [tidymodels](https://www.tidymodels.org/start/models/) approach.
+
 
 
 
@@ -134,18 +134,11 @@ test <-
 ## Merge train and test
 
 ```{r}
-data <-
+data_raw <-
   train %>% 
   bind_rows(test)
 ```
 
-
-
-```{r}
-split_titanic <- initial_time_split(data = data, prop = 891/1309)
-train2 <- training(split_titanic)
-test2 <- testing(split_titanic)
-```
 
 
 
@@ -159,22 +152,62 @@ skim(train)
 
 OK, for age, cabin, and embarked, we have some NAs. No NAs for `Survived` (outcome).
 
-# Define recipe
+
+
+## Exclude Features
+
+
+For simplicity, let's exclude those features which are not readily useful for prediction. Such features would provide a great opportunity for *feature engineering*, but we'll save that for future projects...
+
+
+```{r drop-features}
+data <-
+  data_raw %>% 
+  select(-c(Name, PassengerId, Cabin, Ticket))
+```
+
+
+## Convert string to factor
+
 
 ```{r}
+data2 <- 
+  data %>% 
+  mutate(across(where(is.character), as.factor))
+```
+
+
+
+
+## Split train and test data
+
+
+
+```{r split-train-and-test}
+split_titanic <- initial_time_split(data = data2, prop = 891/1309)
+train2 <- training(split_titanic)
+test2 <- testing(split_titanic)
+```
+
+
+
+
+# Define recipe
+
+```{r define-recipe}
 titanic_recipe <- 
   
   # define model formula:
-  recipe(Survived ~ Pclass + Age + SibSp + Parch + Fare, data = train) %>%
+  recipe(Survived ~ ., data = train2) %>%
   
   # Use "ID" etc as ID, not as predictor:
   #update_role(Ticket, Cabin, Name, PassengerId, Embarked,  
    #         new_role = "ID") %>%   
   
-  update_role( Pclass , Age , SibSp , Parch , Fare, new_role="predictor") %>%
+  #update_role( Pclass , Age , SibSp , Parch , Fare, new_role="predictor") %>%
   
   # Convert outcome variable from numeric to factor, to indicate classification
-  # step_num2factor(Survived, levels = c("0", "1")) %>%   # not working, #todo
+  #step_num2factor(Survived, levels = c("0", "1")) %>%   # not working, #todo
   
   # impute missing values:
   step_knnimpute(all_predictors(), neighbors = 3) %>%  
@@ -269,8 +302,7 @@ See [here](https://www.tidymodels.org/find/recipes/) an complete of currently av
 Squize the juice out of the prepared recipe ...
 
 ```{r}
-juice(titanic_recipe_prepped) %>% 
-  head()
+juice(titanic_recipe_prepped) 
 ```
 
 
@@ -303,15 +335,18 @@ bake(titanic_recipe_prepped, new_data = NULL)
 
 # Bake recipe to test data
 
-WARNING #todo
+
 
 ```{r error = TRUE}
 test_baked <-
   titanic_recipe_prepped %>% 
-  bake(new_data = test)
+  bake(new_data = test2)
 ```
 
 
+```{r}
+glimpse(test_baked)
+```
 
 
 
@@ -366,7 +401,7 @@ titanic_wf1
 ```{r fit-glm1}
 titanic_fit_lr <-
   titanic_wf1 %>% 
-  fit(data = train)
+  fit(data = train2)
 ```
 
 
@@ -430,7 +465,7 @@ titanic_fit_lr %>%
 
 ```{r glm1-pred}
 test_with_pred <-
-  test %>% 
+  test_baked %>% 
   bind_cols(predict(titanic_fit_lr, test_baked)) %>% 
   rename(pred_glm1 = .pred_class)
 ```
@@ -556,8 +591,11 @@ cores
 
 ```{r def-rf2}
 rf_mod2 <- 
-  rand_forest(mtry = tune(), min_n = tune(), trees = 1000) %>% 
-  set_engine("ranger", num.threads = cores) %>% 
+  rand_forest(mtry = tune(), 
+              min_n = tune(), 
+              trees = 1000) %>% 
+  set_engine("ranger", 
+             num.threads = cores) %>% 
   set_mode("classification")
 ```
 
