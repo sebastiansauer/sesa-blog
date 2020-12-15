@@ -303,8 +303,15 @@ div.tocify {
 <li><a href="https://www.coursera.org/lecture/code-free-data-science/introduction-to-knime-analytics-platform-YBD5E">Knime course at Coursera</a>, freemium licence</li>
 </ul>
 </div>
-<div id="setup" class="section level2" number="1.4">
-<h2 number="1.4"><span class="header-section-number">1.4</span> Setup</h2>
+<div id="diving-deeper-into-theory" class="section level2" number="1.4">
+<h2 number="1.4"><span class="header-section-number">1.4</span> Diving deeper into theory</h2>
+<ul>
+<li>Have a glimpse at some of the <a href="https://www.knime.com/sites/default/files/110519_KNIME_Machine_Learning_Cheat%20Sheet.pdf">machine learning algos</a> implemented in Knime.</li>
+<li>Familiarise yourself with (at least) the core ideas of statistical learning, eg., via <a href="http://faculty.marshall.usc.edu/gareth-james/ISL/">An Introduction to Statistical Learning</a>; a great book, free access (watch out for upcoming second edition!)</li>
+</ul>
+</div>
+<div id="setup" class="section level2" number="1.5">
+<h2 number="1.5"><span class="header-section-number">1.5</span> Setup</h2>
 <ul>
 <li><a href="https://www.knime.com/downloads">Download</a> the software.</li>
 <li>Read the cheat sheet <a href="https://www.knime.com/sites/default/files/100819_CheatSheet_Beginner_A4.pdf">Building a KNIME Workflow for Beginners</a>.</li>
@@ -313,63 +320,76 @@ div.tocify {
 <li>Depending on your system, you may need admin rights, in order to install Knime extensions. Please try to i<a href="https://docs.knime.com/latest/analytics_platform_extensions_and_integrations/index.html">nstall a Knime extension</a> upfront.</li>
 </ul>
 </div>
-<div id="getting-started" class="section level2" number="1.5">
-<h2 number="1.5"><span class="header-section-number">1.5</span> Getting started</h2>
+</div>
+<div id="lets-get-going" class="section level1" number="2">
+<h1 number="2"><span class="header-section-number">2</span> Let’s get going!</h1>
+<div id="first-work-in-knime" class="section level2" number="2.1">
+<h2 number="2.1"><span class="header-section-number">2.1</span> First work in Knime</h2>
 <ul>
-<li>Familiarise yourself with (at least) the core ideas of statistical learning, eg., via <a href="http://faculty.marshall.usc.edu/gareth-james/ISL/">An Introduction to Statistical Learning</a>; a great book, free access (watch out for upcoming second edition!)</li>
-<li>Fly on your <a href="https://www.knime.com/getting-started-guide">first Knime Workflow</a>l</li>
-<li>Have a glimpse at some of the <a href="https://www.knime.com/sites/default/files/110519_KNIME_Machine_Learning_Cheat%20Sheet.pdf">machine learning algos</a> implemented in Knime.</li>
+<li><a href="https://www.knime.com/getting-started-guide">Get to know to your Knime cockpit</a></li>
+</ul>
+</div>
+<div id="first-workflow" class="section level2" number="2.2">
+<h2 number="2.2"><span class="header-section-number">2.2</span> First Workflow</h2>
+<ul>
+<li>Implement <a href="https://hub.knime.com/knime/spaces/Examples/latest/02_ETL_Data_Manipulation/00_Basic_Examples/00_Visual_Analysis_of_Sales_Data">this workflow</a>, a workflow that visualizes sales data.</li>
+<li>The workflow is available in Knime under examples: <code>Examples &gt; 02_ETL_Data_Manipulation &gt; 00_Basic_Examples &gt; 00_Visual_Analysis_of_Sales_Data</code></li>
+<li>Note that if you would like to change the color scheme, there’s a tick box you need to check; see under “General options” and tick “Use row colors”.</li>
+<li>In addition, you might need to install the Knime Extension BIRT to see a static version of created images (right click and hit the magnifier icon to see the created images).</li>
+<li>Similarly, to save the created image to disk, add the node “Image Writer (Port)”.</li>
+<li>Check out <a href="https://hub.knime.com/sebastian_sauer/spaces/Public/latest/00_Visual_Analysis_of_Sales_Data-save2file">this workflow</a>, where the aforementioned pieces have been implemented.</li>
 </ul>
 </div>
 </div>
-<div id="didactic-outline" class="section level1" number="2">
-<h1 number="2"><span class="header-section-number">2</span> Didactic outline</h1>
+<div id="didactic-outline-of-this-course" class="section level1" number="3">
+<h1 number="3"><span class="header-section-number">3</span> Didactic outline of this course</h1>
 <p>A number of <em>guided practices</em> (GP) and <em>exercises</em> (Ex) are provided in this course. In the first step, the instructor will present some materials alongside with concepts and some how-to (GP). This is followed by exercises (without instantaneous solutions) to be solved by the participants. Discussion in the plenary ensues.</p>
 </div>
-<div id="big-data-wrangling" class="section level1" number="3">
-<h1 number="3"><span class="header-section-number">3</span> (Big) data wrangling</h1>
-<div id="guided-practice-1-data-wrangling" class="section level2" number="3.1">
-<h2 number="3.1"><span class="header-section-number">3.1</span> Guided Practice 1: Data Wrangling</h2>
+<div id="big-data-wrangling" class="section level1" number="4">
+<h1 number="4"><span class="header-section-number">4</span> (Big) data wrangling</h1>
+<div id="guided-practice-1-data-wrangling" class="section level2" number="4.1">
+<h2 number="4.1"><span class="header-section-number">4.1</span> Guided Practice 1: Data Wrangling</h2>
 <ul>
 <li>Download <a href="https://kni.me/w/AS9_Hi7wc3iTwgL_">this workflow</a>: <em>Example Workflow for ETL Basics Operations</em>; alternatively you’ll find it in the Knime examples: <code>Examples &lt; 02_ETL_Data_Manipulation &gt; 00_Basic_Examples &gt; 02_ETL_Basics</code>.</li>
 <li>Follow the steps outlined by the instructor.</li>
 <li>Checkout the Knime help (<code>description</code> field in the Knime workbench) for each node.</li>
 </ul>
+<hr />
 <p>🦖: There appears to be a bug in the string-to-date conversion. Check out <a href="https://hub.knime.com/sebastian_sauer/spaces/Public/latest/02_ETL_Basics-edited">this improved (?) version</a>, where the bug is solved.</p>
 </div>
-<div id="ex1-big-data-wrangling" class="section level2" number="3.2">
-<h2 number="3.2"><span class="header-section-number">3.2</span> Ex1: (Big) data wrangling</h2>
+<div id="ex1-big-data-wrangling" class="section level2" number="4.2">
+<h2 number="4.2"><span class="header-section-number">4.2</span> Ex1: (Big) data wrangling</h2>
 <p>Let’s explore the NYC Yellow cab taxi data set (<a href="https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page">source</a>).</p>
-<div id="ex1a-largish-data-set-1-500k-rows" class="section level3" number="3.2.1">
-<h3 number="3.2.1"><span class="header-section-number">3.2.1</span> Ex1a: Largish data set 1 (500k rows)</h3>
+<div id="ex1a-largish-data-set-1-500k-rows" class="section level3" number="4.2.1">
+<h3 number="4.2.1"><span class="header-section-number">4.2.1</span> Ex1a: Largish data set 1 (500k rows)</h3>
 <p>The following workflow demonstrates typical data wrangling steps in “largish” data (some hundred MBs).</p>
 <p>Use the <a href="https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2020-06.csv">June 2020 Yellow Cab</a> data for modelling.</p>
-<div id="objective-get-max-tip-proportion-per-hour" class="section level4" number="3.2.1.1">
-<h4 number="3.2.1.1"><span class="header-section-number">3.2.1.1</span> Objective: Get max tip proportion per hour</h4>
+<div id="objective-get-max-tip-proportion-per-hour" class="section level4" number="4.2.1.1">
+<h4 number="4.2.1.1"><span class="header-section-number">4.2.1.1</span> Objective: Get max tip proportion per hour</h4>
 <ul>
 <li>Compute the maximal tip proportion (in relation to total fare) per hour of day. Refine to credit card payment only.</li>
 <li>Visualize this statistic.</li>
 </ul>
 </div>
-<div id="gp1-redo-this-workflow-in-knime" class="section level4" number="3.2.1.2">
-<h4 number="3.2.1.2"><span class="header-section-number">3.2.1.2</span> GP1: Redo this workflow in Knime</h4>
+<div id="gp1-redo-this-workflow-in-knime" class="section level4" number="4.2.1.2">
+<h4 number="4.2.1.2"><span class="header-section-number">4.2.1.2</span> GP1: Redo this workflow in Knime</h4>
 <ul>
 <li>Follow the steps shown by the instructor.</li>
 <li>Import <a href="https://hub.knime.com/sebastian_sauer/spaces/Public/latest/largish-data-wrangling">this workflow</a>.</li>
 <li>Rebuild the workflow from scratch. Pick and choose the nodes from the knode repo in your Knime app. Be sure to configure the nodes accordingly. Note that while you can copy-pase nodes from the workflow provided, I suggest that you build the workflow yourself (so that you learn more).</li>
 </ul>
 </div>
-<div id="redo-this-workflow-in-excel" class="section level4" number="3.2.1.3">
-<h4 number="3.2.1.3"><span class="header-section-number">3.2.1.3</span> Redo this workflow in Excel</h4>
+<div id="redo-this-workflow-in-excel" class="section level4" number="4.2.1.3">
+<h4 number="4.2.1.3"><span class="header-section-number">4.2.1.3</span> Redo this workflow in Excel</h4>
 <p>Try to convert the workflow to Excel (particularly useful for Excel aficionados).</p>
 </div>
-<div id="redo-this-workflow-in-r" class="section level4" number="3.2.1.4">
-<h4 number="3.2.1.4"><span class="header-section-number">3.2.1.4</span> Redo this workflow in R</h4>
+<div id="redo-this-workflow-in-r" class="section level4" number="4.2.1.4">
+<h4 number="4.2.1.4"><span class="header-section-number">4.2.1.4</span> Redo this workflow in R</h4>
 <p>See <a href="https://data-se.netlify.app/2020/12/05/execution-time-for-largish-data/#data-set-1">here</a> for a in-principle-solution.</p>
 </div>
 </div>
-<div id="ex1b-largish-data-set-1-1500k-rows" class="section level3" number="3.2.2">
-<h3 number="3.2.2"><span class="header-section-number">3.2.2</span> Ex1b: Largish data set 1 (1500k rows)</h3>
+<div id="ex1b-largish-data-set-1-1500k-rows" class="section level3" number="4.2.2">
+<h3 number="4.2.2"><span class="header-section-number">4.2.2</span> Ex1b: Largish data set 1 (1500k rows)</h3>
 <p>Here come the same operations, but the data set is large (~500 MB, 1500k rows).</p>
 <ul>
 <li>Download the <a href="hhttps://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2019-01.csv">2020 January Yellow Cab taxi datta set</a>.</li>
@@ -378,171 +398,171 @@ div.tocify {
 </div>
 </div>
 </div>
-<div id="data-vizualization" class="section level1" number="4">
-<h1 number="4"><span class="header-section-number">4</span> Data Vizualization</h1>
-<div id="gp1-compose-a-scatterplot" class="section level2" number="4.1">
-<h2 number="4.1"><span class="header-section-number">4.1</span> GP1: Compose a scatterplot</h2>
+<div id="data-vizualization" class="section level1" number="5">
+<h1 number="5"><span class="header-section-number">5</span> Data Vizualization</h1>
+<div id="gp1-compose-a-scatterplot" class="section level2" number="5.1">
+<h2 number="5.1"><span class="header-section-number">5.1</span> GP1: Compose a scatterplot</h2>
 <ul>
 <li>Find the workflow in your Knime explorer: Examples &gt; Data Viz &gt; Java Script &gt; 12 Bivariate</li>
 <li>Alternative, download <a href="https://hub.knime.com/knime/spaces/Examples/latest/03_Visualization/02_JavaScript/12_Bivariate_Visual_Exploration_with_Scatter_Plot">from Knime hub</a></li>
 <li>Redo the steps outlined by the instructor.</li>
 </ul>
 </div>
-<div id="ex1-prices-of-diamonds" class="section level2" number="4.2">
-<h2 number="4.2"><span class="header-section-number">4.2</span> Ex1: Prices of diamonds</h2>
-<div id="data-set" class="section level3" number="4.2.1">
-<h3 number="4.2.1"><span class="header-section-number">4.2.1</span> Data set</h3>
+<div id="ex1-prices-of-diamonds" class="section level2" number="5.2">
+<h2 number="5.2"><span class="header-section-number">5.2</span> Ex1: Prices of diamonds</h2>
+<div id="data-set" class="section level3" number="5.2.1">
+<h3 number="5.2.1"><span class="header-section-number">5.2.1</span> Data set</h3>
 <p>First, download <a href="https://vincentarelbundock.github.io/Rdatasets/csv/ggplot2/diamonds.csv">this data set</a>. See <a href="https://vincentarelbundock.github.io/Rdatasets/doc/ggplot2/diamonds.html">here</a> for the data dictionary.</p>
 </div>
-<div id="objective" class="section level3" number="4.2.2">
-<h3 number="4.2.2"><span class="header-section-number">4.2.2</span> Objective</h3>
+<div id="objective" class="section level3" number="5.2.2">
+<h3 number="5.2.2"><span class="header-section-number">5.2.2</span> Objective</h3>
 <p>Visualize the distribution of the price, grouped by cut. Add the mean and/or the median to the picture for each subgroup.</p>
 </div>
-<div id="solution-in-knime-without-saving-to-disk" class="section level3" number="4.2.3">
-<h3 number="4.2.3"><span class="header-section-number">4.2.3</span> Solution in Knime without saving to disk</h3>
+<div id="solution-in-knime-without-saving-to-disk" class="section level3" number="5.2.3">
+<h3 number="5.2.3"><span class="header-section-number">5.2.3</span> Solution in Knime without saving to disk</h3>
 <p>Check out <a href="https://hub.knime.com/sebastian_sauer/spaces/Public/latest/vis-diamonds1">this solution</a>.</p>
 </div>
-<div id="solution-in-knime-with-saving-to-disk" class="section level3" number="4.2.4">
-<h3 number="4.2.4"><span class="header-section-number">4.2.4</span> Solution in Knime with saving to disk</h3>
+<div id="solution-in-knime-with-saving-to-disk" class="section level3" number="5.2.4">
+<h3 number="5.2.4"><span class="header-section-number">5.2.4</span> Solution in Knime with saving to disk</h3>
 <p>Check out <a href="https://hub.knime.com/sebastian_sauer/spaces/Public/latest/vis-diamonds2">this solution</a>.</p>
 <p>Similarly, <a href="https://hub.knime.com/sebastian_sauer/spaces/Public/latest/00_Visual_Analysis_of_Sales_Data-save2file">here’s</a> a solution <em>save to disk</em> for the example “Visual Analysis of the Sales Data”</p>
 </div>
-<div id="solution-in-r" class="section level3" number="4.2.5">
-<h3 number="4.2.5"><span class="header-section-number">4.2.5</span> Solution in R</h3>
+<div id="solution-in-r" class="section level3" number="5.2.5">
+<h3 number="5.2.5"><span class="header-section-number">5.2.5</span> Solution in R</h3>
 <p>Check out <a href="https://data-se.netlify.app/2020/12/07/ex-visualizing-diamonds/">this solution</a>.</p>
 </div>
 </div>
-<div id="ex1-movie-budgets" class="section level2" number="4.3">
-<h2 number="4.3"><span class="header-section-number">4.3</span> Ex1: Movie budgets</h2>
+<div id="ex1-movie-budgets" class="section level2" number="5.3">
+<h2 number="5.3"><span class="header-section-number">5.3</span> Ex1: Movie budgets</h2>
 </div>
-<div id="data-set-1" class="section level2" number="4.4">
-<h2 number="4.4"><span class="header-section-number">4.4</span> Data set</h2>
+<div id="data-set-1" class="section level2" number="5.4">
+<h2 number="5.4"><span class="header-section-number">5.4</span> Data set</h2>
 <p>First, download <a href="https://vincentarelbundock.github.io/Rdatasets/csv/ggplot2movies/movies.csv">this data set</a>. See <a href="https://vincentarelbundock.github.io/Rdatasets/doc/ggplot2movies/movies.html">here</a> for the data dictionary.</p>
 </div>
-<div id="objective-1" class="section level2" number="4.5">
-<h2 number="4.5"><span class="header-section-number">4.5</span> Objective</h2>
+<div id="objective-1" class="section level2" number="5.5">
+<h2 number="5.5"><span class="header-section-number">5.5</span> Objective</h2>
 <p>Visualize the association of movie budget and movie rating, separed for each genre.</p>
 </div>
-<div id="solution-in-knime" class="section level2" number="4.6">
-<h2 number="4.6"><span class="header-section-number">4.6</span> Solution in Knime</h2>
+<div id="solution-in-knime" class="section level2" number="5.6">
+<h2 number="5.6"><span class="header-section-number">5.6</span> Solution in Knime</h2>
 <p>Please provide 🙃👨💻🙋.</p>
 </div>
-<div id="solution-in-r-1" class="section level2" number="4.7">
-<h2 number="4.7"><span class="header-section-number">4.7</span> Solution in R</h2>
+<div id="solution-in-r-1" class="section level2" number="5.7">
+<h2 number="5.7"><span class="header-section-number">5.7</span> Solution in R</h2>
 <p>See <a href="https://data-se.netlify.app/2020/11/13/fallstudie-zur-regressionsanalyse-ggplot2movies/#datensatz-umbauen-pivotieren-moderierender-effekt-von-genre">this case study</a>.</p>
 </div>
 </div>
-<div id="case-study-titanic-disaster" class="section level1" number="5">
-<h1 number="5"><span class="header-section-number">5</span> Case Study: Titanic disaster</h1>
-<div id="objective-2" class="section level2" number="5.1">
-<h2 number="5.1"><span class="header-section-number">5.1</span> Objective</h2>
+<div id="case-study-titanic-disaster" class="section level1" number="6">
+<h1 number="6"><span class="header-section-number">6</span> Case Study: Titanic disaster</h1>
+<div id="objective-2" class="section level2" number="6.1">
+<h2 number="6.1"><span class="header-section-number">6.1</span> Objective</h2>
 <p>Try to predict who <del>will</del> has drowned (died) and who survived. This is a famous competition for practicing data science, as can be seen in <a href="https://www.kaggle.com/c/titanic">this Kaggle competition</a>.</p>
 </div>
-<div id="data-set-2" class="section level2" number="5.2">
-<h2 number="5.2"><span class="header-section-number">5.2</span> Data set</h2>
+<div id="data-set-2" class="section level2" number="6.2">
+<h2 number="6.2"><span class="header-section-number">6.2</span> Data set</h2>
 <p><em>Note</em> that the data consists of two parts: The <em>train</em> data set and the <em>test</em> data set.</p>
 <p>You can access the data from <a href="https://github.com/sebastiansauer/Statistiklehre/tree/main/data/titanic">here</a>. Get the <a href="https://raw.githubusercontent.com/sebastiansauer/Statistiklehre/main/data/titanic/train.csv">train data set here</a>; and the test data set <a href="https://raw.githubusercontent.com/sebastiansauer/Statistiklehre/main/data/titanic/test.csv">here</a>.</p>
 <p>The data is also available from the Kaggle competition page.</p>
 <p>Kepp in mind: Our objective is to predict <code>Survived</code>.</p>
 </div>
-<div id="kaggle-competition-optional" class="section level2" number="5.3">
-<h2 number="5.3"><span class="header-section-number">5.3</span> Kaggle competition (optional)</h2>
+<div id="kaggle-competition-optional" class="section level2" number="6.3">
+<h2 number="6.3"><span class="header-section-number">6.3</span> Kaggle competition (optional)</h2>
 <p>Engage in a <a href="https://en.wikipedia.org/wiki/Kaggle">Kaggle</a> competition for this case study (if you want). Sign up for Kaggle, log in and enrol to the <a href="https://www.kaggle.com/c/titanic">Titanic competition</a>.</p>
 <p>The beauty is that your test competition will get scored, so you’ll get some kind of objective feedback on the quality of your predictions.</p>
-<div id="kaggle-scores" class="section level3" number="5.3.1">
-<h3 number="5.3.1"><span class="header-section-number">5.3.1</span> Kaggle scores</h3>
+<div id="kaggle-scores" class="section level3" number="6.3.1">
+<h3 number="6.3.1"><span class="header-section-number">6.3.1</span> Kaggle scores</h3>
 <p>Feel freee to check out my <a href="https://www.kaggle.com/ssauer">Kaggle scores</a> in the Titanic competition. Don’t expect a miracle though; I’ve just been playing ….</p>
 </div>
 </div>
-<div id="logistic-regression" class="section level2" number="5.4">
-<h2 number="5.4"><span class="header-section-number">5.4</span> Logistic regression</h2>
-<div id="gp1" class="section level3" number="5.4.1">
-<h3 number="5.4.1"><span class="header-section-number">5.4.1</span> GP1</h3>
+<div id="logistic-regression" class="section level2" number="6.4">
+<h2 number="6.4"><span class="header-section-number">6.4</span> Logistic regression</h2>
+<div id="gp1" class="section level3" number="6.4.1">
+<h3 number="6.4.1"><span class="header-section-number">6.4.1</span> GP1</h3>
 <ul>
 <li>Download <a href="https://hub.knime.com/knime/spaces/Examples/latest/04_Analytics/04_Classification_and_Predictive_Modelling/06_Logistic_Regression">this workflow</a> or find it in Knime Explorer (Examples &gt; 04 Analytics &gt; 06 Logistic Regression).</li>
 <li>Follow the steps outlines by the instructor.</li>
 </ul>
 </div>
-<div id="ex1-use-a-logistic-regression-to-predict-titanic-survival." class="section level3" number="5.4.2">
-<h3 number="5.4.2"><span class="header-section-number">5.4.2</span> Ex1: Use a logistic regression to predict Titanic survival.</h3>
+<div id="ex1-use-a-logistic-regression-to-predict-titanic-survival." class="section level3" number="6.4.2">
+<h3 number="6.4.2"><span class="header-section-number">6.4.2</span> Ex1: Use a logistic regression to predict Titanic survival.</h3>
 </div>
-<div id="some-hints" class="section level3" number="5.4.3">
-<h3 number="5.4.3"><span class="header-section-number">5.4.3</span> Some hints</h3>
+<div id="some-hints" class="section level3" number="6.4.3">
+<h3 number="6.4.3"><span class="header-section-number">6.4.3</span> Some hints</h3>
 <ul>
 <li>Convert the numeric variable <code>Survived</code> to nominal level, in order to convince Knime to do classification.</li>
 <li>Drop <code>Name</code> in order to keep stuff simple.</li>
 <li>Focus on <code>PassengerID</code> and <code>Survived</code> (predicted); only save these information to CSV.</li>
 </ul>
 </div>
-<div id="solution-in-knime-1" class="section level3" number="5.4.4">
-<h3 number="5.4.4"><span class="header-section-number">5.4.4</span> Solution in Knime</h3>
+<div id="solution-in-knime-1" class="section level3" number="6.4.4">
+<h3 number="6.4.4"><span class="header-section-number">6.4.4</span> Solution in Knime</h3>
 <p><a href="https://hub.knime.com/sebastian_sauer/spaces/Public/latest/titanic-glm1">Get Knime Workflow file</a></p>
 </div>
-<div id="solution-in-r-2" class="section level3" number="5.4.5">
-<h3 number="5.4.5"><span class="header-section-number">5.4.5</span> Solution in R</h3>
+<div id="solution-in-r-2" class="section level3" number="6.4.5">
+<h3 number="6.4.5"><span class="header-section-number">6.4.5</span> Solution in R</h3>
 <p>Check out <a href="https://data-se.netlify.app/2020/12/14/titanic-tidymodels-glm1/">this post</a>.</p>
 </div>
 </div>
-<div id="tree-model" class="section level2" number="5.5">
-<h2 number="5.5"><span class="header-section-number">5.5</span> Tree model</h2>
-<div id="gp1-1" class="section level3" number="5.5.1">
-<h3 number="5.5.1"><span class="header-section-number">5.5.1</span> GP1</h3>
+<div id="tree-model" class="section level2" number="6.5">
+<h2 number="6.5"><span class="header-section-number">6.5</span> Tree model</h2>
+<div id="gp1-1" class="section level3" number="6.5.1">
+<h3 number="6.5.1"><span class="header-section-number">6.5.1</span> GP1</h3>
 <ul>
 <li>Let’s work on <a href="https://hub.knime.com/knime/spaces/Examples/latest/04_Analytics/05_Regressions/01_Learning_a_Simple_Regression_Tree">this example</a>; find it here in your Knime Explorer: Examples &gt; 04 Analytics &gt; 01 Decision Tree.</li>
 </ul>
 </div>
-<div id="ex1" class="section level3" number="5.5.2">
-<h3 number="5.5.2"><span class="header-section-number">5.5.2</span> Ex1</h3>
+<div id="ex1" class="section level3" number="6.5.2">
+<h3 number="6.5.2"><span class="header-section-number">6.5.2</span> Ex1</h3>
 <ul>
 <li>Build a classification tree for the Titanic data set.</li>
 <li>Submit it to Kaggle, and check your score.</li>
 </ul>
 </div>
-<div id="solution-via-knime" class="section level3" number="5.5.3">
-<h3 number="5.5.3"><span class="header-section-number">5.5.3</span> Solution via Knime</h3>
+<div id="solution-via-knime" class="section level3" number="6.5.3">
+<h3 number="6.5.3"><span class="header-section-number">6.5.3</span> Solution via Knime</h3>
 <p>Check out <a href="https://hub.knime.com/sebastian_sauer/spaces/Public/latest/titanic-tree1">this workflow</a>.</p>
 </div>
-<div id="solution-in-r-3" class="section level3" number="5.5.4">
-<h3 number="5.5.4"><span class="header-section-number">5.5.4</span> Solution in R</h3>
+<div id="solution-in-r-3" class="section level3" number="6.5.4">
+<h3 number="6.5.4"><span class="header-section-number">6.5.4</span> Solution in R</h3>
 <p>Check out <a href="https://data-se.netlify.app/2020/12/14/titani-tidymodels-tree/">this post</a>.</p>
 </div>
 </div>
-<div id="boosted-trees" class="section level2" number="5.6">
-<h2 number="5.6"><span class="header-section-number">5.6</span> Boosted Trees</h2>
-<div id="gp1-2" class="section level3" number="5.6.1">
-<h3 number="5.6.1"><span class="header-section-number">5.6.1</span> GP1</h3>
+<div id="boosted-trees" class="section level2" number="6.6">
+<h2 number="6.6"><span class="header-section-number">6.6</span> Boosted Trees</h2>
+<div id="gp1-2" class="section level3" number="6.6.1">
+<h3 number="6.6.1"><span class="header-section-number">6.6.1</span> GP1</h3>
 <ul>
 <li>Let’s work on <a href="https://hub.knime.com/knime/spaces/Examples/latest/04_Analytics/04_Classification_and_Predictive_Modelling/05_Gradient_Boosted_Trees">this example</a>; find it here in your Knime Explorer: Examples &gt; 04 Analytics &gt; 04_Classification and Predictive Modelling &gt; 05 Gradient Boosted Trees.</li>
 </ul>
 </div>
-<div id="ex1-1" class="section level3" number="5.6.2">
-<h3 number="5.6.2"><span class="header-section-number">5.6.2</span> Ex1</h3>
+<div id="ex1-1" class="section level3" number="6.6.2">
+<h3 number="6.6.2"><span class="header-section-number">6.6.2</span> Ex1</h3>
 <p>Use the following tuning parameters:</p>
 <ul>
 <li>max depth: 4</li>
 <li>Learning rate: 0.1</li>
 </ul>
 </div>
-<div id="solution-via-knime-1" class="section level3" number="5.6.3">
-<h3 number="5.6.3"><span class="header-section-number">5.6.3</span> Solution via Knime</h3>
+<div id="solution-via-knime-1" class="section level3" number="6.6.3">
+<h3 number="6.6.3"><span class="header-section-number">6.6.3</span> Solution via Knime</h3>
 <p>Check out <a href="https://hub.knime.com/sebastian_sauer/spaces/Public/latest/titanic-boostedtrees">this workflow</a>.</p>
 </div>
-<div id="solution-via-r" class="section level3" number="5.6.4">
-<h3 number="5.6.4"><span class="header-section-number">5.6.4</span> Solution via R</h3>
+<div id="solution-via-r" class="section level3" number="6.6.4">
+<h3 number="6.6.4"><span class="header-section-number">6.6.4</span> Solution via R</h3>
 <p>Check out <a href="https://data-se.netlify.app/2020/12/14/titanic-tidymodels-boost-simple/">this post</a>.</p>
 </div>
 </div>
-<div id="random-forest-1-simple" class="section level2" number="5.7">
-<h2 number="5.7"><span class="header-section-number">5.7</span> Random Forest 1, simple</h2>
-<div id="gp1-3" class="section level3" number="5.7.1">
-<h3 number="5.7.1"><span class="header-section-number">5.7.1</span> GP1</h3>
+<div id="random-forest-1-simple" class="section level2" number="6.7">
+<h2 number="6.7"><span class="header-section-number">6.7</span> Random Forest 1, simple</h2>
+<div id="gp1-3" class="section level3" number="6.7.1">
+<h3 number="6.7.1"><span class="header-section-number">6.7.1</span> GP1</h3>
 <ul>
 <li><p>Let’s work on <a href="https://hub.knime.com/knime/spaces/Examples/latest/04_Analytics/13_Meta_Learning/02_Learning_a_Random_Forest">this example</a>; find it here in your Knime Explorer: <code>Examples &gt; 04_Analytics &gt; 13_Meta_Learning &gt; 02_Learning_a_Random_Forest</code></p></li>
 <li><p>You may want tot check out the Knime course tapping into <a href="https://www.knime.com/self-paced-course/l2-ds-knime-analytics-platform-for-data-scientists-advanced/lesson4">this topic</a>.</p></li>
 </ul>
 </div>
-<div id="ex1-2" class="section level3" number="5.7.2">
-<h3 number="5.7.2"><span class="header-section-number">5.7.2</span> Ex1</h3>
+<div id="ex1-2" class="section level3" number="6.7.2">
+<h3 number="6.7.2"><span class="header-section-number">6.7.2</span> Ex1</h3>
 <p>Use the following tuning parameters:</p>
 <ul>
 <li><p>500 trees</p></li>
@@ -553,62 +573,62 @@ div.tocify {
 </ul>
 <p>Feel free to check out e.g., <a href="https://www.youtube.com/watch?v=xGWYIafHyiw">this video</a> on how to use Random Forests models for the Titanic Kaggle competition.</p>
 </div>
-<div id="solution-via-knime-2" class="section level3" number="5.7.3">
-<h3 number="5.7.3"><span class="header-section-number">5.7.3</span> Solution via Knime</h3>
+<div id="solution-via-knime-2" class="section level3" number="6.7.3">
+<h3 number="6.7.3"><span class="header-section-number">6.7.3</span> Solution via Knime</h3>
 <p>Check out <a href="https://hub.knime.com/sebastian_sauer/spaces/Public/latest/titanic-rf1">this workflow</a>.</p>
 </div>
-<div id="solution-via-r-1" class="section level3" number="5.7.4">
-<h3 number="5.7.4"><span class="header-section-number">5.7.4</span> Solution via R</h3>
+<div id="solution-via-r-1" class="section level3" number="6.7.4">
+<h3 number="6.7.4"><span class="header-section-number">6.7.4</span> Solution via R</h3>
 <p>Check out <a href="https://data-se.netlify.app/2020/12/14/titanic-tidymodels-rf1/">this post</a>.</p>
 </div>
 </div>
-<div id="random-forest-2-with-parameter-tuning" class="section level2" number="5.8">
-<h2 number="5.8"><span class="header-section-number">5.8</span> Random Forest 2 with parameter tuning</h2>
-<div id="gp1-4" class="section level3" number="5.8.1">
-<h3 number="5.8.1"><span class="header-section-number">5.8.1</span> GP1</h3>
+<div id="random-forest-2-with-parameter-tuning" class="section level2" number="6.8">
+<h2 number="6.8"><span class="header-section-number">6.8</span> Random Forest 2 with parameter tuning</h2>
+<div id="gp1-4" class="section level3" number="6.8.1">
+<h3 number="6.8.1"><span class="header-section-number">6.8.1</span> GP1</h3>
 <ul>
 <li><p>Let’s work on <a href="https://hub.knime.com/knime/spaces/Examples/latest/04_Analytics/11_Optimization/06_Parameter_Optimization_two_examples">this example</a>; find it here in your Knime Explorer: <code>Examples &gt; 04_Analytics &gt;  11_Optimization &gt; 06_Parameter_Optimization_two_examples</code></p></li>
 <li><p>Beware, execution of the second workflow may take some time, “computationally expensive”, as they say.</p></li>
 </ul>
 </div>
-<div id="ex1-3" class="section level3" number="5.8.2">
-<h3 number="5.8.2"><span class="header-section-number">5.8.2</span> Ex1</h3>
+<div id="ex1-3" class="section level3" number="6.8.2">
+<h3 number="6.8.2"><span class="header-section-number">6.8.2</span> Ex1</h3>
 <p>Optimize the following tuning parameters:</p>
 <ul>
 <li>Number of variables to consider per tree <code>columnAbsolutePerTree</code> (also known as <code>mtry</code>): <code>min=1, max=5</code>; step size is 1.</li>
 </ul>
 <p>Check out <a href="https://hub.knime.com/sebastian_sauer/spaces/Public/latest/titanic-rf4">this workflow</a>.</p>
 </div>
-<div id="solution-via-knime-3" class="section level3" number="5.8.3">
-<h3 number="5.8.3"><span class="header-section-number">5.8.3</span> Solution via Knime</h3>
+<div id="solution-via-knime-3" class="section level3" number="6.8.3">
+<h3 number="6.8.3"><span class="header-section-number">6.8.3</span> Solution via Knime</h3>
 <p>Check out <a href="https://hub.knime.com/sebastian_sauer/spaces/Public/latest/titanic-rf2">this workflow</a>.</p>
 </div>
 </div>
-<div id="random-forest-3-parameter-tuning-and-cross-validation" class="section level2" number="5.9">
-<h2 number="5.9"><span class="header-section-number">5.9</span> Random Forest 3, parameter tuning and cross validation</h2>
+<div id="random-forest-3-parameter-tuning-and-cross-validation" class="section level2" number="6.9">
+<h2 number="6.9"><span class="header-section-number">6.9</span> Random Forest 3, parameter tuning and cross validation</h2>
 <p>This time we’ll add cross validation to the menu.</p>
-<div id="gp1-5" class="section level3" number="5.9.1">
-<h3 number="5.9.1"><span class="header-section-number">5.9.1</span> GP1</h3>
+<div id="gp1-5" class="section level3" number="6.9.1">
+<h3 number="6.9.1"><span class="header-section-number">6.9.1</span> GP1</h3>
 <ul>
 <li>Let’s work on <a href="https://hub.knime.com/knime/spaces/Examples/latest/04_Analytics/11_Optimization/01_Cross_Validation_with_SVM">this example</a>; find it here in your Knime Explorer: <code>Examples &gt; 04_Analytics &gt;  11_Optimization &gt; 01_Cross_Validation_with_SVM</code></li>
 </ul>
 </div>
-<div id="solution-via-knime-4" class="section level3" number="5.9.2">
-<h3 number="5.9.2"><span class="header-section-number">5.9.2</span> Solution via Knime</h3>
+<div id="solution-via-knime-4" class="section level3" number="6.9.2">
+<h3 number="6.9.2"><span class="header-section-number">6.9.2</span> Solution via Knime</h3>
 <p>Check out <a href="https://hub.knime.com/sebastian_sauer/spaces/Public/latest/titanic-rf4">this workflow</a>.</p>
 </div>
-<div id="solution-via-r-2" class="section level3" number="5.9.3">
-<h3 number="5.9.3"><span class="header-section-number">5.9.3</span> Solution via R</h3>
+<div id="solution-via-r-2" class="section level3" number="6.9.3">
+<h3 number="6.9.3"><span class="header-section-number">6.9.3</span> Solution via R</h3>
 <p>Check out <a href="https://data-se.netlify.app/2020/12/14/titanic-tidymodels-rf2/">this post</a>.</p>
 </div>
-<div id="bonus-boosting-including-tuning-and-crossvalidation-via-r" class="section level3" number="5.9.4">
-<h3 number="5.9.4"><span class="header-section-number">5.9.4</span> BONUS: Boosting including tuning and crossvalidation via R</h3>
+<div id="bonus-boosting-including-tuning-and-crossvalidation-via-r" class="section level3" number="6.9.4">
+<h3 number="6.9.4"><span class="header-section-number">6.9.4</span> BONUS: Boosting including tuning and crossvalidation via R</h3>
 <p>Check out <a href="https://data-se.netlify.app/2020/12/14/titanic-tidymodels-boost/">this post</a>.</p>
 </div>
 </div>
 </div>
-<div id="outro" class="section level1" number="6">
-<h1 number="6"><span class="header-section-number">6</span> Outro</h1>
+<div id="outro" class="section level1" number="7">
+<h1 number="7"><span class="header-section-number">7</span> Outro</h1>
 <p>That was ist, folks! I hope you enjoyed our journey. There’s way more to explore; check out the resources for more.</p>
 </div>
 
