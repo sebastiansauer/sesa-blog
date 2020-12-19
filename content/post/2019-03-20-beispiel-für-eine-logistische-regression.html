@@ -11,6 +11,9 @@ editor_options:
   chunk_output_type: console
 ---
 
+<script src="2019-03-20-beispiel-für-eine-logistische-regression_files/header-attrs/header-attrs.js"></script>
+<link href="2019-03-20-beispiel-für-eine-logistische-regression_files/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="2019-03-20-beispiel-für-eine-logistische-regression_files/anchor-sections/anchor-sections.js"></script>
 
 
 <div id="wozu-ist-das-gut" class="section level1">
@@ -37,7 +40,6 @@ editor_options:
 <pre class="r"><code>library(&quot;titanic&quot;)
 data(&quot;titanic_train&quot;)
 library(mosaic)</code></pre>
-<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.5.2</code></pre>
 </div>
 <div id="datensatz-anschauen" class="section level1">
 <h1>Datensatz anschauen</h1>
@@ -58,22 +60,22 @@ library(mosaic)</code></pre>
 ## 5 S (72.3%), C (18.9%), Q (8.6%) ...           
 ## 
 ## quantitative variables:  
-##          name   class  min       Q1   median    Q3      max        mean
-## 1 PassengerId integer 1.00 223.5000 446.0000 668.5 891.0000 446.0000000
-## 2    Survived integer 0.00   0.0000   0.0000   1.0   1.0000   0.3838384
-## 3      Pclass integer 1.00   2.0000   3.0000   3.0   3.0000   2.3086420
-## 4         Age numeric 0.42  20.1250  28.0000  38.0  80.0000  29.6991176
-## 5       SibSp integer 0.00   0.0000   0.0000   1.0   8.0000   0.5230079
-## 6       Parch integer 0.00   0.0000   0.0000   0.0   6.0000   0.3815937
-## 7        Fare numeric 0.00   7.9104  14.4542  31.0 512.3292  32.2042080
-##            sd   n missing
-## 1 257.3538420 891       0
-## 2   0.4865925 891       0
-## 3   0.8360712 891       0
-## 4  14.5264973 714     177
-## 5   1.1027434 891       0
-## 6   0.8060572 891       0
-## 7  49.6934286 891       0</code></pre>
+##             name   class  min       Q1   median    Q3      max        mean
+## ...1 PassengerId integer 1.00 223.5000 446.0000 668.5 891.0000 446.0000000
+## ...2    Survived integer 0.00   0.0000   0.0000   1.0   1.0000   0.3838384
+## ...3      Pclass integer 1.00   2.0000   3.0000   3.0   3.0000   2.3086420
+## ...4         Age numeric 0.42  20.1250  28.0000  38.0  80.0000  29.6991176
+## ...5       SibSp integer 0.00   0.0000   0.0000   1.0   8.0000   0.5230079
+## ...6       Parch integer 0.00   0.0000   0.0000   0.0   6.0000   0.3815937
+## ...7        Fare numeric 0.00   7.9104  14.4542  31.0 512.3292  32.2042080
+##               sd   n missing
+## ...1 257.3538420 891       0
+## ...2   0.4865925 891       0
+## ...3   0.8360712 891       0
+## ...4  14.5264973 714     177
+## ...5   1.1027434 891       0
+## ...6   0.8060572 891       0
+## ...7  49.6934286 891       0</code></pre>
 <p>Aha! Etwa 38% der Menschen an Board haben überlebt.</p>
 </div>
 <div id="deskriptive-analyse" class="section level1">
@@ -128,7 +130,7 @@ library(mosaic)</code></pre>
 ## Number of Fisher Scoring iterations: 4</code></pre>
 <p>Der Einfluss der Passagierklasse ist statistisch signifikant, das ist einfach zu sehen.</p>
 </div>
-<div id="uberlebenswahrscheinlichkeit-pro-klasse" class="section level1">
+<div id="überlebenswahrscheinlichkeit-pro-klasse" class="section level1">
 <h1>Überlebenswahrscheinlichkeit pro Klasse</h1>
 <p>Aber wo sieht man jetzt die Überlebenswahrscheinlichkeit pro Klasse? Vielleicht ist es so am einfachsten:</p>
 <pre class="r"><code>predict(mein_glm1, 
@@ -139,7 +141,7 @@ library(mosaic)</code></pre>
 <p>Wir sagen R, dass sie auf Basis unseres Modells (<code>mein_glm1</code>) vorhersagen (<code>predict</code>) soll, wie die Überlebenswahrscheinlichkeit für eine Person der 1,2 und 3. Klasse ist. Mt <code>type = "response"</code> sagen wir R, dasss wir als Einheit die Skala der Response-Variablen (also <code>Survived</code>) haben wollen, das heißt, in Wahrscheinlichkeiten.</p>
 <p>Die Wahrscheinlichkeit sind ziemlich genau die Werte, die uns die einfache deskriptive Analyse auch gezeigt hat, das macht Sinn.</p>
 </div>
-<div id="einflussgewicht-des-pradiktors-verstehen" class="section level1">
+<div id="einflussgewicht-des-prädiktors-verstehen" class="section level1">
 <h1>Einflussgewicht des Prädiktors verstehen</h1>
 <p>Möchte man die <em>Odds</em> des Überlebens wissen, so muss man den in der R-Ausgabe angegebenen Wert <em>delogarithmieren</em>, also <span class="math inline">\(e^x\)</span> rechnen, wobei <span class="math inline">\(x\)</span> der Wert in der Ausgabe ist.</p>
 <pre class="r"><code>exp(-0.85)</code></pre>
@@ -180,9 +182,9 @@ library(mosaic)</code></pre>
          position = &quot;fill&quot;)</code></pre>
 <p><img src="/post/2019-03-20-beispiel-f%C3%BCr-eine-logistische-regression_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 </div>
-<div id="klassifikationsgute" class="section level1">
+<div id="klassifikationsgüte" class="section level1">
 <h1>Klassifikationsgüte</h1>
-<p>Das Modell gibt uns für jeden Passagier die Überlebenswahrscheinlichkeit <span class="math inline">\(p\)</span> zurück. Jetzt müssen wir uns noch entscheiden, welches Ereignis <span class="math inline">\(E\)</span> wir der Wahrscheinlichkeit zuordnen. Die Ergebnismenge <span class="math inline">\(\Omaga\)</span> beinhaltet zwei Elemente: Überleben <span class="math inline">\(ü\)</span> und sterben <span class="math inline">\(s\)</span>, <span class="math inline">\(\Omaga = {ü, s}\)</span> (oder wir könnten schreiben: <span class="math inline">\(\Omaga = {1, 0}\)</span>. Die Frage ist also, bei welcher Wahrscheinlichkeit wir “überleben” und bei welcher “sterben” vorhersagen. Sagen wir, dass wir von “überleben” ausgehen, wenn das Modell eine Wahrscheinlichkeit größer 50% vorhersagt, andernfalls gehen wir von “sterben” aus:</p>
+<p>Das Modell gibt uns für jeden Passagier die Überlebenswahrscheinlichkeit <span class="math inline">\(p\)</span> zurück. Jetzt müssen wir uns noch entscheiden, welches Ereignis <span class="math inline">\(E\)</span> wir der Wahrscheinlichkeit zuordnen. Die Ergebnismenge <span class="math inline">\(\Omega\)</span> beinhaltet zwei Elemente: Überleben <span class="math inline">\(ü\)</span> und sterben <span class="math inline">\(s\)</span>, <span class="math inline">\(\Omega = {ü, s}\)</span> (oder wir könnten schreiben: <span class="math inline">\(\Omega = {1, 0}\)</span>. Die Frage ist also, bei welcher Wahrscheinlichkeit wir “überleben” und bei welcher “sterben” vorhersagen. Sagen wir, dass wir von “überleben” ausgehen, wenn das Modell eine Wahrscheinlichkeit größer 50% vorhersagt, andernfalls gehen wir von “sterben” aus:</p>
 <p><span class="math display">\[
 E=  
  \begin{cases}
@@ -250,6 +252,7 @@ confusionMatrix(data = factor(titanic2$Survived_est),
 ##     P-Value [Acc &gt; NIR] : 5.536e-05       
 ##                                           
 ##                   Kappa : 0.2707          
+##                                           
 ##  Mcnemar&#39;s Test P-Value : 1.453e-13       
 ##                                           
 ##             Sensitivity : 0.8543          

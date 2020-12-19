@@ -37,7 +37,7 @@ Nehmen wir den Datensatz `Titanic` als Beispiel-Datensatz. Die Forschungsfrage l
 
 
 # Vorbereitung: Daten und Pakete laden
-```{r message=FALSE}
+```{r message=FALSE, warning = FALSE}
 library("titanic")
 data("titanic_train")
 library(mosaic)
