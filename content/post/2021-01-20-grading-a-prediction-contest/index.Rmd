@@ -62,10 +62,14 @@ Use `?data.table` etc. for help on the packages.
 
 ## Function to parse data
 
+
+One trouble is that the CSV files I expected can be in different formats: standard CSV, CSV2 (semicolon delimiter, comma decimal). That's why we need to come up with a more general data parsing function. Unfortunately, and to my suprise, I found no existing funtion that was able to deal with that matter (no, even `fread` did not).
+
+
 ```{r fun-try-readcsv}
 try_readcsv <- function(file, verbose = FALSE) {
   
-  # import csv file
+  # import csv file:
   x <- data.table::fread(file, header = TRUE)
   
   # if more than 2 columns, only select first and last one:
@@ -74,16 +78,21 @@ try_readcsv <- function(file, verbose = FALSE) {
       select(1, last_col())
   }
   
+  # stop if only one column:
   if (ncol(x) == 1) stop("Only 1 column! There should be (at least) two: ID and predictions.")
   
+  # set names:
   names(x) <- c("id", "pred")
   
+  # replace commas with dots to deal with German locale:
   x <-
     x %>% 
     mutate(across(where(is.character), 
-                  .fns = ~ str_replace_all(., pattern = ",", 
-                                                                replacement = ".")))
+                  .fns = ~ str_replace_all(., 
+                                           pattern = ",",
+                                           replacement = ".")))
   
+  # check how many columns where found in each CSV file:
   if (verbose == TRUE) {print("Ncol: "); print(ncol(x))}
   return(x)
   
@@ -134,7 +143,7 @@ mse <- function(predicted, observed) {
 ```{r}
 gen_error <- function(predicted, observed, degree = 1) {
   
-  generr <- mean(abs(predicted - observed) ^ degree)  ## mean residual sum of squares
+  generr <- mean(abs(predicted - observed) ^ degree)  ## mean residual sum of absolute errors to the `degree` power
 
   return(generr)
   

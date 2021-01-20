@@ -73,9 +73,10 @@ library(skimr)</code></pre>
 <h1><span class="header-section-number">3</span> Helper functions</h1>
 <div id="function-to-parse-data" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> Function to parse data</h2>
+<p>One trouble is that the CSV files I expected can be in different formats: standard CSV, CSV2 (semicolon delimiter, comma decimal). That’s why we need to come up with a more general data parsing function. Unfortunately, and to my suprise, I found no existing funtion that was able to deal with that matter (no, even <code>fread</code> did not).</p>
 <pre class="r"><code>try_readcsv &lt;- function(file, verbose = FALSE) {
   
-  # import csv file
+  # import csv file:
   x &lt;- data.table::fread(file, header = TRUE)
   
   # if more than 2 columns, only select first and last one:
@@ -84,16 +85,21 @@ library(skimr)</code></pre>
       select(1, last_col())
   }
   
+  # stop if only one column:
   if (ncol(x) == 1) stop(&quot;Only 1 column! There should be (at least) two: ID and predictions.&quot;)
   
+  # set names:
   names(x) &lt;- c(&quot;id&quot;, &quot;pred&quot;)
   
+  # replace commas with dots to deal with German locale:
   x &lt;-
     x %&gt;% 
     mutate(across(where(is.character), 
-                  .fns = ~ str_replace_all(., pattern = &quot;,&quot;, 
-                                                                replacement = &quot;.&quot;)))
+                  .fns = ~ str_replace_all(., 
+                                           pattern = &quot;,&quot;,
+                                           replacement = &quot;.&quot;)))
   
+  # check how many columns where found in each CSV file:
   if (verbose == TRUE) {print(&quot;Ncol: &quot;); print(ncol(x))}
   return(x)
   
@@ -126,7 +132,7 @@ library(skimr)</code></pre>
 <h2><span class="header-section-number">3.4</span> Function to compute generalized error function</h2>
 <pre class="r"><code>gen_error &lt;- function(predicted, observed, degree = 1) {
   
-  generr &lt;- mean(abs(predicted - observed) ^ degree)  ## mean residual sum of squares
+  generr &lt;- mean(abs(predicted - observed) ^ degree)  ## mean residual sum of absolute errors to the `degree` power
 
   return(generr)
   
