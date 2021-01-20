@@ -234,9 +234,11 @@ We build a list data frame for a tidyverse style data manipulation.
 subm_df <-
   # create column file submission names:
   tibble(filepath = submissions) %>% 
+  
+  # cut the path away, leave only the file name:
   mutate(filename = str_extract(filepath, "/[^/]*.csv$")) %>% 
   
-  # creat list column with submission data:
+  # create list column with submission data:
   mutate(subm_data = purrr::map(.x = filepath,
                                 .f = ~ try_readcsv(.x))) %>% 
   
@@ -260,7 +262,7 @@ Check if all values of `pred` are of type `character`:
 map_chr(subm_df$pred, class)
 ```
 
-Which is the case. This is an artifact of data import; some CSV files had a German decimal delimiter (dot) whereas others used the standard (comma). See the import function above for details.
+Which is the case. This is an artifact of data import; some CSV files had a German decimal delimiter (dot) whereas others used the standard (comma). So, a robust strategy is to parse those strange numbers all as characters. Then replace the delimiting commas with dots. Then transform to numeric. See the import function above for details.
 
 
 ## Change character to numeric
@@ -305,8 +307,15 @@ subm_df2$pred_num %>%
 ```{r}
 subm_df3 <-
   subm_df2 %>% 
-  # add y-value (to be predicted)
+  # add y-value (to be predicted), again a list column:
   mutate(observed = list(test_df_teacher$pay)) 
+```
+
+
+See:
+
+```{r}
+head(subm_df3)
 ```
 
 
@@ -332,7 +341,7 @@ subm_df3$id %>%
 Each submission should consist of 300 entries in this example.
 
 
-# Compute accurary ($R^2$ etc.)
+# Compute accuracy ($R^2$ etc.)
 
 
 
@@ -349,6 +358,14 @@ subm_df4 <-
                      .y = observed, 
                      .f = ~ gen_error(.x, .y))) %>% 
   unnest(r2)
+```
+
+
+See:
+
+```{r}
+subm_df4 %>% 
+  glimpse()
 ```
 
 

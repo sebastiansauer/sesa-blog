@@ -37,7 +37,7 @@ output:
 <li><a href="#add-observed-true-values"><span class="toc-section-number">6.3</span> Add observed (true) values</a></li>
 <li><a href="#check-lengths-of-submissions"><span class="toc-section-number">6.4</span> Check lengths of submissions</a></li>
 </ul></li>
-<li><a href="#compute-accurary-r2-etc."><span class="toc-section-number">7</span> Compute accurary (<span class="math inline">\(R^2\)</span> etc.)</a>
+<li><a href="#compute-accuracy-r2-etc."><span class="toc-section-number">7</span> Compute accuracy (<span class="math inline">\(R^2\)</span> etc.)</a>
 <ul>
 <li><a href="#check-distribution-of-r2"><span class="toc-section-number">7.1</span> Check distribution of <span class="math inline">\(R^2\)</span></a></li>
 <li><a href="#number-of-distinct-values-for-r2"><span class="toc-section-number">7.2</span> Number of distinct values for <span class="math inline">\(R^2\)</span></a></li>
@@ -182,9 +182,11 @@ submissions &lt;- list.files(path = subm_path,
 <pre class="r"><code>subm_df &lt;-
   # create column file submission names:
   tibble(filepath = submissions) %&gt;% 
+  
+  # cut the path away, leave only the file name:
   mutate(filename = str_extract(filepath, &quot;/[^/]*.csv$&quot;)) %&gt;% 
   
-  # creat list column with submission data:
+  # create list column with submission data:
   mutate(subm_data = purrr::map(.x = filepath,
                                 .f = ~ try_readcsv(.x))) %&gt;% 
   
@@ -200,7 +202,7 @@ submissions &lt;- list.files(path = subm_path,
 <p>Check if all values of <code>pred</code> are of type <code>character</code>:</p>
 <pre class="r"><code>map_chr(subm_df$pred, class)
 #&gt; [1] &quot;character&quot; &quot;character&quot;</code></pre>
-<p>Which is the case. This is an artifact of data import; some CSV files had a German decimal delimiter (dot) whereas others used the standard (comma). See the import function above for details.</p>
+<p>Which is the case. This is an artifact of data import; some CSV files had a German decimal delimiter (dot) whereas others used the standard (comma). So, a robust strategy is to parse those strange numbers all as characters. Then replace the delimiting commas with dots. Then transform to numeric. See the import function above for details.</p>
 </div>
 <div id="change-character-to-numeric" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Change character to numeric</h2>
@@ -226,8 +228,15 @@ submissions &lt;- list.files(path = subm_path,
 <h2><span class="header-section-number">6.3</span> Add observed (true) values</h2>
 <pre class="r"><code>subm_df3 &lt;-
   subm_df2 %&gt;% 
-  # add y-value (to be predicted)
+  # add y-value (to be predicted), again a list column:
   mutate(observed = list(test_df_teacher$pay)) </code></pre>
+<p>See:</p>
+<pre class="r"><code>head(subm_df3)
+#&gt; # A tibble: 2 x 6
+#&gt;   filepath                    filename         id      pred    pred_num observed
+#&gt;   &lt;chr&gt;                       &lt;chr&gt;            &lt;list&gt;  &lt;list&gt;  &lt;list&gt;   &lt;list&gt;  
+#&gt; 1 /Users/sebastiansaueruser/… /64d4faba5afe92… &lt;int [… &lt;chr [… &lt;dbl [3… &lt;dbl [3…
+#&gt; 2 /Users/sebastiansaueruser/… /9c31e89af1b4b1… &lt;int [… &lt;chr [… &lt;dbl [3… &lt;dbl [3…</code></pre>
 </div>
 <div id="check-lengths-of-submissions" class="section level2" number="6.4">
 <h2><span class="header-section-number">6.4</span> Check lengths of submissions</h2>
@@ -243,8 +252,8 @@ submissions &lt;- list.files(path = subm_path,
 <p>Each submission should consist of 300 entries in this example.</p>
 </div>
 </div>
-<div id="compute-accurary-r2-etc." class="section level1" number="7">
-<h1><span class="header-section-number">7</span> Compute accurary (<span class="math inline">\(R^2\)</span> etc.)</h1>
+<div id="compute-accuracy-r2-etc." class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Compute accuracy (<span class="math inline">\(R^2\)</span> etc.)</h1>
 <pre class="r"><code>subm_df4 &lt;-
   subm_df3 %&gt;% 
   mutate(r2 = map2(.x = pred_num, 
@@ -257,6 +266,20 @@ submissions &lt;- list.files(path = subm_path,
                      .y = observed, 
                      .f = ~ gen_error(.x, .y))) %&gt;% 
   unnest(r2)</code></pre>
+<p>See:</p>
+<pre class="r"><code>subm_df4 %&gt;% 
+  glimpse()
+#&gt; Rows: 2
+#&gt; Columns: 9
+#&gt; $ filepath &lt;chr&gt; &quot;/Users/sebastiansaueruser/Google Drive/Lehre/Lehre_AKTUELL/…
+#&gt; $ filename &lt;chr&gt; &quot;/64d4faba5afe920efbf0001812299853.csv&quot;, &quot;/9c31e89af1b4b1bc6…
+#&gt; $ id       &lt;list&gt; [&lt;1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17…
+#&gt; $ pred     &lt;list&gt; [&lt;&quot;102622.898614099&quot;, &quot;110032.651526331&quot;, &quot;97047.9425798611…
+#&gt; $ pred_num &lt;list&gt; [&lt;102622.90, 110032.65, 97047.94, 60826.89, 168182.88, 1562…
+#&gt; $ observed &lt;list&gt; [&lt;91336, 112286, 77536, 69872, 156896, 151509, 78267, 12535…
+#&gt; $ r2       &lt;dbl&gt; 0.8287524, 0.8280914
+#&gt; $ mse      &lt;list&gt; [107043353, 107456477]
+#&gt; $ mae      &lt;list&gt; [8392.041, 8453.271]</code></pre>
 <div id="check-distribution-of-r2" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> Check distribution of <span class="math inline">\(R^2\)</span></h2>
 <pre class="r"><code>subm_df4 %&gt;%  
@@ -275,7 +298,7 @@ submissions &lt;- list.files(path = subm_path,
   filter(between(r2, 0, 1)) %&gt;% 
   ggplot(aes(x = r2)) +
   geom_histogram()</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-21-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="number-of-distinct-values-for-r2" class="section level2" number="7.2">
 <h2><span class="header-section-number">7.2</span> Number of distinct values for <span class="math inline">\(R^2\)</span></h2>
@@ -337,7 +360,7 @@ grades_df
   select(grades) %&gt;% 
   skim()</code></pre>
 <table>
-<caption><span id="tab:unnamed-chunk-25">Table 8.1: </span>Data summary</caption>
+<caption><span id="tab:unnamed-chunk-27">Table 8.1: </span>Data summary</caption>
 <tbody>
 <tr class="odd">
 <td align="left">Name</td>
