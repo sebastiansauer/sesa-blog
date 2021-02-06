@@ -65,13 +65,16 @@ There are a number of good solutions outthere such as [this one](https://aosmith
 # Way 1
 
 
-```{r}
+```{r fig.show="hold", out.width="30%", results = "hide" }
 mtcars %>% 
   select(where(is.numeric)) %>% 
   map( ~ {ggplot(mtcars, aes(x = .)) + geom_density()}
   )
 ```
 
+Note that the chunks options above were like this:
+
+`{r fig.show="hold", out.width="30%", results = "hide"}`
 
 
 Works. But does not show the variable names. Next try.
@@ -81,7 +84,7 @@ Works. But does not show the variable names. Next try.
 # Way 2
 
 
-```{r}
+```{r fig.show="hold", out.width="30%", results = "hide" }
 dens_fun <- function(var, name) {
   
   ggplot(mtcars, aes(x = var)) +
