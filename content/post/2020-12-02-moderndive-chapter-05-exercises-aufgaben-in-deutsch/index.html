@@ -13,9 +13,7 @@ output:
     number_sections: TRUE
 ---
 
-<script src="index_files/header-attrs/header-attrs.js"></script>
-<link href="index_files/anchor-sections/anchor-sections.css" rel="stylesheet" />
-<script src="index_files/anchor-sections/anchor-sections.js"></script>
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
 
 <div id="TOC">
 <ul>
@@ -95,7 +93,9 @@ output:
 <pre class="r"><code>library(tidyverse)  # Datenjudo
 library(moderndive)  # Daten
 library(gapminder)  # Daten</code></pre>
-<p>Als Datensätze werden verwendet <code>evals</code> und <code>gapminder</code>.</p>
+<p>Als Datensätze werden verwendet <code>evals</code> und <code>gapminder</code>:</p>
+<pre class="r"><code>data(&quot;evals&quot;)
+data(&quot;gapminder&quot;)</code></pre>
 </div>
 <div id="stärkster-univariater-prädiktor-der-dozentenbeurteilung" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Stärkster univariater Prädiktor der Dozentenbeurteilung</h1>
@@ -105,17 +105,18 @@ library(gapminder)  # Daten</code></pre>
 </div>
 <div id="hilfe" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> Hilfe</h2>
-<p>Hilfe zur Tabelle bekommt man so:</p>
+<p>Hilfe zur Tabelle <code>evals</code> bekommt man so:</p>
 <pre class="r"><code>help(evals)</code></pre>
 </div>
 <div id="hinweise" class="section level2" number="1.3">
 <h2><span class="header-section-number">1.3</span> Hinweise</h2>
-<p>Mit anderen Worten lautet die Aufgabe: Berechnen Sie die Korrelationen der möglichen Prädiktoren (UV) mit dem Kriterium <code>score</code> (AV)! <code>score</code> ist die Zielvariable!</p>
+<p>Ein möglicher Start ist: Berechnen Sie die Korrelationen der möglichen Prädiktoren (UV) mit dem Kriterium <code>score</code> (AV, Zielvariable)!</p>
 <p>Unsere Forschungsfrage lautet also:</p>
-<p><strong>Welche Variablenausprägungen gehen mit einer guten Dozentenbeurteilung einher?</strong></p>
-<p>Anstelle von “gehen einher” könnte man sagen “sind korreliert mit” oder “sind assoziiert mit” oder “sind statistisch abhängig voneinander”. Geht man von einer Kausalbeziehung aus, könnte man sagen “welche Variable hat den größten Einfluss auf die Dozentenbeurteilung?”.</p>
+<p><em>Welche Variablenausprägungen gehen mit einer guten Dozentenbeurteilung einher?</em></p>
+<p>Anstelle von “gehen einher” könnte man sagen “sind korreliert mit” oder “sind assoziiert mit” oder “sind statistisch abhängig voneinander”. Geht man von einer Kausalbeziehung aus, könnte man sagen “welche Variable hat den größten Einfluss auf die Dozentenbeurteilung?”. Allerdings braucht man für die vollmundinge Behauptung einer Kausalbeziehung schon gute Argumente.</p>
 <p>Wir suchen also die “wichtigste” UV!</p>
 <p>Mit “univariat” ist gemeint, dass wir nur Modelle in Betracht ziehen, in denen es <em>eine</em> UV gibt.</p>
+<p>Schauen wir uns die ersten paar Zeilen auf <code>evals</code> an:</p>
 <pre class="r"><code>head(evals)</code></pre>
 <pre><code>## # A tibble: 6 x 14
 ##      ID prof_ID score   age bty_avg gender ethnicity language rank  pic_outfit
@@ -133,18 +134,16 @@ library(gapminder)  # Daten</code></pre>
   ggplot() +
   aes(x = cls_students, y = score) +
   geom_point()</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <pre class="r"><code>evals %&gt;% 
   ggplot() +
   aes(x = bty_avg, y = score) +
   geom_point()</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<p>Hm, die Schönheit könnte eine (kleine) Rolle spielen.</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>Hm, die Schönheit einer Lehrkraft könnte eine (kleine) Rolle spielen.</p>
 </div>
 <div id="lösung" class="section level2" number="1.4">
 <h2><span class="header-section-number">1.4</span> Lösung</h2>
-<p>Zuerst laden wir die Daten.</p>
-<pre class="r"><code>data(evals)</code></pre>
 <p>Man kann die Korrelation jedes (numerischen) Prädiktors berechnen und dann die höchste Korrelation ablesen:</p>
 <pre class="r"><code>evals %&gt;% 
   summarise(r_bty = cor(score, bty_avg),
@@ -170,7 +169,7 @@ evals %&gt;%
 ## Correlation method: &#39;pearson&#39;
 ## Missing treated using: &#39;pairwise.complete.obs&#39;</code></pre>
 <pre><code>## # A tibble: 4 x 2
-##   rowname        score
+##   term           score
 ##   &lt;chr&gt;          &lt;dbl&gt;
 ## 1 age          -0.107 
 ## 2 bty_avg       0.187 
@@ -222,7 +221,7 @@ summary(lm1)</code></pre>
   geom_point() +
   geom_smooth(method = &quot;lm&quot;)</code></pre>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 </div>
 <div id="variante" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> Variante</h2>
@@ -231,7 +230,7 @@ summary(lm1)</code></pre>
   geom_density_2d() +  # geom_hex()
   geom_smooth(method = &quot;lm&quot;)</code></pre>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 </div>
 </div>
 <div id="vergleich-zur-korrelation" class="section level1" number="4">
@@ -293,7 +292,7 @@ summary(lm2)</code></pre>
   geom_point() +
   geom_smooth(method = &quot;lm&quot;)</code></pre>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 </div>
 </div>
 <div id="lebenserwartung-nach-kontinent-berechnen" class="section level1" number="6">
@@ -309,10 +308,9 @@ summary(lm2)</code></pre>
 <pre class="r"><code>gapminder %&gt;% 
   group_by(continent) %&gt;% 
   summarise(lifeExp = mean(lifeExp))</code></pre>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 5 x 2
 ##   continent lifeExp
-##   &lt;fct&gt;       &lt;dbl&gt;
+## * &lt;fct&gt;       &lt;dbl&gt;
 ## 1 Africa       48.9
 ## 2 Americas     64.7
 ## 3 Asia         60.1
@@ -327,10 +325,9 @@ summary(lm2)</code></pre>
 <pre class="r"><code>gapminder_2007 %&gt;% 
   group_by(continent) %&gt;% 
   summarise(lifeExp = mean(lifeExp))</code></pre>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 5 x 2
 ##   continent lifeExp
-##   &lt;fct&gt;       &lt;dbl&gt;
+## * &lt;fct&gt;       &lt;dbl&gt;
 ## 1 Africa       54.8
 ## 2 Americas     73.6
 ## 3 Asia         70.7
@@ -341,7 +338,6 @@ summary(lm2)</code></pre>
   group_by(continent) %&gt;% 
   summarise(lifeExp_avg = mean(lifeExp, na.rm = TRUE),
             lifeExp_sd = sd(lifeExp, na.rm = TRUE)) -&gt; gapminder_2007_summary</code></pre>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 </div>
 </div>
 <div id="lebenserwartung-nach-kontinent-visualisieren" class="section level1" number="7">
@@ -357,7 +353,7 @@ summary(lm2)</code></pre>
   ggplot() +
   aes(x = continent, y = lifeExp) +
   geom_boxplot()</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <p>Da die Boxplots aber Mediane anstelle von Mittelwerten zeigen, wäre folgendes Vorgehen sinvoller:</p>
 <pre class="r"><code>gapminder_2007_summary %&gt;% 
   ggplot() +
@@ -365,7 +361,7 @@ summary(lm2)</code></pre>
   geom_point() +
   geom_errorbar(aes(ymin = lifeExp_avg - lifeExp_avg + 2*lifeExp_sd,
                 ymax = lifeExp_avg + lifeExp_avg + 2*lifeExp_sd))</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p>Oder so:</p>
 <pre class="r"><code>gapminder %&gt;% 
   filter(year == 2007) %&gt;% 
@@ -377,7 +373,7 @@ summary(lm2)</code></pre>
              color = &quot;red&quot;,
              size = 5,
              alpha = .7) </code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 </div>
 </div>
 <div id="lebenserwartung-nach-kontinent-und-regression" class="section level1" number="8">

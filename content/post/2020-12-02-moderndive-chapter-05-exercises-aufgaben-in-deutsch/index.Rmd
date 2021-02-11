@@ -15,7 +15,7 @@ output:
 
 
 ---
-title: "Aufgaben zu Kapitel 5 ModernDive"
+title: "Aufgaben zur Regression (Kapitel 5 ModernDive)"
 author: "Sebastian Sauer"
 date: "12/1/2020"
 output: 
@@ -44,7 +44,14 @@ library(gapminder)  # Daten
 
 
 
-Als Datensätze werden verwendet `evals` und `gapminder`. 
+Als Datensätze werden verwendet `evals` und `gapminder`:
+
+
+```{r}
+data("evals")
+data("gapminder")
+```
+
 
 
 # Stärkster univariater Prädiktor der Dozentenbeurteilung
@@ -61,7 +68,7 @@ Identifizieren Sie den stärksten (univariaten) Prädiktor für die (Höhe der) 
 
 
 
-Hilfe zur Tabelle bekommt man so:
+Hilfe zur Tabelle `evals` bekommt man so:
 
 ```{r}
 help(evals)
@@ -72,15 +79,15 @@ help(evals)
 ## Hinweise
 
 
-Mit anderen Worten lautet die Aufgabe: Berechnen Sie die Korrelationen der möglichen Prädiktoren (UV) mit dem Kriterium `score` (AV)! `score` ist die Zielvariable!
+Ein möglicher Start ist: Berechnen Sie die Korrelationen der möglichen Prädiktoren (UV) mit dem Kriterium `score` (AV, Zielvariable)! 
 
 
 
 Unsere Forschungsfrage lautet also: 
 
-**Welche Variablenausprägungen gehen mit einer guten Dozentenbeurteilung einher?**
+*Welche Variablenausprägungen gehen mit einer guten Dozentenbeurteilung einher?*
 
-Anstelle von "gehen einher" könnte man sagen "sind korreliert mit" oder "sind assoziiert mit" oder "sind statistisch abhängig voneinander". Geht man von einer Kausalbeziehung aus, könnte man sagen "welche Variable hat den größten Einfluss auf die Dozentenbeurteilung?".
+Anstelle von "gehen einher" könnte man sagen "sind korreliert mit" oder "sind assoziiert mit" oder "sind statistisch abhängig voneinander". Geht man von einer Kausalbeziehung aus, könnte man sagen "welche Variable hat den größten Einfluss auf die Dozentenbeurteilung?". Allerdings braucht man für die vollmundinge Behauptung einer Kausalbeziehung schon gute Argumente.
 
 
 Wir suchen also die "wichtigste" UV!
@@ -89,7 +96,7 @@ Wir suchen also die "wichtigste" UV!
 Mit "univariat" ist gemeint, dass wir nur Modelle in Betracht ziehen, in denen es *eine* UV gibt.
 
 
-
+Schauen wir uns die ersten paar Zeilen auf `evals` an:
 
 
 ```{r}
@@ -116,16 +123,11 @@ evals %>%
 ```
 
 
-Hm, die Schönheit könnte eine (kleine) Rolle spielen.
+Hm, die Schönheit einer Lehrkraft könnte eine (kleine) Rolle spielen.
 
 
 ## Lösung
 
-Zuerst laden wir die Daten.
-
-```{r}
-data(evals)
-```
 
 
 Man kann die Korrelation jedes (numerischen) Prädiktors berechnen und dann die höchste Korrelation ablesen:

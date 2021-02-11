@@ -33,7 +33,7 @@ knitr::opts_chunk$set(
 
 ```{r load-libs, message = FALSE, waring = FALSE}
 library(tidyverse)
-library(reshape2)  # for data
+library(reshape2)  # data
 library(mosaic)
 library(sjmisc)
 library(skimr)
