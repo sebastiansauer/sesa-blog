@@ -95,41 +95,127 @@ library(tidyverse)</code></pre>
 #&gt; $ ESP                &lt;fct&gt; standard, standard, standard, standard, standard, …
 #&gt; $ Verdict            &lt;dbl&gt; 6, 5, 7, 7, 7, 7, 7, 8, 7, 6, 7, 6, 5, 7, 6, 7, 6,…
 #&gt; $ Origin             &lt;fct&gt; Europe, Europe, Europe, Europe, Europe, Europe, Eu…</code></pre>
+<pre class="r"><code>TopGear %&gt;% 
+  select(Maker, Model, Type, Price, Cylinders) %&gt;% 
+  slice(1:10)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Maker</th>
+<th align="left">Model</th>
+<th align="left">Type</th>
+<th align="right">Price</th>
+<th align="right">Cylinders</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Alfa Romeo</td>
+<td align="left">Giulietta</td>
+<td align="left">Giulietta 1.6 JTDM-2 105 Veloce 5d</td>
+<td align="right">21250</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">Alfa Romeo</td>
+<td align="left">MiTo</td>
+<td align="left">MiTo 1.4 TB MultiAir 105 Distinctive 3d</td>
+<td align="right">15155</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Aston Martin</td>
+<td align="left">Cygnet</td>
+<td align="left">Cygnet 1.33 Standard 3d</td>
+<td align="right">30995</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">Aston Martin</td>
+<td align="left">DB9</td>
+<td align="left">DB9 6.0 517 Standard 2d 13MY</td>
+<td align="right">131995</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="left">Aston Martin</td>
+<td align="left">DB9 Volante</td>
+<td align="left">DB9 6.0 V12 517 Volante 2d 13MY</td>
+<td align="right">141995</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="left">Aston Martin</td>
+<td align="left">V12 Zagato</td>
+<td align="left">V12 Zagato 6.0 V12 Standard 2d</td>
+<td align="right">396000</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="left">Aston Martin</td>
+<td align="left">Vanquish</td>
+<td align="left">Vanquish 6.0 V12 Standard 2d</td>
+<td align="right">189995</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="left">Aston Martin</td>
+<td align="left">Vantage</td>
+<td align="left">V8 Vantage 4.7 V8 420 Standard 2d</td>
+<td align="right">84995</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="left">Aston Martin</td>
+<td align="left">Vantage Roadster</td>
+<td align="left">V8 Vantage 4.7 420 Roadster 2d</td>
+<td align="right">93995</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="left">Audi</td>
+<td align="left">A1</td>
+<td align="left">A1 1.2 TFSI 86 S line 3d</td>
+<td align="right">17025</td>
+<td align="right">4</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="wie-verteilen-sich-die-preise" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> Wie verteilen sich die Preise?</h2>
 <pre class="r"><code>ggplot(data = TopGear,
        aes(x = Price)) +
   geom_histogram()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ggplot(data = TopGear,
        aes(x = log(Price))) +
   geom_histogram()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ggplot(data = TopGear,
        aes(x = log(Price))) +
   geom_density()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ggplot(data = TopGear,
        aes(x = log(Price),
            fill = Origin)) +
   geom_density(alpha = .5)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="wie-ist-der-zusammenhang-von-preis-und-beurteilung-des-autos" class="section level2" number="1.3">
 <h2><span class="header-section-number">1.3</span> Wie ist der Zusammenhang von Preis und Beurteilung des Autos?</h2>
 <pre class="r"><code>ggplot(TopGear,
        aes(x = Price, y = Verdict)) +
   geom_jitter()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ggplot(TopGear,
        aes(x = log(Price), y = Verdict)) +
   geom_jitter()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ggplot(TopGear,
        aes(x = log(Price), y = Verdict, color = Origin)) +
   geom_jitter()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="wie-verteilt-sich-das-gewicht-der-autos" class="section level1" number="2">
@@ -137,19 +223,19 @@ library(tidyverse)</code></pre>
 <pre class="r"><code>ggplot(TopGear,
        aes(x = Weight)) +
   geom_density()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ggplot(TopGear,
        aes(x = Weight,
            fill = Origin)) +
   geom_density(alpha = .5)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="hängt-gewicht-mit-preis-zusammen" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Hängt Gewicht mit Preis zusammen?</h1>
 <pre class="r"><code>TopGear %&gt;% 
   ggplot(aes(x = Weight, y = Verdict, color = Origin)) +
   geom_jitter()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="wie-verteilt-sich-die-geschwindigkeit-der-autos" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> Wie verteilt sich die Geschwindigkeit der Autos?</h1>
@@ -157,20 +243,20 @@ library(tidyverse)</code></pre>
        aes(x = TopSpeed,
            fill = Origin)) +
   geom_density(alpha = .5)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="hängt-preis-mit-geschwindigkeit-zusammen" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> Hängt Preis mit Geschwindigkeit zusammen?</h1>
 <pre class="r"><code>TopGear %&gt;% 
   ggplot(aes(x = TopSpeed, y = log(Price), color = Origin)) +
   geom_jitter()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-16-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <div id="wie-hängt-geschwindigkeit-mit-beurteilung-zusammen" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Wie hängt Geschwindigkeit mit Beurteilung zusammen?</h2>
 <pre class="r"><code>TopGear %&gt;% 
   ggplot(aes(x = TopSpeed, y = Verdict)) +
   geom_jitter()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="welche-hersteller-hat-die-meisten-autotypen" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Welche Hersteller hat die meisten Autotypen?</h2>
@@ -180,59 +266,221 @@ library(tidyverse)</code></pre>
   count(Maker) %&gt;%
   arrange(desc(Maker))
 
-Maker_freq
-#&gt;            Maker  n
-#&gt; 1          Volvo  8
-#&gt; 2     Volkswagen 15
-#&gt; 3       Vauxhall 17
-#&gt; 4         Toyota 11
-#&gt; 5         Suzuki  7
-#&gt; 6         Subaru  4
-#&gt; 7      Ssangyong  1
-#&gt; 8          Smart  1
-#&gt; 9          Skoda  4
-#&gt; 10          SEAT  5
-#&gt; 11   Rolls-Royce  3
-#&gt; 12       Renault  6
-#&gt; 13        Proton  3
-#&gt; 14       Porsche  4
-#&gt; 15       Peugeot 10
-#&gt; 16       Perodua  1
-#&gt; 17        Pagani  1
-#&gt; 18         Noble  1
-#&gt; 19        Nissan  8
-#&gt; 20        Morgan  3
-#&gt; 21    Mitsubishi  5
-#&gt; 22          Mini  6
-#&gt; 23 Mercedes-Benz 19
-#&gt; 24       McLaren  1
-#&gt; 25         Mazda  3
-#&gt; 26      Maserati  2
-#&gt; 27         Lotus  3
-#&gt; 28         Lexus  4
-#&gt; 29    Land Rover  6
-#&gt; 30   Lamborghini  2
-#&gt; 31           Kia  8
-#&gt; 32          Jeep  3
-#&gt; 33        Jaguar  6
-#&gt; 34      Infiniti  4
-#&gt; 35       Hyundai  9
-#&gt; 36         Honda  6
-#&gt; 37          Ford 10
-#&gt; 38          Fiat  7
-#&gt; 39       Ferrari  4
-#&gt; 40         Dacia  2
-#&gt; 41      Corvette  1
-#&gt; 42       Citroen 10
-#&gt; 43      Chrysler  4
-#&gt; 44     Chevrolet  7
-#&gt; 45      Caterham  2
-#&gt; 46       Bugatti  1
-#&gt; 47           BMW 18
-#&gt; 48       Bentley  4
-#&gt; 49          Audi 18
-#&gt; 50  Aston Martin  7
-#&gt; 51    Alfa Romeo  2</code></pre>
+Maker_freq</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Maker</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Volvo</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="left">Volkswagen</td>
+<td align="right">15</td>
+</tr>
+<tr class="odd">
+<td align="left">Vauxhall</td>
+<td align="right">17</td>
+</tr>
+<tr class="even">
+<td align="left">Toyota</td>
+<td align="right">11</td>
+</tr>
+<tr class="odd">
+<td align="left">Suzuki</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="left">Subaru</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Ssangyong</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Smart</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Skoda</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">SEAT</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left">Rolls-Royce</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Renault</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="left">Proton</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Porsche</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Peugeot</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="left">Perodua</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Pagani</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Noble</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Nissan</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="left">Morgan</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">Mitsubishi</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">Mini</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="left">Mercedes-Benz</td>
+<td align="right">19</td>
+</tr>
+<tr class="even">
+<td align="left">McLaren</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Mazda</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Maserati</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Lotus</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Lexus</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Land Rover</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="left">Lamborghini</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Kia</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="left">Jeep</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">Jaguar</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="left">Infiniti</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Hyundai</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="left">Honda</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="left">Ford</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="left">Fiat</td>
+<td align="right">7</td>
+</tr>
+<tr class="odd">
+<td align="left">Ferrari</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">Dacia</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Corvette</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Citroen</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="left">Chrysler</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">Chevrolet</td>
+<td align="right">7</td>
+</tr>
+<tr class="odd">
+<td align="left">Caterham</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Bugatti</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">BMW</td>
+<td align="right">18</td>
+</tr>
+<tr class="even">
+<td align="left">Bentley</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Audi</td>
+<td align="right">18</td>
+</tr>
+<tr class="even">
+<td align="left">Aston Martin</td>
+<td align="right">7</td>
+</tr>
+<tr class="odd">
+<td align="left">Alfa Romeo</td>
+<td align="right">2</td>
+</tr>
+</tbody>
+</table>
 <pre class="r"><code>Maker_Verdict &lt;-
   TopGear %&gt;%
   group_by(Maker)  %&gt;%
@@ -251,7 +499,7 @@ glimpse(Maker_Verdict)
 <pre class="r"><code>ggplot(Maker_Verdict, aes(x = reorder(Maker, Verdict_mean), y = Verdict_mean)) +
   geom_bar(stat = &quot;identity&quot;) +
   coord_flip()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="die-10-größten-hersteller" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> Die 10% größten Hersteller</h2>
@@ -266,7 +514,7 @@ glimpse(Maker_Verdict)
   ggplot(., aes(x = reorder(Maker, Verdict_mean), y = Verdict_mean)) +
            geom_bar(stat = &quot;identity&quot;) +
   coord_flip()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="milttlerer-preis-der-10-größten-hersteller" class="section level2" number="5.5">
 <h2><span class="header-section-number">5.5</span> Milttlerer Preis der 10% größten Hersteller</h2>
@@ -275,7 +523,7 @@ glimpse(Maker_Verdict)
   ggplot(., aes(x = reorder(Maker, Price_mean), y = Price_mean)) +
   geom_bar(stat = &quot;identity&quot;) +
   coord_flip()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="überblick-zu-den-10-größten-hersteller" class="section level2" number="5.6">
 <h2><span class="header-section-number">5.6</span> Überblick zu den 10% größten Hersteller</h2>
@@ -283,7 +531,7 @@ glimpse(Maker_Verdict)
   filter(Maker %in% Big10perc$Maker) %&gt;%
   skim()</code></pre>
 <table>
-<caption><span id="tab:unnamed-chunk-22">Table 5.1: </span>Data summary</caption>
+<caption><span id="tab:unnamed-chunk-24">Table 5.1: </span>Data summary</caption>
 <tbody>
 <tr class="odd">
 <td align="left">Name</td>
@@ -685,29 +933,29 @@ glimpse(Maker_Verdict)
 <p>`</p>
 <pre class="r"><code>ggplot(Big10perc, aes(x = Maker, y = n, fill = Maker)) + coord_polar() +
   geom_bar(stat=&quot;identity&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Torten stehen nicht auf dem Speiseplan…</p>
 </div>
 <div id="anzahl-modellytypen-der-großen-hersteller" class="section level2" number="5.8">
 <h2><span class="header-section-number">5.8</span> Anzahl Modellytypen der großen Hersteller</h2>
 <pre class="r"><code>ggplot(Big10perc, aes(x = Maker, y = n, fill = Maker)) +
   geom_bar(stat=&quot;identity&quot;) + coord_flip()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="preisverteilung-der-10-größten-hersteller" class="section level2" number="5.9">
 <h2><span class="header-section-number">5.9</span> Preisverteilung der 10% größten Hersteller</h2>
 <pre class="r"><code>TopGear %&gt;%
   filter(Maker %in% Big10perc$Maker) %&gt;%
   qplot(data = ., x = Price)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-27-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>TopGear %&gt;%
   filter(Maker %in% Big10perc$Maker) %&gt;%
   qplot(data = ., y = Price, x = Maker)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-28-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>TopGear %&gt;%
   filter(Maker %in% Big10perc$Maker) %&gt;%
   qplot(data = ., y = Price, x = Maker, geom = &quot;violin&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-27-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-29-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="beliebtheitsverteilung-der-10-größten-hersteller" class="section level2" number="5.10">
 <h2><span class="header-section-number">5.10</span> Beliebtheitsverteilung der 10% größten Hersteller</h2>
@@ -715,28 +963,28 @@ glimpse(Maker_Verdict)
   filter(Maker %in% Big10perc$Maker) %&gt;%
   ggplot(aes(y = Verdict, x = Maker)) +
   geom_violin()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-28-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-30-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="hängt-beschleunigung-mit-dem-preis-zusammen" class="section level2" number="5.11">
 <h2><span class="header-section-number">5.11</span> Hängt Beschleunigung mit dem Preis zusammen?</h2>
 <pre class="r"><code>ggplot(TopGear, aes(x = Acceleration, y = Price)) + geom_hex()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-29-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-31-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ggplot(TopGear, aes(x = Acceleration, y = log(Price))) + geom_hex()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-30-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-32-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ggplot(TopGear, aes(x = Acceleration, y = log(Price))) + geom_jitter() +
   geom_smooth()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-31-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-33-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="hängt-beschleunigung-mit-beurteilung-zusammen---nur-die-großen-hersteller" class="section level2" number="5.12">
 <h2><span class="header-section-number">5.12</span> Hängt Beschleunigung mit Beurteilung zusammen? - Nur die großen Hersteller</h2>
 <pre class="r"><code>ggplot(TopGear, aes(x = Acceleration, y = log(Price))) + geom_jitter() +
   geom_smooth()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-32-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-34-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="hängt-die-verwendung-bestimmter-sprit-arten-mit-dem-kontinent-zusammen" class="section level2" number="5.13">
 <h2><span class="header-section-number">5.13</span> Hängt die Verwendung bestimmter Sprit-Arten mit dem Kontinent zusammen?</h2>
 <pre class="r"><code>ggplot(TopGear, aes(x = Origin, y = Fuel, color = Origin)) + geom_jitter()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-33-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-35-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="reproducibility" class="section level1" number="6">

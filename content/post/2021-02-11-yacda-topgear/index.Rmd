@@ -42,6 +42,9 @@ library(skimr)  # overview on descriptive statistics
 ```
 
 
+```{r include=FALSE}
+library(printr)
+```
 
 
 ___
@@ -68,6 +71,14 @@ library(tidyverse)
 ```{r}
 glimpse(TopGear)
 ```
+
+```{r}
+TopGear %>% 
+  select(Maker, Model, Type, Price, Cylinders) %>% 
+  slice(1:10)
+```
+
+
 
 ## Wie verteilen sich die Preise?
 
