@@ -59,20 +59,21 @@ output:
 <h1><span class="header-section-number">1</span> Load packages</h1>
 <pre class="r"><code>library(tidyverse)  # data wrangling
 library(rvest)  # web scraping
+library(xml2)  # web scraping
 library(stringr)  # string manipulation
 library(printr)  # print dfs as tables</code></pre>
 <blockquote>
 <p>The Cochrane Library (ISSN 1465-1858) is a collection of databases that contain different types of high-quality, independent evidence to inform healthcare decision-making.</p>
 </blockquote>
 <p><a href="https://www.cochranelibrary.com/about/about-cochrane-library">Source: Cochrane</a></p>
-<p>For that reason the site holds a treasure of information for health scientiests. Let’s try to use some automatic tools to retrieve that information.</p>
+<p>For that reason the site holds a treasure of information for health scientists. Let’s try to use some automatic tools to retrieve that information, ie., let’s do some web scraping.</p>
 </div>
 <div id="parse-one-review" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Parse one review</h1>
 <p>Let’s read one page of the Cochrane Library, a page on which a review is published. For no particular reason, just as a showcase, let’s pick<a href="https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD012791.pub2/full">this review</a>:</p>
-<pre class="r"><code>url &lt;- &quot;https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD012791.pub2/full&quot;</code></pre>
+<pre class="r"><code>cochrane_url &lt;- &quot;https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD012791.pub2/full&quot;</code></pre>
 <p>Let’s parse the page:</p>
-<pre class="r"><code>page_content &lt;- read_html(url)  </code></pre>
+<pre class="r"><code>page_content &lt;- read_html(cochrane_url)  </code></pre>
 <p>Let’s have a glimpse at the parsed page:</p>
 <pre class="r"><code>str(page_content)
 #&gt; List of 2
@@ -84,20 +85,18 @@ library(printr)  # print dfs as tables</code></pre>
 <h1><span class="header-section-number">3</span> Parse the title</h1>
 <pre class="r"><code>title_publication &lt;- page_content %&gt;% 
   html_nodes(&quot;.publication-title&quot;) %&gt;% 
-  html_text()
-
-title_publication
-#&gt; [1] &quot;Mindfulness‐based stress reduction for family carers of people with dementia&quot;</code></pre>
+  html_text()</code></pre>
+<p><em>Mindfulness‐based stress reduction for family carers of people with dementia</em></p>
 </div>
 <div id="parse-the-abstract" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> Parse the abstract</h1>
 <pre class="r"><code>abstract &lt;- page_content %&gt;%
   html_node(&quot;body&quot;) %&gt;% 
-  xml2::xml_find_all(&quot;//section[contains(@class, &#39;abstract&#39;)]&quot;) %&gt;% 
-  rvest::html_text()
-
-abstract
-#&gt; [1] &quot;  Abstract    available in  English   Español   Français   简体中文     Background Caring for people with dementia is highly challenging, and family carers are recognised as being at increased risk of physical and mental ill‐health. Most current interventions have limited success in reducing stress among carers of people with dementia. Mindfulness‐based stress reduction (MBSR) draws on a range of practices and may be a promising approach to helping carers of people with dementia.  Objectives To assess the effectiveness of MBSR in reducing the stress of family carers of people with dementia.  Search methods We searched ALOIS ‐ the Cochrane Dementia and Cognitive Improvement Group&#39;s Specialized Register, the Cochrane Central Register of Controlled Trials (CENTRAL) (all years to Issue 9 of 12, 2017), MEDLINE (Ovid SP 1950 to September 2017), Embase (Ovid SP 1974 to Sepetmber 2017), Web of Science (ISI Web of Science 1945 to September 2017), PsycINFO (Ovid SP 1806 to September 2017), CINAHL (all dates to September 2017), LILACS (all dates to September 2017), World Health Organization (WHO) International Clinical Trials Registry Platform (ICTRP), ClinicalTrials.gov, and Dissertation Abstracts International (DAI) up to 6 September 2017, with no language restrictions.  Selection criteria Randomised controlled trials (RCTs) of MBSR for family carers of people with dementia. Data collection and analysis Two review authors independently screened references for inclusion criteria, extracted data, assessed the risk of bias of trials with the Cochrane &#39;Risk of bias&#39; tool, and evaluated the quality of the evidence using the GRADE instrument. We contacted study authors for additional information, then conducted meta‐analyses, or reported results narratively in the case of insufficient data. We used standard methodological procedures expected by Cochrane.  Main results We included five RCTs involving 201 carers assessing the effectiveness of MBSR. Controls used in included studies varied in structure and content. Mindfulness‐based stress reduction programmes were compared with either active controls (those matched for time and attention with MBSR, i.e. education, social support, or progressive muscle relaxation), or inactive controls (those not matched for time and attention with MBSR, i.e. self help education or respite care). One trial used both active and inactive comparisons with MBSR. All studies were at high risk of bias in terms of blinding of outcome assessment. Most studies provided no information about selective reporting, incomplete outcome data, or allocation concealment.  1. Compared with active controls, MBSR may reduce depressive symptoms of carers at the end of the intervention (3 trials, 135 participants; standardised mean difference (SMD) ‐0.63, 95% confidence interval (CI) ‐0.98 to ‐0.28; P&lt;0.001; low‐quality evidence). We could not be certain of any effect on clinically significant depressive symptoms (very low‐quality evidence).  Mindfulness‐based stress reduction compared with active control may decrease carer anxiety at the end of the intervention (1 trial, 78 participants; mean difference (MD) ‐7.50, 95% CI ‐13.11 to ‐1.89; P&lt;0.001; low‐quality evidence) and may slightly increase carer burden (3 trials, 135 participants; SMD 0.24, 95% CI ‐0.11 to 0.58; P=0.18; low‐quality evidence), although both results were imprecise, and we could not exclude little or no effect. Due to the very low quality of the evidence, we could not be sure of any effect on carers&#39; coping style, nor could we determine whether carers were more or less likely to drop out of treatment.  2. Compared with inactive controls, MBSR showed no clear evidence of any effect on depressive symptoms (2 trials, 50 participants; MD ‐1.97, 95% CI ‐6.89 to 2.95; P=0.43; low‐quality evidence). We could not be certain of any effect on clinically significant depressive symptoms (very low‐quality evidence).  In this comparison, MBSR may also reduce carer anxiety at the end of the intervention (1 trial, 33 participants; MD ‐7.27, 95% CI ‐14.92 to 0.38; P=0.06; low‐quality evidence), although we were unable to exclude little or no effect. Due to the very low quality of the evidence, we could not be certain of any effects of MBSR on carer burden, the use of positive coping strategies, or dropout rates.  We found no studies that looked at quality of life of carers or care‐recipients, or institutionalisation.  Only one included study reported on adverse events, noting a single adverse event related to yoga practices at home  Authors&#39; conclusions After accounting for non‐specific effects of the intervention (i.e. comparing it with an active control), low‐quality evidence suggests that MBSR may reduce carers&#39; depressive symptoms and anxiety, at least in the short term.  There are significant limitations to the evidence base on MBSR in this population. Our GRADE assessment of the evidence was low to very low quality. We downgraded the quality of the evidence primarily because of high risk of detection or performance bias, and imprecision.  In conclusion, MBSR has the potential to meet some important needs of the carer, but more high‐quality studies in this field are needed to confirm its efficacy.   &quot;</code></pre>
+  xml_find_all(&quot;//section[contains(@class, &#39;abstract&#39;)]&quot;) %&gt;% 
+  rvest::html_text()</code></pre>
+<ul>
+<li>Abstract available in English Español Français 简体中文 Background Caring for people with dementia is highly challenging, and family carers are recognised as being at increased risk of physical and mental ill‐health. Most current interventions have limited success in reducing stress among carers of people with dementia. Mindfulness‐based stress reduction (MBSR) draws on a range of practices and may be a promising approach to helping carers of people with dementia. Objectives To assess the effectiveness of MBSR in reducing the stress of family carers of people with dementia. Search methods We searched ALOIS ‐ the Cochrane Dementia and Cognitive Improvement Group’s Specialized Register, the Cochrane Central Register of Controlled Trials (CENTRAL) (all years to Issue 9 of 12, 2017), MEDLINE (Ovid SP 1950 to September 2017), Embase (Ovid SP 1974 to Sepetmber 2017), Web of Science (ISI Web of Science 1945 to September 2017), PsycINFO (Ovid SP 1806 to September 2017), CINAHL (all dates to September 2017), LILACS (all dates to September 2017), World Health Organization (WHO) International Clinical Trials Registry Platform (ICTRP), ClinicalTrials.gov, and Dissertation Abstracts International (DAI) up to 6 September 2017, with no language restrictions. Selection criteria Randomised controlled trials (RCTs) of MBSR for family carers of people with dementia. Data collection and analysis Two review authors independently screened references for inclusion criteria, extracted data, assessed the risk of bias of trials with the Cochrane ‘Risk of bias’ tool, and evaluated the quality of the evidence using the GRADE instrument. We contacted study authors for additional information, then conducted meta‐analyses, or reported results narratively in the case of insufficient data. We used standard methodological procedures expected by Cochrane. Main results We included five RCTs involving 201 carers assessing the effectiveness of MBSR. Controls used in included studies varied in structure and content. Mindfulness‐based stress reduction programmes were compared with either active controls (those matched for time and attention with MBSR, i.e. education, social support, or progressive muscle relaxation), or inactive controls (those not matched for time and attention with MBSR, i.e. self help education or respite care). One trial used both active and inactive comparisons with MBSR. All studies were at high risk of bias in terms of blinding of outcome assessment. Most studies provided no information about selective reporting, incomplete outcome data, or allocation concealment. 1. Compared with active controls, MBSR may reduce depressive symptoms of carers at the end of the intervention (3 trials, 135 participants; standardised mean difference (SMD) ‐0.63, 95% confidence interval (CI) ‐0.98 to ‐0.28; P&lt;0.001; low‐quality evidence). We could not be certain of any effect on clinically significant depressive symptoms (very low‐quality evidence). Mindfulness‐based stress reduction compared with active control may decrease carer anxiety at the end of the intervention (1 trial, 78 participants; mean difference (MD) ‐7.50, 95% CI ‐13.11 to ‐1.89; P&lt;0.001; low‐quality evidence) and may slightly increase carer burden (3 trials, 135 participants; SMD 0.24, 95% CI ‐0.11 to 0.58; P=0.18; low‐quality evidence), although both results were imprecise, and we could not exclude little or no effect. Due to the very low quality of the evidence, we could not be sure of any effect on carers’ coping style, nor could we determine whether carers were more or less likely to drop out of treatment. 2. Compared with inactive controls, MBSR showed no clear evidence of any effect on depressive symptoms (2 trials, 50 participants; MD ‐1.97, 95% CI ‐6.89 to 2.95; P=0.43; low‐quality evidence). We could not be certain of any effect on clinically significant depressive symptoms (very low‐quality evidence). In this comparison, MBSR may also reduce carer anxiety at the end of the intervention (1 trial, 33 participants; MD ‐7.27, 95% CI ‐14.92 to 0.38; P=0.06; low‐quality evidence), although we were unable to exclude little or no effect. Due to the very low quality of the evidence, we could not be certain of any effects of MBSR on carer burden, the use of positive coping strategies, or dropout rates. We found no studies that looked at quality of life of carers or care‐recipients, or institutionalisation. Only one included study reported on adverse events, noting a single adverse event related to yoga practices at home Authors’ conclusions After accounting for non‐specific effects of the intervention (i.e. comparing it with an active control), low‐quality evidence suggests that MBSR may reduce carers’ depressive symptoms and anxiety, at least in the short term. There are significant limitations to the evidence base on MBSR in this population. Our GRADE assessment of the evidence was low to very low quality. We downgraded the quality of the evidence primarily because of high risk of detection or performance bias, and imprecision. In conclusion, MBSR has the potential to meet some important needs of the carer, but more high‐quality studies in this field are needed to confirm its efficacy. *</li>
+</ul>
 </div>
 <div id="segment-the-abstract" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> Segment the abstract</h1>
@@ -106,9 +105,10 @@ abstract
 <pre class="r"><code>background_raw &lt;- str_extract(abstract, &quot;Background.+Objectives&quot;)
 
 background &lt;- 
-  background_raw %&gt;% str_remove_all(&quot;Background|Objectives&quot;)
-background
-#&gt; [1] &quot; Caring for people with dementia is highly challenging, and family carers are recognised as being at increased risk of physical and mental ill‐health. Most current interventions have limited success in reducing stress among carers of people with dementia. Mindfulness‐based stress reduction (MBSR) draws on a range of practices and may be a promising approach to helping carers of people with dementia.  &quot;</code></pre>
+  background_raw %&gt;% str_remove_all(&quot;Background|Objectives&quot;)</code></pre>
+<ul>
+<li>Caring for people with dementia is highly challenging, and family carers are recognised as being at increased risk of physical and mental ill‐health. Most current interventions have limited success in reducing stress among carers of people with dementia. Mindfulness‐based stress reduction (MBSR) draws on a range of practices and may be a promising approach to helping carers of people with dementia. *</li>
+</ul>
 </div>
 <div id="objectives" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Objectives</h2>
@@ -118,6 +118,9 @@ objectives &lt;-
   objectives_raw %&gt;% str_remove_all(&quot;Objectives|Search methods&quot;)
 objectives
 #&gt; [1] &quot; To assess the effectiveness of MBSR in reducing the stress of family carers of people with dementia.  &quot;</code></pre>
+<ul>
+<li>To assess the effectiveness of MBSR in reducing the stress of family carers of people with dementia. *</li>
+</ul>
 </div>
 <div id="and-so-forth" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> And so forth</h2>
@@ -891,6 +894,7 @@ summaryOfFindingsTable7</code></pre>
 <h1><span class="header-section-number">12</span> Debrief</h1>
 <p>As of this quick and dirty analysis, it seems that relevant information can be scraped from the Cochrane Library website. However, this hinges on the condition that other reviews, that is, other sites at Cochrane Library are structured in the same way. To be determined.</p>
 <p>In addition, it would be much more elegant to use the Cochrane API. However, so far I’ve found no way how to be granted access.</p>
+<p>It might seem that the whole fuss is like shooting sparrows with canons: All the information parsed could have easily been copy-and-pasted. True. However assume you’d like to parse a great number of pages. In that case you’d be glad to have some machine doing the boring stuff for you.</p>
 <p>To get it running for production, all the stuff here should go into some neat function, so that the scraping can be applies smoothly to more pages.</p>
 </div>
 <div id="reproducibility" class="section level1" number="13">
