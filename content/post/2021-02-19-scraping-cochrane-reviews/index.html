@@ -311,7 +311,95 @@ summaryOfFindingsTable</code></pre>
 <pre class="r"><code>summaryOfFindingsTable &lt;- 
   summaryOfFindingsTable %&gt;% 
   mutate(id = row_number()) %&gt;% 
-  select(id, everything())</code></pre>
+  select(id, everything())
+
+head(summaryOfFindingsTable)</code></pre>
+<table>
+<colgroup>
+<col width="0%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="left">X1</th>
+<th align="left">X2</th>
+<th align="left">X3</th>
+<th align="left">X4</th>
+<th align="left">X5</th>
+<th align="left">X6</th>
+<th align="left">X7</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">MBSR (mindfulness‐based stress reduction) compared to active control for family carers of people with dementia</td>
+<td align="left">MBSR (mindfulness‐based stress reduction) compared to active control for family carers of people with dementia</td>
+<td align="left">MBSR (mindfulness‐based stress reduction) compared to active control for family carers of people with dementia</td>
+<td align="left">MBSR (mindfulness‐based stress reduction) compared to active control for family carers of people with dementia</td>
+<td align="left">MBSR (mindfulness‐based stress reduction) compared to active control for family carers of people with dementia</td>
+<td align="left">MBSR (mindfulness‐based stress reduction) compared to active control for family carers of people with dementia</td>
+<td align="left">MBSR (mindfulness‐based stress reduction) compared to active control for family carers of people with dementia</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">Patient or population: family carers of people with dementiaSetting: communityIntervention: MBSRComparison: active control</td>
+<td align="left">Patient or population: family carers of people with dementiaSetting: communityIntervention: MBSRComparison: active control</td>
+<td align="left">Patient or population: family carers of people with dementiaSetting: communityIntervention: MBSRComparison: active control</td>
+<td align="left">Patient or population: family carers of people with dementiaSetting: communityIntervention: MBSRComparison: active control</td>
+<td align="left">Patient or population: family carers of people with dementiaSetting: communityIntervention: MBSRComparison: active control</td>
+<td align="left">Patient or population: family carers of people with dementiaSetting: communityIntervention: MBSRComparison: active control</td>
+<td align="left">Patient or population: family carers of people with dementiaSetting: communityIntervention: MBSRComparison: active control</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">Outcomes</td>
+<td align="left">Anticipated absolute effects* (95% CI)</td>
+<td align="left">Anticipated absolute effects* (95% CI)</td>
+<td align="left">Relative effect (95% CI)</td>
+<td align="left">№ of participants (studies)</td>
+<td align="left">Quality of the evidence (GRADE)</td>
+<td align="left">Comments</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">Outcomes</td>
+<td align="left">Risk with active control</td>
+<td align="left">Anticipated absolute effects* (95% CI)</td>
+<td align="left">Relative effect (95% CI)</td>
+<td align="left">№ of participants (studies)</td>
+<td align="left">Quality of the evidence (GRADE)</td>
+<td align="left">Risk with MBSR</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">Depressive symptoms assessed with: CESD, POMS‐depression subscale Scale from 0 to 60 follow‐up: range 7 weeks to 8 weeks</td>
+<td align="left">‐</td>
+<td align="left">SMD 0.63 SD lower (0.98 lower to 0.28 lower)</td>
+<td align="left">‐</td>
+<td align="left">135 (3 RCTs)</td>
+<td align="left">⊕⊕⊝⊝ LOW a b</td>
+<td align="left">Moderate effect size;c lower score represents lower depressive symptoms</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="left">Anxiety assessed with: STAI‐state anxiety subscale Scale from 20 to 80 follow‐up: 8 weeks</td>
+<td align="left">The mean anxiety was 47.4 score.</td>
+<td align="left">MD 7.5 score lower (13.11 lower to 1.89 lower)</td>
+<td align="left">‐</td>
+<td align="left">78 (1 RCT)</td>
+<td align="left">⊕⊕⊝⊝ LOW a b</td>
+<td align="left">Moderate effect size;c lower score represents lower level of anxiety</td>
+</tr>
+</tbody>
+</table>
 <p>Much better! The first two lines appear to be the table legend. The two lines with <code>Outcomes</code> are the read header line (split in two, as we actually have two header lines; compare with the source).</p>
 </div>
 </div>

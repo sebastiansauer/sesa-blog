@@ -219,6 +219,8 @@ summaryOfFindingsTable <-
   summaryOfFindingsTable %>% 
   mutate(id = row_number()) %>% 
   select(id, everything())
+
+head(summaryOfFindingsTable)
 ```
 
 
