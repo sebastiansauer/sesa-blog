@@ -49,6 +49,7 @@ This is beta stuff! Use with care.
 ```{r load-libs, message = FALSE, warning = FALSE}
 library(tidyverse)  # data wrangling
 library(rvest)  # web scraping
+library(xml2)  # web scraping
 library(stringr)  # string manipulation
 library(printr)  # print dfs as tables
 ```
@@ -61,7 +62,7 @@ library(printr)  # print dfs as tables
 [Source: Cochrane](https://www.cochranelibrary.com/about/about-cochrane-library)
 
 
-For that reason the site holds a treasure of information for health scientiests. Let's try to use some automatic tools to retrieve that information.
+For that reason the site holds a treasure of information for health scientists. Let's try to use some automatic tools to retrieve that information.
 
 
 # Parse one review
@@ -92,10 +93,9 @@ str(page_content)
 title_publication <- page_content %>% 
   html_nodes(".publication-title") %>% 
   html_text()
-
-title_publication
 ```
 
+*`r title_publication`*
 
 # Parse the abstract
 
@@ -103,12 +103,12 @@ title_publication
 ```{r}
 abstract <- page_content %>%
   html_node("body") %>% 
-  xml2::xml_find_all("//section[contains(@class, 'abstract')]") %>% 
+  xml_find_all("//section[contains(@class, 'abstract')]") %>% 
   rvest::html_text()
-
-abstract
 ```
 
+
+*`r abstract`*
 
 # Segment the abstract 
 
@@ -120,9 +120,11 @@ background_raw <- str_extract(abstract, "Background.+Objectives")
 
 background <- 
   background_raw %>% str_remove_all("Background|Objectives")
-background
+
 ```
 
+
+*`r background`*
 
 ## Objectives 
 
@@ -134,6 +136,8 @@ objectives <-
 objectives
 ```
 
+
+*`r objectives`*
 
 ## And so forth
 
