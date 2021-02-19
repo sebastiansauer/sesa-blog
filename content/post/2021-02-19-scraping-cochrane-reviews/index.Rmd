@@ -62,7 +62,9 @@ library(printr)  # print dfs as tables
 [Source: Cochrane](https://www.cochranelibrary.com/about/about-cochrane-library)
 
 
+
 For that reason the site holds a treasure of information for health scientists. Let's try to use some automatic tools to retrieve that information, ie., let's do some web scraping.
+
 
 
 # Parse one review
