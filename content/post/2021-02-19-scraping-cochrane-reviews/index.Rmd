@@ -33,6 +33,17 @@ knitr::opts_chunk$set(
 
 
 
+---
+
+**CAUTION**
+
+This is beta stuff! Use with care.
+
+---
+
+
+
+
 # Load packages
 
 ```{r load-libs, message = FALSE, warning = FALSE}
