@@ -110,7 +110,7 @@ abstract <- page_content %>%
 ```
 
 
-*`r abstract`*
+`r abstract`
 
 # Segment the abstract 
 
@@ -126,7 +126,7 @@ background <-
 ```
 
 
-*`r background`*
+`r background`
 
 ## Objectives 
 
@@ -139,7 +139,7 @@ objectives
 ```
 
 
-*`r objectives`*
+`r objectives`
 
 ## And so forth
 
