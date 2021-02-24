@@ -20,28 +20,29 @@ output:
 <li><a href="#load-packages"><span class="toc-section-number">1</span> Load packages</a></li>
 <li><a href="#load-data"><span class="toc-section-number">2</span> Load data</a></li>
 <li><a href="#research-question"><span class="toc-section-number">3</span> Research question</a></li>
-<li><a href="#get-overview"><span class="toc-section-number">4</span> Get overview</a>
+<li><a href="#disclaimer"><span class="toc-section-number">4</span> Disclaimer</a></li>
+<li><a href="#get-overview"><span class="toc-section-number">5</span> Get overview</a>
 <ul>
-<li><a href="#descriptive-statistics"><span class="toc-section-number">4.1</span> Descriptive statistics</a></li>
-<li><a href="#missing-values"><span class="toc-section-number">4.2</span> Missing values</a></li>
-<li><a href="#distribution-of-the-output-variable"><span class="toc-section-number">4.3</span> Distribution of the output variable</a></li>
-<li><a href="#distribution-of-the-predictors"><span class="toc-section-number">4.4</span> Distribution of the predictors</a></li>
-<li><a href="#transform-budget-via-logarithm"><span class="toc-section-number">4.5</span> Transform budget (via logarithm)</a></li>
-<li><a href="#ggscatterstats"><span class="toc-section-number">4.6</span> ggscatterstats</a></li>
-<li><a href="#pivot-data-set"><span class="toc-section-number">4.7</span> Pivot data set</a></li>
-<li><a href="#drop-unused-variables"><span class="toc-section-number">4.8</span> Drop unused variables</a></li>
-<li><a href="#drop-cases-with-missing-values"><span class="toc-section-number">4.9</span> Drop cases with missing values</a></li>
+<li><a href="#descriptive-statistics"><span class="toc-section-number">5.1</span> Descriptive statistics</a></li>
+<li><a href="#missing-values"><span class="toc-section-number">5.2</span> Missing values</a></li>
+<li><a href="#distribution-of-the-output-variable"><span class="toc-section-number">5.3</span> Distribution of the output variable</a></li>
+<li><a href="#distribution-of-the-predictors"><span class="toc-section-number">5.4</span> Distribution of the predictors</a></li>
+<li><a href="#transform-budget-via-logarithm"><span class="toc-section-number">5.5</span> Transform budget (via logarithm)</a></li>
+<li><a href="#ggscatterstats"><span class="toc-section-number">5.6</span> ggscatterstats</a></li>
+<li><a href="#pivot-data-set"><span class="toc-section-number">5.7</span> Pivot data set</a></li>
+<li><a href="#drop-unused-variables"><span class="toc-section-number">5.8</span> Drop unused variables</a></li>
+<li><a href="#drop-cases-with-missing-values"><span class="toc-section-number">5.9</span> Drop cases with missing values</a></li>
 </ul></li>
-<li><a href="#model-0"><span class="toc-section-number">5</span> Model 0</a></li>
-<li><a href="#model-1-budget_log10"><span class="toc-section-number">6</span> Model 1: <code>budget_log10</code></a></li>
-<li><a href="#model-2-adding-number-of-votes"><span class="toc-section-number">7</span> Model 2: Adding number of votes</a></li>
-<li><a href="#model-3-number-of-votes-quadratic"><span class="toc-section-number">8</span> Model 3: Number of votes, quadratic</a></li>
-<li><a href="#model-4-number-of-votes-3rd-degree"><span class="toc-section-number">9</span> Model 4: Number of votes, 3rd degree</a></li>
-<li><a href="#model-5-multiple-regression"><span class="toc-section-number">10</span> Model 5: Multiple regression</a></li>
-<li><a href="#model-6-interaction"><span class="toc-section-number">11</span> Model 6: Interaction</a></li>
-<li><a href="#model-selection-anova"><span class="toc-section-number">12</span> Model selection: ANOVA</a></li>
-<li><a href="#regression-diagnostics-testing-the-assumptions"><span class="toc-section-number">13</span> Regression diagnostics: testing the assumptions</a></li>
-<li><a href="#reproducibility"><span class="toc-section-number">14</span> Reproducibility</a></li>
+<li><a href="#model-0"><span class="toc-section-number">6</span> Model 0</a></li>
+<li><a href="#model-1-budget_log10"><span class="toc-section-number">7</span> Model 1: <code>budget_log10</code></a></li>
+<li><a href="#model-2-adding-number-of-votes"><span class="toc-section-number">8</span> Model 2: Adding number of votes</a></li>
+<li><a href="#model-3-number-of-votes-quadratic"><span class="toc-section-number">9</span> Model 3: Number of votes, quadratic</a></li>
+<li><a href="#model-4-number-of-votes-3rd-degree"><span class="toc-section-number">10</span> Model 4: Number of votes, 3rd degree</a></li>
+<li><a href="#model-5-multiple-regression"><span class="toc-section-number">11</span> Model 5: Multiple regression</a></li>
+<li><a href="#model-6-interaction"><span class="toc-section-number">12</span> Model 6: Interaction</a></li>
+<li><a href="#model-selection-anova"><span class="toc-section-number">13</span> Model selection: ANOVA</a></li>
+<li><a href="#regression-diagnostics-testing-the-assumptions"><span class="toc-section-number">14</span> Regression diagnostics: testing the assumptions</a></li>
+<li><a href="#reproducibility"><span class="toc-section-number">15</span> Reproducibility</a></li>
 </ul>
 </div>
 
@@ -95,13 +96,17 @@ glimpse(movies)
 <p><strong>Which factors are predictive for movie success?</strong></p>
 <p>We’ll take the movie rating as the output variable (the y-variable).</p>
 </div>
-<div id="get-overview" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Get overview</h1>
-<div id="descriptive-statistics" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> Descriptive statistics</h2>
+<div id="disclaimer" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Disclaimer</h1>
+<p>This course is built on <a href="https://moodle.hs-ansbach.de/pluginfile.php/59100/mod_resource/content/1/Fallstudie-Regression-ggplot2movies.html">this earlier case study</a> (in German language).</p>
+</div>
+<div id="get-overview" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Get overview</h1>
+<div id="descriptive-statistics" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Descriptive statistics</h2>
 <pre class="r"><code>skim(movies)</code></pre>
 <table>
-<caption><span id="tab:unnamed-chunk-3">Table 4.1: </span>Data summary</caption>
+<caption><span id="tab:unnamed-chunk-3">Table 5.1: </span>Data summary</caption>
 <tbody>
 <tr class="odd">
 <td align="left">Name</td>
@@ -511,8 +516,8 @@ glimpse(movies)
 </tbody>
 </table>
 </div>
-<div id="missing-values" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> Missing values</h2>
+<div id="missing-values" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Missing values</h2>
 <pre class="r"><code>movies %&gt;% 
   summarise(budget_na = sum(is.na(budget))) 
 #&gt;   budget_na
@@ -525,15 +530,15 @@ glimpse(movies)
 #&gt;   Action Animation Comedy Drama Documentary Romance Short
 #&gt; 1      0         0      0     0           0       0     0</code></pre>
 </div>
-<div id="distribution-of-the-output-variable" class="section level2" number="4.3">
-<h2><span class="header-section-number">4.3</span> Distribution of the output variable</h2>
+<div id="distribution-of-the-output-variable" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Distribution of the output variable</h2>
 <pre class="r"><code>movies %&gt;% 
   ggplot(aes(x = rating)) +
   geom_histogram()</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="distribution-of-the-predictors" class="section level2" number="4.4">
-<h2><span class="header-section-number">4.4</span> Distribution of the predictors</h2>
+<div id="distribution-of-the-predictors" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> Distribution of the predictors</h2>
 <pre class="r"><code>movies %&gt;% 
   mutate(across(where(is.integer), as.numeric)) %&gt;%  # Integervariable als numerisch deklarieren
   select(where(is.numeric)) %&gt;%  # alle numerischen Variablen auswählen
@@ -543,8 +548,8 @@ glimpse(movies)
   facet_wrap(~ variable, scales = &quot;free&quot;)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="transform-budget-via-logarithm" class="section level2" number="4.5">
-<h2><span class="header-section-number">4.5</span> Transform budget (via logarithm)</h2>
+<div id="transform-budget-via-logarithm" class="section level2" number="5.5">
+<h2><span class="header-section-number">5.5</span> Transform budget (via logarithm)</h2>
 <pre class="r"><code>movies %&gt;% 
   mutate(budget_log10 = log10(budget)) -&gt; movies2</code></pre>
 <p>Remove the original variable:</p>
@@ -556,16 +561,16 @@ glimpse(movies)
   filter(!is.nan(budget_log10)) %&gt;% 
   filter(!is.infinite(budget_log10)) -&gt; movies2a</code></pre>
 </div>
-<div id="ggscatterstats" class="section level2" number="4.6">
-<h2><span class="header-section-number">4.6</span> ggscatterstats</h2>
+<div id="ggscatterstats" class="section level2" number="5.6">
+<h2><span class="header-section-number">5.6</span> ggscatterstats</h2>
 <p>Let’s try this</p>
 <pre class="r"><code>movies2a %&gt;% 
   ggscatterstats(x = budget_log10, y = rating)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p><a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html">Hier</a> findet sich weitere Erklärung zu diesem Diagramm.</p>
 </div>
-<div id="pivot-data-set" class="section level2" number="4.7">
-<h2><span class="header-section-number">4.7</span> Pivot data set</h2>
+<div id="pivot-data-set" class="section level2" number="5.7">
+<h2><span class="header-section-number">5.7</span> Pivot data set</h2>
 <pre class="r"><code>movies2a %&gt;% 
   select(budget_log10, rating, Action:Short) %&gt;% 
   pivot_longer(cols = Action:Short, 
@@ -581,14 +586,14 @@ glimpse(movies)
   scale_fill_viridis_c()</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="drop-unused-variables" class="section level2" number="4.8">
-<h2><span class="header-section-number">4.8</span> Drop unused variables</h2>
+<div id="drop-unused-variables" class="section level2" number="5.8">
+<h2><span class="header-section-number">5.8</span> Drop unused variables</h2>
 <p>Let’s keep things simple and drop some variables.</p>
 <pre class="r"><code>movies2a %&gt;% 
   select(-c(title, r1:r10, mpaa)) -&gt; movies2a</code></pre>
 </div>
-<div id="drop-cases-with-missing-values" class="section level2" number="4.9">
-<h2><span class="header-section-number">4.9</span> Drop cases with missing values</h2>
+<div id="drop-cases-with-missing-values" class="section level2" number="5.9">
+<h2><span class="header-section-number">5.9</span> Drop cases with missing values</h2>
 <pre class="r"><code>movies2a %&gt;% 
   drop_na() -&gt; movies2_nona  # &quot;no NA&quot; soll das heißen</code></pre>
 <p>How many row remain?</p>
@@ -597,8 +602,8 @@ glimpse(movies)
 <p>That’s unsatisfying. However, for simplicity, let’s stick with that for now.</p>
 </div>
 </div>
-<div id="model-0" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> Model 0</h1>
+<div id="model-0" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Model 0</h1>
 <pre class="r"><code>m0 &lt;- lm(rating ~ 1, data = movies2_nona)</code></pre>
 <pre class="r"><code>summary(m0)
 #&gt; 
@@ -630,8 +635,8 @@ glimpse(movies)
 #&gt; 1         0             0  1.54        NA      NA    NA -9605. 19213. 19226.
 #&gt; # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 </div>
-<div id="model-1-budget_log10" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> Model 1: <code>budget_log10</code></h1>
+<div id="model-1-budget_log10" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Model 1: <code>budget_log10</code></h1>
 <pre class="r"><code>movies2_nona %&gt;% 
   drop_na(budget_log10, rating) %&gt;% 
   lm(rating ~ budget_log10, data = .)  -&gt; m1</code></pre>
@@ -649,8 +654,8 @@ glimpse(movies)
 #&gt; 1   0.00619       0.00600  1.54      32.3     1.42e-8     1 -9589. 19183. 19203.
 #&gt; # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 </div>
-<div id="model-2-adding-number-of-votes" class="section level1" number="7">
-<h1><span class="header-section-number">7</span> Model 2: Adding number of votes</h1>
+<div id="model-2-adding-number-of-votes" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Model 2: Adding number of votes</h1>
 <pre class="r"><code>p1 &lt;- movies2_nona %&gt;% 
   ggplot(aes(x = votes)) +
   geom_histogram() +
@@ -680,8 +685,8 @@ glance(m2)
 #&gt; 1    0.0150        0.0149  1.53      79.2 7.80e-19     1 -9565. 19137. 19156.
 #&gt; # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 </div>
-<div id="model-3-number-of-votes-quadratic" class="section level1" number="8">
-<h1><span class="header-section-number">8</span> Model 3: Number of votes, quadratic</h1>
+<div id="model-3-number-of-votes-quadratic" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Model 3: Number of votes, quadratic</h1>
 <pre class="r"><code>m3 &lt;- lm(rating ~ I(votes_log10^2) + votes_log10, data = movies3_nona)</code></pre>
 <pre class="r"><code>tidy(m3)
 #&gt; # A tibble: 3 x 5
@@ -703,8 +708,8 @@ glance(m2)
                 formula = y ~ poly(x, 2))</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-30-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="model-4-number-of-votes-3rd-degree" class="section level1" number="9">
-<h1><span class="header-section-number">9</span> Model 4: Number of votes, 3rd degree</h1>
+<div id="model-4-number-of-votes-3rd-degree" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> Model 4: Number of votes, 3rd degree</h1>
 <pre class="r"><code>movies3_nona %&gt;% 
   ggplot(aes(x = votes_log10, y = rating)) +
   geom_point(alpha = .2) +
@@ -728,8 +733,8 @@ glance(m4)
 #&gt; 1     0.137         0.137  1.43      275. 1.53e-165     3 -9222. 18454. 18486.
 #&gt; # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 </div>
-<div id="model-5-multiple-regression" class="section level1" number="10">
-<h1><span class="header-section-number">10</span> Model 5: Multiple regression</h1>
+<div id="model-5-multiple-regression" class="section level1" number="11">
+<h1><span class="header-section-number">11</span> Model 5: Multiple regression</h1>
 <pre class="r"><code>m5 &lt;- lm(rating ~ votes_log10 + budget_log10, data = movies3_nona)</code></pre>
 <pre class="r"><code>glance(m5)
 #&gt; # A tibble: 1 x 12
@@ -738,13 +743,13 @@ glance(m4)
 #&gt; 1    0.0877        0.0874  1.47      249. 5.02e-104     2 -9367. 18741. 18768.
 #&gt; # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 </div>
-<div id="model-6-interaction" class="section level1" number="11">
-<h1><span class="header-section-number">11</span> Model 6: Interaction</h1>
+<div id="model-6-interaction" class="section level1" number="12">
+<h1><span class="header-section-number">12</span> Model 6: Interaction</h1>
 <pre class="r"><code>m6 &lt;- lm(rating ~ votes_log10 + budget_log10 + votes_log10:budget_log10,
          data = movies3_nona)</code></pre>
 </div>
-<div id="model-selection-anova" class="section level1" number="12">
-<h1><span class="header-section-number">12</span> Model selection: ANOVA</h1>
+<div id="model-selection-anova" class="section level1" number="13">
+<h1><span class="header-section-number">13</span> Model selection: ANOVA</h1>
 <pre class="r"><code>anova(m0,  m2, m3, m4)
 #&gt; Analysis of Variance Table
 #&gt; 
@@ -768,14 +773,14 @@ glance(m4)
 #&gt; 1     0.117         0.117  1.45      230. 6.88e-140     3 -9281. 18572. 18605.
 #&gt; # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 </div>
-<div id="regression-diagnostics-testing-the-assumptions" class="section level1" number="13">
-<h1><span class="header-section-number">13</span> Regression diagnostics: testing the assumptions</h1>
+<div id="regression-diagnostics-testing-the-assumptions" class="section level1" number="14">
+<h1><span class="header-section-number">14</span> Regression diagnostics: testing the assumptions</h1>
 <p>Let’s pick a model and visualize some diagnostics.</p>
 <pre class="r"><code>ggplot2::autoplot(m4) + theme_minimal()</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-39-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="reproducibility" class="section level1" number="14">
-<h1><span class="header-section-number">14</span> Reproducibility</h1>
+<div id="reproducibility" class="section level1" number="15">
+<h1><span class="header-section-number">15</span> Reproducibility</h1>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value                       
 #&gt;  version  R version 4.0.2 (2020-06-22)

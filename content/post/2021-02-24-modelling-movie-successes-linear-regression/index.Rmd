@@ -76,6 +76,19 @@ glimpse(movies)
 
 We'll take the movie rating as the output variable (the y-variable).
 
+
+
+
+# Disclaimer 
+
+
+This course is built on [this earlier case study](https://moodle.hs-ansbach.de/pluginfile.php/59100/mod_resource/content/1/Fallstudie-Regression-ggplot2movies.html) (in German language).
+
+
+
+
+
+
 # Get overview
 
 ## Descriptive statistics

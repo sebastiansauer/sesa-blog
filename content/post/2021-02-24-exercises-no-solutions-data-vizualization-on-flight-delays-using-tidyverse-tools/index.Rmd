@@ -88,10 +88,16 @@ Alternatively, try `? nycflights13`.
 
 6. Visualize the proportion of delayed flights per origin.
 
-7.  Visualize the proportion of delayed flights per time.
+7. Visualize the proportion of delayed flights per time.
 
-8.  Visualize the proportion of delayed flights per week day.
+8. Visualize the proportion of delayed flights per week day.
 
+
+
+# Solutions
+
+
+Check out the solutions [here](https://data-se.netlify.app/2021/02/24/case-study-data-vizualization-on-flight-delays-using-tidyverse-tools/). Only after trying really hard 😀.
 
 
 
