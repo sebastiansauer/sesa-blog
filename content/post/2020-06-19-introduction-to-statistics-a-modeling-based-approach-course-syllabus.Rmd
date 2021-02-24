@@ -46,6 +46,11 @@ Models and modeling are of pivotal importance in many sciences, not only for pro
 
 
 
+# Course prerequisites
+
+Basic computer usage knowledge is needed (downloading materials from the internet, operating a PC, etc). Basic R knowledge is helpful. Basic knowledge of statistical concepts (such as descriptive statistics) is helpful. Willingness to learn is essential.
+
+
 # Learning objectives
 
 Upon successful completion of this course, students should be able to:
@@ -77,7 +82,9 @@ This course can be presented as a one-day seminar or split-up in four blocks.
 
 The course can be held in English or German.
 
-Please *bring your own computer* and *read the notes* regarding course logistics in advance. Note thate some *upfront preparation is needed* from the learners.
+Please *bring your own computer* and *read the notes* regarding course logistics in advance. Note that some *upfront preparation is needed* from the learners. 
+
+R and RStudio will be needed throughout the course. In case of technical difficulties with R feel free to use [RStudio Cloud](https://rstudio.cloud/); free plans are available. 
 
 All learning materials (such as literature, code, data) will be provided in electronic format.
 
@@ -93,7 +100,7 @@ All learning materials (such as literature, code, data) will be provided in elec
     - Browse to the [textbook website for this course](ttps://moderndive.com)
 - Make sure your internet connection is stable and your loudspeaker/headset is working; a webcam is helpful.
 - Students are advised to review the course materials after each session.
-- I recommend that you carefully check the materials to make sure the course fits your needs (not too advanced/basic).
+- I recommend that you carefully check the course description to make sure the course fits your needs (not too advanced/basic).
 
 
 # Didactic outline
