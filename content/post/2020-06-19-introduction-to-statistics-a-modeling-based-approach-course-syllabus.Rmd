@@ -73,11 +73,6 @@ Upon successful completion of this course, students should be able to:
 This course builds on the freely available e-book [ModernDive](https://moderndive.com/index.html). Each topic is paralleled by an ackompagnying chapter from ModernDive. A hard copy can be purchased [here](https://moderndive.com/index.html). The book is for sale in print [here](https://www.routledge.com/Statistical-Inference-via-Data-Science-A-ModernDive-into-R-and-the-Tidyverse/Ismay-Kim/p/book/9780367409821?utm_source=crcpress.com&utm_medium=referral).
 
 
-For students willing to learn more and go deeper (than the concepts explored in the present course), [this book on regression modelling](http://www.stat.columbia.edu/~gelman/arm/), and [this book on statistical learning](http://faculty.marshall.usc.edu/gareth-james/ISL/)  are recommended. For German folks, check out my [book on modern data analysis](https://www.springer.com/de/book/9783658215866). 
-
-Suggested literature for deepening the analytic skills include [Statistical Rethinking](https://xcelab.net/rm/statistical-rethinking/). 
-For an introduction to graphical causal models, check out [Julia Rohrer's paper](https://journals.sagepub.com/doi/full/10.1177/2515245917745629). For a more in-depth journey, consider reading [this book](https://books.google.de/books/about/Counterfactuals_and_Causal_Inference.html?id=lFTP49c5wJoC&redir_esc=y).
-While I wholeheartedly recommend such books, we will not be able to discuss many of the ideas presented therein in class (in this course) due to time constraints.
 
 
 # Course logistics
@@ -254,6 +249,28 @@ So that I can find out if this is happening, I encourage feedback---be it positi
 # Course materials
 
 Most of the materials as presented below is made available through the course book [ModernDive](https://moderndive.com/index.html). Please check the relevant chapters of the book before the course to make sure you have all materials available.
+
+
+
+# More resources
+
+
+- [RStudio Cheatsheets](https://rstudio.com/resources/cheatsheets/), particularly on [data wrangling](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf), and [data vizualization](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf)
+
+- Book [R for Data Science](https://r4ds.had.co.nz/index.html) as a handy reference or a serious text book.
+
+- Post your open question on [Stack Overflow](https://stackoverflow.com/).
+
+- Follow `#rstats` hashtag on [Twitter](https://twitter.com/search?q=%23rstats&src=typed_query).
+
+
+
+For students willing to learn more and go deeper (than the concepts explored in the present course), [this book on regression modelling](http://www.stat.columbia.edu/~gelman/arm/), and [this book on statistical learning](http://faculty.marshall.usc.edu/gareth-james/ISL/)  are recommended. For German folks, check out my [book on modern data analysis](https://www.springer.com/de/book/9783658215866). 
+
+Suggested literature for deepening the analytic skills include [Statistical Rethinking](https://xcelab.net/rm/statistical-rethinking/). 
+For an introduction to graphical causal models, check out [Julia Rohrer's paper](https://journals.sagepub.com/doi/full/10.1177/2515245917745629). For a more in-depth journey, consider reading [this book](https://books.google.de/books/about/Counterfactuals_and_Causal_Inference.html?id=lFTP49c5wJoC&redir_esc=y).
+While I wholeheartedly recommend such books, we will not be able to discuss many of the ideas presented therein in class (in this course) due to time constraints.
+
 
 
 ## R Packages
