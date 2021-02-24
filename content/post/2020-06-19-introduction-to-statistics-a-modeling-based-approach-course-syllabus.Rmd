@@ -48,7 +48,7 @@ Models and modeling are of pivotal importance in many sciences, not only for pro
 
 # Learning objectives
 
-Upon successful completion of thise course, students should be able to:
+Upon successful completion of this course, students should be able to:
 
 - select the right statistical visualization for a variety of data contexts
 - "crunch" or "wrangle" data
@@ -73,24 +73,24 @@ While I wholeheartedly recommend such books, we will not be able to discuss many
 
 # Course logistics
 
-This course can be presented as a one-day seminar or alternatively, as an online course consisting of four blocks.
+This course can be presented as a one-day seminar or split-up in four blocks.
 
 The course can be held in English or German.
 
-Please bring your own computer and read the notes regarding course logistics in advance. Note thate some upfront preparation is needed from the learners.
+Please *bring your own computer* and *read the notes* regarding course logistics in advance. Note thate some *upfront preparation is needed* from the learners.
 
-All learning materials (such as literature, code, data) will be provided in electronic format via an online repository.
+All learning materials (such as literature, code, data) will be provided in electronic format.
+
 
 
 # UPFRONT student preparation
 
-- Install R and RStudio, see [ModernDive Chap. 1.1](https://moderndive.com/1-getting-started.html#r-rstudio). In case you have your R running on your system, please make sure that you're uptodate. If outdated, download and install the most recent versions of the software. Similarly, hit the "Update" button in RStudio's "Packages" tab to update your packages if you have not done so for a couple of months.
+- *Install R and RStudio*, see [ModernDive Chap. 1.1](https://moderndive.com/1-getting-started.html#r-rstudio). In case you have your R running on your system, please make sure that you're uptodate. If outdated, download and install the most recent versions of the software. Similarly, hit the "Update" button in RStudio's "Packages" tab to update your packages if you have not done so for a couple of months.
 - Students new to R are advised to learn the basics, see [ModernDive, Chap 1.2 - 1.5](https://moderndive.com/1-getting-started.html#code)
 - Sign-up to [RStudio Cloud](https://rstudio.cloud/)
-- Download course materials 
 - Bring your own laptop
     - With R and RStudio installed
-    - Make sure you have the course materials handy
+    - Browse to the [textbook website for this course](ttps://moderndive.com)
 - Make sure your internet connection is stable and your loudspeaker/headset is working; a webcam is helpful.
 - Students are advised to review the course materials after each session.
 - I recommend that you carefully check the materials to make sure the course fits your needs (not too advanced/basic).
@@ -117,12 +117,12 @@ This course can rather be considered a workshop in the sense that the instructor
 ## Block 1: Explorative Data Analysis
 
 
-- Data visualization, see [ModernDive Chap. 2](https://moderndive.com/2-viz.html), and get the R code [here](http://moderndive.com/scripts/02-visualization.R)
+- Data *visualization*, see [ModernDive Chap. 2](https://moderndive.com/2-viz.html), and get the R code [here](http://moderndive.com/scripts/02-visualization.R)
   - Exploring common types of statistical diagrams, the "5NG"
   - Discussing when (not) to use diagrams [see Anscombe's Quartett](https://public.tableau.com/profile/dan.murray#!/vizhome/AnscombesQuartet_16/AnscombesQuartet), and when to use which one
   - Building elegant graphics in R
   
-- Data wrangling, see [ModernDive Chap. 3](https://moderndive.com/3-wrangling.html), and get the R code [here](http://moderndive.com/scripts/03-wrangling.R)
+- Data *wrangling*, see [ModernDive Chap. 3](https://moderndive.com/3-wrangling.html), and get the R code [here](http://moderndive.com/scripts/03-wrangling.R)
   - A taxonomy of typical data operations
   - How to perform common data operations with R
   - Summarizing data (aka computing descriptive statistics)
@@ -130,19 +130,19 @@ This course can rather be considered a workshop in the sense that the instructor
   
 ## Block 2: Statistical Modelling: Basic
 
-- Basics of modelling, see [ModernDive Chap. 5.0](https://moderndive.com/5-regression.html), and get the R code [here](http://moderndive.com/scripts/05-regression.R)
+- Basics of *modelling*, see [ModernDive Chap. 5.0](https://moderndive.com/5-regression.html), and get the R code [here](http://moderndive.com/scripts/05-regression.R)
   - What is modelling?
   - Basic terminology
   - Prediction vs. explanation
   
   
-- Some thoughts on causal inference, see ModernDive Chap. 5.3.1
+- Some thoughts on *causal inference*, see ModernDive Chap. 5.3.1
   
-- Regression with one numerical predictor, see ModernDive Chap. 5.1
+- *Regression* with one numerical predictor, see ModernDive Chap. 5.1
 
 - Regression with one categorical predictor, see ModernDive Chap. 5.2
 
-- Assessing model fit using (adjusted) $R^2$, see ModernDive Chap. 5.3.2
+- Assessing *model fit* (using (adjusted) $R^2$), see ModernDive Chap. 5.3.2
 
 - For some tips and tricks on typical issues, see [ModernDive tips and tricks](https://moderndive.github.io/moderndive_labs/tips_and_tricks.html)
 
@@ -150,7 +150,7 @@ This course can rather be considered a workshop in the sense that the instructor
 
 ## Block 3: Statistical Modelling: Multiple Regression and interaction
 
-- Slightly more advanced topics on linear regression, see [ModernDive Chap. 6](https://moderndive.com/6-multiple-regression.html), and get the R code [here](http://moderndive.com/scripts/06-multiple-regression.R)
+- Slightly more advanced topics on linear regression such as *multiple regression and interaction*, see [ModernDive Chap. 6](https://moderndive.com/6-multiple-regression.html), and get the R code [here](http://moderndive.com/scripts/06-multiple-regression.R)
 
 - One numerical and one categorical predictor, see ModernDive Chap. 6.1
 
@@ -170,7 +170,7 @@ This course can rather be considered a workshop in the sense that the instructor
 # Instructor
 
 
-Sebastian Sauer works as a professor for Business Psychology at the FOM university, one of Germany's largest business schools. He's also the head of the research institute for Business Psychology at the FOM. Analyzing data to answer questions related to social phenomena is one of his major interests. The programming language "R" is one of his favorite tools. He sees himself as a learner, and is particularly interested in statistical methods. Open Science is a hot topic to him. He hopes to contribute to pressing social problems such as populism by bringing in his statistical and psychological know-how. He writes a blog which serves as a sketchpad for stuff in his mind (not immune to thought updates) at https://data-se.netlify.app/. Sebastian is the author of "Moderne Datenanalyse mit R" [@sauer_moderne_2019].  His publication list is available on [Google Scholar](https://scholar.google.de/citations?user=r-2ssnAAAAAJ&hl=en).
+Sebastian Sauer works as a professor for Business Psychology at Ansbach university. Analyzing data to answer questions related to social phenomena is one of his major interests. The programming language "R" is one of his favorite tools. He sees himself as a learner, and is particularly interested in statistical methods. Open Science is a hot topic to him. He hopes to contribute to pressing social problems such as populism by bringing in his statistical and psychological know-how. He writes a blog which serves as a sketchpad for stuff in his mind (not immune to thought updates) at https://data-se.netlify.app/. Sebastian is the author of "Moderne Datenanalyse mit R" [@sauer_moderne_2019].  His publication list is available on [Google Scholar](https://scholar.google.de/citations?user=r-2ssnAAAAAJ&hl=en).
 
 
 # Contact me
@@ -198,6 +198,13 @@ Most of the materials as presented below is made available through the course bo
 ## R Packages
 
 All R packages are accessible through the course book; please consult the relevant chapters. Please install all R packages used before the course. [Here's a tutorial](https://moderndive.com/1-getting-started.html#packages) on how to install R packages.
+
+The most imporatant R packages for this course are:
+
+- tidyverse
+- gapminder
+- moderndive
+- nycflights13
 
 
 ## Data
