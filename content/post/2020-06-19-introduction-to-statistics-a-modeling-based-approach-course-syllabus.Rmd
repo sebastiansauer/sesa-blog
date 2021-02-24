@@ -3,6 +3,10 @@ title: 'Introduction to Statistics: A modeling-based approach -- Course Syllabus
 author: Sebastian Sauer
 date: '2020-06-19'
 slug: introduction-to-statistics-a-modeling-based-approach-course-syllabus
+output:
+  blogdown::html_page:
+    toc: yes
+    number_sections: yes
 categories:
   - teaching
 tags:
