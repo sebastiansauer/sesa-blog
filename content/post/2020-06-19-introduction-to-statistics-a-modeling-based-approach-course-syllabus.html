@@ -31,9 +31,22 @@ tags:
 <li><a href="#schedule"><span class="toc-section-number">9</span> Schedule</a>
 <ul>
 <li><a href="#overview-on-topics-covered"><span class="toc-section-number">9.1</span> Overview on topics covered</a></li>
-<li><a href="#block-1-explorative-data-analysis"><span class="toc-section-number">9.2</span> Block 1: Explorative Data Analysis</a></li>
-<li><a href="#block-2-statistical-modelling-basic"><span class="toc-section-number">9.3</span> Block 2: Statistical Modelling: Basic</a></li>
-<li><a href="#block-3-statistical-modelling-multiple-regression-and-interaction"><span class="toc-section-number">9.4</span> Block 3: Statistical Modelling: Multiple Regression and interaction</a></li>
+<li><a href="#block-1-explorative-data-analysis"><span class="toc-section-number">9.2</span> Block 1: Explorative Data Analysis</a>
+<ul>
+<li><a href="#visualization"><span class="toc-section-number">9.2.1</span> Visualization</a></li>
+<li><a href="#data-wrangling"><span class="toc-section-number">9.2.2</span> Data Wrangling</a></li>
+<li><a href="#exercises-case-study"><span class="toc-section-number">9.2.3</span> Exercises / Case study</a></li>
+</ul></li>
+<li><a href="#block-2-statistical-modelling-basic"><span class="toc-section-number">9.3</span> Block 2: Statistical Modelling: Basic</a>
+<ul>
+<li><a href="#theory"><span class="toc-section-number">9.3.1</span> Theory</a></li>
+<li><a href="#case-study"><span class="toc-section-number">9.3.2</span> Case study</a></li>
+</ul></li>
+<li><a href="#block-3-statistical-modelling-multiple-regression-and-interaction"><span class="toc-section-number">9.4</span> Block 3: Statistical Modelling: Multiple Regression and interaction</a>
+<ul>
+<li><a href="#theory-1"><span class="toc-section-number">9.4.1</span> Theory</a></li>
+<li><a href="#case-study-1"><span class="toc-section-number">9.4.2</span> Case study</a></li>
+</ul></li>
 <li><a href="#block-4-project-coaching"><span class="toc-section-number">9.5</span> Block 4: Project coaching</a></li>
 </ul></li>
 <li><a href="#instructor"><span class="toc-section-number">10</span> Instructor</a></li>
@@ -124,6 +137,8 @@ While I wholeheartedly recommend such books, we will not be able to discuss many
 </div>
 <div id="block-1-explorative-data-analysis" class="section level2" number="9.2">
 <h2><span class="header-section-number">9.2</span> Block 1: Explorative Data Analysis</h2>
+<div id="visualization" class="section level3" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> Visualization</h3>
 <ul>
 <li>Data <em>visualization</em>, see <a href="https://moderndive.com/2-viz.html">ModernDive Chap. 2</a>, and get the R code <a href="http://moderndive.com/scripts/02-visualization.R">here</a>
 <ul>
@@ -131,6 +146,11 @@ While I wholeheartedly recommend such books, we will not be able to discuss many
 <li>Discussing when (not) to use diagrams <a href="https://public.tableau.com/profile/dan.murray#!/vizhome/AnscombesQuartet_16/AnscombesQuartet">see Anscombe’s Quartett</a>, and when to use which one</li>
 <li>Building elegant graphics in R</li>
 </ul></li>
+</ul>
+</div>
+<div id="data-wrangling" class="section level3" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> Data Wrangling</h3>
+<ul>
 <li>Data <em>wrangling</em>, see <a href="https://moderndive.com/3-wrangling.html">ModernDive Chap. 3</a>, and get the R code <a href="http://moderndive.com/scripts/03-wrangling.R">here</a>
 <ul>
 <li>A taxonomy of typical data operations</li>
@@ -139,8 +159,25 @@ While I wholeheartedly recommend such books, we will not be able to discuss many
 </ul></li>
 </ul>
 </div>
+<div id="exercises-case-study" class="section level3" number="9.2.3">
+<h3><span class="header-section-number">9.2.3</span> Exercises / Case study</h3>
+<ul>
+<li>Exercises
+<ul>
+<li>Exercises on <a href="https://data-se.netlify.app/2021/02/24/exercises-to-data-wrangling-with-the-tidyvers">life expectancy</a>.</li>
+<li>Case study on <a href="https://data-se.netlify.app/2021/02/24/exercises-no-solutions-data-vizualization-on-flight-delays-using-tidyverse-tools/">flights delays</a></li>
+<li>Advanced case study on <a href="https://www.njtierney.com/post/2017/11/07/tidyverse-billboard/">one hit wonders</a></li>
+<li>Visualization <a href="https://www.njtierney.com/post/2020/10/11/times-scales-covid/">covid cases</a></li>
+<li>Case study on nominal data: <a href="https://www.kaggle.com/headsortails/tidy-titarnic">Survival on the Titanic</a></li>
+<li>Inspiration for own project: Visualize Covid-19 cases from <a href="https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series">this source</a>.</li>
+</ul></li>
+</ul>
+</div>
+</div>
 <div id="block-2-statistical-modelling-basic" class="section level2" number="9.3">
 <h2><span class="header-section-number">9.3</span> Block 2: Statistical Modelling: Basic</h2>
+<div id="theory" class="section level3" number="9.3.1">
+<h3><span class="header-section-number">9.3.1</span> Theory</h3>
 <ul>
 <li><p>Basics of <em>modelling</em>, see <a href="https://moderndive.com/5-regression.html">ModernDive Chap. 5.0</a>, and get the R code <a href="http://moderndive.com/scripts/05-regression.R">here</a></p>
 <ul>
@@ -155,14 +192,39 @@ While I wholeheartedly recommend such books, we will not be able to discuss many
 <li><p>For some tips and tricks on typical issues, see <a href="https://moderndive.github.io/moderndive_labs/tips_and_tricks.html">ModernDive tips and tricks</a></p></li>
 </ul>
 </div>
+<div id="case-study" class="section level3" number="9.3.2">
+<h3><span class="header-section-number">9.3.2</span> Case study</h3>
+<ul>
+<li>Exercises/Case studies:
+<ul>
+<li>Prices of <a href="https://moderndive.com/11-thinking-with-data.html#seattle-house-prices">Boston houses</a>, first part</li>
+<li>Modeling <a href="https://data-se.netlify.app/2021/02/24/modelling-movie-successes-linear-regression/">movie succes</a>, first part</li>
+</ul></li>
+</ul>
+</div>
+</div>
 <div id="block-3-statistical-modelling-multiple-regression-and-interaction" class="section level2" number="9.4">
 <h2><span class="header-section-number">9.4</span> Block 3: Statistical Modelling: Multiple Regression and interaction</h2>
+<div id="theory-1" class="section level3" number="9.4.1">
+<h3><span class="header-section-number">9.4.1</span> Theory</h3>
 <ul>
 <li><p>Slightly more advanced topics on linear regression such as <em>multiple regression and interaction</em>, see <a href="https://moderndive.com/6-multiple-regression.html">ModernDive Chap. 6</a>, and get the R code <a href="http://moderndive.com/scripts/06-multiple-regression.R">here</a></p></li>
 <li><p>One numerical and one categorical predictor, see ModernDive Chap. 6.1</p></li>
 <li><p>Two numerical predictors, see ModernDive Chap. 6.2</p></li>
 <li><p>Simpson’s paradox and more on causal inference, see ModernDive Chap. 6.3.3</p></li>
 </ul>
+</div>
+<div id="case-study-1" class="section level3" number="9.4.2">
+<h3><span class="header-section-number">9.4.2</span> Case study</h3>
+<ul>
+<li>Exercises/Case studies:
+<ul>
+<li>Prices of <a href="https://moderndive.com/11-thinking-with-data.html#seattle-house-prices">Boston houses</a>, second part</li>
+<li>Modeling <a href="https://data-se.netlify.app/2021/02/24/modelling-movie-successes-linear-regression/">movie succes</a>, second part</li>
+<li>Modeling <a href="https://data-se.netlify.app/slides/hands-on-data-exploration/handson-data-workshop_2018-11-21.html#68">flight delays</a></li>
+</ul></li>
+</ul>
+</div>
 </div>
 <div id="block-4-project-coaching" class="section level2" number="9.5">
 <h2><span class="header-section-number">9.5</span> Block 4: Project coaching</h2>
