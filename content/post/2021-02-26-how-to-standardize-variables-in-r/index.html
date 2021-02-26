@@ -36,12 +36,13 @@ output:
 <p>The advantage of standardizing input variables is the simpler comparison of importance. It can be seen as undesirable that the scaling (SD) of the input variable determines (in part) the regression coefficient. For instance, measuring the “power” of a car in horse power or in kilowatt will strongly influence the value of the regression coefficient. Similarly, measuring the distance walked in kilomweters or in millimeters will have an profound effect on the respective regression coefficient on, say, the amount of fat burned (in grams or in kilo grams…).</p>
 <p>Hence, having all variables on the same scale will facilitate easy comparison of the “importance” of each variable, as now all variables are on the same scale.</p>
 <p>The most common way to standardize the variable <span class="math inline">\(X\)</span> is to use the <span class="math inline">\(z\)</span> transformation:</p>
-<p><span class="math display">\[z_i = \frac{x - \mu}{sd_X}\]</span></p>
+<p><span class="math display">\[z_i = \frac{x_i - \mu}{sd_X}\]</span></p>
 </div>
 <div id="load-packages" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Load packages</h1>
 <pre class="r"><code>library(tidyverse)  # data wrangling
-library(broom)  # tidy regression output</code></pre>
+library(broom)  # tidy regression output
+library(mosaic)  # standardizing variables</code></pre>
 </div>
 <div id="some-data" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Some data</h1>
@@ -90,6 +91,33 @@ tidy(lm1)</code></pre>
 <pre class="r"><code>mtcars_standardized &lt;- 
   mtcars %&gt;% 
   mutate(hp_s = scale(hp))</code></pre>
+<p>As we see, <code>scale</code> does the trick, that is the z transformation. For example:</p>
+<pre class="r"><code>x &lt;- c(0,10, 20)
+scale(x)</code></pre>
+<table>
+<tbody>
+<tr class="odd">
+<td align="right">-1</td>
+</tr>
+<tr class="even">
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<p>Let’s double check:</p>
+<pre class="r"><code>x_mean &lt;- mean(x)
+x_sd &lt;- sd(x)
+
+z &lt;- (x - mean(x)) / sd(x)
+z
+#&gt; [1] -1  0  1</code></pre>
+<p>It’s not so nice that <code>scale()</code> takes a vector as input, but hands back a matrix.</p>
+<p>A similar function, <code>zscore()</code> is provided by the package <code>{mosaic}</code>; this function gives back a vector which is more comfortable:</p>
+<pre class="r"><code>zscore(x)
+#&gt; [1] -1  0  1</code></pre>
 </div>
 <div id="regression-with-standardized-input-variables" class="section level1" number="7">
 <h1><span class="header-section-number">7</span> Regression with standardized input variables</h1>

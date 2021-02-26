@@ -48,7 +48,7 @@ Hence, having all variables on the same scale will facilitate easy comparison of
 The most common way to standardize the variable $X$ is to use the $z$ transformation:
 
 
-$$z_i = \frac{x - \mu}{sd_X}$$
+$$z_i = \frac{x_i - \mu}{sd_X}$$
 
 
 # Load packages
@@ -56,6 +56,7 @@ $$z_i = \frac{x - \mu}{sd_X}$$
 ```{r load-libs, message = FALSE, warning = FALSE}
 library(tidyverse)  # data wrangling
 library(broom)  # tidy regression output
+library(mosaic)  # standardizing variables
 ```
 
 
@@ -99,6 +100,39 @@ As cen be seen in the output, our model `lm1` estimates that the cars which diff
 mtcars_standardized <- 
   mtcars %>% 
   mutate(hp_s = scale(hp))
+```
+
+
+As we see, `scale` does the trick, that is the z transformation. For example:
+
+
+```{r}
+x <- c(0,10, 20)
+scale(x)
+```
+
+
+Let's double check:
+
+```{r}
+x_mean <- mean(x)
+x_sd <- sd(x)
+
+z <- (x - mean(x)) / sd(x)
+z
+```
+
+
+
+It's not so nice that `scale()` takes a vector as input, but hands back a matrix.
+
+
+A similar function, `zscore()`  is provided by the package `{mosaic}`; this function gives back a vector which is more comfortable:
+
+
+
+```{r}
+zscore(x)
 ```
 
 
