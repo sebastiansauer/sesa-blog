@@ -83,7 +83,7 @@ The course can be held in English or German.
 
 Please *bring your own computer* and *read the notes* regarding course logistics in advance. Note that some *upfront preparation is needed* from the learners. 
 
-R and RStudio will be needed throughout the course. In case of technical difficulties with R feel free to use [RStudio Cloud](https://rstudio.cloud/); free plans are available. 
+R and RStudio^[Desktop version, not the server] will be needed throughout the course. Please make sure that the IT is running. In case of technical difficulties with R feel free to use [RStudio Cloud](https://rstudio.cloud/); free plans are available. 
 
 All learning materials (such as literature, code, data) will be provided in electronic format.
 
