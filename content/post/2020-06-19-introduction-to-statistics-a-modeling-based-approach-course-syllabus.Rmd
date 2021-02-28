@@ -147,7 +147,7 @@ This course can rather be considered a workshop in the sense that the instructor
 
 - Exercises
   - Exercises on [life expectancy](https://data-se.netlify.app/2021/02/24/exercises-to-data-wrangling-with-the-tidyverse).
-  - Case study on the visualization of [flights delays](https://data-se.netlify.app/2021/02/24/exercises-no-solutions-data-vizualization-on-flight-delays-using-tidyverse-tools/)
+  - Case study on the visualization of [flight delays](https://data-se.netlify.app/2021/02/24/exercises-no-solutions-data-vizualization-on-flight-delays-using-tidyverse-tools/)
   - Advanced case study on [one hit wonders](https://www.njtierney.com/post/2017/11/07/tidyverse-billboard/)
   - Visualization [covid cases](https://www.njtierney.com/post/2020/10/11/times-scales-covid/)
   - Case study on nominal data: [Survival on the Titanic](https://www.kaggle.com/headsortails/tidy-titarnic)
