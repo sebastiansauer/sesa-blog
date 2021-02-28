@@ -255,9 +255,13 @@ Most of the materials as presented below is made available through the course bo
 # More resources
 
 
+## Recommendations
+
 - [RStudio Cheatsheets](https://rstudio.com/resources/cheatsheets/), particularly on [data wrangling](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf), and [data vizualization](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf)
 
 - Book [R for Data Science](https://r4ds.had.co.nz/index.html) as a handy reference or a serious text book.
+
+- [Tidy Tuesday video series](https://www.youtube.com/results?search_query=tidytuesday)
 
 - Post your open question on [Stack Overflow](https://stackoverflow.com/).
 
@@ -292,6 +296,9 @@ All data are accessible through the course book; please consult the relevant cha
 ## Labs (case studies)
 
 Practical data analysis skills can be practiced using [these labs](https://moderndive.github.io/moderndive_labs/index.html); in addition [Chapter 11](https://moderndive.com/11-thinking-with-data.html) provides two cases studies. Note that such content may be used as homework.
+
+There are a lot of case studies scatter on the internet.
+
 
 
 
