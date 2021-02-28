@@ -31,11 +31,20 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{r}
+library(tidyverse)
+```
+
+
 
 # Exercise collection: Life exptectancy
 
 
 Get the data from [this source](https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv).
+
+```{r}
+gapminder_raw <- read_csv("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv")
+```
 
 
 
@@ -74,9 +83,9 @@ First, open a script or Rmd file in RStudio. Next make sure you start ("load") t
 
 ## Data Wrangling
 
-1. Filter the data for the Americas in 2007, deselect all other variables. By the way, what's 
+1. Filter the data for the Americas in 2007, deselect all other variables. 
 
-2. Create the variable `gdp`, defined as the product of population size and gdp per person.
+2. Create the variable `gdp`, defined as the product of *population size* and *gdp per person*.
 
 3. Identify the observation with lowest gdp per person.
 
@@ -94,7 +103,7 @@ First, open a script or Rmd file in RStudio. Next make sure you start ("load") t
 
 ## Data Visualization
 
-1. Create a scatter plot showing the association of gdp per person and life expectancy. Put the putative cause on the X axis and the putative effect on the y axis.
+1. Create a scatter plot showing the association of *gdp per person* and *life expectancy*. Put the putative cause on the X axis and the putative effect on the y axis.
 
 2. Add a rolling average line (also known as LOESS smoother).
 

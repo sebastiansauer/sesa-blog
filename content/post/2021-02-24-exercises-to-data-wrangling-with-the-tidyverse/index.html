@@ -32,9 +32,11 @@ output:
 </ul>
 </div>
 
+<pre class="r"><code>library(tidyverse)</code></pre>
 <div id="exercise-collection-life-exptectancy" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Exercise collection: Life exptectancy</h1>
 <p>Get the data from <a href="https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv">this source</a>.</p>
+<pre class="r"><code>gapminder_raw &lt;- read_csv(&quot;https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv&quot;)</code></pre>
 </div>
 <div id="disclosure" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Disclosure</h1>
@@ -63,8 +65,8 @@ output:
 <div id="data-wrangling" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Data Wrangling</h2>
 <ol style="list-style-type: decimal">
-<li><p>Filter the data for the Americas in 2007, deselect all other variables. By the way, what’s</p></li>
-<li><p>Create the variable <code>gdp</code>, defined as the product of population size and gdp per person.</p></li>
+<li><p>Filter the data for the Americas in 2007, deselect all other variables.</p></li>
+<li><p>Create the variable <code>gdp</code>, defined as the product of <em>population size</em> and <em>gdp per person</em>.</p></li>
 <li><p>Identify the observation with lowest gdp per person.</p></li>
 <li><p>Identify all observations with above average life expectancy, stratified for each continent.</p></li>
 <li><p>Count the observations identified in the last step.</p></li>
@@ -75,7 +77,7 @@ output:
 <div id="data-visualization" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Data Visualization</h2>
 <ol style="list-style-type: decimal">
-<li><p>Create a scatter plot showing the association of gdp per person and life expectancy. Put the putative cause on the X axis and the putative effect on the y axis.</p></li>
+<li><p>Create a scatter plot showing the association of <em>gdp per person</em> and <em>life expectancy</em>. Put the putative cause on the X axis and the putative effect on the y axis.</p></li>
 <li><p>Add a rolling average line (also known as LOESS smoother).</p></li>
 <li><p>Add a linear model line.</p></li>
 <li><p>Create a scatter plot with year on the x axis, and life expectancy on the y axis. Each point should indicate the average life expectancy per year. Connect the dots with a line.</p></li>
