@@ -76,7 +76,6 @@ s <- 0.5
 ```
 
 
-In other words, we think that the probability that $\mu \le 0$ equals to `r p0`; let's call it $p_0$.
 
 
 ```{r}
@@ -84,11 +83,14 @@ p0 <- pnorm(q = 0, mean = 0.5, sd = .5) %>% round(2)
 p0
 ```
 
+In other words, we think that the probability that $\mu \le 0$ equals to `r p0`; let's call it $p_0$.
 
-In other words, given this model, we assume that the probability that the treatment is effective equals to $p_1 = 1-p_0$, that is
+
+
+Given this model, we assume that the probability that the treatment is effective equals to $p_1 = 1-p_0$, that is
 
 ```{r}
-p1 = 1 - p0
+p1 <- 1 - p0
 p1
 ```
 
