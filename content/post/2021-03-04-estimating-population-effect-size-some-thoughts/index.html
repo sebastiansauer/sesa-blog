@@ -67,6 +67,9 @@ output:
 <p>As I think the uncertainty is large, we must allow for a relatively large standard deviation of the distribution of effects. Some reasons why I think the uncertainty in our population parameter value is lage include: publication bias, researcher degrees of freedom, variety in protocols and operationalization, plain errors in the course of a study, trickiness of nature, and more.</p>
 <p>Hence, let’s take <span class="math inline">\(\sigma=.5\)</span>.</p>
 <pre class="r"><code>s &lt;- 0.5</code></pre>
+<p>In sum:</p>
+<p><span class="math display">\[\mu \sim \mathfreac{N}(0.5, 0.5)\]</span></p>
+<p>What is the probability to observere a sample value larger less than zero?</p>
 <pre class="r"><code>p0 &lt;- pnorm(q = 0, mean = 0.5, sd = .5) %&gt;% round(2)
 p0
 #&gt; [1] 0.16</code></pre>
@@ -179,7 +182,7 @@ comp_sample_stats_many_samples &lt;-
 
 p1</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>As can be seen, lager sample sizes, do precisely show the true parameter (<span class="math inline">\(mu=0.5\)</span>).</p>
+<p>As can be seen, all sample sizes greater than small do precisely show the true parameter (<span class="math inline">\(mu=0.5\)</span>).</p>
 <p>Let’s zoom in.</p>
 <pre class="r"><code>p1 +
   xlim(0, 1024)</code></pre>
@@ -188,7 +191,7 @@ And even closer:</p>
 <pre class="r"><code>p1 +
   xlim(0, 256)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>Even the difference between <span class="math inline">\(n=128\)</span> and <span class="math inline">\(n=128\)</span> (<span class="math inline">\(2^7, 2^8\)</span>) appears negligible, from a practical point if view, given the large uncertainties associated with research study results in practice. Let’s remember that we should try to be more precise as it is possible (don’t estimate the age of the earth in seconds, rather in millions of years).</p>
+<p>Larger sample sizes yield stable estimates, as seen above. But even the difference between <span class="math inline">\(n=128\)</span> and <span class="math inline">\(n=128\)</span> (<span class="math inline">\(2^7, 2^8\)</span>) appears negligible, from a practical point of view, given the large uncertainties associated with research study results in practice. Let’s remember that we should try to be more precise as it is possible (don’t estimate the age of the earth in seconds, rather in millions of years).</p>
 <p>It appears that a sample size of 128 or even 64 is sufficiently precise to estimate the population effect size.</p>
 </div>
 <div id="width-of-the-ci" class="section level2" number="7.2">

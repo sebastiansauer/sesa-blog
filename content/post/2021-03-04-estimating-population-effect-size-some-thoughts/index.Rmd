@@ -76,6 +76,12 @@ s <- 0.5
 ```
 
 
+In sum:
+
+$$\mu \sim \mathfreac{N}(0.5, 0.5)$$ 
+
+
+What is the probability to observere a sample value larger less than zero?
 
 
 ```{r}
@@ -229,7 +235,7 @@ p1 <- simulated_samples %>%
 p1
 ```
 
-As can be seen, lager sample sizes, do precisely show the true parameter ($mu=0.5$).
+As can be seen, all sample sizes greater than small do precisely show the true parameter ($mu=0.5$).
 
 Let's zoom in.
 
@@ -246,7 +252,7 @@ p1 +
   xlim(0, 256)
 ```
 
-Even the difference between $n=128$ and $n=128$ ($2^7, 2^8$) appears negligible, from a practical point if view, given the large uncertainties associated with research study results in practice. Let's remember that we should try to be more precise as it is possible (don't estimate the age of the earth in seconds, rather in millions of years).
+Larger sample sizes yield stable estimates, as seen above. But even the difference between $n=128$ and $n=128$ ($2^7, 2^8$) appears negligible, from a practical point of view, given the large uncertainties associated with research study results in practice. Let's remember that we should try to be more precise as it is possible (don't estimate the age of the earth in seconds, rather in millions of years).
 
 It appears that a sample size of 128 or even 64 is sufficiently precise to estimate the population effect size. 
 
