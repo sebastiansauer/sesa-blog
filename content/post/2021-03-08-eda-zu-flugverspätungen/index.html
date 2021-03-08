@@ -1,0 +1,890 @@
+---
+title: EDA zu Flugverspätungen
+author: Sebastian Sauer
+draft: true
+date: '2021-03-08'
+slug: eda-zu-flugverspätungen
+categories:
+  - rstats
+tags:
+  - eda
+output:
+  blogdown::html_page:
+    toc: yes
+    number_sections: yes
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+<ul>
+<li><a href="#pakete-laden"><span class="toc-section-number">1</span> Pakete laden</a></li>
+<li><a href="#hintergrund-und-ziel"><span class="toc-section-number">2</span> Hintergrund und Ziel</a></li>
+<li><a href="#daten-laden"><span class="toc-section-number">3</span> Daten laden</a></li>
+<li><a href="#was-ist-verspätung"><span class="toc-section-number">4</span> Was ist Verspätung?</a>
+<ul>
+<li><a href="#wie-ähnlich-sind-ankunfts--und-abflugsverspätung"><span class="toc-section-number">4.1</span> Wie ähnlich sind Ankunfts- und Abflugsverspätung?</a></li>
+</ul></li>
+<li><a href="#verteilung-der-verspätung"><span class="toc-section-number">5</span> Verteilung der Verspätung</a>
+<ul>
+<li><a href="#flights2-extremwerte-definieren"><span class="toc-section-number">5.1</span> flights2: Extremwerte definieren</a></li>
+<li><a href="#fehlende-werte"><span class="toc-section-number">5.2</span> Fehlende Werte</a></li>
+<li><a href="#flights3"><span class="toc-section-number">5.3</span> flights3</a></li>
+</ul></li>
+<li><a href="#korrelate-von-verspätung"><span class="toc-section-number">6</span> Korrelate von Verspätung</a>
+<ul>
+<li><a href="#metrische-prädiktoren"><span class="toc-section-number">6.1</span> Metrische Prädiktoren</a></li>
+<li><a href="#nominale-prädiktoren"><span class="toc-section-number">6.2</span> Nominale Prädiktoren</a>
+<ul>
+<li><a href="#carrier"><span class="toc-section-number">6.2.1</span> Carrier</a></li>
+</ul></li>
+<li><a href="#korrelation-von-carrier-mit-verspätung"><span class="toc-section-number">6.3</span> Korrelation von <code>carrier</code> mit Verspätung</a>
+<ul>
+<li><a href="#hour"><span class="toc-section-number">6.3.1</span> Hour</a></li>
+<li><a href="#origin"><span class="toc-section-number">6.3.2</span> Origin</a></li>
+</ul></li>
+<li><a href="#drei-variablen-origin-hour-dep_delay"><span class="toc-section-number">6.4</span> Drei Variablen: Origin, hour, dep_delay</a></li>
+<li><a href="#alle-nominale-variablen"><span class="toc-section-number">6.5</span> Alle nominale Variablen</a>
+<ul>
+<li><a href="#flights4"><span class="toc-section-number">6.5.1</span> flights4</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#fazit"><span class="toc-section-number">7</span> Fazit</a></li>
+<li><a href="#achtung"><span class="toc-section-number">8</span> Achtung</a></li>
+<li><a href="#reproduzierbarkeit"><span class="toc-section-number">9</span> Reproduzierbarkeit</a></li>
+</ul>
+</div>
+
+<div id="pakete-laden" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Pakete laden</h1>
+<pre class="r"><code>library(tidyverse)  # data wrangling</code></pre>
+</div>
+<div id="hintergrund-und-ziel" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Hintergrund und Ziel</h1>
+<p>Dieser Post zeigt einige mögliche/typische Schritte der explorativen Datenanalyse (EDA) im Hinblick auf die Forschungsfrage “Welche Variablen steht in Zusammenhang mit Flugverspätungen?”.</p>
+</div>
+<div id="daten-laden" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Daten laden</h1>
+<p>Der Datensatz kann z.B. hier bezogen werden:</p>
+<pre class="r"><code>flights &lt;- read_csv(&quot;https://vincentarelbundock.github.io/Rdatasets/csv/nycflights13/flights.csv&quot;)</code></pre>
+<p>Der Datensatz ist relativ groß:</p>
+<pre class="r"><code>dim(flights)
+#&gt; [1] 336776     20</code></pre>
+<p>Alternativ findet man den Datensatz auch im Paket <code>nycflights13</code>.</p>
+<pre class="r"><code>data(flights, package = &quot;nycflights13&quot;)</code></pre>
+</div>
+<div id="was-ist-verspätung" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Was ist Verspätung?</h1>
+<p>Schauen wir uns den Datensatz mal näher an, um die Zielvariable “Verspätung” zu beleuchten.</p>
+<pre class="r"><code>glimpse(flights)
+#&gt; Rows: 336,776
+#&gt; Columns: 20
+#&gt; $ X1             &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, …
+#&gt; $ year           &lt;dbl&gt; 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2…
+#&gt; $ month          &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+#&gt; $ day            &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+#&gt; $ dep_time       &lt;dbl&gt; 517, 533, 542, 544, 554, 554, 555, 557, 557, 558, 558, …
+#&gt; $ sched_dep_time &lt;dbl&gt; 515, 529, 540, 545, 600, 558, 600, 600, 600, 600, 600, …
+#&gt; $ dep_delay      &lt;dbl&gt; 2, 4, 2, -1, -6, -4, -5, -3, -3, -2, -2, -2, -2, -2, -1…
+#&gt; $ arr_time       &lt;dbl&gt; 830, 850, 923, 1004, 812, 740, 913, 709, 838, 753, 849,…
+#&gt; $ sched_arr_time &lt;dbl&gt; 819, 830, 850, 1022, 837, 728, 854, 723, 846, 745, 851,…
+#&gt; $ arr_delay      &lt;dbl&gt; 11, 20, 33, -18, -25, 12, 19, -14, -8, 8, -2, -3, 7, -1…
+#&gt; $ carrier        &lt;chr&gt; &quot;UA&quot;, &quot;UA&quot;, &quot;AA&quot;, &quot;B6&quot;, &quot;DL&quot;, &quot;UA&quot;, &quot;B6&quot;, &quot;EV&quot;, &quot;B6&quot;, &quot;…
+#&gt; $ flight         &lt;dbl&gt; 1545, 1714, 1141, 725, 461, 1696, 507, 5708, 79, 301, 4…
+#&gt; $ tailnum        &lt;chr&gt; &quot;N14228&quot;, &quot;N24211&quot;, &quot;N619AA&quot;, &quot;N804JB&quot;, &quot;N668DN&quot;, &quot;N394…
+#&gt; $ origin         &lt;chr&gt; &quot;EWR&quot;, &quot;LGA&quot;, &quot;JFK&quot;, &quot;JFK&quot;, &quot;LGA&quot;, &quot;EWR&quot;, &quot;EWR&quot;, &quot;LGA&quot;,…
+#&gt; $ dest           &lt;chr&gt; &quot;IAH&quot;, &quot;IAH&quot;, &quot;MIA&quot;, &quot;BQN&quot;, &quot;ATL&quot;, &quot;ORD&quot;, &quot;FLL&quot;, &quot;IAD&quot;,…
+#&gt; $ air_time       &lt;dbl&gt; 227, 227, 160, 183, 116, 150, 158, 53, 140, 138, 149, 1…
+#&gt; $ distance       &lt;dbl&gt; 1400, 1416, 1089, 1576, 762, 719, 1065, 229, 944, 733, …
+#&gt; $ hour           &lt;dbl&gt; 5, 5, 5, 5, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 6, 6, 6…
+#&gt; $ minute         &lt;dbl&gt; 15, 29, 40, 45, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 0…
+#&gt; $ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-01 0…</code></pre>
+<p>Es gibt zwei Spalten, die auf Verspätung hinzielen:</p>
+<pre class="r"><code>flights %&gt;% 
+  select(contains(&quot;delay&quot;)) %&gt;% 
+  head()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">dep_delay</th>
+<th align="right">arr_delay</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">11</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">20</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">33</td>
+</tr>
+<tr class="even">
+<td align="right">-1</td>
+<td align="right">-18</td>
+</tr>
+<tr class="odd">
+<td align="right">-6</td>
+<td align="right">-25</td>
+</tr>
+<tr class="even">
+<td align="right">-4</td>
+<td align="right">12</td>
+</tr>
+</tbody>
+</table>
+<p>Ein Blick in die Hilfe lässt uns mehr lernen, was die Spalten bedeuten: <code>help(flights)</code> (wenn das Paket <code>nycflights13</code> geladen ist; alternativ kann man z.B. <a href="https://vincentarelbundock.github.io/Rdatasets/doc/nycflights13/flights.html">hier</a> nachlesen):</p>
+<pre><code>dep_delay, arr_delay
+
+Departure and arrival delays, in minutes. Negative times represent early departures/arrivals.</code></pre>
+<div id="wie-ähnlich-sind-ankunfts--und-abflugsverspätung" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Wie ähnlich sind Ankunfts- und Abflugsverspätung?</h2>
+<p>Da der Datensatz so groß ist, ziehen wir eine Stichprobe, dann geht alles schneller:</p>
+<pre class="r"><code>flights %&gt;% 
+  sample_n(size = 1000) %&gt;% 
+  ggplot() +
+  aes(y = dep_delay, x = arr_delay) +
+  geom_point()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Die beiden Variablen scheinen ziemlich stark korreliert zu sein.</p>
+<pre class="r"><code>flights %&gt;% 
+  drop_na(dep_delay, arr_delay) %&gt;% 
+  summarise(cor(dep_delay, arr_delay))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">cor(dep_delay, arr_delay)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">0.9148028</td>
+</tr>
+</tbody>
+</table>
+<p>Ja, sind sie. Dann ist es vielleicht egal, welche der beiden Variablen wir verwenden. Nehmen wir <code>dep_delay</code>.</p>
+</div>
+</div>
+<div id="verteilung-der-verspätung" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Verteilung der Verspätung</h1>
+<pre class="r"><code>flights %&gt;% 
+  ggplot() +
+  aes(x = dep_delay) %&gt;% 
+  geom_density()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Ein sehr langer rechter Rand; die meisten Flüge sind nicht/kaum verspätet; aber einige wenige sind sehr stark verspätet.</p>
+<pre class="r"><code>flights %&gt;% 
+  select(dep_delay) %&gt;% 
+  summarise(across(
+    .cols = dep_delay,
+    .fns = list(mean = mean, 
+                md = median, 
+                sd = sd, 
+                iqr = IQR), na.rm = TRUE,
+    .names = &quot;depdelay_{fn}&quot;
+  ))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">depdelay_mean</th>
+<th align="right">depdelay_md</th>
+<th align="right">depdelay_sd</th>
+<th align="right">depdelay_iqr</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">12.63907</td>
+<td align="right">-2</td>
+<td align="right">40.21006</td>
+<td align="right">16</td>
+</tr>
+</tbody>
+</table>
+<div id="flights2-extremwerte-definieren" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> flights2: Extremwerte definieren</h2>
+<pre class="r"><code>flights2 &lt;-
+  flights %&gt;% 
+  mutate(is_extreme = case_when(
+    dep_delay &gt; quantile(dep_delay, prob = .75, na.rm = TRUE) + 1.5 * IQR(dep_delay, na.rm = TRUE) ~ TRUE,
+    TRUE ~ FALSE
+  ))</code></pre>
+</div>
+<div id="fehlende-werte" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Fehlende Werte</h2>
+<p>Wie viele fehlende Werte gibt es eigentlich?</p>
+<pre class="r"><code>flights %&gt;% 
+  summarise(sum(is.na(dep_delay)))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">sum(is.na(dep_delay))</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">8255</td>
+</tr>
+</tbody>
+</table>
+<p>So geht es für alle Spalten auf einmal:</p>
+<pre class="r"><code>flights %&gt;% 
+  summarise(across(everything(), ~ sum(is.na(.x))))</code></pre>
+<table style="width:100%;">
+<colgroup>
+<col width="1%" />
+<col width="3%" />
+<col width="3%" />
+<col width="2%" />
+<col width="5%" />
+<col width="9%" />
+<col width="6%" />
+<col width="5%" />
+<col width="9%" />
+<col width="6%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="3%" />
+<col width="5%" />
+<col width="5%" />
+<col width="3%" />
+<col width="4%" />
+<col width="6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">X1</th>
+<th align="right">year</th>
+<th align="right">month</th>
+<th align="right">day</th>
+<th align="right">dep_time</th>
+<th align="right">sched_dep_time</th>
+<th align="right">dep_delay</th>
+<th align="right">arr_time</th>
+<th align="right">sched_arr_time</th>
+<th align="right">arr_delay</th>
+<th align="right">carrier</th>
+<th align="right">flight</th>
+<th align="right">tailnum</th>
+<th align="right">origin</th>
+<th align="right">dest</th>
+<th align="right">air_time</th>
+<th align="right">distance</th>
+<th align="right">hour</th>
+<th align="right">minute</th>
+<th align="right">time_hour</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">8255</td>
+<td align="right">0</td>
+<td align="right">8255</td>
+<td align="right">8713</td>
+<td align="right">0</td>
+<td align="right">9430</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">2512</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">9430</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p>Wie viele Fälle gingen verloren, wenn wir die Fälle mit fehlenden Werten bei <code>dep_delay</code> entfernten?</p>
+<pre class="r"><code>flights %&gt;% 
+  drop_na(dep_delay) %&gt;% 
+  nrow()
+#&gt; [1] 328521</code></pre>
+<p>Wenige, im Verhältnis. Also machen wir das mal:</p>
+</div>
+<div id="flights3" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> flights3</h2>
+<pre class="r"><code>flights3 &lt;-
+  flights2 %&gt;% 
+  drop_na(dep_delay) %&gt;% 
+  select(-year)</code></pre>
+</div>
+</div>
+<div id="korrelate-von-verspätung" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Korrelate von Verspätung</h1>
+<div id="metrische-prädiktoren" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Metrische Prädiktoren</h2>
+<pre class="r"><code>flights2 %&gt;% 
+  select(where(is.numeric)) %&gt;% 
+  summarise(across(
+    .cols = everything(),
+    .fns = ~ cor(., flights2$dep_delay, use = &quot;complete.obs&quot;))) %&gt;% 
+  pivot_longer(everything()) %&gt;% 
+  arrange(-value)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">dep_delay</td>
+<td align="right">1.0000000</td>
+</tr>
+<tr class="even">
+<td align="left">arr_delay</td>
+<td align="right">0.9148028</td>
+</tr>
+<tr class="odd">
+<td align="left">dep_time</td>
+<td align="right">0.2602312</td>
+</tr>
+<tr class="even">
+<td align="left">sched_dep_time</td>
+<td align="right">0.1988867</td>
+</tr>
+<tr class="odd">
+<td align="left">hour</td>
+<td align="right">0.1982259</td>
+</tr>
+<tr class="even">
+<td align="left">sched_arr_time</td>
+<td align="right">0.1604885</td>
+</tr>
+<tr class="odd">
+<td align="left">flight</td>
+<td align="right">0.0547337</td>
+</tr>
+<tr class="even">
+<td align="left">X1</td>
+<td align="right">0.0497132</td>
+</tr>
+<tr class="odd">
+<td align="left">arr_time</td>
+<td align="right">0.0287288</td>
+</tr>
+<tr class="even">
+<td align="left">minute</td>
+<td align="right">0.0284409</td>
+</tr>
+<tr class="odd">
+<td align="left">day</td>
+<td align="right">0.0004200</td>
+</tr>
+<tr class="even">
+<td align="left">month</td>
+<td align="right">-0.0200570</td>
+</tr>
+<tr class="odd">
+<td align="left">distance</td>
+<td align="right">-0.0216708</td>
+</tr>
+<tr class="even">
+<td align="left">air_time</td>
+<td align="right">-0.0224051</td>
+</tr>
+<tr class="odd">
+<td align="left">year</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="nominale-prädiktoren" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Nominale Prädiktoren</h2>
+<pre class="r"><code>flights2 %&gt;% 
+  select(where(negate(is.numeric))) %&gt;% 
+  names()
+#&gt; [1] &quot;carrier&quot;    &quot;tailnum&quot;    &quot;origin&quot;     &quot;dest&quot;       &quot;time_hour&quot; 
+#&gt; [6] &quot;is_extreme&quot;</code></pre>
+<pre class="r"><code>flights2 %&gt;% 
+  select(where(negate(is.numeric))) %&gt;% 
+  summarise(across(
+    .cols = everything(),
+    .fns = list(ndist = n_distinct)
+  )) %&gt;% 
+  pivot_longer(everything())</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">carrier_ndist</td>
+<td align="right">16</td>
+</tr>
+<tr class="even">
+<td align="left">tailnum_ndist</td>
+<td align="right">4044</td>
+</tr>
+<tr class="odd">
+<td align="left">origin_ndist</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">dest_ndist</td>
+<td align="right">105</td>
+</tr>
+<tr class="odd">
+<td align="left">time_hour_ndist</td>
+<td align="right">6936</td>
+</tr>
+<tr class="even">
+<td align="left">is_extreme_ndist</td>
+<td align="right">2</td>
+</tr>
+</tbody>
+</table>
+<div id="carrier" class="section level3" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Carrier</h3>
+<pre class="r"><code>flights2 %&gt;% 
+  select(carrier) %&gt;% 
+  count(carrier, sort = TRUE)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">carrier</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">UA</td>
+<td align="right">58665</td>
+</tr>
+<tr class="even">
+<td align="left">B6</td>
+<td align="right">54635</td>
+</tr>
+<tr class="odd">
+<td align="left">EV</td>
+<td align="right">54173</td>
+</tr>
+<tr class="even">
+<td align="left">DL</td>
+<td align="right">48110</td>
+</tr>
+<tr class="odd">
+<td align="left">AA</td>
+<td align="right">32729</td>
+</tr>
+<tr class="even">
+<td align="left">MQ</td>
+<td align="right">26397</td>
+</tr>
+<tr class="odd">
+<td align="left">US</td>
+<td align="right">20536</td>
+</tr>
+<tr class="even">
+<td align="left">9E</td>
+<td align="right">18460</td>
+</tr>
+<tr class="odd">
+<td align="left">WN</td>
+<td align="right">12275</td>
+</tr>
+<tr class="even">
+<td align="left">VX</td>
+<td align="right">5162</td>
+</tr>
+<tr class="odd">
+<td align="left">FL</td>
+<td align="right">3260</td>
+</tr>
+<tr class="even">
+<td align="left">AS</td>
+<td align="right">714</td>
+</tr>
+<tr class="odd">
+<td align="left">F9</td>
+<td align="right">685</td>
+</tr>
+<tr class="even">
+<td align="left">YV</td>
+<td align="right">601</td>
+</tr>
+<tr class="odd">
+<td align="left">HA</td>
+<td align="right">342</td>
+</tr>
+<tr class="even">
+<td align="left">OO</td>
+<td align="right">32</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>flights2 &lt;-
+  flights2 %&gt;% 
+  mutate(carrier = factor(carrier)) %&gt;% 
+  mutate(carrier = fct_lump(carrier, n = 8))</code></pre>
+<pre class="r"><code>flights2 %&gt;% 
+  count(carrier)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">carrier</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">9E</td>
+<td align="right">18460</td>
+</tr>
+<tr class="even">
+<td align="left">AA</td>
+<td align="right">32729</td>
+</tr>
+<tr class="odd">
+<td align="left">B6</td>
+<td align="right">54635</td>
+</tr>
+<tr class="even">
+<td align="left">DL</td>
+<td align="right">48110</td>
+</tr>
+<tr class="odd">
+<td align="left">EV</td>
+<td align="right">54173</td>
+</tr>
+<tr class="even">
+<td align="left">MQ</td>
+<td align="right">26397</td>
+</tr>
+<tr class="odd">
+<td align="left">UA</td>
+<td align="right">58665</td>
+</tr>
+<tr class="even">
+<td align="left">US</td>
+<td align="right">20536</td>
+</tr>
+<tr class="odd">
+<td align="left">Other</td>
+<td align="right">23071</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>flights2 %&gt;% 
+  filter(!is_extreme) %&gt;% 
+  ggplot() +
+  aes(x = fct_reorder(carrier, -dep_delay), y = dep_delay) %&gt;% 
+  geom_boxplot()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="korrelation-von-carrier-mit-verspätung" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> Korrelation von <code>carrier</code> mit Verspätung</h2>
+<pre class="r"><code>flights2 %&gt;% 
+  select(dep_delay, carrier) %&gt;% 
+  fastDummies::dummy_cols() %&gt;% 
+  select(-carrier) %&gt;% 
+  pivot_longer(-dep_delay,
+               names_to = &quot;carrier&quot;,
+               values_to = &quot;value&quot;) %&gt;% 
+  group_by(carrier) %&gt;% 
+  summarise(cor_depdelay_carrier = cor(dep_delay, value)) %&gt;% 
+  arrange(-abs(cor_depdelay_carrier))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">carrier</th>
+<th align="right">cor_depdelay_carrier</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">carrier_9E</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">carrier_AA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">carrier_B6</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">carrier_DL</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">carrier_EV</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">carrier_MQ</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">carrier_Other</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">carrier_UA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">carrier_US</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+<div id="hour" class="section level3" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> Hour</h3>
+<pre class="r"><code>flights2 %&gt;% 
+  filter(!is_extreme) %&gt;% 
+  select(dep_delay, hour) %&gt;% 
+  mutate(hour = factor(hour)) %&gt;% 
+  ggplot() +
+  aes(x = fct_reorder(hour, dep_delay), 
+      y = dep_delay) +
+  geom_boxplot()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="origin" class="section level3" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> Origin</h3>
+<pre class="r"><code>flights2 %&gt;% 
+  filter(!is_extreme) %&gt;% 
+  select(origin, dep_delay) %&gt;% 
+  ggplot() +
+  aes(x = origin, y = dep_delay) %&gt;% 
+  geom_boxplot()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="drei-variablen-origin-hour-dep_delay" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> Drei Variablen: Origin, hour, dep_delay</h2>
+<pre class="r"><code>flights2 %&gt;% 
+  filter(!is_extreme) %&gt;% 
+  select(origin, dep_delay, hour) %&gt;% 
+  mutate(hour = factor(hour, levels = 5:23)) %&gt;% 
+  ggplot() +
+  aes(x = hour, y = dep_delay) +
+  geom_boxplot() +
+  facet_wrap(~ origin)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="alle-nominale-variablen" class="section level2" number="6.5">
+<h2><span class="header-section-number">6.5</span> Alle nominale Variablen</h2>
+<pre class="r"><code>flights2 %&gt;% 
+  select(!is.numeric) %&gt;% 
+  names()
+#&gt; [1] &quot;carrier&quot;    &quot;tailnum&quot;    &quot;origin&quot;     &quot;dest&quot;       &quot;time_hour&quot; 
+#&gt; [6] &quot;is_extreme&quot;</code></pre>
+<div id="flights4" class="section level3" number="6.5.1">
+<h3><span class="header-section-number">6.5.1</span> flights4</h3>
+<pre class="r"><code>flights4 &lt;-
+flights3 %&gt;% 
+  mutate(dest = fct_lump_prop(dest, prop = .025)) </code></pre>
+<pre class="r"><code>flights4 %&gt;% 
+  count(dest, sort = T)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">dest</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Other</td>
+<td align="right">172699</td>
+</tr>
+<tr class="even">
+<td align="left">ATL</td>
+<td align="right">16898</td>
+</tr>
+<tr class="odd">
+<td align="left">ORD</td>
+<td align="right">16642</td>
+</tr>
+<tr class="even">
+<td align="left">LAX</td>
+<td align="right">16076</td>
+</tr>
+<tr class="odd">
+<td align="left">BOS</td>
+<td align="right">15049</td>
+</tr>
+<tr class="even">
+<td align="left">MCO</td>
+<td align="right">13982</td>
+</tr>
+<tr class="odd">
+<td align="left">CLT</td>
+<td align="right">13698</td>
+</tr>
+<tr class="even">
+<td align="left">SFO</td>
+<td align="right">13230</td>
+</tr>
+<tr class="odd">
+<td align="left">FLL</td>
+<td align="right">11934</td>
+</tr>
+<tr class="even">
+<td align="left">MIA</td>
+<td align="right">11633</td>
+</tr>
+<tr class="odd">
+<td align="left">DCA</td>
+<td align="right">9157</td>
+</tr>
+<tr class="even">
+<td align="left">DTW</td>
+<td align="right">9060</td>
+</tr>
+<tr class="odd">
+<td align="left">DFW</td>
+<td align="right">8463</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>flights4 %&gt;% 
+  filter(!is_extreme) %&gt;% 
+  select(dep_delay, dest, origin, carrier) %&gt;% 
+  group_by(dest, origin, carrier) %&gt;% 
+  summarise(depdelay_md = median(dep_delay, na.rm = T)) %&gt;% 
+  ggplot() +
+  aes(x = origin, y = depdelay_md, color = origin) +
+  facet_grid(dest ~ carrier) +
+  geom_point()
+  </code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-28-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+</div>
+<div id="fazit" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Fazit</h1>
+<p>Keine heiße Spur bisher. Allerdings erlaubt explorative Datenanalyse nur die gleichzeitige Betrachtung von zwei bis drei, vielleicht vier Variablen. Sind die Zusammenhänge komplizierter in dem Sinne, dass mehrere Variablen für einen Effekt zusammenwirken, so ist es mit explorativen Methoden schwer zu finden.</p>
+<p>Der nächste logische Schritt: Wir müssen modellieren. Mit Modellierungsmethoden lassen sich auch hochdimensionale Zusammenhänge finden.</p>
+</div>
+<div id="achtung" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Achtung</h1>
+<p>Diese Analyse ist rein explorativ in dem Sinne, dass keine Hypothesen getestet werden. Es ist damit zu rechnen, dass falsch-positive Befunde auftauchen. Alle Ergebnisse sollten anhand neuer Daten validiert werden.</p>
+</div>
+<div id="reproduzierbarkeit" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Reproduzierbarkeit</h1>
+<pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
+#&gt;  setting  value                       
+#&gt;  version  R version 4.0.2 (2020-06-22)
+#&gt;  os       macOS  10.16                
+#&gt;  system   x86_64, darwin17.0          
+#&gt;  ui       X11                         
+#&gt;  language (EN)                        
+#&gt;  collate  en_US.UTF-8                 
+#&gt;  ctype    en_US.UTF-8                 
+#&gt;  tz       Europe/Berlin               
+#&gt;  date     2021-03-08                  
+#&gt; 
+#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
+#&gt;  package     * version     date       lib source                             
+#&gt;  assertthat    0.2.1       2019-03-21 [1] CRAN (R 4.0.0)                     
+#&gt;  backports     1.2.1       2020-12-09 [1] CRAN (R 4.0.2)                     
+#&gt;  blogdown      1.1         2021-01-19 [1] CRAN (R 4.0.2)                     
+#&gt;  bookdown      0.21.6      2021-02-02 [1] Github (rstudio/bookdown@6c7346a)  
+#&gt;  broom         0.7.5       2021-02-19 [1] CRAN (R 4.0.2)                     
+#&gt;  bslib         0.2.4.9000  2021-02-02 [1] Github (rstudio/bslib@b3cd7a9)     
+#&gt;  cachem        1.0.4       2021-02-13 [1] CRAN (R 4.0.2)                     
+#&gt;  callr         3.5.1       2020-10-13 [1] CRAN (R 4.0.2)                     
+#&gt;  cellranger    1.1.0       2016-07-27 [1] CRAN (R 4.0.0)                     
+#&gt;  cli           2.3.1       2021-02-23 [1] CRAN (R 4.0.2)                     
+#&gt;  codetools     0.2-16      2018-12-24 [2] CRAN (R 4.0.2)                     
+#&gt;  colorspace    2.0-0       2020-11-11 [1] CRAN (R 4.0.2)                     
+#&gt;  crayon        1.4.1       2021-02-08 [1] CRAN (R 4.0.2)                     
+#&gt;  curl          4.3         2019-12-02 [1] CRAN (R 4.0.0)                     
+#&gt;  data.table    1.14.0      2021-02-21 [1] CRAN (R 4.0.2)                     
+#&gt;  DBI           1.1.1       2021-01-15 [1] CRAN (R 4.0.2)                     
+#&gt;  dbplyr        2.1.0       2021-02-03 [1] CRAN (R 4.0.2)                     
+#&gt;  debugme       1.1.0       2017-10-22 [1] CRAN (R 4.0.0)                     
+#&gt;  desc          1.2.0       2018-05-01 [1] CRAN (R 4.0.0)                     
+#&gt;  devtools      2.3.2       2020-09-18 [1] CRAN (R 4.0.2)                     
+#&gt;  digest        0.6.27      2020-10-24 [1] CRAN (R 4.0.2)                     
+#&gt;  dplyr       * 1.0.4       2021-02-02 [1] CRAN (R 4.0.2)                     
+#&gt;  ellipsis      0.3.1       2020-05-15 [1] CRAN (R 4.0.0)                     
+#&gt;  evaluate      0.14        2019-05-28 [1] CRAN (R 4.0.0)                     
+#&gt;  fansi         0.4.2       2021-01-15 [1] CRAN (R 4.0.2)                     
+#&gt;  farver        2.0.3       2020-01-16 [1] CRAN (R 4.0.0)                     
+#&gt;  fastDummies   1.6.3       2020-11-29 [1] CRAN (R 4.0.2)                     
+#&gt;  fastmap       1.1.0       2021-01-25 [1] CRAN (R 4.0.2)                     
+#&gt;  forcats     * 0.5.1       2021-01-27 [1] CRAN (R 4.0.2)                     
+#&gt;  fs            1.5.0       2020-07-31 [1] CRAN (R 4.0.2)                     
+#&gt;  generics      0.1.0       2020-10-31 [1] CRAN (R 4.0.2)                     
+#&gt;  ggplot2     * 3.3.3       2020-12-30 [1] CRAN (R 4.0.2)                     
+#&gt;  glue          1.4.2       2020-08-27 [1] CRAN (R 4.0.2)                     
+#&gt;  gtable        0.3.0       2019-03-25 [1] CRAN (R 4.0.0)                     
+#&gt;  haven         2.3.1       2020-06-01 [1] CRAN (R 4.0.0)                     
+#&gt;  highr         0.8         2019-03-20 [1] CRAN (R 4.0.0)                     
+#&gt;  hms           1.0.0       2021-01-13 [1] CRAN (R 4.0.2)                     
+#&gt;  htmltools     0.5.1.1     2021-01-22 [1] CRAN (R 4.0.2)                     
+#&gt;  httr          1.4.2       2020-07-20 [1] CRAN (R 4.0.2)                     
+#&gt;  jquerylib     0.1.3       2020-12-17 [1] CRAN (R 4.0.2)                     
+#&gt;  jsonlite      1.7.2       2020-12-09 [1] CRAN (R 4.0.2)                     
+#&gt;  knitr         1.31        2021-01-27 [1] CRAN (R 4.0.2)                     
+#&gt;  labeling      0.4.2       2020-10-20 [1] CRAN (R 4.0.2)                     
+#&gt;  lifecycle     1.0.0       2021-02-15 [1] CRAN (R 4.0.2)                     
+#&gt;  lubridate     1.7.9.2     2020-11-13 [1] CRAN (R 4.0.2)                     
+#&gt;  magrittr      2.0.1       2020-11-17 [1] CRAN (R 4.0.2)                     
+#&gt;  memoise       2.0.0       2021-01-26 [1] CRAN (R 4.0.2)                     
+#&gt;  modelr        0.1.8       2020-05-19 [1] CRAN (R 4.0.0)                     
+#&gt;  munsell       0.5.0       2018-06-12 [1] CRAN (R 4.0.0)                     
+#&gt;  pillar        1.5.0       2021-02-22 [1] CRAN (R 4.0.2)                     
+#&gt;  pkgbuild      1.2.0       2020-12-15 [1] CRAN (R 4.0.2)                     
+#&gt;  pkgconfig     2.0.3       2019-09-22 [1] CRAN (R 4.0.0)                     
+#&gt;  pkgload       1.2.0       2021-02-23 [1] CRAN (R 4.0.2)                     
+#&gt;  prettyunits   1.1.1       2020-01-24 [1] CRAN (R 4.0.0)                     
+#&gt;  printr      * 0.1.1       2021-01-27 [1] CRAN (R 4.0.2)                     
+#&gt;  processx      3.4.5       2020-11-30 [1] CRAN (R 4.0.2)                     
+#&gt;  ps            1.5.0       2020-12-05 [1] CRAN (R 4.0.2)                     
+#&gt;  purrr       * 0.3.4       2020-04-17 [1] CRAN (R 4.0.0)                     
+#&gt;  R6            2.5.0       2020-10-28 [1] CRAN (R 4.0.2)                     
+#&gt;  Rcpp          1.0.6       2021-01-15 [1] CRAN (R 4.0.2)                     
+#&gt;  readr       * 1.4.0       2020-10-05 [1] CRAN (R 4.0.2)                     
+#&gt;  readxl        1.3.1       2019-03-13 [1] CRAN (R 4.0.0)                     
+#&gt;  remotes       2.2.0       2020-07-21 [1] CRAN (R 4.0.2)                     
+#&gt;  reprex        1.0.0       2021-01-27 [1] CRAN (R 4.0.2)                     
+#&gt;  rlang         0.4.10      2020-12-30 [1] CRAN (R 4.0.2)                     
+#&gt;  rmarkdown     2.7         2021-02-19 [1] CRAN (R 4.0.2)                     
+#&gt;  rprojroot     2.0.2       2020-11-15 [1] CRAN (R 4.0.2)                     
+#&gt;  rstudioapi    0.13.0-9000 2021-02-11 [1] Github (rstudio/rstudioapi@9d21f50)
+#&gt;  rvest         0.3.6       2020-07-25 [1] CRAN (R 4.0.2)                     
+#&gt;  sass          0.3.1       2021-01-24 [1] CRAN (R 4.0.2)                     
+#&gt;  scales        1.1.1       2020-05-11 [1] CRAN (R 4.0.0)                     
+#&gt;  sessioninfo   1.1.1       2018-11-05 [1] CRAN (R 4.0.0)                     
+#&gt;  stringi       1.5.3       2020-09-09 [1] CRAN (R 4.0.2)                     
+#&gt;  stringr     * 1.4.0       2019-02-10 [1] CRAN (R 4.0.0)                     
+#&gt;  testthat      3.0.2       2021-02-14 [1] CRAN (R 4.0.2)                     
+#&gt;  tibble      * 3.0.6       2021-01-29 [1] CRAN (R 4.0.2)                     
+#&gt;  tidyr       * 1.1.2       2020-08-27 [1] CRAN (R 4.0.2)                     
+#&gt;  tidyselect    1.1.0       2020-05-11 [1] CRAN (R 4.0.0)                     
+#&gt;  tidyverse   * 1.3.0       2019-11-21 [1] CRAN (R 4.0.0)                     
+#&gt;  usethis       2.0.1       2021-02-10 [1] CRAN (R 4.0.2)                     
+#&gt;  utf8          1.1.4       2018-05-24 [1] CRAN (R 4.0.0)                     
+#&gt;  vctrs         0.3.6       2020-12-17 [1] CRAN (R 4.0.2)                     
+#&gt;  withr         2.4.1       2021-01-26 [1] CRAN (R 4.0.2)                     
+#&gt;  xfun          0.21        2021-02-10 [1] CRAN (R 4.0.2)                     
+#&gt;  xml2          1.3.2       2020-04-23 [1] CRAN (R 4.0.0)                     
+#&gt;  yaml          2.2.1       2020-02-01 [1] CRAN (R 4.0.0)                     
+#&gt; 
+#&gt; [1] /Users/sebastiansaueruser/Rlibs
+#&gt; [2] /Library/Frameworks/R.framework/Versions/4.0/Resources/library</code></pre>
+</div>

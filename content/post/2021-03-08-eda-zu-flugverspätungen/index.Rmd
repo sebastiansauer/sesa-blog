@@ -1,0 +1,406 @@
+---
+title: EDA zu Flugverspätungen
+author: Sebastian Sauer
+draft: true
+date: '2021-03-08'
+slug: eda-zu-flugverspätungen
+categories:
+  - rstats
+tags:
+  - eda
+output:
+  blogdown::html_page:
+    toc: yes
+    number_sections: yes
+---
+
+
+
+```{r knitr-setup, echo = FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = TRUE,
+  out.width = "100%",
+  fig.align = 'center',
+  fig.width = 6,
+  fig.asp = 0.618,  # 1 / phi
+  fig.show = "hold",
+  size = "tiny"
+)
+```
+
+
+
+# Pakete laden
+
+```{r load-libs, message = FALSE, warning = FALSE}
+library(tidyverse)  # data wrangling
+```
+
+```{r load-libs-hidden, message = FALSE, warning = FALSE, include=FALSE}
+library(printr)
+```
+
+
+# Hintergrund und Ziel
+
+
+Dieser Post zeigt einige mögliche/typische Schritte der explorativen Datenanalyse (EDA) im Hinblick auf die Forschungsfrage "Welche Variablen steht in Zusammenhang mit Flugverspätungen?".
+
+
+# Daten laden
+
+Der Datensatz kann z.B. hier bezogen werden:
+
+```{r}
+flights <- read_csv("https://vincentarelbundock.github.io/Rdatasets/csv/nycflights13/flights.csv")
+```
+
+Der Datensatz ist relativ groß:
+
+```{r}
+dim(flights)
+```
+
+
+Alternativ findet man den Datensatz auch im Paket `nycflights13`.
+
+
+```{r eval = FALSE}
+data(flights, package = "nycflights13")
+```
+
+
+
+# Was ist Verspätung?
+
+Schauen wir uns den Datensatz mal näher an, um die Zielvariable "Verspätung" zu beleuchten.
+
+```{r}
+glimpse(flights)
+```
+
+
+Es gibt zwei Spalten, die auf Verspätung hinzielen:
+
+```{r}
+flights %>% 
+  select(contains("delay")) %>% 
+  head()
+```
+
+
+Ein Blick in die Hilfe lässt uns mehr lernen, was die Spalten bedeuten: `help(flights)` (wenn das Paket `nycflights13` geladen ist; alternativ kann man z.B. [hier](https://vincentarelbundock.github.io/Rdatasets/doc/nycflights13/flights.html) nachlesen):
+
+````
+dep_delay, arr_delay
+
+Departure and arrival delays, in minutes. Negative times represent early departures/arrivals.
+````
+
+## Wie ähnlich sind Ankunfts- und Abflugsverspätung?
+
+Da der Datensatz so groß ist, ziehen wir eine Stichprobe, dann geht alles schneller:
+
+```{r}
+flights %>% 
+  sample_n(size = 1000) %>% 
+  ggplot() +
+  aes(y = dep_delay, x = arr_delay) +
+  geom_point()
+```
+
+
+
+
+
+Die beiden Variablen scheinen ziemlich stark korreliert zu sein.
+
+```{r}
+flights %>% 
+  drop_na(dep_delay, arr_delay) %>% 
+  summarise(cor(dep_delay, arr_delay))
+```
+
+Ja, sind sie. Dann ist es vielleicht egal, welche der beiden Variablen wir verwenden. Nehmen wir `dep_delay`.
+
+
+# Verteilung der Verspätung
+
+```{r}
+flights %>% 
+  ggplot() +
+  aes(x = dep_delay) %>% 
+  geom_density()
+```
+
+
+Ein sehr langer rechter Rand; die meisten Flüge sind nicht/kaum verspätet; aber einige wenige sind sehr stark verspätet.
+
+
+```{r}
+flights %>% 
+  select(dep_delay) %>% 
+  summarise(across(
+    .cols = dep_delay,
+    .fns = list(mean = mean, 
+                md = median, 
+                sd = sd, 
+                iqr = IQR), na.rm = TRUE,
+    .names = "depdelay_{fn}"
+  ))
+```
+
+
+## flights2: Extremwerte definieren
+
+
+```{r}
+flights2 <-
+  flights %>% 
+  mutate(is_extreme = case_when(
+    dep_delay > quantile(dep_delay, prob = .75, na.rm = TRUE) + 1.5 * IQR(dep_delay, na.rm = TRUE) ~ TRUE,
+    TRUE ~ FALSE
+  ))
+```
+
+
+
+
+## Fehlende Werte
+
+Wie viele fehlende Werte gibt es eigentlich?
+
+
+```{r}
+flights %>% 
+  summarise(sum(is.na(dep_delay)))
+```
+
+So geht es für alle Spalten auf einmal:
+
+```{r}
+flights %>% 
+  summarise(across(everything(), ~ sum(is.na(.x))))
+```
+
+Wie viele Fälle gingen verloren, wenn wir die Fälle mit fehlenden Werten bei `dep_delay` entfernten?
+
+
+```{r}
+flights %>% 
+  drop_na(dep_delay) %>% 
+  nrow()
+```
+
+
+Wenige, im Verhältnis. Also machen wir das mal:
+
+## flights3
+
+
+```{r flights2}
+flights3 <-
+  flights2 %>% 
+  drop_na(dep_delay) %>% 
+  select(-year)
+```
+
+
+# Korrelate von Verspätung
+
+
+## Metrische Prädiktoren
+
+
+```{r}
+flights2 %>% 
+  select(where(is.numeric)) %>% 
+  summarise(across(
+    .cols = everything(),
+    .fns = ~ cor(., flights2$dep_delay, use = "complete.obs"))) %>% 
+  pivot_longer(everything()) %>% 
+  arrange(-value)
+```
+
+## Nominale Prädiktoren
+
+
+
+```{r}
+flights2 %>% 
+  select(where(negate(is.numeric))) %>% 
+  names()
+```
+
+
+
+
+```{r}
+flights2 %>% 
+  select(where(negate(is.numeric))) %>% 
+  summarise(across(
+    .cols = everything(),
+    .fns = list(ndist = n_distinct)
+  )) %>% 
+  pivot_longer(everything())
+```
+
+
+### Carrier
+
+```{r}
+flights2 %>% 
+  select(carrier) %>% 
+  count(carrier, sort = TRUE)
+```
+
+
+
+```{r}
+flights2 <-
+  flights2 %>% 
+  mutate(carrier = factor(carrier)) %>% 
+  mutate(carrier = fct_lump(carrier, n = 8))
+```
+
+
+```{r}
+flights2 %>% 
+  count(carrier)
+```
+
+
+
+```{r}
+flights2 %>% 
+  filter(!is_extreme) %>% 
+  ggplot() +
+  aes(x = fct_reorder(carrier, -dep_delay), y = dep_delay) %>% 
+  geom_boxplot()
+```
+
+
+## Korrelation von `carrier` mit Verspätung
+
+
+```{r}
+flights2 %>% 
+  select(dep_delay, carrier) %>% 
+  fastDummies::dummy_cols() %>% 
+  select(-carrier) %>% 
+  pivot_longer(-dep_delay,
+               names_to = "carrier",
+               values_to = "value") %>% 
+  group_by(carrier) %>% 
+  summarise(cor_depdelay_carrier = cor(dep_delay, value)) %>% 
+  arrange(-abs(cor_depdelay_carrier))
+```
+
+### Hour
+
+
+```{r}
+flights2 %>% 
+  filter(!is_extreme) %>% 
+  select(dep_delay, hour) %>% 
+  mutate(hour = factor(hour)) %>% 
+  ggplot() +
+  aes(x = fct_reorder(hour, dep_delay), 
+      y = dep_delay) +
+  geom_boxplot()
+```
+
+
+
+### Origin
+
+```{r}
+flights2 %>% 
+  filter(!is_extreme) %>% 
+  select(origin, dep_delay) %>% 
+  ggplot() +
+  aes(x = origin, y = dep_delay) %>% 
+  geom_boxplot()
+```
+
+
+## Drei Variablen: Origin, hour, dep_delay
+
+
+
+```{r}
+flights2 %>% 
+  filter(!is_extreme) %>% 
+  select(origin, dep_delay, hour) %>% 
+  mutate(hour = factor(hour, levels = 5:23)) %>% 
+  ggplot() +
+  aes(x = hour, y = dep_delay) +
+  geom_boxplot() +
+  facet_wrap(~ origin)
+```
+
+
+## Alle nominale Variablen
+
+```{r}
+flights2 %>% 
+  select(where(!is.numeric)) %>% 
+  names()
+```
+
+
+### flights4
+
+```{r}
+flights4 <-
+flights3 %>% 
+  mutate(dest = fct_lump_prop(dest, prop = .025)) 
+```
+
+
+
+```{r}
+flights4 %>% 
+  count(dest, sort = T)
+```
+
+
+```{r}
+flights4 %>% 
+  filter(!is_extreme) %>% 
+  select(dep_delay, dest, origin, carrier) %>% 
+  group_by(dest, origin, carrier) %>% 
+  summarise(depdelay_md = median(dep_delay, na.rm = T)) %>% 
+  ggplot() +
+  aes(x = origin, y = depdelay_md, color = origin) +
+  facet_grid(dest ~ carrier) +
+  geom_point()
+  
+```
+
+
+
+# Fazit
+
+
+Keine heiße Spur bisher. Allerdings erlaubt explorative Datenanalyse nur die gleichzeitige Betrachtung von zwei bis drei, vielleicht vier Variablen. Sind die Zusammenhänge komplizierter in dem Sinne, dass mehrere Variablen für einen Effekt zusammenwirken, so ist es mit explorativen Methoden schwer zu finden. 
+
+
+Der nächste logische Schritt: Wir müssen modellieren. Mit Modellierungsmethoden lassen sich auch hochdimensionale Zusammenhänge finden. 
+
+# Achtung
+
+Diese Analyse ist rein explorativ in dem Sinne, dass keine Hypothesen getestet werden. Es ist damit zu rechnen, dass falsch-positive Befunde auftauchen. Alle Ergebnisse sollten anhand neuer Daten validiert werden.
+
+# Reproduzierbarkeit
+
+```{r reproducibility, echo = FALSE}
+## Reproducibility info
+options(width = 120)
+devtools::session_info()
+
+
