@@ -1,7 +1,7 @@
 ---
 title: EDA zu Flugverspätungen
 author: Sebastian Sauer
-draft: true
+draft: false
 date: '2021-03-08'
 slug: eda-zu-flugverspätungen
 categories:
@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   message = FALSE,
   warning = FALSE,
-  cache = TRUE,
+  cache = FALSE,
   out.width = "100%",
   fig.align = 'center',
   fig.width = 6,
@@ -113,6 +113,22 @@ flights %>%
   geom_point()
 ```
 
+
+Oder vielleicht so:
+
+
+```{r}
+flights %>% 
+  select(contains("delay")) %>% 
+  drop_na() %>% 
+  mutate(dep_delay = scale(dep_delay),
+         arr_delay = scale(arr_delay)) %>% 
+  ggplot() +
+  aes(x = arr_delay, y = dep_delay) +
+  geom_bin2d() +
+  geom_abline(linetype = "dashed",
+              color = "grey60")
+```
 
 
 
@@ -347,8 +363,8 @@ flights2 %>%
 ## Alle nominale Variablen
 
 ```{r}
-flights2 %>% 
-  select(where(!is.numeric)) %>% 
+flights3 %>% 
+  select(where(~ !is.numeric(.))) %>% 
   names()
 ```
 

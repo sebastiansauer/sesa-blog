@@ -1,7 +1,7 @@
 ---
 title: EDA zu Flugverspätungen
 author: Sebastian Sauer
-draft: true
+draft: false
 date: '2021-03-08'
 slug: eda-zu-flugverspätungen
 categories:
@@ -150,6 +150,18 @@ Departure and arrival delays, in minutes. Negative times represent early departu
   aes(y = dep_delay, x = arr_delay) +
   geom_point()</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Oder vielleicht so:</p>
+<pre class="r"><code>flights %&gt;% 
+  select(contains(&quot;delay&quot;)) %&gt;% 
+  drop_na() %&gt;% 
+  mutate(dep_delay = scale(dep_delay),
+         arr_delay = scale(arr_delay)) %&gt;% 
+  ggplot() +
+  aes(x = arr_delay, y = dep_delay) +
+  geom_bin2d() +
+  geom_abline(linetype = &quot;dashed&quot;,
+              color = &quot;grey60&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Die beiden Variablen scheinen ziemlich stark korreliert zu sein.</p>
 <pre class="r"><code>flights %&gt;% 
   drop_na(dep_delay, arr_delay) %&gt;% 
@@ -175,7 +187,7 @@ Departure and arrival delays, in minutes. Negative times represent early departu
   ggplot() +
   aes(x = dep_delay) %&gt;% 
   geom_density()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Ein sehr langer rechter Rand; die meisten Flüge sind nicht/kaum verspätet; aber einige wenige sind sehr stark verspätet.</p>
 <pre class="r"><code>flights %&gt;% 
   select(dep_delay) %&gt;% 
@@ -587,7 +599,7 @@ Departure and arrival delays, in minutes. Negative times represent early departu
   ggplot() +
   aes(x = fct_reorder(carrier, -dep_delay), y = dep_delay) %&gt;% 
   geom_boxplot()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="korrelation-von-carrier-mit-verspätung" class="section level2" number="6.3">
@@ -658,7 +670,7 @@ Departure and arrival delays, in minutes. Negative times represent early departu
   aes(x = fct_reorder(hour, dep_delay), 
       y = dep_delay) +
   geom_boxplot()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="origin" class="section level3" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> Origin</h3>
@@ -668,7 +680,7 @@ Departure and arrival delays, in minutes. Negative times represent early departu
   ggplot() +
   aes(x = origin, y = dep_delay) %&gt;% 
   geom_boxplot()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="drei-variablen-origin-hour-dep_delay" class="section level2" number="6.4">
@@ -681,12 +693,12 @@ Departure and arrival delays, in minutes. Negative times represent early departu
   aes(x = hour, y = dep_delay) +
   geom_boxplot() +
   facet_wrap(~ origin)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="alle-nominale-variablen" class="section level2" number="6.5">
 <h2><span class="header-section-number">6.5</span> Alle nominale Variablen</h2>
-<pre class="r"><code>flights2 %&gt;% 
-  select(!is.numeric) %&gt;% 
+<pre class="r"><code>flights3 %&gt;% 
+  select(where(~ !is.numeric(.))) %&gt;% 
   names()
 #&gt; [1] &quot;carrier&quot;    &quot;tailnum&quot;    &quot;origin&quot;     &quot;dest&quot;       &quot;time_hour&quot; 
 #&gt; [6] &quot;is_extreme&quot;</code></pre>
@@ -769,7 +781,7 @@ flights3 %&gt;%
   facet_grid(dest ~ carrier) +
   geom_point()
   </code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-28-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-29-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 </div>
@@ -808,7 +820,6 @@ flights3 %&gt;%
 #&gt;  callr         3.5.1       2020-10-13 [1] CRAN (R 4.0.2)                     
 #&gt;  cellranger    1.1.0       2016-07-27 [1] CRAN (R 4.0.0)                     
 #&gt;  cli           2.3.1       2021-02-23 [1] CRAN (R 4.0.2)                     
-#&gt;  codetools     0.2-16      2018-12-24 [2] CRAN (R 4.0.2)                     
 #&gt;  colorspace    2.0-0       2020-11-11 [1] CRAN (R 4.0.2)                     
 #&gt;  crayon        1.4.1       2021-02-08 [1] CRAN (R 4.0.2)                     
 #&gt;  curl          4.3         2019-12-02 [1] CRAN (R 4.0.0)                     
