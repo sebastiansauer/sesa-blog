@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   message = FALSE,
   warning = FALSE,
-  cache = FALSE,
+  cache = TRUE,
   out.width = "100%",
   fig.align = 'center',
   fig.width = 6,
@@ -48,7 +48,7 @@ library(printr)
 # Hintergrund und Ziel
 
 
-Dieser Post zeigt einige mögliche/typische Schritte der explorativen Datenanalyse (EDA) im Hinblick auf die Forschungsfrage "Welche Variablen steht in Zusammenhang mit Flugverspätungen?".
+Dieser Post zeigt einige mögliche/typische Schritte der explorativen Datenanalyse (EDA) im Hinblick auf die Forschungsfrage "*Welche Variablen steht in Zusammenhang mit Flugverspätungen?*".
 
 
 # Daten laden
@@ -369,7 +369,7 @@ flights3 %>%
 ```
 
 
-### flights4
+## flights4
 
 ```{r}
 flights4 <-
@@ -397,6 +397,46 @@ flights4 %>%
   geom_point()
   
 ```
+
+
+
+
+
+## Anzahl von Flüge
+
+```{r}
+flights4_sum <- 
+  flights4 %>% 
+  filter(!is_extreme) %>% 
+  select(month, origin, dep_delay) %>% 
+  drop_na() %>% 
+  group_by(month, origin) %>% 
+  summarise(delay_md = median(dep_delay),
+            delay_iqr = IQR(dep_delay),
+            delay_n = n()) %>% 
+  mutate(month = factor(month),
+         delay_n = as.numeric(delay_n))
+  
+```
+
+
+
+```{r}
+flights4 %>% 
+  filter(!is_extreme) %>% 
+  select(month, origin, dep_delay) %>% 
+  mutate(month = factor(month)) %>% 
+  drop_na() %>% 
+  ggplot() +
+  aes(x = month, y = dep_delay, color = origin) +
+  geom_violin() +
+  geom_point(data = flights4_sum, 
+             aes(y = delay_md,
+                 x = month)) +
+  facet_wrap( ~ origin)
+```
+
+
 
 
 

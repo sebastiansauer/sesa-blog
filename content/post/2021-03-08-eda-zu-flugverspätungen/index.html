@@ -44,10 +44,9 @@ output:
 <li><a href="#origin"><span class="toc-section-number">6.3.2</span> Origin</a></li>
 </ul></li>
 <li><a href="#drei-variablen-origin-hour-dep_delay"><span class="toc-section-number">6.4</span> Drei Variablen: Origin, hour, dep_delay</a></li>
-<li><a href="#alle-nominale-variablen"><span class="toc-section-number">6.5</span> Alle nominale Variablen</a>
-<ul>
-<li><a href="#flights4"><span class="toc-section-number">6.5.1</span> flights4</a></li>
-</ul></li>
+<li><a href="#alle-nominale-variablen"><span class="toc-section-number">6.5</span> Alle nominale Variablen</a></li>
+<li><a href="#flights4"><span class="toc-section-number">6.6</span> flights4</a></li>
+<li><a href="#anzahl-von-flüge"><span class="toc-section-number">6.7</span> Anzahl von Flüge</a></li>
 </ul></li>
 <li><a href="#fazit"><span class="toc-section-number">7</span> Fazit</a></li>
 <li><a href="#achtung"><span class="toc-section-number">8</span> Achtung</a></li>
@@ -61,7 +60,7 @@ output:
 </div>
 <div id="hintergrund-und-ziel" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Hintergrund und Ziel</h1>
-<p>Dieser Post zeigt einige mögliche/typische Schritte der explorativen Datenanalyse (EDA) im Hinblick auf die Forschungsfrage “Welche Variablen steht in Zusammenhang mit Flugverspätungen?”.</p>
+<p>Dieser Post zeigt einige mögliche/typische Schritte der explorativen Datenanalyse (EDA) im Hinblick auf die Forschungsfrage “<em>Welche Variablen steht in Zusammenhang mit Flugverspätungen?</em>”.</p>
 </div>
 <div id="daten-laden" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Daten laden</h1>
@@ -702,8 +701,9 @@ Departure and arrival delays, in minutes. Negative times represent early departu
   names()
 #&gt; [1] &quot;carrier&quot;    &quot;tailnum&quot;    &quot;origin&quot;     &quot;dest&quot;       &quot;time_hour&quot; 
 #&gt; [6] &quot;is_extreme&quot;</code></pre>
-<div id="flights4" class="section level3" number="6.5.1">
-<h3><span class="header-section-number">6.5.1</span> flights4</h3>
+</div>
+<div id="flights4" class="section level2" number="6.6">
+<h2><span class="header-section-number">6.6</span> flights4</h2>
 <pre class="r"><code>flights4 &lt;-
 flights3 %&gt;% 
   mutate(dest = fct_lump_prop(dest, prop = .025)) </code></pre>
@@ -783,6 +783,33 @@ flights3 %&gt;%
   </code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-29-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
+<div id="anzahl-von-flüge" class="section level2" number="6.7">
+<h2><span class="header-section-number">6.7</span> Anzahl von Flüge</h2>
+<pre class="r"><code>flights4_sum &lt;- 
+  flights4 %&gt;% 
+  filter(!is_extreme) %&gt;% 
+  select(month, origin, dep_delay) %&gt;% 
+  drop_na() %&gt;% 
+  group_by(month, origin) %&gt;% 
+  summarise(delay_md = median(dep_delay),
+            delay_iqr = IQR(dep_delay),
+            delay_n = n()) %&gt;% 
+  mutate(month = factor(month),
+         delay_n = as.numeric(delay_n))
+  </code></pre>
+<pre class="r"><code>flights4 %&gt;% 
+  filter(!is_extreme) %&gt;% 
+  select(month, origin, dep_delay) %&gt;% 
+  mutate(month = factor(month)) %&gt;% 
+  drop_na() %&gt;% 
+  ggplot() +
+  aes(x = month, y = dep_delay, color = origin) +
+  geom_violin() +
+  geom_point(data = flights4_sum, 
+             aes(y = delay_md,
+                 x = month)) +
+  facet_wrap( ~ origin)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-31-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="fazit" class="section level1" number="7">
@@ -820,6 +847,7 @@ flights3 %&gt;%
 #&gt;  callr         3.5.1       2020-10-13 [1] CRAN (R 4.0.2)                     
 #&gt;  cellranger    1.1.0       2016-07-27 [1] CRAN (R 4.0.0)                     
 #&gt;  cli           2.3.1       2021-02-23 [1] CRAN (R 4.0.2)                     
+#&gt;  codetools     0.2-16      2018-12-24 [2] CRAN (R 4.0.2)                     
 #&gt;  colorspace    2.0-0       2020-11-11 [1] CRAN (R 4.0.2)                     
 #&gt;  crayon        1.4.1       2021-02-08 [1] CRAN (R 4.0.2)                     
 #&gt;  curl          4.3         2019-12-02 [1] CRAN (R 4.0.0)                     
