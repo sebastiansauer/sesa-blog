@@ -1,0 +1,384 @@
+---
+title: 'Fallstudie: Modellierung von Flugverspätungen'
+author: Sebastian Sauer
+date: '2021-03-10'
+slug: fallstudie-modellierung-von-flugverspätungen
+categories:
+  - rstats
+tags:
+  - tutorial
+  - modeling
+  - prediction
+output:
+  blogdown::html_page:
+    toc: yes
+    number_sections: yes
+---
+
+
+
+```{r knitr-setup, echo = FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = TRUE,
+  out.width = "100%",
+  fig.align = 'center',
+  fig.width = 6,
+  fig.asp = 0.618,  # 1 / phi
+  fig.show = "hold",
+  size = "tiny"
+)
+```
+
+
+# Hintergrund und Forschungsfrage
+
+
+Wir untersuchen die Forschungsfrage *Was sind Prädiktoren von Flugverspätungen*. Dazu nutzen wir lineare Modelle als Modellierungsmethoden.
+
+Dieser Post knüpft an [den Post zur explorativen Datenanalyse der Flugverspätungen](https://data-se.netlify.app/2021/03/08/eda-zu-flugversp%C3%A4tungen/) an (es gibt auch [hier, Teil 1](https://www.youtube.com/watch?v=t8i_qTonuLM) und [hier, Teil 2](https://youtu.be/AeBqwr2U7MA) ein Video zu diesem EDA-Post).
+
+
+# Video
+
+Es gibt zu diesen Post auch ein [Video]().
+
+
+
+
+# Pakete laden
+
+```{r load-libs, message = FALSE, warning = FALSE}
+library("broom")  # kürzere Ausgabe der Regressionsanalyse
+library("tidymodels")  # Datenmodellierung
+library("tidyverse")  # data wrangling
+library("conflicted")  # Name clashes finden
+```
+
+
+
+```{r echo=FALSE, include = FALSE}
+library(printr)
+```
+
+
+# Daten laden
+
+
+```{r}
+library("nycflights13")
+data(flights)
+```
+
+
+# flights2: Nicht benötigte Variablen entfernen
+
+```{r}
+flights2 <-
+  flights %>% 
+  select(-c(year, arr_delay)) %>% 
+  drop_na(dep_delay)
+```
+
+
+
+
+
+# Aufteilung in Train- und Testsample
+
+
+Der Hintergrund zur Idee der Aufteilung in Train- und Test-Stichprobe kann z.b. [hier](https://www.tmwr.org/splitting.html) oder [hier](https://www.springer.com/de/book/9783658215866), Kapitel 15, nachgelesen werden.
+
+
+```{r}
+flights_split <- initial_split(flights2, 
+                               strata = dep_delay,
+                               na.rm = TRUE)
+```
+
+
+
+# flights_train2, flights_test2
+
+```{r}
+set.seed(42)
+flights_train2 <- training(flights_split)
+flights_test2 <- testing(flights_split)
+```
+
+
+# lm0: Nullmodell
+
+
+
+
+```{r}
+lm0 <- lm(dep_delay ~ 1, data = flights_train2)
+glance(lm0)
+```
+
+# lm1: origin
+
+
+```{r}
+lm1 <- lm(dep_delay ~ origin, data = flights_train2)
+```
+
+```{r}
+tidy(lm1)
+```
+
+Man vergleiche:
+
+```{r}
+flights_train2 %>% 
+  drop_na(dep_delay) %>% 
+  group_by(origin) %>% 
+  summarise(delay_avg = mean(dep_delay)) %>% 
+  mutate(delay_delta = delay_avg -delay_avg[1])
+```
+
+
+
+Aber leider ist es um die Modellgüte nicht so gut bestellt:
+
+```{r}
+glance(lm1)
+```
+
+
+
+# lm2: all in
+
+```{r eval = FALSE}
+# NICHT AUSFÜHREN!
+#lm2_all_in <- lm(dep_delay ~ ., data = flights_train2)
+```
+
+Modell `lm2_all_in` ist keine gute Idee, da nominale Prädiktoren in Indikatorvariablen umgewandelt werden. Hat ein nominaler Prädiktor sehr viele Stufen, so resultieren sehr viele Indikatorvariablen, was dem Regressionsmodell Probleme bereiten kann (bei mir hängt sich R auf). Besser ist es, die Anzahl der Stufen von nominalskalierten Variablen vorab zu begrenzen.
+
+# flights_train3: Textvariablen in Faktorvariablen umwandeln
+
+Begrenzen wir zunächst die Anzahl der Stufen der nominal skalierten Variablen:
+
+
+```{r}
+flights_train3 <- 
+  flights_train2 %>% 
+  mutate(across(
+    .cols = where(is.character),
+    .fns = as.factor))
+```
+
+
+
+Wir müssen die Transformationen, die wir auf das Train-Sample anwenden, auch auf das Test-Sample anwenden:
+
+
+```{r}
+flights_test3 <- 
+  flights_test2 %>% 
+  mutate(across(
+    .cols = where(is.character),
+    .fns = as.factor))
+```
+
+
+```{r}
+flights_train3 %>% 
+  select(where(is.factor)) %>% 
+  names()
+```
+
+
+# flights_train4: Faktorstufen zusammenfassen
+
+```{r}
+flights_train4 <-
+  flights_train3 %>% 
+  mutate(across(
+    .cols = where(is.factor),
+    .fns = fct_lump_prop, prop = .025
+  ))
+```
+
+
+Check:
+
+```{r}
+flights_train4 %>% 
+  select(where(is.factor)) %>% 
+  summarise(nlevels_dest = nlevels(dest))
+```
+
+Oder alle Faktorvariablen auf einmal:
+
+
+
+```{r}
+flights_train4 %>% 
+  select(where(is.factor)) %>% 
+  map_dfc(nlevels)
+
+```
+
+
+Das sind jetzt Zahlen von Faktorstufen, mit denen wir arbeiten können.
+
+
+Vergessen wir nnicht, die Transformation auch auf das Test-Sample anzuwenden:
+
+```{r}
+flights_test4 <-
+  flights_test3 %>% 
+  mutate(across(
+    .cols = where(is.factor),
+    .fns = fct_lump_prop, prop = .025
+  ))
+```
+
+
+
+# lm3: Alle zusammengefassten Faktorvariablen
+
+```{r}
+lm3 <- flights_train4 %>% 
+  select(dep_delay, where(is.factor), -tailnum) %>% 
+  lm(dep_delay ~ ., data = .)
+```
+
+
+```{r}
+options(digits = 2)
+glance(lm3) 
+tidy(lm3)
+```
+
+Ein mageres R-Quadrat.
+
+
+# lm4: Alle metrischen Variablen
+
+
+Was sind noch mal unsere metrischen Variablen:
+
+```{r}
+flights_train4 %>% 
+  select(where(is.numeric)) %>% 
+  names()
+```
+
+
+Ok, jetzt eine Regression mit diesen Variablen:
+
+```{r}
+lm4 <- 
+  flights_train4 %>% 
+  select(dep_delay, where(is.numeric)) %>% 
+  lm(dep_delay ~ ., data = .)
+```
+
+
+```{r}
+glance(lm4)
+```
+
+Tja, das $R^2$ hat einen nicht gerade um ...
+
+
+
+# lm5: Alle metrischen und alle (zusammengefassten) nominalen Variablen
+
+Welche Variablen sind jetzt alle an Bord?
+
+```{r}
+flights_train4 %>% 
+  names()
+```
+
+`time_hour` nehmen wir noch einmal raus, da es zum einen redundant ist zu `hour` etc. und zum anderen noch zusätzlicher Aufbereitung bedarf.
+
+```{r}
+lm5 <- 
+  flights_train4 %>% 
+  select(-time_hour, -tailnum) %>% 
+  lm(dep_delay ~ ., data = .)
+```
+
+
+```{r}
+glance(lm5)
+```
+
+Der Vorhersage-Gott ist nicht mit uns. Vielleicht sollten wir zu einem ehrlichen Metier als Schuhverkäufer umsatteln ...
+
+
+# Wetter-Daten ergänzen
+
+
+## Wetterdaten laden
+
+```{r}
+data(weather)
+```
+
+```{r}
+glimpse(weather)
+```
+
+## Wetterdaten mit Flugdaten verheiraten
+
+
+```{r}
+flights_train5 <- 
+  flights_train4 %>% 
+  left_join(weather)
+```
+
+
+Möchte man explizit angeben, anhand welcher Variablen man zusammenfügen möchte, so kann man dies mit dem Parameter `by` tun:
+
+```
+by = c("origin", "month" , "day", "hour")
+```
+
+Unter der Hilfeseite von `left_join` findet man mehr Infos: `?left_join`. 
+
+
+
+# lm6: Plus Wetterdaten
+
+
+```{r}
+lm6 <- update(lm5, . ~ . + humid + wind_speed + wind_gust + precip + pressure + visib,
+              data = flights_train5)
+```
+
+
+glance(lm6)
+
+Ah. Deutlich besser. Wettervorhersage macht's möglich.
+
+# Was noch?
+
+Ein nächster Schritt könnte sein, sich folgende Punkte anzuschauen:
+
+  - Interaktionen
+  - Polynome
+  - Voraussetzungen
+
+Eine Faustregel zu Interaktionen lautet: Wenn zwei Variablen jeweils einen starken Haupteffekt haben, lohnt es sich u.U., den Interaktionseffekt anzuschauen. 
+
+
+
+# Reproducibility
+
+```{r reproducibility, echo = FALSE}
+## Reproducibility info
+options(width = 120)
+devtools::session_info()
+
+
