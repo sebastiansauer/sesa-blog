@@ -42,20 +42,16 @@ Wir untersuchen die Forschungsfrage *Was sind Prädiktoren von Flugverspätungen
 Dieser Post knüpft an [den Post zur explorativen Datenanalyse der Flugverspätungen](https://data-se.netlify.app/2021/03/08/eda-zu-flugversp%C3%A4tungen/) an (es gibt auch [hier, Teil 1](https://www.youtube.com/watch?v=t8i_qTonuLM) und [hier, Teil 2](https://youtu.be/AeBqwr2U7MA) ein Video zu diesem EDA-Post).
 
 
-# Video
-
-Es gibt zu diesen Post auch ein [Video]().
-
-
 
 
 # Pakete laden
 
 ```{r load-libs, message = FALSE, warning = FALSE}
-library("broom")  # kürzere Ausgabe der Regressionsanalyse
 library("tidymodels")  # Datenmodellierung
 library("tidyverse")  # data wrangling
 library("conflicted")  # Name clashes finden
+library("leaps")  # Rohe Gewalt
+library("skimr")  # deskriptive Statistiken komfortabel
 ```
 
 
@@ -74,13 +70,16 @@ data(flights)
 ```
 
 
-# flights2: Nicht benötigte Variablen entfernen
+
+# flights2: Nicht benötigte Variablen entfernen und ID hinzufügen
 
 ```{r}
 flights2 <-
   flights %>% 
   select(-c(year, arr_delay)) %>% 
-  drop_na(dep_delay)
+  drop_na(dep_delay) %>% 
+  mutate(id = row_number()) %>% 
+  select(id, everything())  # id nach vorne ziehen
 ```
 
 
@@ -104,7 +103,7 @@ flights_split <- initial_split(flights2,
 # flights_train2, flights_test2
 
 ```{r}
-set.seed(42)
+set.seed(42)  # Reproduzierbarkeit
 flights_train2 <- training(flights_split)
 flights_test2 <- testing(flights_split)
 ```
@@ -138,7 +137,7 @@ flights_train2 %>%
   drop_na(dep_delay) %>% 
   group_by(origin) %>% 
   summarise(delay_avg = mean(dep_delay)) %>% 
-  mutate(delay_delta = delay_avg -delay_avg[1])
+  mutate(delay_delta = delay_avg - delay_avg[1])
 ```
 
 
@@ -151,6 +150,7 @@ glance(lm1)
 
 
 
+
 # lm2: all in
 
 ```{r eval = FALSE}
@@ -158,7 +158,7 @@ glance(lm1)
 #lm2_all_in <- lm(dep_delay ~ ., data = flights_train2)
 ```
 
-Modell `lm2_all_in` ist keine gute Idee, da nominale Prädiktoren in Indikatorvariablen umgewandelt werden. Hat ein nominaler Prädiktor sehr viele Stufen, so resultieren sehr viele Indikatorvariablen, was dem Regressionsmodell Probleme bereiten kann (bei mir hängt sich R auf). Besser ist es, die Anzahl der Stufen von nominalskalierten Variablen vorab zu begrenzen.
+Modell `lm2_all_in` ist *keine* gute Idee, da nominale Prädiktoren in Indikatorvariablen umgewandelt werden. Hat ein nominaler Prädiktor sehr viele Stufen, so resultieren sehr viele Indikatorvariablen, was dem Regressionsmodell Probleme bereiten kann (bei mir hängt sich R auf). Besser ist es, die Anzahl der Stufen von nominalskalierten Variablen vorab zu begrenzen.
 
 # flights_train3: Textvariablen in Faktorvariablen umwandeln
 
@@ -177,6 +177,8 @@ flights_train3 <-
 
 Wir müssen die Transformationen, die wir auf das Train-Sample anwenden, auch auf das Test-Sample anwenden:
 
+
+## flights_test3
 
 ```{r}
 flights_test3 <- 
@@ -222,14 +224,17 @@ Oder alle Faktorvariablen auf einmal:
 flights_train4 %>% 
   select(where(is.factor)) %>% 
   map_dfc(nlevels)
-
 ```
 
 
 Das sind jetzt Zahlen von Faktorstufen, mit denen wir arbeiten können.
 
 
-Vergessen wir nnicht, die Transformation auch auf das Test-Sample anzuwenden:
+## flights_test4
+
+Vergessen wir nicht, die Transformation auch auf das Test-Sample anzuwenden:
+
+
 
 ```{r}
 flights_test4 <-
@@ -246,13 +251,19 @@ flights_test4 <-
 
 ```{r}
 lm3 <- flights_train4 %>% 
-  select(dep_delay, where(is.factor), -tailnum) %>% 
+  select(dep_delay, where(is.factor), -tailnum, -id) %>% 
   lm(dep_delay ~ ., data = .)
 ```
 
+Eigentlich brauchen wir nicht so viele Dezimalstellen ...
+
+```{r options-digits}
+options(digits = 2)
+```
+
+
 
 ```{r}
-options(digits = 2)
 glance(lm3) 
 tidy(lm3)
 ```
@@ -272,12 +283,12 @@ flights_train4 %>%
 ```
 
 
-Ok, jetzt eine Regression mit diesen Variablen:
+Ok, jetzt eine Regression mit diesen Variablen (ober ohne die ID-Variable):
 
 ```{r}
 lm4 <- 
   flights_train4 %>% 
-  select(dep_delay, where(is.numeric)) %>% 
+  select(dep_delay, where(is.numeric), -id) %>% 
   lm(dep_delay ~ ., data = .)
 ```
 
@@ -302,11 +313,19 @@ flights_train4 %>%
 `time_hour` nehmen wir noch einmal raus, da es zum einen redundant ist zu `hour` etc. und zum anderen noch zusätzlicher Aufbereitung bedarf.
 
 ```{r}
+flights_train4 %>% 
+  select(minute) %>% 
+  skim()
+```
+
+
+```{r}
 lm5 <- 
   flights_train4 %>% 
-  select(-time_hour, -tailnum) %>% 
+  select(-time_hour, -tailnum, -id, -minute) %>%   # "minute" machte Probleme, besser rausnehmen
   lm(dep_delay ~ ., data = .)
 ```
+
 
 
 ```{r}
@@ -322,20 +341,32 @@ Der Vorhersage-Gott ist nicht mit uns. Vielleicht sollten wir zu einem ehrlichen
 ## Wetterdaten laden
 
 ```{r}
-data(weather)
+data("weather")
 ```
 
 ```{r}
 glimpse(weather)
 ```
 
-## Wetterdaten mit Flugdaten verheiraten
+```{r}
+skim(weather)
+```
+
+
+
+`wind_gust` hat zu viele fehlende Werte; diese Variable dürfen wir nicht verwenden.
+
+
+## flights_train5: Wetterdaten mit Flugdaten verheiraten
+
+
 
 
 ```{r}
 flights_train5 <- 
   flights_train4 %>% 
-  left_join(weather)
+  left_join(weather) %>% 
+  select(-wind_gust)
 ```
 
 
@@ -348,19 +379,281 @@ by = c("origin", "month" , "day", "hour")
 Unter der Hilfeseite von `left_join` findet man mehr Infos: `?left_join`. 
 
 
+```{r}
+flights_test5 <- 
+  flights_test4 %>% 
+  left_join(weather) %>% 
+  select(-wind_gust)
+```
+
+
+# flights_train6
+
+Bei der Gelegenheit löschen wir noch zwei Variablen, die wir bisher nicht benötigt haben.
+
+
+```{r}
+flights_train6 <- 
+  flights_train5 %>% 
+  select(-time_hour, -tailnum, -minute)
+```
+
+
+
+```{r}
+flights_test6 <- 
+  flights_test5 %>% 
+  select(-time_hour, -tailnum, -minute)
+```
+
+
+
 
 # lm6: Plus Wetterdaten
 
 
 ```{r}
-lm6 <- update(lm5, . ~ . + humid + wind_speed + wind_gust + precip + pressure + visib,
-              data = flights_train5)
+lm6 <- update(lm5, . ~ . + humid + wind_speed + precip + pressure + visib,
+              data = flights_train6)
 ```
 
 
+```{r}
 glance(lm6)
+```
 
-Ah. Deutlich besser. Wettervorhersage macht's möglich.
+
+Ah. Etwas besser. Wettervorhersage macht's möglich.
+
+
+$R^2$ kann auch so berechnen:
+
+
+```{r}
+flights_train6_pred <- 
+  flights_train6 %>% 
+  mutate(lm6_pred = predict(lm6, newdata = .))
+
+flights_train6_pred %>% 
+  rsq(truth = dep_delay,
+      estimate = lm6_pred)
+```
+
+
+
+## R2 im Testsample
+
+
+Berechnen wir jetzt die Modellgüte im Testsample.
+
+
+Fügen wir die Vorhersagewerte dem Testsample dazu:
+
+```{r}
+flights_test6_pred <-
+  flights_test6 %>% 
+  mutate(pred_lm6 = predict(lm6, newdata = flights_test6))
+```
+
+```{r}
+flights_test6_pred %>% 
+  select(id, dep_delay, pred_lm6) %>%
+  head()
+```
+
+
+
+```{r}
+test_rsq <- 
+ tibble(model = "lm6") %>% 
+  mutate(rsq = rsq_vec(truth = flights_test6_pred$dep_delay,
+                       estimate = flights_test6_pred$pred_lm6))
+
+test_rsq
+```
+
+
+Prüfen wir noch, wie viele fehlende Werte es bei den vorhergesagten Werten gibt:
+
+
+```{r}
+flights_test6_pred %>% 
+  summarise(pred_isna = sum(is.na(pred_lm6)),
+            pred_isna_prop = pred_isna / nrow(flights_test6_pred))  # prop wie "proportion" (Anteil)
+```
+
+Da fehlende Werte u.U. mit dem Mittelwert (der übrigen prognostizierten Werte) aufgefüllt werden, erledigen wir das gleich, um den Effekt auf $R^2$ abzuschätzen:
+
+```{r}
+flights_test6_pred2 <- 
+flights_test6_pred %>% 
+  mutate(pred_lm6 = replace_na(pred_lm6, mean(pred_lm6, na.rm = TRUE)))
+```
+
+
+```{r}
+flights_test6_pred2 %>% 
+  summarise(sum(is.na(pred_lm6)))
+```
+
+Keine fehlenden Werte mehr.
+
+
+Wie sieht $R^2$ jetzt aus?
+
+```{r}
+flights_test6_pred2 %>% 
+  rsq(truth = dep_delay, estimate = pred_lm6)
+```
+
+Etwas schlechter; das liegt an den vielen Werten, die jetzt eine schlechte Vorhersage machen, da sie mit dem Mittelwert aufgefüllt werden mussten.
+
+
+# lm7: Rohe Gewalt
+
+
+Wir könnten einfach, etwas stumpfsinnig, *alle* Regressionsmodelle ausprobieren: Jeder der $p$ Prädiktoren könnte also entweder enthalten sein oder nicht. Natürlich würde das schnell zu Arbeit auswachsen, wenn man so viele Regressionsmodelle -- $2^p$ -- durchprobieren würde. Außerdem wird die Gefahr von Zufallsbefunden schnell riesig. Aber gut, man kann stumpfsinnige Arbeiten ja gut an den Computer delegieren. Und zum Schutz vor Überanpassung gibt es ein paar Behelfe. Probieren wir es aus; dazu nutzen wir das Paket `{leaps}`.
+
+
+```{r}
+lm7 <- regsubsets(dep_delay ~ ., 
+                  nvmax = 15,  # max. Anzahl von Prädiktoren
+                  data = flights_train6)
+```
+
+Je größer `nvmax`,  desto länger die Rechenzeit, z.B. $2^15=32768$ Modelle, die berechnet werden müssen.
+
+
+
+
+## Best Subsets -- Ergebnisse
+
+Schauen wir uns die Ergebnisse an:
+
+```{r}
+lm7_summary <- summary(lm7)
+
+tibble(adjr2 = lm7_summary$adjr2,
+       r2 = lm7_summary$rsq,
+       bic = lm7_summary$bic,
+       id = 1:length(lm7_summary$adjr2)) %>% 
+  pivot_longer(-id) %>% 
+  ggplot() +
+  aes(x = id, y = value, color = name) +
+  geom_point() +
+  geom_line() +
+  facet_wrap(~ name, scales = "free", nrow = 3) +
+  scale_x_continuous(breaks = 1:16)
+
+
+```
+
+Das Modell mit 7 Koeffizienten könnte sinnvoll sein.
+
+```{r}
+coef(lm7, 7) %>% names()
+```
+
+
+## lm8: Bestes Modell aus der Best-Subset-Analyse
+
+
+```{r}
+flights_train7 <-
+  flights_train6 %>% 
+  mutate(carrierEV = fct_other(carrier, 
+                                  keep = "EV")) 
+```
+
+
+```{r}
+flights_test7 <-
+  flights_test6 %>% 
+  mutate(carrierEV = fct_other(carrier, 
+                                  keep = "EV")) 
+```
+
+
+
+```{r}
+lm8 <- 
+  lm(dep_delay ~ dep_time + sched_dep_time + arr_time + carrierEV + wind_dir + sched_arr_time + visib,
+          data = flights_train7)
+
+glance(lm8)
+```
+
+Hm; nicht so gut.
+
+## R2 im Testdatensatz
+
+
+
+
+```{r}
+flights_test7_pred <-
+  flights_test7 %>% 
+  mutate(pred_lm8 = predict(lm8, newdata = flights_test7)) %>% 
+  select(id, dep_delay, pred_lm8)
+```
+
+
+```{r}
+test_rsq <- 
+  test_rsq %>% 
+  bind_rows(tibble(
+    model = "lm8",
+    rsq = rsq_vec(truth = flights_test7_pred$dep_delay,
+                  estimate = flights_test7_pred$pred_lm8)))
+
+test_rsq
+```
+
+
+Ein typischer Befund bei Regressionsanalysen (ohne Polynome): Im Testdatensatz ist $R^2$ etwas geringer als im Train-Datensatz. Bei Modellen mit Polynomen oder anderen flexiblen Modellen kann der Unterschied zwischen Train- und Test-Sample noch viel größer sein.
+
+# Einreichen
+
+
+Das beste Modell im *Trainsample* reichen wir ein; in diesem Fall `lm6`. Wenn die Maßgabe ist, für *alle* Fälle des Datensatzes eine Vorhersage einzureichen, tun wir das natürlich:
+
+
+```{r}
+flights6 <- 
+flights_train6 %>% 
+  bind_rows(flights_test6) 
+```
+
+
+```{r}
+flights6_pred <- 
+  flights6 %>% 
+  mutate(pred = predict(lm6, newdata = .)) %>% 
+  select(id, pred)
+```
+
+
+```{r}
+head(flights6_pred)
+```
+
+Wie viele vorhergesagte Werte haben wir, bzw. welchen Anteil?
+
+```{r}
+flights6_pred %>% 
+  drop_na() %>% 
+  nrow() / nrow(flights6_pred)
+```
+
+
+## CSV-Datei erstellen zum Einreichen
+
+
+```{r eval = FALSE}
+write_csv(flights6_pred, file = "Sauer_Sebastian_0123456_Prognose.csv")
+```
+
+
 
 # Was noch?
 
@@ -370,7 +663,12 @@ Ein nächster Schritt könnte sein, sich folgende Punkte anzuschauen:
   - Polynome
   - Voraussetzungen
 
-Eine Faustregel zu Interaktionen lautet: Wenn zwei Variablen jeweils einen starken Haupteffekt haben, lohnt es sich u.U., den Interaktionseffekt anzuschauen. 
+Eine Faustregel zu Interaktionen lautet: Wenn zwei Variablen jeweils einen starken Haupteffekt haben, lohnt es sich u.U., den Interaktionseffekt anzuschauen (vgl. Gelman & Hill, 2007, S. 69).
+
+
+# Tidymodels
+
+Das ständige Updaten des Test-Datensatzes nervt; mit `tidymodels` wird es komfortabler und man hat Zugang zu leistungsfähigeren Prognosemodellen. [Hier](https://www.tmwr.org/) findet sich ein Einstieg und hier eine [Fallstudie mit Tutorial](https://www.tidymodels.org/start/models/).
 
 
 
