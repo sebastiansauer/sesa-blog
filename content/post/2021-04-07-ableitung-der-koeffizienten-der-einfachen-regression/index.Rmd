@@ -115,7 +115,12 @@ Um die Quadratsumme zu minimieren, bilden wir jeweils die erste parzielle Ableit
 \frac{\partial QS}{\partial b_0} &= 2 \sum(y_i - b_0 - b_1x_i)(-1) \\
 &= -2 \sum y_i + 2 \sum b_0 + 2 \sum b_1 x_i \\
 &= 2(-\sum y_i + nb_0 + b1 \sum x_i) = 0 \\
-&= -\sum y_i + nb_0 + b1 \sum x_i = 0 \\
+&= -\sum y_i + nb_0 + b1 \sum x_i = 0
+\end{align*}
+
+Der Term mit $b_0$ bleibt auf der linken Seite, die anderen gehen auf die rechte Seite, damit wir nach dem gesuchten Koeffizienten auflösen können:
+
+\begin{align*}
  n b_0&= \sum y_i - b_1 \sum x_i \\
 b_0 &= \frac{\sum y_i - b_1 \sum x_i}{n} \\
 &= n^{-1}\sum y_i - n^{-1}b_1 \sum x_i \\
