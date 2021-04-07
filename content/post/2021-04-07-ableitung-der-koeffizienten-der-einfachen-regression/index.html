@@ -1,0 +1,257 @@
+---
+title: Ableitung der Koeffizienten der einfachen Regression
+author: Sebastian Sauer
+date: '2021-04-07'
+slug: ableitung-der-koeffizienten-der-einfachen-regression
+categories:
+  - statistics
+tags:
+  - regression
+  - modelling
+output:
+  blogdown::html_page:
+    toc: yes
+    number_sections: yes
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+<ul>
+<li><a href="#was-ist-die-regression"><span class="toc-section-number">1</span> Was ist die Regression?</a></li>
+<li><a href="#wie-findet-man-die-regressionsgerade"><span class="toc-section-number">2</span> Wie findet man die Regressionsgerade?</a>
+<ul>
+<li><a href="#b_0"><span class="toc-section-number">2.1</span> <span class="math inline">\(b_0\)</span></a></li>
+<li><a href="#b_1"><span class="toc-section-number">2.2</span> <span class="math inline">\(b_1\)</span></a></li>
+<li><a href="#weitere-umformung-von-b_1"><span class="toc-section-number">2.3</span> Weitere Umformung von <span class="math inline">\(b_1\)</span></a>
+<ul>
+<li><a href="#hilfsterm-1"><span class="toc-section-number">2.3.1</span> Hilfsterm 1</a></li>
+<li><a href="#hilfsterm-2"><span class="toc-section-number">2.3.2</span> Hilfsterm 2</a></li>
+</ul></li>
+<li><a href="#noch-weitere-umformung-von-b_1"><span class="toc-section-number">2.4</span> Noch weitere Umformung von <span class="math inline">\(b_1\)</span></a></li>
+</ul></li>
+<li><a href="#reproduzierbarkeit"><span class="toc-section-number">3</span> Reproduzierbarkeit</a></li>
+</ul>
+</div>
+
+<pre class="r"><code>library(tidyverse)</code></pre>
+<div id="was-ist-die-regression" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Was ist die Regression?</h1>
+<p>In diesem Post geht es um die einfache Regression (d.h. mit einem Prädiktor); genauer gesagt um die Frage, wie man auf die Formeln der Koeffizienten der einfachen Regression kommt.</p>
+<p>Gehen wir von einigen zweidimensionalen Datenpunkten aus, die zu einem Phänomen gemessen wurden: <span class="math inline">\({(x_1, y_1), (x_2, y_2), \ldots, (x_n,y_)}\)</span>.</p>
+<p>Gehen wir weiter davon aus, dass der Zusammenhang <em>in Wirklichkeit</em> von einer Geraden erklärt werden kann:</p>
+<p><span class="math display">\[\hat{y}=b_0 + b_1x\]</span>.</p>
+<p>Eine Gerade kann durch zwei Koeffizienten definiert werden, den Achsenabschnitt <span class="math inline">\(b_0\)</span> und die Steigung <span class="math inline">\(b_1\)</span>.</p>
+<p>Für jeden Datenpunkt <span class="math inline">\(y_i\)</span> können wir die Abweichung (den Fehler) zum vorhergesagten Wert <span class="math inline">\(\hat{y_i}\)</span> ausrechnen:</p>
+<p><span class="math display">\[e_i = y_i - \hat{y_i}\]</span></p>
+<p>Nennen wir die Summe der quadrierten Fehler <span class="math inline">\(e_i\)</span> im Folgenden <span class="math inline">\(QS\)</span> (für Quadratsumme):</p>
+<p><span class="math display">\[\begin{align*}
+QS &amp;= \sum_{i=1}^{n}e_i^2\\
+QS &amp;=  \sum_{i=1}^{n}(y_i - \hat{y_i})^2\\
+QS &amp;=  \sum_{i=1}^{n}(y_i - b_0 - b_1x_i)^2 
+\end{align*}\]</span></p>
+<p>Betrachten wir das an einem Datenbeispiel:</p>
+<pre class="r"><code>d &lt;- mtcars
+lm1 &lt;- lm(mpg ~ hp, data = d)
+
+d &lt;-
+  d %&gt;% 
+  mutate(pred = predict(lm1),
+         resid = residuals(lm1))</code></pre>
+<pre class="r"><code>ggplot(d, 
+       aes(x = hp, y = mpg)) +
+  geom_smooth(method = &quot;lm&quot;, se = FALSE, color = &quot;dodgerblue&quot;) +
+  geom_segment(aes(xend = hp, yend = pred), alpha = .5) +
+  geom_point() +
+  geom_hline(yintercept = mean(d$mpg), 
+             color = &quot;grey60&quot;, linetype = &quot;dashed&quot;) +
+  geom_vline(xintercept = mean(d$hp), 
+             color = &quot;grey60&quot;, linetype = &quot;dashed&quot;) + 
+  annotate(&quot;point&quot;, x = mean(d$hp), y = mean(d$mpg),
+           size = 5, color = &quot;red&quot;, alpha = .5)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Die blaue Gerade ist die Regressionsgerade; die vertikalen Balken stellen die Residuen dar und die gestrichelten Linien repräsentieren jeweils die Mittelwerte von <code>hp</code> bzw. <code>mpg</code>. Man beachte, dass der Schnittpunkt der Mittelwertslinien auf der Regressionsgeraden liegt.</p>
+</div>
+<div id="wie-findet-man-die-regressionsgerade" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Wie findet man die Regressionsgerade?</h1>
+<p>Um die Koeffizienten der Regressionsgeraden zu bestimmen, können wir die <em>Methode der kleinsten Quadrate (least squares)</em> verwenden. Diese Methode gibt uns diejenigen Koeffizienten der Regressionsgeraden (also <span class="math inline">\(b_0\)</span> und <span class="math inline">\(b_1\)</span>), die die <em>Quadratsumme (QS) der Residuen</em> <span class="math inline">\(e_i\)</span> minimieren.</p>
+<p>Um die Quadratsumme zu minimieren, bilden wir jeweils die erste parzielle Ableitung und setzen diese Null. Anschließend löst man nach dem gesuchten Koeffizienten auf. Beginnen wir mit <span class="math inline">\(b_0\)</span>.</p>
+<div id="b_0" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> <span class="math inline">\(b_0\)</span></h2>
+<p><span class="math display">\[\begin{align*}
+\frac{\partial QS}{\partial b_0} &amp;= 2 \sum(y_i - b_0 - b_1x_i)(-1) \\
+&amp;= -2 \sum y_i + 2 \sum b_0 + 2 b_1 x_i \\
+&amp;= 2(-\sum y_i + nb_0 + b1 \sum x_i) = 0 \\
+&amp;= (-\sum y_i + nb_0 + b1 \sum x_i) = 0 \\
+ n b_0&amp;= \sum y_i - b_1 \sum x_i \\
+b_0 &amp;= \frac{\sum y_i - b_1 \sum x_i}{n} \\
+&amp;= n^{-1}\sum y_i - n^{-1}b_1 \sum x_i \\
+&amp;= \bar{y} - b_1 {x}
+\end{align*}\]</span></p>
+<p>Das Ergebnis zeigt auch, dass der Punkt <span class="math inline">\((\bar{x}, \bar{y})\)</span> auf der Regressionsgerade liegt.</p>
+</div>
+<div id="b_1" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> <span class="math inline">\(b_1\)</span></h2>
+<p>Analog verfahren wir für den zweiten Koeffizienten, <span class="math inline">\(b_1\)</span>. Wieer bilden wir die parzielle Ableitung, setzen diese Null und lösen nach dem gesuchten Koeffizienten auf. Das Nachdifferenzieren (Kettenregel) liefert allerdings ein anderes Ergebnis.</p>
+<p><span class="math display">\[\begin{align*}
+\frac{\partial QS}{\partial b_1} &amp;= 2 \sum(y_i - b_0 - b_1x_i)(-x) \\
+&amp;=2(-\sum y_i x_i + b_0\sum x_i + b_1\sum x_i^2)\\
+&amp;=-2 \sum(x_iy_i - b_0x_i - b_1x_i^2) 
+\end{align*}\]</span></p>
+<p>Jetzt setzen wir <span class="math inline">\(b_0\)</span> in die letzte Gleichung ein und setzen diese Null:</p>
+<p><span class="math display">\[\begin{align*}
+&amp;= -2 \sum(x_i y_i - (\bar{y} - b_1\bar{x})x_i - b_1x_i^2) \\
+&amp;= -2 \sum(x_iy_i - x_i\bar{y} + b_1 x_i \bar{x} - b_1x_i2) = 0 
+\end{align*}\]</span></p>
+<p>die <span class="math inline">\(-2\)</span> kürzt sich im Folgenden heraus. Um nach <span class="math inline">\(b_1\)</span> aufzulösen, gruppieren wir die Terme in zwei Hälften: Die mit und die ohne <span class="math inline">\(b_1\)</span>:</p>
+<p><span class="math display">\[
+(x_i y_i) - x_i\bar{y} - b_1 \sum(x_i^2 - x_i \bar{x})) = 0
+\]</span></p>
+<p>Die Terme ohne <span class="math inline">\(b_1\)</span> wandern auf die rechte Seite der Gleichung:</p>
+<p><span class="math display">\[\begin{align*}
+b_1 \sum(x_i^2 - x_i \bar{x}) &amp;= \sum(x_i y_i - x_i\bar{y}) \\
+b_1 &amp;= \frac{\sum x_i y_i - x_i \bar{y}}{\sum x_i^2 - x_i \bar{x}} = \\
+&amp;= \frac{x_i y_i  - n\bar{x} \bar{y}}{\sum x_i^2 - n \bar{x}\bar{x}}
+\end{align*}\]</span></p>
+</div>
+<div id="weitere-umformung-von-b_1" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Weitere Umformung von <span class="math inline">\(b_1\)</span></h2>
+<p>Damit haben wir nach <span class="math inline">\(b_1\)</span> aufgelöst. Allerdings kann man diesen letzten Ausdruck noch in bekanntere Terme umformulieren. Dazu sind zwei Hilfsüberlegungen nützlich:</p>
+<div id="hilfsterm-1" class="section level3" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Hilfsterm 1</h3>
+<p><span class="math display">\[
+(\bar{x}^2 - x_i \bar{x}) = \bar{x}^2 - n \bar{x} \bar{x} = 0
+\]</span></p>
+</div>
+<div id="hilfsterm-2" class="section level3" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Hilfsterm 2</h3>
+<p><span class="math display">\[
+\sum (\bar{x}\bar{y} - y_i \bar{x}) = n \bar{x} \bar{y} - n \bar{x} \bar{y} = 0
+\]</span></p>
+<p>Setzen wir diese Hilfsterme in obige Gleichung ein und zwar Hilfsterm 1 in den Nenner und Hilfsterm 2 in den Zähler. Das “dürfen” wir, da die Hilfsterme ja jeweils Null sind.</p>
+<p><span class="math display">\[\begin{align*}
+b_1 &amp;= \frac{(\sum x_i y_i - x_i \bar{y}) + \sum (\bar{x}\bar{y} - y_i \bar{x})}{(\sum x_i^2 - x_i \bar{x}) + \bar{x}^2 - x_i \bar{x})}
+\end{align*}\]</span></p>
+<p>Im Folgenden betrachten wir der Einfachheit halber nur den Zähler.</p>
+<p><span class="math display">\[\begin{align*}
+b_1 &amp;= \sum x_I y_i - \sum x_I \bar{y} + \sum \bar{x} \bar{y} - \sum y_I \bar{x} \\
+&amp;= \sum(x_i y_I - x_I \bar{y} + \bar{x}\bar{y} - y_i \bar{x}) \\
+=&amp; \sum(x_i(y_i - \bar{y}) + \bar{x}(y_i - \bar{y})) \\
+&amp;= \sum \left( (x_i - \bar{x})(y_i - \bar{y}) \right)
+\end{align*}\]</span></p>
+<p>Multipliziert man nun Zähler und Nenner jeweils (und damit neutral) mit <span class="math inline">\(1/n\)</span>, so erhält man</p>
+<p><span class="math display">\[
+b1 = \frac{cov(x,y)}{s^2(x)}
+\]</span></p>
+<p>Dabei steht <span class="math inline">\(s^2(x)\)</span> für die Varianz von <span class="math inline">\(x\)</span> und <span class="math inline">\(cov\)</span> für die Kovarianz.</p>
+</div>
+</div>
+<div id="noch-weitere-umformung-von-b_1" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Noch weitere Umformung von <span class="math inline">\(b_1\)</span></h2>
+<p><span class="math display">\[\begin{align*}
+b1 &amp;= \frac{cov(x,y)}{s^2(x)} \\
+&amp;= \frac{cov(x,y)}{s2(x)} \cdot \frac{s(y)}{s(y)} \\
+&amp;= \frac{cov(x,y)}{s(x)s(y)}  \cdot \frac{s(y)}{s(x)} \\
+&amp;= \frac{cor(x,y) \cdot \frac{s(y)}{s(x)}}
+\end{align*}\]</span></p>
+</div>
+</div>
+<div id="reproduzierbarkeit" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Reproduzierbarkeit</h1>
+<pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
+#&gt;  setting  value                       
+#&gt;  version  R version 4.0.2 (2020-06-22)
+#&gt;  os       macOS  10.16                
+#&gt;  system   x86_64, darwin17.0          
+#&gt;  ui       X11                         
+#&gt;  language (EN)                        
+#&gt;  collate  en_US.UTF-8                 
+#&gt;  ctype    en_US.UTF-8                 
+#&gt;  tz       Europe/Berlin               
+#&gt;  date     2021-04-07                  
+#&gt; 
+#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
+#&gt;  package     * version     date       lib source                             
+#&gt;  assertthat    0.2.1       2019-03-21 [1] CRAN (R 4.0.0)                     
+#&gt;  backports     1.2.1       2020-12-09 [1] CRAN (R 4.0.2)                     
+#&gt;  blogdown      1.1         2021-01-19 [1] CRAN (R 4.0.2)                     
+#&gt;  bookdown      0.21.6      2021-02-02 [1] Github (rstudio/bookdown@6c7346a)  
+#&gt;  broom         0.7.5       2021-02-19 [1] CRAN (R 4.0.2)                     
+#&gt;  bslib         0.2.4.9000  2021-02-02 [1] Github (rstudio/bslib@b3cd7a9)     
+#&gt;  cachem        1.0.4       2021-02-13 [1] CRAN (R 4.0.2)                     
+#&gt;  callr         3.5.1       2020-10-13 [1] CRAN (R 4.0.2)                     
+#&gt;  cellranger    1.1.0       2016-07-27 [1] CRAN (R 4.0.0)                     
+#&gt;  cli           2.3.1       2021-02-23 [1] CRAN (R 4.0.2)                     
+#&gt;  codetools     0.2-16      2018-12-24 [2] CRAN (R 4.0.2)                     
+#&gt;  colorspace    2.0-0       2020-11-11 [1] CRAN (R 4.0.2)                     
+#&gt;  crayon        1.4.1       2021-02-08 [1] CRAN (R 4.0.2)                     
+#&gt;  DBI           1.1.1       2021-01-15 [1] CRAN (R 4.0.2)                     
+#&gt;  dbplyr        2.1.0       2021-02-03 [1] CRAN (R 4.0.2)                     
+#&gt;  debugme       1.1.0       2017-10-22 [1] CRAN (R 4.0.0)                     
+#&gt;  desc          1.2.0       2018-05-01 [1] CRAN (R 4.0.0)                     
+#&gt;  devtools      2.3.2       2020-09-18 [1] CRAN (R 4.0.2)                     
+#&gt;  digest        0.6.27      2020-10-24 [1] CRAN (R 4.0.2)                     
+#&gt;  dplyr       * 1.0.5       2021-03-05 [1] CRAN (R 4.0.2)                     
+#&gt;  ellipsis      0.3.1       2020-05-15 [1] CRAN (R 4.0.0)                     
+#&gt;  evaluate      0.14        2019-05-28 [1] CRAN (R 4.0.0)                     
+#&gt;  fansi         0.4.2       2021-01-15 [1] CRAN (R 4.0.2)                     
+#&gt;  fastmap       1.1.0       2021-01-25 [1] CRAN (R 4.0.2)                     
+#&gt;  forcats     * 0.5.1       2021-01-27 [1] CRAN (R 4.0.2)                     
+#&gt;  fs            1.5.0       2020-07-31 [1] CRAN (R 4.0.2)                     
+#&gt;  generics      0.1.0       2020-10-31 [1] CRAN (R 4.0.2)                     
+#&gt;  ggplot2     * 3.3.3       2020-12-30 [1] CRAN (R 4.0.2)                     
+#&gt;  glue          1.4.2       2020-08-27 [1] CRAN (R 4.0.2)                     
+#&gt;  gtable        0.3.0       2019-03-25 [1] CRAN (R 4.0.0)                     
+#&gt;  haven         2.3.1       2020-06-01 [1] CRAN (R 4.0.0)                     
+#&gt;  hms           1.0.0       2021-01-13 [1] CRAN (R 4.0.2)                     
+#&gt;  htmltools     0.5.1.1     2021-01-22 [1] CRAN (R 4.0.2)                     
+#&gt;  httr          1.4.2       2020-07-20 [1] CRAN (R 4.0.2)                     
+#&gt;  jquerylib     0.1.3       2020-12-17 [1] CRAN (R 4.0.2)                     
+#&gt;  jsonlite      1.7.2       2020-12-09 [1] CRAN (R 4.0.2)                     
+#&gt;  knitr         1.31        2021-01-27 [1] CRAN (R 4.0.2)                     
+#&gt;  lifecycle     1.0.0       2021-02-15 [1] CRAN (R 4.0.2)                     
+#&gt;  lubridate     1.7.9.2     2020-11-13 [1] CRAN (R 4.0.2)                     
+#&gt;  magrittr      2.0.1       2020-11-17 [1] CRAN (R 4.0.2)                     
+#&gt;  memoise       2.0.0       2021-01-26 [1] CRAN (R 4.0.2)                     
+#&gt;  modelr        0.1.8       2020-05-19 [1] CRAN (R 4.0.0)                     
+#&gt;  munsell       0.5.0       2018-06-12 [1] CRAN (R 4.0.0)                     
+#&gt;  pillar        1.5.1       2021-03-05 [1] CRAN (R 4.0.2)                     
+#&gt;  pkgbuild      1.2.0       2020-12-15 [1] CRAN (R 4.0.2)                     
+#&gt;  pkgconfig     2.0.3       2019-09-22 [1] CRAN (R 4.0.0)                     
+#&gt;  pkgload       1.2.0       2021-02-23 [1] CRAN (R 4.0.2)                     
+#&gt;  prettyunits   1.1.1       2020-01-24 [1] CRAN (R 4.0.0)                     
+#&gt;  processx      3.4.5       2020-11-30 [1] CRAN (R 4.0.2)                     
+#&gt;  ps            1.5.0       2020-12-05 [1] CRAN (R 4.0.2)                     
+#&gt;  purrr       * 0.3.4       2020-04-17 [1] CRAN (R 4.0.0)                     
+#&gt;  R6            2.5.0       2020-10-28 [1] CRAN (R 4.0.2)                     
+#&gt;  Rcpp          1.0.6       2021-01-15 [1] CRAN (R 4.0.2)                     
+#&gt;  readr       * 1.4.0       2020-10-05 [1] CRAN (R 4.0.2)                     
+#&gt;  readxl        1.3.1       2019-03-13 [1] CRAN (R 4.0.0)                     
+#&gt;  remotes       2.2.0       2020-07-21 [1] CRAN (R 4.0.2)                     
+#&gt;  reprex        1.0.0       2021-01-27 [1] CRAN (R 4.0.2)                     
+#&gt;  rlang         0.4.10      2020-12-30 [1] CRAN (R 4.0.2)                     
+#&gt;  rmarkdown     2.7         2021-02-19 [1] CRAN (R 4.0.2)                     
+#&gt;  rprojroot     2.0.2       2020-11-15 [1] CRAN (R 4.0.2)                     
+#&gt;  rstudioapi    0.13.0-9000 2021-02-11 [1] Github (rstudio/rstudioapi@9d21f50)
+#&gt;  rvest         0.3.6       2020-07-25 [1] CRAN (R 4.0.2)                     
+#&gt;  sass          0.3.1       2021-01-24 [1] CRAN (R 4.0.2)                     
+#&gt;  scales        1.1.1       2020-05-11 [1] CRAN (R 4.0.0)                     
+#&gt;  sessioninfo   1.1.1       2018-11-05 [1] CRAN (R 4.0.0)                     
+#&gt;  stringi       1.5.3       2020-09-09 [1] CRAN (R 4.0.2)                     
+#&gt;  stringr     * 1.4.0       2019-02-10 [1] CRAN (R 4.0.0)                     
+#&gt;  testthat      3.0.2       2021-02-14 [1] CRAN (R 4.0.2)                     
+#&gt;  tibble      * 3.1.0       2021-02-25 [1] CRAN (R 4.0.2)                     
+#&gt;  tidyr       * 1.1.3       2021-03-03 [1] CRAN (R 4.0.2)                     
+#&gt;  tidyselect    1.1.0       2020-05-11 [1] CRAN (R 4.0.0)                     
+#&gt;  tidyverse   * 1.3.0       2019-11-21 [1] CRAN (R 4.0.0)                     
+#&gt;  usethis       2.0.1       2021-02-10 [1] CRAN (R 4.0.2)                     
+#&gt;  utf8          1.1.4       2018-05-24 [1] CRAN (R 4.0.0)                     
+#&gt;  vctrs         0.3.6       2020-12-17 [1] CRAN (R 4.0.2)                     
+#&gt;  withr         2.4.1       2021-01-26 [1] CRAN (R 4.0.2)                     
+#&gt;  xfun          0.22        2021-03-11 [1] CRAN (R 4.0.2)                     
+#&gt;  xml2          1.3.2       2020-04-23 [1] CRAN (R 4.0.0)                     
+#&gt;  yaml          2.2.1       2020-02-01 [1] CRAN (R 4.0.0)                     
+#&gt; 
+#&gt; [1] /Users/sebastiansaueruser/Rlibs
+#&gt; [2] /Library/Frameworks/R.framework/Versions/4.0/Resources/library</code></pre>
+</div>
