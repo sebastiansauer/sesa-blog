@@ -27,10 +27,12 @@ output:
 <ul>
 <li><a href="#hilfsterm-1"><span class="toc-section-number">2.3.1</span> Hilfsterm 1</a></li>
 <li><a href="#hilfsterm-2"><span class="toc-section-number">2.3.2</span> Hilfsterm 2</a></li>
+<li><a href="#umformung-des-zählers"><span class="toc-section-number">2.3.3</span> Umformung des Zählers</a></li>
 </ul></li>
 <li><a href="#noch-weitere-umformung-von-b_1"><span class="toc-section-number">2.4</span> Noch weitere Umformung von <span class="math inline">\(b_1\)</span></a></li>
 </ul></li>
-<li><a href="#reproduzierbarkeit"><span class="toc-section-number">3</span> Reproduzierbarkeit</a></li>
+<li><a href="#fazit"><span class="toc-section-number">3</span> Fazit</a></li>
+<li><a href="#reproduzierbarkeit"><span class="toc-section-number">4</span> Reproduzierbarkeit</a></li>
 </ul>
 </div>
 
@@ -40,7 +42,7 @@ output:
 <p>In diesem Post geht es um die einfache Regression (d.h. mit einem Prädiktor); genauer gesagt um die Frage, wie man auf die Formeln der Koeffizienten der einfachen Regression kommt.</p>
 <p>Gehen wir von einigen zweidimensionalen Datenpunkten aus, die zu einem Phänomen gemessen wurden: <span class="math inline">\({(x_1, y_1), (x_2, y_2), \ldots, (x_n,y_)}\)</span>.</p>
 <p>Gehen wir weiter davon aus, dass der Zusammenhang <em>in Wirklichkeit</em> von einer Geraden erklärt werden kann:</p>
-<p><span class="math display">\[\hat{y}=b_0 + b_1x\]</span>.</p>
+<p><span class="math display">\[\hat{y}=b_0 + b_1x.\]</span></p>
 <p>Eine Gerade kann durch zwei Koeffizienten definiert werden, den Achsenabschnitt <span class="math inline">\(b_0\)</span> und die Steigung <span class="math inline">\(b_1\)</span>.</p>
 <p>Für jeden Datenpunkt <span class="math inline">\(y_i\)</span> können wir die Abweichung (den Fehler) zum vorhergesagten Wert <span class="math inline">\(\hat{y_i}\)</span> ausrechnen:</p>
 <p><span class="math display">\[e_i = y_i - \hat{y_i}\]</span></p>
@@ -50,6 +52,7 @@ QS &amp;= \sum_{i=1}^{n}e_i^2\\
 QS &amp;=  \sum_{i=1}^{n}(y_i - \hat{y_i})^2\\
 QS &amp;=  \sum_{i=1}^{n}(y_i - b_0 - b_1x_i)^2 
 \end{align*}\]</span></p>
+<p>Für eine übersichtlichere Notation wird der Index am Summenzeichen im Folgenden weggelassen.</p>
 <p>Betrachten wir das an einem Datenbeispiel:</p>
 <pre class="r"><code>d &lt;- mtcars
 lm1 &lt;- lm(mpg ~ hp, data = d)
@@ -58,6 +61,7 @@ d &lt;-
   d %&gt;% 
   mutate(pred = predict(lm1),
          resid = residuals(lm1))</code></pre>
+<p>Jetzt visualisieren wir die Residuen (Abweichungen, Fehler):</p>
 <pre class="r"><code>ggplot(d, 
        aes(x = hp, y = mpg)) +
   geom_smooth(method = &quot;lm&quot;, se = FALSE, color = &quot;dodgerblue&quot;) +
@@ -80,9 +84,9 @@ d &lt;-
 <h2><span class="header-section-number">2.1</span> <span class="math inline">\(b_0\)</span></h2>
 <p><span class="math display">\[\begin{align*}
 \frac{\partial QS}{\partial b_0} &amp;= 2 \sum(y_i - b_0 - b_1x_i)(-1) \\
-&amp;= -2 \sum y_i + 2 \sum b_0 + 2 b_1 x_i \\
+&amp;= -2 \sum y_i + 2 \sum b_0 + 2 \sum b_1 x_i \\
 &amp;= 2(-\sum y_i + nb_0 + b1 \sum x_i) = 0 \\
-&amp;= (-\sum y_i + nb_0 + b1 \sum x_i) = 0 \\
+&amp;= -\sum y_i + nb_0 + b1 \sum x_i = 0 \\
  n b_0&amp;= \sum y_i - b_1 \sum x_i \\
 b_0 &amp;= \frac{\sum y_i - b_1 \sum x_i}{n} \\
 &amp;= n^{-1}\sum y_i - n^{-1}b_1 \sum x_i \\
@@ -92,7 +96,7 @@ b_0 &amp;= \frac{\sum y_i - b_1 \sum x_i}{n} \\
 </div>
 <div id="b_1" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> <span class="math inline">\(b_1\)</span></h2>
-<p>Analog verfahren wir für den zweiten Koeffizienten, <span class="math inline">\(b_1\)</span>. Wieer bilden wir die parzielle Ableitung, setzen diese Null und lösen nach dem gesuchten Koeffizienten auf. Das Nachdifferenzieren (Kettenregel) liefert allerdings ein anderes Ergebnis.</p>
+<p>Analog verfahren wir für den zweiten Koeffizienten, <span class="math inline">\(b_1\)</span>. Wieder bilden wir die parzielle Ableitung, setzen diese Null und lösen nach dem gesuchten Koeffizienten auf. Das Nachdifferenzieren (Kettenregel) liefert allerdings ein anderes Ergebnis.</p>
 <p><span class="math display">\[\begin{align*}
 \frac{\partial QS}{\partial b_1} &amp;= 2 \sum(y_i - b_0 - b_1x_i)(-x) \\
 &amp;=2(-\sum y_i x_i + b_0\sum x_i + b_1\sum x_i^2)\\
@@ -105,7 +109,7 @@ b_0 &amp;= \frac{\sum y_i - b_1 \sum x_i}{n} \\
 \end{align*}\]</span></p>
 <p>die <span class="math inline">\(-2\)</span> kürzt sich im Folgenden heraus. Um nach <span class="math inline">\(b_1\)</span> aufzulösen, gruppieren wir die Terme in zwei Hälften: Die mit und die ohne <span class="math inline">\(b_1\)</span>:</p>
 <p><span class="math display">\[
-(x_i y_i) - x_i\bar{y} - b_1 \sum(x_i^2 - x_i \bar{x})) = 0
+(x_i y_i - x_i\bar{y}) - b_1 \sum(x_i^2 - x_i \bar{x}) = 0
 \]</span></p>
 <p>Die Terme ohne <span class="math inline">\(b_1\)</span> wandern auf die rechte Seite der Gleichung:</p>
 <p><span class="math display">\[\begin{align*}
@@ -120,7 +124,7 @@ b_1 &amp;= \frac{\sum x_i y_i - x_i \bar{y}}{\sum x_i^2 - x_i \bar{x}} = \\
 <div id="hilfsterm-1" class="section level3" number="2.3.1">
 <h3><span class="header-section-number">2.3.1</span> Hilfsterm 1</h3>
 <p><span class="math display">\[
-(\bar{x}^2 - x_i \bar{x}) = \bar{x}^2 - n \bar{x} \bar{x} = 0
+\sum (\bar{x}^2 - x_i \bar{x}) = n\bar{x}^2 - n \bar{x} \bar{x} = 0
 \]</span></p>
 </div>
 <div id="hilfsterm-2" class="section level3" number="2.3.2">
@@ -130,18 +134,21 @@ b_1 &amp;= \frac{\sum x_i y_i - x_i \bar{y}}{\sum x_i^2 - x_i \bar{x}} = \\
 \]</span></p>
 <p>Setzen wir diese Hilfsterme in obige Gleichung ein und zwar Hilfsterm 1 in den Nenner und Hilfsterm 2 in den Zähler. Das “dürfen” wir, da die Hilfsterme ja jeweils Null sind.</p>
 <p><span class="math display">\[\begin{align*}
-b_1 &amp;= \frac{(\sum x_i y_i - x_i \bar{y}) + \sum (\bar{x}\bar{y} - y_i \bar{x})}{(\sum x_i^2 - x_i \bar{x}) + \bar{x}^2 - x_i \bar{x})}
+b_1 &amp;= \frac{(\sum x_i y_i - x_i \bar{y}) + \sum (\bar{x}\bar{y} - y_i \bar{x})}{(\sum x_i^2 - x_i \bar{x}) + \sum (\bar{x}^2 - x_i \bar{x})}
 \end{align*}\]</span></p>
+</div>
+<div id="umformung-des-zählers" class="section level3" number="2.3.3">
+<h3><span class="header-section-number">2.3.3</span> Umformung des Zählers</h3>
 <p>Im Folgenden betrachten wir der Einfachheit halber nur den Zähler.</p>
 <p><span class="math display">\[\begin{align*}
-b_1 &amp;= \sum x_I y_i - \sum x_I \bar{y} + \sum \bar{x} \bar{y} - \sum y_I \bar{x} \\
-&amp;= \sum(x_i y_I - x_I \bar{y} + \bar{x}\bar{y} - y_i \bar{x}) \\
-=&amp; \sum(x_i(y_i - \bar{y}) + \bar{x}(y_i - \bar{y})) \\
+b_1 &amp;= \sum x_i y_i - \sum x_i \bar{y} + \sum \bar{x} \bar{y} - \sum y_i \bar{x} \\
+&amp;= \sum(x_i y_i - x_i \bar{y} + \bar{x}\bar{y} - y_i \bar{x}) \\
+&amp;= \sum(x_i(y_i - \bar{y}) + \bar{x}(y_i - \bar{y})) \\
 &amp;= \sum \left( (x_i - \bar{x})(y_i - \bar{y}) \right)
 \end{align*}\]</span></p>
 <p>Multipliziert man nun Zähler und Nenner jeweils (und damit neutral) mit <span class="math inline">\(1/n\)</span>, so erhält man</p>
 <p><span class="math display">\[
-b1 = \frac{cov(x,y)}{s^2(x)}
+b1 = \frac{cov(x,y)}{s^2(x)}.
 \]</span></p>
 <p>Dabei steht <span class="math inline">\(s^2(x)\)</span> für die Varianz von <span class="math inline">\(x\)</span> und <span class="math inline">\(cov\)</span> für die Kovarianz.</p>
 </div>
@@ -150,14 +157,19 @@ b1 = \frac{cov(x,y)}{s^2(x)}
 <h2><span class="header-section-number">2.4</span> Noch weitere Umformung von <span class="math inline">\(b_1\)</span></h2>
 <p><span class="math display">\[\begin{align*}
 b1 &amp;= \frac{cov(x,y)}{s^2(x)} \\
-&amp;= \frac{cov(x,y)}{s2(x)} \cdot \frac{s(y)}{s(y)} \\
+&amp;= \frac{cov(x,y)}{s^2(x)} \cdot \frac{s(y)}{s(y)} \\
 &amp;= \frac{cov(x,y)}{s(x)s(y)}  \cdot \frac{s(y)}{s(x)} \\
-&amp;= \frac{cor(x,y) \cdot \frac{s(y)}{s(x)}}
+&amp;= cor(x,y) \cdot \frac{s(y)}{s(x)}
 \end{align*}\]</span></p>
 </div>
 </div>
-<div id="reproduzierbarkeit" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Reproduzierbarkeit</h1>
+<div id="fazit" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Fazit</h1>
+<p>In diesem Post ging es um die Ableitung der Formeln der Regressionskoeffizienten, zumindest der einfachen Regression. Dabei wurden grundlagende Algebra und Parzielle Ableitungen verwendet. Wir haben also bewiesen, dass die Regressionskoeffizienten die Form haben, die sie haben.</p>
+<p>Für die Ableitung der multiplen Regression sind Ansätze auf Basis der linearen Algebra praktischer.</p>
+</div>
+<div id="reproduzierbarkeit" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Reproduzierbarkeit</h1>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value                       
 #&gt;  version  R version 4.0.2 (2020-06-22)

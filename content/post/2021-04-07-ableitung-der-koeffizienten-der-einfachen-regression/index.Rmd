@@ -49,7 +49,7 @@ Gehen wir von einigen zweidimensionalen Datenpunkten aus, die zu einem Phänomen
 
 Gehen wir weiter davon aus, dass der Zusammenhang *in Wirklichkeit* von einer Geraden erklärt werden kann:
 
-$$\hat{y}=b_0 + b_1x$$.
+$$\hat{y}=b_0 + b_1x.$$
 
 Eine Gerade kann durch zwei Koeffizienten definiert werden, den Achsenabschnitt $b_0$ und die Steigung $b_1$.
 
@@ -67,6 +67,8 @@ QS &=  \sum_{i=1}^{n}(y_i - \hat{y_i})^2\\
 QS &=  \sum_{i=1}^{n}(y_i - b_0 - b_1x_i)^2 
 \end{align*}
 
+Für eine übersichtlichere Notation wird der Index am Summenzeichen im Folgenden weggelassen.
+
 Betrachten wir das an einem Datenbeispiel:
 
 ```{r}
@@ -80,6 +82,7 @@ d <-
 
 ```
 
+Jetzt visualisieren wir die Residuen (Abweichungen, Fehler):
 
 ```{r}
 ggplot(d, 
@@ -110,9 +113,9 @@ Um die Quadratsumme zu minimieren, bilden wir jeweils die erste parzielle Ableit
 
 \begin{align*}
 \frac{\partial QS}{\partial b_0} &= 2 \sum(y_i - b_0 - b_1x_i)(-1) \\
-&= -2 \sum y_i + 2 \sum b_0 + 2 b_1 x_i \\
+&= -2 \sum y_i + 2 \sum b_0 + 2 \sum b_1 x_i \\
 &= 2(-\sum y_i + nb_0 + b1 \sum x_i) = 0 \\
-&= (-\sum y_i + nb_0 + b1 \sum x_i) = 0 \\
+&= -\sum y_i + nb_0 + b1 \sum x_i = 0 \\
  n b_0&= \sum y_i - b_1 \sum x_i \\
 b_0 &= \frac{\sum y_i - b_1 \sum x_i}{n} \\
 &= n^{-1}\sum y_i - n^{-1}b_1 \sum x_i \\
@@ -125,7 +128,7 @@ Das Ergebnis zeigt auch, dass der Punkt $(\bar{x}, \bar{y})$ auf der Regressions
 
 ## $b_1$
 
-Analog verfahren wir für den zweiten Koeffizienten, $b_1$. Wieer bilden wir die parzielle Ableitung, setzen diese Null und lösen nach dem gesuchten Koeffizienten auf. Das Nachdifferenzieren (Kettenregel) liefert allerdings ein anderes Ergebnis.
+Analog verfahren wir für den zweiten Koeffizienten, $b_1$. Wieder bilden wir die parzielle Ableitung, setzen diese Null und lösen nach dem gesuchten Koeffizienten auf. Das Nachdifferenzieren (Kettenregel) liefert allerdings ein anderes Ergebnis.
 
 \begin{align*}
 \frac{\partial QS}{\partial b_1} &= 2 \sum(y_i - b_0 - b_1x_i)(-x) \\
@@ -143,7 +146,7 @@ Jetzt setzen wir $b_0$ in die letzte Gleichung ein und setzen diese Null:
 die $-2$ kürzt sich im Folgenden heraus. Um nach $b_1$ aufzulösen, gruppieren wir die Terme in zwei Hälften: Die mit und die ohne $b_1$:
 
 $$
-(x_i y_i) - x_i\bar{y} - b_1 \sum(x_i^2 - x_i \bar{x})) = 0
+(x_i y_i - x_i\bar{y}) - b_1 \sum(x_i^2 - x_i \bar{x}) = 0
 $$
 
 Die Terme ohne $b_1$ wandern auf die rechte Seite der Gleichung:
@@ -163,7 +166,7 @@ Damit haben wir nach $b_1$ aufgelöst. Allerdings kann man diesen letzten Ausdru
 ### Hilfsterm 1
 
 $$
-(\bar{x}^2 - x_i \bar{x}) = \bar{x}^2 - n \bar{x} \bar{x} = 0
+\sum (\bar{x}^2 - x_i \bar{x}) = n\bar{x}^2 - n \bar{x} \bar{x} = 0
 $$
 
 
@@ -178,22 +181,25 @@ Setzen wir diese Hilfsterme in obige Gleichung ein und zwar Hilfsterm 1 in den N
 
 
 \begin{align*}
-b_1 &= \frac{(\sum x_i y_i - x_i \bar{y}) + \sum (\bar{x}\bar{y} - y_i \bar{x})}{(\sum x_i^2 - x_i \bar{x}) + \bar{x}^2 - x_i \bar{x})}
+b_1 &= \frac{(\sum x_i y_i - x_i \bar{y}) + \sum (\bar{x}\bar{y} - y_i \bar{x})}{(\sum x_i^2 - x_i \bar{x}) + \sum (\bar{x}^2 - x_i \bar{x})}
 \end{align*}
+
+
+### Umformung des Zählers
 
 Im Folgenden betrachten wir der Einfachheit halber nur den Zähler.
 
 \begin{align*}
-b_1 &= \sum x_I y_i - \sum x_I \bar{y} + \sum \bar{x} \bar{y} - \sum y_I \bar{x} \\
-&= \sum(x_i y_I - x_I \bar{y} + \bar{x}\bar{y} - y_i \bar{x}) \\
-=& \sum(x_i(y_i - \bar{y}) + \bar{x}(y_i - \bar{y})) \\
+b_1 &= \sum x_i y_i - \sum x_i \bar{y} + \sum \bar{x} \bar{y} - \sum y_i \bar{x} \\
+&= \sum(x_i y_i - x_i \bar{y} + \bar{x}\bar{y} - y_i \bar{x}) \\
+&= \sum(x_i(y_i - \bar{y}) + \bar{x}(y_i - \bar{y})) \\
 &= \sum \left( (x_i - \bar{x})(y_i - \bar{y}) \right)
 \end{align*}
 
 Multipliziert man nun Zähler und Nenner jeweils (und damit neutral) mit $1/n$, so erhält man
 
 $$
-b1 = \frac{cov(x,y)}{s^2(x)}
+b1 = \frac{cov(x,y)}{s^2(x)}.
 $$
 
 Dabei steht $s^2(x)$ für die Varianz von $x$ und $cov$ für die Kovarianz. 
@@ -202,12 +208,18 @@ Dabei steht $s^2(x)$ für die Varianz von $x$ und $cov$ für die Kovarianz.
 
 \begin{align*}
 b1 &= \frac{cov(x,y)}{s^2(x)} \\
-&= \frac{cov(x,y)}{s2(x)} \cdot \frac{s(y)}{s(y)} \\
+&= \frac{cov(x,y)}{s^2(x)} \cdot \frac{s(y)}{s(y)} \\
 &= \frac{cov(x,y)}{s(x)s(y)}  \cdot \frac{s(y)}{s(x)} \\
-&= \frac{cor(x,y) \cdot \frac{s(y)}{s(x)}}
+&= cor(x,y) \cdot \frac{s(y)}{s(x)}
 \end{align*}
 
 
+# Fazit
+
+
+In diesem Post ging es um die Ableitung der Formeln der Regressionskoeffizienten, zumindest der einfachen Regression. Dabei wurden grundlagende Algebra und Parzielle Ableitungen verwendet. Wir haben also bewiesen, dass die Regressionskoeffizienten die Form haben, die sie haben.
+
+Für die Ableitung der multiplen Regression sind Ansätze auf Basis der linearen Algebra praktischer.
 
 
 # Reproduzierbarkeit
