@@ -8,6 +8,10 @@ categories:
 tags:
   - tutorial
   - visualization
+output:
+  blogdown::html_page:
+    toc: yes
+    number_sections: yes
 ---
 
 
