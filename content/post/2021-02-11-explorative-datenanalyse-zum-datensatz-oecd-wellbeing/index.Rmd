@@ -496,7 +496,8 @@ oecd_short_reordered %>%
   coord_flip() +
   labs(y = "Länder",
        x = "Lebenszufriedenheit",
-       title = "Lebenszufriedenheit in armen und reichen Ländern ")
+       title = "Lebenszufriedenheit in armen und reichen Ländern ") +
+  theme_minimal()
 ```
 
 
