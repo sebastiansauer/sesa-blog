@@ -81,6 +81,13 @@ oecd <- read_csv("/Users/sebastiansaueruser/datasets/oecd_wellbeing.csv")
 Liegt die Datendatei im *gleichen Verzeichnis*  wie Ihre Rmd-Datei, dann brauchen Sie *nur* den Dateinamen, nicht den Pfad, anzugeben.
 
 
+*Alternativ* können Sie die Daten direkt von einem Server beziehen:
+
+```{r}
+oecd <- read_csv("https://raw.githubusercontent.com/sebastiansauer/2021-sose/master/data/OECD/oecd-wellbeing.csv")
+```
+
+
 
 # Erster Blick
 
@@ -134,7 +141,7 @@ Dann
 ```{r}
 oecd_de_fr %>% 
   ggplot(aes(x = Life_satisfaction)) +
-  geom_histogram() +
+  geom_histogram(bins = 15) +
   facet_wrap(~ Country)
 ```
 
