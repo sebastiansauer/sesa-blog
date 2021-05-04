@@ -485,10 +485,18 @@ Jetzt plotten wir den Zusammenhang:
 
 
 ```{r}
+income_labels <- c(`0` = "arm", 
+                   `1` ="reich")
+
 oecd_short_reordered %>% 
   ggplot(aes(x = Country_sorted, y = Life_satisfaction)) +
   geom_point() +
-  facet_wrap(~ Income_high)
+  facet_wrap(~ Income_high, 
+             labeller = labeller(Income_high = income_labels))  +
+  coord_flip() +
+  labs(y = "Länder",
+       x = "Lebenszufriedenheit",
+       title = "Lebenszufriedenheit in armen und reichen Ländern ")
 ```
 
 
