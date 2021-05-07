@@ -148,7 +148,16 @@ oecd_de_fr %>%
 
 
 
-## Histogramm für alle Variablen
+## VERTIEFUNG: Histogramm für alle Variablen
+
+
+---
+
+Dieser Abschnitt ist eine Vertiefung; Sie können in überspringen, ohne den Anschluss zu den folgenden Abschnitten zu verlieren.
+
+---
+
+
 
 Um einen Überblick über die Verteilungen zu bekommen, bietet es sich an, sich alle anzuschauen. Das ist natürlich mit etwas Monotonie verbunden (den gleichen Befehl mehrfach wiederholen).
 
