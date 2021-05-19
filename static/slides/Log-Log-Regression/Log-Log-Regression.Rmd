@@ -1,0 +1,540 @@
+---
+title: "Logarithmus und Exponenten"
+subtitle: "<br/>🤔 Was haben die in einer Regression verloren?"
+author: "Sebastian Sauer"
+institute: "Hochschule Ansbach"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: ["default", "default-fonts", "hygge"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+
+```{r global-knitr-options, include=FALSE}
+knitr::opts_chunk$set(fig.pos = 'H',
+  fig.asp = 0.618,
+  fig.width = 5,
+  fig.cap = "", 
+  fig.path = "",
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = FALSE,
+  fig.show = "hold")
+```
+
+
+```{r include=FALSE}
+library(tidyverse)
+library(DT)
+library(xaringanExtra)
+```
+
+
+```{r xaringan-extra, echo=FALSE}
+use_xaringan_extra(c("tile_view", "tachyons"))
+#xaringanExtra::use_animate_all("slide_left")
+```
+
+
+class: center, middle, inverse
+
+# Zur Erinnerung: "Standard-Regression"
+
+---
+
+# Regression in Standardform 🥱
+
+## Additiver Zusammenhang
+
+$$y= b0 + b_1x$$
+
+bzw.
+
+$$y = b0 + b_1x_1 + b_2 x_2 + \ldots + b_k x_k + \epsilon$$
+
+.content-box-blue[Additiv!]
+
+Der gemeinsame Effekt der Prädiktoren auf Y ist die Summe der einzelnen Effekte
+
+
+
+---
+
+
+# Wir definieren einen einfachen Datensatz
+
+
+
+```{r}
+d <- 
+  tibble(
+    x = rep(0:10, 10),
+    y_hat = x,
+    e = rnorm(n = (10+1)*10) %>% round(2),
+    y = y_hat + e 
+  )
+
+```
+
+
+- $x$: Prädiktor
+- $\hat{y}$: vorhergesagter Y-Wert
+- $e$: Fehler
+- $y$: beobachteter Y-Wert
+
+---
+
+# Ein Datensatz für additives Wachstum
+
+```{r echo = FALSE}
+datatable(d,
+          options = list(pageLength = 7))
+```
+
+
+
+---
+
+# So sieht additives Wachstum aus
+
+
+.pull-left[
+```{r plot-additiv, fig.show = "hide"}
+ggplot(d) +
+  aes(x = x, y = y) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+]
+
+.pull-right[
+![](`r knitr::fig_chunk("plot-additiv", "png")`)
+]
+
+
+Bei einem Unterschied in X von 1, beträgt der vorhergesagte Unterschied in Y 1 (bzw. $k$ im allgemeinen Fall).
+
+
+Für jede Einheit, die X steigt, steigt Y um einen festen Wert $k$: additives Wachstum.
+
+✔️ *Beispiel:* Für jede Stunde Lernen für die Klausur, "wächst" der vorhergesagte Klausurerfolg um 0,42 Punkte.   
+
+---
+
+
+
+class: center, middle, inverse
+
+# Log-Y-Regression
+
+---
+
+
+
+
+# Log-Y-Regression
+
+## Exponentieller Zusammenhang
+
+$$log(y) = x$$
+
+Exponentiert man beide Seite, so erhält man:
+
+$$y = e^x$$
+
+$e$ ist die Eulersche Zahl: 2.71...
+
+---
+
+# Einfache Beispiele für exponentielle Zusammenhänge
+
+- Eine Bakterienmenge verdoppelt sich jeden Tag
+- Pro Jahr erzielt eine Kapitalanlage 10% Zinsen
+- Während einer bestimmten Periode verdoppelten sich die Coronafälle alle 10 Tage
+- Die Menge der Vitamine in einem Lebensmittel verringert sich pro Zeiteinheit um den Faktor $k$
+
+
+Generell bieten sich Wachstumsprozesse für exponentielle Zusammenhänge an.
+
+Man kann auch "datengetrieben" eine Log-Regression verwenden, wenn man sieht, dass sich so die Vorhersageleistung verbessert.
+
+---
+
+# Exponentielles Wachstum
+
+
+Beim exponentiellen Wachstum wächst eine Größe pro Zeitabschnitt immer um denselben Faktor.
+
+Die Änderung einer Größe $A$ pro Zeitabschnitt $t$ ist proportional<sup>*</sup> zum Bestand von $A$:
+
+$$\frac{dA}{dt} \sim A$$
+
+Exponentielles Wachstum wächst (ab einem bestimmten Zeitpunkt) sehr stark und wird daher leicht unterschätzt.
+
+.footnote[<sup>*</sup> Proportional bedeutet, Verdopplung (Verdreifachung, Vervierfachung...) einer Größe ist stets mit der Verdopplung (Verdreifachung, Vervierfachung, ...) der anderen Größe verbunden. So ist der Kreisumfang proportional zum Kreisdurchmesser mit dem Proportionalitätsfaktor 3.14.]
+
+---
+
+
+
+# Daten für exponentiellen Zusammenhang
+
+```{r}
+euler_e <- 2.71
+
+d2 <- 
+  tibble(
+    x = rep(0:100, 10),
+    y_hat = euler_e^(0.1*x) %>% round(2),
+    e = rnorm(n = (101)*10) %>% round(2),
+    y = y_hat + e
+  )
+
+```
+
+
+
+---
+
+# So sieht der Datensatz `d2` aus
+
+
+```{r echo = FALSE}
+datatable(d2,
+          options = list(pageLength = 7))
+```
+
+
+---
+
+# Exponentiellen Zusammenhang visualisieren
+
+
+
+.pull-left[
+```{r plot-exp, fig.show = "hide"}
+ggplot(d2) +
+  aes(x = x, y = y) +
+  geom_point() +
+  geom_smooth()
+```
+]
+
+.pull-right[
+![](`r knitr::fig_chunk("plot-exp", "png")`)
+]
+
+
+Steigt X um 1 Einheit, so steigt Y um einen konstanten Faktor: exponentielles Wachstum.
+
+
+---
+
+# Log-Y-Regression in R
+
+
+```{r}
+lm_logy <- lm(log(y) ~ x, data = filter(d2, y > 0))
+lm_logy
+```
+
+
+*Achtung*: Für negative Zahlen ist der Logarithmus nicht definiert.
+
+---
+
+# Interpretation einer Log-Y-Regression
+
+
+
+
+.bg-light-blue.b--dark-blue.bw2.br3.shadow-5.ph4.mt5[
+.center[Log-Y-Regression modelliert exponentiellen Zusammenhang]]
+
+
+Kleine Koeffizienten $[-0.3;0.3]$ lassen sich ohne delogarithmieren als Wachstumsfaktoren interpretieren:
+
+
+
+```{r}
+coef(lm_logy)
+```
+
+
+```{r}
+exp(0.1)
+```
+
+
+
+"Zwei Beobachtungen die sich um eine Einheit in X unterscheiden, unterscheiden sich etwa um 10% in Y".
+
+---
+
+
+# Wann soll ich eine Log-Y-Regression verwenden?
+
+## Verwenden Sie die Log-Y-Regression, wenn Sie von einem exponentiellen Zusammenhang ausgehen.
+
+Beispiele:
+
+- Wachstumsprozesse (z.B. Bevölkerung, Corona, Bakterien, radiokativer Zerfall)
+- Verzinsung
+
+
+<i class="fas fa-exclamation-triangle"></i> Wenn sich Y um einen konstanten *Faktor* verändert, wenn sich X um einen konstanten *Wert* verändert, ist eine Log-Y-Regression sinnvoll. 
+
+
+---
+
+
+# Multiple Log-Regression 
+
+Ein lineare Modell in der Log-Skalierung entspricht einem multiplikativen Modell in der ursprünglichen Skalierung:
+
+$$log (y) = b_0 + b_1x_1 + b_2x_2 + \ldots + \epsilon$$
+
+Exponenziert man beide Seiten, so erhält man
+
+$$y= e^{b_0 + b_1x_1 + b_2x_2 + \ldots + \epsilon}$$
+
+$$y = e^{b_0} \cdot e^{b_1x_1} \cdot e^{b_2x_2} \cdot \ldots \cdot e^{\epsilon} $$
+
+💡 Y wird hier als multiplikative Funktion der Prädiktoren modelliert.
+
+
+---
+
+
+class: center, middle, inverse
+
+# Log-Log-Regression
+
+---
+
+
+# Log-Log-Regression
+
+
+$$y = x^2$$
+
+Logarithmiert man beide Seiten, erhält man:
+
+$$log(y) = 2 log(x)$$
+
+
+Sowohl Y als auch X sind logarithmiert.
+
+Eine Log-Log-Regression stellt also eine Potenzfunktion dar.
+
+💡 Verwenden Sie die Log-Log-Regression, um quadratische (oder kubische...) Zusammenhänge zu modellieren.
+
+---
+
+
+
+
+
+# Daten für Zusammenhänge nach einer Potenzfunktion
+
+```{r}
+d3 <- 
+  tibble(
+    x = rep(0:100, 100),
+    y_hat = x^2,
+    e = rnorm(n = (101)*100) %>% round(2),
+    y = y_hat + e
+  )
+
+```
+
+
+Hier am Beispiel einer Quadratfunktion.
+
+---
+
+
+# So sieht der Datensatz `d3` aus
+
+
+```{r echo = FALSE}
+datatable(d3,
+          options = list(pageLength = 7))
+```
+
+---
+
+
+
+
+# Log-Log-Regression in R
+
+```{r}
+lm_loglog <- lm(log(y) ~ log(x), data = filter(d3, y > 0 & x > 0))
+lm_loglog
+```
+
+*Achtung*: Für negative Zahlen ist der Logarithmus nicht definiert.
+
+
+---
+
+
+# Visualisierung eines Log-Log-Zusammenhangs
+
+
+
+.pull-left[
+```{r plot-potenz, fig.show = "hide"}
+ggplot(d3) + 
+  aes(x = x, y = y) +
+  geom_point() +
+  geom_smooth()
+```
+]
+
+.pull-right[
+![](`r knitr::fig_chunk("plot-potenz", "png")`)
+]
+
+Lineares Modell passt nicht; es liegt quadratisches Wachstum vor. Das entspricht einem Log-Log-Modell.
+
+
+---
+
+
+# Einfaches Zahlenbeispiel
+
+
+```{r}
+d4 <-
+  tibble(
+    x = 0:10,
+    y = x^2,
+    x_log = log(x, base = 2) %>% round(2),
+    y_log = log(y, base = 2) %>% round(2)
+  )
+```
+
+
+---
+
+# So sieht `d4` aus
+
+
+```{r echo = FALSE}
+datatable(d4,
+          options = list(pageLength = 7))
+```
+
+
+---
+
+
+
+# `d4`: Verdoppelt sich X, vervierfacht sich Y
+
+
+```{r echo = FALSE}
+datatable(d4,
+          options = list(pageLength = 7))
+```
+
+---
+
+
+
+# Wie interpretiert man eine Log-Log-Regression?
+
+💡 "Für je 100 % Unterschied in X, beträgt der vorhergesagte Unterschied in Y 200 %W (allgemein: $k %$).
+
+
+
+[Herleitung einer multiplen Log-Log-Regression](https://www.wolframalpha.com/input/?i=log%28x%5E2+*+y%5E2%29)
+
+
+
+---
+
+
+# Wann soll ich eine Log-Log-Regression verwenden?
+
+## Verwenden Sie die Log-Log-Regression, wenn Sie von einem Potenzgesetz im Zusammenhang ausgehen, z.b. einem quadratischen Zusammenhang
+
+Beispiele:
+
+- Zusammenhang von Oberfläche und Volumen
+
+
+Wenn sich Y um einen konstanten *Faktor* verändert, wenn sich X um einen konstanten *Faktor* verändert, ist eine Log-Log-Regression sinnvoll. 
+
+---
+
+
+
+class: center, middle, inverse
+
+# Fazit
+
+---
+
+
+# Fazit
+
+
+- *Normale Regression*: Wenn sich die Effekte der Prädiktoren  zu einem Effekt (auf Y) *summieren*
+
+- *Log-Y-Regression*: Wenn sich die Effekte der Prädiktoren zu einem Effekt (auf Y) *multiplizieren* 
+
+- *Log-Log-Regression*: Wenn sich die *multiplikativen* Effekte der Prädiktoren zu einem Effekt (auf Y) *multiplizieren* 
+
+
+---
+
+
+# Literatur
+
+
+[Regression and Other Stories: Andrew Gelman, Jennifer Hill, Aki Vehtari](https://avehtari.github.io/ROS-Examples/)
+
+
+---
+
+# SessionInfo
+
+
+
+```{r,  size = 'tiny', output = "hide", eval = FALSE, echo = FALSE}
+sink("session_info.txt")
+sessioninfo::session_info()
+sink()
+```
+
+
+```{r echo = FALSE}
+si <- sessioninfo::session_info()
+pckgs <- map2(si$packages$package, si$packages$loadedversion,
+     ~ paste0(.x, " ", .y)) %>% 
+  simplify()
+```
+
+.small[
+- Date: `r si$platform$date`
+- Slides built with `xaringan`, based on `rmarkdown`
+- Packages: `r pckgs`
+- For detailed `session_info()` check out this [text file](https://data-se.netlify.com/slides/papers-publizieren/session_info.txt).
+- Thanks for and to all open source developers.     
+]
+
+
