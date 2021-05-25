@@ -61,45 +61,30 @@ Ok scheint zu passen. Was jetzt?
 # Geben Sie zentrale deskriptive Statistiken an für Affärenhäufigkeit und Ehezufriedenheit!
 
 
+```
+library(tidyverse)
+```
+
+
 ```r
-# nicht robust:
-mean(Affair$affairs, na.rm = T)
-#> [1] 1.455907
-sd(Affair$affairs, na.rm = T)
-#> [1] 3.298758
-# robust:
-median(Affair$affair, na.rm = T)
-#> [1] 0
-IQR(Affair$affair, na.rm = T)
-#> [1] 0
+Affair %>% 
+  summarise(affairs_avg = mean(affairs, na.rm = T))
 ```
 
 Es scheint, die meisten Leute haben keine Affären:
 
 
 ```r
-table(Affair$affairs)
+Affair %>% 
+  count(affairs)
 #> 
 #>   0   1   2   3   7  12 
 #> 451  34  17  19  42  38
 ```
 
 
-Man kann sich viele Statistiken mit dem Befehl `describe` aus `psych` ausgeben lassen, das ist etwas praktischer:
 
-
-```r
-library(psych)
-                 
-describe(Affair$affairs)
-#>    vars   n mean  sd median trimmed mad min max range skew kurtosis   se
-#> X1    1 601 1.46 3.3      0    0.55   0   0  12    12 2.34     4.19 0.13
-describe(Affair$rating)
-#>    vars   n mean  sd median trimmed  mad min max range  skew kurtosis   se
-#> X1    1 601 3.93 1.1      4    4.07 1.48   1   5     4 -0.83    -0.22 0.04
-```
-
-Dazu muss das Paket `psych` natürlich vorher installiert sein. Beachten Sie, dass man ein Paket nur *einmal* installieren muss, aber jedes Mal, wen Sie R starten, auch starten muss (mit `library`).
+Dazu muss das Paket `tidyverse` natürlich vorher installiert sein. Beachten Sie, dass man ein Paket nur *einmal* installieren muss, aber jedes Mal, wen Sie R starten, auch starten muss (mit `library`).
 
 
 ```r
@@ -113,10 +98,13 @@ Sicherlich sind Diagramme auch hilfreich. Dies geht wiederum mit dem R-Commander
 
 
 ```r
+ggplot(Affair) +
+  aes(x = affairs) +
+  geom_histogram()
 
-library(ggplot2)
-qplot(x = affairs, data = Affair)
-qplot(x = rating, data = Affair)
+ggplot(Affair) +
+  aes(x = rating) +
+  geom_histogram()
 ```
 
 <img src="https://sebastiansauer.github.io/images/2017-01-05/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="70%" style="display: block; margin: auto;" /><img src="https://sebastiansauer.github.io/images/2017-01-05/unnamed-chunk-7-2.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="70%" style="display: block; margin: auto;" />
@@ -304,7 +292,7 @@ corrplot(cor_tab)
 # Wie groß ist der Einfluss (das Einflussgewicht) der Ehejahre bzw. Ehezufriedenheit auf die Anzahl der Affären?
 
 Dazu sagen wir R: "Hey R, rechne mal ein lineares Modell", also eine normale 
-(lineare) Regression. Dazu können wir entweder das entsprechende Menü im R-Commander auswählen, oder folgende R-Befehle ausführen:
+(lineare) Regression. Dazu können wir folgende R-Befehle ausführen:
 
 
 ```r
@@ -350,7 +338,7 @@ summary(lm2)
 #> F-statistic: 50.76 on 1 and 599 DF,  p-value: 3.002e-12
 ```
 
-Also: `yearsmarried` und `rating` sind beide statistisch signifikante Prädiktoren für die Häufigkeit von Affären. Das adjustierte $$R^2$$ ist allerdings in beiden Fällen nicht so groß.
+Also: `yearsmarried` und `rating` sind beide statistisch signifikante Prädiktoren für die Häufigkeit von Affären. Das adjustierte $R^2$ ist allerdings in beiden Fällen nicht so groß.
 
 # Um wie viel erhöht sich die erklärte Varianz (R-Quadrat) von Affärenhäufigkeit wenn man den Prädiktor Ehezufriedenheit zum Prädiktor Ehejahre hinzufügt? (Wie) verändern sich die Einflussgewichte (b)?
 
@@ -453,7 +441,7 @@ summary(lm5)
 r2_lm5 <- summary(lm5)$r.squared
 ```
 
-Das Regressionsgewicht von `childrenyes` ist negativ. Das bedeutet, dass Ehen mit Kindern weniger Affären verbuchen (aber geringe Zufriedenheit, wie wir oben gesehen haben! Hrks!). Allerdings ist der p-Wert nich signifikant, was wir als Zeichen der Unbedeutsamkeit dieses Prädiktors verstehen können. $$R^2$$ lungert immer noch bei mickrigen 0.09 herum. Wir haben bisher kaum verstanden, wie es zu Affären kommt. Oder unsere Daten bergen diese Informationen einfach nicht.
+Das Regressionsgewicht von `childrenyes` ist negativ. Das bedeutet, dass Ehen mit Kindern weniger Affären verbuchen (aber geringe Zufriedenheit, wie wir oben gesehen haben! Hrks!). Allerdings ist der p-Wert nich signifikant, was wir als Zeichen der Unbedeutsamkeit dieses Prädiktors verstehen können. $R^2$ lungert immer noch bei mickrigen 0.09 herum. Wir haben bisher kaum verstanden, wie es zu Affären kommt. Oder unsere Daten bergen diese Informationen einfach nicht.
 
 Wir könnten auch einfach mal Prädiktoren, die wir haben, ins Feld schicken. Mal sehen, was dann passiert:
 
@@ -495,7 +483,7 @@ Insgesamt bleibt die erklärte Varian in sehr bescheidenem Rahmen: 0.13. Das zei
 
 # Unterscheiden sich die Geschlechter statistisch signifikant? Wie groß ist der Unterschied? Sollte hierlieber das d-Maß oder Rohwerte als Effektmaß  angegeben werden?
 
-Hier bietet sich ein t-Test für unabhängige Gruppen an. Die Frage lässt auf eine ungerichtete Hypothese schließen ($$\alpha$$ sei .05). Mit dem entsprechenden Menüpunkt im R-Commander oder mit folgender Syntax lässt sich diese Analyse angehen:
+Hier bietet sich ein t-Test für unabhängige Gruppen an. Die Frage lässt auf eine ungerichtete Hypothese schließen ($\alpha$ sei .05). Mit dem entsprechenden Menüpunkt im R-Commander oder mit folgender Syntax lässt sich diese Analyse angehen:
 
 
 ```r
@@ -515,7 +503,7 @@ t1
 ```
 
 
-Der p-Wert ist mit 0.7739606 > $$\alpha$$. Daher wird die $$H_0$$ beibehalten. Auf Basis der Stichprobendaten entscheiden wir uns für die $$H_0$$. Entsprechend umschließt das 95%-KI die Null.
+Der p-Wert ist mit 0.7739606 > $\alpha$. Daher wird die $H_0$ beibehalten. Auf Basis der Stichprobendaten entscheiden wir uns für die $H_0$. Entsprechend umschließt das 95%-KI die Null.
 
 Da die Differenz nicht signifikant ist, kann argumentiert werden, dass wir `d` auf 0 schätzen müssen. Man kann sich den d-Wert auch z.B. von {MBESS} schätzen lassen.
 

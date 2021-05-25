@@ -1,5 +1,5 @@
 ---
-title: Vohrersage-Modellierung des Preises von Diamanten
+title: Vorhersage-Modellierung des Preises von Diamanten
 author: Sebastian Sauer
 date: '2021-05-19'
 slug: vohrersgage-modellierung-des-preises-von-diamanten
