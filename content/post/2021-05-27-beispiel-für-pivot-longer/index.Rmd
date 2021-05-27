@@ -1,0 +1,78 @@
+---
+title: Beispiel für pivot_longer()
+author: Sebastian Sauer
+date: '2021-05-27'
+slug: beispiel-für-pivot-longer
+categories:
+  - rstats
+tags:
+  - datawrangling
+output:
+  blogdown::html_page:
+    toc: yes
+    number_sections: yes
+---
+
+
+
+```{r knitr-setup, echo = FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = TRUE,
+  out.width = "100%",
+  fig.align = 'center',
+  fig.width = 6,
+  fig.asp = 0.618,  # 1 / phi
+  fig.show = "hold",
+  size = "tiny"
+)
+```
+
+
+
+# Setup
+
+```{r}
+library(tidyverse)
+```
+
+
+
+# Daten laden
+
+```{r}
+d <- read_csv("https://raw.githubusercontent.com/sebastiansauer/2021-sose/master/data/Impfbereitschaft/d3.csv")
+```
+
+
+
+# Von lang nach breit
+
+```{r}
+d2 <-
+  d %>% 
+  select(willingness:open2) %>% 
+  pivot_longer(extra1:open2)
+```
+
+```{r}
+d2 %>% 
+  slice_head(n = 7) 
+```
+
+
+# Plotten
+
+
+```{r}
+d2 %>% 
+  ggplot() +
+  aes(x = willingness, y = value) +
+  facet_wrap(~ name) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
