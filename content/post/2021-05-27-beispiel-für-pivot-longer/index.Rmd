@@ -77,6 +77,9 @@ d2 %>%
 ```
 
 
+Jedes Diagramm zeigt den Zusammenhang von Impfbereitschaft mit einem Big-Five-Item. Das Diagramm ist alles andere als ideal; hier ging es nur darum, den Nutzen von `pivot_longer()` an einem praktischen Beispiel zu zeigen.
+
+
 # Kommentar
 
 
