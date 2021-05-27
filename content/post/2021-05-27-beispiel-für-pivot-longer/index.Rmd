@@ -76,3 +76,9 @@ d2 %>%
   geom_smooth(method = "lm")
 ```
 
+
+# Kommentar
+
+
+`pivot_longer()` ist nützlich, z.B. wenn man mehrere Variablen visualisieren möchte. Ein sinnvoller Zugang ist es dann, eine Facette pro Variable zu zeigen (s. Beispiel oben). Dazu erstellt man eine Gruppierungsvariable, die die verschiedenen Variablen als Werte fasst, z.B. die Werte "Variable1", "Variable", ... . Dann kann man diese Gruppierungsvariable für die Facettierung nutzen. Wichtig: Man kann nur über eine Variable facettiereen (mit `facet_wrap()`). Daher muss man also die mehreren Variablen in eine umformatieren. Das erreicht man mit `pivot_longer()`.
+
