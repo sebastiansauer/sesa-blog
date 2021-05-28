@@ -46,7 +46,7 @@ library(corrr)
 
 # Forschungsfrage und Hintergrund
 
-Wovon ist die Häufigkeit von Affären (Seitensprüngen) in Ehen abhängig (nur prädiktiv!)? Diese Frage soll anhand des Datensates `Affair` untersucht werden.
+Wovon ist die Häufigkeit von Affären (Seitensprüngen) in Ehen abhängig (nur prädiktiv!)? Diese Frage soll anhand des Datensatzes `Affair` untersucht werden.
 
 Dieser Post stellt beispielhaft eine grundlegende Methoden der praktischen Datenanalyse im Rahmen einer kleinen Fallstudie (YACSDA) vor.
 
@@ -223,7 +223,7 @@ d %>%
 ```
 
 
-## Wie groß ist der (statische) "Einfluss" (das Einflussgewicht) der Ehejahre bzw. Ehezufriedenheit auf die Anzahl der Affären?
+## Wie groß ist der (statistische) "Einfluss" (das Einflussgewicht) der Ehejahre bzw. Ehezufriedenheit auf die Anzahl der Affären?
 
 ```{r}
 lm1 <- lm(affairs ~ yearsmarried + rating,
