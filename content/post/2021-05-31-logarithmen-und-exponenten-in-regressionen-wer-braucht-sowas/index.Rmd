@@ -17,3 +17,5 @@ Die Folien des Vortrags (HTML-Version) liegen [hier](https://sebastiansauer.gith
 
 Die Rmd-Quelldatei liegt [hier](https://sebastiansauer.github.io/2021-sose/QuantMeth1/Vertiefung/Log-Log-Regression.Rmd).
 
+Lizenz: CC-BY
+
