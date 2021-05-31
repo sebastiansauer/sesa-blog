@@ -1,0 +1,19 @@
+---
+title: 'Logarithmen und Exponenten in Regressionen: Wer braucht sowas?'
+author: Sebastian Sauer
+date: '2021-05-31'
+slug: logarithmen-und-exponenten-in-regressionen-wer-braucht-sowas
+categories:
+  - rstats
+tags:
+  - tutorial
+  - modelling
+---
+
+
+
+
+Die Folien des Vortrags (HTML-Version) liegen [hier](https://sebastiansauer.github.io/2021-sose/QuantMeth1/Vertiefung/Log-Log-Regression.html#1). Eine Internetverbindung ist nötig, um die Folien zu betrachten.
+
+Die Rmd-Quelldatei liegt [hier](https://sebastiansauer.github.io/2021-sose/QuantMeth1/Vertiefung/Log-Log-Regression.Rmd).
+
