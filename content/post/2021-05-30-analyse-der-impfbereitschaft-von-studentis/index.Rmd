@@ -456,15 +456,15 @@ willingness_high <- c("geringe Offenheit" = 28,
 
 
 ```{r}
-install_fa_fonts()
 library(extrafont)
+
+install_fa_fonts()
 font_import(paths = "/Users/sebastiansaueruser/Rlibs/waffle/fonts/", prompt = F)
 ```
 
 
 ```{r}
 library(waffle)
-library(extrafont)
 waffle(willingness_high,
        flip = TRUE,
        reverse = TRUE,
@@ -479,7 +479,7 @@ waffle(willingness_high,
 ```
 
 
-```{r}
+```{r eval = FALSE}
 d5 %>% 
   select(open_01, willingness_01) %>% 
   ggplot(aes(fill = factor(open_01)), values = open_01) +

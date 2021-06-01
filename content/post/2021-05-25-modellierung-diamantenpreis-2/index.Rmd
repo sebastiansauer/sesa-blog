@@ -48,6 +48,7 @@ library(tidyverse)  # Datenjudo
 library(corrr)  # Korrelation
 library(ggfortify)  # Annahmen grafisch überprüfen
 library(modelr)  # Hilfen zum Modellieren
+library(broom)  # tidy Regressionsergebnisse
 ```
 
 # Daten laden
@@ -72,7 +73,7 @@ Die [Hilfeseite](https://ggplot2.tidyverse.org/reference/diamonds.html) zum Date
 
 ## Modell 1
 
-Auf Basis unseres Vorwissens (Priori-Wissens) gehen wir davon aus, dass die Größe eines Diamanten stark korreliert mit dem Preis:
+Auf Basis unseres Vorwissens (Priori-Wissens) gehen wir davon aus, dass das Gewicht eines Diamanten stark korreliert mit dem Preis:
 
 
 ```{r}
@@ -229,7 +230,7 @@ autoplot(lm3, which = 1)
 Die "abrasierte Kante" kommt vermutlich von unserem Filter. Leider lässt die große Anzahl der Punkte das Diagramm nur bedingt nützlich erscheinen; wir können wegen des Overplotting nicht wirklich gut einen Trend sehen. Aber was wir sehen, ist zumindest besser als in den vorherigen Modellen. Fortschritt!
 
 
-## Modell 4
+## Modell 3a und 4
 
 ### Konfundierung von Schliff und Karat
 
@@ -245,7 +246,7 @@ diamonds %>%
 
 Verblüffend! Die guten Schliffarten erzielen nicht den besten Preis! Im Gegenteil: der *schlechteste* Schliff (`Fair`) erzielt den höchsten Preis. Wie kann das sein?
 
-Ein (plausibler) Grund ist, dass Schliff und Karat konfundiert sind: Schwerere Diamanten (hohe Karatzahl) hätten demnach einen schlechteren Schliff. Da aber Karat und Preis positiv korreliert sind, sind Diamanten schlechteren Schliffs teuerer. Soweit die Theorie. Untersuchen wir diese These in den Daten. Dazu betrachten wir den *Preis relativ zur Karatzahl*. Wir untersuchen also die Frage: Im Verhältnis zu seiner Karatzahl, wie teuer ist der Diamant? Damit können wir prüfen, ob ein Diamant mit schlechtem Schliff im Verhältnis zu seiner Größe wirklich (überdurchschnittlich) teuer ist. Wenn unsere These stimmt, müsste dann ein Diamant schlechten Schliffs *günstiger* sein.
+Ein (plausibler) Grund ist, dass Schliff und Karat konfundiert sind: Schwerere Diamanten (hohe Karatzahl) hätten demnach einen schlechteren Schliff. Da aber Karat und Preis positiv korreliert sind, sind Diamanten schlechteren Schliffs teuerer. Soweit die Theorie. Untersuchen wir diese These in den Daten. Dazu betrachten wir den *Preis relativ zur Karatzahl*. Wir untersuchen also die Frage: Im Verhältnis zu seiner Karatzahl, wie teuer ist der Diamant? Damit können wir prüfen, ob ein Diamant mit schlechtem Schliff im Verhältnis zu seinem Gewicht wirklich (überdurchschnittlich) teuer ist. Wenn unsere These stimmt, müsste dann ein Diamant schlechten Schliffs *günstiger* sein.
 
 
 ```{r}
@@ -259,29 +260,40 @@ diamonds %>%
 Bingo! Unsere Theorie scheint richtig zu sein. Zumindest passen die Daten zu unserer Vorhersage: Jetzt sind die Diamanten schlechten Schliffs *billiger* als es ihre Karatzahl vermuten ließe. Anders gesagt: Betrachtet man nur Diamanten mit einer bestimmten Karatzahl, so sind in dieser Gruppe die Diamanten schlechten Schliffs günstiger als Diamanten besseren Schliffs (und entsprechend für Diamanten anderen Schliffs).
 
 
-### Vorhersagen
+### `lm3a`
+
+Ergänzen wir ein Modell, `lm3a`, welches `cut` zusätzlich zum Gewicht (Karat) eines Diamannten nutzt, um den Preis vorherzusagen.
+
+```{r}
+lm3a <- lm(price_log ~ carat_log + cut, data = diamonds) 
+summary(lm3a)$r.squared
+```
+
+Ah, ein sehr hoher $R^2$-Wert.
+
+Was sind die Vorhersagen für die Werte von `cut` von unserem Modell, `lm3a`? 
 
 
-Was sind die Vorhersagen für die Werte von `cut` von unserem Modell, `lm3`? 
+
 
 So können wir uns für die Werte von `cut` auf Basis von `lm3` eine Vorhersage geben lassen. Dabei nehmen wir den typischen Wert von Karat (log), den Median, um genau zu sein:
 
 ```{r}
-lm3_grid <-
+lm3a_grid <-
   diamonds %>% 
-  data_grid(cut, .model = lm3) %>% 
-  add_predictions(lm3)
+  data_grid(cut, .model = lm3a) %>% 
+  add_predictions(lm3a)
 
-lm3_grid
+lm3a_grid
 ```
-Visualisieren wir den vorhergesagten Preis laut Karatzahl (`lm3`) als rote Punkte und setzen die Verteilung der Preise in Abhängigkeit der Schliffart dagegen (Boxplots):
+Visualisieren wir den vorhergesagten Preis laut Karatzahl und Schliffart (von `lm3a`) als rote Punkte und setzen die Verteilung der Preise in Abhängigkeit der Schliffart dagegen (Boxplots):
 
 ```{r}
 diamonds %>% 
   ggplot() +
   geom_boxplot(aes(x = cut,
               y = price_log)) +
-  geom_point(data = lm3_grid,
+  geom_point(data = lm3a_grid,
              aes(x = cut,
                  y = pred),
              color = "red",
@@ -292,12 +304,12 @@ diamonds %>%
 Wir sehen, dass der Preis laut Karatzahl bei schlechter Schliffart (`Fair`) höher sein müsste: Relativ zur Karatzahl sind diese Diamanten günstig.
 
 
-### Schliff als Prädiktor
+### `lm4`: Schliff als Prädiktor
 
 
 
 
-Umgekehrt können wir auch anschauen, ob die Karatzahl mit dem Preis relativ zur Schliffart zusammenhängt:
+Umgekehrt können wir auch anschauen, ob die Karatzahl mit dem Preis relativ zur Schliffart zusammenhängt. Definieren wir dazu ein Modell, das nur die Schliffart zur Vorhersage des Preises nutzt:
 
 ```{r}
 lm4 <- lm(price_log ~ cut, data = diamonds)
@@ -319,7 +331,7 @@ diamonds %>%
   geom_hex(bins = 50)
 ```
 
-Es ist kein großer Unterschied zu erkennen. Der Zusammenhang von Preis und Karat (jewils log2) ist praktisch gleich zum Zusammenang des Preises relativ zur Schliffart und Karat. Das zeigt, dass die Schliffart nicht wirklich einen "eigenen" Zusammenhang mit dem Preis hat, der über den Zusammenhang der Karatzahl hinausgeht.
+Es ist kein großer Unterschied zu erkennen. Der Zusammenhang von Preis und Karat (jeweils log2) ist praktisch gleich zum Zusammenang des Preises relativ zur Schliffart und Karat. Das zeigt, dass die Schliffart nicht wirklich einen "eigenen" Zusammenhang mit dem Preis hat, der über den Zusammenhang der Karatzahl hinausgeht.
 
 Alternativ könnte man den Zusammenhang von Karat und Preis relativ zur Schliffart auch so betrachten:
 
@@ -337,6 +349,30 @@ diamonds %>%
 Die Diagramme sehen ähnlich aus: Unabhängig von der Schliffart (was in jeder einzelnen Facette der Fall ist) ist der Zusammenhang von Karat und Preis stark. Anstelle von "unabhängig von" sagt man auch "bereinigt von", also "bereinigt von der Schliffart", ist der Zusammenhang von Karat und Preis weiterhin stark.
 
 Die Referenzlinien wurden hinzugefügt, um einen "Referanzrahmen" zu geben: $x=0$ entspricht $2^0=1$ Karat; $y=2^10=1024$ Dollar Preis.
+
+### Modellkoeffizienten
+
+
+Die relative Bedeutung des Prädiktoren lässt sich mit einem (ggf. standardisierten) Regressionskoeffizienten darstellen (hier nicht weiter ausgeführt).
+
+```{r}
+tidy(lm3a)
+```
+
+### $R^2$ zur Beurteilung der Relevanz von Prädiktoren
+
+Alternativ kann man den Zuwachs an $R^2$ anschauen, wenn man Prädiktoren hinzufügt.
+
+```{r}
+summary(lm3)$r.squared
+```
+```{r}
+summary(lm3a)$r.squared
+```
+
+Der zusätzliche Prädiktor in `lm3a` scheint wenig Zuwachs in der Modellgüte (gemessen in $R^2$) einzubringen. Die *unique* Releanz des zweiten Prädiktors (`cut`) ist somit nicht so hoch.
+
+
 
 
 # Fazit: "Händische" Modellierung

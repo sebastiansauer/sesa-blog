@@ -38,11 +38,13 @@ output:
 <li><a href="#modellgüte-1"><span class="toc-section-number">5.3.1</span> Modellgüte</a></li>
 <li><a href="#voraussetzungen-prüfen"><span class="toc-section-number">5.3.2</span> Voraussetzungen prüfen</a></li>
 </ul></li>
-<li><a href="#modell-4"><span class="toc-section-number">5.4</span> Modell 4</a>
+<li><a href="#modell-3a-und-4"><span class="toc-section-number">5.4</span> Modell 3a und 4</a>
 <ul>
 <li><a href="#konfundierung-von-schliff-und-karat"><span class="toc-section-number">5.4.1</span> Konfundierung von Schliff und Karat</a></li>
-<li><a href="#vorhersagen"><span class="toc-section-number">5.4.2</span> Vorhersagen</a></li>
-<li><a href="#schliff-als-prädiktor"><span class="toc-section-number">5.4.3</span> Schliff als Prädiktor</a></li>
+<li><a href="#lm3a"><span class="toc-section-number">5.4.2</span> <code>lm3a</code></a></li>
+<li><a href="#lm4-schliff-als-prädiktor"><span class="toc-section-number">5.4.3</span> <code>lm4</code>: Schliff als Prädiktor</a></li>
+<li><a href="#modellkoeffizienten"><span class="toc-section-number">5.4.4</span> Modellkoeffizienten</a></li>
+<li><a href="#r2-zur-beurteilung-der-relevanz-von-prädiktoren"><span class="toc-section-number">5.4.5</span> <span class="math inline">\(R^2\)</span> zur Beurteilung der Relevanz von Prädiktoren</a></li>
 </ul></li>
 </ul></li>
 <li><a href="#fazit-händische-modellierung"><span class="toc-section-number">6</span> Fazit: “Händische” Modellierung</a>
@@ -63,7 +65,8 @@ output:
 <pre class="r"><code>library(tidyverse)  # Datenjudo
 library(corrr)  # Korrelation
 library(ggfortify)  # Annahmen grafisch überprüfen
-library(modelr)  # Hilfen zum Modellieren</code></pre>
+library(modelr)  # Hilfen zum Modellieren
+library(broom)  # tidy Regressionsergebnisse</code></pre>
 </div>
 <div id="daten-laden" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Daten laden</h1>
@@ -78,7 +81,7 @@ library(modelr)  # Hilfen zum Modellieren</code></pre>
 <h1><span class="header-section-number">5</span> Modellierung</h1>
 <div id="modell-1" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Modell 1</h2>
-<p>Auf Basis unseres Vorwissens (Priori-Wissens) gehen wir davon aus, dass die Größe eines Diamanten stark korreliert mit dem Preis:</p>
+<p>Auf Basis unseres Vorwissens (Priori-Wissens) gehen wir davon aus, dass das Gewicht eines Diamanten stark korreliert mit dem Preis:</p>
 <pre class="r"><code>diamonds %&gt;% 
   select(price, carat) %&gt;% 
   correlate() %&gt;% 
@@ -193,8 +196,8 @@ summary(lm3)$r.squared
 <p>Die “abrasierte Kante” kommt vermutlich von unserem Filter. Leider lässt die große Anzahl der Punkte das Diagramm nur bedingt nützlich erscheinen; wir können wegen des Overplotting nicht wirklich gut einen Trend sehen. Aber was wir sehen, ist zumindest besser als in den vorherigen Modellen. Fortschritt!</p>
 </div>
 </div>
-<div id="modell-4" class="section level2" number="5.4">
-<h2><span class="header-section-number">5.4</span> Modell 4</h2>
+<div id="modell-3a-und-4" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> Modell 3a und 4</h2>
 <div id="konfundierung-von-schliff-und-karat" class="section level3" number="5.4.1">
 <h3><span class="header-section-number">5.4.1</span> Konfundierung von Schliff und Karat</h3>
 <p>Versuchen wir zu verstehen, welche Variablen noch eine Rolle spielen. Schliff erscheint einem Laien als plausibler Prädiktor. Schauen wir uns Schliff näher an.</p>
@@ -204,7 +207,7 @@ summary(lm3)$r.squared
   geom_boxplot()</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Verblüffend! Die guten Schliffarten erzielen nicht den besten Preis! Im Gegenteil: der <em>schlechteste</em> Schliff (<code>Fair</code>) erzielt den höchsten Preis. Wie kann das sein?</p>
-<p>Ein (plausibler) Grund ist, dass Schliff und Karat konfundiert sind: Schwerere Diamanten (hohe Karatzahl) hätten demnach einen schlechteren Schliff. Da aber Karat und Preis positiv korreliert sind, sind Diamanten schlechteren Schliffs teuerer. Soweit die Theorie. Untersuchen wir diese These in den Daten. Dazu betrachten wir den <em>Preis relativ zur Karatzahl</em>. Wir untersuchen also die Frage: Im Verhältnis zu seiner Karatzahl, wie teuer ist der Diamant? Damit können wir prüfen, ob ein Diamant mit schlechtem Schliff im Verhältnis zu seiner Größe wirklich (überdurchschnittlich) teuer ist. Wenn unsere These stimmt, müsste dann ein Diamant schlechten Schliffs <em>günstiger</em> sein.</p>
+<p>Ein (plausibler) Grund ist, dass Schliff und Karat konfundiert sind: Schwerere Diamanten (hohe Karatzahl) hätten demnach einen schlechteren Schliff. Da aber Karat und Preis positiv korreliert sind, sind Diamanten schlechteren Schliffs teuerer. Soweit die Theorie. Untersuchen wir diese These in den Daten. Dazu betrachten wir den <em>Preis relativ zur Karatzahl</em>. Wir untersuchen also die Frage: Im Verhältnis zu seiner Karatzahl, wie teuer ist der Diamant? Damit können wir prüfen, ob ein Diamant mit schlechtem Schliff im Verhältnis zu seinem Gewicht wirklich (überdurchschnittlich) teuer ist. Wenn unsere These stimmt, müsste dann ein Diamant schlechten Schliffs <em>günstiger</em> sein.</p>
 <pre class="r"><code>diamonds %&gt;% 
   add_residuals(lm3, &quot;resid_lm3&quot;) %&gt;% 
   ggplot(aes(x = cut, y = resid_lm3)) +
@@ -212,40 +215,45 @@ summary(lm3)$r.squared
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Bingo! Unsere Theorie scheint richtig zu sein. Zumindest passen die Daten zu unserer Vorhersage: Jetzt sind die Diamanten schlechten Schliffs <em>billiger</em> als es ihre Karatzahl vermuten ließe. Anders gesagt: Betrachtet man nur Diamanten mit einer bestimmten Karatzahl, so sind in dieser Gruppe die Diamanten schlechten Schliffs günstiger als Diamanten besseren Schliffs (und entsprechend für Diamanten anderen Schliffs).</p>
 </div>
-<div id="vorhersagen" class="section level3" number="5.4.2">
-<h3><span class="header-section-number">5.4.2</span> Vorhersagen</h3>
-<p>Was sind die Vorhersagen für die Werte von <code>cut</code> von unserem Modell, <code>lm3</code>?</p>
+<div id="lm3a" class="section level3" number="5.4.2">
+<h3><span class="header-section-number">5.4.2</span> <code>lm3a</code></h3>
+<p>Ergänzen wir ein Modell, <code>lm3a</code>, welches <code>cut</code> zusätzlich zum Gewicht (Karat) eines Diamannten nutzt, um den Preis vorherzusagen.</p>
+<pre class="r"><code>lm3a &lt;- lm(price_log ~ carat_log + cut, data = diamonds) 
+summary(lm3a)$r.squared
+#&gt; [1] 0.9371003</code></pre>
+<p>Ah, ein sehr hoher <span class="math inline">\(R^2\)</span>-Wert.</p>
+<p>Was sind die Vorhersagen für die Werte von <code>cut</code> von unserem Modell, <code>lm3a</code>?</p>
 <p>So können wir uns für die Werte von <code>cut</code> auf Basis von <code>lm3</code> eine Vorhersage geben lassen. Dabei nehmen wir den typischen Wert von Karat (log), den Median, um genau zu sein:</p>
-<pre class="r"><code>lm3_grid &lt;-
+<pre class="r"><code>lm3a_grid &lt;-
   diamonds %&gt;% 
-  data_grid(cut, .model = lm3) %&gt;% 
-  add_predictions(lm3)
+  data_grid(cut, .model = lm3a) %&gt;% 
+  add_predictions(lm3a)
 
-lm3_grid
+lm3a_grid
 #&gt; # A tibble: 5 x 3
 #&gt;   cut       carat_log  pred
 #&gt;   &lt;ord&gt;         &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1 Fair         -0.515  11.3
-#&gt; 2 Good         -0.515  11.3
+#&gt; 1 Fair         -0.515  11.0
+#&gt; 2 Good         -0.515  11.2
 #&gt; 3 Very Good    -0.515  11.3
 #&gt; 4 Premium      -0.515  11.3
-#&gt; 5 Ideal        -0.515  11.3</code></pre>
-<p>Visualisieren wir den vorhergesagten Preis laut Karatzahl (<code>lm3</code>) als rote Punkte und setzen die Verteilung der Preise in Abhängigkeit der Schliffart dagegen (Boxplots):</p>
+#&gt; 5 Ideal        -0.515  11.4</code></pre>
+<p>Visualisieren wir den vorhergesagten Preis laut Karatzahl und Schliffart (von <code>lm3a</code>) als rote Punkte und setzen die Verteilung der Preise in Abhängigkeit der Schliffart dagegen (Boxplots):</p>
 <pre class="r"><code>diamonds %&gt;% 
   ggplot() +
   geom_boxplot(aes(x = cut,
               y = price_log)) +
-  geom_point(data = lm3_grid,
+  geom_point(data = lm3a_grid,
              aes(x = cut,
                  y = pred),
              color = &quot;red&quot;,
              size = 5)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Wir sehen, dass der Preis laut Karatzahl bei schlechter Schliffart (<code>Fair</code>) höher sein müsste: Relativ zur Karatzahl sind diese Diamanten günstig.</p>
 </div>
-<div id="schliff-als-prädiktor" class="section level3" number="5.4.3">
-<h3><span class="header-section-number">5.4.3</span> Schliff als Prädiktor</h3>
-<p>Umgekehrt können wir auch anschauen, ob die Karatzahl mit dem Preis relativ zur Schliffart zusammenhängt:</p>
+<div id="lm4-schliff-als-prädiktor" class="section level3" number="5.4.3">
+<h3><span class="header-section-number">5.4.3</span> <code>lm4</code>: Schliff als Prädiktor</h3>
+<p>Umgekehrt können wir auch anschauen, ob die Karatzahl mit dem Preis relativ zur Schliffart zusammenhängt. Definieren wir dazu ein Modell, das nur die Schliffart zur Vorhersage des Preises nutzt:</p>
 <pre class="r"><code>lm4 &lt;- lm(price_log ~ cut, data = diamonds)
 summary(lm4)$r.squared
 #&gt; [1] 0.01813734</code></pre>
@@ -256,8 +264,8 @@ summary(lm4)$r.squared
   ggplot() +
   aes(x = carat_log, y = resid_lm4) +
   geom_hex(bins = 50)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>Es ist kein großer Unterschied zu erkennen. Der Zusammenhang von Preis und Karat (jewils log2) ist praktisch gleich zum Zusammenang des Preises relativ zur Schliffart und Karat. Das zeigt, dass die Schliffart nicht wirklich einen “eigenen” Zusammenhang mit dem Preis hat, der über den Zusammenhang der Karatzahl hinausgeht.</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Es ist kein großer Unterschied zu erkennen. Der Zusammenhang von Preis und Karat (jeweils log2) ist praktisch gleich zum Zusammenang des Preises relativ zur Schliffart und Karat. Das zeigt, dass die Schliffart nicht wirklich einen “eigenen” Zusammenhang mit dem Preis hat, der über den Zusammenhang der Karatzahl hinausgeht.</p>
 <p>Alternativ könnte man den Zusammenhang von Karat und Preis relativ zur Schliffart auch so betrachten:</p>
 <pre class="r"><code>diamonds %&gt;% 
   ggplot(aes(x = carat_log, y = price_log)) +
@@ -265,9 +273,32 @@ summary(lm4)$r.squared
   geom_ref_line(v = 0) +
   geom_ref_line(h = 10) +
   geom_hex(bins = 50)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Die Diagramme sehen ähnlich aus: Unabhängig von der Schliffart (was in jeder einzelnen Facette der Fall ist) ist der Zusammenhang von Karat und Preis stark. Anstelle von “unabhängig von” sagt man auch “bereinigt von”, also “bereinigt von der Schliffart”, ist der Zusammenhang von Karat und Preis weiterhin stark.</p>
 <p>Die Referenzlinien wurden hinzugefügt, um einen “Referanzrahmen” zu geben: <span class="math inline">\(x=0\)</span> entspricht <span class="math inline">\(2^0=1\)</span> Karat; <span class="math inline">\(y=2^10=1024\)</span> Dollar Preis.</p>
+</div>
+<div id="modellkoeffizienten" class="section level3" number="5.4.4">
+<h3><span class="header-section-number">5.4.4</span> Modellkoeffizienten</h3>
+<p>Die relative Bedeutung des Prädiktoren lässt sich mit einem (ggf. standardisierten) Regressionskoeffizienten darstellen (hier nicht weiter ausgeführt).</p>
+<pre class="r"><code>tidy(lm3a)
+#&gt; # A tibble: 6 x 5
+#&gt;   term        estimate std.error statistic  p.value
+#&gt;   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+#&gt; 1 (Intercept)  12.1      0.00250   4836.   0       
+#&gt; 2 carat_log     1.70     0.00191    888.   0       
+#&gt; 3 cut.L         0.324    0.00635     51.0  0       
+#&gt; 4 cut.Q        -0.0958   0.00562    -17.1  4.80e-65
+#&gt; 5 cut.C         0.0763   0.00491     15.6  2.09e-54
+#&gt; 6 cut^4         0.0269   0.00394      6.81 9.60e-12</code></pre>
+</div>
+<div id="r2-zur-beurteilung-der-relevanz-von-prädiktoren" class="section level3" number="5.4.5">
+<h3><span class="header-section-number">5.4.5</span> <span class="math inline">\(R^2\)</span> zur Beurteilung der Relevanz von Prädiktoren</h3>
+<p>Alternativ kann man den Zuwachs an <span class="math inline">\(R^2\)</span> anschauen, wenn man Prädiktoren hinzufügt.</p>
+<pre class="r"><code>summary(lm3)$r.squared
+#&gt; [1] 0.9329893</code></pre>
+<pre class="r"><code>summary(lm3a)$r.squared
+#&gt; [1] 0.9371003</code></pre>
+<p>Der zusätzliche Prädiktor in <code>lm3a</code> scheint wenig Zuwachs in der Modellgüte (gemessen in <span class="math inline">\(R^2\)</span>) einzubringen. Die <em>unique</em> Releanz des zweiten Prädiktors (<code>cut</code>) ist somit nicht so hoch.</p>
 </div>
 </div>
 </div>
