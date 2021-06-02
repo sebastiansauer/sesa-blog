@@ -531,7 +531,7 @@ font_import(paths = "/Users/sebastiansaueruser/Rlibs/waffle/fonts/", prompt = F)
 ```
 
 
-```{r}
+```{r out.width="100%"}
 waffle(willingness_low,
        flip = TRUE,
        reverse = TRUE,
@@ -578,7 +578,7 @@ levels(d8a$value) <- c("introvertiert ", "extrovertiert")
 
 
 
-```{r}
+```{r out.width="100%"}
 d8a %>% 
   ggplot(aes(label = willingness_01, 
              values = n)) +
