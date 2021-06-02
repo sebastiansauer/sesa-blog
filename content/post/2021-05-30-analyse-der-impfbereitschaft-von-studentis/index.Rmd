@@ -2,7 +2,7 @@
 title: Analyse der Impfbereitschaft von Studentis
 author: Sebastian Sauer
 date: '2021-05-30'
-draft: TRUE
+draft: FALSE
 slug: analyse-der-impfbereitschaft-von-studentis
 categories:
   - rstats
@@ -19,12 +19,28 @@ Es stellt sich die Aufgabe, zentrale Erkentnisse aus diesen Daten darzustellen. 
 
 # Vorbereitung
 
+```{r global-knitr-options, include=FALSE}
+knitr::opts_chunk$set(fig.pos = 'H',
+  fig.asp = 0.618,
+  fig.width = 5,
+  fig.cap = "", 
+  fig.path = "",
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = FALSE,
+  fig.show = "hold")
+```
+
 ## Pakete laden
 
-```{r}
+```{r message=FALSE}
 library(tidyverse)
 library(corrr)   # Komfort bei Korrelationen 
 library(broom)  # tidy Regressionsergebnisse
+library(waffle)  # Waffeldiagramm
+library(hrbrthemes)  # Ggplot2 style
+library(magick)  # Bildbearbeitung
 ```
 
 
@@ -35,6 +51,7 @@ library(broom)  # tidy Regressionsergebnisse
 d <- read_csv("https://raw.githubusercontent.com/sebastiansauer/2021-sose/master/data/Impfbereitschaft/d3.csv")
 ```
 
+Ein Blick in die Daten:
 
 ```{r}
 glimpse(d)
@@ -72,6 +89,16 @@ d %>%
 ```
 Nur bei den Kommentaren fehlen Werte.
 
+Natürlich hätte man das einfacher schreiben können (aber mit mehr Tippaufwand):
+
+
+
+```{r}
+d %>% 
+  summarise(sum(is.na(willingness)))
+```
+
+Und entsprechend für alle anderen Variablen des Datensatzes.
 
 ## Nominal skalierte Variablen in numerische umwandeln
 
@@ -219,7 +246,7 @@ Diese Visualisierung soll eine sehr einfache, eingängige Visualisierung des Zus
 
 Für eine einfaches Verständnis für eine Zielgruppe, die wenig "datenkundig" (data literate) ist, soll hier eine Dichotomisierung der Daten (z.B. anhand des Medians) vollzogen werden. 
 
-Ausdrücklich sei gewarnt, dass eine Median-Aufteilung statistisch fahrlässig ist. Diese Methode wird hier nur illustrativ gezeigt.
+Ausdrücklich sei *gewarnt*, dass eine Median-Aufteilung statistisch *fahrlässig* ist. Diese Methode wird hier *nur* illustrativ gezeigt.
 
 
 ```{r}
@@ -273,7 +300,7 @@ d2 %>%
 
 ## Dichotomisierung anhand des Skalen-Mittelpunkts
 
-Anstelle des Medians soll hier der Skalen-Mittelpunkt zur Dichotomisierung gewählt werden:
+Anstelle des Medians soll hier der *Skalen-Mittelpunkt* zur Dichotomisierung gewählt werden:
 
 ```{r}
 scale01 <- function(x) {
@@ -342,7 +369,7 @@ d6 <-
 ```
 
 ```{r}
-head(d6)
+slice_head(d6)
 ```
 
 
@@ -364,6 +391,7 @@ d6 %>%
   facet_wrap(~ dimension)
 ```
 
+Das Diagramm zeigt allerdings noch *keine* Korrespondenz (keinen Zusammenhang) zwischen Impfbereitschaft und den einzelnen Big-Five-Dimensionen. Also weiter.
 
 ## Anteil hoher Big-Five-Werte bei Impfwilligen (zweidimensional)
 
@@ -380,7 +408,7 @@ d7 <-
 
 
 ```{r}
-head(d7)
+d7
 ```
 
 ```{r}
@@ -435,27 +463,67 @@ d8 %>%
        caption = "n=164; nicht repräsentative Stichprobe. Nur eingeschränkt interpretierbar")
 ```
 
+Vielleicht wäre es interessanter, die Ungleichheit in den Ausprägungen der Persönlichkeitsdimensionen (Hohe Werte vs. niedrige Werte) in den Hoch- und Niedrig-Impfwilligen zu berechnen. Also nochmal weiter.
+
+
+# Größter Unterschied zwischen den Big-Five-Dimensionen bei den Hoch-Impfbereiten
+
+```{r}
+d8 %>% 
+  filter(value == 1) %>%  
+  group_by(name) %>% 
+  summarise(diff_hoch_vs_gering_impfwillig = prop[[2]] - prop[[1]])
+```
+
+Der Effekt bei den Gewissenhaften ist am stärksten. Allerdings ist der Effekt bei den Extravertierten besser zu interpretieren: "Die Extrovertierten sind weniger impfbereit als die introvertierten". Außerdem ist der Effekt fast genau so stark.
+
+
+
 # Geom FontAwesome
 
-Korrespondenz von Offenheit und Impfbereitschaft
-
-
+Korrespondenz von Extraversion und Impfbereitschaft
 
 
 
 ```{r}
 d8 %>% 
-  filter(name == "open_01")
+  filter(name == "extra_01")
 ```
 
 
 ```{r}
-willingness_high <- c("geringe Offenheit" = 28, 
-                      "hohe Offenheit" = 72)
+d8 %>% 
+  filter(name == "extra_01") %>% 
+  rename(Extraversion = value,
+         Anteil = prop,
+         Impfbereitschaft = willingness_01) %>% 
+  mutate(Extraversion = case_when(
+    Extraversion == 0 ~ "introvertiert",
+    Extraversion == 1 ~ "extravertiert",
+  )) %>% 
+  mutate(Impfbereitschaft = case_when(
+    Impfbereitschaft == 0 ~ "gering",
+    Impfbereitschaft == 1 ~ "hoch",
+  )) %>% 
+  ggplot(aes(x = Extraversion, 
+             y = Anteil, fill = Impfbereitschaft)) +
+  geom_col(position = "fill") +
+  labs(title = "Introvertierte sind impfbereiter")
 ```
 
+Das ist aus *Kommunikationssicht* eine passable Botschaft.
+
+**ACHTUNG** Die wissenschaftliche Belastbarkeit dieser Aussage ist wackelig!
+
+## Waffel-Diagramm
 
 ```{r}
+willingness_low <- c("geringe Extraversion" = 26, 
+                      "hohe Extraversion" = 74)
+```
+
+Zur Installation von Font Awesome:
+```{r eval = FALSE}
 library(extrafont)
 
 install_fa_fonts()
@@ -464,14 +532,13 @@ font_import(paths = "/Users/sebastiansaueruser/Rlibs/waffle/fonts/", prompt = F)
 
 
 ```{r}
-library(waffle)
-waffle(willingness_high,
+waffle(willingness_low,
        flip = TRUE,
        reverse = TRUE,
        use_glyph = "syringe",
        colors = c("grey60", "dodgerblue"),
        size = .1,
-       title = "Persönlichkeitsmerkmal 'Offenheit' \nunter Personen mit hoher Impfbereitschaft") +
+       title = "Persönlichkeitsmerkmal 'Extraversion' \nunter Personen mit geringer Impfbereitschaft") +
   expand_limits(y = c(0, 4)) +
   theme(legend.position = "bottom")
 
@@ -479,11 +546,89 @@ waffle(willingness_high,
 ```
 
 
-```{r eval = FALSE}
-d5 %>% 
-  select(open_01, willingness_01) %>% 
-  ggplot(aes(fill = factor(open_01)), values = open_01) +
-  geom_waffle(n_rows = 10, color = "white") +
-  facet_wrap(~ willingness_01)
+## Font-Awesome-Visualisierung (Pictogramm)
+
+
+
+```{r}
+d8a <- 
+  d8 %>% 
+  filter(name == "extra_01") %>% 
+  mutate(willingness_01 = factor(willingness_01)) %>% 
+  ungroup() %>% 
+  select(willingness_01, n, value, prop) %>% 
+  mutate(n = as.numeric(n)) %>% 
+  mutate(value = as.factor(value))
+
+d8a
 ```
+
+
+Facetten-Labels:
+
+```{r}
+levels(d8a$value)
+```
+
+
+
+```{r}
+levels(d8a$value) <- c("introvertiert ", "extrovertiert")
+```
+
+
+
+```{r}
+d8a %>% 
+  ggplot(aes(label = willingness_01, 
+             values = n)) +
+  geom_pictogram(n_rows = 20, 
+                 size = 3,
+                 aes(colour = willingness_01),
+                 flip = TRUE, 
+                 make_proportional = TRUE) +
+  scale_color_manual(
+    name = NULL,
+    values = c("#a40000", "chartreuse4"),
+    labels = c("gering impfbereit", "hoch impfbereit")
+  ) +
+  scale_label_pictogram(
+    name = NULL,
+    values = c("times", "syringe"),
+    labels = c("gering impfbereit", "hoch impfbereit")
+  ) +
+  coord_equal() +
+  theme_ipsum_rc(grid="") +
+  theme_enhance_waffle() +
+  theme(legend.key.height = unit(1, "line")) +
+  theme(legend.text = element_text(size = 8, 
+                                   hjust = 0, vjust = 0)) +
+  facet_wrap(~ value, nrow = 1) +
+  theme(legend.position = "bottom") +
+  theme(legend.text = element_text(hjust = 0, vjust = 0.5)) +
+  labs(title = "Introvertierte Menschen sind impfbereiter als introvertierte",
+       caption = "N=164, nicht repräsentativ") +
+  theme(plot.title = element_text(size = 12))
+
+```
+
+Bild speichern:
+
+```{r}
+ggsave("impf1.png", dpi = 300)
+```
+
+
+Whitespace abschneiden:
+
+```{r}
+img <- image_read("impf1.png")
+img2 <- image_trim(img)
+image_write(img2, path = "impf2.png" )
+```
+
+# Fazit
+
+Die wissenschaftliche Belastbarkeit der Studie ist fraglich. Mehr noch: Die Nützlichkeit eines Waffel-Diagramms (oder Pictogramms) ist ebenfalls fragwürdig. Wahrnehmungspsychologisch sind andere Darstellungsformen -- etwa ein Balkendiagramme für Häufigkeiten -- besser geeignet. Darüber hinaus: Die Dichotomisierung der Daten, also der Verlust von Skaleninformation ist statistisch zumeist nicht zu begründen. Alles in allem steht in dieser Analyse der didaktische Blick zur Frage "Wie erstelle ich ein Diagramm, das unterhält?" im Vordergrund. Die wissenschaftlichen "Kosten" eines solchen Vorgehens spielten hier keine Rolle. Entsprechend eingeschränkt ist die Interpretierbarkeit dieser Analyse bzw. dieses Diagramms. Nur mit äußerster Vorsicht zu interpretieren!
+
 
