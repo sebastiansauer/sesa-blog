@@ -8,6 +8,10 @@ categories:
   - rstats
 tags:
   - dataviz
+output:
+  blogdown::html_page:
+    toc: yes
+    number_sections: yes
 ---
 
 
@@ -687,7 +691,7 @@ font_import(paths = "/Users/sebastiansaueruser/Rlibs/waffle/fonts/", prompt = F)
 ```
 
 
-```{r out.width="100%"}
+```{r out.width="100%", fig.width=15}
 waffle(willingness_low,
        flip = TRUE,
        reverse = TRUE,
