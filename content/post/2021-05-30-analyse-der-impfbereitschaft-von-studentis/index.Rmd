@@ -15,7 +15,7 @@ tags:
 
 Im Rahmen einer [Umfrage](https://docs.google.com/forms/d/1Rmo-yq7EHD7ZbH1FA9ad2mMxCenwST2sJVyHRgkY3u8/edit?usp=forms_home&ths=true) wurde die Impfbereitschaft von Studentis im Hinblick auf eine Covid-19-Impfung erfasst. 
 
-Es stellt sich die Aufgabe, zentrale Erkentnisse aus diesen Daten darzustellen. In diesem Post werden einige Ansätze dazu vorgestellt.
+Es stellt sich die Aufgabe, zentrale Erkenntnisse aus diesen Daten darzustellen. In diesem Post werden einige Ansätze dazu vorgestellt.
 
 # Vorbereitung
 
@@ -29,6 +29,7 @@ knitr::opts_chunk$set(fig.pos = 'H',
   message = FALSE,
   warning = FALSE,
   cache = FALSE,
+  out.width = "100%",
   fig.show = "hold")
 ```
 
@@ -41,6 +42,8 @@ library(broom)  # tidy Regressionsergebnisse
 library(waffle)  # Waffeldiagramm
 library(hrbrthemes)  # Ggplot2 style
 library(magick)  # Bildbearbeitung
+library(GGally)  # Regressionskoeffizienten plotten
+library(broom.helpers)  # Regressionskoeffizienten plotten
 ```
 
 
@@ -58,7 +61,7 @@ glimpse(d)
 ```
 
 
-# Daten und Variablen
+## Daten und Variablen
 
 Über die Umfrage kann der Inhalt der Variablen eingesehen werden. Weiter ist eine [grundlegende Datenaufbereitung hier dokumentiert](https://github.com/sebastiansauer/willingness-vaccination-covid19).
 
@@ -87,7 +90,7 @@ Summieren wir die fehlenden Werte über alle Spalten:
 d %>% 
   summarise(across(everything(), ~ sum(is.na(.))))
 ```
-Nur bei den Kommentaren fehlen Werte.
+Nur bei den Kommentaren fehlen Werte. Das macht uns das Leben leichter: Wir müssen uns nicht um fehlende Werte kümmern.
 
 Natürlich hätte man das einfacher schreiben können (aber mit mehr Tippaufwand):
 
@@ -102,7 +105,7 @@ Und entsprechend für alle anderen Variablen des Datensatzes.
 
 ## Nominal skalierte Variablen in numerische umwandeln
 
-Welche nominal skalierten Variablen liegen vor? Gut, man könnte einen einfachen Blick in die Tabelle werfen, aber so ist es etwas cooler:
+Welche metrisch und welche nominal skalierten Variablen liegen vor? Gut, man könnte einen einfachen Blick in die Tabelle werfen, aber so ist es etwas cooler:
 
 ```{r}
 d %>% 
@@ -110,7 +113,7 @@ d %>%
   names()
 ```
 
-Gegenprobe:
+Gegenprobe, die *nicht* numerischen:
 
 ```{r}
 d %>% 
@@ -173,7 +176,7 @@ d2 %>%
   select(-matches("[[:digit:]]")) %>% 
   correlate() %>% 
   focus(willingness) %>% 
-  arrange(-abs(willingness))
+  arrange(-abs(willingness))  # uns interessiert nur der Absolutwert der Korrelation
 ```
 
 
@@ -182,16 +185,16 @@ Hier haben wir Variablen, deren Namen eine Zahl beinhalteten, entfernt. Der Grun
 
 ## Korrelation der Items pro Big-Five-Dimension
 
-Theoretisch müssten die Items jeweils einer Big-Five-Dimension hoch korrelieren. Überprüfen wir das mal.
+Theoretisch müssten die Items jeweils einer Big-Five-Dimension hoch korrelieren. Wenn dem so ist, dann macht es Sinn, die Items (Fragen) einer Dimension zu einem Wert zusammenzufassen (ansonsten nicht). Überprüfen wir das mal.
 
 
 ```{r}
 d2 %>% 
-  select(matches("[[:digit:]]")) %>% 
+  select(matches("[[:digit:]]")) %>%  # Wählt spalten, die Zahlen enthalten
   pivot_longer(everything()) %>% 
   mutate(dimension = str_extract(name, "\\D+")) %>%   # alle Nicht-Ziffern
   mutate(name = case_when(
-    str_detect(name, "1") ~ "i1",
+    str_detect(name, "1") ~ "i1",  # Findet Elemente der Variablen `name`, die den Wert `1` enthalten
     str_detect(name, "2") ~ "i2",
     TRUE ~ NA_character_
   )) %>% 
@@ -278,7 +281,7 @@ d3 <-
                 ))
 ```
 
-
+Mit `names` kann man die Namen der neu erzeugten Spalten wählen: Hier soll der neue Name gleich dem Namen der alten Spalte ("col" wie Spalte) sein plus ein "_bin" hintendran.
 
 Natürlich hätte man das auch wieder einfacher lösen können (aber mit mehr Tipp-Aufwand):
 
@@ -335,6 +338,8 @@ bin_01 <- function(var) {
 }
 ```
 
+Anstelle von `ifelse` hätten wir auch mit `case_when` arbeiten können. `ifelse` ist eine einfache Wenn-Dann-Regel: `wenndann(prüfung, wenn_prüfung_positiv_tue_dies, ansonsten_das)`.
+
 
 ```{r}
 d5 <-
@@ -358,6 +363,8 @@ head(d5)
 
 ## Anteile berechnen (eindimensional)
 
+Wir berechnen die Anteile für geringe (`value==0`) bzw. hohe (`value==1`) Werte in den Big-Five-Dimensionen und Impfbereitschaft:
+
 ```{r}
 d6 <- 
   d5 %>% 
@@ -377,8 +384,19 @@ slice_head(d6)
 
 ## Als Balkendiagramm
 
+Die Tabelle von oben visualisieren wir als Balkendiagramm:
+
 
 ```{r}
+
+labels_auspraegung <- c("0" = "gering", "1" = "hoch")
+labels_bigfive <- c("agree" = "Verträglichkeit",
+                   "cons" = "Gewissenshaftigkeit",
+                   "extra" = "Extraversion",
+                   "neuro" = "Neurotizismus",
+                   "open" = "Offenheit",
+                   "willingness" = "Impfbereitschaft")
+
 d6 %>% 
   select(name, prop) %>% 
   mutate(dimension = str_remove(name,"_01")) %>% 
@@ -388,10 +406,20 @@ d6 %>%
   ggplot() +
   aes(x = value, y = prop) +
   geom_col() +
-  facet_wrap(~ dimension)
+  facet_wrap(~ dimension, 
+             labeller = labeller(dimension = labels_bigfive)) +
+  scale_x_continuous(breaks = c(0,1), 
+                     labels = labels_auspraegung) +
+  labs(x = "",
+       y = "Anteil",
+       title = "Verteilung von gering bzw. hoch ausgeprägten Werten",
+       caption = "n=165 Personen, nicht repräsentativ") +
+  theme_ipsum_rc() +
+  geom_label(aes(label = round(prop, 2))) +
+  scale_y_continuous(limits = c(0, 1))
 ```
 
-Das Diagramm zeigt allerdings noch *keine* Korrespondenz (keinen Zusammenhang) zwischen Impfbereitschaft und den einzelnen Big-Five-Dimensionen. Also weiter.
+Das Diagramm zeigt allerdings noch *keine* Kontingenz/Korrespondenz (keinen Zusammenhang) zwischen Impfbereitschaft und den einzelnen Big-Five-Dimensionen. Also weiter.
 
 ## Anteil hoher Big-Five-Werte bei Impfwilligen (zweidimensional)
 
@@ -410,6 +438,10 @@ d7 <-
 ```{r}
 d7
 ```
+
+
+So ist z.B. der Anteil der gering Extrovertierten (=introvertiert) *an den hoch Impfbereiten* ca. 47%; der Anteil der hoch Extrovertierten an den hoch Impfbereiten ca. 53%. Wir summieren also pro Stufe von Impfbereitschaft auf.
+
 
 ```{r}
 name_order <- 
@@ -434,54 +466,178 @@ name_order_de <- c(
 
 
 
+
+
 ```{r}
 d8 <-
   d7 %>% 
-  mutate(name = factor(name, levels = name_order))
+  mutate(name = str_extract(name, ".*[^_01]")) %>% 
+  mutate(name = factor(name)) %>% 
+  ungroup()
+```
+
+
+## Kontingenzbalken 1
+
+```{r}
+d8 %>% 
+  glimpse()
+```
+
+```{r}
+d8a <-
+  d8 %>% 
+  filter(value == 1)
+```
+
+```{r}
+d8a %>% 
+  glimpse()
 ```
 
 
 
-```{r}
-d8 %>% 
-  filter(willingness_01 == 1) %>% 
+
+```{r out.width="100%"}
+d8a %>% 
   mutate(Impfbereitschaft = case_when(
-    value == 0 ~ "geringer",
-    value == 1 ~ "höher"
+    willingness_01 == 0 ~ "geringer",
+    willingness_01 == 1 ~ "höher"
   )) %>% 
   ggplot() +
   aes(x = name, y = n, fill = as.factor(Impfbereitschaft)) +
-  geom_col(position = "fill") +
-  scale_fill_viridis_d() +
-  theme_minimal() +
+  geom_col(position = "dodge") +
+  scale_fill_manual(values = c("indianred2", "palegreen4")) +
   coord_flip() +
-  scale_x_discrete(labels = name_order_de) +
+  scale_x_discrete(labels = labels_bigfive) +
   labs(x = NULL,
        y = "Anteil",
        fill = "Impfbereitschaft",
-       title = "Menschen mit höherer Offenheit zeigen höhere Impfbereitschaft",
-       caption = "n=164; nicht repräsentative Stichprobe. Nur eingeschränkt interpretierbar")
+       title = "Menschen mit hohe Verträglichkeit\nzeigen hohe Impfbereitschaft",
+       subtitle = "Nur Menschen mit hoher Ausprägung pro Persönlichkeitsdimension",
+       caption = "n=164; nicht repräsentative Stichprobe. Nur eingeschränkt interpretierbar") +
+  theme_ipsum_rc() +
+  theme(legend.position = "bottom") 
 ```
 
-Vielleicht wäre es interessanter, die Ungleichheit in den Ausprägungen der Persönlichkeitsdimensionen (Hohe Werte vs. niedrige Werte) in den Hoch- und Niedrig-Impfwilligen zu berechnen. Also nochmal weiter.
+
+## Kontingenzbalken 2
 
 
-# Größter Unterschied zwischen den Big-Five-Dimensionen bei den Hoch-Impfbereiten
+Oder besser vielleicht nicht nur die hohen Ausprägungen der Big-Five-Dimensionen, sondern auch die geringen.
+
+
+Zuerst erstellen wir einen Hilfs-Datensatz für die Zahlen-Labels auf den Balken:
+
 
 ```{r}
-d8 %>% 
-  filter(value == 1) %>%  
-  group_by(name) %>% 
-  summarise(diff_hoch_vs_gering_impfwillig = prop[[2]] - prop[[1]])
+d8b <-
+  d8 %>% 
+  filter(willingness_01 == 1)
 ```
 
-Der Effekt bei den Gewissenhaften ist am stärksten. Allerdings ist der Effekt bei den Extravertierten besser zu interpretieren: "Die Extrovertierten sind weniger impfbereit als die introvertierten". Außerdem ist der Effekt fast genau so stark.
+
+
+```{r}
+d8b %>% 
+  slice_head(n=10)
+```
+
+Ok, los geht's:
+
+```{r out.width="100%"}
+d8 %>% 
+  #filter(willingness_01 == 1) %>% 
+  mutate(Impfbereitschaft = case_when(
+    willingness_01 == 0 ~ "gering",
+    willingness_01 == 1 ~ "hoch"
+  )) %>% 
+  ggplot() +
+  aes(x = name, y = prop) +
+  geom_col(aes(fill = as.factor(Impfbereitschaft)),
+           position = "fill") +
+  scale_fill_manual(values = c("indianred2", "palegreen4")) +
+  coord_flip() +
+  scale_x_discrete(labels = labels_bigfive) +
+  labs(x = NULL,
+       y = "Anteil",
+       fill = "Impfbereitschaft",
+       title = "Hat das Persönlichkeitsprofil  einen Einfluss auf die Impfbereitschaft?",
+       subtitle = "Personen mit geringer (hoher) Ausprägung\nin den Persönlichkeitsdimensionen sind links (rechts) abgebildet",
+       caption = "n=164; nicht repräsentative Stichprobe. Nur eingeschränkt interpretierbar") +
+  theme_ipsum_rc() +
+  theme(legend.position = "bottom") +
+  facet_wrap(~ value, 
+             labeller = labeller(value = labels_auspraegung)) +
+  scale_y_continuous(breaks = c(0, .5, 1))
+# 
+#   geom_label(data = d8b,
+#             aes(label = round(n, 2)))
+```
 
 
 
-# Geom FontAwesome
 
-Korrespondenz von Extraversion und Impfbereitschaft
+
+
+Vielleicht wäre es interessanter, die *Ungleichheit* in den Ausprägungen der Persönlichkeitsdimensionen (Hohe Werte vs. niedrige Werte) in den Hoch- und Niedrig-Impfwilligen zu berechnen. Also nochmal weiter.
+
+
+## Größter Unterschied zwischen den Big-Five-Dimensionen bei den Hoch-Impfbereiten
+
+
+```{r}
+d9 <- 
+  d8 %>% 
+  arrange(name, value) %>% 
+  group_by(name, value) %>% 
+  summarise(diff_hoch_vs_gering_impfwillig = prop[[2]] - prop[[1]])   %>%  
+  filter(value == 1) %>% 
+  ungroup() %>% 
+  mutate(diff_abs = abs(diff_hoch_vs_gering_impfwillig)) %>% 
+  mutate(is_high = percent_rank(diff_abs) > .7)
+```
+
+
+```{r}
+d9
+```
+
+
+
+Der Effekt bei den *Gewissenhaften* ist am stärksten. Allerdings ist der Effekt bei den *Extravertierten* besser zu interpretieren: "Die Extrovertierten sind weniger impfbereit als die introvertierten". Außerdem ist der Effekt fast genau so stark.
+
+
+## Plot Zur Differenz
+
+
+```{r}
+d9 %>% 
+  ggplot(aes(x = reorder(name, diff_abs), y = diff_abs)) +
+  geom_hline(color = "white", yintercept = 0, size = 3) +
+  geom_col(aes(fill = is_high)) +
+  coord_flip() +
+  scale_x_discrete(labels = labels_bigfive) +
+  scale_fill_manual(guide = FALSE,
+                    values = c("grey50", "royalblue4")) +
+  labs(x = "",
+       y = "Absolutwert des Unterschieds",
+       subtitle = "Unterschied der Impfbereitschaft\nabhängig von der Ausprägung des Persönlichkeitsmerkmals",
+       title = "Bei Gewissenhaften und Extrovertierten \nhängt die Impfbereitschaft relativ stark \nvon der Ausprägung des Persönlichkeitsmerksmals ab",
+       is_high = "") +
+  theme_ipsum_rc()
+
+```
+
+
+
+
+
+
+
+
+
+## Korrespondenz (Kontingenz) von Extraversion und Impfbereitschaft
 
 
 
@@ -553,7 +709,7 @@ waffle(willingness_low,
 ```{r}
 d8a <- 
   d8 %>% 
-  filter(name == "extra_01") %>% 
+  filter(name == "extra") %>% 
   mutate(willingness_01 = factor(willingness_01)) %>% 
   ungroup() %>% 
   select(willingness_01, n, value, prop) %>% 
@@ -606,7 +762,7 @@ d8a %>%
   facet_wrap(~ value, nrow = 1) +
   theme(legend.position = "bottom") +
   theme(legend.text = element_text(hjust = 0, vjust = 0.5)) +
-  labs(title = "Introvertierte Menschen sind impfbereiter als introvertierte",
+  labs(title = "Introvertierte Menschen sind impfbereiter als extrovertierte",
        caption = "N=164, nicht repräsentativ") +
   theme(plot.title = element_text(size = 12))
 
@@ -627,8 +783,89 @@ img2 <- image_trim(img)
 image_write(img2, path = "impf2.png" )
 ```
 
-# Fazit
+## Fazit
 
 Die wissenschaftliche Belastbarkeit der Studie ist fraglich. Mehr noch: Die Nützlichkeit eines Waffel-Diagramms (oder Pictogramms) ist ebenfalls fragwürdig. Wahrnehmungspsychologisch sind andere Darstellungsformen -- etwa ein Balkendiagramme für Häufigkeiten -- besser geeignet. Darüber hinaus: Die Dichotomisierung der Daten, also der Verlust von Skaleninformation ist statistisch zumeist nicht zu begründen. Alles in allem steht in dieser Analyse der didaktische Blick zur Frage "Wie erstelle ich ein Diagramm, das unterhält?" im Vordergrund. Die wissenschaftlichen "Kosten" eines solchen Vorgehens spielten hier keine Rolle. Entsprechend eingeschränkt ist die Interpretierbarkeit dieser Analyse bzw. dieses Diagramms. Nur mit äußerster Vorsicht zu interpretieren!
 
+
+
+# Visualisierung 2
+
+## Visualisierung der Regressionskoeffizienten
+
+Die Werte der Regressionskoeffizienten (Betas) darzustellen, ist eine wissenschaftlich nützliche Repräsentation der Analyse der Prädiktoren der Impfbereitschaft -- wenn auch für ein Laien-Publikum weniger geeignet.
+
+```{r}
+vars_lm2 <- c("willingness",
+              "extra",
+              "neuro",
+              "agree",
+              "cons",
+              "open")
+
+preds_lm2 <- setdiff(vars_lm2, "willingness")
+```
+
+```{r}
+preds_lm2
+```
+
+
+
+
+```{r}
+d2a <-
+  d2 %>% 
+  select(all_of(vars_lm2)) %>% 
+  mutate(across(.cols = all_of(preds_lm2),
+                .fns = scale) )
+```
+
+
+```{r}
+d2a %>% 
+  slice_head()
+```
+
+
+```{r}
+lm2 <- lm(willingness ~ ., data = d2a)
+```
+
+
+```{r}
+tidy(lm2)
+```
+
+## Variante A
+```{r}
+ggcoef(lm2,
+       exclude_intercept = TRUE,
+       color = "blue", sort = "ascending") +
+  scale_y_discrete(labels = labels_bigfive) +
+  labs(y = "",
+       x = "Relevanz für die Impfbereitschaft",
+       title = "Für Gewissenshaftigkeit fand sich ein Einfluss auf die Impfbereitschaft",
+       caption = "N=164; nicht repräsentativ.\nDargestellt sind die Regressionskoeffizienten (z-skalierte Prädiktoren) zur Impfbereitschaft.") +
+  theme_minimal()
+```
+
+
+## Variante B
+
+
+```{r}
+ggcoef_model(lm2,
+             conf.int = TRUE,
+             variable_labels = labels_bigfive,
+             show_p_values = FALSE,
+             facet_row = NULL) +
+  labs(title = "Für Gewissenshaftigkeit fand sich ein Einfluss auf die Impfbereitschaft",
+       caption = "N=164; nicht repräsentativ.\nDargestellt sind die Regressionskoeffizienten (z-skalierte Prädiktoren) zur Impfbereitschaft.")
+```
+
+
+## Fazit
+
+Diese Art der Darstellung ist wissenschaftlich gut geeignet, verlangt aber höhere Fachkentnisse von den Betrachtis.
 
