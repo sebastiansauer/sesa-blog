@@ -815,7 +815,8 @@ preds_lm2 &lt;- setdiff(vars_lm2, &quot;willingness&quot;)</code></pre>
              conf.int = TRUE,
              variable_labels = labels_bigfive,
              show_p_values = FALSE,
-             facet_row = NULL) +
+             facet_row = NULL,
+       signif_stars = FALSE) +
   labs(title = &quot;Für Gewissenshaftigkeit fand sich ein Einfluss auf die Impfbereitschaft&quot;,
        caption = &quot;N=164; nicht repräsentativ.\nDargestellt sind die Regressionskoeffizienten (z-skalierte Prädiktoren) zur Impfbereitschaft. Die horizontalen Balken zeigen 95%-Konfidenzintervalle.&quot;)</code></pre>
 <p><img src="unnamed-chunk-65-1.png" width="100%" /></p>
