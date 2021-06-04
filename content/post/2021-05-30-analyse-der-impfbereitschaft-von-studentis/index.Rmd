@@ -686,7 +686,8 @@ Zur Installation von Font Awesome:
 ```{r eval = FALSE}
 library(extrafont)
 
-install_fa_fonts()
+library(waffle)
+waffle::install_fa_fonts()
 font_import(paths = "/Users/sebastiansaueruser/Rlibs/waffle/fonts/", prompt = F)
 ```
 
@@ -787,6 +788,12 @@ img2 <- image_trim(img)
 image_write(img2, path = "impf2.png" )
 ```
 
+
+## Was für ein Aufwand ...
+
+Der vergleichsweise hohe Aufwand für diese Visualisierung ist aufschlussreich. Der eine Grund ist in der Verwendung eines ungewöhnlichen Geoms -- Pictogramm -- zu suchen. Der zweite Grund, und das ist der Hauptgrund, ist, dass die *Datenaufbereitung* bzw. *Datenumformung* der eigentliche Zeitfresser gewesen ist. Vielleicht noch pointierter formuliert: Es hat gedauert, bis die Datenlage verstanden war, und verstanden war, was eigentlich dargestellt werden soll.
+
+
 ## Fazit
 
 Die wissenschaftliche Belastbarkeit der Studie ist fraglich. Mehr noch: Die Nützlichkeit eines Waffel-Diagramms (oder Pictogramms) ist ebenfalls fragwürdig. Wahrnehmungspsychologisch sind andere Darstellungsformen -- etwa ein Balkendiagramme für Häufigkeiten -- besser geeignet. Darüber hinaus: Die Dichotomisierung der Daten, also der Verlust von Skaleninformation ist statistisch zumeist nicht zu begründen. Alles in allem steht in dieser Analyse der didaktische Blick zur Frage "Wie erstelle ich ein Diagramm, das unterhält?" im Vordergrund. Die wissenschaftlichen "Kosten" eines solchen Vorgehens spielten hier keine Rolle. Entsprechend eingeschränkt ist die Interpretierbarkeit dieser Analyse bzw. dieses Diagramms. Nur mit äußerster Vorsicht zu interpretieren!
@@ -850,7 +857,7 @@ ggcoef(lm2,
   labs(y = "",
        x = "Relevanz für die Impfbereitschaft",
        title = "Für Gewissenshaftigkeit fand sich ein Einfluss auf die Impfbereitschaft",
-       caption = "N=164; nicht repräsentativ.\nDargestellt sind die Regressionskoeffizienten (z-skalierte Prädiktoren) zur Impfbereitschaft.") +
+       caption = "N=164; nicht repräsentativ.\nDargestellt sind die Regressionskoeffizienten (z-skalierte Prädiktoren) zur Impfbereitschaft. Die horizontalen Balken zeigen 95%-Konfidenzintervalle.") +
   theme_minimal()
 ```
 
@@ -865,7 +872,18 @@ ggcoef_model(lm2,
              show_p_values = FALSE,
              facet_row = NULL) +
   labs(title = "Für Gewissenshaftigkeit fand sich ein Einfluss auf die Impfbereitschaft",
-       caption = "N=164; nicht repräsentativ.\nDargestellt sind die Regressionskoeffizienten (z-skalierte Prädiktoren) zur Impfbereitschaft.")
+       caption = "N=164; nicht repräsentativ.\nDargestellt sind die Regressionskoeffizienten (z-skalierte Prädiktoren) zur Impfbereitschaft. Die horizontalen Balken zeigen 95%-Konfidenzintervalle.")
+```
+
+
+## Variante C: Mit Bordmitteln
+
+Man hätte das Diagramm auch ohne Extra-Paket erstellen können, wenn auch etwas weniger poliert (wenn man Extraufwand meiden möchte):
+
+
+```{r}
+lm2 %>% 
+  tidy()
 ```
 
 

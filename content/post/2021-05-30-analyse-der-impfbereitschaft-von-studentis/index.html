@@ -50,14 +50,16 @@ output:
 <li><a href="#korrespondenz-kontingenz-von-extraversion-und-impfbereitschaft"><span class="toc-section-number">6.10</span> Korrespondenz (Kontingenz) von Extraversion und Impfbereitschaft</a></li>
 <li><a href="#waffel-diagramm"><span class="toc-section-number">6.11</span> Waffel-Diagramm</a></li>
 <li><a href="#font-awesome-visualisierung-pictogramm"><span class="toc-section-number">6.12</span> Font-Awesome-Visualisierung (Pictogramm)</a></li>
-<li><a href="#fazit"><span class="toc-section-number">6.13</span> Fazit</a></li>
+<li><a href="#was-für-ein-aufwand"><span class="toc-section-number">6.13</span> Was für ein Aufwand …</a></li>
+<li><a href="#fazit"><span class="toc-section-number">6.14</span> Fazit</a></li>
 </ul></li>
 <li><a href="#visualisierung-2"><span class="toc-section-number">7</span> Visualisierung 2</a>
 <ul>
 <li><a href="#visualisierung-der-regressionskoeffizienten"><span class="toc-section-number">7.1</span> Visualisierung der Regressionskoeffizienten</a></li>
 <li><a href="#variante-a"><span class="toc-section-number">7.2</span> Variante A</a></li>
 <li><a href="#variante-b"><span class="toc-section-number">7.3</span> Variante B</a></li>
-<li><a href="#fazit-1"><span class="toc-section-number">7.4</span> Fazit</a></li>
+<li><a href="#variante-c-mit-bordmitteln"><span class="toc-section-number">7.4</span> Variante C: Mit Bordmitteln</a></li>
+<li><a href="#fazit-1"><span class="toc-section-number">7.5</span> Fazit</a></li>
 </ul></li>
 </ul>
 </div>
@@ -670,7 +672,8 @@ name_order</code></pre>
 <p>Zur Installation von Font Awesome:</p>
 <pre class="r"><code>library(extrafont)
 
-install_fa_fonts()
+library(waffle)
+waffle::install_fa_fonts()
 font_import(paths = &quot;/Users/sebastiansaueruser/Rlibs/waffle/fonts/&quot;, prompt = F)</code></pre>
 <pre class="r"><code>waffle(willingness_low,
        flip = TRUE,
@@ -746,8 +749,12 @@ d8a</code></pre>
 img2 &lt;- image_trim(img)
 image_write(img2, path = &quot;impf2.png&quot; )</code></pre>
 </div>
-<div id="fazit" class="section level2" number="6.13">
-<h2><span class="header-section-number">6.13</span> Fazit</h2>
+<div id="was-für-ein-aufwand" class="section level2" number="6.13">
+<h2><span class="header-section-number">6.13</span> Was für ein Aufwand …</h2>
+<p>Der vergleichsweise hohe Aufwand für diese Visualisierung ist aufschlussreich. Der eine Grund ist in der Verwendung eines ungewöhnlichen Geoms – Pictogramm – zu suchen. Der zweite Grund, und das ist der Hauptgrund, ist, dass die <em>Datenaufbereitung</em> bzw. <em>Datenumformung</em> der eigentliche Zeitfresser gewesen ist. Vielleicht noch pointierter formuliert: Es hat gedauert, bis die Datenlage verstanden war, und verstanden war, was eigentlich dargestellt werden soll.</p>
+</div>
+<div id="fazit" class="section level2" number="6.14">
+<h2><span class="header-section-number">6.14</span> Fazit</h2>
 <p>Die wissenschaftliche Belastbarkeit der Studie ist fraglich. Mehr noch: Die Nützlichkeit eines Waffel-Diagramms (oder Pictogramms) ist ebenfalls fragwürdig. Wahrnehmungspsychologisch sind andere Darstellungsformen – etwa ein Balkendiagramme für Häufigkeiten – besser geeignet. Darüber hinaus: Die Dichotomisierung der Daten, also der Verlust von Skaleninformation ist statistisch zumeist nicht zu begründen. Alles in allem steht in dieser Analyse der didaktische Blick zur Frage “Wie erstelle ich ein Diagramm, das unterhält?” im Vordergrund. Die wissenschaftlichen “Kosten” eines solchen Vorgehens spielten hier keine Rolle. Entsprechend eingeschränkt ist die Interpretierbarkeit dieser Analyse bzw. dieses Diagramms. Nur mit äußerster Vorsicht zu interpretieren!</p>
 </div>
 </div>
@@ -798,7 +805,7 @@ preds_lm2 &lt;- setdiff(vars_lm2, &quot;willingness&quot;)</code></pre>
   labs(y = &quot;&quot;,
        x = &quot;Relevanz für die Impfbereitschaft&quot;,
        title = &quot;Für Gewissenshaftigkeit fand sich ein Einfluss auf die Impfbereitschaft&quot;,
-       caption = &quot;N=164; nicht repräsentativ.\nDargestellt sind die Regressionskoeffizienten (z-skalierte Prädiktoren) zur Impfbereitschaft.&quot;) +
+       caption = &quot;N=164; nicht repräsentativ.\nDargestellt sind die Regressionskoeffizienten (z-skalierte Prädiktoren) zur Impfbereitschaft. Die horizontalen Balken zeigen 95%-Konfidenzintervalle.&quot;) +
   theme_minimal()</code></pre>
 <p><img src="unnamed-chunk-64-1.png" width="100%" /></p>
 </div>
@@ -810,11 +817,26 @@ preds_lm2 &lt;- setdiff(vars_lm2, &quot;willingness&quot;)</code></pre>
              show_p_values = FALSE,
              facet_row = NULL) +
   labs(title = &quot;Für Gewissenshaftigkeit fand sich ein Einfluss auf die Impfbereitschaft&quot;,
-       caption = &quot;N=164; nicht repräsentativ.\nDargestellt sind die Regressionskoeffizienten (z-skalierte Prädiktoren) zur Impfbereitschaft.&quot;)</code></pre>
+       caption = &quot;N=164; nicht repräsentativ.\nDargestellt sind die Regressionskoeffizienten (z-skalierte Prädiktoren) zur Impfbereitschaft. Die horizontalen Balken zeigen 95%-Konfidenzintervalle.&quot;)</code></pre>
 <p><img src="unnamed-chunk-65-1.png" width="100%" /></p>
 </div>
-<div id="fazit-1" class="section level2" number="7.4">
-<h2><span class="header-section-number">7.4</span> Fazit</h2>
+<div id="variante-c-mit-bordmitteln" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> Variante C: Mit Bordmitteln</h2>
+<p>Man hätte das Diagramm auch ohne Extra-Paket erstellen können, wenn auch etwas weniger poliert (wenn man Extraufwand meiden möchte):</p>
+<pre class="r"><code>lm2 %&gt;% 
+  tidy()</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)   8.10       0.206    39.3   2.01e-83
+## 2 extra        -0.414      0.229    -1.81  7.21e- 2
+## 3 neuro         0.0598     0.227     0.263 7.93e- 1
+## 4 agree         0.102      0.211     0.483 6.30e- 1
+## 5 cons         -0.489      0.213    -2.30  2.30e- 2
+## 6 open         -0.0308     0.212    -0.145 8.85e- 1</code></pre>
+</div>
+<div id="fazit-1" class="section level2" number="7.5">
+<h2><span class="header-section-number">7.5</span> Fazit</h2>
 <p>Diese Art der Darstellung ist wissenschaftlich gut geeignet, verlangt aber höhere Fachkentnisse von den Betrachtis.</p>
 </div>
 </div>
