@@ -391,7 +391,7 @@ slice_head(d6)
 Die Tabelle von oben visualisieren wir als Balkendiagramm:
 
 
-```{r}
+```{r out.width="120%", fig.width=8}
 
 labels_auspraegung <- c("0" = "gering", "1" = "hoch")
 labels_bigfive <- c("agree" = "Verträglichkeit",
@@ -502,7 +502,7 @@ d8a %>%
 
 
 
-```{r out.width="100%"}
+```{r out.width="100%", fig.width=8}
 d8a %>% 
   mutate(Impfbereitschaft = case_when(
     willingness_01 == 0 ~ "geringer",
@@ -549,7 +549,7 @@ d8b %>%
 
 Ok, los geht's:
 
-```{r out.width="100%"}
+```{r out.width="100%", fig.width=8}
 d8 %>% 
   #filter(willingness_01 == 1) %>% 
   mutate(Impfbereitschaft = case_when(
@@ -615,7 +615,7 @@ Der Effekt bei den *Gewissenhaften* ist am stärksten. Allerdings ist der Effekt
 ## Plot Zur Differenz
 
 
-```{r}
+```{r out.width="100%", fig.width=8}
 d9 %>% 
   ggplot(aes(x = reorder(name, diff_abs), y = diff_abs)) +
   geom_hline(color = "white", yintercept = 0, size = 3) +
@@ -653,7 +653,7 @@ d8 %>%
 
 ```{r}
 d8 %>% 
-  filter(name == "extra_01") %>% 
+  filter(name == "extra") %>% 
   rename(Extraversion = value,
          Anteil = prop,
          Impfbereitschaft = willingness_01) %>% 
@@ -668,12 +668,16 @@ d8 %>%
   ggplot(aes(x = Extraversion, 
              y = Anteil, fill = Impfbereitschaft)) +
   geom_col(position = "fill") +
-  labs(title = "Introvertierte sind impfbereiter")
+  labs(title = "Introvertierte sind impfbereiter") +
+  scale_fill_brewer(type = "qual", palette = 6)
 ```
 
 Das ist aus *Kommunikationssicht* eine passable Botschaft.
 
 **ACHTUNG** Die wissenschaftliche Belastbarkeit dieser Aussage ist wackelig!
+
+
+Übrigens: [Hier](https://jiffyclub.github.io/palettable/colorbrewer/qualitative/) findet sich ein Überblick an *qualitativen* Farbpaletten für `ggplot2`.
 
 ## Waffel-Diagramm
 
@@ -739,8 +743,8 @@ levels(d8a$value) <- c("introvertiert ", "extrovertiert")
 
 
 
-```{r out.width="100%"}
-d8a %>% 
+```{r out.width="100%", fig.width=6}
+p_final1 <- d8a %>% 
   ggplot(aes(label = willingness_01, 
              values = n)) +
   geom_pictogram(n_rows = 20, 
@@ -771,6 +775,7 @@ d8a %>%
        caption = "N=164, nicht repräsentativ") +
   theme(plot.title = element_text(size = 12))
 
+p_final1
 ```
 
 Bild speichern:
@@ -866,14 +871,16 @@ ggcoef(lm2,
 
 
 ```{r}
-ggcoef_model(lm2,
+p_final2 <- ggcoef_model(lm2,
              conf.int = TRUE,
              variable_labels = labels_bigfive,
              show_p_values = FALSE,
              facet_row = NULL,
        signif_stars = FALSE) +
   labs(title = "Für Gewissenshaftigkeit fand sich ein Einfluss auf die Impfbereitschaft",
-       caption = "N=164; nicht repräsentativ.\nDargestellt sind die Regressionskoeffizienten (z-skalierte Prädiktoren) zur Impfbereitschaft. Die horizontalen Balken zeigen 95%-Konfidenzintervalle.")
+       caption = "N=164; nicht repräsentativ.\nDargestellt sind die Regressionskoeffizienten (z-skalierte Prädiktoren) zur Impfbereitschaft.\nDie horizontalen Balken zeigen 95%-Konfidenzintervalle.")
+
+p_final2
 ```
 
 
@@ -891,4 +898,29 @@ lm2 %>%
 ## Fazit
 
 Diese Art der Darstellung ist wissenschaftlich gut geeignet, verlangt aber höhere Fachkentnisse von den Betrachtis.
+
+
+# Finale Visualisierungen
+
+
+## Piktogramm
+
+
+```{r fig.width=8}
+p_final1
+```
+
+
+## Beta-Diagramm
+
+```{r fig.width=8}
+p_final2
+```
+
+
+
+
+
+
+```
 

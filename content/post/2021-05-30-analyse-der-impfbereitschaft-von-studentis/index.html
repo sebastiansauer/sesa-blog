@@ -61,6 +61,11 @@ output:
 <li><a href="#variante-c-mit-bordmitteln"><span class="toc-section-number">7.4</span> Variante C: Mit Bordmitteln</a></li>
 <li><a href="#fazit-1"><span class="toc-section-number">7.5</span> Fazit</a></li>
 </ul></li>
+<li><a href="#finale-visualisierungen"><span class="toc-section-number">8</span> Finale Visualisierungen</a>
+<ul>
+<li><a href="#piktogramm"><span class="toc-section-number">8.1</span> Piktogramm</a></li>
+<li><a href="#beta-diagramm"><span class="toc-section-number">8.2</span> Beta-Diagramm</a></li>
+</ul></li>
 </ul>
 </div>
 
@@ -442,7 +447,7 @@ d6 %&gt;%
   theme_ipsum_rc() +
   geom_label(aes(label = round(prop, 2))) +
   scale_y_continuous(limits = c(0, 1))</code></pre>
-<p><img src="unnamed-chunk-31-1.png" width="100%" /></p>
+<p><img src="unnamed-chunk-31-1.png" width="120%" /></p>
 <p>Das Diagramm zeigt allerdings noch <em>keine</em> Kontingenz/Korrespondenz (keinen Zusammenhang) zwischen Impfbereitschaft und den einzelnen Big-Five-Dimensionen. Also weiter.</p>
 </div>
 <div id="anteil-hoher-big-five-werte-bei-impfwilligen-zweidimensional" class="section level2" number="6.5">
@@ -645,7 +650,7 @@ name_order</code></pre>
 ## # … with 5 variables: name &lt;fct&gt;, willingness_01 &lt;dbl&gt;, value &lt;dbl&gt;, n &lt;int&gt;,
 ## #   prop &lt;dbl&gt;</code></pre>
 <pre class="r"><code>d8 %&gt;% 
-  filter(name == &quot;extra_01&quot;) %&gt;% 
+  filter(name == &quot;extra&quot;) %&gt;% 
   rename(Extraversion = value,
          Anteil = prop,
          Impfbereitschaft = willingness_01) %&gt;% 
@@ -660,10 +665,12 @@ name_order</code></pre>
   ggplot(aes(x = Extraversion, 
              y = Anteil, fill = Impfbereitschaft)) +
   geom_col(position = &quot;fill&quot;) +
-  labs(title = &quot;Introvertierte sind impfbereiter&quot;)</code></pre>
+  labs(title = &quot;Introvertierte sind impfbereiter&quot;) +
+  scale_fill_brewer(type = &quot;qual&quot;, palette = 6)</code></pre>
 <p><img src="unnamed-chunk-48-1.png" width="100%" /></p>
 <p>Das ist aus <em>Kommunikationssicht</em> eine passable Botschaft.</p>
 <p><strong>ACHTUNG</strong> Die wissenschaftliche Belastbarkeit dieser Aussage ist wackelig!</p>
+<p>Übrigens: <a href="https://jiffyclub.github.io/palettable/colorbrewer/qualitative/">Hier</a> findet sich ein Überblick an <em>qualitativen</em> Farbpaletten für <code>ggplot2</code>.</p>
 </div>
 <div id="waffel-diagramm" class="section level2" number="6.11">
 <h2><span class="header-section-number">6.11</span> Waffel-Diagramm</h2>
@@ -711,7 +718,7 @@ d8a</code></pre>
 <pre class="r"><code>levels(d8a$value)</code></pre>
 <pre><code>## [1] &quot;0&quot; &quot;1&quot;</code></pre>
 <pre class="r"><code>levels(d8a$value) &lt;- c(&quot;introvertiert &quot;, &quot;extrovertiert&quot;)</code></pre>
-<pre class="r"><code>d8a %&gt;% 
+<pre class="r"><code>p_final1 &lt;- d8a %&gt;% 
   ggplot(aes(label = willingness_01, 
              values = n)) +
   geom_pictogram(n_rows = 20, 
@@ -740,7 +747,9 @@ d8a</code></pre>
   theme(legend.text = element_text(hjust = 0, vjust = 0.5)) +
   labs(title = &quot;Introvertierte Menschen sind impfbereiter als extrovertierte&quot;,
        caption = &quot;N=164, nicht repräsentativ&quot;) +
-  theme(plot.title = element_text(size = 12))</code></pre>
+  theme(plot.title = element_text(size = 12))
+
+p_final1</code></pre>
 <p><img src="unnamed-chunk-55-1.png" width="100%" /></p>
 <p>Bild speichern:</p>
 <pre class="r"><code>ggsave(&quot;impf1.png&quot;, dpi = 300)</code></pre>
@@ -811,14 +820,16 @@ preds_lm2 &lt;- setdiff(vars_lm2, &quot;willingness&quot;)</code></pre>
 </div>
 <div id="variante-b" class="section level2" number="7.3">
 <h2><span class="header-section-number">7.3</span> Variante B</h2>
-<pre class="r"><code>ggcoef_model(lm2,
+<pre class="r"><code>p_final2 &lt;- ggcoef_model(lm2,
              conf.int = TRUE,
              variable_labels = labels_bigfive,
              show_p_values = FALSE,
              facet_row = NULL,
        signif_stars = FALSE) +
   labs(title = &quot;Für Gewissenshaftigkeit fand sich ein Einfluss auf die Impfbereitschaft&quot;,
-       caption = &quot;N=164; nicht repräsentativ.\nDargestellt sind die Regressionskoeffizienten (z-skalierte Prädiktoren) zur Impfbereitschaft. Die horizontalen Balken zeigen 95%-Konfidenzintervalle.&quot;)</code></pre>
+       caption = &quot;N=164; nicht repräsentativ.\nDargestellt sind die Regressionskoeffizienten (z-skalierte Prädiktoren) zur Impfbereitschaft.\nDie horizontalen Balken zeigen 95%-Konfidenzintervalle.&quot;)
+
+p_final2</code></pre>
 <p><img src="unnamed-chunk-65-1.png" width="100%" /></p>
 </div>
 <div id="variante-c-mit-bordmitteln" class="section level2" number="7.4">
@@ -839,5 +850,19 @@ preds_lm2 &lt;- setdiff(vars_lm2, &quot;willingness&quot;)</code></pre>
 <div id="fazit-1" class="section level2" number="7.5">
 <h2><span class="header-section-number">7.5</span> Fazit</h2>
 <p>Diese Art der Darstellung ist wissenschaftlich gut geeignet, verlangt aber höhere Fachkentnisse von den Betrachtis.</p>
+</div>
+</div>
+<div id="finale-visualisierungen" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Finale Visualisierungen</h1>
+<div id="piktogramm" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span> Piktogramm</h2>
+<pre class="r"><code>p_final1</code></pre>
+<p><img src="unnamed-chunk-67-1.png" width="100%" /></p>
+</div>
+<div id="beta-diagramm" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> Beta-Diagramm</h2>
+<pre class="r"><code>p_final2</code></pre>
+<p><img src="unnamed-chunk-68-1.png" width="100%" /></p>
+<p>```</p>
 </div>
 </div>
