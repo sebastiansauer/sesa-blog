@@ -15,9 +15,7 @@ output:
     number_sections: true
 ---
 
-<script src="index_files/header-attrs/header-attrs.js"></script>
-<link href="index_files/anchor-sections/anchor-sections.css" rel="stylesheet" />
-<script src="index_files/anchor-sections/anchor-sections.js"></script>
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
 
 <div id="TOC">
 <ul>
@@ -52,8 +50,15 @@ output:
 <li><a href="#modellselektion-modellwahl-anova"><span class="toc-section-number">29</span> Modellselektion (Modellwahl) – anova</a></li>
 <li><a href="#modellselektion-modellwahl-prädiktion"><span class="toc-section-number">30</span> Modellselektion (Modellwahl) – Prädiktion</a></li>
 <li><a href="#hm"><span class="toc-section-number">31</span> Hm</a></li>
-<li><a href="#vielleicht-so-vergleich-der-modellgüten"><span class="toc-section-number">32</span> Vielleicht so: Vergleich der Modellgüten</a></li>
+<li><a href="#vielleicht-so-vergleich-der-modellgüten"><span class="toc-section-number">32</span> Vielleicht so: Vergleich der Modellgüten</a>
+<ul>
+<li><a href="#rmse"><span class="toc-section-number">32.1</span> RMSE</a></li>
+<li><a href="#r-quadrat"><span class="toc-section-number">32.2</span> R-Quadrat</a></li>
+</ul></li>
 <li><a href="#prüfung-der-voraussetzungen"><span class="toc-section-number">33</span> Prüfung der Voraussetzungen</a></li>
+<li><a href="#bestes-modell"><span class="toc-section-number">34</span> Bestes Modell</a></li>
+<li><a href="#vorhersagen"><span class="toc-section-number">35</span> Vorhersagen</a></li>
+<li><a href="#einreichen"><span class="toc-section-number">36</span> Einreichen</a></li>
 </ul>
 </div>
 
@@ -76,7 +81,9 @@ library(corrr)  # Korrelationsmatrizen
 
 library(yardstick)  # Modellgüte berechnen
 
-library(ggfortify)  # Autoplot für Modellannahmen</code></pre>
+library(ggfortify)  # Autoplot für Modellannahmen
+
+library(modelr)  # Komfort für Regressionsanalysen</code></pre>
 <p>Denken Sie daran, dass Pakete (einmalig) installiert sein müssen, bevor Sie sie laden können (mittels <code>library()</code>).</p>
 </div>
 <div id="daten-laden" class="section level1" number="2">
@@ -580,19 +587,19 @@ library(ggfortify)  # Autoplot für Modellannahmen</code></pre>
   ggplot() +
   aes(x = rating) +
   geom_histogram()</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Übrigens kann man <code>aes()</code> auch in den <code>ggplot()</code>-Befehl wickeln:</p>
 <pre class="r"><code>movies %&gt;% 
   ggplot(aes(x = rating)) +
   geom_histogram()</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Das ist das gleiche Ergebnis wie darüber.</p>
 <p>Nützlich ist auch, wenn man eine Dichtekurve über das Histogramm legt:</p>
 <pre class="r"><code>movies %&gt;% 
 ggplot(aes(x = rating)) + 
   geom_histogram(aes(y = stat(density))) +
   geom_density(col = &quot;red&quot;)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Hier weisen wir der Y-Achse die Dichte (Wahrscheinlichkeit) der jeweiligen Werte auf der X-Achse (d.h. von Rating) zu. Das Histogramm soll also als “Balkenhöhen” der relativen Wahrscheinlichkeit der Balken entsprechen. Das ist im Prinzip das, was das Dichtediagramm zeigt.</p>
 <p>Das Rating ist relativ normalverteilt. Das ist kaum überraschend, denn das Antwortformat von 1-10 erlaubt kaum Extremwerte und suggeriert damit eine Mitte. Ob damit die echte, psychologische Dimension “wie gut finde ich den Film” (“Gefallen”) gemessen wird, steht auf einem anderen Blatt. Etwas Skepsis ist berechtigt. Wenn aber unsere Operationalisierung von <em>Gefallen</em> supoptimal ist, also verrauscht, so brauchen wir nicht erwarten, dass unsere Vorhersagen spitze sein werden.</p>
 </div>
@@ -606,7 +613,7 @@ ggplot(aes(x = rating)) +
   ggplot(aes(x = value)) +
   geom_histogram() +
   facet_wrap(~ variable, scales = &quot;free&quot;)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Auf Deutsch übersetzt:</p>
 <blockquote>
 <p>Hey R, nimm den Datensatz “movies” UN DANN<br />
@@ -630,7 +637,7 @@ Male Facetten, nämlich für jede Variable eine.</p>
   ggplot() + 
   aes(x = budget, y = rating) +
   geom_point(alpha = .2)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="budget-logarithmieren" class="section level1" number="10">
 <h1><span class="header-section-number">10</span> Budget logarithmieren</h1>
@@ -652,12 +659,12 @@ Male Facetten, nämlich für jede Variable eine.</p>
   geom_point(alpha = .2) +
   geom_smooth() +
   geom_rug()</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Hier lässt sich vage ein linearer (schwacher) Trend erkennen.</p>
 <p>Die univariate Verteilung wird nur schlecht verdeutlicht durch die “Striche” auf den Achsen (<code>geom_rug</code>). Hier müssen wir uns noch etwas Schöneres überlegen.</p>
 <pre class="r"><code>movies2a %&gt;% 
   ggscatterstats(x = budget_log10, y = rating)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p><a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html">Hier</a> findet sich weitere Erklärung zu diesem Diagramm.</p>
 <p>Vielleicht unterscheidet sich dieser Zusammenhang nach dem Genre?</p>
 <p>Dazu müssen wir den Datensatz umbauen.</p>
@@ -680,7 +687,7 @@ Male Facetten, nämlich für jede Variable eine.</p>
   facet_wrap(~ genre) +
   geom_smooth() +
   scale_fill_viridis_c()</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Mit <code>scale_fill_viridis_c()</code> haben wir noch ein schickeres Farbschema ausgewählt. 🏋️ Lassen Sie mal diese Zeile weg und vergleichen Sie das Ergebnis.</p>
 <p>👉 Insgesamt scheinen die Zusammenhänge in allen Genres ähnlich zu sein. Das heißt mit anderen Worten, dass wir keine/kaum Evidenz gefunden haben (in dieser Analyse), dass <code>genre</code> den Zusammenhang von Budget und Rating moderieren würde.</p>
 </div>
@@ -708,7 +715,7 @@ Male Facetten, nämlich für jede Variable eine.</p>
   ggplot() + 
   aes(x = genre, y = rating) +
   geom_boxplot()</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>movies2_long %&gt;% 
   filter(value == 1) %&gt;% 
   drop_na(rating, genre) %&gt;% 
@@ -920,7 +927,7 @@ dim(movies2_train)
   labs(title = &quot;Datensatz: movies2_train&quot;)
 
 p1</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-50-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-50-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Ein ggplot-Diagramm ist auch nur ein Objekt, wie jedes andere R-Objekt auch. Daher kann man es auch in einer Variablen speichern. Ruft man diese Variable (<code>p1</code>, p wie plot) auf, so wird das Diagramm gezeigt.</p>
 <p>Oha! Das ist richtig schön schief.</p>
 <p>Vergleichen wir mal, ob es Unterschiede in der Verteilung gibt, in den verschiedenen Varianten des Datensatzes.</p>
@@ -935,18 +942,18 @@ p3 &lt;- movies2_test %&gt;%
   labs(title = &quot;Datensatz: movies2_test&quot;)</code></pre>
 <p>Möchte man mehrere Plots zusammenfügen, so kann man das so tun:</p>
 <pre class="r"><code>plot_grid(p1, p2, p3)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-52-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-52-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Betrachten wir das Streudiagramm:</p>
 <pre class="r"><code>movies2_train %&gt;% 
   ggplot(aes(x = votes, y = rating)) +
   geom_point()</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-53-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-53-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Die Schiefe kann man als Anlass sehen, <code>votes</code> zu logarithmieren.</p>
 <pre class="r"><code>movies2_train %&gt;% 
   ggplot(aes(x = log10(votes), y = rating)) +
   geom_point(alpha = .4) +
   geom_smooth(method = &quot;lm&quot;)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-54-1.png" width="100%" style="display: block; margin: auto;" />
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-54-1.png" width="100%" style="display: block; margin: auto;" />
 Hier haben wir gleich eine Regressionsgerade in den Punkteschwarm gelegt.</p>
 <p>Eine Variante:</p>
 <pre class="r"><code>movies2_train %&gt;% 
@@ -954,7 +961,7 @@ Hier haben wir gleich eine Regressionsgerade in den Punkteschwarm gelegt.</p>
   geom_point(alpha = .2) +
   geom_smooth(method = &quot;lm&quot;, color = &quot;red&quot;) +
   geom_density_2d()</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-55-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-55-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="modell-2-anzahl-der-stimmen-linear" class="section level1" number="21">
 <h1><span class="header-section-number">21</span> Modell 2: Anzahl der Stimmen, linear</h1>
@@ -1008,7 +1015,7 @@ glance(m2)
   geom_point(alpha = .2) +
   geom_smooth(method = &quot;lm&quot;, se = FALSE,
                 formula = y ~ poly(x, 2))</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-61-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-61-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="modell-4-anzahl-der-stimmen-als-polynomialmodell-3.-grades" class="section level1" number="23">
 <h1><span class="header-section-number">23</span> Modell 4: Anzahl der Stimmen als Polynomialmodell, 3. Grades</h1>
@@ -1018,7 +1025,7 @@ glance(m2)
   geom_point(alpha = .2) +
   geom_smooth(method = &quot;lm&quot;, se = FALSE,
                 formula = y ~ poly(x, 3))</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-62-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-62-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Sieht nicht viel besser aus. Da ist einfach viel Rauschen in den Daten, scheint’s.</p>
 <pre class="r"><code>m4 &lt;- lm(rating ~ poly(votes_log10, degree = 3), 
          data = movies2_train)</code></pre>
@@ -1087,7 +1094,7 @@ fashion(movies_corr)
 </blockquote>
 <p>Scheuen wir uns nur die Korrelationen mit <code>rating</code> näher an:</p>
 <pre class="r"><code>movies_corr %&gt;% 
-  select(rowname, rating)
+  select(1, rating)
 #&gt; # A tibble: 13 x 2
 #&gt;    rowname      rating
 #&gt;    &lt;chr&gt;         &lt;dbl&gt;
@@ -1106,13 +1113,13 @@ fashion(movies_corr)
 #&gt; 13 Short         0.233</code></pre>
 <p>Tja, aus den bivariaten Korrelationen ist nicht viel rauszuholen. Bleibt als Hoffnung:</p>
 <ul>
-<li>nicht lineare Zusammenhänge</li>
+<li>nichtlineare Zusammenhänge</li>
 <li>Interaktionen, so dass nur mehrere Variablen gleichzeitig mit der Zielvariablen korrelieren</li>
 <li>dass “Kleinvieh-macht-auch-Mist-Prinzip”: Vielleicht läppert sich ein bisschen Korrelation pro Prädiktor zu einer ansehnlichen Gesamtvorhersagekraft.</li>
 </ul>
 <p>Visualisieren wir noch die Korrelationsmatrix:</p>
 <pre class="r"><code>rplot(movies_corr)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-67-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-67-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="modell-5-multiple-regression" class="section level1" number="25">
 <h1><span class="header-section-number">25</span> Modell 5: Multiple Regression</h1>
@@ -1133,7 +1140,7 @@ fashion(movies_corr)
 <p>In diesem Modell sind 3 Variablen involviert. Eine Visualisierung ist hier schon schwierig. <a href="https://data-se.netlify.app/2019/10/21/some-ways-for-plotting-3d-linear-models/">Hier</a> finden sich dazu einige Anregungen.</p>
 <p>Das könnte eine Möglichkeit sein:</p>
 <pre class="r"><code>rsm::contour.lm(m5, votes_log10 ~ budget_log10, image = TRUE)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-71-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-71-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Die Farbe gibt die “Höhe” des Wertes in der Output-Variablen wider.</p>
 </div>
 <div id="modell-6-interaktionsmodell" class="section level1" number="27">
@@ -1234,11 +1241,12 @@ fashion(movies_corr)
 #&gt; $ ...8 &lt;dbl&gt; 6.460080, 6.050981, 5.904500, 7.369122, 5.199202, 6.314314, 6.72…</code></pre>
 <p>Eine Tabelle mit 8 Spalten Jede dieser 8 Spalten sind die Vorhersagen für eines der Modelle. Wie gut wohl jeweils die Vorhersagen sind?</p>
 <p>Geben wir zuerst schönere Namen an die Spalten:</p>
-<pre class="r"><code>col_names &lt;- paste0(&quot;model&quot;, 1:8)
+<pre class="r"><code>col_names &lt;- paste0(&quot;model&quot;, 0:7)
 names(model_preds) &lt;- col_names</code></pre>
-<p>Fügen wir zunächst die wahren Beurteilungswerte zur Tabelle mit den Vorhersagen hinzu:</p>
+<p>Fügen wir dann die wahren Beurteilungswerte zur Tabelle mit den Vorhersagen hinzu:</p>
 <pre class="r"><code>model_preds %&gt;% 
   bind_cols(select(movies2_test, rating)) -&gt; model_preds</code></pre>
+<p>Schauen wir beispielfhaft einige Modelle in ihren Gütekoeffizienten an:</p>
 <pre class="r"><code>metrics(model_preds, truth = rating, estimate = model2)
 #&gt; # A tibble: 3 x 3
 #&gt;   .metric .estimator .estimate
@@ -1260,7 +1268,9 @@ names(model_preds) &lt;- col_names</code></pre>
 </div>
 <div id="vielleicht-so-vergleich-der-modellgüten" class="section level1" number="32">
 <h1><span class="header-section-number">32</span> Vielleicht so: Vergleich der Modellgüten</h1>
-<p>Hier ist eine Funktion, die die Modellgüten berechnet:</p>
+<div id="rmse" class="section level2" number="32.1">
+<h2><span class="header-section-number">32.1</span> RMSE</h2>
+<p>Hier ist eine Funktion, die die Modellgüten (RMSE) berechnet:</p>
 <pre class="r"><code>get_rmse &lt;- function(est) {
   
   rmse &lt;- sqrt(mean((model_preds$rating - est)^2))
@@ -1306,10 +1316,70 @@ names(model_preds) &lt;- col_names</code></pre>
   ggplot() +
   aes(x = reorder(model, -rmse), y = rmse) +
   geom_point()</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-90-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-90-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="r-quadrat" class="section level2" number="32.2">
+<h2><span class="header-section-number">32.2</span> R-Quadrat</h2>
+<p>Ein alternatives Maß zu RMSE ist R-Quadrat.</p>
+<pre class="r"><code>get_r2 &lt;- function(est) {
+  
+  rmse &lt;- cor(model_preds$rating, est)^2
+}</code></pre>
+<pre class="r"><code>model_preds %&gt;% 
+  summarise(across(everything(), get_r2)) -&gt; model_r2
+
+model_r2
+#&gt; # A tibble: 1 x 9
+#&gt;   model1  model2 model3 model4 model5 model6 model7 model8 rating
+#&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+#&gt; 1     NA 0.00610 0.0176  0.129  0.136 0.0957  0.120  0.283      1</code></pre>
+</div>
 </div>
 <div id="prüfung-der-voraussetzungen" class="section level1" number="33">
 <h1><span class="header-section-number">33</span> Prüfung der Voraussetzungen</h1>
 <pre class="r"><code>ggplot2::autoplot(forward) + theme_minimal()</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-91-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-93-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="bestes-modell" class="section level1" number="34">
+<h1><span class="header-section-number">34</span> Bestes Modell</h1>
+<pre class="r"><code>model_r2 %&gt;% 
+  pivot_longer(everything()) %&gt;% 
+  arrange(-value) %&gt;% 
+  filter(value != 1, value &gt; 0)
+#&gt; # A tibble: 7 x 2
+#&gt;   name     value
+#&gt;   &lt;chr&gt;    &lt;dbl&gt;
+#&gt; 1 model8 0.283  
+#&gt; 2 model5 0.136  
+#&gt; 3 model4 0.129  
+#&gt; 4 model7 0.120  
+#&gt; 5 model6 0.0957 
+#&gt; 6 model3 0.0176 
+#&gt; 7 model2 0.00610</code></pre>
+<p>Model 7 ist das Beste! <code>model7</code> war das Forward-Regressionsmodell.</p>
+</div>
+<div id="vorhersagen" class="section level1" number="35">
+<h1><span class="header-section-number">35</span> Vorhersagen</h1>
+<p>Spalte <code>X</code> ist eine ID-Spalte.</p>
+<pre class="r"><code>movies2_test_pred &lt;-
+  movies2_test %&gt;% 
+  add_predictions(forward) %&gt;% 
+  select(pred, rating, ID = X)</code></pre>
+<p>Da wir in diesem Fall die Zielwerte (die “Lösung”) in den Testwerten kennen, können wir die Modellgüte berechnen. In der “echten Welt” geht das normalerweise nicht!</p>
+<pre class="r"><code>movies2_test_pred %&gt;% 
+  rsq(truth = rating,
+      estimate = pred)
+#&gt; # A tibble: 1 x 3
+#&gt;   .metric .estimator .estimate
+#&gt;   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+#&gt; 1 rsq     standard       0.283</code></pre>
+<p>In dem Fall ist <span class="math inline">\(R^2\)</span> im Testsample nicht schlechter als im Train-Sample. Häufig ist das anders.</p>
+</div>
+<div id="einreichen" class="section level1" number="36">
+<h1><span class="header-section-number">36</span> Einreichen</h1>
+<pre class="r"><code>data_submit &lt;-
+  movies2_test_pred %&gt;% 
+  select(ID, pred)</code></pre>
+<pre class="r"><code>write_csv(data_submit,
+          file = &quot;sauer_sebastian_0123456_prognose.csv&quot;)</code></pre>
 </div>

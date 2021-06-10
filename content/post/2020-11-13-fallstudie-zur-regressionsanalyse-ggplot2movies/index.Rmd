@@ -57,6 +57,8 @@ library(corrr)  # Korrelationsmatrizen
 library(yardstick)  # Modellgüte berechnen
 
 library(ggfortify)  # Autoplot für Modellannahmen
+
+library(modelr)  # Komfort für Regressionsanalysen
 ```
 
 
@@ -878,12 +880,12 @@ Scheuen wir uns nur die Korrelationen mit `rating` näher an:
 
 ```{r}
 movies_corr %>% 
-  select(rowname, rating)
+  select(1, rating)
 ```
 
 Tja, aus den bivariaten Korrelationen ist nicht viel rauszuholen. Bleibt als Hoffnung:
 
-- nicht lineare Zusammenhänge
+- nichtlineare Zusammenhänge
 - Interaktionen, so dass nur mehrere Variablen gleichzeitig mit der Zielvariablen korrelieren
 - dass "Kleinvieh-macht-auch-Mist-Prinzip": Vielleicht läppert sich ein bisschen Korrelation pro Prädiktor zu einer ansehnlichen Gesamtvorhersagekraft.
 
@@ -1079,13 +1081,13 @@ Eine Tabelle mit 8 Spalten Jede dieser 8 Spalten sind die Vorhersagen für eines
 Geben wir zuerst schönere Namen an die Spalten:
 
 ```{r}
-col_names <- paste0("model", 1:8)
+col_names <- paste0("model", 0:7)
 names(model_preds) <- col_names
 ```
 
 
 
-Fügen wir zunächst die wahren Beurteilungswerte zur Tabelle mit den Vorhersagen hinzu:
+Fügen wir dann die wahren Beurteilungswerte zur Tabelle mit den Vorhersagen hinzu:
 
 
 ```{r}
@@ -1093,6 +1095,7 @@ model_preds %>%
   bind_cols(select(movies2_test, rating)) -> model_preds
 ```
 
+Schauen wir beispielfhaft einige Modelle in ihren Gütekoeffizienten an:
 
 ```{r}
 metrics(model_preds, truth = rating, estimate = model2)
@@ -1116,8 +1119,9 @@ Wie kommt man jetzt elegant zu dem Modell mit den besten Modellkoeffizienten? Je
 # Vielleicht so: Vergleich der Modellgüten
 
 
+## RMSE
 
-Hier ist eine Funktion, die die Modellgüten berechnet:
+Hier ist eine Funktion, die die Modellgüten (RMSE) berechnet:
 
 
 ```{r}
@@ -1159,9 +1163,25 @@ model_rmse %>%
   geom_point()
 ```
 
+## R-Quadrat
+
+Ein alternatives Maß zu RMSE ist R-Quadrat.
+
+```{r}
+get_r2 <- function(est) {
+  
+  rmse <- cor(model_preds$rating, est)^2
+}
+
+```
 
 
+```{r}
+model_preds %>% 
+  summarise(across(everything(), get_r2)) -> model_r2
 
+model_r2
+```
 
 
 
@@ -1174,5 +1194,54 @@ ggplot2::autoplot(forward) + theme_minimal()
 ```
 
 
+# Bestes Modell
 
+
+```{r}
+model_r2 %>% 
+  pivot_longer(everything()) %>% 
+  arrange(-value) %>% 
+  filter(value != 1, value > 0)
+```
+
+
+Model 7 ist das Beste! `model7` war das Forward-Regressionsmodell.
+
+# Vorhersagen
+
+
+Spalte `X` ist eine ID-Spalte.
+
+```{r}
+movies2_test_pred <-
+  movies2_test %>% 
+  add_predictions(forward) %>% 
+  select(pred, rating, ID = X)
+```
+
+
+Da wir in diesem Fall die Zielwerte (die "Lösung") in den Testwerten kennen, können wir die Modellgüte berechnen. In der "echten Welt" geht das normalerweise nicht!
+
+
+```{r}
+movies2_test_pred %>% 
+  rsq(truth = rating,
+      estimate = pred)
+```
+In dem Fall ist $R^2$ im Testsample nicht schlechter als im Train-Sample. Häufig ist das anders.
+
+
+# Einreichen
+
+```{r}
+data_submit <-
+  movies2_test_pred %>% 
+  select(ID, pred)
+```
+
+
+```{r}
+write_csv(data_submit,
+          file = "sauer_sebastian_0123456_prognose.csv")
+```
 
