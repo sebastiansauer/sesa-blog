@@ -1323,7 +1323,7 @@ names(model_preds) &lt;- col_names</code></pre>
 <p>Ein alternatives Maß zu RMSE ist R-Quadrat.</p>
 <pre class="r"><code>get_r2 &lt;- function(est) {
   
-  rmse &lt;- cor(model_preds$rating, est)^2
+  r2 &lt;- cor(model_preds$rating, est)^2
 }</code></pre>
 <pre class="r"><code>model_preds %&gt;% 
   summarise(across(everything(), get_r2)) -&gt; model_r2

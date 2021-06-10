@@ -1170,7 +1170,7 @@ Ein alternatives Maß zu RMSE ist R-Quadrat.
 ```{r}
 get_r2 <- function(est) {
   
-  rmse <- cor(model_preds$rating, est)^2
+  r2 <- cor(model_preds$rating, est)^2
 }
 
 ```
