@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   message = FALSE,
   warning = FALSE,
-  cache = TRUE,
+  cache = FALSE,
   out.width = "100%",
   fig.align = 'center',
   fig.width = 6,
@@ -1118,8 +1118,11 @@ Wie kommt man jetzt elegant zu dem Modell mit den besten Modellkoeffizienten? Je
 
 # Vielleicht so: Vergleich der Modellgüten
 
+Typische Maße der Modellgüte sind RMSE und $R^2$.
 
 ## RMSE
+
+RMSE: Root Mean Squared Error. *Grob* gesagt: Die mittlere Länge eines Residuums. 
 
 Hier ist eine Funktion, die die Modellgüten (RMSE) berechnet:
 
@@ -1161,6 +1164,7 @@ model_rmse %>%
   ggplot() +
   aes(x = reorder(model, -rmse), y = rmse) +
   geom_point()
+
 ```
 
 ## R-Quadrat
@@ -1190,7 +1194,6 @@ model_r2
 
 ```{r}
 ggplot2::autoplot(forward) + theme_minimal()
-
 ```
 
 

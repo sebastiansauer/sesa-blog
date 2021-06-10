@@ -100,31 +100,31 @@ library(modelr)  # Komfort für Regressionsanalysen</code></pre>
 <pre class="r"><code>glimpse(movies)
 #&gt; Rows: 58,788
 #&gt; Columns: 25
-#&gt; $ X           &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17…
-#&gt; $ title       &lt;chr&gt; &quot;$&quot;, &quot;$1000 a Touchdown&quot;, &quot;$21 a Day Once a Month&quot;, &quot;$40,…
-#&gt; $ year        &lt;int&gt; 1971, 1939, 1941, 1996, 1975, 2000, 2002, 2002, 1987, 191…
-#&gt; $ length      &lt;int&gt; 121, 71, 7, 70, 71, 91, 93, 25, 97, 61, 99, 96, 10, 10, 1…
-#&gt; $ budget      &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-#&gt; $ rating      &lt;dbl&gt; 6.4, 6.0, 8.2, 8.2, 3.4, 4.3, 5.3, 6.7, 6.6, 6.0, 5.4, 5.…
-#&gt; $ votes       &lt;int&gt; 348, 20, 5, 6, 17, 45, 200, 24, 18, 51, 23, 53, 44, 11, 1…
-#&gt; $ r1          &lt;dbl&gt; 4.5, 0.0, 0.0, 14.5, 24.5, 4.5, 4.5, 4.5, 4.5, 4.5, 4.5, …
-#&gt; $ r2          &lt;dbl&gt; 4.5, 14.5, 0.0, 0.0, 4.5, 4.5, 0.0, 4.5, 4.5, 0.0, 0.0, 0…
-#&gt; $ r3          &lt;dbl&gt; 4.5, 4.5, 0.0, 0.0, 0.0, 4.5, 4.5, 4.5, 4.5, 4.5, 4.5, 4.…
-#&gt; $ r4          &lt;dbl&gt; 4.5, 24.5, 0.0, 0.0, 14.5, 14.5, 4.5, 4.5, 0.0, 4.5, 14.5…
-#&gt; $ r5          &lt;dbl&gt; 14.5, 14.5, 0.0, 0.0, 14.5, 14.5, 24.5, 4.5, 0.0, 4.5, 24…
-#&gt; $ r6          &lt;dbl&gt; 24.5, 14.5, 24.5, 0.0, 4.5, 14.5, 24.5, 14.5, 0.0, 44.5, …
-#&gt; $ r7          &lt;dbl&gt; 24.5, 14.5, 0.0, 0.0, 0.0, 4.5, 14.5, 14.5, 34.5, 14.5, 2…
-#&gt; $ r8          &lt;dbl&gt; 14.5, 4.5, 44.5, 0.0, 0.0, 4.5, 4.5, 14.5, 14.5, 4.5, 4.5…
-#&gt; $ r9          &lt;dbl&gt; 4.5, 4.5, 24.5, 34.5, 0.0, 14.5, 4.5, 4.5, 4.5, 4.5, 14.5…
-#&gt; $ r10         &lt;dbl&gt; 4.5, 14.5, 24.5, 45.5, 24.5, 14.5, 14.5, 14.5, 24.5, 4.5,…
-#&gt; $ mpaa        &lt;chr&gt; &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;R&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, …
-#&gt; $ Action      &lt;int&gt; 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, …
-#&gt; $ Animation   &lt;int&gt; 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-#&gt; $ Comedy      &lt;int&gt; 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, …
-#&gt; $ Drama       &lt;int&gt; 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, …
-#&gt; $ Documentary &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, …
-#&gt; $ Romance     &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-#&gt; $ Short       &lt;int&gt; 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, …</code></pre>
+#&gt; $ X           &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,…
+#&gt; $ title       &lt;chr&gt; &quot;$&quot;, &quot;$1000 a Touchdown&quot;, &quot;$21 a Day Once a Month&quot;, &quot;$40,0…
+#&gt; $ year        &lt;int&gt; 1971, 1939, 1941, 1996, 1975, 2000, 2002, 2002, 1987, 1917…
+#&gt; $ length      &lt;int&gt; 121, 71, 7, 70, 71, 91, 93, 25, 97, 61, 99, 96, 10, 10, 10…
+#&gt; $ budget      &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+#&gt; $ rating      &lt;dbl&gt; 6.4, 6.0, 8.2, 8.2, 3.4, 4.3, 5.3, 6.7, 6.6, 6.0, 5.4, 5.9…
+#&gt; $ votes       &lt;int&gt; 348, 20, 5, 6, 17, 45, 200, 24, 18, 51, 23, 53, 44, 11, 12…
+#&gt; $ r1          &lt;dbl&gt; 4.5, 0.0, 0.0, 14.5, 24.5, 4.5, 4.5, 4.5, 4.5, 4.5, 4.5, 4…
+#&gt; $ r2          &lt;dbl&gt; 4.5, 14.5, 0.0, 0.0, 4.5, 4.5, 0.0, 4.5, 4.5, 0.0, 0.0, 0.…
+#&gt; $ r3          &lt;dbl&gt; 4.5, 4.5, 0.0, 0.0, 0.0, 4.5, 4.5, 4.5, 4.5, 4.5, 4.5, 4.5…
+#&gt; $ r4          &lt;dbl&gt; 4.5, 24.5, 0.0, 0.0, 14.5, 14.5, 4.5, 4.5, 0.0, 4.5, 14.5,…
+#&gt; $ r5          &lt;dbl&gt; 14.5, 14.5, 0.0, 0.0, 14.5, 14.5, 24.5, 4.5, 0.0, 4.5, 24.…
+#&gt; $ r6          &lt;dbl&gt; 24.5, 14.5, 24.5, 0.0, 4.5, 14.5, 24.5, 14.5, 0.0, 44.5, 4…
+#&gt; $ r7          &lt;dbl&gt; 24.5, 14.5, 0.0, 0.0, 0.0, 4.5, 14.5, 14.5, 34.5, 14.5, 24…
+#&gt; $ r8          &lt;dbl&gt; 14.5, 4.5, 44.5, 0.0, 0.0, 4.5, 4.5, 14.5, 14.5, 4.5, 4.5,…
+#&gt; $ r9          &lt;dbl&gt; 4.5, 4.5, 24.5, 34.5, 0.0, 14.5, 4.5, 4.5, 4.5, 4.5, 14.5,…
+#&gt; $ r10         &lt;dbl&gt; 4.5, 14.5, 24.5, 45.5, 24.5, 14.5, 14.5, 14.5, 24.5, 4.5, …
+#&gt; $ mpaa        &lt;chr&gt; &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;R&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;…
+#&gt; $ Action      &lt;int&gt; 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0…
+#&gt; $ Animation   &lt;int&gt; 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1…
+#&gt; $ Comedy      &lt;int&gt; 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1…
+#&gt; $ Drama       &lt;int&gt; 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0…
+#&gt; $ Documentary &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0…
+#&gt; $ Romance     &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+#&gt; $ Short       &lt;int&gt; 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1…</code></pre>
 <p>Sieht alles gut aus.</p>
 <p>Die Namen der Variablen sind (wie so oft) nicht selbsterklärend. Werfen wir einen Blick in die Hilfe.</p>
 <pre class="r"><code>help(movies)</code></pre>
@@ -777,7 +777,7 @@ movies2_train &lt;- analysis(movies2_split)
 movies2_test &lt;- assessment(movies2_split)
 
 dim(movies2_train)
-#&gt; [1] 3629   13</code></pre>
+#&gt; [1] 3628   13</code></pre>
 <p>Zum Vergleich, die Zeilenzahl im gesamten Datensatz:</p>
 <pre class="r"><code>dim(movies)
 #&gt; [1] 58788    25</code></pre>
@@ -799,46 +799,46 @@ dim(movies2_train)
 #&gt; 
 #&gt; Residuals:
 #&gt;     Min      1Q  Median      3Q     Max 
-#&gt; -5.1291 -0.9291  0.1709  1.0709  3.8709 
+#&gt; -5.1275 -0.9275  0.1725  1.0725  3.7725 
 #&gt; 
 #&gt; Coefficients:
 #&gt;             Estimate Std. Error t value Pr(&gt;|t|)    
-#&gt; (Intercept)  6.12913    0.02569   238.6   &lt;2e-16 ***
+#&gt; (Intercept)  6.12751    0.02565   238.9   &lt;2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 #&gt; 
-#&gt; Residual standard error: 1.548 on 3628 degrees of freedom</code></pre>
+#&gt; Residual standard error: 1.545 on 3627 degrees of freedom</code></pre>
 <p>Der Output ist nicht “aufgeräumt”; schöner wäre eine Ausgabe in Form eines Dataframes.</p>
 <p>Hier die Modellkoeffienten in “tidy” Form; in diesem Fall nur der Achsenabschnitt (Intercept):</p>
 <pre class="r"><code>tidy(m0)
 #&gt; # A tibble: 1 x 5
 #&gt;   term        estimate std.error statistic p.value
 #&gt;   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-#&gt; 1 (Intercept)     6.13    0.0257      239.       0</code></pre>
+#&gt; 1 (Intercept)     6.13    0.0256      239.       0</code></pre>
 <p>Und die Modellgüte (“model fit”):</p>
 <pre class="r"><code>glance(m0)
 #&gt; # A tibble: 1 x 12
 #&gt;   r.squared adj.r.squared sigma statistic p.value    df logLik    AIC    BIC
 #&gt;       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-#&gt; 1         0             0  1.55        NA      NA    NA -6734. 13472. 13484.
+#&gt; 1         0             0  1.54        NA      NA    NA -6726. 13455. 13468.
 #&gt; # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 <p><span class="math inline">\(R^2\)</span> ist hier per Definition gleich Null.</p>
 <p>Die Struktur des <code>lm-</code>Objekts kann man sich so anschauen:</p>
 <pre><code>#&gt; List of 11
 #&gt;  $ coefficients : Named num 6.13
 #&gt;   ..- attr(*, &quot;names&quot;)= chr &quot;(Intercept)&quot;
-#&gt;  $ residuals    : Named num [1:3629] -4.529 -1.329 -2.429 0.571 -0.529 ...
-#&gt;   ..- attr(*, &quot;names&quot;)= chr [1:3629] &quot;2&quot; &quot;3&quot; &quot;4&quot; &quot;5&quot; ...
-#&gt;  $ effects      : Named num [1:3629] -369.226 -1.255 -2.355 0.645 -0.455 ...
-#&gt;   ..- attr(*, &quot;names&quot;)= chr [1:3629] &quot;(Intercept)&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+#&gt;  $ residuals    : Named num [1:3628] -1.328 -0.328 0.172 0.972 1.272 ...
+#&gt;   ..- attr(*, &quot;names&quot;)= chr [1:3628] &quot;2463&quot; &quot;2511&quot; &quot;2227&quot; &quot;526&quot; ...
+#&gt;  $ effects      : Named num [1:3628] -369.077 -0.306 0.194 0.994 1.294 ...
+#&gt;   ..- attr(*, &quot;names&quot;)= chr [1:3628] &quot;(Intercept)&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
 #&gt;  $ rank         : int 1
-#&gt;  $ fitted.values: Named num [1:3629] 6.13 6.13 6.13 6.13 6.13 ...
-#&gt;   ..- attr(*, &quot;names&quot;)= chr [1:3629] &quot;2&quot; &quot;3&quot; &quot;4&quot; &quot;5&quot; ...
+#&gt;  $ fitted.values: Named num [1:3628] 6.13 6.13 6.13 6.13 6.13 ...
+#&gt;   ..- attr(*, &quot;names&quot;)= chr [1:3628] &quot;2463&quot; &quot;2511&quot; &quot;2227&quot; &quot;526&quot; ...
 #&gt;  $ assign       : int 0
 #&gt;  $ qr           :List of 5
-#&gt;   ..$ qr   : num [1:3629, 1] -60.2412 0.0166 0.0166 0.0166 0.0166 ...
+#&gt;   ..$ qr   : num [1:3628, 1] -60.2329 0.0166 0.0166 0.0166 0.0166 ...
 #&gt;   .. ..- attr(*, &quot;dimnames&quot;)=List of 2
-#&gt;   .. .. ..$ : chr [1:3629] &quot;2&quot; &quot;3&quot; &quot;4&quot; &quot;5&quot; ...
+#&gt;   .. .. ..$ : chr [1:3628] &quot;2463&quot; &quot;2511&quot; &quot;2227&quot; &quot;526&quot; ...
 #&gt;   .. .. ..$ : chr &quot;(Intercept)&quot;
 #&gt;   .. ..- attr(*, &quot;assign&quot;)= int 0
 #&gt;   ..$ qraux: num 1.02
@@ -846,7 +846,7 @@ dim(movies2_train)
 #&gt;   ..$ tol  : num 1e-07
 #&gt;   ..$ rank : int 1
 #&gt;   ..- attr(*, &quot;class&quot;)= chr &quot;qr&quot;
-#&gt;  $ df.residual  : int 3628
+#&gt;  $ df.residual  : int 3627
 #&gt;  $ call         : language lm(formula = rating ~ 1, data = movies2_train)
 #&gt;  $ terms        :Classes &#39;terms&#39;, &#39;formula&#39;  language rating ~ 1
 #&gt;   .. ..- attr(*, &quot;variables&quot;)= language list(rating)
@@ -859,8 +859,8 @@ dim(movies2_train)
 #&gt;   .. ..- attr(*, &quot;predvars&quot;)= language list(rating)
 #&gt;   .. ..- attr(*, &quot;dataClasses&quot;)= Named chr &quot;numeric&quot;
 #&gt;   .. .. ..- attr(*, &quot;names&quot;)= chr &quot;rating&quot;
-#&gt;  $ model        :&#39;data.frame&#39;:   3629 obs. of  1 variable:
-#&gt;   ..$ rating: num [1:3629] 1.6 4.8 3.7 6.7 5.6 3.3 7.8 5.8 4.7 8.7 ...
+#&gt;  $ model        :&#39;data.frame&#39;:   3628 obs. of  1 variable:
+#&gt;   ..$ rating: num [1:3628] 4.8 5.8 6.3 7.1 7.4 5.6 7.5 4 6.2 7.5 ...
 #&gt;   ..- attr(*, &quot;terms&quot;)=Classes &#39;terms&#39;, &#39;formula&#39;  language rating ~ 1
 #&gt;   .. .. ..- attr(*, &quot;variables&quot;)= language list(rating)
 #&gt;   .. .. ..- attr(*, &quot;factors&quot;)= int(0) 
@@ -907,14 +907,14 @@ dim(movies2_train)
 #&gt; # A tibble: 2 x 5
 #&gt;   term         estimate std.error statistic    p.value
 #&gt;   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
-#&gt; 1 (Intercept)     6.76     0.135      50.0  0         
-#&gt; 2 budget_log10   -0.102    0.0213     -4.77 0.00000190</code></pre>
+#&gt; 1 (Intercept)    6.73      0.135      49.8  0         
+#&gt; 2 budget_log10  -0.0962    0.0213     -4.52 0.00000640</code></pre>
 <p>Die Modellgüte sieht so aus:</p>
 <pre class="r"><code>glance(m1)
 #&gt; # A tibble: 1 x 12
-#&gt;   r.squared adj.r.squared sigma statistic p.value    df logLik    AIC    BIC
-#&gt;       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-#&gt; 1   0.00624       0.00596  1.54      22.8 1.90e-6     1 -6722. 13451. 13469.
+#&gt;   r.squared adj.r.squared sigma statistic    p.value    df logLik    AIC    BIC
+#&gt;       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+#&gt; 1   0.00560       0.00533  1.54      20.4 0.00000640     1 -6715. 13437. 13455.
 #&gt; # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 <p>Also peinlich schlecht.</p>
 </div>
@@ -977,14 +977,14 @@ m2 %&gt;%
 #&gt; # A tibble: 2 x 5
 #&gt;   term        estimate std.error statistic  p.value
 #&gt;   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-#&gt; 1 (Intercept)    5.68     0.0678     83.7  0.      
-#&gt; 2 votes_log10    0.165    0.0230      7.19 8.00e-13
+#&gt; 1 (Intercept)    5.66     0.0677     83.6  0       
+#&gt; 2 votes_log10    0.171    0.0229      7.48 9.37e-14
 
 glance(m2)
 #&gt; # A tibble: 1 x 12
 #&gt;   r.squared adj.r.squared sigma statistic  p.value    df logLik    AIC    BIC
 #&gt;       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-#&gt; 1    0.0140        0.0138  1.54      51.7 8.00e-13     1 -6708. 13422. 13441.
+#&gt; 1    0.0152        0.0149  1.53      55.9 9.37e-14     1 -6698. 13402. 13420.
 #&gt; # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 <p>Tja. Unsere Erklärungskraft bleibt bescheiden.</p>
 </div>
@@ -997,16 +997,16 @@ glance(m2)
 <p>Die Ergebnisse:</p>
 <pre class="r"><code>tidy(m3)
 #&gt; # A tibble: 3 x 5
-#&gt;   term             estimate std.error statistic   p.value
-#&gt;   &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-#&gt; 1 (Intercept)         8.31     0.133       62.4 0.       
-#&gt; 2 I(votes_log10^2)    0.455    0.0202      22.5 3.47e-105
-#&gt; 3 votes_log10        -2.25     0.109      -20.6 5.49e- 89</code></pre>
+#&gt;   term             estimate std.error statistic  p.value
+#&gt;   &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+#&gt; 1 (Intercept)         8.17     0.132       62.1 0       
+#&gt; 2 I(votes_log10^2)    0.434    0.0199      21.8 1.79e-99
+#&gt; 3 votes_log10        -2.13     0.108      -19.8 5.28e-83</code></pre>
 <pre class="r"><code>glance(m3)
 #&gt; # A tibble: 1 x 12
 #&gt;   r.squared adj.r.squared sigma statistic   p.value    df logLik    AIC    BIC
 #&gt;       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-#&gt; 1     0.135         0.135  1.44      283. 6.75e-115     2 -6471. 12949. 12974.
+#&gt; 1     0.130         0.129  1.44      270. 4.13e-110     2 -6473. 12955. 12980.
 #&gt; # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 <p>Schon etwas besser.</p>
 <p>Schauen wir uns das Polynom 2. Grades einmal an:</p>
@@ -1035,15 +1035,15 @@ glance(m2)
 #&gt; # A tibble: 4 x 5
 #&gt;   term                           estimate std.error statistic   p.value
 #&gt;   &lt;chr&gt;                             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-#&gt; 1 (Intercept)                        6.13    0.0239    257.   0.       
-#&gt; 2 poly(votes_log10, degree = 3)1    11.0     1.44        7.68 2.02e- 14
-#&gt; 3 poly(votes_log10, degree = 3)2    32.4     1.44       22.5  2.08e-105
-#&gt; 4 poly(votes_log10, degree = 3)3    -4.41    1.44       -3.07 2.16e-  3
+#&gt; 1 (Intercept)                        6.13    0.0239    257.   0        
+#&gt; 2 poly(votes_log10, degree = 3)1    11.5     1.44        7.97 2.11e- 15
+#&gt; 3 poly(votes_log10, degree = 3)2    31.5     1.44       21.9  8.00e-100
+#&gt; 4 poly(votes_log10, degree = 3)3    -5.56    1.44       -3.86 1.13e-  4
 glance(m4)
 #&gt; # A tibble: 1 x 12
 #&gt;   r.squared adj.r.squared sigma statistic   p.value    df logLik    AIC    BIC
 #&gt;       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-#&gt; 1     0.137         0.137  1.44      192. 1.17e-115     3 -6466. 12942. 12973.
+#&gt; 1     0.133         0.133  1.44      186. 4.52e-112     3 -6466. 12942. 12973.
 #&gt; # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 <p>Es scheint keinen Unterschied zu machen, ob man ein Polynom 2. oder 3. Grades in die Daten anpasst.</p>
 </div>
@@ -1060,34 +1060,34 @@ glance(m4)
 
 
 fashion(movies_corr)  
-#&gt;         rowname budget_log10 length votes_log10 Action Drama Romance Comedy X
-#&gt; 1  budget_log10                                                              
-#&gt; 2        length          .63                                                 
-#&gt; 3   votes_log10          .77    .54                                          
-#&gt; 4        Action          .24                .22                              
-#&gt; 5         Drama                 .27                                          
-#&gt; 6       Romance                                                              
-#&gt; 7        Comedy                                         -.25                 
-#&gt; 8             X                                                              
-#&gt; 9          year                                                              
-#&gt; 10    Animation                                                              
-#&gt; 11       rating                                          .22                 
-#&gt; 12  Documentary                                                              
-#&gt; 13        Short         -.53   -.68        -.42                              
-#&gt;    year Animation rating Documentary Short
-#&gt; 1                                         
-#&gt; 2                                         
-#&gt; 3                                         
-#&gt; 4                                         
-#&gt; 5                                         
-#&gt; 6                                         
-#&gt; 7                                         
-#&gt; 8                                         
-#&gt; 9                                         
-#&gt; 10                                        
-#&gt; 11                                        
-#&gt; 12                                        
-#&gt; 13                   .23</code></pre>
+#&gt;            term length budget_log10 votes_log10 Drama Action Romance X year
+#&gt; 1        length                                                            
+#&gt; 2  budget_log10    .64                                                     
+#&gt; 3   votes_log10    .56          .77                                        
+#&gt; 4         Drama    .27                                                     
+#&gt; 5        Action                 .23         .21                            
+#&gt; 6       Romance                                                            
+#&gt; 7             X                                                            
+#&gt; 8          year                                                            
+#&gt; 9        Comedy                                  -.23                      
+#&gt; 10    Animation                                                            
+#&gt; 11       rating                                   .22                      
+#&gt; 12  Documentary                                                            
+#&gt; 13        Short   -.71         -.54        -.44                            
+#&gt;    Comedy Animation rating Documentary Short
+#&gt; 1                                           
+#&gt; 2                                           
+#&gt; 3                                           
+#&gt; 4                                           
+#&gt; 5                                           
+#&gt; 6                                           
+#&gt; 7                                           
+#&gt; 8                                           
+#&gt; 9                                           
+#&gt; 10                                          
+#&gt; 11                                          
+#&gt; 12                                          
+#&gt; 13                     .23</code></pre>
 <p>Diese Zeile <code>mutate_if(is.numeric, ~ifelse(abs(.) &gt; 0.2, ., NA))</code> heißt grob übersetzt:</p>
 <blockquote>
 <p>Verändere eine Spalte, wenn (if) sie numerisch ist. Und zwar folgendermaßen: wenn der Absolutwert in einer Zelle größer ist als 0.2, dann übernehme ihn, wie er ist (.), ansonsten ersetze durch NA.</p>
@@ -1096,17 +1096,17 @@ fashion(movies_corr)
 <pre class="r"><code>movies_corr %&gt;% 
   select(1, rating)
 #&gt; # A tibble: 13 x 2
-#&gt;    rowname      rating
+#&gt;    term         rating
 #&gt;    &lt;chr&gt;         &lt;dbl&gt;
-#&gt;  1 budget_log10 NA    
-#&gt;  2 length       NA    
+#&gt;  1 length       NA    
+#&gt;  2 budget_log10 NA    
 #&gt;  3 votes_log10  NA    
-#&gt;  4 Action       NA    
-#&gt;  5 Drama        NA    
+#&gt;  4 Drama        NA    
+#&gt;  5 Action       NA    
 #&gt;  6 Romance      NA    
-#&gt;  7 Comedy       NA    
-#&gt;  8 X            NA    
-#&gt;  9 year         NA    
+#&gt;  7 X            NA    
+#&gt;  8 year         NA    
+#&gt;  9 Comedy       NA    
 #&gt; 10 Animation    NA    
 #&gt; 11 rating       NA    
 #&gt; 12 Documentary  NA    
@@ -1129,7 +1129,7 @@ fashion(movies_corr)
 #&gt; # A tibble: 1 x 12
 #&gt;   r.squared adj.r.squared sigma statistic  p.value    df logLik    AIC    BIC
 #&gt;       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-#&gt; 1    0.0845        0.0840  1.48      167. 2.84e-70     2 -6574. 13155. 13180.
+#&gt; 1    0.0856        0.0851  1.48      170. 3.81e-71     2 -6563. 13135. 13159.
 #&gt; # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 </div>
 <div id="d-visualisierung" class="section level1" number="26">
@@ -1151,7 +1151,7 @@ fashion(movies_corr)
 #&gt; # A tibble: 1 x 12
 #&gt;   r.squared adj.r.squared sigma statistic  p.value    df logLik    AIC    BIC
 #&gt;       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-#&gt; 1     0.116         0.116  1.46      159. 8.53e-97     3 -6510. 13029. 13060.
+#&gt; 1     0.116         0.115  1.45      159. 1.06e-96     3 -6502. 13013. 13044.
 #&gt; # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 </div>
 <div id="rohe-kraft-schrittweise-regression" class="section level1" number="28">
@@ -1171,20 +1171,21 @@ fashion(movies_corr)
                 trace = 0)  # keine Zwischenschritte zeigen</code></pre>
 <p>Vorsicht! Bei nominalen Variablen mit vielen unterschiedlichen Werten kann diese Berechnung lange dauern.</p>
 <pre class="r"><code>tidy(forward)
-#&gt; # A tibble: 11 x 5
-#&gt;    term         estimate std.error statistic   p.value
-#&gt;    &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-#&gt;  1 (Intercept)  19.5       2.13         9.16 8.84e- 20
-#&gt;  2 Drama         0.659     0.0486      13.5  7.74e- 41
-#&gt;  3 Short         2.65      0.117       22.7  9.05e-107
-#&gt;  4 votes_log10   0.571     0.0316      18.1  5.49e- 70
-#&gt;  5 budget_log10 -0.404     0.0330     -12.2  9.98e- 34
-#&gt;  6 length        0.0142    0.00109     13.1  4.01e- 38
-#&gt;  7 Documentary   1.41      0.144        9.76 3.16e- 22
-#&gt;  8 year         -0.00723   0.00109     -6.61 4.40e- 11
-#&gt;  9 Animation     0.891     0.144        6.20 6.32e- 10
-#&gt; 10 Comedy        0.205     0.0499       4.10 4.16e-  5
-#&gt; 11 Action       -0.250     0.0632      -3.95 7.86e-  5</code></pre>
+#&gt; # A tibble: 12 x 5
+#&gt;    term            estimate  std.error statistic   p.value
+#&gt;    &lt;chr&gt;              &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+#&gt;  1 (Intercept)  20.7        2.17            9.53 2.82e- 21
+#&gt;  2 Short         2.85       0.118          24.2  3.14e-120
+#&gt;  3 length        0.0156     0.00112        14.0  3.25e- 43
+#&gt;  4 Drama         0.654      0.0482         13.6  4.57e- 41
+#&gt;  5 votes_log10   0.570      0.0314         18.2  1.30e- 70
+#&gt;  6 budget_log10 -0.407      0.0334        -12.2  1.51e- 33
+#&gt;  7 Documentary   1.25       0.145           8.64 8.32e- 18
+#&gt;  8 year         -0.00797    0.00112        -7.13 1.24e- 12
+#&gt;  9 Animation     0.809      0.144           5.61 2.16e-  8
+#&gt; 10 Comedy        0.238      0.0495          4.81 1.58e-  6
+#&gt; 11 Action       -0.212      0.0639         -3.32 9.05e-  4
+#&gt; 12 X             0.00000246 0.00000129      1.90 5.77e-  2</code></pre>
 </div>
 <div id="modellselektion-modellwahl-anova" class="section level1" number="29">
 <h1><span class="header-section-number">29</span> Modellselektion (Modellwahl) – anova</h1>
@@ -1196,11 +1197,11 @@ fashion(movies_corr)
 #&gt; Model 2: rating ~ votes_log10
 #&gt; Model 3: rating ~ I(votes_log10^2) + votes_log10
 #&gt; Model 4: rating ~ poly(votes_log10, degree = 3)
-#&gt;   Res.Df    RSS Df Sum of Sq        F    Pr(&gt;F)    
-#&gt; 1   3628 8690.1                                    
-#&gt; 2   3627 8568.1  1    122.02  58.9963 2.019e-14 ***
-#&gt; 3   3626 7517.1  1   1050.96 508.1222 &lt; 2.2e-16 ***
-#&gt; 4   3625 7497.6  1     19.48   9.4178  0.002165 ** 
+#&gt;   Res.Df    RSS Df Sum of Sq       F    Pr(&gt;F)    
+#&gt; 1   3627 8657.2                                   
+#&gt; 2   3626 8525.7  1    131.51  63.517 2.111e-15 ***
+#&gt; 3   3625 7534.0  1    991.65 478.969 &lt; 2.2e-16 ***
+#&gt; 4   3624 7503.1  1     30.92  14.933 0.0001134 ***
 #&gt; ---
 #&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Eine Varianzanalyse (anova) besteht im Kern aus einem <span class="math inline">\(F\)</span>-Test. Der F-Test ist so definiert:</p>
@@ -1229,16 +1230,16 @@ fashion(movies_corr)
   map_dfc( ~ predict(., movies2_test))</code></pre>
 <p>Schauen wir uns das Ergebnisobjekt an:</p>
 <pre class="r"><code>glimpse(model_preds)
-#&gt; Rows: 1,554
+#&gt; Rows: 1,555
 #&gt; Columns: 8
-#&gt; $ ...1 &lt;dbl&gt; 6.129126, 6.129126, 6.129126, 6.129126, 6.129126, 6.129126, 6.12…
-#&gt; $ ...2 &lt;dbl&gt; 6.187523, 6.073134, 6.169356, 6.048421, 6.111796, 6.060430, 6.30…
-#&gt; $ ...3 &lt;dbl&gt; 6.081709, 6.136675, 6.094947, 6.471870, 6.036239, 6.400996, 5.84…
-#&gt; $ ...4 &lt;dbl&gt; 5.534575, 5.578970, 5.536031, 8.036498, 5.574213, 7.203630, 6.46…
-#&gt; $ ...5 &lt;dbl&gt; 5.496253, 5.583751, 5.507758, 7.774495, 5.506276, 7.147679, 6.48…
-#&gt; $ ...6 &lt;dbl&gt; 6.260875, 5.862958, 6.214307, 6.969459, 5.695536, 6.771119, 6.01…
-#&gt; $ ...7 &lt;dbl&gt; 6.012223, 5.700661, 5.964791, 7.127462, 5.483696, 6.810705, 6.30…
-#&gt; $ ...8 &lt;dbl&gt; 6.460080, 6.050981, 5.904500, 7.369122, 5.199202, 6.314314, 6.72…</code></pre>
+#&gt; $ ...1 &lt;dbl&gt; 6.127508, 6.127508, 6.127508, 6.127508, 6.127508, 6.127508, 6.127…
+#&gt; $ ...2 &lt;dbl&gt; 6.018852, 6.082631, 6.145912, 6.217160, 6.217160, 5.964221, 5.988…
+#&gt; $ ...3 &lt;dbl&gt; 6.155901, 6.075402, 6.045352, 6.082722, 5.803194, 6.370895, 6.263…
+#&gt; $ ...4 &lt;dbl&gt; 5.644215, 5.557038, 5.573610, 5.557045, 6.681743, 6.816318, 6.058…
+#&gt; $ ...5 &lt;dbl&gt; 5.666664, 5.503725, 5.495860, 5.510274, 6.798402, 6.834337, 6.145…
+#&gt; $ ...6 &lt;dbl&gt; 5.626967, 5.691683, 5.934694, 6.463845, 5.460634, 6.095668, 5.846…
+#&gt; $ ...7 &lt;dbl&gt; 5.566329, 5.500739, 5.726260, 6.197511, 5.579736, 6.539594, 6.006…
+#&gt; $ ...8 &lt;dbl&gt; 5.471932, 4.930652, 5.367656, 7.209424, 5.365659, 5.318496, 6.798…</code></pre>
 <p>Eine Tabelle mit 8 Spalten Jede dieser 8 Spalten sind die Vorhersagen für eines der Modelle. Wie gut wohl jeweils die Vorhersagen sind?</p>
 <p>Geben wir zuerst schönere Namen an die Spalten:</p>
 <pre class="r"><code>col_names &lt;- paste0(&quot;model&quot;, 0:7)
@@ -1251,16 +1252,16 @@ names(model_preds) &lt;- col_names</code></pre>
 #&gt; # A tibble: 3 x 3
 #&gt;   .metric .estimator .estimate
 #&gt;   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-#&gt; 1 rmse    standard     1.53   
-#&gt; 2 rsq     standard     0.00610
-#&gt; 3 mae     standard     1.22</code></pre>
+#&gt; 1 rmse    standard      1.53  
+#&gt; 2 rsq     standard      0.0148
+#&gt; 3 mae     standard      1.20</code></pre>
 <pre class="r"><code>metrics(model_preds, truth = rating, estimate = model3)
 #&gt; # A tibble: 3 x 3
 #&gt;   .metric .estimator .estimate
 #&gt;   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-#&gt; 1 rmse    standard      1.52  
-#&gt; 2 rsq     standard      0.0176
-#&gt; 3 mae     standard      1.20</code></pre>
+#&gt; 1 rmse    standard       1.43 
+#&gt; 2 rsq     standard       0.141
+#&gt; 3 mae     standard       1.11</code></pre>
 </div>
 <div id="hm" class="section level1" number="31">
 <h1><span class="header-section-number">31</span> Hm</h1>
@@ -1268,8 +1269,10 @@ names(model_preds) &lt;- col_names</code></pre>
 </div>
 <div id="vielleicht-so-vergleich-der-modellgüten" class="section level1" number="32">
 <h1><span class="header-section-number">32</span> Vielleicht so: Vergleich der Modellgüten</h1>
+<p>Typische Maße der Modellgüte sind RMSE und <span class="math inline">\(R^2\)</span>.</p>
 <div id="rmse" class="section level2" number="32.1">
 <h2><span class="header-section-number">32.1</span> RMSE</h2>
+<p>RMSE: Root Mean Squared Error. <em>Grob</em> gesagt: Die mittlere Länge eines Residuums.</p>
 <p>Hier ist eine Funktion, die die Modellgüten (RMSE) berechnet:</p>
 <pre class="r"><code>get_rmse &lt;- function(est) {
   
@@ -1283,6 +1286,7 @@ names(model_preds) &lt;- col_names</code></pre>
 <table>
 <thead>
 <tr class="header">
+<th align="right">model0</th>
 <th align="right">model1</th>
 <th align="right">model2</th>
 <th align="right">model3</th>
@@ -1290,20 +1294,19 @@ names(model_preds) &lt;- col_names</code></pre>
 <th align="right">model5</th>
 <th align="right">model6</th>
 <th align="right">model7</th>
-<th align="right">model8</th>
 <th align="right">rating</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">1.534907</td>
-<td align="right">1.530248</td>
-<td align="right">1.521506</td>
-<td align="right">1.433102</td>
-<td align="right">1.426455</td>
-<td align="right">1.46002</td>
-<td align="right">1.439986</td>
-<td align="right">1.299784</td>
+<td align="right">1.541326</td>
+<td align="right">1.535519</td>
+<td align="right">1.529956</td>
+<td align="right">1.428753</td>
+<td align="right">1.423921</td>
+<td align="right">1.468111</td>
+<td align="right">1.44571</td>
+<td align="right">1.325001</td>
 <td align="right">0</td>
 </tr>
 </tbody>
@@ -1330,9 +1333,9 @@ names(model_preds) &lt;- col_names</code></pre>
 
 model_r2
 #&gt; # A tibble: 1 x 9
-#&gt;   model1  model2 model3 model4 model5 model6 model7 model8 rating
+#&gt;   model0  model1 model2 model3 model4 model5 model6 model7 rating
 #&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-#&gt; 1     NA 0.00610 0.0176  0.129  0.136 0.0957  0.120  0.283      1</code></pre>
+#&gt; 1     NA 0.00767 0.0148  0.141  0.147 0.0929  0.120  0.262      1</code></pre>
 </div>
 </div>
 <div id="prüfung-der-voraussetzungen" class="section level1" number="33">
@@ -1349,13 +1352,13 @@ model_r2
 #&gt; # A tibble: 7 x 2
 #&gt;   name     value
 #&gt;   &lt;chr&gt;    &lt;dbl&gt;
-#&gt; 1 model8 0.283  
-#&gt; 2 model5 0.136  
-#&gt; 3 model4 0.129  
-#&gt; 4 model7 0.120  
-#&gt; 5 model6 0.0957 
-#&gt; 6 model3 0.0176 
-#&gt; 7 model2 0.00610</code></pre>
+#&gt; 1 model7 0.262  
+#&gt; 2 model4 0.147  
+#&gt; 3 model3 0.141  
+#&gt; 4 model6 0.120  
+#&gt; 5 model5 0.0929 
+#&gt; 6 model2 0.0148 
+#&gt; 7 model1 0.00767</code></pre>
 <p>Model 7 ist das Beste! <code>model7</code> war das Forward-Regressionsmodell.</p>
 </div>
 <div id="vorhersagen" class="section level1" number="35">
@@ -1372,7 +1375,7 @@ model_r2
 #&gt; # A tibble: 1 x 3
 #&gt;   .metric .estimator .estimate
 #&gt;   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-#&gt; 1 rsq     standard       0.283</code></pre>
+#&gt; 1 rsq     standard       0.262</code></pre>
 <p>In dem Fall ist <span class="math inline">\(R^2\)</span> im Testsample nicht schlechter als im Train-Sample. Häufig ist das anders.</p>
 </div>
 <div id="einreichen" class="section level1" number="36">
