@@ -2,13 +2,15 @@
 title: "Kurzprofil: Datenvisualisierung Praxiskurs"
 author: Sebastian Sauer
 date: '2021-06-16'
-bibliography: [bib.bib]
+bibliography: [bib.bib, packages.bib]
 link-citations: true
 slug: datenvisualisierung-praxiskurs
 categories:
   - rstats
 tags:
   - dataviz
+nocite: | 
+  @R-tidyverse
 output:
   blogdown::html_page:
     toc: yes
@@ -28,6 +30,7 @@ output:
 <li><a href="#daten-apps"><span class="toc-section-number">2.4</span> Daten-Apps</a></li>
 </ul></li>
 <li><a href="#prüfung"><span class="toc-section-number">3</span> Prüfung</a></li>
+<li><a href="#voraussetzungen"><span class="toc-section-number">4</span> Voraussetzungen</a></li>
 <li><a href="#literatur">Literatur</a></li>
 </ul>
 </div>
@@ -52,7 +55,7 @@ output:
 <h2><span class="header-section-number">2.2</span> Dashboards</h2>
 <p>Dashboards sind in Organisationen beliebte Darstellungen, um Daten entscheidungsrelevant zu visualisieren. Sie sollen mehrere Kennzahlen auf einem Blick verdeutlichen. Häufig sind sie in (etwa) Echtzeit (automatisch) aktualisiert, so dass sie möglichst stets die aktuellen Informationen aufbereiten.</p>
 <p>Einfache Dashboards, haben den Vorteil, schnell entwickelt werden zu können und online verfügbar zu sein, was den Bedürfnissen vieler Organisationen nahekommt. Als zentrale Technologie wird <a href="https://pkgs.rstudio.com/flexdashboard/articles/examples.html">FlexDashboards</a> (in R) genutzt.</p>
-<p>An relevanter Literatur ist z.B. xie_r_2020 oder xie_blogdown_2018 zu nennen.</p>
+<p>An relevanter Literatur ist z.B. <span class="citation"><a href="#ref-xie_r_2020" role="doc-biblioref">Xie, Dervieux, and Riederer</a> (<a href="#ref-xie_r_2020" role="doc-biblioref">2020</a>)</span> oder <span class="citation"><a href="#ref-xie_blogdown_2018" role="doc-biblioref">Xie, Hill, and Thomas</a> (<a href="#ref-xie_blogdown_2018" role="doc-biblioref">2018</a>)</span> zu nennen.</p>
 <div class="figure">
 <img src="https://i.postimg.cc/PrHmVBBD/image.png" style="width:70.0%" alt="" />
 <p class="caption">image.png</p>
@@ -64,14 +67,8 @@ output:
 <p>In vielen Situationen ist es im (betrieblichen) Alltag nötig, Berichte in leicht abgewandelter Version in mehreren Ausfertigungen wiederholt zu erstellen. Ein typisches Beispiel ist die Aufstellung von Umsatzergebnissen nach Zeit, Region und/oder Sparte. Versucht man, solche Berichtsvarianten “händisch” zu erstellen, sieht man sich schnell einer großen Zahl von redundanten Abläufen gegenüber. Dazu kommt die große Fehleranfälligkeit häufiger Variantenerstellung. Viel besser ist es, wenn eine Berichtsvorlage automatisch aktualisiert wird, etwa um die Umsatzzahlen von letzter Woche durch die von dieser Woche zu ersetzen. Dazu bietet <a href="https://rmarkdown.rstudio.com/">RMarkdown</a> eine Möglichkeit. Entsprechend stellt RMarkdown die zentrale Technologie für diesen Themenbereich dar.</p>
 <p>Praktische Hinweise finden sich in <span class="citation"><a href="#ref-allairermarkdown2016" role="doc-biblioref">Allaire et al.</a> (<a href="#ref-allairermarkdown2016" role="doc-biblioref">2016</a>)</span> oder <span class="citation"><a href="#ref-xie2016bookdown" role="doc-biblioref">Xie</a> (<a href="#ref-xie2016bookdown" role="doc-biblioref">2016</a>)</span>.</p>
 <p>Beispielhaft sei hier ein Bericht für Flugdaten, jeweils für ein Quartal des Jahres 2014, dargestellt.</p>
-<div class="figure">
-<img src="https://i.postimg.cc/sXptykKW/nyc-flights-automated-reporting-Q1.png" style="width:100.0%" alt="" />
-<p class="caption">nyc-flights-automated-reporting-Q1.png</p>
-</div>
-<div class="figure">
-<img src="https://i.postimg.cc/zvzPNVym/nyc-flights-automated-reporting-Q2.png" style="width:100.0%" alt="" />
-<p class="caption">nyc-flights-automated-reporting-Q2.png</p>
-</div>
+<p><img src="https://i.postimg.cc/sXptykKW/nyc-flights-automated-reporting-Q1.png" style="width:100.0%" /></p>
+<p><img src="https://i.postimg.cc/zvzPNVym/nyc-flights-automated-reporting-Q2.png" style="width:100.0%" /></p>
 <p><img src="https://i.postimg.cc/C1NmcSmc/nyc-flights-automated-reporting-Q3.png" alt="nyc-flights-automated-reporting-Q3.png" />(<a href="https://postimg.cc/7G5368vz" class="uri">https://postimg.cc/7G5368vz</a>){ width=100% }</p>
 <div class="figure">
 <img src="https://i.postimg.cc/FKxy4G3R/nyc-flights-automated-reporting-Q4.png" style="width:100.0%" alt="" />
@@ -81,19 +78,25 @@ output:
 <div id="daten-apps" class="section level2" number="2.4">
 <h2><span class="header-section-number">2.4</span> Daten-Apps</h2>
 <p>R ist eine führende Programmiersprache zur Datenanalyse; allerdings ist für bestimmte Zielgruppen – etwa dem Management eines Betriebs – kein spezialisiertes technisches Wissen zuzumuten. Stattdessen sind grafische Benutzeroberflächen (GUIs) nötig. Auf dieser Basis ist es in bestimmten Situationen sinnvoll, GUIs für bestimmte (R-)Analyse zu entwickeln, so dass Nutzis einfach mit der Analyse kommunizieren können, also etwa Ergebnisse abfragen oder Eingabeparameter ädern können. Mittels <a href="https://shiny.rstudio.com/">Shiny Apps</a> ist dies möglich; Shiny Apps stellen die zentrale Technologie für dieses Themengebiet dar.</p>
-<p>Hintergründe zu Shiny sind z.B. in <span class="citation"><a href="#ref-wickham_mastering_2021" role="doc-biblioref">Wickham</a> (<a href="#ref-wickham_mastering_2021" role="doc-biblioref">2021</a>)</span>, <span class="citation"><a href="#ref-fay_engineering_2021" role="doc-biblioref">Fay et al.</a> (<a href="#ref-fay_engineering_2021" role="doc-biblioref">2021</a>)</span> oder <span class="citation"><a href="#ref-resnizky_learning_2015" role="doc-biblioref">Resnizky</a> (<a href="#ref-resnizky_learning_2015" role="doc-biblioref">2015</a>)</span> nachzulesen.</p>
-<p>Im Folgenden sind einige Beispiele solcher Apps dargestellt.</p>
-<p><a href="https://shiny.rstudio.com/gallery/rd-business-game.html">R&amp;D Business Game
-by Paul Simmering</a></p>
-<p><a href="https://shiny.rstudio.com/gallery/real-estate-investment.html">Identifying real estate investment opportunities
-by Philipp Reiner</a></p>
-<p><a href="https://shiny.rstudio.com/gallery/dairy-farms.html">Pasture Potential Tool for improving dairy farm profitability and environmental impact
-by Simon Woodward</a></p>
+<p>Hintergründe zu Shiny sind z.B. in <span class="citation"><a href="#ref-wickham_mastering_2021" role="doc-biblioref">Wickham</a> (<a href="#ref-wickham_mastering_2021" role="doc-biblioref">2021a</a>)</span>, <span class="citation"><a href="#ref-fay_engineering_2021" role="doc-biblioref">Fay et al.</a> (<a href="#ref-fay_engineering_2021" role="doc-biblioref">2021</a>)</span> oder <span class="citation"><a href="#ref-resnizky_learning_2015" role="doc-biblioref">Resnizky</a> (<a href="#ref-resnizky_learning_2015" role="doc-biblioref">2015</a>)</span> nachzulesen.</p>
+<p>Im Folgenden sind einige Beispiele solcher Apps dargestellt:</p>
+<ul>
+<li><p><a href="https://shiny.rstudio.com/gallery/rd-business-game.html">R&amp;D Business Game
+by Paul Simmering</a></p></li>
+<li><p><a href="https://shiny.rstudio.com/gallery/real-estate-investment.html">Identifying real estate investment opportunities
+by Philipp Reiner</a></p></li>
+<li><p><a href="https://shiny.rstudio.com/gallery/dairy-farms.html">Pasture Potential Tool for improving dairy farm profitability and environmental impact
+by Simon Woodward</a></p></li>
+</ul>
 </div>
 </div>
 <div id="prüfung" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Prüfung</h1>
 <p>Prüfungsgegenstand ist eine Projektarbeit, in der der gelernte Stoff an einem Projekt angewendet werden soll.</p>
+</div>
+<div id="voraussetzungen" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Voraussetzungen</h1>
+<p>Es werden Grundlagen in R und in Statistik vorausgesetzt, wie sie in Grundlagenveranstaltungen (etwa “Quantitative Methoden 1”) erworben werden.</p>
 </div>
 <div id="literatur" class="section level1 unnumbered">
 <h1>Literatur</h1>
@@ -111,7 +114,10 @@ Resnizky, Hernan G. 2015. <em>Learning Shiny.</em> Place of publication not iden
 Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.
 </div>
 <div id="ref-wickham_mastering_2021" class="csl-entry">
-———. 2021. <em>Mastering Shiny</em>. O‘Reilly. <a href="https://mastering-shiny.org/">https://mastering-shiny.org/</a>.
+———. 2021a. <em>Mastering Shiny</em>. O‘Reilly. <a href="https://mastering-shiny.org/">https://mastering-shiny.org/</a>.
+</div>
+<div id="ref-R-tidyverse" class="csl-entry">
+———. 2021b. <em>Tidyverse: Easily Install and Load the Tidyverse</em>. <a href="https://CRAN.R-project.org/package=tidyverse">https://CRAN.R-project.org/package=tidyverse</a>.
 </div>
 <div id="ref-wilke_fundamentals_2019" class="csl-entry">
 Wilke, C. 2019. <em>Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures</em>. First edition. Sebastopol, <span>CA</span>: O’Reilly Media.
@@ -121,6 +127,12 @@ Wilkinson, Leland. 2005. <em>The Grammar of Graphics</em>. 2nd ed. Statistics an
 </div>
 <div id="ref-xie2016bookdown" class="csl-entry">
 Xie, Yihui. 2016. <em>Bookdown: Authoring Books and Technical Documents with r Markdown</em>. CRC Press.
+</div>
+<div id="ref-xie_r_2020" class="csl-entry">
+Xie, Yihui, Christophe Dervieux, and Emily Riederer. 2020. <em>R Markdown Cookbook</em>. 1st ed. The r Series. Boca Raton: Taylor; Francis, <span>CRC</span> Press.
+</div>
+<div id="ref-xie_blogdown_2018" class="csl-entry">
+Xie, Yihui, Alison Presmanes Hill, and Amber Thomas. 2018. <em>Blogdown: Creating Websites with r Markdown</em>.
 </div>
 </div>
 </div>

@@ -2,18 +2,27 @@
 title: "Kurzprofil: Datenvisualisierung Praxiskurs"
 author: Sebastian Sauer
 date: '2021-06-16'
-bibliography: [bib.bib]
+bibliography: [bib.bib, packages.bib]
 link-citations: true
 slug: datenvisualisierung-praxiskurs
 categories:
   - rstats
 tags:
   - dataviz
+nocite: | 
+  @R-tidyverse
 output:
   blogdown::html_page:
     toc: yes
     number_sections: yes
 ---
+
+
+
+```{r include=FALSE}
+library(tidyverse)
+knitr::write_bib(.packages(), "packages.bib") 
+```
 
 
 # Überblick
@@ -50,7 +59,7 @@ Dashboards sind in Organisationen beliebte Darstellungen, um Daten entscheidungs
 
 Einfache Dashboards, haben den Vorteil, schnell entwickelt werden zu können und online verfügbar zu sein, was den Bedürfnissen vieler Organisationen nahekommt. Als zentrale Technologie wird [FlexDashboards](https://pkgs.rstudio.com/flexdashboard/articles/examples.html) (in R) genutzt.
 
-An relevanter Literatur ist z.B. xie_r_2020 oder xie_blogdown_2018 zu nennen.
+An relevanter Literatur ist z.B. @xie_r_2020 oder @xie_blogdown_2018 zu nennen.
 
 ![image.png](https://i.postimg.cc/PrHmVBBD/image.png){ width=70% }
 
@@ -65,9 +74,9 @@ Praktische Hinweise finden sich in @allairermarkdown2016 oder @xie2016bookdown.
 
 Beispielhaft sei hier ein Bericht für Flugdaten, jeweils für ein Quartal des Jahres 2014, dargestellt.
 
-![nyc-flights-automated-reporting-Q1.png](https://i.postimg.cc/sXptykKW/nyc-flights-automated-reporting-Q1.png){ width=100% }
+![](https://i.postimg.cc/sXptykKW/nyc-flights-automated-reporting-Q1.png){ width=100% }
 
-![nyc-flights-automated-reporting-Q2.png](https://i.postimg.cc/zvzPNVym/nyc-flights-automated-reporting-Q2.png){ width=100% }
+![](https://i.postimg.cc/zvzPNVym/nyc-flights-automated-reporting-Q2.png){ width=100% }
 
 ![nyc-flights-automated-reporting-Q3.png](https://i.postimg.cc/C1NmcSmc/nyc-flights-automated-reporting-Q3.png)(https://postimg.cc/7G5368vz){ width=100% }
 
@@ -80,17 +89,17 @@ R ist eine führende Programmiersprache zur Datenanalyse; allerdings ist für be
 
 Hintergründe zu Shiny sind z.B. in @wickham_mastering_2021, @fay_engineering_2021 oder @resnizky_learning_2015 nachzulesen.
 
-Im Folgenden sind einige Beispiele solcher Apps dargestellt.
+Im Folgenden sind einige Beispiele solcher Apps dargestellt:
 
 
-[R&D Business Game
+- [R&D Business Game
 by Paul Simmering](https://shiny.rstudio.com/gallery/rd-business-game.html)
 
-[Identifying real estate investment opportunities
+- [Identifying real estate investment opportunities
 by Philipp Reiner](https://shiny.rstudio.com/gallery/real-estate-investment.html)
 
 
-[Pasture Potential Tool for improving dairy farm profitability and environmental impact
+- [Pasture Potential Tool for improving dairy farm profitability and environmental impact
 by Simon Woodward](https://shiny.rstudio.com/gallery/dairy-farms.html)
 
 
@@ -98,6 +107,11 @@ by Simon Woodward](https://shiny.rstudio.com/gallery/dairy-farms.html)
 # Prüfung
 
 Prüfungsgegenstand ist eine Projektarbeit, in der der gelernte Stoff an einem Projekt angewendet werden soll.
+
+
+# Voraussetzungen
+
+Es werden Grundlagen in R und in Statistik vorausgesetzt, wie sie in Grundlagenveranstaltungen (etwa "Quantitative Methoden 1") erworben werden.
 
 
 # Literatur
