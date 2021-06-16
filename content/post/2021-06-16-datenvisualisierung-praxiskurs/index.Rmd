@@ -10,7 +10,8 @@ categories:
 tags:
   - dataviz
 nocite: | 
-  @R-tidyverse
+  @
+  
 output:
   blogdown::html_page:
     toc: yes
@@ -61,7 +62,7 @@ Einfache Dashboards, haben den Vorteil, schnell entwickelt werden zu können und
 
 An relevanter Literatur ist z.B. @xie_r_2020 oder @xie_blogdown_2018 zu nennen.
 
-![image.png](https://i.postimg.cc/PrHmVBBD/image.png){ width=70% }
+![](https://i.postimg.cc/PrHmVBBD/image.png){ width=100% }
 
 [Quelle](https://beta.rstudioconnect.com/jjallaire/htmlwidgets-highcharter/htmlwidgets-highcharter.html)
 
@@ -74,13 +75,13 @@ Praktische Hinweise finden sich in @allairermarkdown2016 oder @xie2016bookdown.
 
 Beispielhaft sei hier ein Bericht für Flugdaten, jeweils für ein Quartal des Jahres 2014, dargestellt.
 
-![](https://i.postimg.cc/sXptykKW/nyc-flights-automated-reporting-Q1.png){ width=100% }
+![](https://i.postimg.cc/sXptykKW/nyc-flights-automated-reporting-Q1.png){ width=50% }
 
-![](https://i.postimg.cc/zvzPNVym/nyc-flights-automated-reporting-Q2.png){ width=100% }
+![](https://i.postimg.cc/zvzPNVym/nyc-flights-automated-reporting-Q2.png){ width=50% }
 
-![nyc-flights-automated-reporting-Q3.png](https://i.postimg.cc/C1NmcSmc/nyc-flights-automated-reporting-Q3.png)(https://postimg.cc/7G5368vz){ width=100% }
+![](https://i.postimg.cc/C1NmcSmc/nyc-flights-automated-reporting-Q3.png){ width=50% }
 
-![nyc-flights-automated-reporting-Q4.png](https://i.postimg.cc/FKxy4G3R/nyc-flights-automated-reporting-Q4.png){ width=100% }
+![](https://i.postimg.cc/FKxy4G3R/nyc-flights-automated-reporting-Q4.png){ width=50% }
 
 
 ## Daten-Apps
