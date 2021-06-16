@@ -7,6 +7,10 @@ categories:
   - rstats
 tags:
   - tutorial
+output:
+  blogdown::html_page:
+    toc: yes
+    number_sections: yes
 ---
 
 # Setup
