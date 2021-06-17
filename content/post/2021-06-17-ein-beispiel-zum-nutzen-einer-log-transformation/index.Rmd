@@ -1,0 +1,102 @@
+---
+title: Ein Beispiel zum Nutzen einer Log-Transformation
+author: Sebastian Sauer
+date: '2021-06-17'
+slug: ein-beispiel-zum-nutzen-einer-log-transformation
+categories: []
+tags: []
+output:
+  blogdown::html_page:
+    toc: yes
+    number_sections: yes
+editor_options: 
+  chunk_output_type: console
+---
+
+# Vorbereitung
+
+```{r}
+library(tidyverse)
+library(arm)
+```
+
+
+
+# Ein unschuldiger Datensatz
+
+```{r}
+euler_e <- 2.71
+
+d2 <- 
+  tibble(
+    x = rep(0:100, 10),
+    y_hat = euler_e^(0.1*x) %>% round(2),
+    e = rnorm(n = (101)*10) %>% round(2),
+    y = y_hat + e
+  )
+
+```
+
+```{r}
+glimpse(d2)
+```
+
+
+# lm1: additiv
+
+```{r}
+lm1 <- lm(y ~ x, data = d2)
+
+display(lm1)
+```
+
+
+```{r}
+ggplot(d2) +
+  aes(x = x, y = y) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+Passt irgendwie nicht so gut, die Regressionsgerade ...
+
+
+
+# lm2: multiplikativ (exponenziell)
+
+
+```{r}
+d3 <- 
+  d2 %>% 
+  filter(y > 0) %>% 
+  mutate(y_log = log(y))
+```
+
+
+```{r}
+lm2 <- lm(y_log ~ x, data = d3)
+
+display(lm2)
+```
+
+
+
+
+```{r}
+ggplot(d3) +
+  aes(x = x, y = y_log) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+
+Passt. perfekt.
+
+
+# Fazit
+
+
+👏YOU👏NEED👏THE👏LOG👏
+
+
+Übrigens denkt unser Hirn in Logarithmen, [s. hier](https://www.youtube.com/watch?v=Pxb5lSPLy9c) (entspanntes, sofataugliches Video).
