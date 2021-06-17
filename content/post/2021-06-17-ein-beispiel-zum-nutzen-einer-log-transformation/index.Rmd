@@ -15,7 +15,7 @@ editor_options:
 
 # Vorbereitung
 
-```{r}
+```{r message=FALSE}
 library(tidyverse)
 library(arm)
 ```
@@ -23,6 +23,8 @@ library(arm)
 
 
 # Ein unschuldiger Datensatz
+
+Gehen wir davon aus, uns ist ein Datensatz gegeben. Die Hintergründe der Entstehung verlieren sich im Dunkel. Ich habe hier einen Datensatz simuliert; diese Details können Sie getrost überspringen. Nehmen Sie den Datensatz einfach als gegeben hin.
 
 ```{r}
 euler_e <- 2.71
@@ -42,13 +44,21 @@ glimpse(d2)
 ```
 
 
+`y_hat` ist der "wahre" Wert von Y, aber für uns unzugänglich. `y` ist der mit etwas Rauschen überlagerte echte Wert und der Wert, den wir messen.
+
 # lm1: additiv
+
+Versuchen wir ein normales ("additives") Modell klassischer Bauart.
+
 
 ```{r}
 lm1 <- lm(y ~ x, data = d2)
 
 display(lm1)
 ```
+
+
+Visualisierung:
 
 
 ```{r}
@@ -64,6 +74,7 @@ Passt irgendwie nicht so gut, die Regressionsgerade ...
 
 # lm2: multiplikativ (exponenziell)
 
+Jetzt probieren wir ein LogY-Modell; wir logarithmieren dazu die Y-Variable (die Basis des Logarithmus ist im Prinzip egal, ich empfehle aber e, weil oft am einfachsten zu interpretieren).
 
 ```{r}
 d3 <- 
@@ -100,3 +111,11 @@ Passt. perfekt.
 
 
 Übrigens denkt unser Hirn in Logarithmen, [s. hier](https://www.youtube.com/watch?v=Pxb5lSPLy9c) (entspanntes, sofataugliches Video).
+
+
+
+
+# Take home message
+
+
+<a href="https://imgflip.com/i/5dl64h"><img src="https://i.imgflip.com/5dl64h.jpg" title="made at imgflip.com"/></a><div><a href="https://imgflip.com/memegenerator">from Imgflip Meme Generator</a></div>
