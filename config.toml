@@ -24,7 +24,7 @@ enableEmoji = true
 
 
 [params]
-     description = "Sebastian Sauer's statistics Blog"
+     description = "Sebastian Sauer's statistics blog"
 
     # options for highlight.js (version, additional languages, and theme)
     highlightjsVersion = "9.12.0"
