@@ -39,6 +39,8 @@ knitr::opts_chunk$set(
 ```{r load-libs, message = FALSE, warning = FALSE}
 library(tidyverse)  # data wrangling
 library(fastDummies)  # nur für "Dummyisierung"
+library(skimr)  # viele Statistiken auf einmal
+library(corrr)  # komfortabel Korrelationen ausrechnen
 ```
 
 ```{r load-libs-hidden, message = FALSE, warning = FALSE, include=FALSE}
@@ -119,11 +121,21 @@ Oder vielleicht so:
 
 
 ```{r}
+flights %>%
+  drop_na(dep_delay, arr_delay) %>% 
+  summarise(sd(dep_delay),
+            sd(arr_delay))
+```
+
+Das sind ca. 10% Differenz in der Skalierung; wir können die Skalierung komplett angleichen, um Abweichungen, die auf unterschiedlichen Mustern beruhen, besser zu sehen. Dazu hilft uns die z-Transformation.
+
+
+```{r}
 flights %>% 
   select(contains("delay")) %>% 
   drop_na() %>% 
-  mutate(dep_delay = scale(dep_delay),
-         arr_delay = scale(arr_delay)) %>% 
+  mutate(dep_delay = scale(dep_delay),  # z-Transformation
+         arr_delay = scale(arr_delay)) %>%   # z-Transformation
   ggplot() +
   aes(x = arr_delay, y = dep_delay) +
   geom_bin2d() +
@@ -186,15 +198,22 @@ flights %>%
 ```
 
 
-## flights2: Extremwerte definieren
+## flights2: Extremwerte (der Verspätung) definieren
+
+[Quelle dieses Abschnitts](https://data-se.netlify.app/2021/03/08/eda-zu-flugversp%C3%A4tungen/#flights2-extremwerte-definieren)
+
+
+"Wann ist ein Flug *sehr* verspätet?*
+
+Eine Möglichkeit ist die "Boxplot-Methode": Entferne alle Flüge, die mehr verspätet sind als: $q75+1.5iqr$
 
 Definieren wir als Extremwert, wenn eine Verspätung zu den 25% Flügen mit der größten Verspätung gehört.
 
 ```{r}
 flights %>% 
-  summarise(is_below_75_quantile = quantile(dep_delay, 
-                                  prob = .75, 
-                                  na.rm = TRUE))
+  summarise(q75 = quantile(dep_delay, 
+                           prob = .75, 
+                           na.rm = TRUE))
 ```
 
 Das sind also etwa 11 Minuten, die die Grenzlinie zwischen den 75% weniger bzw. den 25% stärker verspäteten Flügen markieren.
@@ -210,6 +229,14 @@ flights %>%
 ```
 
 
+Der Grenzwert liegt dem zufolge bei:
+
+```{r}
+grenzwert <- 11 + 1.5*16
+```
+
+
+
 Das ist kein "gottgegebener" Wert, sondern ein pragmatischer Versuch, einen Grenzwert zu finden. 
 Die Nützlichkeit dieses Grenzwerts müsste sich noch erweisen.
 Viele andere Grenzwerte lassen sich verteidigen.
@@ -222,22 +249,22 @@ Viele andere Grenzwerte lassen sich verteidigen.
 flights2 <-
   flights %>% 
   mutate(is_extreme = case_when(
-    dep_delay > 11 + 1.5 * 16 ~ TRUE,
-    TRUE ~ FALSE  # in den anderen Fällen, dann kein Extremwert
+    dep_delay > 11 + 1.5 * 16 ~ TRUE, # Verspätung > 35 Min.
+    dep_delay <= 35 ~ FALSE  # in den anderen Fällen (<= 35 Min.), dann kein Extremwert
   ))
 ```
 
 
 
 
-## Fehlende Werte
+## Fehlende Werte berechnen
 
 Wie viele fehlende Werte gibt es eigentlich?
 
 
 ```{r}
 flights %>% 
-  summarise(sum(is.na(dep_delay)))
+  summarise(sum(is.na(dep_delay)))  # fehlende Werte zählen
 ```
 
 So geht es für alle Spalten auf einmal:
@@ -252,7 +279,7 @@ Wie viele Fälle gingen verloren, wenn wir die Fälle mit fehlenden Werten bei `
 
 ```{r}
 flights %>% 
-  drop_na(dep_delay) %>% 
+  drop_na() %>% 
   nrow()
 ```
 
@@ -261,30 +288,102 @@ Wenige, im Verhältnis. Also machen wir das mal:
 
 ## flights3
 
+Achtung: dieses Vorgehen hier ist gefährlich. U.U. verliert man sehr viele Zeilen (Beobachtungen).
+
 
 ```{r flights2}
 flights3 <-
   flights2 %>% 
-  drop_na(dep_delay) %>% 
+  drop_na() %>% 
   select(-year)
 ```
 
 
+# Deskriptive Statistiken
+
+
+
+## Mit `summarise`
+
+
+Das kann machen mit `summarise`. Einfach, kann aber viel Tipperei bedeuten:
+
+```{r}
+flights2 %>% 
+  summarise(mean(dep_delay),
+            sd(dep_delay),
+            mean(arr_delay),
+            sd(arr_delay))  # und so weiter
+```
+
+
+
+## Mit `skimr` 
+
+`skimr` ist sehr praktisch; man bekommt viele Statistiken auf einmal gezeigt; das spart viel Tipperei.
+
+```{r}
+flights %>% 
+  skim()
+```
+
+
+
+
 # Korrelate von Verspätung
+
+Schauen wir, welche Variablen mit `dep_delay`, der Verspätung der Flüge also, korrelieren.
 
 
 ## Metrische Prädiktoren
 
 
+### Nur mit `cor` 
+
+Am einfachsten geht es so. Der Nachteil ist mehr (viel) Tipperei:
+
 ```{r}
-flights2 %>% 
+flights3 %>% 
   select(where(is.numeric)) %>% 
+  summarise(cor_month = cor(dep_delay, month),
+            cor_day = cor(dep_delay, day),
+            cor_dep_time = cor(dep_delay, dep_time))  # etc
+```
+
+
+
+### Mit `across`
+
+Berechnen wir die Korrelationen jetzt mit dem Befehl `across`. Der Punkt `.` spricht hier jeweils eine Spalte an, die von `across` ausgewählt wurde. Der Effekt ist, dass eine Korrelation von jeder Spalte mit `dep_delay` berechnet wird.
+
+
+```{r}
+flights3 %>% 
+  select(where(is.numeric)) %>%  # nur die numerischen Spalten auswählen
   summarise(across(
     .cols = everything(),
-    .fns = ~ cor(., flights2$dep_delay, use = "complete.obs"))) %>% 
-  pivot_longer(everything()) %>% 
-  arrange(-value)
+    .fns = ~ cor(., dep_delay))) %>% 
+  pivot_longer(everything()) %>%  # von breit auf lang
+  arrange(-value)  # absteigend sortieren
 ```
+
+
+
+### Mit `correlate` 
+
+Oder so, das ist vielleicht einfacher:
+
+
+
+```{r}
+flights2 %>% 
+  select(where(is.numeric)) %>%  # alle metrischen Variablen, aber sonst keine
+  correlate() %>%   # korreliere, was du hast
+  focus(dep_delay) %>%  # beschränke (fokussiere) dich auf `dep_delay`
+  arrange(-dep_delay)
+  
+```
+
 
 ## Nominale Prädiktoren
 
@@ -309,8 +408,11 @@ flights2 %>%
   pivot_longer(everything())
 ```
 
+Geht auch mit `skim`, s. oben, ist einfacher.
 
 ### Carrier
+
+Das ist die Fluggesellschaft.
 
 ```{r}
 flights2 %>% 
@@ -323,8 +425,8 @@ flights2 %>%
 ```{r}
 flights2 <-
   flights2 %>% 
-  mutate(carrier = factor(carrier)) %>% 
-  mutate(carrier = fct_lump(carrier, n = 8))
+  mutate(carrier = factor(carrier)) %>%   # nicht character, sondern factor
+  mutate(carrier_lump = fct_lump(carrier, n = 8))
 ```
 
 
@@ -332,16 +434,16 @@ Hier fassen wir mit `fct_lump` alle Stufen von `carrier` zu einer "Lumpensammler
 
 ```{r}
 flights2 %>% 
-  count(carrier)
+  count(carrier_lump)
 ```
 
 
 
 ```{r}
 flights2 %>% 
-  filter(!is_extreme) %>% 
+  filter(!is_extreme) %>%  # keine Extremwerte
   ggplot() +
-  aes(x = fct_reorder(carrier, dep_delay, 
+  aes(x = fct_reorder(carrier_lump, dep_delay, 
                       na.rm = TRUE), 
       y = dep_delay) %>% 
   geom_boxplot()
@@ -355,13 +457,15 @@ Schauen wir uns mal die Mediane genauer an:
 ```{r}
 flights2 %>% 
   filter(!is_extreme) %>% 
-  group_by(carrier) %>% 
+  group_by(carrier_lump) %>% 
   summarise(dep_delay = median(dep_delay, na.rm = TRUE)) %>% 
   arrange(dep_delay)
 ```
 
 
 Die Reihenfolge entspricht der dem obigen Diagramm.
+
+
 
 
 ## Korrelation von `carrier` mit Verspätung
@@ -372,7 +476,7 @@ Hier mit "Dummysierung" aller nicht-numerischer Spalten. Ein Beispiel zur Verdeu
 ```{r}
 flights2 %>% 
   select(origin, dep_delay) %>% 
-  dummy_cols() %>% 
+  dummy_cols() %>%  # aus dem Paket `fastDummies`
   head()
 ```
 
@@ -384,7 +488,7 @@ Die Schiefe der Verteilung begrenzt hier übrigens die Stärke der Korrelation.
 ```{r}
 flights2 %>% 
   select(dep_delay, carrier) %>% 
-  fastDummies::dummy_cols() %>%   # Dummysierung
+  dummy_cols() %>%   # "Dummysierung"
   select(-carrier) %>% 
   pivot_longer(-dep_delay,
                names_to = "carrier",
