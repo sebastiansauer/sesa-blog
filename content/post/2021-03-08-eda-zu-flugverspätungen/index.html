@@ -47,6 +47,8 @@ output:
 <li><a href="#nominale-prädiktoren"><span class="toc-section-number">7.2</span> Nominale Prädiktoren</a>
 <ul>
 <li><a href="#carrier"><span class="toc-section-number">7.2.1</span> Carrier</a></li>
+<li><a href="#achsen-labels-anpassen"><span class="toc-section-number">7.2.2</span> Achsen-Labels anpassen</a></li>
+<li><a href="#lumpsensammler-kategorie"><span class="toc-section-number">7.2.3</span> “Lumpsensammler-Kategorie”</a></li>
 </ul></li>
 <li><a href="#korrelation-von-carrier-mit-verspätung"><span class="toc-section-number">7.3</span> Korrelation von <code>carrier</code> mit Verspätung</a>
 <ul>
@@ -1043,10 +1045,16 @@ Viele andere Grenzwerte lassen sich verteidigen.</p>
 <p>Geht auch mit <code>skim</code>, s. oben, ist einfacher.</p>
 <div id="carrier" class="section level3" number="7.2.1">
 <h3><span class="header-section-number">7.2.1</span> Carrier</h3>
-<p>Das ist die Fluggesellschaft.</p>
+<p><code>carrier</code> ist die Fluggesellschaft.
+Wie viele verschiedene Fluggesellschaften gibt es?
+Wie viele Flüge hat jede davon ausgeführt?
+Welche Fluggesellschaft hat die meisten Flüge ausgeführt?
+Gibt es große Unterschiede in de Zahl der ausgeführten Flüge.
+Wer hat eigentlich die flüssige Seife erfunden?
+Fragen über Fragen.</p>
 <pre class="r"><code>flights2 %&gt;% 
   select(carrier) %&gt;% 
-  count(carrier, sort = TRUE)</code></pre>
+  count(carrier, sort = TRUE) </code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -1121,11 +1129,41 @@ Viele andere Grenzwerte lassen sich verteidigen.</p>
 </tr>
 </tbody>
 </table>
+<p>Wir brauchen eine Visualisierung dazu; das beantwortet vielleicht einen Teil der obigen Fragen.</p>
+<pre class="r"><code>plot1 &lt;- flights2 %&gt;% 
+  select(carrier) %&gt;% 
+  count(carrier, sort = TRUE) %&gt;% 
+  ggplot() +
+  aes(y = carrier, x = n) +
+  geom_point(color = &quot;red&quot;) +
+  geom_line(group = 1)
+
+plot1</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-28-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Wir müssen die Werte von <code>carrier</code> sortieren anhand der Anzahl der Flüge, sonst ist es zu unübersichtlich.</p>
+</div>
+<div id="achsen-labels-anpassen" class="section level3" number="7.2.2">
+<h3><span class="header-section-number">7.2.2</span> Achsen-Labels anpassen</h3>
+<p><em>Nur zur Demonstration, nicht inhaltlich wichtig</em></p>
+<p>Sagen wir, wir möchten die Labels der X-Achse anpassen, und zwar möchten wir die Werte 25.000, 50.000, und 75.0000.</p>
+<pre class="r"><code>plot1 +
+  scale_x_continuous(breaks = c(0, 25000, 50000, 75000),
+                     limits = c(0, 100000),
+                     labels = c(&quot;keine&quot;, &quot;wenig&quot;, &quot;mittel&quot;, &quot;viel&quot;))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-29-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Hm, schön sieht es noch nicht aus; die <code>limits</code> machen nicht unbedingt Sinn. Die <code>labels</code> sind auch wenig sinnvoll.</p>
+<pre class="r"><code>library(scales)</code></pre>
+<p>Mehr zum Thema “Achsen aufhübschen” findet sich z.B. <a href="https://rkabacoff.github.io/datavis/Customizing.html#axes">hier</a>.</p>
+</div>
+<div id="lumpsensammler-kategorie" class="section level3" number="7.2.3">
+<h3><span class="header-section-number">7.2.3</span> “Lumpsensammler-Kategorie”</h3>
 <pre class="r"><code>flights2 &lt;-
   flights2 %&gt;% 
   mutate(carrier = factor(carrier)) %&gt;%   # nicht character, sondern factor
   mutate(carrier_lump = fct_lump(carrier, n = 8))</code></pre>
-<p>Hier fassen wir mit <code>fct_lump</code> alle Stufen von <code>carrier</code> zu einer “Lumpensammler-Kategorie” zusammen, die weniger als 8 Mal vorkommen.</p>
+<p>Hier fassen wir mit <code>fct_lump</code> alle Stufen von <code>carrier</code> zu einer “Lumpensammler-Kategorie” zusammen, die weniger als 8 Mal vorkommen.
+Dazu muss die Variable aber als <code>factor</code> vorliegen.</p>
+<p>Jetzt haben wir noch nur 9 (8 plus Lumpensammler-Gruppe) Gruppen:</p>
 <pre class="r"><code>flights2 %&gt;% 
   count(carrier_lump)</code></pre>
 <table>
@@ -1174,6 +1212,18 @@ Viele andere Grenzwerte lassen sich verteidigen.</p>
 </tr>
 </tbody>
 </table>
+<p>Liniendiagramm:</p>
+<pre class="r"><code>flights2 %&gt;% 
+  select(carrier) %&gt;% 
+  count(carrier, sort = TRUE) %&gt;% 
+  ggplot() +
+  aes(y = fct_reorder(carrier, n), x = n) +
+  geom_point(color = &quot;red&quot;) +
+  geom_line(group = 1)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-33-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Mit <code>fct_reorder</code> haben wir die Werte von <code>carrier</code> (UA, B6, AA, …) sortiert und zwar anhand der Werte von <code>n</code>, also anhand der Häufigkeit. Es resultiert eine Rangfolge: `UA &gt; B6 &gt; EV &gt; DL &gt; …" etc.
+(Nur) Mit einer sortierten Faktorvariable lässt sich ein gut sortiert darstellen.</p>
+<p>Ah, schon besser. Aber recht informationsarm, das Diagramm. Informationsreicher ist ein Boxplot:</p>
 <pre class="r"><code>flights2 %&gt;% 
   filter(!is_extreme) %&gt;%  # keine Extremwerte
   ggplot() +
@@ -1181,7 +1231,7 @@ Viele andere Grenzwerte lassen sich verteidigen.</p>
                       na.rm = TRUE), 
       y = dep_delay) %&gt;% 
   geom_boxplot()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-30-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-34-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Schauen wir uns mal die Mediane genauer an:</p>
 <pre class="r"><code>flights2 %&gt;% 
   filter(!is_extreme) %&gt;% 
@@ -1337,7 +1387,7 @@ Die Schiefe der Verteilung begrenzt hier übrigens die Stärke der Korrelation.<
                       na.rm = TRUE), 
       y = dep_delay) +
   geom_boxplot()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-34-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-38-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="origin" class="section level3" number="7.3.2">
 <h3><span class="header-section-number">7.3.2</span> Origin</h3>
@@ -1347,7 +1397,7 @@ Die Schiefe der Verteilung begrenzt hier übrigens die Stärke der Korrelation.<
   ggplot() +
   aes(x = origin, y = dep_delay) %&gt;% 
   geom_boxplot()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-35-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-39-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="drei-variablen-origin-hour-dep_delay" class="section level2" number="7.4">
@@ -1360,7 +1410,7 @@ Die Schiefe der Verteilung begrenzt hier übrigens die Stärke der Korrelation.<
   aes(x = hour, y = dep_delay) +
   geom_boxplot() +
   facet_wrap(~ origin)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-36-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-40-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="alle-nominale-variablen" class="section level2" number="7.5">
 <h2><span class="header-section-number">7.5</span> Alle nominale Variablen</h2>
@@ -1489,7 +1539,7 @@ flights3 %&gt;%
   facet_grid(dest ~ carrier) +
   geom_point()
   </code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-41-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-45-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Puh, das Diagramm ist nicht sehr aussagekräftig.
 Vielleicht besser als Tabelle?</p>
 <pre class="r"><code>flights4 %&gt;% 
@@ -1541,7 +1591,7 @@ Vielleicht besser als Tabelle?</p>
              aes(y = delay_md,
                  x = month)) +
   facet_wrap( ~ origin)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-44-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-48-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="fazit" class="section level1" number="8">

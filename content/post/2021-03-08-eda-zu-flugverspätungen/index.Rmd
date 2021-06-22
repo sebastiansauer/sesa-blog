@@ -412,14 +412,65 @@ Geht auch mit `skim`, s. oben, ist einfacher.
 
 ### Carrier
 
-Das ist die Fluggesellschaft.
+`carrier` ist die Fluggesellschaft.
+Wie viele verschiedene Fluggesellschaften gibt es? 
+Wie viele Flüge hat jede davon ausgeführt?
+Welche Fluggesellschaft hat die meisten Flüge ausgeführt?
+Gibt es große Unterschiede in de Zahl der ausgeführten Flüge.
+Wer hat eigentlich die flüssige Seife erfunden?
+Fragen über Fragen.
 
 ```{r}
 flights2 %>% 
   select(carrier) %>% 
-  count(carrier, sort = TRUE)
+  count(carrier, sort = TRUE) 
 ```
 
+
+Wir brauchen eine Visualisierung dazu; das beantwortet vielleicht einen Teil der obigen Fragen.
+
+
+```{r}
+plot1 <- flights2 %>% 
+  select(carrier) %>% 
+  count(carrier, sort = TRUE) %>% 
+  ggplot() +
+  aes(y = carrier, x = n) +
+  geom_point(color = "red") +
+  geom_line(group = 1)
+
+plot1
+```
+
+Wir müssen die Werte von `carrier` sortieren anhand der Anzahl der Flüge, sonst ist es zu unübersichtlich.
+
+### Achsen-Labels anpassen
+
+*Nur zur Demonstration, nicht inhaltlich wichtig*
+
+Sagen wir, wir möchten die Labels der X-Achse anpassen, und zwar möchten wir die Werte 25.000, 50.000, und 75.0000.
+
+
+```{r}
+plot1 +
+  scale_x_continuous(breaks = c(0, 25000, 50000, 75000),
+                     limits = c(0, 100000),
+                     labels = c("keine", "wenig", "mittel", "viel"))
+```
+
+
+Hm, schön sieht es noch nicht aus; die `limits` machen nicht unbedingt Sinn. Die `labels` sind auch wenig sinnvoll.
+
+```{r}
+library(scales)
+```
+
+
+Mehr zum Thema "Achsen aufhübschen" findet sich z.B. [hier](https://rkabacoff.github.io/datavis/Customizing.html#axes).
+
+
+
+### "Lumpsensammler-Kategorie"
 
 
 ```{r}
@@ -431,12 +482,38 @@ flights2 <-
 
 
 Hier fassen wir mit `fct_lump` alle Stufen von `carrier` zu einer "Lumpensammler-Kategorie" zusammen, die weniger als 8 Mal vorkommen.
+Dazu muss die Variable aber als `factor` vorliegen.
+
+Jetzt haben wir noch nur 9 (8 plus Lumpensammler-Gruppe) Gruppen:
 
 ```{r}
 flights2 %>% 
   count(carrier_lump)
 ```
 
+
+Liniendiagramm:
+
+
+
+```{r}
+flights2 %>% 
+  select(carrier) %>% 
+  count(carrier, sort = TRUE) %>% 
+  ggplot() +
+  aes(y = fct_reorder(carrier, n), x = n) +
+  geom_point(color = "red") +
+  geom_line(group = 1)
+```
+
+
+Mit `fct_reorder` haben wir die Werte von `carrier` (UA, B6, AA, ...) sortiert und zwar anhand der Werte von `n`, also anhand der Häufigkeit. Es resultiert eine Rangfolge: `UA > B6 > EV > DL > ..." etc. 
+(Nur) Mit einer sortierten Faktorvariable lässt sich ein gut sortiert darstellen.
+
+
+
+
+Ah, schon besser. Aber recht informationsarm, das Diagramm. Informationsreicher ist ein Boxplot:
 
 
 ```{r}
