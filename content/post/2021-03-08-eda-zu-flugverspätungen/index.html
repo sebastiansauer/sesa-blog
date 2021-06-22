@@ -27,7 +27,10 @@ output:
 </ul></li>
 <li><a href="#verteilung-der-verspätung"><span class="toc-section-number">5</span> Verteilung der Verspätung</a>
 <ul>
-<li><a href="#flights2-extremwerte-der-verspätung-definieren"><span class="toc-section-number">5.1</span> flights2: Extremwerte (der Verspätung) definieren</a></li>
+<li><a href="#flights2-extremwerte-der-verspätung-definieren"><span class="toc-section-number">5.1</span> flights2: Extremwerte (der Verspätung) definieren</a>
+<ul>
+<li><a href="#boxplot-methode"><span class="toc-section-number">5.1.1</span> Boxplot-Methode</a></li>
+</ul></li>
 <li><a href="#fehlende-werte-berechnen"><span class="toc-section-number">5.2</span> Fehlende Werte berechnen</a></li>
 <li><a href="#flights3"><span class="toc-section-number">5.3</span> flights3</a></li>
 </ul></li>
@@ -154,10 +157,11 @@ library(corrr)  # komfortabel Korrelationen ausrechnen</code></pre>
 <p>Ein Blick in die Hilfe lässt uns mehr lernen, was die Spalten bedeuten: <code>help(flights)</code> (wenn das Paket <code>nycflights13</code> geladen ist; alternativ kann man z.B. <a href="https://vincentarelbundock.github.io/Rdatasets/doc/nycflights13/flights.html">hier</a> nachlesen):</p>
 <pre><code>dep_delay, arr_delay
 
-Departure and arrival delays, in minutes. Negative times represent early departures/arrivals.</code></pre>
+Departure and arrival delays, in minutes. 
+Negative times represent early departures/arrivals.</code></pre>
 <div id="wie-ähnlich-sind-ankunfts--und-abflugsverspätung" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Wie ähnlich sind Ankunfts- und Abflugsverspätung?</h2>
-<p>Da der Datensatz so groß ist, ziehen wir eine Stichprobe, dann geht alles schneller:</p>
+<p>Da der Datensatz so groß ist, ziehen wir eine Stichprobe, dann geht alles schneller. Hier <em>nicht</em> wichtig, nur um etwas Zeit beim Plotten zu sparen. In der Praxis würde ich in an dieser Stelle keine Stichprobe ziehen, bzw. mit dem Gesamtdatensatz weiterarbeiten (was wir ja auch im Folgenden tun).</p>
 <pre class="r"><code>flights %&gt;% 
   sample_n(size = 1000) %&gt;% 
   ggplot() +
@@ -277,8 +281,11 @@ Departure and arrival delays, in minutes. Negative times represent early departu
 </table>
 <div id="flights2-extremwerte-der-verspätung-definieren" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> flights2: Extremwerte (der Verspätung) definieren</h2>
+<p>Es gibt keinen sicheren Weg, mit Extremwerten umzugehen. Häufig macht es Sinn, die Ergebnisse zu vergleichen mit oder ohne Extremwerten.</p>
 <p><a href="https://data-se.netlify.app/2021/03/08/eda-zu-flugversp%C3%A4tungen/#flights2-extremwerte-definieren">Quelle dieses Abschnitts</a></p>
 <p>"Wann ist ein Flug <em>sehr</em> verspätet?*</p>
+<div id="boxplot-methode" class="section level3" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Boxplot-Methode</h3>
 <p>Eine Möglichkeit ist die “Boxplot-Methode”: Entferne alle Flüge, die mehr verspätet sind als: <span class="math inline">\(q75+1.5iqr\)</span></p>
 <p>Definieren wir als Extremwert, wenn eine Verspätung zu den 25% Flügen mit der größten Verspätung gehört.</p>
 <pre class="r"><code>flights %&gt;% 
@@ -324,6 +331,7 @@ Viele andere Grenzwerte lassen sich verteidigen.</p>
     dep_delay &gt; 11 + 1.5 * 16 ~ TRUE, # Verspätung &gt; 35 Min.
     dep_delay &lt;= 35 ~ FALSE  # in den anderen Fällen (&lt;= 35 Min.), dann kein Extremwert
   ))</code></pre>
+</div>
 </div>
 <div id="fehlende-werte-berechnen" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Fehlende Werte berechnen</h2>
@@ -1152,7 +1160,6 @@ plot1</code></pre>
                      labels = c(&quot;keine&quot;, &quot;wenig&quot;, &quot;mittel&quot;, &quot;viel&quot;))</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-29-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Hm, schön sieht es noch nicht aus; die <code>limits</code> machen nicht unbedingt Sinn. Die <code>labels</code> sind auch wenig sinnvoll.</p>
-<pre class="r"><code>library(scales)</code></pre>
 <p>Mehr zum Thema “Achsen aufhübschen” findet sich z.B. <a href="https://rkabacoff.github.io/datavis/Customizing.html#axes">hier</a>.</p>
 </div>
 <div id="lumpsensammler-kategorie" class="section level3" number="7.2.3">
@@ -1220,7 +1227,7 @@ Dazu muss die Variable aber als <code>factor</code> vorliegen.</p>
   aes(y = fct_reorder(carrier, n), x = n) +
   geom_point(color = &quot;red&quot;) +
   geom_line(group = 1)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-33-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-32-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Mit <code>fct_reorder</code> haben wir die Werte von <code>carrier</code> (UA, B6, AA, …) sortiert und zwar anhand der Werte von <code>n</code>, also anhand der Häufigkeit. Es resultiert eine Rangfolge: `UA &gt; B6 &gt; EV &gt; DL &gt; …" etc.
 (Nur) Mit einer sortierten Faktorvariable lässt sich ein gut sortiert darstellen.</p>
 <p>Ah, schon besser. Aber recht informationsarm, das Diagramm. Informationsreicher ist ein Boxplot:</p>
@@ -1231,7 +1238,7 @@ Dazu muss die Variable aber als <code>factor</code> vorliegen.</p>
                       na.rm = TRUE), 
       y = dep_delay) %&gt;% 
   geom_boxplot()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-34-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-33-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Schauen wir uns mal die Mediane genauer an:</p>
 <pre class="r"><code>flights2 %&gt;% 
   filter(!is_extreme) %&gt;% 
@@ -1387,7 +1394,7 @@ Die Schiefe der Verteilung begrenzt hier übrigens die Stärke der Korrelation.<
                       na.rm = TRUE), 
       y = dep_delay) +
   geom_boxplot()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-38-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-37-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="origin" class="section level3" number="7.3.2">
 <h3><span class="header-section-number">7.3.2</span> Origin</h3>
@@ -1397,7 +1404,7 @@ Die Schiefe der Verteilung begrenzt hier übrigens die Stärke der Korrelation.<
   ggplot() +
   aes(x = origin, y = dep_delay) %&gt;% 
   geom_boxplot()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-39-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-38-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="drei-variablen-origin-hour-dep_delay" class="section level2" number="7.4">
@@ -1410,7 +1417,7 @@ Die Schiefe der Verteilung begrenzt hier übrigens die Stärke der Korrelation.<
   aes(x = hour, y = dep_delay) +
   geom_boxplot() +
   facet_wrap(~ origin)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-40-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-39-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="alle-nominale-variablen" class="section level2" number="7.5">
 <h2><span class="header-section-number">7.5</span> Alle nominale Variablen</h2>
@@ -1539,7 +1546,7 @@ flights3 %&gt;%
   facet_grid(dest ~ carrier) +
   geom_point()
   </code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-45-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-44-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Puh, das Diagramm ist nicht sehr aussagekräftig.
 Vielleicht besser als Tabelle?</p>
 <pre class="r"><code>flights4 %&gt;% 
@@ -1591,7 +1598,7 @@ Vielleicht besser als Tabelle?</p>
              aes(y = delay_md,
                  x = month)) +
   facet_wrap( ~ origin)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-48-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-47-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="fazit" class="section level1" number="8">

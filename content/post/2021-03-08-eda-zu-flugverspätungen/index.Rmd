@@ -101,12 +101,13 @@ Ein Blick in die Hilfe lässt uns mehr lernen, was die Spalten bedeuten: `help(f
 ````
 dep_delay, arr_delay
 
-Departure and arrival delays, in minutes. Negative times represent early departures/arrivals.
+Departure and arrival delays, in minutes. 
+Negative times represent early departures/arrivals.
 ````
 
 ## Wie ähnlich sind Ankunfts- und Abflugsverspätung?
 
-Da der Datensatz so groß ist, ziehen wir eine Stichprobe, dann geht alles schneller:
+Da der Datensatz so groß ist, ziehen wir eine Stichprobe, dann geht alles schneller. Hier *nicht* wichtig, nur um etwas Zeit beim Plotten zu sparen. In der Praxis würde ich in an dieser Stelle keine Stichprobe ziehen, bzw. mit dem Gesamtdatensatz weiterarbeiten (was wir ja auch im Folgenden tun).
 
 ```{r}
 flights %>% 
@@ -200,10 +201,17 @@ flights %>%
 
 ## flights2: Extremwerte (der Verspätung) definieren
 
+Es gibt keinen sicheren Weg, mit Extremwerten umzugehen. Häufig macht es Sinn, die Ergebnisse zu vergleichen mit oder ohne Extremwerten. 
+
+
+
 [Quelle dieses Abschnitts](https://data-se.netlify.app/2021/03/08/eda-zu-flugversp%C3%A4tungen/#flights2-extremwerte-definieren)
 
 
 "Wann ist ein Flug *sehr* verspätet?*
+
+
+### Boxplot-Methode
 
 Eine Möglichkeit ist die "Boxplot-Methode": Entferne alle Flüge, die mehr verspätet sind als: $q75+1.5iqr$
 
@@ -460,11 +468,6 @@ plot1 +
 
 
 Hm, schön sieht es noch nicht aus; die `limits` machen nicht unbedingt Sinn. Die `labels` sind auch wenig sinnvoll.
-
-```{r}
-library(scales)
-```
-
 
 Mehr zum Thema "Achsen aufhübschen" findet sich z.B. [hier](https://rkabacoff.github.io/datavis/Customizing.html#axes).
 
