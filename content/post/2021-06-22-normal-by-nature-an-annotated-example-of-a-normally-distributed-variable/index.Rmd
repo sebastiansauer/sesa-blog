@@ -1,0 +1,68 @@
+---
+title: Normal by nature? An annotated example of a normally distributed variable
+author: Sebastian Sauer
+draft: TRUE
+date: '2021-06-22'
+slug: normal-by-nature-an-annotated-example-of-a-normally-distributed-variable
+categories:
+  - rstats
+tags:
+  - tutorial
+---
+
+
+
+
+# Setup
+
+
+```{r}
+library(tidyverse)
+library(ggpubr)
+```
+
+
+```{r}
+d <- read_csv("https://vincentarelbundock.github.io/Rdatasets/csv/openintro/speed_gender_height.csv")
+```
+
+
+
+# Histogram of height
+
+
+```{r}
+d2 <-
+  d |> 
+  select(-gender)
+```
+
+
+```{r}
+d |> 
+  ggplot() +
+  aes(x = height) +
+  geom_histogram(aes(y = ..density..)) +
+  geom_density(aes(y = ..density..)) +
+  facet_wrap(~ gender)
+```
+
+A bit more beautifully perhaps:
+
+
+```{r}
+gghistogram(d,
+            x = "height", 
+            fill = "gender",
+            rug = TRUE,
+            add_density = TRUE,
+            add = "mean")
+```
+
+
+```{r}
+gghistogram(d,
+            x = "height",
+            add_density = TRUE,
+            add = "mean")
+```
