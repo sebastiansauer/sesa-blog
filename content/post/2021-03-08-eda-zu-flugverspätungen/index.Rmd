@@ -158,9 +158,23 @@ flights %>%
 Ein sehr langer rechter Rand; die meisten Flüge sind nicht/kaum verspätet; aber einige wenige sind sehr stark verspätet.
 
 
+Zentrale deskriptive Statisitken könnte man sich mit `summary` ausgeben lassen:
+
+
+```{r}
+flights %>%
+  filter(!is.na(dep_delay)) %>%  # keine fehlenden Werte
+  summarise(depdelay_mean = mean(dep_delay),
+            depdelay_sd = sd(dep_delay),
+            depdelay_md = median(dep_delay),
+            depdelay_iqr = IQR(dep_delay)) 
+```
+
+Oder man benutzt den Befehl `across`, der es erlaubt, eine oder mehrere Funktionen auf eine oder mehrere Spalten anzuwenden. In diesem Beispiel wenden wir mehrere Funktionen (adressiert mit `.fns`) auf eine Spalte (`dep_delay`), adressiert mit dem Argument `.cols` an. Außerdem kann man die Namen der resultierenden Spalten bestimmen mit dem Argument `.names`. In der geschweiften Klammer steht eine interne Variable, die den Namen der jeweils berechneten Funktion (`{fn}`) an den Namen der neu erstellten Spalte anfügt; in der Ausgabe sieht man das gut.
+
+
 ```{r}
 flights %>% 
-  select(dep_delay) %>% 
   summarise(across(
     .cols = dep_delay,
     .fns = list(mean = mean, 
@@ -174,13 +188,42 @@ flights %>%
 
 ## flights2: Extremwerte definieren
 
+Definieren wir als Extremwert, wenn eine Verspätung zu den 25% Flügen mit der größten Verspätung gehört.
+
+```{r}
+flights %>% 
+  summarise(is_below_75_quantile = quantile(dep_delay, 
+                                  prob = .75, 
+                                  na.rm = TRUE))
+```
+
+Das sind also etwa 11 Minuten, die die Grenzlinie zwischen den 75% weniger bzw. den 25% stärker verspäteten Flügen markieren.
+
+
+
+Dann berechnen wir den IQR:
+
+
+```{r}
+flights %>% 
+  summarise(depdelay_iqr = IQR(dep_delay, na.rm = TRUE))
+```
+
+
+Das ist kein "gottgegebener" Wert, sondern ein pragmatischer Versuch, einen Grenzwert zu finden. 
+Die Nützlichkeit dieses Grenzwerts müsste sich noch erweisen.
+Viele andere Grenzwerte lassen sich verteidigen.
+
+
+
+
 
 ```{r}
 flights2 <-
   flights %>% 
   mutate(is_extreme = case_when(
-    dep_delay > quantile(dep_delay, prob = .75, na.rm = TRUE) + 1.5 * IQR(dep_delay, na.rm = TRUE) ~ TRUE,
-    TRUE ~ FALSE
+    dep_delay > 11 + 1.5 * 16 ~ TRUE,
+    TRUE ~ FALSE  # in den anderen Fällen, dann kein Extremwert
   ))
 ```
 

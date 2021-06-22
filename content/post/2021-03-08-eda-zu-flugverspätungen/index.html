@@ -189,8 +189,33 @@ Departure and arrival delays, in minutes. Negative times represent early departu
   geom_density()</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Ein sehr langer rechter Rand; die meisten Flüge sind nicht/kaum verspätet; aber einige wenige sind sehr stark verspätet.</p>
+<p>Zentrale deskriptive Statisitken könnte man sich mit <code>summary</code> ausgeben lassen:</p>
+<pre class="r"><code>flights %&gt;%
+  filter(!is.na(dep_delay)) %&gt;%  # keine fehlenden Werte
+  summarise(depdelay_mean = mean(dep_delay),
+            depdelay_sd = sd(dep_delay),
+            depdelay_md = median(dep_delay),
+            depdelay_iqr = IQR(dep_delay)) </code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">depdelay_mean</th>
+<th align="right">depdelay_sd</th>
+<th align="right">depdelay_md</th>
+<th align="right">depdelay_iqr</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">12.63907</td>
+<td align="right">40.21006</td>
+<td align="right">-2</td>
+<td align="right">16</td>
+</tr>
+</tbody>
+</table>
+<p>Oder man benutzt den Befehl <code>across</code>, der es erlaubt, eine oder mehrere Funktionen auf eine oder mehrere Spalten anzuwenden. In diesem Beispiel wenden wir mehrere Funktionen (adressiert mit <code>.fns</code>) auf eine Spalte (<code>dep_delay</code>), adressiert mit dem Argument <code>.cols</code> an. Außerdem kann man die Namen der resultierenden Spalten bestimmen mit dem Argument <code>.names</code>. In der geschweiften Klammer steht eine interne Variable, die den Namen der jeweils berechneten Funktion (<code>{fn}</code>) an den Namen der neu erstellten Spalte anfügt; in der Ausgabe sieht man das gut.</p>
 <pre class="r"><code>flights %&gt;% 
-  select(dep_delay) %&gt;% 
   summarise(across(
     .cols = dep_delay,
     .fns = list(mean = mean, 
@@ -219,11 +244,47 @@ Departure and arrival delays, in minutes. Negative times represent early departu
 </table>
 <div id="flights2-extremwerte-definieren" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> flights2: Extremwerte definieren</h2>
+<p>Definieren wir als Extremwert, wenn eine Verspätung zu den 25% Flügen mit der größten Verspätung gehört.</p>
+<pre class="r"><code>flights %&gt;% 
+  summarise(is_below_75_quantile = quantile(dep_delay, 
+                                  prob = .75, 
+                                  na.rm = TRUE))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">is_below_75_quantile</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">11</td>
+</tr>
+</tbody>
+</table>
+<p>Das sind also etwa 11 Minuten, die die Grenzlinie zwischen den 75% weniger bzw. den 25% stärker verspäteten Flügen markieren.</p>
+<p>Dann berechnen wir den IQR:</p>
+<pre class="r"><code>flights %&gt;% 
+  summarise(depdelay_iqr = IQR(dep_delay, na.rm = TRUE))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">depdelay_iqr</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">16</td>
+</tr>
+</tbody>
+</table>
+<p>Das ist kein “gottgegebener” Wert, sondern ein pragmatischer Versuch, einen Grenzwert zu finden.
+Die Nützlichkeit dieses Grenzwerts müsste sich noch erweisen.
+Viele andere Grenzwerte lassen sich verteidigen.</p>
 <pre class="r"><code>flights2 &lt;-
   flights %&gt;% 
   mutate(is_extreme = case_when(
-    dep_delay &gt; quantile(dep_delay, prob = .75, na.rm = TRUE) + 1.5 * IQR(dep_delay, na.rm = TRUE) ~ TRUE,
-    TRUE ~ FALSE
+    dep_delay &gt; 11 + 1.5 * 16 ~ TRUE,
+    TRUE ~ FALSE  # in den anderen Fällen, dann kein Extremwert
   ))</code></pre>
 </div>
 <div id="fehlende-werte" class="section level2" number="5.2">
@@ -602,7 +663,7 @@ Departure and arrival delays, in minutes. Negative times represent early departu
                       na.rm = TRUE), 
       y = dep_delay) %&gt;% 
   geom_boxplot()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Schauen wir uns mal die Mediane genauer an:</p>
 <pre class="r"><code>flights2 %&gt;% 
   filter(!is_extreme) %&gt;% 
@@ -758,7 +819,7 @@ Die Schiefe der Verteilung begrenzt hier übrigens die Stärke der Korrelation.<
                       na.rm = TRUE), 
       y = dep_delay) +
   geom_boxplot()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-28-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="origin" class="section level3" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> Origin</h3>
@@ -768,7 +829,7 @@ Die Schiefe der Verteilung begrenzt hier übrigens die Stärke der Korrelation.<
   ggplot() +
   aes(x = origin, y = dep_delay) %&gt;% 
   geom_boxplot()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-29-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="drei-variablen-origin-hour-dep_delay" class="section level2" number="6.4">
@@ -781,7 +842,7 @@ Die Schiefe der Verteilung begrenzt hier übrigens die Stärke der Korrelation.<
   aes(x = hour, y = dep_delay) +
   geom_boxplot() +
   facet_wrap(~ origin)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-27-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-30-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="alle-nominale-variablen" class="section level2" number="6.5">
 <h2><span class="header-section-number">6.5</span> Alle nominale Variablen</h2>
@@ -910,7 +971,7 @@ flights3 %&gt;%
   facet_grid(dest ~ carrier) +
   geom_point()
   </code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-32-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-35-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Puh, das Diagramm ist nicht sehr aussagekräftig.
 Vielleicht besser als Tabelle?</p>
 <pre class="r"><code>flights4 %&gt;% 
@@ -962,7 +1023,7 @@ Vielleicht besser als Tabelle?</p>
              aes(y = delay_md,
                  x = month)) +
   facet_wrap( ~ origin)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-35-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-38-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="fazit" class="section level1" number="7">
