@@ -53,6 +53,8 @@ Praktische Hinweise zur `ggplot2` finden sich @wickham_ggplot2_2016; Hinweise zu
 
 [Quelle](https://github.com/cnicault/tidytuesday)
 
+Unter z.B. dem Stichwort *tidytuesday*  finden sich eine Reihe sehenswerter Diagramme (mit ggplot2) erstellt; eine Übersicht findet sich [hier](https://nsgrantham.shinyapps.io/tidytuesdayrocks/).
+
 
 ## Dashboards
 

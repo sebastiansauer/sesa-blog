@@ -38,6 +38,7 @@ knitr::opts_chunk$set(
 
 ```{r load-libs, message = FALSE, warning = FALSE}
 library(tidyverse)  # data wrangling
+library(fastDummies)  # nur für "Dummyisierung"
 ```
 
 ```{r load-libs-hidden, message = FALSE, warning = FALSE, include=FALSE}
@@ -284,6 +285,8 @@ flights2 <-
 ```
 
 
+Hier fassen wir mit `fct_lump` alle Stufen von `carrier` zu einer "Lumpensammler-Kategorie" zusammen, die weniger als 8 Mal vorkommen.
+
 ```{r}
 flights2 %>% 
   count(carrier)
@@ -295,26 +298,62 @@ flights2 %>%
 flights2 %>% 
   filter(!is_extreme) %>% 
   ggplot() +
-  aes(x = fct_reorder(carrier, -dep_delay), y = dep_delay) %>% 
+  aes(x = fct_reorder(carrier, dep_delay, 
+                      na.rm = TRUE), 
+      y = dep_delay) %>% 
   geom_boxplot()
 ```
 
 
+
+
+Schauen wir uns mal die Mediane genauer an:
+
+```{r}
+flights2 %>% 
+  filter(!is_extreme) %>% 
+  group_by(carrier) %>% 
+  summarise(dep_delay = median(dep_delay, na.rm = TRUE)) %>% 
+  arrange(dep_delay)
+```
+
+
+Die Reihenfolge entspricht der dem obigen Diagramm.
+
+
 ## Korrelation von `carrier` mit Verspätung
+
+Hier mit "Dummysierung" aller nicht-numerischer Spalten. Ein Beispiel zur Verdeutlichung:
 
 
 ```{r}
 flights2 %>% 
+  select(origin, dep_delay) %>% 
+  dummy_cols() %>% 
+  head()
+```
+
+Mit den "dummyisierten" Spalten können wir jetzt Korrelationen rechnen, denn jetzt haben wir Zahlen. 
+*Achtung*: Die Variablen bleiben nominalskaliert, trotz der 0-1-Transformation. 
+Auf diese Art Korrelationen zu berechnen ist nur für dummysierte Variablen ("Indikatorvariablen") sinnvoll. 
+Die Schiefe der Verteilung begrenzt hier übrigens die Stärke der Korrelation.
+
+```{r}
+flights2 %>% 
   select(dep_delay, carrier) %>% 
-  fastDummies::dummy_cols() %>% 
+  fastDummies::dummy_cols() %>%   # Dummysierung
   select(-carrier) %>% 
   pivot_longer(-dep_delay,
                names_to = "carrier",
                values_to = "value") %>% 
   group_by(carrier) %>% 
-  summarise(cor_depdelay_carrier = cor(dep_delay, value)) %>% 
-  arrange(-abs(cor_depdelay_carrier))
+  summarise(cor_depdelay_carrier = cor(dep_delay, value,
+                                       use = "complete.obs")) %>% 
+  arrange(-abs(cor_depdelay_carrier)) %>% 
+  filter(abs(cor_depdelay_carrier) > 0.10)
 ```
+
+Keine Korrelation war größer als 0.1.
 
 ### Hour
 
@@ -325,7 +364,8 @@ flights2 %>%
   select(dep_delay, hour) %>% 
   mutate(hour = factor(hour)) %>% 
   ggplot() +
-  aes(x = fct_reorder(hour, dep_delay), 
+  aes(x = fct_reorder(hour, dep_delay,
+                      na.rm = TRUE), 
       y = dep_delay) +
   geom_boxplot()
 ```
@@ -362,6 +402,16 @@ flights2 %>%
 
 ## Alle nominale Variablen
 
+Natürlich könnte man "händisch" alle nominalskalierten Variablen explizit benennen, etwa so:
+
+```{r}
+flights3 %>% 
+  select(carrier, tailnum, origin, dest, time_hour) %>% 
+  slice(1:3)
+```
+
+Aber es geht auch etwas "cooler" mit weniger Tipperei:
+
 ```{r}
 flights3 %>% 
   select(where(~ !is.numeric(.))) %>% 
@@ -377,6 +427,8 @@ flights3 %>%
   mutate(dest = fct_lump_prop(dest, prop = .025)) 
 ```
 
+
+Mit `fct_lump_prop` fassen wir alle Stufen zu einer zusammen, die jeweils weniger als 2.5% ausmachen.
 
 
 ```{r}
@@ -398,7 +450,22 @@ flights4 %>%
   
 ```
 
+Puh, das Diagramm ist nicht sehr aussagekräftig. 
+Vielleicht besser als Tabelle?
 
+
+```{r}
+flights4 %>% 
+  filter(!is_extreme) %>% 
+  select(dep_delay, dest, origin, carrier) %>% 
+  group_by(dest, origin, carrier) %>% 
+  summarise(depdelay_md = median(dep_delay, na.rm = T))
+```
+
+
+Hm, ist auch nicht gerade nützlich.
+
+Das Beispiel zeigt, dass die Datenvisualisierung bei einer größeren Zahl an Dimensionen und/oder vielen Werten an ihre Grenzen kommen kann.
 
 
 
@@ -458,5 +525,9 @@ Diese Analyse ist rein explorativ in dem Sinne, dass keine Hypothesen getestet w
 ## Reproducibility info
 options(width = 120)
 devtools::session_info()
+```
+
+
+
 
 

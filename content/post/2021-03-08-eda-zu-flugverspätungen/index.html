@@ -56,7 +56,8 @@ output:
 
 <div id="pakete-laden" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Pakete laden</h1>
-<pre class="r"><code>library(tidyverse)  # data wrangling</code></pre>
+<pre class="r"><code>library(tidyverse)  # data wrangling
+library(fastDummies)  # nur für &quot;Dummyisierung&quot;</code></pre>
 </div>
 <div id="hintergrund-und-ziel" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Hintergrund und Ziel</h1>
@@ -545,6 +546,7 @@ Departure and arrival delays, in minutes. Negative times represent early departu
   flights2 %&gt;% 
   mutate(carrier = factor(carrier)) %&gt;% 
   mutate(carrier = fct_lump(carrier, n = 8))</code></pre>
+<p>Hier fassen wir mit <code>fct_lump</code> alle Stufen von <code>carrier</code> zu einer “Lumpensammler-Kategorie” zusammen, die weniger als 8 Mal vorkommen.</p>
 <pre class="r"><code>flights2 %&gt;% 
   count(carrier)</code></pre>
 <table>
@@ -596,23 +598,144 @@ Departure and arrival delays, in minutes. Negative times represent early departu
 <pre class="r"><code>flights2 %&gt;% 
   filter(!is_extreme) %&gt;% 
   ggplot() +
-  aes(x = fct_reorder(carrier, -dep_delay), y = dep_delay) %&gt;% 
+  aes(x = fct_reorder(carrier, dep_delay, 
+                      na.rm = TRUE), 
+      y = dep_delay) %&gt;% 
   geom_boxplot()</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Schauen wir uns mal die Mediane genauer an:</p>
+<pre class="r"><code>flights2 %&gt;% 
+  filter(!is_extreme) %&gt;% 
+  group_by(carrier) %&gt;% 
+  summarise(dep_delay = median(dep_delay, na.rm = TRUE)) %&gt;% 
+  arrange(dep_delay)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">carrier</th>
+<th align="right">dep_delay</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">US</td>
+<td align="right">-5</td>
+</tr>
+<tr class="even">
+<td align="left">MQ</td>
+<td align="right">-4</td>
+</tr>
+<tr class="odd">
+<td align="left">9E</td>
+<td align="right">-3</td>
+</tr>
+<tr class="even">
+<td align="left">AA</td>
+<td align="right">-3</td>
+</tr>
+<tr class="odd">
+<td align="left">DL</td>
+<td align="right">-3</td>
+</tr>
+<tr class="even">
+<td align="left">EV</td>
+<td align="right">-3</td>
+</tr>
+<tr class="odd">
+<td align="left">B6</td>
+<td align="right">-2</td>
+</tr>
+<tr class="even">
+<td align="left">UA</td>
+<td align="right">-1</td>
+</tr>
+<tr class="odd">
+<td align="left">Other</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p>Die Reihenfolge entspricht der dem obigen Diagramm.</p>
 </div>
 </div>
 <div id="korrelation-von-carrier-mit-verspätung" class="section level2" number="6.3">
 <h2><span class="header-section-number">6.3</span> Korrelation von <code>carrier</code> mit Verspätung</h2>
+<p>Hier mit “Dummysierung” aller nicht-numerischer Spalten. Ein Beispiel zur Verdeutlichung:</p>
+<pre class="r"><code>flights2 %&gt;% 
+  select(origin, dep_delay) %&gt;% 
+  dummy_cols() %&gt;% 
+  head()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">origin</th>
+<th align="right">dep_delay</th>
+<th align="right">origin_EWR</th>
+<th align="right">origin_JFK</th>
+<th align="right">origin_LGA</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">EWR</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">LGA</td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">JFK</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">JFK</td>
+<td align="right">-1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">LGA</td>
+<td align="right">-6</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">EWR</td>
+<td align="right">-4</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p>Mit den “dummyisierten” Spalten können wir jetzt Korrelationen rechnen, denn jetzt haben wir Zahlen.
+<em>Achtung</em>: Die Variablen bleiben nominalskaliert, trotz der 0-1-Transformation.
+Auf diese Art Korrelationen zu berechnen ist nur für dummysierte Variablen (“Indikatorvariablen”) sinnvoll.
+Die Schiefe der Verteilung begrenzt hier übrigens die Stärke der Korrelation.</p>
 <pre class="r"><code>flights2 %&gt;% 
   select(dep_delay, carrier) %&gt;% 
-  fastDummies::dummy_cols() %&gt;% 
+  fastDummies::dummy_cols() %&gt;%   # Dummysierung
   select(-carrier) %&gt;% 
   pivot_longer(-dep_delay,
                names_to = &quot;carrier&quot;,
                values_to = &quot;value&quot;) %&gt;% 
   group_by(carrier) %&gt;% 
-  summarise(cor_depdelay_carrier = cor(dep_delay, value)) %&gt;% 
-  arrange(-abs(cor_depdelay_carrier))</code></pre>
+  summarise(cor_depdelay_carrier = cor(dep_delay, value,
+                                       use = &quot;complete.obs&quot;)) %&gt;% 
+  arrange(-abs(cor_depdelay_carrier)) %&gt;% 
+  filter(abs(cor_depdelay_carrier) &gt; 0.10)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -621,44 +744,9 @@ Departure and arrival delays, in minutes. Negative times represent early departu
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">carrier_9E</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">carrier_AA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">carrier_B6</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">carrier_DL</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">carrier_EV</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">carrier_MQ</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">carrier_Other</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">carrier_UA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">carrier_US</td>
-<td align="right">NA</td>
-</tr>
 </tbody>
 </table>
+<p>Keine Korrelation war größer als 0.1.</p>
 <div id="hour" class="section level3" number="6.3.1">
 <h3><span class="header-section-number">6.3.1</span> Hour</h3>
 <pre class="r"><code>flights2 %&gt;% 
@@ -666,10 +754,11 @@ Departure and arrival delays, in minutes. Negative times represent early departu
   select(dep_delay, hour) %&gt;% 
   mutate(hour = factor(hour)) %&gt;% 
   ggplot() +
-  aes(x = fct_reorder(hour, dep_delay), 
+  aes(x = fct_reorder(hour, dep_delay,
+                      na.rm = TRUE), 
       y = dep_delay) +
   geom_boxplot()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="origin" class="section level3" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> Origin</h3>
@@ -679,7 +768,7 @@ Departure and arrival delays, in minutes. Negative times represent early departu
   ggplot() +
   aes(x = origin, y = dep_delay) %&gt;% 
   geom_boxplot()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="drei-variablen-origin-hour-dep_delay" class="section level2" number="6.4">
@@ -692,10 +781,49 @@ Departure and arrival delays, in minutes. Negative times represent early departu
   aes(x = hour, y = dep_delay) +
   geom_boxplot() +
   facet_wrap(~ origin)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-27-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="alle-nominale-variablen" class="section level2" number="6.5">
 <h2><span class="header-section-number">6.5</span> Alle nominale Variablen</h2>
+<p>Natürlich könnte man “händisch” alle nominalskalierten Variablen explizit benennen, etwa so:</p>
+<pre class="r"><code>flights3 %&gt;% 
+  select(carrier, tailnum, origin, dest, time_hour) %&gt;% 
+  slice(1:3)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">carrier</th>
+<th align="left">tailnum</th>
+<th align="left">origin</th>
+<th align="left">dest</th>
+<th align="left">time_hour</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">UA</td>
+<td align="left">N14228</td>
+<td align="left">EWR</td>
+<td align="left">IAH</td>
+<td align="left">2013-01-01 05:00:00</td>
+</tr>
+<tr class="even">
+<td align="left">UA</td>
+<td align="left">N24211</td>
+<td align="left">LGA</td>
+<td align="left">IAH</td>
+<td align="left">2013-01-01 05:00:00</td>
+</tr>
+<tr class="odd">
+<td align="left">AA</td>
+<td align="left">N619AA</td>
+<td align="left">JFK</td>
+<td align="left">MIA</td>
+<td align="left">2013-01-01 05:00:00</td>
+</tr>
+</tbody>
+</table>
+<p>Aber es geht auch etwas “cooler” mit weniger Tipperei:</p>
 <pre class="r"><code>flights3 %&gt;% 
   select(where(~ !is.numeric(.))) %&gt;% 
   names()
@@ -707,6 +835,7 @@ Departure and arrival delays, in minutes. Negative times represent early departu
 <pre class="r"><code>flights4 &lt;-
 flights3 %&gt;% 
   mutate(dest = fct_lump_prop(dest, prop = .025)) </code></pre>
+<p>Mit <code>fct_lump_prop</code> fassen wir alle Stufen zu einer zusammen, die jeweils weniger als 2.5% ausmachen.</p>
 <pre class="r"><code>flights4 %&gt;% 
   count(dest, sort = T)</code></pre>
 <table>
@@ -781,7 +910,31 @@ flights3 %&gt;%
   facet_grid(dest ~ carrier) +
   geom_point()
   </code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-29-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-32-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Puh, das Diagramm ist nicht sehr aussagekräftig.
+Vielleicht besser als Tabelle?</p>
+<pre class="r"><code>flights4 %&gt;% 
+  filter(!is_extreme) %&gt;% 
+  select(dep_delay, dest, origin, carrier) %&gt;% 
+  group_by(dest, origin, carrier) %&gt;% 
+  summarise(depdelay_md = median(dep_delay, na.rm = T))
+#&gt; # A tibble: 128 x 4
+#&gt; # Groups:   dest, origin [37]
+#&gt;    dest  origin carrier depdelay_md
+#&gt;    &lt;fct&gt; &lt;chr&gt;  &lt;chr&gt;         &lt;dbl&gt;
+#&gt;  1 ATL   EWR    9E               -6
+#&gt;  2 ATL   EWR    DL               -3
+#&gt;  3 ATL   EWR    EV               -2
+#&gt;  4 ATL   EWR    UA               -1
+#&gt;  5 ATL   JFK    9E               -2
+#&gt;  6 ATL   JFK    DL               -1
+#&gt;  7 ATL   LGA    DL               -3
+#&gt;  8 ATL   LGA    EV               30
+#&gt;  9 ATL   LGA    FL                0
+#&gt; 10 ATL   LGA    MQ               -4
+#&gt; # … with 118 more rows</code></pre>
+<p>Hm, ist auch nicht gerade nützlich.</p>
+<p>Das Beispiel zeigt, dass die Datenvisualisierung bei einer größeren Zahl an Dimensionen und/oder vielen Werten an ihre Grenzen kommen kann.</p>
 </div>
 <div id="anzahl-von-flüge" class="section level2" number="6.7">
 <h2><span class="header-section-number">6.7</span> Anzahl von Flüge</h2>
@@ -809,7 +962,7 @@ flights3 %&gt;%
              aes(y = delay_md,
                  x = month)) +
   facet_wrap( ~ origin)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-31-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-35-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="fazit" class="section level1" number="7">
@@ -825,105 +978,103 @@ flights3 %&gt;%
 <h1><span class="header-section-number">9</span> Reproduzierbarkeit</h1>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value                       
-#&gt;  version  R version 4.0.2 (2020-06-22)
-#&gt;  os       macOS  10.16                
+#&gt;  version  R version 4.1.0 (2021-05-18)
+#&gt;  os       macOS Big Sur 10.16         
 #&gt;  system   x86_64, darwin17.0          
 #&gt;  ui       X11                         
 #&gt;  language (EN)                        
 #&gt;  collate  en_US.UTF-8                 
 #&gt;  ctype    en_US.UTF-8                 
 #&gt;  tz       Europe/Berlin               
-#&gt;  date     2021-03-08                  
+#&gt;  date     2021-06-22                  
 #&gt; 
 #&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
-#&gt;  package     * version     date       lib source                             
-#&gt;  assertthat    0.2.1       2019-03-21 [1] CRAN (R 4.0.0)                     
-#&gt;  backports     1.2.1       2020-12-09 [1] CRAN (R 4.0.2)                     
-#&gt;  blogdown      1.1         2021-01-19 [1] CRAN (R 4.0.2)                     
-#&gt;  bookdown      0.21.6      2021-02-02 [1] Github (rstudio/bookdown@6c7346a)  
-#&gt;  broom         0.7.5       2021-02-19 [1] CRAN (R 4.0.2)                     
-#&gt;  bslib         0.2.4.9000  2021-02-02 [1] Github (rstudio/bslib@b3cd7a9)     
-#&gt;  cachem        1.0.4       2021-02-13 [1] CRAN (R 4.0.2)                     
-#&gt;  callr         3.5.1       2020-10-13 [1] CRAN (R 4.0.2)                     
-#&gt;  cellranger    1.1.0       2016-07-27 [1] CRAN (R 4.0.0)                     
-#&gt;  cli           2.3.1       2021-02-23 [1] CRAN (R 4.0.2)                     
-#&gt;  codetools     0.2-16      2018-12-24 [2] CRAN (R 4.0.2)                     
-#&gt;  colorspace    2.0-0       2020-11-11 [1] CRAN (R 4.0.2)                     
-#&gt;  crayon        1.4.1       2021-02-08 [1] CRAN (R 4.0.2)                     
-#&gt;  curl          4.3         2019-12-02 [1] CRAN (R 4.0.0)                     
-#&gt;  data.table    1.14.0      2021-02-21 [1] CRAN (R 4.0.2)                     
-#&gt;  DBI           1.1.1       2021-01-15 [1] CRAN (R 4.0.2)                     
-#&gt;  dbplyr        2.1.0       2021-02-03 [1] CRAN (R 4.0.2)                     
-#&gt;  debugme       1.1.0       2017-10-22 [1] CRAN (R 4.0.0)                     
-#&gt;  desc          1.2.0       2018-05-01 [1] CRAN (R 4.0.0)                     
-#&gt;  devtools      2.3.2       2020-09-18 [1] CRAN (R 4.0.2)                     
-#&gt;  digest        0.6.27      2020-10-24 [1] CRAN (R 4.0.2)                     
-#&gt;  dplyr       * 1.0.4       2021-02-02 [1] CRAN (R 4.0.2)                     
-#&gt;  ellipsis      0.3.1       2020-05-15 [1] CRAN (R 4.0.0)                     
-#&gt;  evaluate      0.14        2019-05-28 [1] CRAN (R 4.0.0)                     
-#&gt;  fansi         0.4.2       2021-01-15 [1] CRAN (R 4.0.2)                     
-#&gt;  farver        2.0.3       2020-01-16 [1] CRAN (R 4.0.0)                     
-#&gt;  fastDummies   1.6.3       2020-11-29 [1] CRAN (R 4.0.2)                     
-#&gt;  fastmap       1.1.0       2021-01-25 [1] CRAN (R 4.0.2)                     
-#&gt;  forcats     * 0.5.1       2021-01-27 [1] CRAN (R 4.0.2)                     
-#&gt;  fs            1.5.0       2020-07-31 [1] CRAN (R 4.0.2)                     
-#&gt;  generics      0.1.0       2020-10-31 [1] CRAN (R 4.0.2)                     
-#&gt;  ggplot2     * 3.3.3       2020-12-30 [1] CRAN (R 4.0.2)                     
-#&gt;  glue          1.4.2       2020-08-27 [1] CRAN (R 4.0.2)                     
-#&gt;  gtable        0.3.0       2019-03-25 [1] CRAN (R 4.0.0)                     
-#&gt;  haven         2.3.1       2020-06-01 [1] CRAN (R 4.0.0)                     
-#&gt;  highr         0.8         2019-03-20 [1] CRAN (R 4.0.0)                     
-#&gt;  hms           1.0.0       2021-01-13 [1] CRAN (R 4.0.2)                     
-#&gt;  htmltools     0.5.1.1     2021-01-22 [1] CRAN (R 4.0.2)                     
-#&gt;  httr          1.4.2       2020-07-20 [1] CRAN (R 4.0.2)                     
-#&gt;  jquerylib     0.1.3       2020-12-17 [1] CRAN (R 4.0.2)                     
-#&gt;  jsonlite      1.7.2       2020-12-09 [1] CRAN (R 4.0.2)                     
-#&gt;  knitr         1.31        2021-01-27 [1] CRAN (R 4.0.2)                     
-#&gt;  labeling      0.4.2       2020-10-20 [1] CRAN (R 4.0.2)                     
-#&gt;  lifecycle     1.0.0       2021-02-15 [1] CRAN (R 4.0.2)                     
-#&gt;  lubridate     1.7.9.2     2020-11-13 [1] CRAN (R 4.0.2)                     
-#&gt;  magrittr      2.0.1       2020-11-17 [1] CRAN (R 4.0.2)                     
-#&gt;  memoise       2.0.0       2021-01-26 [1] CRAN (R 4.0.2)                     
-#&gt;  modelr        0.1.8       2020-05-19 [1] CRAN (R 4.0.0)                     
-#&gt;  munsell       0.5.0       2018-06-12 [1] CRAN (R 4.0.0)                     
-#&gt;  pillar        1.5.0       2021-02-22 [1] CRAN (R 4.0.2)                     
-#&gt;  pkgbuild      1.2.0       2020-12-15 [1] CRAN (R 4.0.2)                     
-#&gt;  pkgconfig     2.0.3       2019-09-22 [1] CRAN (R 4.0.0)                     
-#&gt;  pkgload       1.2.0       2021-02-23 [1] CRAN (R 4.0.2)                     
-#&gt;  prettyunits   1.1.1       2020-01-24 [1] CRAN (R 4.0.0)                     
-#&gt;  printr      * 0.1.1       2021-01-27 [1] CRAN (R 4.0.2)                     
-#&gt;  processx      3.4.5       2020-11-30 [1] CRAN (R 4.0.2)                     
-#&gt;  ps            1.5.0       2020-12-05 [1] CRAN (R 4.0.2)                     
-#&gt;  purrr       * 0.3.4       2020-04-17 [1] CRAN (R 4.0.0)                     
-#&gt;  R6            2.5.0       2020-10-28 [1] CRAN (R 4.0.2)                     
-#&gt;  Rcpp          1.0.6       2021-01-15 [1] CRAN (R 4.0.2)                     
-#&gt;  readr       * 1.4.0       2020-10-05 [1] CRAN (R 4.0.2)                     
-#&gt;  readxl        1.3.1       2019-03-13 [1] CRAN (R 4.0.0)                     
-#&gt;  remotes       2.2.0       2020-07-21 [1] CRAN (R 4.0.2)                     
-#&gt;  reprex        1.0.0       2021-01-27 [1] CRAN (R 4.0.2)                     
-#&gt;  rlang         0.4.10      2020-12-30 [1] CRAN (R 4.0.2)                     
-#&gt;  rmarkdown     2.7         2021-02-19 [1] CRAN (R 4.0.2)                     
-#&gt;  rprojroot     2.0.2       2020-11-15 [1] CRAN (R 4.0.2)                     
-#&gt;  rstudioapi    0.13.0-9000 2021-02-11 [1] Github (rstudio/rstudioapi@9d21f50)
-#&gt;  rvest         0.3.6       2020-07-25 [1] CRAN (R 4.0.2)                     
-#&gt;  sass          0.3.1       2021-01-24 [1] CRAN (R 4.0.2)                     
-#&gt;  scales        1.1.1       2020-05-11 [1] CRAN (R 4.0.0)                     
-#&gt;  sessioninfo   1.1.1       2018-11-05 [1] CRAN (R 4.0.0)                     
-#&gt;  stringi       1.5.3       2020-09-09 [1] CRAN (R 4.0.2)                     
-#&gt;  stringr     * 1.4.0       2019-02-10 [1] CRAN (R 4.0.0)                     
-#&gt;  testthat      3.0.2       2021-02-14 [1] CRAN (R 4.0.2)                     
-#&gt;  tibble      * 3.0.6       2021-01-29 [1] CRAN (R 4.0.2)                     
-#&gt;  tidyr       * 1.1.2       2020-08-27 [1] CRAN (R 4.0.2)                     
-#&gt;  tidyselect    1.1.0       2020-05-11 [1] CRAN (R 4.0.0)                     
-#&gt;  tidyverse   * 1.3.0       2019-11-21 [1] CRAN (R 4.0.0)                     
-#&gt;  usethis       2.0.1       2021-02-10 [1] CRAN (R 4.0.2)                     
-#&gt;  utf8          1.1.4       2018-05-24 [1] CRAN (R 4.0.0)                     
-#&gt;  vctrs         0.3.6       2020-12-17 [1] CRAN (R 4.0.2)                     
-#&gt;  withr         2.4.1       2021-01-26 [1] CRAN (R 4.0.2)                     
-#&gt;  xfun          0.21        2021-02-10 [1] CRAN (R 4.0.2)                     
-#&gt;  xml2          1.3.2       2020-04-23 [1] CRAN (R 4.0.0)                     
-#&gt;  yaml          2.2.1       2020-02-01 [1] CRAN (R 4.0.0)                     
+#&gt;  package     * version  date       lib source                        
+#&gt;  assertthat    0.2.1    2019-03-21 [1] CRAN (R 4.1.0)                
+#&gt;  backports     1.2.1    2020-12-09 [1] CRAN (R 4.1.0)                
+#&gt;  blogdown      1.3      2021-04-14 [2] CRAN (R 4.1.0)                
+#&gt;  bookdown      0.22     2021-04-22 [2] CRAN (R 4.1.0)                
+#&gt;  broom         0.7.6    2021-04-05 [1] CRAN (R 4.1.0)                
+#&gt;  bslib         0.2.5.1  2021-05-18 [1] CRAN (R 4.1.0)                
+#&gt;  cachem        1.0.5    2021-05-15 [2] CRAN (R 4.1.0)                
+#&gt;  callr         3.7.0    2021-04-20 [1] CRAN (R 4.1.0)                
+#&gt;  cellranger    1.1.0    2016-07-27 [1] CRAN (R 4.1.0)                
+#&gt;  cli           2.5.0    2021-04-26 [1] CRAN (R 4.1.0)                
+#&gt;  codetools     0.2-18   2020-11-04 [2] CRAN (R 4.1.0)                
+#&gt;  colorspace    2.0-1    2021-05-04 [1] CRAN (R 4.1.0)                
+#&gt;  crayon        1.4.1    2021-02-08 [1] CRAN (R 4.1.0)                
+#&gt;  data.table    1.14.0   2021-02-21 [1] CRAN (R 4.1.0)                
+#&gt;  DBI           1.1.1    2021-01-15 [1] CRAN (R 4.1.0)                
+#&gt;  dbplyr        2.1.1    2021-04-06 [1] CRAN (R 4.1.0)                
+#&gt;  desc          1.3.0    2021-03-05 [2] CRAN (R 4.1.0)                
+#&gt;  devtools      2.4.1    2021-05-05 [2] CRAN (R 4.1.0)                
+#&gt;  digest        0.6.27   2020-10-24 [1] CRAN (R 4.1.0)                
+#&gt;  dplyr       * 1.0.6    2021-05-05 [1] CRAN (R 4.1.0)                
+#&gt;  ellipsis      0.3.2    2021-04-29 [1] CRAN (R 4.1.0)                
+#&gt;  evaluate      0.14     2019-05-28 [1] CRAN (R 4.1.0)                
+#&gt;  fansi         0.5.0    2021-05-25 [1] CRAN (R 4.1.0)                
+#&gt;  farver        2.1.0    2021-02-28 [1] CRAN (R 4.1.0)                
+#&gt;  fastDummies * 1.6.3    2020-11-29 [1] CRAN (R 4.1.0)                
+#&gt;  fastmap       1.1.0    2021-01-25 [2] CRAN (R 4.1.0)                
+#&gt;  forcats     * 0.5.1    2021-01-27 [1] CRAN (R 4.1.0)                
+#&gt;  fs            1.5.0    2020-07-31 [1] CRAN (R 4.1.0)                
+#&gt;  generics      0.1.0    2020-10-31 [1] CRAN (R 4.1.0)                
+#&gt;  ggplot2     * 3.3.3    2020-12-30 [1] CRAN (R 4.1.0)                
+#&gt;  glue          1.4.2    2020-08-27 [1] CRAN (R 4.1.0)                
+#&gt;  gtable        0.3.0    2019-03-25 [1] CRAN (R 4.1.0)                
+#&gt;  haven         2.4.1    2021-04-23 [1] CRAN (R 4.1.0)                
+#&gt;  highr         0.9      2021-04-16 [1] CRAN (R 4.1.0)                
+#&gt;  hms           1.1.0    2021-05-17 [1] CRAN (R 4.1.0)                
+#&gt;  htmltools     0.5.1.1  2021-01-22 [1] CRAN (R 4.1.0)                
+#&gt;  httr          1.4.2    2020-07-20 [1] CRAN (R 4.1.0)                
+#&gt;  jquerylib     0.1.4    2021-04-26 [1] CRAN (R 4.1.0)                
+#&gt;  jsonlite      1.7.2    2020-12-09 [1] CRAN (R 4.1.0)                
+#&gt;  knitr         1.33     2021-04-24 [1] CRAN (R 4.1.0)                
+#&gt;  labeling      0.4.2    2020-10-20 [1] CRAN (R 4.1.0)                
+#&gt;  lifecycle     1.0.0    2021-02-15 [1] CRAN (R 4.1.0)                
+#&gt;  lubridate     1.7.10   2021-02-26 [1] CRAN (R 4.1.0)                
+#&gt;  magrittr      2.0.1    2020-11-17 [1] CRAN (R 4.1.0)                
+#&gt;  memoise       2.0.0    2021-01-26 [2] CRAN (R 4.1.0)                
+#&gt;  modelr        0.1.8    2020-05-19 [1] CRAN (R 4.1.0)                
+#&gt;  munsell       0.5.0    2018-06-12 [1] CRAN (R 4.1.0)                
+#&gt;  pillar        1.6.1    2021-05-16 [1] CRAN (R 4.1.0)                
+#&gt;  pkgbuild      1.2.0    2020-12-15 [2] CRAN (R 4.1.0)                
+#&gt;  pkgconfig     2.0.3    2019-09-22 [1] CRAN (R 4.1.0)                
+#&gt;  pkgload       1.2.1    2021-04-06 [2] CRAN (R 4.1.0)                
+#&gt;  prettyunits   1.1.1    2020-01-24 [1] CRAN (R 4.1.0)                
+#&gt;  printr      * 0.1.1    2021-01-27 [1] CRAN (R 4.1.0)                
+#&gt;  processx      3.5.2    2021-04-30 [1] CRAN (R 4.1.0)                
+#&gt;  ps            1.6.0    2021-02-28 [1] CRAN (R 4.1.0)                
+#&gt;  purrr       * 0.3.4    2020-04-17 [1] CRAN (R 4.1.0)                
+#&gt;  R6            2.5.0    2020-10-28 [1] CRAN (R 4.1.0)                
+#&gt;  Rcpp          1.0.6    2021-01-15 [1] CRAN (R 4.1.0)                
+#&gt;  readr       * 1.4.0    2020-10-05 [1] CRAN (R 4.1.0)                
+#&gt;  readxl        1.3.1    2019-03-13 [1] CRAN (R 4.1.0)                
+#&gt;  remotes       2.4.0    2021-06-02 [2] CRAN (R 4.1.0)                
+#&gt;  reprex        2.0.0    2021-04-02 [1] CRAN (R 4.1.0)                
+#&gt;  rlang         0.4.11   2021-04-30 [1] CRAN (R 4.1.0)                
+#&gt;  rmarkdown     2.8      2021-05-07 [1] CRAN (R 4.1.0)                
+#&gt;  rprojroot     2.0.2    2020-11-15 [2] CRAN (R 4.1.0)                
+#&gt;  rstudioapi    0.13     2020-11-12 [1] CRAN (R 4.1.0)                
+#&gt;  rvest         1.0.0    2021-03-09 [1] CRAN (R 4.1.0)                
+#&gt;  sass          0.4.0    2021-05-12 [1] CRAN (R 4.1.0)                
+#&gt;  scales        1.1.1    2020-05-11 [1] CRAN (R 4.1.0)                
+#&gt;  sessioninfo   1.1.1    2018-11-05 [2] CRAN (R 4.1.0)                
+#&gt;  stringi       1.6.2    2021-05-17 [1] CRAN (R 4.1.0)                
+#&gt;  stringr     * 1.4.0    2019-02-10 [1] CRAN (R 4.1.0)                
+#&gt;  testthat      3.0.2    2021-02-14 [2] CRAN (R 4.1.0)                
+#&gt;  tibble      * 3.1.2    2021-05-16 [1] CRAN (R 4.1.0)                
+#&gt;  tidyr       * 1.1.3    2021-03-03 [1] CRAN (R 4.1.0)                
+#&gt;  tidyselect    1.1.1    2021-04-30 [1] CRAN (R 4.1.0)                
+#&gt;  tidyverse   * 1.3.1    2021-04-15 [1] CRAN (R 4.1.0)                
+#&gt;  usethis       2.0.1    2021-02-10 [2] CRAN (R 4.1.0)                
+#&gt;  utf8          1.2.1    2021-03-12 [1] CRAN (R 4.1.0)                
+#&gt;  vctrs         0.3.8    2021-04-29 [1] CRAN (R 4.1.0)                
+#&gt;  withr         2.4.2    2021-04-18 [1] CRAN (R 4.1.0)                
+#&gt;  xfun          0.23     2021-05-15 [1] CRAN (R 4.1.0)                
+#&gt;  xml2          1.3.2    2020-04-23 [1] CRAN (R 4.1.0)                
+#&gt;  yaml          2.2.1.99 2021-06-18 [1] Github (viking/r-yaml@4788abe)
 #&gt; 
-#&gt; [1] /Users/sebastiansaueruser/Rlibs
-#&gt; [2] /Library/Frameworks/R.framework/Versions/4.0/Resources/library</code></pre>
+#&gt; [1] /Users/sebastiansaueruser/Library/R/x86_64/4.1/library
+#&gt; [2] /Library/Frameworks/R.framework/Versions/4.1/Resources/library</code></pre>
 </div>
