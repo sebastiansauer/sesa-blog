@@ -37,14 +37,37 @@ d2 <-
   select(-gender)
 ```
 
+```{r}
+d_summary <-
+  d %>% 
+  group_by(gender) %>% 
+  summarise(height_m = mean(height, na.rm = T),
+            height_sd = sd(height, na.rm = T))
+
+d_summary
+```
+
+
 
 ```{r}
 d |> 
   ggplot() +
-  aes(x = height) +
-  geom_histogram(aes(y = ..density..)) +
-  geom_density(aes(y = ..density..)) +
-  facet_wrap(~ gender)
+  aes() +
+  geom_histogram(aes(y = ..density.., x = height, fill = gender)) +
+  facet_wrap(~ gender) +
+  geom_histogram(data = d2, aes(y = ..density.., x = height), alpha = .5) +
+  stat_function(data = d_summary %>% filter(gender == "female"),
+                fun = dnorm,
+                #color = "red",
+                args = list(mean = filter(d_summary, gender == "female")$height_m,
+                            sd = filter(d_summary, gender == "female")$height_sd)) +
+  stat_function(data = d_summary %>% filter(gender == "male"),
+                fun = dnorm,
+                #color = "red",
+                args = list(mean = filter(d_summary, gender == "male")$height_m,
+                            sd = filter(d_summary, gender == "male")$height_sd)) +
+  scale_fill_discrete()
+   
 ```
 
 A bit more beautifully perhaps:

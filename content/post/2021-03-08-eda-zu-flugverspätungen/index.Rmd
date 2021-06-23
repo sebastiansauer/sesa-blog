@@ -484,7 +484,7 @@ flights2 <-
 ```
 
 
-Hier fassen wir mit `fct_lump` alle Stufen von `carrier` zu einer "Lumpensammler-Kategorie" zusammen, die weniger als 8 Mal vorkommen.
+Hier fassen wir mit `fct_lump` alle Stufen von `carrier` zu *acht* Stufen zusammen *plus* einer "Lumpensammler-Kategorie" zusammen.
 Dazu muss die Variable aber als `factor` vorliegen.
 
 Jetzt haben wir noch nur 9 (8 plus Lumpensammler-Gruppe) Gruppen:
@@ -510,7 +510,7 @@ flights2 %>%
 ```
 
 
-Mit `fct_reorder` haben wir die Werte von `carrier` (UA, B6, AA, ...) sortiert und zwar anhand der Werte von `n`, also anhand der Häufigkeit. Es resultiert eine Rangfolge: `UA > B6 > EV > DL > ..." etc. 
+Mit `fct_reorder` haben wir die Werte von `carrier` (UA, B6, AA, ...) sortiert und zwar anhand der Werte von `n`, also anhand der Häufigkeit. Es resultiert eine Rangfolge: `UA > B6 > EV > DL > ...` etc. 
 (Nur) Mit einer sortierten Faktorvariable lässt sich ein gut sortiert darstellen.
 
 

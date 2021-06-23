@@ -1168,7 +1168,7 @@ plot1</code></pre>
   flights2 %&gt;% 
   mutate(carrier = factor(carrier)) %&gt;%   # nicht character, sondern factor
   mutate(carrier_lump = fct_lump(carrier, n = 8))</code></pre>
-<p>Hier fassen wir mit <code>fct_lump</code> alle Stufen von <code>carrier</code> zu einer “Lumpensammler-Kategorie” zusammen, die weniger als 8 Mal vorkommen.
+<p>Hier fassen wir mit <code>fct_lump</code> alle Stufen von <code>carrier</code> zu <em>acht</em> Stufen zusammen <em>plus</em> einer “Lumpensammler-Kategorie” zusammen.
 Dazu muss die Variable aber als <code>factor</code> vorliegen.</p>
 <p>Jetzt haben wir noch nur 9 (8 plus Lumpensammler-Gruppe) Gruppen:</p>
 <pre class="r"><code>flights2 %&gt;% 
@@ -1228,7 +1228,7 @@ Dazu muss die Variable aber als <code>factor</code> vorliegen.</p>
   geom_point(color = &quot;red&quot;) +
   geom_line(group = 1)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-32-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>Mit <code>fct_reorder</code> haben wir die Werte von <code>carrier</code> (UA, B6, AA, …) sortiert und zwar anhand der Werte von <code>n</code>, also anhand der Häufigkeit. Es resultiert eine Rangfolge: `UA &gt; B6 &gt; EV &gt; DL &gt; …" etc.
+<p>Mit <code>fct_reorder</code> haben wir die Werte von <code>carrier</code> (UA, B6, AA, …) sortiert und zwar anhand der Werte von <code>n</code>, also anhand der Häufigkeit. Es resultiert eine Rangfolge: <code>UA &gt; B6 &gt; EV &gt; DL &gt; ...</code> etc.
 (Nur) Mit einer sortierten Faktorvariable lässt sich ein gut sortiert darstellen.</p>
 <p>Ah, schon besser. Aber recht informationsarm, das Diagramm. Informationsreicher ist ein Boxplot:</p>
 <pre class="r"><code>flights2 %&gt;% 
