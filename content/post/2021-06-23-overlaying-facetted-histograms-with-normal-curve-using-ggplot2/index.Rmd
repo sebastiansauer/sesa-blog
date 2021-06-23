@@ -8,6 +8,8 @@ categories:
 tags:
   - visualization
   - dataviz
+editor_options: 
+  chunk_output_type: console
 ---
 
 
@@ -21,7 +23,7 @@ Overlaying a histogram (possibly facetted) is not something far fetched when ana
 # Setup
 
 
-```{r}
+```{r message=FALSE}
 library(tidyverse)
 ```
 
@@ -70,8 +72,8 @@ d_summary
 
 # Plot it
 
-```{r}
-d |> 
+```{r message=FALSE}
+d %>% 
   ggplot() +
   aes() +
   geom_histogram(aes(y = ..density.., x = height, fill = gender)) +
@@ -101,3 +103,54 @@ d |>
   scale_fill_brewer(type = "qual", palette = "Set1")
    
 ```
+
+
+# Different solutions
+
+
+Different solutions can be found eg [here](https://stackoverflow.com/questions/6967664/ggplot2-histogram-with-normal-curve) or [here](https://stackoverflow.com/questions/35015614/overlay-normal-curve-over-histogram-in-faceting-situation).
+
+
+# Actually there exists a simple solution
+
+Not within `ggplot2` per se, but if you are willing to use `ggformula` then it is pretty straight forward ([source](https://stackoverflow.com/questions/1376967/using-stat-function-and-facet-wrap-together-in-ggplot2-in-r)).
+
+
+
+
+
+```{r}
+library(ggformula)
+
+gf_dens( ~ height | gender, data = d) %>%
+  gf_fitdistr(color = "red") %>% 
+  gf_fitdistr(dist = "normal", color = "blue")
+```
+
+
+
+
+
+# Update: Package `ggh4x`
+
+
+I just discovered this ggplot extension, [ggh4x](https://teunbrand.github.io/ggh4x/index.html), which provides some cool features, including overlay of normal densities.
+
+
+```{r}
+#devtools::install_github("teunbrand/ggh4x")
+library(ggh4x)
+```
+
+
+
+```{r}
+ggplot(d, aes(height)) +
+  geom_density() +
+  stat_theodensity(colour = "red") +
+  facet_wrap(~ gender)
+```
+
+
+Nice and clean!
+

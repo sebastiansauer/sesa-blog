@@ -82,10 +82,40 @@ gghistogram(d,
             add = "mean")
 ```
 
+# For the whole sample
+
+I.e,. with groups (gender) removed:
 
 ```{r}
 gghistogram(d,
             x = "height",
             add_density = TRUE,
             add = "mean")
+```
+
+
+# Checking the fit to a normal curve
+
+## For the whole group (no subgroups)
+
+```{r}
+d %>% 
+  ggplot() +
+  aes(sample = height) +
+  geom_qq() +
+  stat_qq_line()
+```
+
+
+## For each gender (group) separately
+
+
+
+```{r}
+d %>% 
+  ggplot() +
+  aes(sample = height) +
+  geom_qq(alpha = .7) +
+  facet_wrap(~ gender) +
+  stat_qq_line(linetype = "dashed")
 ```

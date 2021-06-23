@@ -1,0 +1,131 @@
+---
+title: Normal by nature? An annotated example of a normally distributed variable
+author: Sebastian Sauer
+draft: TRUE
+date: '2021-06-22'
+slug: normal-by-nature-an-annotated-example-of-a-normally-distributed-variable
+categories:
+  - rstats
+tags:
+  - tutorial
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+
+
+<div id="setup" class="section level1">
+<h1>Setup</h1>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.3     ✓ purrr   0.3.4
+## ✓ tibble  3.1.2     ✓ dplyr   1.0.6
+## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
+## ✓ readr   1.4.0     ✓ forcats 0.5.1</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(ggpubr)</code></pre>
+<pre class="r"><code>d &lt;- read_csv(&quot;https://vincentarelbundock.github.io/Rdatasets/csv/openintro/speed_gender_height.csv&quot;)</code></pre>
+<pre><code>## Warning: Missing column names filled in: &#39;X1&#39; [1]</code></pre>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   X1 = col_double(),
+##   speed = col_double(),
+##   gender = col_character(),
+##   height = col_double()
+## )</code></pre>
+</div>
+<div id="histogram-of-height" class="section level1">
+<h1>Histogram of height</h1>
+<pre class="r"><code>d2 &lt;-
+  d |&gt; 
+  select(-gender)</code></pre>
+<pre class="r"><code>d_summary &lt;-
+  d %&gt;% 
+  group_by(gender) %&gt;% 
+  summarise(height_m = mean(height, na.rm = T),
+            height_sd = sd(height, na.rm = T))
+
+d_summary</code></pre>
+<pre><code>## # A tibble: 2 x 3
+##   gender height_m height_sd
+##   &lt;chr&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 female     64.3      2.99
+## 2 male       69.7      3.55</code></pre>
+<pre class="r"><code>d |&gt; 
+  ggplot() +
+  aes() +
+  geom_histogram(aes(y = ..density.., x = height, fill = gender)) +
+  facet_wrap(~ gender) +
+  geom_histogram(data = d2, aes(y = ..density.., x = height), alpha = .5) +
+  stat_function(data = d_summary %&gt;% filter(gender == &quot;female&quot;),
+                fun = dnorm,
+                #color = &quot;red&quot;,
+                args = list(mean = filter(d_summary, gender == &quot;female&quot;)$height_m,
+                            sd = filter(d_summary, gender == &quot;female&quot;)$height_sd)) +
+  stat_function(data = d_summary %&gt;% filter(gender == &quot;male&quot;),
+                fun = dnorm,
+                #color = &quot;red&quot;,
+                args = list(mean = filter(d_summary, gender == &quot;male&quot;)$height_m,
+                            sd = filter(d_summary, gender == &quot;male&quot;)$height_sd)) +
+  scale_fill_discrete()</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<pre><code>## Warning: Removed 5 rows containing non-finite values (stat_bin).</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<pre><code>## Warning: Removed 10 rows containing non-finite values (stat_bin).</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>A bit more beautifully perhaps:</p>
+<pre class="r"><code>gghistogram(d,
+            x = &quot;height&quot;, 
+            fill = &quot;gender&quot;,
+            rug = TRUE,
+            add_density = TRUE,
+            add = &quot;mean&quot;)</code></pre>
+<pre><code>## Warning: Using `bins = 30` by default. Pick better value with the argument
+## `bins`.</code></pre>
+<pre><code>## Warning: Removed 5 rows containing non-finite values (stat_bin).</code></pre>
+<pre><code>## Warning: Removed 5 rows containing non-finite values (stat_density).</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="for-the-whole-sample" class="section level1">
+<h1>For the whole sample</h1>
+<p>I.e,. with groups (gender) removed:</p>
+<pre class="r"><code>gghistogram(d,
+            x = &quot;height&quot;,
+            add_density = TRUE,
+            add = &quot;mean&quot;)</code></pre>
+<pre><code>## Warning: Using `bins = 30` by default. Pick better value with the argument
+## `bins`.</code></pre>
+<pre><code>## Warning: geom_vline(): Ignoring `mapping` because `xintercept` was provided.</code></pre>
+<pre><code>## Warning: geom_vline(): Ignoring `data` because `xintercept` was provided.</code></pre>
+<pre><code>## Warning: Removed 5 rows containing non-finite values (stat_bin).</code></pre>
+<pre><code>## Warning: Removed 5 rows containing non-finite values (stat_density).</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="checking-the-fit-to-a-normal-curve" class="section level1">
+<h1>Checking the fit to a normal curve</h1>
+<div id="for-the-whole-group-no-subgroups" class="section level2">
+<h2>For the whole group (no subgroups)</h2>
+<pre class="r"><code>d %&gt;% 
+  ggplot() +
+  aes(sample = height) +
+  geom_qq() +
+  stat_qq_line()</code></pre>
+<pre><code>## Warning: Removed 5 rows containing non-finite values (stat_qq).</code></pre>
+<pre><code>## Warning: Removed 5 rows containing non-finite values (stat_qq_line).</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="for-each-gender-group-separately" class="section level2">
+<h2>For each gender (group) separately</h2>
+<pre class="r"><code>d %&gt;% 
+  ggplot() +
+  aes(sample = height) +
+  geom_qq(alpha = .7) +
+  facet_wrap(~ gender) +
+  stat_qq_line(linetype = &quot;dashed&quot;)</code></pre>
+<pre><code>## Warning: Removed 5 rows containing non-finite values (stat_qq).</code></pre>
+<pre><code>## Warning: Removed 5 rows containing non-finite values (stat_qq_line).</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+</div>
