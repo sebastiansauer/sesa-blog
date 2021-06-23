@@ -1,7 +1,7 @@
 ---
 title: Normal by nature? An annotated example of a normally distributed variable
 author: Sebastian Sauer
-draft: TRUE
+draft: true
 date: '2021-06-22'
 slug: normal-by-nature-an-annotated-example-of-a-normally-distributed-variable
 categories:
@@ -10,7 +10,18 @@ tags:
   - tutorial
 ---
 
-
+```{r global-knitr-options, include=FALSE}
+knitr::opts_chunk$set(fig.pos = 'H',
+  fig.asp = 0.618,
+  fig.width = 5,
+  fig.cap = "", 
+  fig.path = "",
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = FALSE,
+  fig.show = "hold")
+```
 
 
 # Setup
@@ -19,6 +30,7 @@ tags:
 ```{r}
 library(tidyverse)
 library(ggpubr)
+library(ggh4x)
 ```
 
 
@@ -30,6 +42,8 @@ d <- read_csv("https://vincentarelbundock.github.io/Rdatasets/csv/openintro/spee
 
 # Histogram of height
 
+
+## For each sex group separately
 
 ```{r}
 d2 <-
@@ -66,11 +80,15 @@ d |>
                 #color = "red",
                 args = list(mean = filter(d_summary, gender == "male")$height_m,
                             sd = filter(d_summary, gender == "male")$height_sd)) +
-  scale_fill_discrete()
+  scale_fill_discrete() +
+  theme(legend.position = "none",
+        axis.title.y = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
    
 ```
 
-A bit more beautifully perhaps:
+Let's overlay the empirical densities:
 
 
 ```{r}
@@ -79,10 +97,13 @@ gghistogram(d,
             fill = "gender",
             rug = TRUE,
             add_density = TRUE,
-            add = "mean")
+            add = "mean") +
+  scale_fill_brewer(type = "qual",
+                    palette = "Set1") +
+  labs(caption = "n = 1325")
 ```
 
-# For the whole sample
+## For the whole sample
 
 I.e,. with groups (gender) removed:
 
@@ -94,9 +115,24 @@ gghistogram(d,
 ```
 
 
+
+
+```{r}
+ggplot(d, aes(height)) +
+  geom_density() +
+  stat_theodensity(colour = "red") +
+  facet_wrap(~ gender)
+```
+
+
+
+
 # Checking the fit to a normal curve
 
 ## For the whole group (no subgroups)
+
+
+
 
 ```{r}
 d %>% 
@@ -104,6 +140,14 @@ d %>%
   aes(sample = height) +
   geom_qq() +
   stat_qq_line()
+```
+
+
+
+```{r}
+ggplot(d, aes(height)) +
+  geom_density() +
+  stat_theodensity(colour = "red")
 ```
 
 
@@ -119,3 +163,32 @@ d %>%
   facet_wrap(~ gender) +
   stat_qq_line(linetype = "dashed")
 ```
+
+
+
+
+```{r}
+ggplot(d, aes(height)) +
+  geom_density() +
+  stat_theodensity(colour = "red") +
+  facet_wrap(~ gender) +
+  theme_minimal() +
+  theme(legend.position = "none",
+        axis.title.y = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank()) 
+```
+
+
+# The mystic bell shape
+
+
+```{r}
+ggplot(data = data.frame(x = c(-3, 3)), 
+       aes(x)) +
+  stat_function(fun = dnorm, n = 100, args = list(mean = 0, sd = 1)) + ylab("") +
+  scale_y_continuous(breaks = NULL) +
+  theme_minimal() +
+  scale_x_continuous(breaks = NULL)
+```
+
