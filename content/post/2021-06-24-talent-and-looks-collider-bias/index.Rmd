@@ -2,19 +2,33 @@
 title: Talent and Looks -- Collider bias
 author: Sebastian Sauer
 date: '2021-06-24'
-draft: false
+draft: TRUE
 slug: talent-and-looks-collider-bias
-categories: []
+categories: [rstats, plotting, musing]
 tags:
   - tutorial
   - plotting
 ---
 
 
+# Background
+
+
+Some musing on the collider bias.
+
+Let's try to reverse engineer this image
+
+
+![](https://brilliant-staff-media.s3-us-west-2.amazonaws.com/tiffany-wang/1Mvt8RPtlU.png){ width=70% }
+
+# Setup
+
 ```{r}
 library(tidyverse)
+library(ggdag)
 ```
 
+# Simulate some data
 
 ```{r}
 n <- 1000
@@ -32,7 +46,9 @@ d <- tibble(
 
 
 
+# d: Uncorrelated data
 
+The farer from the centroid the lighter the color.
 
 ```{r}
 ggplot(d) +
@@ -44,7 +60,8 @@ ggplot(d) +
 ```
 
 
-# d2
+# d2: vertical lines
+
 
 
 ```{r}
@@ -52,33 +69,31 @@ d2 <- tibble(
   x = runif(n),
   y = runif(n),
   e = rnorm(n, mean = 0, sd = 0.3),
-  z = abs(x) * abs(y),
-  z2 = sqrt(x^2 + y^2),
-  zdiff = 0.5 - z2
+  z = abs(x) * abs(y)
 )
 ```
 
 
+Here we have the vertical line looked for, but it's not symmetrical.
 
 ```{r}
 ggplot(d2) +
   aes(x = x,
       y = y,
-      color = zdiff) +
+      color = z) +
   geom_point() +
   scale_color_viridis_c()
 ```
 
 
-# Negative corr
+# Circle line 
+
 
 
 ```{r}
 d3 <- tibble(
   x = rnorm(n),
-  y = rnorm(n),
-  e = rnorm(n, sd = 0.3),
-  z = 0.5*x - 0.5*y + e
+  y = rnorm(n)
 )
 ```
 
@@ -105,7 +120,7 @@ d3 %>%
 
 
 
-# Put a triangle on it
+# Put a triangle on random data
 
 
 
@@ -136,7 +151,7 @@ ggplot(d2) +
 
 
 
-# Compute f
+# Compute a function for the two linear borders 
 
 ```{r}
 myf <- function(x) -x+0.75
@@ -156,14 +171,10 @@ d2 <- tibble(
 )
 ```
 
-```{r}
-library("ggthemes")
-```
 
 
 ```{r}
 d2 %>% 
-  rename(dated)
   ggplot() +
   aes(x  = x,
       y = y,
@@ -178,6 +189,7 @@ d2 %>%
 ```
 
 
+Here's how the data look without the "filter" of status:
 
 ```{r}
 d2 %>% 
@@ -191,4 +203,20 @@ d2 %>%
        y = "Talent") +
     theme(legend.position = "bottom",
           axis.text = element_blank())
+```
+
+
+
+# Collider triangle
+
+
+
+```{r}
+collider_triangle(x = "Looks",
+                  y = "Talent",
+                  m = "get_dated") %>% 
+  ggdag_dseparated(controlling_for = "m",
+                   text = TRUE,
+                   use_labels = "label") +
+  theme_dag()
 ```
