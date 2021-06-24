@@ -53,7 +53,7 @@ library("conflicted")  # Name clashes finden
 library("leaps")  # Rohe Gewalt
 library("skimr")  # deskriptive Statistiken komfortabel
 library("ggfortify")  # Modellannahmen grafisch prüfen
-library(tictoc)  # Rechenzeit messen
+library("tictoc")  # Rechenzeit messen
 ```
 
 
@@ -428,7 +428,7 @@ glance(lm6)
 Ah. Etwas besser. Wettervorhersage macht's möglich.
 
 
-$R^2$ kann auch so berechnen:
+$R^2$ kann man auch so berechnen:
 
 
 ```{r}
@@ -590,7 +590,7 @@ Puh, das kann dauern, wenn man viele Prädiktoren hat.
 
 Schauen wir uns die Ergebnisse an:
 
-```{r}
+```{r fig.asp=1.5}
 lm7_summary <- summary(lm7)
 
 tibble(adjr2 = lm7_summary$adjr2,

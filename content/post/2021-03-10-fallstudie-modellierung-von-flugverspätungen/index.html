@@ -83,7 +83,7 @@ library(&quot;conflicted&quot;)  # Name clashes finden
 library(&quot;leaps&quot;)  # Rohe Gewalt
 library(&quot;skimr&quot;)  # deskriptive Statistiken komfortabel
 library(&quot;ggfortify&quot;)  # Modellannahmen grafisch prüfen
-library(tictoc)  # Rechenzeit messen</code></pre>
+library(&quot;tictoc&quot;)  # Rechenzeit messen</code></pre>
 </div>
 <div id="daten-laden" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Daten laden</h1>
@@ -1208,7 +1208,7 @@ glance(lm0)</code></pre>
 </tbody>
 </table>
 <p>Ah. Etwas besser. Wettervorhersage macht’s möglich.</p>
-<p><span class="math inline">\(R^2\)</span> kann auch so berechnen:</p>
+<p><span class="math inline">\(R^2\)</span> kann man auch so berechnen:</p>
 <pre class="r"><code>flights_train6_pred &lt;- 
   flights_train6 %&gt;% 
   mutate(lm6_pred = predict(lm6, newdata = .))
