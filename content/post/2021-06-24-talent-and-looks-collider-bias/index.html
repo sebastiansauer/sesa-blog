@@ -21,26 +21,14 @@ tags:
 </div>
 <div id="setup" class="section level1">
 <h1>Setup</h1>
-<pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
-<pre><code>## ✓ ggplot2 3.3.4     ✓ purrr   0.3.4
-## ✓ tibble  3.1.2     ✓ dplyr   1.0.6
-## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
-## ✓ readr   1.4.0     ✓ forcats 0.5.1</code></pre>
-<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code>library(ggdag)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;ggdag&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:stats&#39;:
-## 
-##     filter</code></pre>
+<pre class="r"><code>library(tidyverse)
+library(ggdag)</code></pre>
 </div>
 <div id="simulate-some-data" class="section level1">
 <h1>Simulate some data</h1>
 <pre class="r"><code>n &lt;- 1000</code></pre>
-<pre class="r"><code>d &lt;- tibble(
+<pre class="r"><code>
+d &lt;- tibble(
   x = rnorm(n, mean = 0, sd = 1),
   y = rnorm(n, mean = 0, sd = 1),
   e = rnorm(n, mean = 0, sd = 0.3),
@@ -55,7 +43,7 @@ tags:
       color = z) +
   geom_point() +
   scale_color_viridis_c()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="d2-vertical-lines" class="section level1">
 <h1>d2: vertical lines</h1>
@@ -72,7 +60,7 @@ tags:
       color = z) +
   geom_point() +
   scale_color_viridis_c()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="circle-line" class="section level1">
 <h1>Circle line</h1>
@@ -92,7 +80,7 @@ tags:
       y = y,
       color = status) +
   geom_point()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="put-a-triangle-on-random-data" class="section level1">
 <h1>Put a triangle on random data</h1>
@@ -111,8 +99,9 @@ polygon_df2 &lt;- tibble(
   scale_color_viridis_c() +
   geom_polygon(data = polygon_df, alpha = .5) +
   geom_polygon(data = polygon_df2, alpha = .5) +
-  theme_void()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+  theme_void()
+  </code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="compute-a-function-for-the-two-linear-borders" class="section level1">
 <h1>Compute a function for the two linear borders</h1>
@@ -139,7 +128,7 @@ myf2 &lt;- function(x) -x + 1.25</code></pre>
        y = &quot;Talent&quot;) +
     theme(legend.position = &quot;bottom&quot;,
           axis.text = element_blank())</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-14-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Here’s how the data look without the “filter” of status:</p>
 <pre class="r"><code>d2 %&gt;% 
   ggplot() +
@@ -152,7 +141,7 @@ myf2 &lt;- function(x) -x + 1.25</code></pre>
        y = &quot;Talent&quot;) +
     theme(legend.position = &quot;bottom&quot;,
           axis.text = element_blank())</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-15-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="collider-triangle" class="section level1">
 <h1>Collider triangle</h1>
@@ -163,5 +152,5 @@ myf2 &lt;- function(x) -x + 1.25</code></pre>
                    text = TRUE,
                    use_labels = &quot;label&quot;) +
   theme_dag()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-16-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
