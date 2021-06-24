@@ -55,6 +55,12 @@ Praktische Hinweise zur `ggplot2` finden sich @wickham_ggplot2_2016; Hinweise zu
 
 Unter z.B. dem Stichwort *tidytuesday*  finden sich eine Reihe sehenswerter Diagramme (mit ggplot2) erstellt; eine Übersicht findet sich [hier](https://nsgrantham.shinyapps.io/tidytuesdayrocks/).
 
+Eine nette weitere ~~Spielerei~~ Variante der Datenvisualisierung sind Animationen; zu Zeiten einer Pandemie etwa:
+
+![](https://heads0rtai1s.github.io/post/2020-04-30-animate-map-covid_files/figure-html/unnamed-chunk-8-1.gif){ width=100% }
+
+[Quelle](https://heads0rtai1s.github.io/2020/04/30/animate-map-covid/)
+
 
 ## Dashboards
 
