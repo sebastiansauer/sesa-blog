@@ -52,6 +52,8 @@ library("tidyverse")  # data wrangling
 library("conflicted")  # Name clashes finden
 library("leaps")  # Rohe Gewalt
 library("skimr")  # deskriptive Statistiken komfortabel
+library("ggfortify")  # Modellannahmen grafisch prüfen
+library(tictoc)  # Rechenzeit messen
 ```
 
 
@@ -516,13 +518,71 @@ Wir könnten einfach, etwas stumpfsinnig, *alle* Regressionsmodelle ausprobieren
 
 
 ```{r}
+tic()
 lm7 <- regsubsets(dep_delay ~ ., 
                   nvmax = 15,  # max. Anzahl von Prädiktoren
                   data = flights_train6)
+toc()
 ```
 
-Je größer `nvmax`,  desto länger die Rechenzeit, z.B. $2^15=32768$ Modelle, die berechnet werden müssen.
 
+Der Punkt in der Regressionsformel
+
+`dep_delay ~ ., `
+
+bedeutet "nimm alle übrigen Variablen" (also alle außer der abhängigen Variablen).
+
+
+Je größer `nvmax`,  desto länger die Rechenzeit, z.B. $2^{15}=32768$ Modelle, die berechnet werden müssen. 
+
+*Achtung:* [Einige Statistiker](https://statmodeling.stat.columbia.edu/2014/06/02/hate-stepwise-regression/) (siehe auch [hier](https://towardsdatascience.com/stopping-stepwise-why-stepwise-selection-is-bad-and-what-you-should-use-instead-90818b3f52df)) stehen solchen automatischen Verfahren kritisch gegenüber, sind also der Meinung, das sei Quatsch (andere wiederum nutzen diese Verfahren). 
+
+### Zeitabschätzung
+
+Ein kurze Sch+ätzung der Rechenzeit in Abhängikeit der Anzahl der Prädiktoren bei der Best-Subset-Methode; gehen wir von 1, 2 oder 5 Sekunden Rechenzeit (`exec_time`) pro Modell aus.
+
+
+```{r}
+n_preds <- 1:20
+exec_time <- c(1, 2, 5)
+```
+
+
+```{r}
+exec_time_df <-
+  expand_grid(n_preds = n_preds,
+              exec_time_per_run = exec_time)
+```
+
+
+
+
+
+```{r}
+exec_time_df <- 
+  exec_time_df %>% 
+  mutate(exec_time = 2^n_preds * exec_time_per_run) %>% 
+  group_by(exec_time_per_run) %>% 
+  mutate(exec_time_cum = cumsum(exec_time) / 60 / 60 / 60)
+```
+
+
+```{r}
+head(exec_time_df)
+```
+
+
+
+```{r}
+exec_time_df %>% 
+  ggplot() +
+  aes(x = n_preds, 
+      y = exec_time_cum, 
+      color = factor(exec_time_per_run)) +
+  geom_line()
+```
+
+Puh, das kann dauern, wenn man viele Prädiktoren hat.
 
 
 
@@ -555,7 +615,7 @@ coef(lm7, 7) %>% names()
 ```
 
 
-## lm8: Bestes Modell aus der Best-Subset-Analyse
+# lm8: Bestes Modell aus der Best-Subset-Analyse
 
 
 ```{r}
@@ -611,6 +671,19 @@ test_rsq
 
 
 Ein typischer Befund bei Regressionsanalysen (ohne Polynome): Im Testdatensatz ist $R^2$ etwas geringer als im Train-Datensatz. Bei Modellen mit Polynomen oder anderen flexiblen Modellen kann der Unterschied zwischen Train- und Test-Sample noch viel größer sein.
+
+
+# Prüfen der Modellqualität
+
+```{r}
+autoplot(lm6, which = 1)
+```
+
+Abweichungen von der Linearität finden sich besonders bei sehr kleinen und sehr großen Werten; das ist ein Hinweise, dass unser Modell nicht-lineare Zusammenhänge nicht erkannt. Das ist kein Wunder, schließlich besteht unser Modell nur aus linearen Termen.
+Interaktionen, Polynome oder logarithmische Transformationen könnten das Modell verbessern und eröffnen Raum für weitere Analysen.
+
+
+
 
 # Einreichen
 
@@ -678,5 +751,8 @@ Das ständige Updaten des Test-Datensatzes nervt; mit `tidymodels` wird es komfo
 ## Reproducibility info
 options(width = 120)
 devtools::session_info()
+```
+
+
 
 

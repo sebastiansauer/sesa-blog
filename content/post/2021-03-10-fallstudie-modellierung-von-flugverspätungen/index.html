@@ -51,17 +51,21 @@ output:
 </ul></li>
 <li><a href="#lm7-rohe-gewalt"><span class="toc-section-number">18</span> lm7: Rohe Gewalt</a>
 <ul>
+<li><a href="#zeitabschätzung"><span class="toc-section-number">18.0.1</span> Zeitabschätzung</a></li>
 <li><a href="#best-subsets-ergebnisse"><span class="toc-section-number">18.1</span> Best Subsets – Ergebnisse</a></li>
-<li><a href="#lm8-bestes-modell-aus-der-best-subset-analyse"><span class="toc-section-number">18.2</span> lm8: Bestes Modell aus der Best-Subset-Analyse</a></li>
-<li><a href="#r2-im-testdatensatz"><span class="toc-section-number">18.3</span> R2 im Testdatensatz</a></li>
 </ul></li>
-<li><a href="#einreichen"><span class="toc-section-number">19</span> Einreichen</a>
+<li><a href="#lm8-bestes-modell-aus-der-best-subset-analyse"><span class="toc-section-number">19</span> lm8: Bestes Modell aus der Best-Subset-Analyse</a>
 <ul>
-<li><a href="#csv-datei-erstellen-zum-einreichen"><span class="toc-section-number">19.1</span> CSV-Datei erstellen zum Einreichen</a></li>
+<li><a href="#r2-im-testdatensatz"><span class="toc-section-number">19.1</span> R2 im Testdatensatz</a></li>
 </ul></li>
-<li><a href="#was-noch"><span class="toc-section-number">20</span> Was noch?</a></li>
-<li><a href="#tidymodels"><span class="toc-section-number">21</span> Tidymodels</a></li>
-<li><a href="#reproducibility"><span class="toc-section-number">22</span> Reproducibility</a></li>
+<li><a href="#prüfen-der-modellqualität"><span class="toc-section-number">20</span> Prüfen der Modellqualität</a></li>
+<li><a href="#einreichen"><span class="toc-section-number">21</span> Einreichen</a>
+<ul>
+<li><a href="#csv-datei-erstellen-zum-einreichen"><span class="toc-section-number">21.1</span> CSV-Datei erstellen zum Einreichen</a></li>
+</ul></li>
+<li><a href="#was-noch"><span class="toc-section-number">22</span> Was noch?</a></li>
+<li><a href="#tidymodels"><span class="toc-section-number">23</span> Tidymodels</a></li>
+<li><a href="#reproducibility"><span class="toc-section-number">24</span> Reproducibility</a></li>
 </ul>
 </div>
 
@@ -76,7 +80,9 @@ output:
 library(&quot;tidyverse&quot;)  # data wrangling
 library(&quot;conflicted&quot;)  # Name clashes finden
 library(&quot;leaps&quot;)  # Rohe Gewalt
-library(&quot;skimr&quot;)  # deskriptive Statistiken komfortabel</code></pre>
+library(&quot;skimr&quot;)  # deskriptive Statistiken komfortabel
+library(&quot;ggfortify&quot;)  # Modellannahmen grafisch prüfen
+library(tictoc)  # Rechenzeit messen</code></pre>
 </div>
 <div id="daten-laden" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Daten laden</h1>
@@ -144,16 +150,16 @@ glance(lm0)</code></pre>
 <tr class="odd">
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">40.05746</td>
+<td align="right">40.14855</td>
 <td align="right">NA</td>
 <td align="right">NA</td>
 <td align="right">NA</td>
-<td align="right">-1258879</td>
-<td align="right">2517761</td>
-<td align="right">2517782</td>
-<td align="right">395359076</td>
-<td align="right">246391</td>
-<td align="right">246392</td>
+<td align="right">-1259418</td>
+<td align="right">2518840</td>
+<td align="right">2518861</td>
+<td align="right">397152640</td>
+<td align="right">246387</td>
+<td align="right">246388</td>
 </tr>
 </tbody>
 </table>
@@ -175,23 +181,23 @@ glance(lm0)</code></pre>
 <tbody>
 <tr class="odd">
 <td align="left">(Intercept)</td>
-<td align="right">15.094780</td>
-<td align="right">0.1347601</td>
-<td align="right">112.01223</td>
+<td align="right">15.132723</td>
+<td align="right">0.1350185</td>
+<td align="right">112.07890</td>
 <td align="right">0</td>
 </tr>
 <tr class="even">
 <td align="left">originJFK</td>
-<td align="right">-3.032926</td>
-<td align="right">0.1941345</td>
-<td align="right">-15.62281</td>
+<td align="right">-3.084897</td>
+<td align="right">0.1944907</td>
+<td align="right">-15.86141</td>
 <td align="right">0</td>
 </tr>
 <tr class="odd">
 <td align="left">originLGA</td>
-<td align="right">-4.785602</td>
-<td align="right">0.1978473</td>
-<td align="right">-24.18837</td>
+<td align="right">-4.846399</td>
+<td align="right">0.1983607</td>
+<td align="right">-24.43226</td>
 <td align="right">0</td>
 </tr>
 </tbody>
@@ -213,18 +219,18 @@ glance(lm0)</code></pre>
 <tbody>
 <tr class="odd">
 <td align="left">EWR</td>
-<td align="right">15.09478</td>
+<td align="right">15.13272</td>
 <td align="right">0.000000</td>
 </tr>
 <tr class="even">
 <td align="left">JFK</td>
-<td align="right">12.06185</td>
-<td align="right">-3.032926</td>
+<td align="right">12.04783</td>
+<td align="right">-3.084897</td>
 </tr>
 <tr class="odd">
 <td align="left">LGA</td>
-<td align="right">10.30918</td>
-<td align="right">-4.785602</td>
+<td align="right">10.28632</td>
+<td align="right">-4.846399</td>
 </tr>
 </tbody>
 </table>
@@ -263,18 +269,18 @@ glance(lm0)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">0.0024601</td>
-<td align="right">0.002452</td>
-<td align="right">40.00832</td>
-<td align="right">303.8236</td>
+<td align="right">0.0025138</td>
+<td align="right">0.0025057</td>
+<td align="right">40.09822</td>
+<td align="right">310.4611</td>
 <td align="right">0</td>
 <td align="right">2</td>
-<td align="right">-1258575</td>
-<td align="right">2517158</td>
-<td align="right">2517200</td>
-<td align="right">394386436</td>
-<td align="right">246389</td>
-<td align="right">246392</td>
+<td align="right">-1259108</td>
+<td align="right">2518224</td>
+<td align="right">2518265</td>
+<td align="right">396154280</td>
+<td align="right">246385</td>
+<td align="right">246388</td>
 </tr>
 </tbody>
 </table>
@@ -409,15 +415,15 @@ glance(lm0)</code></pre>
 <td align="right">0.01</td>
 <td align="right">0.01</td>
 <td align="right">40</td>
-<td align="right">134</td>
+<td align="right">130</td>
 <td align="right">0</td>
 <td align="right">23</td>
-<td align="right">-1257350</td>
-<td align="right">2514751</td>
-<td align="right">2515011</td>
+<td align="right">-1257929</td>
+<td align="right">2515908</td>
+<td align="right">2516168</td>
 <td align="right">3.9e+08</td>
-<td align="right">246368</td>
-<td align="right">246392</td>
+<td align="right">246364</td>
+<td align="right">246388</td>
 </tr>
 </tbody>
 </table>
@@ -435,170 +441,170 @@ glance(lm0)</code></pre>
 <tbody>
 <tr class="odd">
 <td align="left">(Intercept)</td>
-<td align="right">18.25</td>
+<td align="right">18.61</td>
 <td align="right">0.56</td>
-<td align="right">32.51</td>
+<td align="right">33.0</td>
 <td align="right">0.00</td>
 </tr>
 <tr class="even">
 <td align="left">carrierAA</td>
-<td align="right">-7.75</td>
+<td align="right">-7.78</td>
 <td align="right">0.49</td>
-<td align="right">-15.78</td>
+<td align="right">-15.8</td>
 <td align="right">0.00</td>
 </tr>
 <tr class="odd">
 <td align="left">carrierB6</td>
-<td align="right">-3.44</td>
+<td align="right">-3.57</td>
 <td align="right">0.41</td>
-<td align="right">-8.39</td>
+<td align="right">-8.7</td>
 <td align="right">0.00</td>
 </tr>
 <tr class="even">
 <td align="left">carrierDL</td>
-<td align="right">-6.80</td>
+<td align="right">-7.05</td>
 <td align="right">0.43</td>
-<td align="right">-15.77</td>
+<td align="right">-16.3</td>
 <td align="right">0.00</td>
 </tr>
 <tr class="odd">
 <td align="left">carrierEV</td>
-<td align="right">3.60</td>
+<td align="right">2.99</td>
 <td align="right">0.46</td>
-<td align="right">7.86</td>
+<td align="right">6.5</td>
 <td align="right">0.00</td>
 </tr>
 <tr class="even">
 <td align="left">carrierMQ</td>
-<td align="right">-5.53</td>
+<td align="right">-5.92</td>
 <td align="right">0.47</td>
-<td align="right">-11.72</td>
+<td align="right">-12.5</td>
 <td align="right">0.00</td>
 </tr>
 <tr class="odd">
 <td align="left">carrierUA</td>
-<td align="right">-4.30</td>
+<td align="right">-4.94</td>
 <td align="right">0.46</td>
-<td align="right">-9.36</td>
+<td align="right">-10.7</td>
 <td align="right">0.00</td>
 </tr>
 <tr class="even">
 <td align="left">carrierUS</td>
-<td align="right">-12.16</td>
+<td align="right">-12.47</td>
 <td align="right">0.57</td>
-<td align="right">-21.40</td>
+<td align="right">-21.9</td>
 <td align="right">0.00</td>
 </tr>
 <tr class="odd">
 <td align="left">carrierWN</td>
-<td align="right">1.99</td>
+<td align="right">1.49</td>
 <td align="right">0.58</td>
-<td align="right">3.42</td>
-<td align="right">0.00</td>
+<td align="right">2.5</td>
+<td align="right">0.01</td>
 </tr>
 <tr class="even">
 <td align="left">carrierOther</td>
-<td align="right">-1.01</td>
+<td align="right">-1.68</td>
 <td align="right">0.61</td>
-<td align="right">-1.66</td>
-<td align="right">0.10</td>
+<td align="right">-2.8</td>
+<td align="right">0.01</td>
 </tr>
 <tr class="odd">
 <td align="left">originJFK</td>
-<td align="right">0.08</td>
+<td align="right">-0.32</td>
 <td align="right">0.28</td>
-<td align="right">0.28</td>
-<td align="right">0.78</td>
+<td align="right">-1.1</td>
+<td align="right">0.26</td>
 </tr>
 <tr class="even">
 <td align="left">originLGA</td>
-<td align="right">-1.38</td>
+<td align="right">-1.64</td>
 <td align="right">0.24</td>
-<td align="right">-5.66</td>
+<td align="right">-6.7</td>
 <td align="right">0.00</td>
 </tr>
 <tr class="odd">
 <td align="left">destBOS</td>
-<td align="right">-2.86</td>
+<td align="right">-2.52</td>
 <td align="right">0.56</td>
-<td align="right">-5.09</td>
+<td align="right">-4.5</td>
 <td align="right">0.00</td>
 </tr>
 <tr class="even">
 <td align="left">destCLT</td>
-<td align="right">-0.88</td>
+<td align="right">-0.67</td>
 <td align="right">0.62</td>
-<td align="right">-1.42</td>
-<td align="right">0.15</td>
+<td align="right">-1.1</td>
+<td align="right">0.28</td>
 </tr>
 <tr class="odd">
 <td align="left">destDCA</td>
-<td align="right">-0.91</td>
+<td align="right">-0.68</td>
 <td align="right">0.67</td>
-<td align="right">-1.36</td>
-<td align="right">0.17</td>
+<td align="right">-1.0</td>
+<td align="right">0.31</td>
 </tr>
 <tr class="even">
 <td align="left">destDFW</td>
-<td align="right">-1.63</td>
-<td align="right">0.69</td>
-<td align="right">-2.35</td>
-<td align="right">0.02</td>
+<td align="right">-1.89</td>
+<td align="right">0.70</td>
+<td align="right">-2.7</td>
+<td align="right">0.01</td>
 </tr>
 <tr class="odd">
 <td align="left">destDTW</td>
-<td align="right">-3.24</td>
+<td align="right">-2.28</td>
 <td align="right">0.61</td>
-<td align="right">-5.34</td>
+<td align="right">-3.8</td>
 <td align="right">0.00</td>
 </tr>
 <tr class="even">
 <td align="left">destFLL</td>
-<td align="right">-0.60</td>
+<td align="right">-0.79</td>
 <td align="right">0.58</td>
-<td align="right">-1.05</td>
-<td align="right">0.29</td>
+<td align="right">-1.4</td>
+<td align="right">0.17</td>
 </tr>
 <tr class="odd">
 <td align="left">destLAX</td>
-<td align="right">-4.10</td>
+<td align="right">-3.70</td>
 <td align="right">0.55</td>
-<td align="right">-7.41</td>
+<td align="right">-6.7</td>
 <td align="right">0.00</td>
 </tr>
 <tr class="even">
 <td align="left">destMCO</td>
-<td align="right">-2.03</td>
+<td align="right">-1.56</td>
 <td align="right">0.55</td>
-<td align="right">-3.69</td>
+<td align="right">-2.8</td>
 <td align="right">0.00</td>
 </tr>
 <tr class="odd">
 <td align="left">destMIA</td>
-<td align="right">-1.43</td>
-<td align="right">0.60</td>
-<td align="right">-2.36</td>
-<td align="right">0.02</td>
+<td align="right">-1.29</td>
+<td align="right">0.61</td>
+<td align="right">-2.1</td>
+<td align="right">0.03</td>
 </tr>
 <tr class="even">
 <td align="left">destORD</td>
-<td align="right">1.20</td>
+<td align="right">1.57</td>
 <td align="right">0.55</td>
-<td align="right">2.18</td>
-<td align="right">0.03</td>
+<td align="right">2.9</td>
+<td align="right">0.00</td>
 </tr>
 <tr class="odd">
 <td align="left">destSFO</td>
-<td align="right">-0.94</td>
+<td align="right">-0.76</td>
 <td align="right">0.58</td>
-<td align="right">-1.62</td>
-<td align="right">0.10</td>
+<td align="right">-1.3</td>
+<td align="right">0.19</td>
 </tr>
 <tr class="even">
 <td align="left">destOther</td>
-<td align="right">-1.83</td>
+<td align="right">-1.63</td>
 <td align="right">0.41</td>
-<td align="right">-4.49</td>
+<td align="right">-4.0</td>
 <td align="right">0.00</td>
 </tr>
 </tbody>
@@ -657,15 +663,15 @@ glance(lm0)</code></pre>
 <td align="right">0.14</td>
 <td align="right">0.14</td>
 <td align="right">37</td>
-<td align="right">3948</td>
+<td align="right">3936</td>
 <td align="right">0</td>
 <td align="right">10</td>
-<td align="right">-1234977</td>
-<td align="right">2469978</td>
-<td align="right">2470103</td>
+<td align="right">-1235786</td>
+<td align="right">2471597</td>
+<td align="right">2471722</td>
 <td align="right">3.4e+08</td>
-<td align="right">245453</td>
-<td align="right">245464</td>
+<td align="right">245490</td>
+<td align="right">245501</td>
 </tr>
 </tbody>
 </table>
@@ -694,7 +700,7 @@ glance(lm0)</code></pre>
 </tr>
 <tr class="even">
 <td align="left">Number of rows</td>
-<td align="left">246392</td>
+<td align="left">246388</td>
 </tr>
 <tr class="odd">
 <td align="left">Number of columns</td>
@@ -751,7 +757,7 @@ glance(lm0)</code></pre>
 <td align="right">29</td>
 <td align="right">44</td>
 <td align="right">59</td>
-<td align="left">▇▃▇▃▅</td>
+<td align="left">▇▃▆▃▅</td>
 </tr>
 </tbody>
 </table>
@@ -793,18 +799,18 @@ glance(lm0)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">0.15</td>
-<td align="right">0.15</td>
+<td align="right">0.14</td>
+<td align="right">0.14</td>
 <td align="right">37</td>
-<td align="right">1264</td>
+<td align="right">1259</td>
 <td align="right">0</td>
 <td align="right">33</td>
-<td align="right">-1234020</td>
-<td align="right">2468110</td>
-<td align="right">2468474</td>
-<td align="right">3.3e+08</td>
-<td align="right">245430</td>
-<td align="right">245464</td>
+<td align="right">-1234853</td>
+<td align="right">2469776</td>
+<td align="right">2470140</td>
+<td align="right">3.4e+08</td>
+<td align="right">245467</td>
+<td align="right">245501</td>
 </tr>
 </tbody>
 </table>
@@ -1188,15 +1194,15 @@ glance(lm0)</code></pre>
 <td align="right">0.16</td>
 <td align="right">0.16</td>
 <td align="right">34</td>
-<td align="right">1113</td>
+<td align="right">1111</td>
 <td align="right">0</td>
 <td align="right">38</td>
-<td align="right">-1080399</td>
-<td align="right">2160878</td>
-<td align="right">2161290</td>
+<td align="right">-1081500</td>
+<td align="right">2163080</td>
+<td align="right">2163492</td>
 <td align="right">2.6e+08</td>
-<td align="right">218190</td>
-<td align="right">218229</td>
+<td align="right">218320</td>
+<td align="right">218359</td>
 </tr>
 </tbody>
 </table>
@@ -1247,32 +1253,32 @@ flights_train6_pred %&gt;%
 <tr class="odd">
 <td align="right">1</td>
 <td align="right">2</td>
-<td align="right">0.60</td>
+<td align="right">0.32</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="right">4</td>
-<td align="right">-0.96</td>
+<td align="right">-1.47</td>
 </tr>
 <tr class="odd">
-<td align="right">3</td>
-<td align="right">2</td>
-<td align="right">-0.86</td>
-</tr>
-<tr class="even">
-<td align="right">4</td>
-<td align="right">-1</td>
-<td align="right">1.32</td>
-</tr>
-<tr class="odd">
-<td align="right">6</td>
-<td align="right">-4</td>
-<td align="right">3.94</td>
-</tr>
-<tr class="even">
 <td align="right">11</td>
 <td align="right">-2</td>
-<td align="right">-0.02</td>
+<td align="right">-0.12</td>
+</tr>
+<tr class="even">
+<td align="right">19</td>
+<td align="right">0</td>
+<td align="right">1.66</td>
+</tr>
+<tr class="odd">
+<td align="right">30</td>
+<td align="right">0</td>
+<td align="right">4.25</td>
+</tr>
+<tr class="even">
+<td align="right">49</td>
+<td align="right">-2</td>
+<td align="right">2.64</td>
 </tr>
 </tbody>
 </table>
@@ -1309,7 +1315,7 @@ test_rsq</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">9218</td>
+<td align="right">9352</td>
 <td align="right">0.11</td>
 </tr>
 </tbody>
@@ -1358,11 +1364,51 @@ flights_test6_pred %&gt;%
 <div id="lm7-rohe-gewalt" class="section level1" number="18">
 <h1><span class="header-section-number">18</span> lm7: Rohe Gewalt</h1>
 <p>Wir könnten einfach, etwas stumpfsinnig, <em>alle</em> Regressionsmodelle ausprobieren: Jeder der <span class="math inline">\(p\)</span> Prädiktoren könnte also entweder enthalten sein oder nicht. Natürlich würde das schnell zu Arbeit auswachsen, wenn man so viele Regressionsmodelle – <span class="math inline">\(2^p\)</span> – durchprobieren würde. Außerdem wird die Gefahr von Zufallsbefunden schnell riesig. Aber gut, man kann stumpfsinnige Arbeiten ja gut an den Computer delegieren. Und zum Schutz vor Überanpassung gibt es ein paar Behelfe. Probieren wir es aus; dazu nutzen wir das Paket <code>{leaps}</code>.</p>
-<pre class="r"><code>lm7 &lt;- regsubsets(dep_delay ~ ., 
+<pre class="r"><code>tic()
+lm7 &lt;- regsubsets(dep_delay ~ ., 
                   nvmax = 15,  # max. Anzahl von Prädiktoren
                   data = flights_train6)
-#&gt; Reordering variables and trying again:</code></pre>
-<p>Je größer <code>nvmax</code>, desto länger die Rechenzeit, z.B. <span class="math inline">\(2^15=32768\)</span> Modelle, die berechnet werden müssen.</p>
+#&gt; Reordering variables and trying again:
+toc()
+#&gt; 41.191 sec elapsed</code></pre>
+<p>Der Punkt in der Regressionsformel</p>
+<p><code>dep_delay ~ .,</code></p>
+<p>bedeutet “nimm alle übrigen Variablen” (also alle außer der abhängigen Variablen).</p>
+<p>Je größer <code>nvmax</code>, desto länger die Rechenzeit, z.B. <span class="math inline">\(2^{15}=32768\)</span> Modelle, die berechnet werden müssen.</p>
+<p><em>Achtung:</em> <a href="https://statmodeling.stat.columbia.edu/2014/06/02/hate-stepwise-regression/">Einige Statistiker</a> (siehe auch <a href="https://towardsdatascience.com/stopping-stepwise-why-stepwise-selection-is-bad-and-what-you-should-use-instead-90818b3f52df">hier</a>) stehen solchen automatischen Verfahren kritisch gegenüber, sind also der Meinung, das sei Quatsch (andere wiederum nutzen diese Verfahren).</p>
+<div id="zeitabschätzung" class="section level3" number="18.0.1">
+<h3><span class="header-section-number">18.0.1</span> Zeitabschätzung</h3>
+<p>Ein kurze Sch+ätzung der Rechenzeit in Abhängikeit der Anzahl der Prädiktoren bei der Best-Subset-Methode; gehen wir von 1, 2 oder 5 Sekunden Rechenzeit (<code>exec_time</code>) pro Modell aus.</p>
+<pre class="r"><code>n_preds &lt;- 1:20
+exec_time &lt;- c(1, 2, 5)</code></pre>
+<pre class="r"><code>exec_time_df &lt;-
+  expand_grid(n_preds = n_preds,
+              exec_time_per_run = exec_time)</code></pre>
+<pre class="r"><code>exec_time_df &lt;- 
+  exec_time_df %&gt;% 
+  mutate(exec_time = 2^n_preds * exec_time_per_run) %&gt;% 
+  group_by(exec_time_per_run) %&gt;% 
+  mutate(exec_time_cum = cumsum(exec_time) / 60 / 60 / 60)</code></pre>
+<pre class="r"><code>head(exec_time_df)
+#&gt; # A tibble: 6 x 4
+#&gt; # Groups:   exec_time_per_run [3]
+#&gt;   n_preds exec_time_per_run exec_time exec_time_cum
+#&gt;     &lt;int&gt;             &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;
+#&gt; 1       1                 1         2    0.00000926
+#&gt; 2       1                 2         4    0.0000185 
+#&gt; 3       1                 5        10    0.0000463 
+#&gt; 4       2                 1         4    0.0000278 
+#&gt; 5       2                 2         8    0.0000556 
+#&gt; 6       2                 5        20    0.000139</code></pre>
+<pre class="r"><code>exec_time_df %&gt;% 
+  ggplot() +
+  aes(x = n_preds, 
+      y = exec_time_cum, 
+      color = factor(exec_time_per_run)) +
+  geom_line()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-50-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Puh, das kann dauern, wenn man viele Prädiktoren hat.</p>
+</div>
 <div id="best-subsets-ergebnisse" class="section level2" number="18.1">
 <h2><span class="header-section-number">18.1</span> Best Subsets – Ergebnisse</h2>
 <p>Schauen wir uns die Ergebnisse an:</p>
@@ -1380,14 +1426,15 @@ tibble(adjr2 = lm7_summary$adjr2,
   facet_wrap(~ name, scales = &quot;free&quot;, nrow = 3) +
   scale_x_continuous(breaks = 1:16)
 </code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-46-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-51-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Das Modell mit 7 Koeffizienten könnte sinnvoll sein.</p>
 <pre class="r"><code>coef(lm7, 7) %&gt;% names()
 #&gt; [1] &quot;(Intercept)&quot;    &quot;dep_time&quot;       &quot;sched_dep_time&quot; &quot;arr_time&quot;      
 #&gt; [5] &quot;sched_arr_time&quot; &quot;carrierEV&quot;      &quot;wind_dir&quot;       &quot;visib&quot;</code></pre>
 </div>
-<div id="lm8-bestes-modell-aus-der-best-subset-analyse" class="section level2" number="18.2">
-<h2><span class="header-section-number">18.2</span> lm8: Bestes Modell aus der Best-Subset-Analyse</h2>
+</div>
+<div id="lm8-bestes-modell-aus-der-best-subset-analyse" class="section level1" number="19">
+<h1><span class="header-section-number">19</span> lm8: Bestes Modell aus der Best-Subset-Analyse</h1>
 <pre class="r"><code>flights_train7 &lt;-
   flights_train6 %&gt;% 
   mutate(carrierEV = fct_other(carrier, 
@@ -1437,22 +1484,21 @@ glance(lm8)</code></pre>
 <td align="right">0.15</td>
 <td align="right">0.15</td>
 <td align="right">37</td>
-<td align="right">5983</td>
+<td align="right">6019</td>
 <td align="right">0</td>
 <td align="right">7</td>
-<td align="right">-1200145</td>
-<td align="right">2400308</td>
-<td align="right">2400401</td>
-<td align="right">3.2e+08</td>
-<td align="right">238784</td>
-<td align="right">238792</td>
+<td align="right">-1200390</td>
+<td align="right">2400798</td>
+<td align="right">2400891</td>
+<td align="right">3.3e+08</td>
+<td align="right">238773</td>
+<td align="right">238781</td>
 </tr>
 </tbody>
 </table>
 <p>Hm; nicht so gut.</p>
-</div>
-<div id="r2-im-testdatensatz" class="section level2" number="18.3">
-<h2><span class="header-section-number">18.3</span> R2 im Testdatensatz</h2>
+<div id="r2-im-testdatensatz" class="section level2" number="19.1">
+<h2><span class="header-section-number">19.1</span> R2 im Testdatensatz</h2>
 <pre class="r"><code>flights_test7_pred &lt;-
   flights_test7 %&gt;% 
   mutate(pred_lm8 = predict(lm8, newdata = flights_test7)) %&gt;% 
@@ -1486,8 +1532,15 @@ test_rsq</code></pre>
 <p>Ein typischer Befund bei Regressionsanalysen (ohne Polynome): Im Testdatensatz ist <span class="math inline">\(R^2\)</span> etwas geringer als im Train-Datensatz. Bei Modellen mit Polynomen oder anderen flexiblen Modellen kann der Unterschied zwischen Train- und Test-Sample noch viel größer sein.</p>
 </div>
 </div>
-<div id="einreichen" class="section level1" number="19">
-<h1><span class="header-section-number">19</span> Einreichen</h1>
+<div id="prüfen-der-modellqualität" class="section level1" number="20">
+<h1><span class="header-section-number">20</span> Prüfen der Modellqualität</h1>
+<pre class="r"><code>autoplot(lm6, which = 1)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-58-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Abweichungen von der Linearität finden sich besonders bei sehr kleinen und sehr großen Werten; das ist ein Hinweise, dass unser Modell nicht-lineare Zusammenhänge nicht erkannt. Das ist kein Wunder, schließlich besteht unser Modell nur aus linearen Termen.
+Interaktionen, Polynome oder logarithmische Transformationen könnten das Modell verbessern und eröffnen Raum für weitere Analysen.</p>
+</div>
+<div id="einreichen" class="section level1" number="21">
+<h1><span class="header-section-number">21</span> Einreichen</h1>
 <p>Das beste Modell im <em>Trainsample</em> reichen wir ein; in diesem Fall <code>lm6</code>. Wenn die Maßgabe ist, für <em>alle</em> Fälle des Datensatzes eine Vorhersage einzureichen, tun wir das natürlich:</p>
 <pre class="r"><code>flights6 &lt;- 
 flights_train6 %&gt;% 
@@ -1507,27 +1560,27 @@ flights_train6 %&gt;%
 <tbody>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">-0.07</td>
+<td align="right">-0.15</td>
 </tr>
 <tr class="even">
 <td align="right">7</td>
 <td align="right">0.81</td>
 </tr>
 <tr class="odd">
-<td align="right">8</td>
-<td align="right">6.05</td>
+<td align="right">21</td>
+<td align="right">-1.73</td>
 </tr>
 <tr class="even">
-<td align="right">9</td>
-<td align="right">0.07</td>
+<td align="right">31</td>
+<td align="right">-4.19</td>
 </tr>
 <tr class="odd">
-<td align="right">10</td>
-<td align="right">-0.08</td>
+<td align="right">34</td>
+<td align="right">6.22</td>
 </tr>
 <tr class="even">
-<td align="right">12</td>
-<td align="right">-0.63</td>
+<td align="right">35</td>
+<td align="right">-1.19</td>
 </tr>
 </tbody>
 </table>
@@ -1536,13 +1589,13 @@ flights_train6 %&gt;%
   drop_na() %&gt;% 
   nrow() / nrow(flights6_pred)
 #&gt; [1] 0.89</code></pre>
-<div id="csv-datei-erstellen-zum-einreichen" class="section level2" number="19.1">
-<h2><span class="header-section-number">19.1</span> CSV-Datei erstellen zum Einreichen</h2>
+<div id="csv-datei-erstellen-zum-einreichen" class="section level2" number="21.1">
+<h2><span class="header-section-number">21.1</span> CSV-Datei erstellen zum Einreichen</h2>
 <pre class="r"><code>write_csv(flights6_pred, file = &quot;Sauer_Sebastian_0123456_Prognose.csv&quot;)</code></pre>
 </div>
 </div>
-<div id="was-noch" class="section level1" number="20">
-<h1><span class="header-section-number">20</span> Was noch?</h1>
+<div id="was-noch" class="section level1" number="22">
+<h1><span class="header-section-number">22</span> Was noch?</h1>
 <p>Ein nächster Schritt könnte sein, sich folgende Punkte anzuschauen:</p>
 <ul>
 <li>Interaktionen</li>
@@ -1551,150 +1604,152 @@ flights_train6 %&gt;%
 </ul>
 <p>Eine Faustregel zu Interaktionen lautet: Wenn zwei Variablen jeweils einen starken Haupteffekt haben, lohnt es sich u.U., den Interaktionseffekt anzuschauen (vgl. Gelman &amp; Hill, 2007, S. 69).</p>
 </div>
-<div id="tidymodels" class="section level1" number="21">
-<h1><span class="header-section-number">21</span> Tidymodels</h1>
+<div id="tidymodels" class="section level1" number="23">
+<h1><span class="header-section-number">23</span> Tidymodels</h1>
 <p>Das ständige Updaten des Test-Datensatzes nervt; mit <code>tidymodels</code> wird es komfortabler und man hat Zugang zu leistungsfähigeren Prognosemodellen. <a href="https://www.tmwr.org/">Hier</a> findet sich ein Einstieg und hier eine <a href="https://www.tidymodels.org/start/models/">Fallstudie mit Tutorial</a>.</p>
 </div>
-<div id="reproducibility" class="section level1" number="22">
-<h1><span class="header-section-number">22</span> Reproducibility</h1>
+<div id="reproducibility" class="section level1" number="24">
+<h1><span class="header-section-number">24</span> Reproducibility</h1>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value                       
-#&gt;  version  R version 4.0.2 (2020-06-22)
-#&gt;  os       macOS  10.16                
+#&gt;  version  R version 4.1.0 (2021-05-18)
+#&gt;  os       macOS Big Sur 10.16         
 #&gt;  system   x86_64, darwin17.0          
 #&gt;  ui       X11                         
 #&gt;  language (EN)                        
 #&gt;  collate  en_US.UTF-8                 
 #&gt;  ctype    en_US.UTF-8                 
 #&gt;  tz       Europe/Berlin               
-#&gt;  date     2021-03-11                  
+#&gt;  date     2021-06-24                  
 #&gt; 
 #&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
-#&gt;  package      * version     date       lib source                             
-#&gt;  assertthat     0.2.1       2019-03-21 [1] CRAN (R 4.0.0)                     
-#&gt;  backports      1.2.1       2020-12-09 [1] CRAN (R 4.0.2)                     
-#&gt;  base64enc      0.1-3       2015-07-28 [1] CRAN (R 4.0.0)                     
-#&gt;  blogdown       1.1         2021-01-19 [1] CRAN (R 4.0.2)                     
-#&gt;  bookdown       0.21.6      2021-02-02 [1] Github (rstudio/bookdown@6c7346a)  
-#&gt;  broom        * 0.7.5       2021-02-19 [1] CRAN (R 4.0.2)                     
-#&gt;  bslib          0.2.4.9000  2021-02-02 [1] Github (rstudio/bslib@b3cd7a9)     
-#&gt;  cachem         1.0.4       2021-02-13 [1] CRAN (R 4.0.2)                     
-#&gt;  callr          3.5.1       2020-10-13 [1] CRAN (R 4.0.2)                     
-#&gt;  cellranger     1.1.0       2016-07-27 [1] CRAN (R 4.0.0)                     
-#&gt;  class          7.3-17      2020-04-26 [2] CRAN (R 4.0.2)                     
-#&gt;  cli            2.3.1       2021-02-23 [1] CRAN (R 4.0.2)                     
-#&gt;  codetools      0.2-16      2018-12-24 [2] CRAN (R 4.0.2)                     
-#&gt;  colorspace     2.0-0       2020-11-11 [1] CRAN (R 4.0.2)                     
-#&gt;  conflicted   * 1.0.4       2019-06-21 [1] CRAN (R 4.0.0)                     
-#&gt;  crayon         1.4.1       2021-02-08 [1] CRAN (R 4.0.2)                     
-#&gt;  DBI            1.1.1       2021-01-15 [1] CRAN (R 4.0.2)                     
-#&gt;  dbplyr         2.1.0       2021-02-03 [1] CRAN (R 4.0.2)                     
-#&gt;  debugme        1.1.0       2017-10-22 [1] CRAN (R 4.0.0)                     
-#&gt;  desc           1.2.0       2018-05-01 [1] CRAN (R 4.0.0)                     
-#&gt;  devtools       2.3.2       2020-09-18 [1] CRAN (R 4.0.2)                     
-#&gt;  dials        * 0.0.9       2020-09-16 [1] CRAN (R 4.0.2)                     
-#&gt;  DiceDesign     1.9         2021-02-13 [1] CRAN (R 4.0.2)                     
-#&gt;  digest         0.6.27      2020-10-24 [1] CRAN (R 4.0.2)                     
-#&gt;  dplyr        * 1.0.4       2021-02-02 [1] CRAN (R 4.0.2)                     
-#&gt;  ellipsis       0.3.1       2020-05-15 [1] CRAN (R 4.0.0)                     
-#&gt;  evaluate       0.14        2019-05-28 [1] CRAN (R 4.0.0)                     
-#&gt;  fansi          0.4.2       2021-01-15 [1] CRAN (R 4.0.2)                     
-#&gt;  farver         2.0.3       2020-01-16 [1] CRAN (R 4.0.0)                     
-#&gt;  fastmap        1.1.0       2021-01-25 [1] CRAN (R 4.0.2)                     
-#&gt;  forcats      * 0.5.1       2021-01-27 [1] CRAN (R 4.0.2)                     
-#&gt;  foreach        1.5.1       2020-10-15 [1] CRAN (R 4.0.2)                     
-#&gt;  fs             1.5.0       2020-07-31 [1] CRAN (R 4.0.2)                     
-#&gt;  furrr          0.2.2       2021-01-29 [1] CRAN (R 4.0.2)                     
-#&gt;  future         1.21.0      2020-12-10 [1] CRAN (R 4.0.2)                     
-#&gt;  generics       0.1.0       2020-10-31 [1] CRAN (R 4.0.2)                     
-#&gt;  ggplot2      * 3.3.3       2020-12-30 [1] CRAN (R 4.0.2)                     
-#&gt;  globals        0.14.0      2020-11-22 [1] CRAN (R 4.0.2)                     
-#&gt;  glue           1.4.2       2020-08-27 [1] CRAN (R 4.0.2)                     
-#&gt;  gower          0.2.2       2020-06-23 [1] CRAN (R 4.0.0)                     
-#&gt;  GPfit          1.0-8       2019-02-08 [1] CRAN (R 4.0.0)                     
-#&gt;  gtable         0.3.0       2019-03-25 [1] CRAN (R 4.0.0)                     
-#&gt;  haven          2.3.1       2020-06-01 [1] CRAN (R 4.0.0)                     
-#&gt;  highr          0.8         2019-03-20 [1] CRAN (R 4.0.0)                     
-#&gt;  hms            1.0.0       2021-01-13 [1] CRAN (R 4.0.2)                     
-#&gt;  htmltools      0.5.1.1     2021-01-22 [1] CRAN (R 4.0.2)                     
-#&gt;  httr           1.4.2       2020-07-20 [1] CRAN (R 4.0.2)                     
-#&gt;  infer        * 0.5.4       2021-01-13 [1] CRAN (R 4.0.2)                     
-#&gt;  ipred          0.9-9       2019-04-28 [1] CRAN (R 4.0.0)                     
-#&gt;  iterators      1.0.13      2020-10-15 [1] CRAN (R 4.0.2)                     
-#&gt;  jquerylib      0.1.3       2020-12-17 [1] CRAN (R 4.0.2)                     
-#&gt;  jsonlite       1.7.2       2020-12-09 [1] CRAN (R 4.0.2)                     
-#&gt;  knitr          1.31        2021-01-27 [1] CRAN (R 4.0.2)                     
-#&gt;  labeling       0.4.2       2020-10-20 [1] CRAN (R 4.0.2)                     
-#&gt;  lattice        0.20-41     2020-04-02 [2] CRAN (R 4.0.2)                     
-#&gt;  lava           1.6.8.1     2020-11-04 [1] CRAN (R 4.0.2)                     
-#&gt;  leaps        * 3.1         2020-01-16 [1] CRAN (R 4.0.0)                     
-#&gt;  lhs            1.1.1       2020-10-05 [1] CRAN (R 4.0.2)                     
-#&gt;  lifecycle      1.0.0       2021-02-15 [1] CRAN (R 4.0.2)                     
-#&gt;  listenv        0.8.0       2019-12-05 [1] CRAN (R 4.0.0)                     
-#&gt;  lubridate      1.7.9.2     2020-11-13 [1] CRAN (R 4.0.2)                     
-#&gt;  magrittr       2.0.1       2020-11-17 [1] CRAN (R 4.0.2)                     
-#&gt;  MASS           7.3-53.1    2021-02-12 [1] CRAN (R 4.0.2)                     
-#&gt;  Matrix         1.2-18      2019-11-27 [2] CRAN (R 4.0.2)                     
-#&gt;  memoise        2.0.0       2021-01-26 [1] CRAN (R 4.0.2)                     
-#&gt;  modeldata    * 0.1.0       2020-10-22 [1] CRAN (R 4.0.2)                     
-#&gt;  modelr         0.1.8       2020-05-19 [1] CRAN (R 4.0.0)                     
-#&gt;  munsell        0.5.0       2018-06-12 [1] CRAN (R 4.0.0)                     
-#&gt;  nnet           7.3-14      2020-04-26 [2] CRAN (R 4.0.2)                     
-#&gt;  nycflights13 * 1.0.1       2019-09-16 [1] CRAN (R 4.0.0)                     
-#&gt;  parallelly     1.23.0      2021-01-04 [1] CRAN (R 4.0.2)                     
-#&gt;  parsnip      * 0.1.5       2021-01-19 [1] CRAN (R 4.0.2)                     
-#&gt;  pillar         1.5.0       2021-02-22 [1] CRAN (R 4.0.2)                     
-#&gt;  pkgbuild       1.2.0       2020-12-15 [1] CRAN (R 4.0.2)                     
-#&gt;  pkgconfig      2.0.3       2019-09-22 [1] CRAN (R 4.0.0)                     
-#&gt;  pkgload        1.2.0       2021-02-23 [1] CRAN (R 4.0.2)                     
-#&gt;  plyr           1.8.6       2020-03-03 [1] CRAN (R 4.0.0)                     
-#&gt;  prettyunits    1.1.1       2020-01-24 [1] CRAN (R 4.0.0)                     
-#&gt;  printr       * 0.1.1       2021-01-27 [1] CRAN (R 4.0.2)                     
-#&gt;  pROC           1.17.0.1    2021-01-13 [1] CRAN (R 4.0.2)                     
-#&gt;  processx       3.4.5       2020-11-30 [1] CRAN (R 4.0.2)                     
-#&gt;  prodlim        2019.11.13  2019-11-17 [1] CRAN (R 4.0.0)                     
-#&gt;  ps             1.5.0       2020-12-05 [1] CRAN (R 4.0.2)                     
-#&gt;  purrr        * 0.3.4       2020-04-17 [1] CRAN (R 4.0.0)                     
-#&gt;  R6             2.5.0       2020-10-28 [1] CRAN (R 4.0.2)                     
-#&gt;  Rcpp           1.0.6       2021-01-15 [1] CRAN (R 4.0.2)                     
-#&gt;  readr        * 1.4.0       2020-10-05 [1] CRAN (R 4.0.2)                     
-#&gt;  readxl         1.3.1       2019-03-13 [1] CRAN (R 4.0.0)                     
-#&gt;  recipes      * 0.1.15      2020-11-11 [1] CRAN (R 4.0.2)                     
-#&gt;  remotes        2.2.0       2020-07-21 [1] CRAN (R 4.0.2)                     
-#&gt;  repr           1.1.3       2021-01-21 [1] CRAN (R 4.0.2)                     
-#&gt;  reprex         1.0.0       2021-01-27 [1] CRAN (R 4.0.2)                     
-#&gt;  rlang          0.4.10      2020-12-30 [1] CRAN (R 4.0.2)                     
-#&gt;  rmarkdown      2.7         2021-02-19 [1] CRAN (R 4.0.2)                     
-#&gt;  rpart          4.1-15      2019-04-12 [2] CRAN (R 4.0.2)                     
-#&gt;  rprojroot      2.0.2       2020-11-15 [1] CRAN (R 4.0.2)                     
-#&gt;  rsample      * 0.0.9       2021-02-17 [1] CRAN (R 4.0.2)                     
-#&gt;  rstudioapi     0.13.0-9000 2021-02-11 [1] Github (rstudio/rstudioapi@9d21f50)
-#&gt;  rvest          0.3.6       2020-07-25 [1] CRAN (R 4.0.2)                     
-#&gt;  sass           0.3.1       2021-01-24 [1] CRAN (R 4.0.2)                     
-#&gt;  scales       * 1.1.1       2020-05-11 [1] CRAN (R 4.0.0)                     
-#&gt;  sessioninfo    1.1.1       2018-11-05 [1] CRAN (R 4.0.0)                     
-#&gt;  skimr        * 2.1.3       2021-03-07 [1] CRAN (R 4.0.2)                     
-#&gt;  stringi        1.5.3       2020-09-09 [1] CRAN (R 4.0.2)                     
-#&gt;  stringr      * 1.4.0       2019-02-10 [1] CRAN (R 4.0.0)                     
-#&gt;  survival       3.2-7       2020-09-28 [1] CRAN (R 4.0.2)                     
-#&gt;  testthat       3.0.2       2021-02-14 [1] CRAN (R 4.0.2)                     
-#&gt;  tibble       * 3.0.6       2021-01-29 [1] CRAN (R 4.0.2)                     
-#&gt;  tidymodels   * 0.1.2       2020-11-22 [1] CRAN (R 4.0.2)                     
-#&gt;  tidyr        * 1.1.2       2020-08-27 [1] CRAN (R 4.0.2)                     
-#&gt;  tidyselect     1.1.0       2020-05-11 [1] CRAN (R 4.0.0)                     
-#&gt;  tidyverse    * 1.3.0       2019-11-21 [1] CRAN (R 4.0.0)                     
-#&gt;  timeDate       3043.102    2018-02-21 [1] CRAN (R 4.0.0)                     
-#&gt;  tune         * 0.1.2       2020-11-17 [1] CRAN (R 4.0.2)                     
-#&gt;  usethis        2.0.1       2021-02-10 [1] CRAN (R 4.0.2)                     
-#&gt;  utf8           1.1.4       2018-05-24 [1] CRAN (R 4.0.0)                     
-#&gt;  vctrs          0.3.6       2020-12-17 [1] CRAN (R 4.0.2)                     
-#&gt;  withr          2.4.1       2021-01-26 [1] CRAN (R 4.0.2)                     
-#&gt;  workflows    * 0.2.1       2020-10-08 [1] CRAN (R 4.0.2)                     
-#&gt;  xfun           0.21        2021-02-10 [1] CRAN (R 4.0.2)                     
-#&gt;  xml2           1.3.2       2020-04-23 [1] CRAN (R 4.0.0)                     
-#&gt;  yaml           2.2.1       2020-02-01 [1] CRAN (R 4.0.0)                     
-#&gt;  yardstick    * 0.0.7       2020-07-13 [1] CRAN (R 4.0.2)                     
+#&gt;  package      * version    date       lib source                        
+#&gt;  assertthat     0.2.1      2019-03-21 [1] CRAN (R 4.1.0)                
+#&gt;  backports      1.2.1      2020-12-09 [1] CRAN (R 4.1.0)                
+#&gt;  base64enc      0.1-3      2015-07-28 [1] CRAN (R 4.1.0)                
+#&gt;  blogdown       1.3        2021-04-14 [2] CRAN (R 4.1.0)                
+#&gt;  bookdown       0.22       2021-04-22 [2] CRAN (R 4.1.0)                
+#&gt;  broom        * 0.7.6      2021-04-05 [1] CRAN (R 4.1.0)                
+#&gt;  bslib          0.2.5.1    2021-05-18 [1] CRAN (R 4.1.0)                
+#&gt;  cachem         1.0.5      2021-05-15 [2] CRAN (R 4.1.0)                
+#&gt;  callr          3.7.0      2021-04-20 [1] CRAN (R 4.1.0)                
+#&gt;  cellranger     1.1.0      2016-07-27 [1] CRAN (R 4.1.0)                
+#&gt;  class          7.3-19     2021-05-03 [2] CRAN (R 4.1.0)                
+#&gt;  cli            2.5.0      2021-04-26 [1] CRAN (R 4.1.0)                
+#&gt;  codetools      0.2-18     2020-11-04 [2] CRAN (R 4.1.0)                
+#&gt;  colorspace     2.0-1      2021-05-04 [1] CRAN (R 4.1.0)                
+#&gt;  conflicted   * 1.0.4      2019-06-21 [1] CRAN (R 4.1.0)                
+#&gt;  crayon         1.4.1      2021-02-08 [1] CRAN (R 4.1.0)                
+#&gt;  DBI            1.1.1      2021-01-15 [1] CRAN (R 4.1.0)                
+#&gt;  dbplyr         2.1.1      2021-04-06 [1] CRAN (R 4.1.0)                
+#&gt;  desc           1.3.0      2021-03-05 [2] CRAN (R 4.1.0)                
+#&gt;  devtools       2.4.1      2021-05-05 [2] CRAN (R 4.1.0)                
+#&gt;  dials        * 0.0.9      2020-09-16 [1] CRAN (R 4.1.0)                
+#&gt;  DiceDesign     1.9        2021-02-13 [1] CRAN (R 4.1.0)                
+#&gt;  digest         0.6.27     2020-10-24 [1] CRAN (R 4.1.0)                
+#&gt;  dplyr        * 1.0.6      2021-05-05 [1] CRAN (R 4.1.0)                
+#&gt;  ellipsis       0.3.2      2021-04-29 [1] CRAN (R 4.1.0)                
+#&gt;  evaluate       0.14       2019-05-28 [1] CRAN (R 4.1.0)                
+#&gt;  fansi          0.5.0      2021-05-25 [1] CRAN (R 4.1.0)                
+#&gt;  farver         2.1.0      2021-02-28 [1] CRAN (R 4.1.0)                
+#&gt;  fastmap        1.1.0      2021-01-25 [2] CRAN (R 4.1.0)                
+#&gt;  forcats      * 0.5.1      2021-01-27 [1] CRAN (R 4.1.0)                
+#&gt;  foreach        1.5.1      2020-10-15 [2] CRAN (R 4.1.0)                
+#&gt;  fs             1.5.0      2020-07-31 [1] CRAN (R 4.1.0)                
+#&gt;  furrr          0.2.2      2021-01-29 [1] CRAN (R 4.1.0)                
+#&gt;  future         1.21.0     2020-12-10 [1] CRAN (R 4.1.0)                
+#&gt;  generics       0.1.0      2020-10-31 [1] CRAN (R 4.1.0)                
+#&gt;  ggfortify    * 0.4.11     2020-10-02 [2] CRAN (R 4.1.0)                
+#&gt;  ggplot2      * 3.3.4      2021-06-16 [1] CRAN (R 4.1.0)                
+#&gt;  globals        0.14.0     2020-11-22 [1] CRAN (R 4.1.0)                
+#&gt;  glue           1.4.2      2020-08-27 [1] CRAN (R 4.1.0)                
+#&gt;  gower          0.2.2      2020-06-23 [1] CRAN (R 4.1.0)                
+#&gt;  GPfit          1.0-8      2019-02-08 [1] CRAN (R 4.1.0)                
+#&gt;  gridExtra      2.3        2017-09-09 [2] CRAN (R 4.1.0)                
+#&gt;  gtable         0.3.0      2019-03-25 [1] CRAN (R 4.1.0)                
+#&gt;  haven          2.4.1      2021-04-23 [1] CRAN (R 4.1.0)                
+#&gt;  highr          0.9        2021-04-16 [1] CRAN (R 4.1.0)                
+#&gt;  hms            1.1.0      2021-05-17 [1] CRAN (R 4.1.0)                
+#&gt;  htmltools      0.5.1.1    2021-01-22 [1] CRAN (R 4.1.0)                
+#&gt;  httr           1.4.2      2020-07-20 [1] CRAN (R 4.1.0)                
+#&gt;  infer        * 0.5.4      2021-01-13 [1] CRAN (R 4.1.0)                
+#&gt;  ipred          0.9-11     2021-03-12 [1] CRAN (R 4.1.0)                
+#&gt;  iterators      1.0.13     2020-10-15 [2] CRAN (R 4.1.0)                
+#&gt;  jquerylib      0.1.4      2021-04-26 [1] CRAN (R 4.1.0)                
+#&gt;  jsonlite       1.7.2      2020-12-09 [1] CRAN (R 4.1.0)                
+#&gt;  knitr          1.33       2021-04-24 [1] CRAN (R 4.1.0)                
+#&gt;  labeling       0.4.2      2020-10-20 [1] CRAN (R 4.1.0)                
+#&gt;  lattice        0.20-44    2021-05-02 [2] CRAN (R 4.1.0)                
+#&gt;  lava           1.6.9      2021-03-11 [1] CRAN (R 4.1.0)                
+#&gt;  leaps        * 3.1        2020-01-16 [1] CRAN (R 4.1.0)                
+#&gt;  lhs            1.1.1      2020-10-05 [1] CRAN (R 4.1.0)                
+#&gt;  lifecycle      1.0.0      2021-02-15 [1] CRAN (R 4.1.0)                
+#&gt;  listenv        0.8.0      2019-12-05 [1] CRAN (R 4.1.0)                
+#&gt;  lubridate      1.7.10     2021-02-26 [1] CRAN (R 4.1.0)                
+#&gt;  magrittr       2.0.1      2020-11-17 [1] CRAN (R 4.1.0)                
+#&gt;  MASS           7.3-54     2021-05-03 [2] CRAN (R 4.1.0)                
+#&gt;  Matrix         1.3-4      2021-06-01 [2] CRAN (R 4.1.0)                
+#&gt;  memoise        2.0.0      2021-01-26 [2] CRAN (R 4.1.0)                
+#&gt;  modeldata    * 0.1.0      2020-10-22 [1] CRAN (R 4.1.0)                
+#&gt;  modelr         0.1.8      2020-05-19 [1] CRAN (R 4.1.0)                
+#&gt;  munsell        0.5.0      2018-06-12 [1] CRAN (R 4.1.0)                
+#&gt;  nnet           7.3-16     2021-05-03 [2] CRAN (R 4.1.0)                
+#&gt;  nycflights13 * 1.0.2      2021-04-12 [1] CRAN (R 4.1.0)                
+#&gt;  parallelly     1.25.0     2021-04-30 [1] CRAN (R 4.1.0)                
+#&gt;  parsnip      * 0.1.6      2021-05-27 [1] CRAN (R 4.1.0)                
+#&gt;  pillar         1.6.1      2021-05-16 [1] CRAN (R 4.1.0)                
+#&gt;  pkgbuild       1.2.0      2020-12-15 [2] CRAN (R 4.1.0)                
+#&gt;  pkgconfig      2.0.3      2019-09-22 [1] CRAN (R 4.1.0)                
+#&gt;  pkgload        1.2.1      2021-04-06 [2] CRAN (R 4.1.0)                
+#&gt;  plyr           1.8.6      2020-03-03 [1] CRAN (R 4.1.0)                
+#&gt;  prettyunits    1.1.1      2020-01-24 [1] CRAN (R 4.1.0)                
+#&gt;  printr       * 0.1.1      2021-01-27 [1] CRAN (R 4.1.0)                
+#&gt;  pROC           1.17.0.1   2021-01-13 [1] CRAN (R 4.1.0)                
+#&gt;  processx       3.5.2      2021-04-30 [1] CRAN (R 4.1.0)                
+#&gt;  prodlim        2019.11.13 2019-11-17 [1] CRAN (R 4.1.0)                
+#&gt;  ps             1.6.0      2021-02-28 [1] CRAN (R 4.1.0)                
+#&gt;  purrr        * 0.3.4      2020-04-17 [1] CRAN (R 4.1.0)                
+#&gt;  R6             2.5.0      2020-10-28 [1] CRAN (R 4.1.0)                
+#&gt;  Rcpp           1.0.6      2021-01-15 [1] CRAN (R 4.1.0)                
+#&gt;  readr        * 1.4.0      2020-10-05 [1] CRAN (R 4.1.0)                
+#&gt;  readxl         1.3.1      2019-03-13 [1] CRAN (R 4.1.0)                
+#&gt;  recipes      * 0.1.16     2021-04-16 [1] CRAN (R 4.1.0)                
+#&gt;  remotes        2.4.0      2021-06-02 [2] CRAN (R 4.1.0)                
+#&gt;  repr           1.1.3      2021-01-21 [1] CRAN (R 4.1.0)                
+#&gt;  reprex         2.0.0      2021-04-02 [1] CRAN (R 4.1.0)                
+#&gt;  rlang          0.4.11     2021-04-30 [1] CRAN (R 4.1.0)                
+#&gt;  rmarkdown      2.8        2021-05-07 [1] CRAN (R 4.1.0)                
+#&gt;  rpart          4.1-15     2019-04-12 [2] CRAN (R 4.1.0)                
+#&gt;  rprojroot      2.0.2      2020-11-15 [2] CRAN (R 4.1.0)                
+#&gt;  rsample      * 0.1.0      2021-05-08 [1] CRAN (R 4.1.0)                
+#&gt;  rstudioapi     0.13       2020-11-12 [1] CRAN (R 4.1.0)                
+#&gt;  rvest          1.0.0      2021-03-09 [1] CRAN (R 4.1.0)                
+#&gt;  sass           0.4.0      2021-05-12 [1] CRAN (R 4.1.0)                
+#&gt;  scales       * 1.1.1      2020-05-11 [1] CRAN (R 4.1.0)                
+#&gt;  sessioninfo    1.1.1      2018-11-05 [2] CRAN (R 4.1.0)                
+#&gt;  skimr        * 2.1.3      2021-03-07 [1] CRAN (R 4.1.0)                
+#&gt;  stringi        1.6.2      2021-05-17 [1] CRAN (R 4.1.0)                
+#&gt;  stringr      * 1.4.0      2019-02-10 [1] CRAN (R 4.1.0)                
+#&gt;  survival       3.2-11     2021-04-26 [2] CRAN (R 4.1.0)                
+#&gt;  testthat       3.0.2      2021-02-14 [2] CRAN (R 4.1.0)                
+#&gt;  tibble       * 3.1.2      2021-05-16 [1] CRAN (R 4.1.0)                
+#&gt;  tidymodels   * 0.1.3      2021-04-19 [1] CRAN (R 4.1.0)                
+#&gt;  tidyr        * 1.1.3      2021-03-03 [1] CRAN (R 4.1.0)                
+#&gt;  tidyselect     1.1.1      2021-04-30 [1] CRAN (R 4.1.0)                
+#&gt;  tidyverse    * 1.3.1      2021-04-15 [1] CRAN (R 4.1.0)                
+#&gt;  timeDate       3043.102   2018-02-21 [1] CRAN (R 4.1.0)                
+#&gt;  tune         * 0.1.5      2021-04-23 [1] CRAN (R 4.1.0)                
+#&gt;  usethis        2.0.1      2021-02-10 [2] CRAN (R 4.1.0)                
+#&gt;  utf8           1.2.1      2021-03-12 [1] CRAN (R 4.1.0)                
+#&gt;  vctrs          0.3.8      2021-04-29 [1] CRAN (R 4.1.0)                
+#&gt;  withr          2.4.2      2021-04-18 [1] CRAN (R 4.1.0)                
+#&gt;  workflows    * 0.2.2      2021-03-10 [1] CRAN (R 4.1.0)                
+#&gt;  workflowsets * 0.0.2      2021-04-16 [1] CRAN (R 4.1.0)                
+#&gt;  xfun           0.23       2021-05-15 [1] CRAN (R 4.1.0)                
+#&gt;  xml2           1.3.2      2020-04-23 [1] CRAN (R 4.1.0)                
+#&gt;  yaml           2.2.1.99   2021-06-18 [1] Github (viking/r-yaml@4788abe)
+#&gt;  yardstick    * 0.0.8      2021-03-28 [1] CRAN (R 4.1.0)                
 #&gt; 
-#&gt; [1] /Users/sebastiansaueruser/Rlibs
-#&gt; [2] /Library/Frameworks/R.framework/Versions/4.0/Resources/library</code></pre>
+#&gt; [1] /Users/sebastiansaueruser/Library/R/x86_64/4.1/library
+#&gt; [2] /Library/Frameworks/R.framework/Versions/4.1/Resources/library</code></pre>
 </div>
