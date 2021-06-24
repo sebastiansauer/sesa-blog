@@ -1,0 +1,15 @@
+---
+title: Plotting geometric figures using ggplot2
+author: Sebastian Saue
+date: '2021-06-24'
+draft: TRUE
+slug: plotting-geometric-figures-using-ggplot2
+categories:
+  - rstats
+tags:
+  - plotting
+---
+
+
+
+# Line with a number of of segments

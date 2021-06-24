@@ -1,0 +1,194 @@
+---
+title: Talent and Looks -- Collider bias
+author: Sebastian Sauer
+date: '2021-06-24'
+draft: false
+slug: talent-and-looks-collider-bias
+categories: []
+tags:
+  - tutorial
+  - plotting
+---
+
+
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+n <- 1000
+```
+
+
+```{r}
+
+d <- tibble(
+  x = rnorm(n, mean = 0, sd = 1),
+  y = rnorm(n, mean = 0, sd = 1),
+  e = rnorm(n, mean = 0, sd = 0.3),
+  z = abs(x) * abs(y))
+```
+
+
+
+
+
+```{r}
+ggplot(d) +
+  aes(x = x,
+      y = y,
+      color = z) +
+  geom_point() +
+  scale_color_viridis_c()
+```
+
+
+# d2
+
+
+```{r}
+d2 <- tibble(
+  x = runif(n),
+  y = runif(n),
+  e = rnorm(n, mean = 0, sd = 0.3),
+  z = abs(x) * abs(y),
+  z2 = sqrt(x^2 + y^2),
+  zdiff = 0.5 - z2
+)
+```
+
+
+
+```{r}
+ggplot(d2) +
+  aes(x = x,
+      y = y,
+      color = zdiff) +
+  geom_point() +
+  scale_color_viridis_c()
+```
+
+
+# Negative corr
+
+
+```{r}
+d3 <- tibble(
+  x = rnorm(n),
+  y = rnorm(n),
+  e = rnorm(n, sd = 0.3),
+  z = 0.5*x - 0.5*y + e
+)
+```
+
+
+```{r}
+d3 <-
+  d3 %>% 
+  mutate(status = case_when(
+    sqrt(x^2 + y^2) > 1.4 ~ TRUE,
+    TRUE ~ FALSE
+  ))
+```
+
+
+
+```{r}
+d3 %>% 
+  ggplot() +
+  aes(x  = x,
+      y = y,
+      color = status) +
+  geom_point()
+```
+
+
+
+# Put a triangle on it
+
+
+
+```{r}
+polygon_df <- tibble(
+  x = c(0, 0, 0.75),
+  y = c(0, 0.75, 0)
+)
+polygon_df2 <- tibble(
+  x = c(0.25, 1, 1),
+  y = c(1, 1, .25)
+)
+
+```
+
+
+```{r}
+ggplot(d2) +
+  aes(x = x,
+      y = y) +
+  geom_point() +
+  scale_color_viridis_c() +
+  geom_polygon(data = polygon_df, alpha = .5) +
+  geom_polygon(data = polygon_df2, alpha = .5) +
+  theme_void()
+  
+```
+
+
+
+# Compute f
+
+```{r}
+myf <- function(x) -x+0.75
+
+myf2 <- function(x) -x + 1.25
+```
+
+
+```{r}
+d2 <- tibble(
+  x = runif(n),
+  y = runif(n),
+  status = case_when(
+    y > myf(x) & y < myf2(x) ~ TRUE,
+    TRUE ~ FALSE
+  )
+)
+```
+
+```{r}
+library("ggthemes")
+```
+
+
+```{r}
+d2 %>% 
+  rename(dated)
+  ggplot() +
+  aes(x  = x,
+      y = y,
+      color = status) +
+  geom_point() +
+  scale_color_manual(values = c("grey80", "black")) +
+  theme_bw() +
+  labs(x = "Looks",
+       y = "Talent") +
+    theme(legend.position = "bottom",
+          axis.text = element_blank())
+```
+
+
+
+```{r}
+d2 %>% 
+  ggplot() +
+  aes(x  = x,
+      y = y) +
+  geom_point() +
+ # scale_color_manual(values = c("grey80", "black")) +
+  theme_bw() +
+  labs(x = "Looks",
+       y = "Talent") +
+    theme(legend.position = "bottom",
+          axis.text = element_blank())
+```

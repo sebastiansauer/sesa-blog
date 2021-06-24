@@ -32,6 +32,12 @@ knitr::opts_chunk$set(
 This post was inspired by [this paper](https://www.tandfonline.com/doi/full/10.1080/10691898.2020.1752859) of Karsten Luebke and coauthors.
 
 
+```{r}
+library(ggdag)
+library(ggthemes)
+library(mosaic)
+```
+
 
 
 

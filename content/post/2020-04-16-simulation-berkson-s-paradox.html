@@ -14,6 +14,9 @@ tags:
 
 
 <p>This post was inspired by <a href="https://www.tandfonline.com/doi/full/10.1080/10691898.2020.1752859">this paper</a> of Karsten Luebke and coauthors.</p>
+<pre class="r"><code>library(ggdag)
+library(ggthemes)
+library(mosaic)</code></pre>
 <p>We’ll stratify our sample into two groups: students (Studium) and non-students (kein Studium).</p>
 <div id="structural-causal-model" class="section level1">
 <h1>Structural causal model</h1>
@@ -49,7 +52,7 @@ tally(~ Studium_bin, data = df)
            filter(Studium_bin == &quot;Studium&quot;)) %&gt;% 
   gf_refine(scale_colour_colorblind())  %&gt;% 
   gf_lm()</code></pre>
-<p><img src="/post/2020-04-16-simulation-berkson-s-paradox_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="/post/2020-04-16-simulation-berkson-s-paradox_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="replication-effort-second-study-provides-conflicting-evidence-no-assocation-between-iq-and-dilligence" class="section level1">
 <h1>Replication effort: Second study provides conflicting evidence: No assocation between IQ and dilligence</h1>
@@ -60,7 +63,7 @@ tally(~ Studium_bin, data = df)
 gf_point(IQ ~ Fleiss, data = df) %&gt;% 
   gf_refine(scale_colour_colorblind())  %&gt;% 
   gf_lm()</code></pre>
-<p><img src="/post/2020-04-16-simulation-berkson-s-paradox_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="/post/2020-04-16-simulation-berkson-s-paradox_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="stratifying-subgroups" class="section level1">
 <h1>Stratifying subgroups</h1>
@@ -70,7 +73,7 @@ gf_point(IQ ~ Fleiss, data = df) %&gt;%
   gf_refine(theme(legend.position = &quot;bottom&quot;)) %&gt;% 
   gf_labs(color = &quot;&quot;) %&gt;% 
   gf_lm()</code></pre>
-<p><img src="/post/2020-04-16-simulation-berkson-s-paradox_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="/post/2020-04-16-simulation-berkson-s-paradox_files/figure-html/unnamed-chunk-7-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>We see that there’s indeed a negative correlation in each subgroup. However, there’s no marginal assocation, ie., on the whole sample.</p>
 </div>
 <div id="causal-interpretation" class="section level1">
@@ -85,5 +88,5 @@ dag1 &lt;- ggdag::dagify(S ~ F + IQ,
 
 dag1_p &lt;- ggdag(dag1, use_labels = &quot;label&quot;)  + theme_dag_blank()</code></pre>
 <pre class="r"><code>dag1_p</code></pre>
-<p><img src="/post/2020-04-16-simulation-berkson-s-paradox_files/figure-html/unnamed-chunk-8-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="/post/2020-04-16-simulation-berkson-s-paradox_files/figure-html/unnamed-chunk-9-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
