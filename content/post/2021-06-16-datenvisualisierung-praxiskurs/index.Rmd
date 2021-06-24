@@ -40,15 +40,15 @@ Im Folgenden sind einige Beispiele für Diagramme dargestellt, die im Unterricht
 
 Praktische Hinweise zur `ggplot2` finden sich @wickham_ggplot2_2016; Hinweise zu Qualitätsmerkmalen von Datendiagramme sind in @wilke_fundamentals_2019 nachzulesen. Die theoretischen Grundlagen zur Visualisierung von Daten finden sich in @wilkinson_grammar_2005.
 
-![](https://raw.githubusercontent.com/cnicault/tidytuesday/master/2021/2021-19-water_access_points/water_access_points.png){ width=100% }
+![](https://raw.githubusercontent.com/cnicault/tidytuesday/master/2021/2021-19-water_access_points/water_access_points.png){ width=70% }
 
-![](https://raw.githubusercontent.com/cnicault/tidytuesday/master/2021/2021-21-ask_a_manager/ask_manager.png){ width=100% }
-
-
-![](https://raw.githubusercontent.com/cnicault/tidytuesday/master/2021/2021-15-global_deforestation/deforestation.png){ width=100% }
+![](https://raw.githubusercontent.com/cnicault/tidytuesday/master/2021/2021-21-ask_a_manager/ask_manager.png){ width=70% }
 
 
-![](https://raw.githubusercontent.com/cnicault/tidytuesday/master/2020/2020-52-bigmac-index/bigmac_index.png){ width=100% }
+![](https://raw.githubusercontent.com/cnicault/tidytuesday/master/2021/2021-15-global_deforestation/deforestation.png){ width=70% }
+
+
+![](https://raw.githubusercontent.com/cnicault/tidytuesday/master/2020/2020-52-bigmac-index/bigmac_index.png){ width=70% }
 
 
 [Quelle](https://github.com/cnicault/tidytuesday)
@@ -57,7 +57,7 @@ Unter z.B. dem Stichwort *tidytuesday*  finden sich eine Reihe sehenswerter Diag
 
 Eine nette weitere ~~Spielerei~~ Variante der Datenvisualisierung sind Animationen; zu Zeiten einer Pandemie etwa:
 
-![](https://heads0rtai1s.github.io/post/2020-04-30-animate-map-covid_files/figure-html/unnamed-chunk-8-1.gif){ width=100% }
+![](https://heads0rtai1s.github.io/post/2020-04-30-animate-map-covid_files/figure-html/unnamed-chunk-8-1.gif){ width=50% }
 
 [Quelle](https://heads0rtai1s.github.io/2020/04/30/animate-map-covid/)
 

@@ -113,13 +113,16 @@ flights_test2 <- testing(flights_split)
 
 # lm0: Nullmodell
 
-
+Eigentlich nicht nötig, das Nullmodell, primär aus didaktischen Gründen berechnet, um zu zeigen, dass in diesem Fall $R^2$ gleich Null ist.
 
 
 ```{r}
 lm0 <- lm(dep_delay ~ 1, data = flights_train2)
 glance(lm0)
 ```
+Mit `glance` bekommt man das $R^2$ (neben einem Haufen anderen Zeugs, was wir jetzt nicht brauchen). Man könnte z.B. auch `summary(lm1)` out `arm::display(lm1)`. Es gibt verschiedene Möglichkeiten.
+
+
 
 # lm1: origin
 
@@ -153,6 +156,7 @@ glance(lm1)
 
 
 
+
 # lm2: all in
 
 ```{r eval = FALSE}
@@ -175,15 +179,15 @@ flights_train3 <-
     .fns = as.factor))
 ```
 
-Alternativ (synonym) kann man das auch so machen:
+Wem das `across` zu kompliziert ist, der kann auch alternativ (synonym) jede Variable einzeln in einen Faktor umwandeln und zwar so:
 
 ```{r}
 flights_train3a <- 
   flights_train2 %>% 
   mutate(tailnum = as.factor(tailnum),
-         origin = as.factor(tailnum),
-         dest = as.factor(tailnum),
-         carrier = as.factor(tailnum)
+         origin = as.factor(origin),
+         dest = as.factor(dest),
+         carrier = as.factor(carrier)
       )
 ```
 

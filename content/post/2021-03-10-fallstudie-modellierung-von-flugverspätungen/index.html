@@ -114,6 +114,7 @@ flights_test2 &lt;- testing(flights_split)</code></pre>
 </div>
 <div id="lm0-nullmodell" class="section level1" number="7">
 <h1><span class="header-section-number">7</span> lm0: Nullmodell</h1>
+<p>Eigentlich nicht nötig, das Nullmodell, primär aus didaktischen Gründen berechnet, um zu zeigen, dass in diesem Fall <span class="math inline">\(R^2\)</span> gleich Null ist.</p>
 <pre class="r"><code>lm0 &lt;- lm(dep_delay ~ 1, data = flights_train2)
 glance(lm0)</code></pre>
 <table style="width:100%;">
@@ -164,6 +165,7 @@ glance(lm0)</code></pre>
 </tr>
 </tbody>
 </table>
+<p>Mit <code>glance</code> bekommt man das <span class="math inline">\(R^2\)</span> (neben einem Haufen anderen Zeugs, was wir jetzt nicht brauchen). Man könnte z.B. auch <code>summary(lm1)</code> out <code>arm::display(lm1)</code>. Es gibt verschiedene Möglichkeiten.</p>
 </div>
 <div id="lm1-origin" class="section level1" number="8">
 <h1><span class="header-section-number">8</span> lm1: origin</h1>
@@ -300,13 +302,13 @@ glance(lm0)</code></pre>
   mutate(across(
     .cols = where(is.character),
     .fns = as.factor))</code></pre>
-<p>Alternativ (synonym) kann man das auch so machen:</p>
+<p>Wem das <code>across</code> zu kompliziert ist, der kann auch alternativ (synonym) jede Variable einzeln in einen Faktor umwandeln und zwar so:</p>
 <pre class="r"><code>flights_train3a &lt;- 
   flights_train2 %&gt;% 
   mutate(tailnum = as.factor(tailnum),
-         origin = as.factor(tailnum),
-         dest = as.factor(tailnum),
-         carrier = as.factor(tailnum)
+         origin = as.factor(origin),
+         dest = as.factor(dest),
+         carrier = as.factor(carrier)
       )</code></pre>
 <p>Das ist einfacher als mit <code>across</code>, aber dafür mehr Tipperei.</p>
 <p>Wir müssen die Transformationen, die wir auf das Train-Sample anwenden, auch auf das Test-Sample anwenden:</p>
