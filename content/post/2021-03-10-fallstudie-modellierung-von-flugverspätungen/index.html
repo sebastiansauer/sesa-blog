@@ -51,8 +51,9 @@ output:
 </ul></li>
 <li><a href="#lm7-rohe-gewalt"><span class="toc-section-number">18</span> lm7: Rohe Gewalt</a>
 <ul>
-<li><a href="#zeitabschätzung"><span class="toc-section-number">18.0.1</span> Zeitabschätzung</a></li>
-<li><a href="#best-subsets-ergebnisse"><span class="toc-section-number">18.1</span> Best Subsets – Ergebnisse</a></li>
+<li><a href="#zeitabschätzung"><span class="toc-section-number">18.1</span> Zeitabschätzung</a></li>
+<li><a href="#best-subsets-ergebnisse"><span class="toc-section-number">18.2</span> Best Subsets – Ergebnisse</a></li>
+<li><a href="#vorwärts-rückwärts-schrittweise-regression"><span class="toc-section-number">18.3</span> Vorwärts-/Rückwärts-Schrittweise Regression</a></li>
 </ul></li>
 <li><a href="#lm8-bestes-modell-aus-der-best-subset-analyse"><span class="toc-section-number">19</span> lm8: Bestes Modell aus der Best-Subset-Analyse</a>
 <ul>
@@ -1364,20 +1365,20 @@ flights_test6_pred %&gt;%
 <div id="lm7-rohe-gewalt" class="section level1" number="18">
 <h1><span class="header-section-number">18</span> lm7: Rohe Gewalt</h1>
 <p>Wir könnten einfach, etwas stumpfsinnig, <em>alle</em> Regressionsmodelle ausprobieren: Jeder der <span class="math inline">\(p\)</span> Prädiktoren könnte also entweder enthalten sein oder nicht. Natürlich würde das schnell zu Arbeit auswachsen, wenn man so viele Regressionsmodelle – <span class="math inline">\(2^p\)</span> – durchprobieren würde. Außerdem wird die Gefahr von Zufallsbefunden schnell riesig. Aber gut, man kann stumpfsinnige Arbeiten ja gut an den Computer delegieren. Und zum Schutz vor Überanpassung gibt es ein paar Behelfe. Probieren wir es aus; dazu nutzen wir das Paket <code>{leaps}</code>.</p>
-<pre class="r"><code>tic()
+<pre class="r"><code>tic()  # Zeitmessung t1
 lm7 &lt;- regsubsets(dep_delay ~ ., 
                   nvmax = 15,  # max. Anzahl von Prädiktoren
                   data = flights_train6)
 #&gt; Reordering variables and trying again:
-toc()
-#&gt; 41.191 sec elapsed</code></pre>
+toc()  # Zeitmessung t2
+#&gt; 41.628 sec elapsed</code></pre>
 <p>Der Punkt in der Regressionsformel</p>
 <p><code>dep_delay ~ .,</code></p>
 <p>bedeutet “nimm alle übrigen Variablen” (also alle außer der abhängigen Variablen).</p>
 <p>Je größer <code>nvmax</code>, desto länger die Rechenzeit, z.B. <span class="math inline">\(2^{15}=32768\)</span> Modelle, die berechnet werden müssen.</p>
 <p><em>Achtung:</em> <a href="https://statmodeling.stat.columbia.edu/2014/06/02/hate-stepwise-regression/">Einige Statistiker</a> (siehe auch <a href="https://towardsdatascience.com/stopping-stepwise-why-stepwise-selection-is-bad-and-what-you-should-use-instead-90818b3f52df">hier</a>) stehen solchen automatischen Verfahren kritisch gegenüber, sind also der Meinung, das sei Quatsch (andere wiederum nutzen diese Verfahren).</p>
-<div id="zeitabschätzung" class="section level3" number="18.0.1">
-<h3><span class="header-section-number">18.0.1</span> Zeitabschätzung</h3>
+<div id="zeitabschätzung" class="section level2" number="18.1">
+<h2><span class="header-section-number">18.1</span> Zeitabschätzung</h2>
 <p>Ein kurze Sch+ätzung der Rechenzeit in Abhängikeit der Anzahl der Prädiktoren bei der Best-Subset-Methode; gehen wir von 1, 2 oder 5 Sekunden Rechenzeit (<code>exec_time</code>) pro Modell aus.</p>
 <pre class="r"><code>n_preds &lt;- 1:20
 exec_time &lt;- c(1, 2, 5)</code></pre>
@@ -1409,8 +1410,8 @@ exec_time &lt;- c(1, 2, 5)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-50-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Puh, das kann dauern, wenn man viele Prädiktoren hat.</p>
 </div>
-<div id="best-subsets-ergebnisse" class="section level2" number="18.1">
-<h2><span class="header-section-number">18.1</span> Best Subsets – Ergebnisse</h2>
+<div id="best-subsets-ergebnisse" class="section level2" number="18.2">
+<h2><span class="header-section-number">18.2</span> Best Subsets – Ergebnisse</h2>
 <p>Schauen wir uns die Ergebnisse an:</p>
 <pre class="r"><code>lm7_summary &lt;- summary(lm7)
 
@@ -1427,10 +1428,31 @@ tibble(adjr2 = lm7_summary$adjr2,
   scale_x_continuous(breaks = 1:16)
 </code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-51-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>Das Modell mit 7 Koeffizienten könnte sinnvoll sein.</p>
+<p>Das Modell mit 7 Prädiktoren könnte sinnvoll sein. Mit <code>coef(modellname, k)</code> können wir uns ausgeben lassen, welche Prädiktoren in dem Modell mit <code>k</code> Prädiktoren beinhaltet waren.</p>
 <pre class="r"><code>coef(lm7, 7) %&gt;% names()
 #&gt; [1] &quot;(Intercept)&quot;    &quot;dep_time&quot;       &quot;sched_dep_time&quot; &quot;arr_time&quot;      
 #&gt; [5] &quot;sched_arr_time&quot; &quot;carrierEV&quot;      &quot;wind_dir&quot;       &quot;visib&quot;</code></pre>
+</div>
+<div id="vorwärts-rückwärts-schrittweise-regression" class="section level2" number="18.3">
+<h2><span class="header-section-number">18.3</span> Vorwärts-/Rückwärts-Schrittweise Regression</h2>
+<p>Man kann <code>regsubsets</code> übrigens auch für eine schrittweise Regression benutzen:</p>
+<pre class="r"><code>lm7a &lt;- regsubsets(dep_delay ~ ., 
+           method = &quot;forward&quot;,  # Vorwärts-Schrittweise-Regression
+           nvmax = 15,  # max. Anzahl von Prädiktoren
+           data = flights_train6)
+#&gt; Reordering variables and trying again:</code></pre>
+<p>Das Modell mit <em>einem</em> Prädiktor findet das folgende Modell als das beste:</p>
+<pre class="r"><code>coef(lm7a, 1)
+#&gt;  (Intercept)     dep_time 
+#&gt; -15.31028825   0.01944815</code></pre>
+<p>Und entsprechend:</p>
+<pre class="r"><code>coef(lm7a, 2)
+#&gt; (Intercept)    dep_time    arr_time 
+#&gt; -6.10576901  0.03280038 -0.01805599</code></pre>
+<p>Und so weiter für 3, 4 oder mehr Prädiktoren.</p>
+<p>Im Unterschied zur Best-Subsets-Methode verbleiben Prädiktoren, wenn einmal aufgenommen ins Modell, immer im Modell.</p>
+<p>Die Schrittweise-Regression ist weniger rechenintiv, da weniger Modelle berechnet werden müssen und kann daher u.U. das beste Modell übersehen.</p>
+<p>Beide Verfahren der automatisierten Prädiktorenauswahl – Best-Subset und Schrittweise-Regression – werden von einigen Statistikern <a href="https://statmodeling.stat.columbia.edu/2014/06/02/hate-stepwise-regression/">kritisch gesehen</a>.</p>
 </div>
 </div>
 <div id="lm8-bestes-modell-aus-der-best-subset-analyse" class="section level1" number="19">
@@ -1451,15 +1473,15 @@ glance(lm8)</code></pre>
 <table style="width:100%;">
 <colgroup>
 <col width="9%" />
-<col width="13%" />
-<col width="5%" />
+<col width="12%" />
+<col width="8%" />
 <col width="9%" />
 <col width="7%" />
 <col width="2%" />
 <col width="8%" />
 <col width="7%" />
 <col width="7%" />
-<col width="8%" />
+<col width="9%" />
 <col width="11%" />
 <col width="6%" />
 </colgroup>
@@ -1481,16 +1503,16 @@ glance(lm8)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">0.15</td>
-<td align="right">0.15</td>
-<td align="right">37</td>
-<td align="right">6019</td>
+<td align="right">0.1499841</td>
+<td align="right">0.1499592</td>
+<td align="right">36.90093</td>
+<td align="right">6018.739</td>
 <td align="right">0</td>
 <td align="right">7</td>
 <td align="right">-1200390</td>
 <td align="right">2400798</td>
 <td align="right">2400891</td>
-<td align="right">3.3e+08</td>
+<td align="right">325132132</td>
 <td align="right">238773</td>
 <td align="right">238781</td>
 </tr>
@@ -1521,11 +1543,11 @@ test_rsq</code></pre>
 <tbody>
 <tr class="odd">
 <td align="left">lm6</td>
-<td align="right">0.15</td>
+<td align="right">0.1534751</td>
 </tr>
 <tr class="even">
 <td align="left">lm8</td>
-<td align="right">0.14</td>
+<td align="right">0.1396282</td>
 </tr>
 </tbody>
 </table>
@@ -1535,7 +1557,7 @@ test_rsq</code></pre>
 <div id="prüfen-der-modellqualität" class="section level1" number="20">
 <h1><span class="header-section-number">20</span> Prüfen der Modellqualität</h1>
 <pre class="r"><code>autoplot(lm6, which = 1)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-58-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-61-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Abweichungen von der Linearität finden sich besonders bei sehr kleinen und sehr großen Werten; das ist ein Hinweise, dass unser Modell nicht-lineare Zusammenhänge nicht erkannt. Das ist kein Wunder, schließlich besteht unser Modell nur aus linearen Termen.
 Interaktionen, Polynome oder logarithmische Transformationen könnten das Modell verbessern und eröffnen Raum für weitere Analysen.</p>
 </div>
@@ -1560,27 +1582,27 @@ flights_train6 %&gt;%
 <tbody>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">-0.15</td>
+<td align="right">-0.1549456</td>
 </tr>
 <tr class="even">
 <td align="right">7</td>
-<td align="right">0.81</td>
+<td align="right">0.8112611</td>
 </tr>
 <tr class="odd">
 <td align="right">21</td>
-<td align="right">-1.73</td>
+<td align="right">-1.7284946</td>
 </tr>
 <tr class="even">
 <td align="right">31</td>
-<td align="right">-4.19</td>
+<td align="right">-4.1875960</td>
 </tr>
 <tr class="odd">
 <td align="right">34</td>
-<td align="right">6.22</td>
+<td align="right">6.2202257</td>
 </tr>
 <tr class="even">
 <td align="right">35</td>
-<td align="right">-1.19</td>
+<td align="right">-1.1899645</td>
 </tr>
 </tbody>
 </table>
@@ -1588,7 +1610,7 @@ flights_train6 %&gt;%
 <pre class="r"><code>flights6_pred %&gt;% 
   drop_na() %&gt;% 
   nrow() / nrow(flights6_pred)
-#&gt; [1] 0.89</code></pre>
+#&gt; [1] 0.8862143</code></pre>
 <div id="csv-datei-erstellen-zum-einreichen" class="section level2" number="21.1">
 <h2><span class="header-section-number">21.1</span> CSV-Datei erstellen zum Einreichen</h2>
 <pre class="r"><code>write_csv(flights6_pred, file = &quot;Sauer_Sebastian_0123456_Prognose.csv&quot;)</code></pre>

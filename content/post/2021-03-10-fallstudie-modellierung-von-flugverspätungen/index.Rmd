@@ -518,11 +518,11 @@ Wir könnten einfach, etwas stumpfsinnig, *alle* Regressionsmodelle ausprobieren
 
 
 ```{r}
-tic()
+tic()  # Zeitmessung t1
 lm7 <- regsubsets(dep_delay ~ ., 
                   nvmax = 15,  # max. Anzahl von Prädiktoren
                   data = flights_train6)
-toc()
+toc()  # Zeitmessung t2
 ```
 
 
@@ -537,7 +537,7 @@ Je größer `nvmax`,  desto länger die Rechenzeit, z.B. $2^{15}=32768$ Modelle,
 
 *Achtung:* [Einige Statistiker](https://statmodeling.stat.columbia.edu/2014/06/02/hate-stepwise-regression/) (siehe auch [hier](https://towardsdatascience.com/stopping-stepwise-why-stepwise-selection-is-bad-and-what-you-should-use-instead-90818b3f52df)) stehen solchen automatischen Verfahren kritisch gegenüber, sind also der Meinung, das sei Quatsch (andere wiederum nutzen diese Verfahren). 
 
-### Zeitabschätzung
+## Zeitabschätzung
 
 Ein kurze Sch+ätzung der Rechenzeit in Abhängikeit der Anzahl der Prädiktoren bei der Best-Subset-Methode; gehen wir von 1, 2 oder 5 Sekunden Rechenzeit (`exec_time`) pro Modell aus.
 
@@ -608,11 +608,50 @@ tibble(adjr2 = lm7_summary$adjr2,
 
 ```
 
-Das Modell mit 7 Koeffizienten könnte sinnvoll sein.
+
+Das Modell mit 7 Prädiktoren könnte sinnvoll sein. Mit `coef(modellname, k)` können wir uns ausgeben lassen, welche Prädiktoren in dem Modell mit `k` Prädiktoren beinhaltet waren.
+
+
+
 
 ```{r}
 coef(lm7, 7) %>% names()
 ```
+
+
+## Vorwärts-/Rückwärts-Schrittweise Regression
+
+Man kann `regsubsets` übrigens auch für eine schrittweise Regression benutzen:
+
+
+```{r}
+lm7a <- regsubsets(dep_delay ~ ., 
+           method = "forward",  # Vorwärts-Schrittweise-Regression
+           nvmax = 15,  # max. Anzahl von Prädiktoren
+           data = flights_train6)
+```
+
+Das Modell mit *einem* Prädiktor findet das folgende Modell als das beste:
+
+```{r}
+coef(lm7a, 1)
+```
+
+Und entsprechend:
+
+```{r}
+coef(lm7a, 2)
+```
+
+Und so weiter für 3, 4 oder mehr Prädiktoren.
+
+Im Unterschied zur Best-Subsets-Methode verbleiben Prädiktoren, wenn einmal aufgenommen ins Modell, immer im Modell.
+
+Die Schrittweise-Regression ist weniger rechenintiv, da weniger Modelle berechnet werden müssen und kann daher u.U. das beste Modell übersehen. 
+
+Beide Verfahren der automatisierten Prädiktorenauswahl -- Best-Subset und Schrittweise-Regression -- werden von einigen Statistikern [kritisch gesehen](https://statmodeling.stat.columbia.edu/2014/06/02/hate-stepwise-regression/).
+
+
 
 
 # lm8: Bestes Modell aus der Best-Subset-Analyse
