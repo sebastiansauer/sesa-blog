@@ -175,6 +175,20 @@ flights_train3 <-
     .fns = as.factor))
 ```
 
+Alternativ (synonym) kann man das auch so machen:
+
+```{r}
+flights_train3a <- 
+  flights_train2 %>% 
+  mutate(tailnum = as.factor(tailnum),
+         origin = as.factor(tailnum),
+         dest = as.factor(tailnum),
+         carrier = as.factor(tailnum)
+      )
+```
+
+
+Das ist einfacher als mit `across`, aber dafür mehr Tipperei.
 
 
 Wir müssen die Transformationen, die wir auf das Train-Sample anwenden, auch auf das Test-Sample anwenden:
@@ -198,6 +212,22 @@ flights_train3 %>%
 ```
 
 
+
+Z.B. `dest` hat viele Stufen:
+
+```{r}
+flights_train3 %>% 
+  count(dest, sort = TRUE)
+```
+
+```{r}
+flights_train3 %>%
+  count(dest) %>%
+  ggplot() +
+  aes(y = fct_reorder(dest, n), x = n) +
+  geom_col()
+```
+
 # flights_train4: Faktorstufen zusammenfassen
 
 ```{r}
@@ -208,6 +238,23 @@ flights_train4 <-
     .fns = fct_lump_prop, prop = .025
   ))
 ```
+
+
+```{r}
+flights_train4 %>% 
+  count(dest)
+```
+
+
+```{r}
+flights_train4 %>%
+  count(dest) %>%
+  ggplot() +
+  aes(y = fct_reorder(dest, n), x = n) +
+  geom_col()
+```
+
+
 
 
 Check:
@@ -266,8 +313,8 @@ options(digits = 2)
 
 
 ```{r}
-glance(lm3) 
-tidy(lm3)
+glance(lm3)  # R^2
+tidy(lm3)  # Modellkoeffizienten, also die Beta-Gewichte ("estimate")
 ```
 
 Ein mageres R-Quadrat.
@@ -367,7 +414,7 @@ skim(weather)
 ```{r}
 flights_train5 <- 
   flights_train4 %>% 
-  left_join(weather) %>% 
+  left_join(weather) %>%  # "verheiraten"
   select(-wind_gust)
 ```
 
@@ -573,13 +620,18 @@ head(exec_time_df)
 
 
 
-```{r}
+```{r fig.asp = 0.5}
 exec_time_df %>% 
   ggplot() +
   aes(x = n_preds, 
       y = exec_time_cum, 
       color = factor(exec_time_per_run)) +
-  geom_line()
+  geom_line() +
+  labs(y = "GesamtRechenzeit in Stunden",
+       x = "Anzahl von Prädiktoren pro Modell",
+       col = "Rechenzeit pro Modell",
+       title = "Schätzung der Rechenzeit für eine Best-Subset-Regression") +
+  theme(legend.position = "bottom")
 ```
 
 Puh, das kann dauern, wenn man viele Prädiktoren hat.
