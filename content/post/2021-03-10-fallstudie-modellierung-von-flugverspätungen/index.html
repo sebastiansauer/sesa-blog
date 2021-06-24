@@ -768,7 +768,11 @@ glance(lm0)</code></pre>
     .cols = where(is.factor),
     .fns = fct_lump_prop, prop = .025
   ))</code></pre>
-<pre class="r"><code>flights_train4 %&gt;% 
+<pre class="r"><code>flights_train4a &lt;-
+  flights_train3 %&gt;% 
+  mutate(dest  = fct_lump_prop(f = dest, 
+                               prop = .025))</code></pre>
+<pre class="r"><code>flights_train4a %&gt;% 
   count(dest)</code></pre>
 <table>
 <thead>
@@ -837,7 +841,7 @@ glance(lm0)</code></pre>
   ggplot() +
   aes(y = fct_reorder(dest, n), x = n) +
   geom_col()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Check:</p>
 <pre class="r"><code>flights_train4 %&gt;% 
   select(where(is.factor)) %&gt;% 
@@ -893,8 +897,11 @@ glance(lm0)</code></pre>
 <pre class="r"><code>lm3 &lt;- flights_train4 %&gt;% 
   select(dep_delay, where(is.factor), -tailnum, -id) %&gt;% 
   lm(dep_delay ~ ., data = .)</code></pre>
+<p>Der Punkt bei <code>dep_delay ~ .</code> meint “nimm alle Variablen im Datensatz (bis auf <code>dep_delay</code>)”.</p>
+<p>Der Punkt bei <code>data = .</code> nimm die Tabelle, wie sie dir im letzten Schritt mundgerecht aufbereitet wurde. Man hätte hier auch <code>flights_train4</code> schreiben können, aber dann hätten wir noch <code>tailnum</code> etc. entfernen müssen.</p>
 <p>Eigentlich brauchen wir nicht so viele Dezimalstellen …</p>
 <pre class="r"><code>options(digits = 2)</code></pre>
+<p><code>glance</code> zeigt das R-Quadrat (und einiges mehr, was hier jetzt nicht brauchen).</p>
 <pre class="r"><code>glance(lm3)  # R^2</code></pre>
 <table style="width:100%;">
 <colgroup>
@@ -1209,7 +1216,7 @@ glance(lm0)</code></pre>
   select(minute) %&gt;% 
   skim()</code></pre>
 <table>
-<caption><span id="tab:unnamed-chunk-30">Table 14.1: </span>Data summary</caption>
+<caption><span id="tab:unnamed-chunk-31">Table 14.1: </span>Data summary</caption>
 <tbody>
 <tr class="odd">
 <td align="left">Name</td>
@@ -1358,7 +1365,7 @@ glance(lm0)</code></pre>
 #&gt; $ time_hour  &lt;dttm&gt; 2013-01-01 01:00:00, 2013-01-01 02:00:00, 2013-01-01 03:00…</code></pre>
 <pre class="r"><code>skim(weather)</code></pre>
 <table>
-<caption><span id="tab:unnamed-chunk-35">Table 15.1: </span>Data summary</caption>
+<caption><span id="tab:unnamed-chunk-36">Table 15.1: </span>Data summary</caption>
 <tbody>
 <tr class="odd">
 <td align="left">Name</td>
@@ -1887,7 +1894,7 @@ lm7 &lt;- regsubsets(dep_delay ~ .,
                   data = flights_train6)
 #&gt; Reordering variables and trying again:
 toc()  # Zeitmessung t2
-#&gt; 39.869 sec elapsed</code></pre>
+#&gt; 41.618 sec elapsed</code></pre>
 <p>Der Punkt in der Regressionsformel</p>
 <p><code>dep_delay ~ .,</code></p>
 <p>bedeutet “nimm alle übrigen Variablen” (also alle außer der abhängigen Variablen).</p>
@@ -1928,7 +1935,7 @@ exec_time &lt;- c(1, 2, 5)</code></pre>
        col = &quot;Rechenzeit pro Modell&quot;,
        title = &quot;Schätzung der Rechenzeit für eine Best-Subset-Regression&quot;) +
   theme(legend.position = &quot;bottom&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-55-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-56-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Puh, das kann dauern, wenn man viele Prädiktoren hat.</p>
 </div>
 <div id="best-subsets-ergebnisse" class="section level2" number="18.2">
@@ -1948,7 +1955,7 @@ tibble(adjr2 = lm7_summary$adjr2,
   facet_wrap(~ name, scales = &quot;free&quot;, nrow = 3) +
   scale_x_continuous(breaks = 1:16)
 </code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-56-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-57-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Das Modell mit 7 Prädiktoren könnte sinnvoll sein. Mit <code>coef(modellname, k)</code> können wir uns ausgeben lassen, welche Prädiktoren in dem Modell mit <code>k</code> Prädiktoren beinhaltet waren.</p>
 <pre class="r"><code>coef(lm7, 7) %&gt;% names()
 #&gt; [1] &quot;(Intercept)&quot;    &quot;dep_time&quot;       &quot;sched_dep_time&quot; &quot;arr_time&quot;      
@@ -2078,7 +2085,7 @@ test_rsq</code></pre>
 <div id="prüfen-der-modellqualität" class="section level1" number="20">
 <h1><span class="header-section-number">20</span> Prüfen der Modellqualität</h1>
 <pre class="r"><code>autoplot(lm6, which = 1)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-66-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-67-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Abweichungen von der Linearität finden sich besonders bei sehr kleinen und sehr großen Werten; das ist ein Hinweise, dass unser Modell nicht-lineare Zusammenhänge nicht erkannt. Das ist kein Wunder, schließlich besteht unser Modell nur aus linearen Termen.
 Interaktionen, Polynome oder logarithmische Transformationen könnten das Modell verbessern und eröffnen Raum für weitere Analysen.</p>
 </div>

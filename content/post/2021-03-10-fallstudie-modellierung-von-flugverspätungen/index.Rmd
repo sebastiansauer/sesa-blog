@@ -245,7 +245,16 @@ flights_train4 <-
 
 
 ```{r}
-flights_train4 %>% 
+flights_train4a <-
+  flights_train3 %>% 
+  mutate(dest  = fct_lump_prop(f = dest, 
+                               prop = .025))
+```
+
+
+
+```{r}
+flights_train4a %>% 
   count(dest)
 ```
 
@@ -308,6 +317,16 @@ lm3 <- flights_train4 %>%
   lm(dep_delay ~ ., data = .)
 ```
 
+
+Der Punkt bei `dep_delay ~ .` meint "nimm alle Variablen im Datensatz (bis auf `dep_delay`)".
+
+Der Punkt bei `data = .` nimm die Tabelle, wie sie dir im letzten Schritt mundgerecht aufbereitet wurde. Man hätte hier auch `flights_train4` schreiben können, aber dann hätten wir noch `tailnum` etc. entfernen müssen.
+
+
+
+
+
+
 Eigentlich brauchen wir nicht so viele Dezimalstellen ...
 
 ```{r options-digits}
@@ -315,6 +334,7 @@ options(digits = 2)
 ```
 
 
+`glance` zeigt das R-Quadrat (und einiges mehr, was hier jetzt nicht brauchen).
 
 ```{r}
 glance(lm3)  # R^2
