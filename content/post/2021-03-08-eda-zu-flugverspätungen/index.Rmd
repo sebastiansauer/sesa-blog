@@ -205,10 +205,10 @@ Es gibt keinen sicheren Weg, mit Extremwerten umzugehen. Häufig macht es Sinn, 
 
 
 
-[Quelle dieses Abschnitts](https://data-se.netlify.app/2021/03/08/eda-zu-flugversp%C3%A4tungen/#flights2-extremwerte-definieren)
+<!-- [Quelle dieses Abschnitts](https://data-se.netlify.app/2021/03/08/eda-zu-flugversp%C3%A4tungen/#flights2-extremwerte-definieren) -->
 
 
-"Wann ist ein Flug *sehr* verspätet?*
+"Wann ist ein Flug *sehr* verspätet?
 
 
 ### Boxplot-Methode
