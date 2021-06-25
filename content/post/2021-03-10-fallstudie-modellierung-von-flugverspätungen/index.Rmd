@@ -259,6 +259,21 @@ flights_train4 <-
 ```
 
 
+## Variante mit `fact_lump_n` 
+
+Sinngemäß bedeutet das:
+
+"Fasse die Faktorstufen von `dest` zu 8 Gruppen plus einer '*Lump*ensammler-Kategorie' zusammen."
+
+```{r}
+flights_train3 %>% 
+  mutate(dest_lump9 = fct_lump_n(dest, n = 8)
+  )
+```
+
+
+## Variante mit `fact_lump_prop` 
+
 ```{r}
 flights_train4a <-
   flights_train3 %>% 
@@ -500,10 +515,18 @@ flights_test6 <-
 # lm6: Plus Wetterdaten
 
 
+Mit `update` kann man ein Modell "updaten": Sprich, z.B. Variablen zu einem Modell hinzufügen.
+
+Das Kürzel `. ~ .` bedeutet sinngemäß "Nimm alle AVs (hier `dep_delay`) und alle UVs (alle Prädiktoren), die im Modell `lm5` enthalten sind. Dazu werden dann noch die Variablen `humid`, `wind_speed` etc. hinzugefügt. Das Modell `lm6` beinhaltet also alle Variablen von `lm5` plus die vier hier angeführten Variablen.
+
+
 ```{r}
 lm6 <- update(lm5, . ~ . + humid + wind_speed + precip + pressure + visib,
               data = flights_train6)
 ```
+
+
+Alternativ hätte man auch anstelle von `. ~ .` einfach die entsprechenden Variablen hinschreiben können (wäre einfacher, aber weniger elegant). Sie haben die Wahl.
 
 
 ```{r}
@@ -603,7 +626,7 @@ Etwas schlechter; das liegt an den vielen Werten, die jetzt eine schlechte Vorhe
 Wir könnten einfach, etwas stumpfsinnig, *alle* Regressionsmodelle ausprobieren: Jeder der $p$ Prädiktoren könnte also entweder enthalten sein oder nicht. Natürlich würde das schnell zu Arbeit auswachsen, wenn man so viele Regressionsmodelle -- $2^p$ -- durchprobieren würde. Außerdem wird die Gefahr von Zufallsbefunden schnell riesig. Aber gut, man kann stumpfsinnige Arbeiten ja gut an den Computer delegieren. Und zum Schutz vor Überanpassung gibt es ein paar Behelfe. Probieren wir es aus; dazu nutzen wir das Paket `{leaps}`.
 
 
-```{r}
+```{r regsubsets}
 tic()  # Zeitmessung t1
 lm7 <- regsubsets(dep_delay ~ ., 
                   nvmax = 15,  # max. Anzahl von Prädiktoren
