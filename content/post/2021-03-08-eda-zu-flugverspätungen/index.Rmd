@@ -281,9 +281,19 @@ So geht es für alle Spalten auf einmal:
 flights %>% 
   summarise(across(everything(), ~ sum(is.na(.x))))
 ```
+Übrigens hätten wir die Anzahl der fehlenden Werte auch mit `skim()` in Erfahrung bringen können.
+
+
 
 Wie viele Fälle gingen verloren, wenn wir die Fälle mit fehlenden Werten bei `dep_delay` entfernten?
 
+```{r}
+flights %>% 
+  drop_na(dep_delay) %>% 
+  nrow()
+```
+
+Und wenn wir *alle* fehlenden Werte entfernen würden?
 
 ```{r}
 flights %>% 
@@ -292,7 +302,9 @@ flights %>%
 ```
 
 
-Wenige, im Verhältnis. Also machen wir das mal:
+Wir verlieren nicht viele Fälle mehr, wenn wir die fehlenden Werte aller Variablen (Spalten) entfernen. Also machen wir das mal.
+
+
 
 ## flights3
 
@@ -305,6 +317,9 @@ flights3 <-
   drop_na() %>% 
   select(-year)
 ```
+
+Die Spalte `year` ist kontant (immer der Wert "2013"); daher ist die Spalte nutzlos, sie birgt keine Information. Wir können sie gefahrlos löschen.
+
 
 
 # Deskriptive Statistiken
@@ -454,7 +469,7 @@ Wir müssen die Werte von `carrier` sortieren anhand der Anzahl der Flüge, sons
 
 ### Achsen-Labels anpassen
 
-*Nur zur Demonstration, nicht inhaltlich wichtig*
+*Dieser Abschnitt ist zur Vertiefung, er ist  nicht inhaltlich wichtig*
 
 Sagen wir, wir möchten die Labels der X-Achse anpassen, und zwar möchten wir die Werte 25.000, 50.000, und 75.0000.
 
@@ -484,8 +499,8 @@ flights2 <-
 ```
 
 
-Hier fassen wir mit `fct_lump` alle Stufen von `carrier` zu *acht* Stufen zusammen *plus* einer "Lumpensammler-Kategorie" zusammen.
-Dazu muss die Variable aber als `factor` vorliegen.
+Hier fassen wir mit `fct_lump` alle Stufen von `carrier` zu *acht* Stufen (daher `n = 8`) zusammen *plus* einer "*Lump*ensammler-Kategorie" zusammen.
+Dazu muss die Variable aber als `factor` vorliegen, was wir in der Zeile davor erledigt haben.
 
 Jetzt haben wir noch nur 9 (8 plus Lumpensammler-Gruppe) Gruppen:
 
