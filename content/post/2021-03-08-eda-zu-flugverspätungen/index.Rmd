@@ -569,16 +569,42 @@ Hier mit "Dummysierung" aller nicht-numerischer Spalten. Ein Beispiel zur Verdeu
 
 
 ```{r}
+flights2 <- 
+  flights2 %>% 
+  mutate(
+    originJFK = case_when(
+      origin == "JFK" ~ 1,
+      origin != "JFK" ~ 0
+    ),
+    originLGA = case_when(
+      origin == "LGA" ~ 1,
+      TRUE ~ 0,
+    )
+  )
+```
+
+
+```{r}
+flights2 %>% 
+  select(origin, originJFK, originLGA) %>% 
+  slice(1:5)
+```
+
+
+Diese Art der Umwandlung von mehrstufig-nominal in eine binäre Varialbe (0-1-Variable, oder "Indikatorvariable") kann auch z.B. mit der Funktion `dummy_cols()` (auf "fastDummies") bewerkstelligen lassen:
+
+```{r}
 flights2 %>% 
   select(origin, dep_delay) %>% 
   dummy_cols() %>%  # aus dem Paket `fastDummies`
-  head()
+  head()  # slice(1:6)
 ```
 
 Mit den "dummyisierten" Spalten können wir jetzt Korrelationen rechnen, denn jetzt haben wir Zahlen. 
 *Achtung*: Die Variablen bleiben nominalskaliert, trotz der 0-1-Transformation. 
 Auf diese Art Korrelationen zu berechnen ist nur für dummysierte Variablen ("Indikatorvariablen") sinnvoll. 
 Die Schiefe der Verteilung begrenzt hier übrigens die Stärke der Korrelation.
+
 
 ```{r}
 flights2 %>% 
@@ -595,7 +621,12 @@ flights2 %>%
   filter(abs(cor_depdelay_carrier) > 0.10)
 ```
 
-Keine Korrelation war größer als 0.1.
+Keine Korrelation war (im Betrag) größer als 0.1.
+
+
+
+Zur Erinnerung: Es ist nicht unbedingt nötig, die "Dummyisierung" durchzuführen, ein einfaches Vergleichen der Mittelwerte (oder Mediane) mit ihrer Streuung führt zu einem ähnlichen Ergebnis.
+Die Regression mit `lm` führt für Sie automatisch die Dummyisierung durch. 
 
 ### Hour
 

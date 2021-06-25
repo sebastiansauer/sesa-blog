@@ -1305,10 +1305,62 @@ Dazu muss die Variable aber als <code>factor</code> vorliegen, was wir in der Ze
 <div id="korrelation-von-carrier-mit-verspätung" class="section level2" number="7.3">
 <h2><span class="header-section-number">7.3</span> Korrelation von <code>carrier</code> mit Verspätung</h2>
 <p>Hier mit “Dummysierung” aller nicht-numerischer Spalten. Ein Beispiel zur Verdeutlichung:</p>
+<pre class="r"><code>flights2 &lt;- 
+  flights2 %&gt;% 
+  mutate(
+    originJFK = case_when(
+      origin == &quot;JFK&quot; ~ 1,
+      origin != &quot;JFK&quot; ~ 0
+    ),
+    originLGA = case_when(
+      origin == &quot;LGA&quot; ~ 1,
+      TRUE ~ 0,
+    )
+  )</code></pre>
+<pre class="r"><code>flights2 %&gt;% 
+  select(origin, originJFK, originLGA) %&gt;% 
+  slice(1:5)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">origin</th>
+<th align="right">originJFK</th>
+<th align="right">originLGA</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">EWR</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">LGA</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">JFK</td>
+<td align="right">1</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">JFK</td>
+<td align="right">1</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">LGA</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<p>Diese Art der Umwandlung von mehrstufig-nominal in eine binäre Varialbe (0-1-Variable, oder “Indikatorvariable”) kann auch z.B. mit der Funktion <code>dummy_cols()</code> (auf “fastDummies”) bewerkstelligen lassen:</p>
 <pre class="r"><code>flights2 %&gt;% 
   select(origin, dep_delay) %&gt;% 
   dummy_cols() %&gt;%  # aus dem Paket `fastDummies`
-  head()</code></pre>
+  head()  # slice(1:6)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -1390,7 +1442,9 @@ Die Schiefe der Verteilung begrenzt hier übrigens die Stärke der Korrelation.<
 <tbody>
 </tbody>
 </table>
-<p>Keine Korrelation war größer als 0.1.</p>
+<p>Keine Korrelation war (im Betrag) größer als 0.1.</p>
+<p>Zur Erinnerung: Es ist nicht unbedingt nötig, die “Dummyisierung” durchzuführen, ein einfaches Vergleichen der Mittelwerte (oder Mediane) mit ihrer Streuung führt zu einem ähnlichen Ergebnis.
+Die Regression mit <code>lm</code> führt für Sie automatisch die Dummyisierung durch.</p>
 <div id="hour" class="section level3" number="7.3.1">
 <h3><span class="header-section-number">7.3.1</span> Hour</h3>
 <pre class="r"><code>flights2 %&gt;% 
@@ -1402,7 +1456,7 @@ Die Schiefe der Verteilung begrenzt hier übrigens die Stärke der Korrelation.<
                       na.rm = TRUE), 
       y = dep_delay) +
   geom_boxplot()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-38-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-40-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="origin" class="section level3" number="7.3.2">
 <h3><span class="header-section-number">7.3.2</span> Origin</h3>
@@ -1412,7 +1466,7 @@ Die Schiefe der Verteilung begrenzt hier übrigens die Stärke der Korrelation.<
   ggplot() +
   aes(x = origin, y = dep_delay) %&gt;% 
   geom_boxplot()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-39-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-41-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="drei-variablen-origin-hour-dep_delay" class="section level2" number="7.4">
@@ -1425,7 +1479,7 @@ Die Schiefe der Verteilung begrenzt hier übrigens die Stärke der Korrelation.<
   aes(x = hour, y = dep_delay) +
   geom_boxplot() +
   facet_wrap(~ origin)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-40-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-42-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="alle-nominale-variablen" class="section level2" number="7.5">
 <h2><span class="header-section-number">7.5</span> Alle nominale Variablen</h2>
@@ -1554,7 +1608,7 @@ flights3 %&gt;%
   facet_grid(dest ~ carrier) +
   geom_point()
   </code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-45-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-47-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Puh, das Diagramm ist nicht sehr aussagekräftig.
 Vielleicht besser als Tabelle?</p>
 <pre class="r"><code>flights4 %&gt;% 
@@ -1606,7 +1660,7 @@ Vielleicht besser als Tabelle?</p>
              aes(y = delay_md,
                  x = month)) +
   facet_wrap( ~ origin)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-48-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-50-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="fazit" class="section level1" number="8">

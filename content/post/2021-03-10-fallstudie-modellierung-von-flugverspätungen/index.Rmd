@@ -111,9 +111,16 @@ flights_test2 <- testing(flights_split)
 ```
 
 
+Die "wirkliche Welt" (was immer das ist) besorgt die Aufteilung von Train- und Test-Sampel für Sie automatisch. Sagen wir, Sie arbeiten für die Flughafen-Aufsicht von New York. Dann haben Sie einen Erfahrungsschatz an Flügen aus der Vergangenheit in Ihrer Datenbank (Train-Sample). Einige Tages kommt Ihr Chef zu Ihnen und sagt: "Rechnen Sie mir mal die zu erwartende Verspätung der Flüge *im nächsten Monat* aus!". Da *heute* nicht klar ist, wie die Verspätung der Flüge *in der Zukunft* (nächsten Monat) sein wird, stellen die Flüge des nächsten Monats das Test-Sample dar.
+
+Übrigens: In der Prüfung besorgt das Aufteilen von Train- und Test-Sample netterweise Ihr Dozent...
+
+
+
+
 # lm0: Nullmodell
 
-Eigentlich nicht nötig, das Nullmodell, primär aus didaktischen Gründen berechnet, um zu zeigen, dass in diesem Fall $R^2$ gleich Null ist.
+Eigentlich nicht nötig, das Nullmodell, primär aus didaktischen Gründen berechnet, um zu zeigen, dass in diesem Fall $R^2$ wirklich gleich Null ist.
 
 
 ```{r}
@@ -132,7 +139,7 @@ lm1 <- lm(dep_delay ~ origin, data = flights_train2)
 ```
 
 ```{r}
-tidy(lm1)
+tidy(lm1)  # tidy zeit die (geschätzten) Regressionsgewichte (Betas)
 ```
 
 Man vergleiche:
@@ -146,25 +153,33 @@ flights_train2 %>%
 ```
 
 
+Der Mittelwertsvergleich und das Modell `lm1` sind faktisch informationsgleich.
 
-Aber leider ist es um die Modellgüte nicht so gut bestellt:
+
+
+Aber leider ist es um die Modellgüte nicht so gut bestellt (eigentlich eher "grottenschlecht"):
 
 ```{r}
-glance(lm1)
+glance(lm1)[1]
 ```
 
 
+Die eckigen Klammern erlauben in R ein *bestimmtes* Element von mehreren auszuwählen. `glance(lm1)` liefert eine Tabelle mit mehreren Spalten (und einer Zeile) zurück; mit `glance(lm1)[1]` bekommt man das erste Element dieser Tabelle, das heißt die erste Spalte. Natürlich können Sie einfach `glance(lm1)` eingeben, wenn Sie das lieber mögen.
 
 
 
-# lm2: all in
+# lm2: All in
 
 ```{r eval = FALSE}
-# NICHT AUSFÜHREN!
+# NICHT AUSFÜHREN
 #lm2_all_in <- lm(dep_delay ~ ., data = flights_train2)
 ```
 
-Modell `lm2_all_in` ist *keine* gute Idee, da nominale Prädiktoren in Indikatorvariablen umgewandelt werden. Hat ein nominaler Prädiktor sehr viele Stufen, so resultieren sehr viele Indikatorvariablen, was dem Regressionsmodell Probleme bereiten kann (bei mir hängt sich R auf). Besser ist es, die Anzahl der Stufen von nominalskalierten Variablen vorab zu begrenzen.
+Modell `lm2_all_in` ist hier *keine* gute Idee, da nominale Prädiktoren in Indikatorvariablen umgewandelt werden. Hat ein nominaler Prädiktor sehr viele Stufen (wie hier), so resultieren sehr viele Indikatorvariablen, was dem Regressionsmodell Probleme bereiten kann (bei mir hängt sich R auf). Besser ist es in dem Fall, die Anzahl der Stufen von nominalskalierten Variablen vorab zu begrenzen.
+
+Bei kleineren Datensätzen (weniger Variablen, weniger Fälle) lohnt es sich aber oft, das "All-in-Modell" auszuprobieren, als Referenzmaßstab für andere Modelle.
+
+
 
 # flights_train3: Textvariablen in Faktorvariablen umwandeln
 

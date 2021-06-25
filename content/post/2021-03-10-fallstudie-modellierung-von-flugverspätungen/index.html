@@ -27,7 +27,7 @@ output:
 <li><a href="#flights_train2-flights_test2"><span class="toc-section-number">6</span> flights_train2, flights_test2</a></li>
 <li><a href="#lm0-nullmodell"><span class="toc-section-number">7</span> lm0: Nullmodell</a></li>
 <li><a href="#lm1-origin"><span class="toc-section-number">8</span> lm1: origin</a></li>
-<li><a href="#lm2-all-in"><span class="toc-section-number">9</span> lm2: all in</a></li>
+<li><a href="#lm2-all-in"><span class="toc-section-number">9</span> lm2: All in</a></li>
 <li><a href="#flights_train3-textvariablen-in-faktorvariablen-umwandeln"><span class="toc-section-number">10</span> flights_train3: Textvariablen in Faktorvariablen umwandeln</a>
 <ul>
 <li><a href="#flights_test3"><span class="toc-section-number">10.1</span> flights_test3</a></li>
@@ -111,10 +111,12 @@ data(flights)</code></pre>
 <pre class="r"><code>set.seed(42)  # Reproduzierbarkeit
 flights_train2 &lt;- training(flights_split)
 flights_test2 &lt;- testing(flights_split)</code></pre>
+<p>Die “wirkliche Welt” (was immer das ist) besorgt die Aufteilung von Train- und Test-Sampel für Sie automatisch. Sagen wir, Sie arbeiten für die Flughafen-Aufsicht von New York. Dann haben Sie einen Erfahrungsschatz an Flügen aus der Vergangenheit in Ihrer Datenbank (Train-Sample). Einige Tages kommt Ihr Chef zu Ihnen und sagt: “Rechnen Sie mir mal die zu erwartende Verspätung der Flüge <em>im nächsten Monat</em> aus!”. Da <em>heute</em> nicht klar ist, wie die Verspätung der Flüge <em>in der Zukunft</em> (nächsten Monat) sein wird, stellen die Flüge des nächsten Monats das Test-Sample dar.</p>
+<p>Übrigens: In der Prüfung besorgt das Aufteilen von Train- und Test-Sample netterweise Ihr Dozent…</p>
 </div>
 <div id="lm0-nullmodell" class="section level1" number="7">
 <h1><span class="header-section-number">7</span> lm0: Nullmodell</h1>
-<p>Eigentlich nicht nötig, das Nullmodell, primär aus didaktischen Gründen berechnet, um zu zeigen, dass in diesem Fall <span class="math inline">\(R^2\)</span> gleich Null ist.</p>
+<p>Eigentlich nicht nötig, das Nullmodell, primär aus didaktischen Gründen berechnet, um zu zeigen, dass in diesem Fall <span class="math inline">\(R^2\)</span> wirklich gleich Null ist.</p>
 <pre class="r"><code>lm0 &lt;- lm(dep_delay ~ 1, data = flights_train2)
 glance(lm0)</code></pre>
 <table style="width:100%;">
@@ -170,7 +172,7 @@ glance(lm0)</code></pre>
 <div id="lm1-origin" class="section level1" number="8">
 <h1><span class="header-section-number">8</span> lm1: origin</h1>
 <pre class="r"><code>lm1 &lt;- lm(dep_delay ~ origin, data = flights_train2)</code></pre>
-<pre class="r"><code>tidy(lm1)</code></pre>
+<pre class="r"><code>tidy(lm1)  # tidy zeit die (geschätzten) Regressionsgewichte (Betas)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -237,62 +239,29 @@ glance(lm0)</code></pre>
 </tr>
 </tbody>
 </table>
-<p>Aber leider ist es um die Modellgüte nicht so gut bestellt:</p>
-<pre class="r"><code>glance(lm1)</code></pre>
-<table style="width:100%;">
-<colgroup>
-<col width="9%" />
-<col width="12%" />
-<col width="8%" />
-<col width="9%" />
-<col width="7%" />
-<col width="2%" />
-<col width="8%" />
-<col width="7%" />
-<col width="7%" />
-<col width="9%" />
-<col width="11%" />
-<col width="6%" />
-</colgroup>
+<p>Der Mittelwertsvergleich und das Modell <code>lm1</code> sind faktisch informationsgleich.</p>
+<p>Aber leider ist es um die Modellgüte nicht so gut bestellt (eigentlich eher “grottenschlecht”):</p>
+<pre class="r"><code>glance(lm1)[1]</code></pre>
+<table>
 <thead>
 <tr class="header">
 <th align="right">r.squared</th>
-<th align="right">adj.r.squared</th>
-<th align="right">sigma</th>
-<th align="right">statistic</th>
-<th align="right">p.value</th>
-<th align="right">df</th>
-<th align="right">logLik</th>
-<th align="right">AIC</th>
-<th align="right">BIC</th>
-<th align="right">deviance</th>
-<th align="right">df.residual</th>
-<th align="right">nobs</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="right">0.0025138</td>
-<td align="right">0.0025057</td>
-<td align="right">40.09822</td>
-<td align="right">310.4611</td>
-<td align="right">0</td>
-<td align="right">2</td>
-<td align="right">-1259108</td>
-<td align="right">2518224</td>
-<td align="right">2518265</td>
-<td align="right">396154280</td>
-<td align="right">246385</td>
-<td align="right">246388</td>
 </tr>
 </tbody>
 </table>
+<p>Die eckigen Klammern erlauben in R ein <em>bestimmtes</em> Element von mehreren auszuwählen. <code>glance(lm1)</code> liefert eine Tabelle mit mehreren Spalten (und einer Zeile) zurück; mit <code>glance(lm1)[1]</code> bekommt man das erste Element dieser Tabelle, das heißt die erste Spalte. Natürlich können Sie einfach <code>glance(lm1)</code> eingeben, wenn Sie das lieber mögen.</p>
 </div>
 <div id="lm2-all-in" class="section level1" number="9">
-<h1><span class="header-section-number">9</span> lm2: all in</h1>
-<pre class="r"><code># NICHT AUSFÜHREN!
+<h1><span class="header-section-number">9</span> lm2: All in</h1>
+<pre class="r"><code># NICHT AUSFÜHREN
 #lm2_all_in &lt;- lm(dep_delay ~ ., data = flights_train2)</code></pre>
-<p>Modell <code>lm2_all_in</code> ist <em>keine</em> gute Idee, da nominale Prädiktoren in Indikatorvariablen umgewandelt werden. Hat ein nominaler Prädiktor sehr viele Stufen, so resultieren sehr viele Indikatorvariablen, was dem Regressionsmodell Probleme bereiten kann (bei mir hängt sich R auf). Besser ist es, die Anzahl der Stufen von nominalskalierten Variablen vorab zu begrenzen.</p>
+<p>Modell <code>lm2_all_in</code> ist hier <em>keine</em> gute Idee, da nominale Prädiktoren in Indikatorvariablen umgewandelt werden. Hat ein nominaler Prädiktor sehr viele Stufen (wie hier), so resultieren sehr viele Indikatorvariablen, was dem Regressionsmodell Probleme bereiten kann (bei mir hängt sich R auf). Besser ist es in dem Fall, die Anzahl der Stufen von nominalskalierten Variablen vorab zu begrenzen.</p>
+<p>Bei kleineren Datensätzen (weniger Variablen, weniger Fälle) lohnt es sich aber oft, das “All-in-Modell” auszuprobieren, als Referenzmaßstab für andere Modelle.</p>
 </div>
 <div id="flights_train3-textvariablen-in-faktorvariablen-umwandeln" class="section level1" number="10">
 <h1><span class="header-section-number">10</span> flights_train3: Textvariablen in Faktorvariablen umwandeln</h1>
