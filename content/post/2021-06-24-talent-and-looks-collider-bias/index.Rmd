@@ -207,6 +207,28 @@ d2 %>%
 ```
 
 
+## Move legend
+
+
+
+
+```{r}
+d2 %>% 
+  ggplot() +
+  aes(x  = x,
+      y = y,
+      color = status) +
+  geom_point() +
+  scale_color_manual(values = c("grey80", "black")) +
+  theme_bw() +
+  labs(x = "Looks",
+       y = "Talent") +
+    theme(legend.position = c(0.10, 0.20),
+          axis.text = element_blank())
+```
+
+## Without filter
+
 Here's how the data look without the "filter" of status:
 
 ```{r}

@@ -1229,7 +1229,7 @@ Dazu muss die Variable aber als <code>factor</code> vorliegen.</p>
   geom_line(group = 1)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-32-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Mit <code>fct_reorder</code> haben wir die Werte von <code>carrier</code> (UA, B6, AA, …) sortiert und zwar anhand der Werte von <code>n</code>, also anhand der Häufigkeit. Es resultiert eine Rangfolge: <code>UA &gt; B6 &gt; EV &gt; DL &gt; ...</code> etc.
-(Nur) Mit einer sortierten Faktorvariable lässt sich ein gut sortiert darstellen.</p>
+(Nur) Mit einer sortierten Faktorvariable lässt sich so eine Art von Diagramm gut sortiert darstellen.</p>
 <p>Ah, schon besser. Aber recht informationsarm, das Diagramm. Informationsreicher ist ein Boxplot:</p>
 <pre class="r"><code>flights2 %&gt;% 
   filter(!is_extreme) %&gt;%  # keine Extremwerte
@@ -1239,6 +1239,7 @@ Dazu muss die Variable aber als <code>factor</code> vorliegen.</p>
       y = dep_delay) %&gt;% 
   geom_boxplot()</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-33-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Eine alternative Darstellung wäre ein <a href="https://rdrr.io/cran/lvplot/man/geom_lv.html">Letter Value Plot</a>.</p>
 <p>Schauen wir uns mal die Mediane genauer an:</p>
 <pre class="r"><code>flights2 %&gt;% 
   filter(!is_extreme) %&gt;% 

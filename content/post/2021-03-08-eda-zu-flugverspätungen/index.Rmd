@@ -511,7 +511,7 @@ flights2 %>%
 
 
 Mit `fct_reorder` haben wir die Werte von `carrier` (UA, B6, AA, ...) sortiert und zwar anhand der Werte von `n`, also anhand der Häufigkeit. Es resultiert eine Rangfolge: `UA > B6 > EV > DL > ...` etc. 
-(Nur) Mit einer sortierten Faktorvariable lässt sich ein gut sortiert darstellen.
+(Nur) Mit einer sortierten Faktorvariable lässt sich so eine Art von Diagramm gut sortiert darstellen.
 
 
 
@@ -530,7 +530,7 @@ flights2 %>%
 ```
 
 
-
+Eine alternative Darstellung wäre ein [Letter Value Plot](https://rdrr.io/cran/lvplot/man/geom_lv.html).
 
 Schauen wir uns mal die Mediane genauer an:
 
