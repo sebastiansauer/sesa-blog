@@ -100,7 +100,7 @@ $$x = e^{(\text{ln} x)}$$
 
 Assume the linear function to be approximated is
 
-$$y = x + 1$$
+$$y = 0.1\cdot x + 1$$
 
 Then we have:
 
@@ -189,7 +189,8 @@ ggplot(d) +
   aes(x = x, y = y_obs) +  
   geom_point() +
   geom_smooth(method = "lm") +
-  geom_smooth(color = "red")
+  geom_smooth(color = "red") +
+  labs(caption = "blue: linear model, red: LOESS smooth")
 ```
 
 
@@ -245,7 +246,8 @@ d <-
 ggplot(d) +
   aes(x = x) +  
   geom_point(aes(y = y_obs)) +
-  geom_point(aes(y = y_pred), color = "red")
+  geom_point(aes(y = y_pred), color = "red") +
+  labs(caption = "red: predicted values, black: observed values")
 ```
 
 
@@ -274,5 +276,11 @@ ggplot(d) +
 
 Note that the y axis is scaled in powers of $e$.
 
+
+
+# Acknowledgements
+
+
+This post profited from some remarks of [Norman Markgraf](https://www.sefiroth.net/nab/).
 
 

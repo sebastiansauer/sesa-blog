@@ -54,7 +54,7 @@ e</code></pre>
 <p>We can make use of the following equality:</p>
 <p><span class="math display">\[x = e^{(\text{ln} x)}\]</span></p>
 <p>Assume the linear function to be approximated is</p>
-<p><span class="math display">\[y = x + 1\]</span></p>
+<p><span class="math display">\[y = 0.1\cdot x + 1\]</span></p>
 <p>Then we have:</p>
 <p><span class="math display">\[y = e^{\text{ln}(0.1x + 1)}.\]</span></p>
 <p>In R:</p>
@@ -109,7 +109,8 @@ f(x)</code></pre>
   aes(x = x, y = y_obs) +  
   geom_point() +
   geom_smooth(method = &quot;lm&quot;) +
-  geom_smooth(color = &quot;red&quot;)</code></pre>
+  geom_smooth(color = &quot;red&quot;) +
+  labs(caption = &quot;blue: linear model, red: LOESS smooth&quot;)</code></pre>
 <p><img src="unnamed-chunk-11-1.png" width="480" /></p>
 </div>
 </div>
@@ -125,22 +126,22 @@ summary(lm1)</code></pre>
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -0.30123 -0.03960  0.00334  0.04245  0.24995 
+## -0.27759 -0.03704  0.00230  0.03802  0.21401 
 ## 
 ## Coefficients:
 ##               Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -0.0083282  0.0042419  -1.963   0.0499 *  
-## x            0.1009424  0.0007293 138.418   &lt;2e-16 ***
+## (Intercept) -0.0184587  0.0041928  -4.402 1.19e-05 ***
+## x            0.1023805  0.0007208 142.036  &lt; 2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.06657 on 998 degrees of freedom
-## Multiple R-squared:  0.9505, Adjusted R-squared:  0.9504 
-## F-statistic: 1.916e+04 on 1 and 998 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 0.0658 on 998 degrees of freedom
+## Multiple R-squared:  0.9529, Adjusted R-squared:  0.9528 
+## F-statistic: 2.017e+04 on 1 and 998 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>If we delog. the slope coefficient:</p>
 <pre class="r"><code>exp(coef(lm1)[2])</code></pre>
 <pre><code>##        x 
-## 1.106213</code></pre>
+## 1.107805</code></pre>
 <p>That is, we found a growth rate of approx. 11 percentage points.</p>
 </div>
 <div id="model-diagnostics" class="section level1">
@@ -158,7 +159,8 @@ summary(lm1)</code></pre>
 <pre class="r"><code>ggplot(d) +
   aes(x = x) +  
   geom_point(aes(y = y_obs)) +
-  geom_point(aes(y = y_pred), color = &quot;red&quot;)</code></pre>
+  geom_point(aes(y = y_pred), color = &quot;red&quot;) +
+  labs(caption = &quot;red: predicted values, black: observed values&quot;)</code></pre>
 <p><img src="unnamed-chunk-16-1.png" width="480" /></p>
 <p>As identified by the model diagnostics, the fit is, despite the seemingly high <span class="math inline">\(R^2\)</span> not too good.</p>
 </div>
@@ -179,4 +181,8 @@ summary(lm1)</code></pre>
               color = &quot;red&quot;)</code></pre>
 <p><img src="unnamed-chunk-17-1.png" width="480" /></p>
 <p>Note that the y axis is scaled in powers of <span class="math inline">\(e\)</span>.</p>
+</div>
+<div id="acknowledgements" class="section level1">
+<h1>Acknowledgements</h1>
+<p>This post profited from some remarks of <a href="https://www.sefiroth.net/nab/">Norman Markgraf</a>.</p>
 </div>

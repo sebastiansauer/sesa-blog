@@ -69,11 +69,39 @@ Now let's render:
 mermaid(mermaid1)
 ```
 
+Unfortunately, the R version does not support all the types of graphs which are supported by [this implmenentation](https://mermaid-js.github.io/mermaid/#/).
+
+It appears that the following features are not supported by the R version:
+
+- flowcharts
+- subgraphs
+- connecting subgraphs with arrows
+
+Thus, let's go for this reduced version:
+
+
+
+```{r}
+mermaid2 <- 
+  "graph LR
+    import(Daten einlesen)
+    cleanse(Daten aufbereiten) --> sum
+    sum(Daten zusammenfassen) --> vis(Daten visualisieren)
+  import(Daten importieren) --> cleanse
+  vis --> mo(Daten modellieren)
+  mo --> report(Ergebnisse kommunizieren)"
+ 
+```
+
+
+```{r}
+mermaid(mermaid2)
+```
 
 # From website
 
 
-After having entered the source code on the live editor, we get back a markdown image link, pointing to the resource. Very comfortable.
+After having entered the source code on the live editor, we get back a markdown image link, pointing to the resource. Very comfortable. Of course, it is also possible to download an image file (png, jpg).
 
 
 

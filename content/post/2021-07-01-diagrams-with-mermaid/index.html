@@ -51,9 +51,28 @@ end
 <pre class="r"><code>mermaid(mermaid1)</code></pre>
 <div id="htmlwidget-1" style="width:480px;height:296.64px;" class="DiagrammeR html-widget"></div>
 <script type="application/json" data-for="htmlwidget-1">{"x":{"diagram":"flowchart LR\n  subgraph id1 [Rahmen]\n    direction LR\n    import(Daten einlesen)\n    subgraph eda [EDA]\n      direction TB\n      cleanse(Daten aufbereiten) --> sum\n      sum(Daten zusammenfassen) --> vis(Daten visualisieren)\n    end\n  import(Daten importieren) --> eda\n  eda --> mo(Daten modellieren)\n  mo --> report(Ergebnisse kommunizieren)\nend\n"},"evals":[],"jsHooks":[]}</script>
+<p>Unfortunately, the R version does not support all the types of graphs which are supported by <a href="https://mermaid-js.github.io/mermaid/#/">this implmenentation</a>.</p>
+<p>It appears that the following features are not supported by the R version:</p>
+<ul>
+<li>flowcharts</li>
+<li>subgraphs</li>
+<li>connecting subgraphs with arrows</li>
+</ul>
+<p>Thus, let’s go for this reduced version:</p>
+<pre class="r"><code>mermaid2 &lt;- 
+  &quot;graph LR
+    import(Daten einlesen)
+    cleanse(Daten aufbereiten) --&gt; sum
+    sum(Daten zusammenfassen) --&gt; vis(Daten visualisieren)
+  import(Daten importieren) --&gt; cleanse
+  vis --&gt; mo(Daten modellieren)
+  mo --&gt; report(Ergebnisse kommunizieren)&quot;</code></pre>
+<pre class="r"><code>mermaid(mermaid2)</code></pre>
+<div id="htmlwidget-2" style="width:480px;height:296.64px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"diagram":"graph LR\n    import(Daten einlesen)\n    cleanse(Daten aufbereiten) --> sum\n    sum(Daten zusammenfassen) --> vis(Daten visualisieren)\n  import(Daten importieren) --> cleanse\n  vis --> mo(Daten modellieren)\n  mo --> report(Ergebnisse kommunizieren)"},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="from-website" class="section level1">
 <h1>From website</h1>
-<p>After having entered the source code on the live editor, we get back a markdown image link, pointing to the resource. Very comfortable.</p>
+<p>After having entered the source code on the live editor, we get back a markdown image link, pointing to the resource. Very comfortable. Of course, it is also possible to download an image file (png, jpg).</p>
 <p><img src="https://mermaid.ink/img/eyJjb2RlIjoiZmxvd2NoYXJ0IExSXG4gIHN1YmdyYXBoIGlkMSBbUmFobWVuXVxuICAgIGRpcmVjdGlvbiBMUlxuICAgIGltcG9ydChEYXRlbiBlaW5sZXNlbilcbiAgICBzdWJncmFwaCBlZGEgW0VEQV1cbiAgICAgIGRpcmVjdGlvbiBUQlxuICAgICAgY2xlYW5zZShEYXRlbiBhdWZiZXJlaXRlbikgLS0-IHN1bVxuICAgICAgc3VtKERhdGVuIHp1c2FtbWVuZmFzc2VuKSAtLT4gdmlzKERhdGVuIHZpc3VhbGlzaWVyZW4pXG4gICAgZW5kXG4gIGltcG9ydChEYXRlbiBpbXBvcnRpZXJlbikgLS0-IGVkYVxuICBlZGEgLS0-IG1vKERhdGVuIG1vZGVsbGllcmVuKVxuICBtbyAtLT4gcmVwb3J0KEVyZ2Vibmlzc2Uga29tbXVuaXppZXJlbilcbmVuZFxuXG5cbiIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6dHJ1ZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOnRydWV9" /></p>
 </div>
