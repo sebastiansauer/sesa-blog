@@ -7,11 +7,6 @@ disqusShortname = "https-data-se-netlify-com"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\\.md$"]
 enableEmoji = true
 
-[taxonomies]
-  category = "categories"
-  tag = "tags"
-
-
 [permalinks]
     post = "/:year/:month/:day/:slug/"
 
@@ -21,9 +16,6 @@ enableEmoji = true
 [[menu.main]]
     name = "Data privacy"
     url = "/privacy/"
-[[menu.main]]
-    name = "Tags"
-    url = "/tags/"
 
 
 
