@@ -8,20 +8,6 @@
     <span class="article-duration">{{ .ReadingTime }} min read</span>
     {{ end }}
 
-    <!-- added by SES 2021-07-05: -->
-    <div class="article-meta">
-      <p class="terms">
-      🏷️
-	  {{ range $i := (slice  "tags") }}
-	  {{ with ($.Param $i) }}
-	  {{ $i | title }}:
-	  {{ range $k := . }}
-	  <a href='{{ relURL (print "/" $i "/" $k | urlize) }}'>{{$k}}</a>
-	  {{ end }}
-	  {{ end }}
-	  {{ end }}
-     </p>   
-   </div>
 
 
 
