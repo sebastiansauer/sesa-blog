@@ -74,7 +74,7 @@ end
 
 Now let's render:
 
-```{r}
+```{r out.width = "120%"}
 mermaid(mermaid1)
 ```
 
