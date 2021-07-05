@@ -56,7 +56,7 @@ end
 &quot;</code></pre>
 <p>Now let’s render:</p>
 <pre class="r"><code>mermaid(mermaid1)</code></pre>
-<div id="htmlwidget-1" style="width:480px;height:296.64px;" class="DiagrammeR html-widget"></div>
+<div id="htmlwidget-1" style="width:120%;height:296.64px;" class="DiagrammeR html-widget"></div>
 <script type="application/json" data-for="htmlwidget-1">{"x":{"diagram":"flowchart LR\n  subgraph id1 [Rahmen]\n    direction LR\n    import(Daten einlesen)\n    subgraph eda [EDA]\n      direction TB\n      cleanse(Daten aufbereiten) --> sum\n      sum(Daten zusammenfassen) --> vis(Daten visualisieren)\n    end\n  import(Daten importieren) --> eda\n  eda --> mo(Daten modellieren)\n  mo --> report(Ergebnisse kommunizieren)\nend\n"},"evals":[],"jsHooks":[]}</script>
 <p>Unfortunately, the R version does not support all the types of graphs which are supported by <a href="https://mermaid-js.github.io/mermaid/#/">this implmenentation</a>.</p>
 <p>It appears that the following features are not supported by the R version:</p>
@@ -75,7 +75,7 @@ end
   vis --&gt; mo(Daten modellieren)
   mo --&gt; report(Ergebnisse kommunizieren)&quot;</code></pre>
 <pre class="r"><code>mermaid(mermaid2)</code></pre>
-<div id="htmlwidget-2" style="width:480px;height:296.64px;" class="DiagrammeR html-widget"></div>
+<div id="htmlwidget-2" style="width:120%;height:296.64px;" class="DiagrammeR html-widget"></div>
 <script type="application/json" data-for="htmlwidget-2">{"x":{"diagram":"graph LR\n    import(Daten einlesen)\n    cleanse(Daten aufbereiten) --> sum\n    sum(Daten zusammenfassen) --> vis(Daten visualisieren)\n  import(Daten importieren) --> cleanse\n  vis --> mo(Daten modellieren)\n  mo --> report(Ergebnisse kommunizieren)"},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="from-website" class="section level1">

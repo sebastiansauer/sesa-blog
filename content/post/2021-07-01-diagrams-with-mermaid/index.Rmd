@@ -103,7 +103,7 @@ mermaid2 <-
 ```
 
 
-```{r}
+```{r out.width="120%"}
 mermaid(mermaid2)
 ```
 
