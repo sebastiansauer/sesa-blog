@@ -32,13 +32,19 @@ enableEmoji = true
 
 
 [params]
-     description = "Sebastian Sauer's statistics blog"
+    description = "Sebastian Sauer's statistics blog"
+    name = "Sebastian Sauer"
 
     # options for highlight.js (version, additional languages, and theme)
     highlightjsVersion = "9.12.0"
     highlightjsCDN = "//cdnjs.cloudflare.com/ajax/libs"
     highlightjsLang = ["r", "yaml"]
     highlightjsTheme = "github"
+    highlight = true
+    highlight_languages = ["r", "yaml"]
+    highlight_style = "atelier-cave-light"
+
+
 
     MathJaxCDN = "//cdnjs.cloudflare.com/ajax/libs"
     MathJaxVersion = "2.7.5"
