@@ -1,0 +1,87 @@
+---
+title: Diagrams with mermaid
+author: Sebastian Sauer
+date: '2021-07-01'
+slug: diagrams-with-mermaid
+categories:
+  - rstats
+tags:
+  - tutorial
+  - visualization
+---
+
+
+```{r global-knitr-options, include=FALSE}
+knitr::opts_chunk$set(fig.pos = 'H',
+  fig.asp = 0.618,
+  fig.width = 5,
+  fig.cap = "", 
+  fig.path = "",
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = FALSE,
+  fig.show = "hold")
+```
+
+
+# Setup
+
+```{r}
+library(tidyverse)
+library(DiagrammeR)
+```
+
+
+# Mermaid
+
+Mermaid is a nice little tool for drawing diagrams such as flowcharts.
+
+
+# Mermaid  via R
+
+
+
+
+
+```{r}
+mermaid1 <- 
+  "flowchart LR
+  subgraph id1 [Rahmen]
+    direction LR
+    import(Daten einlesen)
+    subgraph eda [EDA]
+      direction TB
+      cleanse(Daten aufbereiten) --> sum
+      sum(Daten zusammenfassen) --> vis(Daten visualisieren)
+    end
+  import(Daten importieren) --> eda
+  eda --> mo(Daten modellieren)
+  mo --> report(Ergebnisse kommunizieren)
+end
+"
+```
+
+
+Now let's render:
+
+```{r}
+mermaid(mermaid1)
+```
+
+
+# From website
+
+
+After having entered the source code on the live editor, we get back a markdown image link, pointing to the resource. Very comfortable.
+
+
+
+![](https://mermaid.ink/img/eyJjb2RlIjoiZmxvd2NoYXJ0IExSXG4gIHN1YmdyYXBoIGlkMSBbUmFobWVuXVxuICAgIGRpcmVjdGlvbiBMUlxuICAgIGltcG9ydChEYXRlbiBlaW5sZXNlbilcbiAgICBzdWJncmFwaCBlZGEgW0VEQV1cbiAgICAgIGRpcmVjdGlvbiBUQlxuICAgICAgY2xlYW5zZShEYXRlbiBhdWZiZXJlaXRlbikgLS0-IHN1bVxuICAgICAgc3VtKERhdGVuIHp1c2FtbWVuZmFzc2VuKSAtLT4gdmlzKERhdGVuIHZpc3VhbGlzaWVyZW4pXG4gICAgZW5kXG4gIGltcG9ydChEYXRlbiBpbXBvcnRpZXJlbikgLS0-IGVkYVxuICBlZGEgLS0-IG1vKERhdGVuIG1vZGVsbGllcmVuKVxuICBtbyAtLT4gcmVwb3J0KEVyZ2Vibmlzc2Uga29tbXVuaXppZXJlbilcbmVuZFxuXG5cbiIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6dHJ1ZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOnRydWV9)
+
+
+
+  
+  
+  
+
