@@ -9,14 +9,10 @@ tags:
   - tutorial
   - German
   - Math
-  
-  
 output:
   blogdown::html_page:
     toc: yes
     number_sections: yes
-editor_options: 
-  chunk_output_type: console
 ---
 
 
@@ -25,19 +21,6 @@ editor_options:
 
 Dieser Post bezieht sich auf [diese Fallstudie](https://moderndive.com/11-thinking-with-data.html#seattle-house-prices).
 
-
-```{r global-knitr-options, include=FALSE}
-knitr::opts_chunk$set(fig.pos = 'H',
-  fig.asp = 0.618,
-  fig.width = 5,
-  fig.cap = "", 
-  fig.path = "",
-  echo = TRUE,
-  message = FALSE,
-  warning = FALSE,
-  cache = FALSE,
-  fig.show = "hold")
-```
 
 
 # Vorbereitung
