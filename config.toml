@@ -54,3 +54,8 @@ enableEmoji = true
     height = 50
     alt = "Logo"
 
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
