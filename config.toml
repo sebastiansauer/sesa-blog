@@ -16,6 +16,9 @@ enableEmoji = true
 [[menu.main]]
     name = "Data privacy"
     url = "/privacy/"
+[[menu.main]]
+    name = "Tags"
+    url = "/tags/"
 
 
 
@@ -33,9 +36,9 @@ enableEmoji = true
     highlightjsCDN = "//cdnjs.cloudflare.com/ajax/libs"
     highlightjsLang = ["r", "yaml"]
     highlightjsTheme = "github"
-    # highlight = true
-   #  highlight_languages = ["r", "yaml"]
-     # highlight_style = "atelier-cave-light"
+    highlight = true
+    highlight_languages = ["r", "yaml"]
+    highlight_style = "atelier-cave-light"
 
 
 
