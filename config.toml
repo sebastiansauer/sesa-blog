@@ -26,6 +26,7 @@ enableEmoji = true
     url = "/tags/"
 
 
+
 [social]
     github  = "https://github.com/sebastian_sauer"
     twitter = "https://twitter.com/sauer_sebastian"
@@ -40,9 +41,9 @@ enableEmoji = true
     highlightjsCDN = "//cdnjs.cloudflare.com/ajax/libs"
     highlightjsLang = ["r", "yaml"]
     highlightjsTheme = "github"
-    highlight = true
-    highlight_languages = ["r", "yaml"]
-    highlight_style = "atelier-cave-light"
+    # highlight = true
+   #  highlight_languages = ["r", "yaml"]
+     # highlight_style = "atelier-cave-light"
 
 
 
