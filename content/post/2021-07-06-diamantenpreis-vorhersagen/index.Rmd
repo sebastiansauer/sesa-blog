@@ -496,7 +496,7 @@ preds_lm7
 
 
 
-Dieses Modell mit `length(preds_lm7)` Prädiktoren könnte sinnvoll sein: hohes R-Quadrat, aber noch vor der "Abflachung", also sparsam in den Prädiktoren.
+Dieses Modell mit `r `length(preds_lm7)` Prädiktoren könnte sinnvoll sein: hohes R-Quadrat, aber noch vor der "Abflachung", also sparsam in den Prädiktoren.
 
 
 ### Achtung
