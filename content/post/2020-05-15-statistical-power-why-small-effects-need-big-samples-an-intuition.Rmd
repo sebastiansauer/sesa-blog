@@ -6,7 +6,7 @@ slug: statistical-power-why-small-effects-need-big-samples-an-intuition
 categories:
   - research
 tags:
-  - rstats
+  - studydesign  
 ---
 
 

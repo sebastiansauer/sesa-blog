@@ -4,9 +4,9 @@ author: Sebastian Sauer
 date: '2017-11-28'
 slug: grundlagen-des-textminings-mit-r-teil-2
 categories:
-  - rstats
+  
 tags:
-  - rstats
+  
   - textmining
   - German
 ---

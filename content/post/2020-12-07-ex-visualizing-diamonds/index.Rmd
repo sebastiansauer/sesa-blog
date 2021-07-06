@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2020-12-07'
 slug: ex-visualizing-diamonds
 categories:
-  - rstats
+  
 tags:
   - visualization
 output:

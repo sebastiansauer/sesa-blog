@@ -5,7 +5,7 @@ title: 'Effect sizes for the Mann-Whitney U Test: an intuition'
 tags:
   - stats
   - intuition
-  - rstats
+  
 slug: effsize_utest
 ---
 

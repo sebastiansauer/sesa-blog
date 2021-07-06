@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2020-11-02'
 slug: prove-of-a-local-optimum-of-k-means-exercise-in-witten-et-al-2013
 categories:
-  - rstats
+  
 tags:
   - math
 ---

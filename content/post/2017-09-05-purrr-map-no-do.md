@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2017-09-05'
 title: Replacing dplyr::do by purrr:map. Some considerations
 tags:
-  - rstats
+  
   - tidyverse
 slug: purrr-map-no-do
 ---

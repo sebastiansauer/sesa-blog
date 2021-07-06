@@ -4,14 +4,18 @@ author: ses
 date: '2021-06-15'
 slug: arm-kap-4-syntax-im-tidyverse-stil
 categories:
-  - rstats
+  
 tags:
   - tutorial
+  - ARM
 output:
   blogdown::html_page:
     toc: yes
     number_sections: yes
 ---
+
+
+
 
 # Pakete laden
 
@@ -221,5 +225,13 @@ lm8 <- lm(log(LeafWt) ~ log(Diam1) + log(Diam2) + log(TotHt) + log (CanHt) + log
 
 display(lm8)
 ```
+
+
+
+# Referenz
+
+
+S. auch den [Post zu ARM, Kap. 3](/2021/06/05/arm-kap-3-syntax-im-tidyverse-stil/)
+
 
 

@@ -4,7 +4,7 @@ date: '2017-04-18'
 title: Error bars for interaction effects with nominal variables
 tags:
   - visualization
-  - rstats
+  
   - r
   - plotting
 slug: moderator-errorbars

@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2021-05-28'
 slug: yacsda-seitensprünge
 categories:
-  - rstats
+  
 tags:
   - tutorial
 output:

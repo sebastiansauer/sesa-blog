@@ -6,7 +6,7 @@ slug: playing-around-dataviz-comparing-distributions-between-groups
 categories:
   - dataviz
 tags:
-  - rstats
+  
   - plotting
 ---
 

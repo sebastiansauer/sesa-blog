@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2020-06-04'
 slug: when-adding-variable-hurts-the-collider-bias
 categories:
-  - rstats
+  
 tags:
   - causality
 ---

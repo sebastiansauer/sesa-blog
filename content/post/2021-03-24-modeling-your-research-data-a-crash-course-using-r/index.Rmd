@@ -4,11 +4,11 @@ author: Sebastian Sauer
 date: '2021-03-24'
 slug: modeling-your-research-data-a-crash-course-using-r
 categories:
-  - rstats
+  
 tags:
   - teaching
   - tutorial
-  - rstats
+  
   - modeling
   - eda
 output:

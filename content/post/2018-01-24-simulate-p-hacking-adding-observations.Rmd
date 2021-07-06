@@ -5,9 +5,9 @@ draft: FALSE
 date: '2018-01-24'
 slug: simulate-p-hacking-adding-observations
 categories:
-  - rstats
+  
 tags:
-  - rstats
+  
   - p-value
   - p-hacking
 ---

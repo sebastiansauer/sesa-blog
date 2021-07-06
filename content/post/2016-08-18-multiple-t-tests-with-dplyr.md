@@ -4,7 +4,7 @@ date: '2016-08-18'
 title: Multiple t-Tests with dplyr
 tags:
   - stats
-  - rstats
+  
 slug: multiple-t-tests-with-dplyr
 ---
 

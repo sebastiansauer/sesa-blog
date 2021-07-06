@@ -2,8 +2,8 @@
 author: Sebastian Sauer
 date: '2016-08-16'
 title: Looping through dataframe columns using purrr::map()
-tags:
-  - rstats
+tags: []
+  
 slug: looping-purrr
 ---
 

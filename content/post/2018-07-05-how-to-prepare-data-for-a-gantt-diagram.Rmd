@@ -5,9 +5,9 @@ date: '2018-07-05'
 slug: how-to-prepare-data-for-a-gantt-diagram
 draft: no
 categories:
-  - rstats
+  
 tags:
-  - rstats
+  
   - plotting
 ---
 

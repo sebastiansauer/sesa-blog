@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2017-01-27'
 title: Dataset 'performance in stats test'
 tags:
-  - rstats
+  
   - stats
   - data
 slug: data_test_inference

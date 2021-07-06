@@ -2,8 +2,8 @@
 author: Sebastian Sauer
 date: '2017-06-12'
 title: Identifying the package of a function
-tags:
-  - rstats
+tags: [tools]
+  
 slug: finds_funs
 ---
 

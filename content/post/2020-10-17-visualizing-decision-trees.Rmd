@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2020-10-17'
 slug: visualizing-decision-trees
 categories:
-  - rstats
+  
 tags:
   - visualization
   - machine-learning

@@ -3,7 +3,7 @@ title: "Simple Examples with DiagrammeR"
 date: '2018-11-07'
 slug: simple-examples-with-diagrammer
 categories:
-  - rstats
+  
 tags:
   - plotting
 editor_options: 

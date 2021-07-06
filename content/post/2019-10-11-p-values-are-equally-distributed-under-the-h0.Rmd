@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2019-10-11'
 slug: p-values-are-equally-distributed-under-the-h0
 categories:
-  - rstats
+  
 tags:
   - stats
   - inference

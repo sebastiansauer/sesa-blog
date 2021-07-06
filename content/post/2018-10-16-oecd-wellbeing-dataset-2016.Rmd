@@ -4,9 +4,9 @@ author: ''
 date: '2018-10-16'
 slug: oecd-wellbeing-dataset-2016
 categories:
-  - rstats
+  
 tags:
-  - rstats
+  
   - data
 ---
 

@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2020-12-14'
 slug: titanic-tidymodels-boost
 categories:
-  - rstats
+  
 tags:
   - tutorial
 output:

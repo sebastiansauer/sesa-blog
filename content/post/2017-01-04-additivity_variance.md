@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2017-01-04'
 title: Why is the variance additive? An intuition.
 tags:
-  - rstats
+  
   - stats
   - tutorial
 slug: additivity_variance

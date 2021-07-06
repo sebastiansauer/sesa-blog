@@ -5,7 +5,7 @@ author: Sebastian Sauer
 date: '2020-06-09'
 slug: distribution-of-residuals-is-of-interest-for-linear-models-not-the-distribution-of-y
 categories:
-  - rstats
+  
 tags:
   - modeling
 ---

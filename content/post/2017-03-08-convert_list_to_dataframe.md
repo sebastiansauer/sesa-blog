@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2017-03-08'
 title: Convert list to dataframe
 tags:
-  - rstats
+  
   - tidyverse
 slug: convert_list_to_dataframe
 ---

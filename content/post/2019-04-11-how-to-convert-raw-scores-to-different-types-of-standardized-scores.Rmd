@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2019-04-11'
 slug: how-to-convert-raw-scores-to-different-types-of-standardized-scores
 categories:
-  - rstats
+  
 tags:
   - psychology
 editor_options: 

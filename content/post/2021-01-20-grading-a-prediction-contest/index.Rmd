@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2021-01-20'
 slug: grading-a-prediction-contest
 categories:
-  - rstats
+  
 tags:
   - tutorial
 output:

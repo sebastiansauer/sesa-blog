@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2019-03-20'
 slug: beispiel-für-eine-logistische-regression
 categories:
-  - rstats
+  
 tags:
   - tutorial
 editor_options: 

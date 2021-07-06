@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2021-07-01'
 slug: diagrams-with-mermaid
 categories:
-  - rstats
+  
 tags:
   - tutorial
   - visualization

@@ -4,12 +4,12 @@ author: Sebastian Sauer
 date: '2020-02-02'
 slug: folien-für-den-workshop-zur-simulationsbasierten-inferenz-2020-02-05
 categories:
-  - rstats
+  
 tags:
   - slide
   - presentation
   - simulation
-  - rstats
+  
 ---
 
 

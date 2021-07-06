@@ -2,8 +2,8 @@
 author: Sebastian Sauer
 date: '2016-07-03'
 title: Cross-tabulate multiple variables
-tags:
-  - rstats
+tags: []
+  
 slug: cross-tabulate-multiple-variables
 ---
 

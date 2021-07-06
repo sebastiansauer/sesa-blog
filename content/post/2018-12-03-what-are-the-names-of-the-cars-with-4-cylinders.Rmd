@@ -4,9 +4,9 @@ author: ''
 date: '2018-12-03'
 slug: what-are-the-names-of-the-cars-with-4-cylinders
 categories:
-  - rstats
+  
 tags:
-  - rstats
+  
   - tidyverse
 editor_options: 
   chunk_output_type: console

@@ -4,9 +4,9 @@ author: ''
 date: '2018-12-05'
 slug: plot-many-ggplot-diagrams-using-nest-and-map
 categories:
-  - rstats
+  
 tags:
-  - rstats
+  
   - tidyverse
   - plotting
 editor_options: 

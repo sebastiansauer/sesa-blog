@@ -2,10 +2,8 @@
 title: Compute all pairwise differences in matrix
 author: ''
 date: '2018-11-21'
-categories:
-  - rstats
-tags:
-  - rstats
+tags: [matrix, math]
+  
 slug: compute-all-pairwise-differences-in-matrix
 editor_options: 
   chunk_output_type: console

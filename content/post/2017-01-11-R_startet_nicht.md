@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2017-01-11'
 title: R startet nicht
 tags:
-  - rstats
+  
   - German
 slug: R_startet_nicht
 ---

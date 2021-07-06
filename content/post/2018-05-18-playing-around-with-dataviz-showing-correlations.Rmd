@@ -6,7 +6,7 @@ slug: playing-around-with-dataviz-showing-correlations
 categories:
   - dataviz
 tags:
-  - rstats
+  
   - plotting
 ---
 

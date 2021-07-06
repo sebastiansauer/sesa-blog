@@ -2,8 +2,8 @@
 author: Sebastian Sauer
 date: '2016-07-04'
 title: Long vs. wide format, and gather()
-tags:
-  - rstats
+tags: []
+  
 slug: gather-long-to-wide-format
 ---
 

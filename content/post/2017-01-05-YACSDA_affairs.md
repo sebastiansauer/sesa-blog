@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2017-01-05'
 title: YACSDA (Fallstudie) zum Datensatz 'Affairs'
 tags:
-  - rstats
+  
   - German
   - YACSDA
 slug: YACSDA_affairs

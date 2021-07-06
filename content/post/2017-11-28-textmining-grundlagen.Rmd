@@ -5,9 +5,9 @@ author: Sebastian Sauer
 date: '2017-11-28'
 slug: textmining-grundlagen
 categories:
-  - rstats
+  
 tags:
-  - rstats
+  
   - textmining
   - polit
   - German

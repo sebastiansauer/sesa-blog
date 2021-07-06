@@ -4,12 +4,12 @@ author: Sebastian Sauer
 date: '2017-11-20'
 slug: great-dataviz-examples-in-rstats
 categories:
-  - rstats
+  
   - dataviz
 tags:
   - plot
   - dataviz
-  - rstats
+  
 ---
 
 

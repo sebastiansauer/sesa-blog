@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2020-11-18'
 slug: the-mean-minimizes-the-sum-of-squares
 categories:
-  - rstats
+  
 tags:
   - tutorial
 ---

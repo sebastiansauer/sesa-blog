@@ -5,7 +5,7 @@ date: '2021-05-30'
 draft: FALSE
 slug: analyse-der-impfbereitschaft-von-studentis
 categories:
-  - rstats
+  
 tags:
   - dataviz
 output:

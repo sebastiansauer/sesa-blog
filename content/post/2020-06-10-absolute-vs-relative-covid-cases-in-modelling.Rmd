@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2020-06-10'
 slug: absolute-vs-relative-covid-cases-in-modelling
 categories:
-  - rstats
+  
 tags:
   - modelling
 ---

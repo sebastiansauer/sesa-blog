@@ -4,7 +4,7 @@ date: '2017-01-17'
 title: Visualizing Interaction Effects with ggplot2
 tags:
   - plotting
-  - rstats
+  
   - tidyverse
 slug: vis_interaction_effects
 ---

@@ -5,9 +5,9 @@ draft: TRUE
 date: '2017-11-21'
 slug: get-your-stats-result-in-a-table-easily
 categories:
-  - rstats
+  
 tags:
-  - rstats
+  
   - writing
 ---
 

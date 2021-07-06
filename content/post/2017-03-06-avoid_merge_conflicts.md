@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2017-03-06'
 title: How to avoid Github/merge conflicts with Rmd-files
 tags:
-  - rstats
+  
   - git
 slug: avoid_merge_conflicts
 ---

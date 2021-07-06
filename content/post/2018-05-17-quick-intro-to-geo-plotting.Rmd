@@ -5,7 +5,7 @@ date: '2018-05-17'
 slug: quick-intro-to-geo-plotting
 draft: yes
 categories:
-  - rstats
+  
   - dataviz
 tags:
   - r

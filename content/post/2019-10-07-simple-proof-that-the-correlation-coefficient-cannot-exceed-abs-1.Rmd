@@ -6,7 +6,8 @@ slug: simple-proof-that-the-correlation-coefficient-cannot-exceed-abs-1
 categories:
   - diverse
 tags:
-  - rstats
+  - tutorial
+  - math  
 ---
 
 

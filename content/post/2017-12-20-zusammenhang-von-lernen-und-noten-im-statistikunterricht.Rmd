@@ -4,10 +4,10 @@ author: Sebastian Sauer
 date: '2017-12-20'
 slug: zusammenhang-von-lernen-und-noten-im-statistikunterricht
 categories:
-  - rstats
+  
   - teaching
 tags:
-  - rstats
+  
   - teaching
   - German
   - plotting

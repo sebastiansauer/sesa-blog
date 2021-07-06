@@ -2,8 +2,8 @@
 author: Sebastian Sauer
 date: '2016-11-04'
 title: Bind lists to data frame for aggregating linear models results
-tags:
-  - rstats
+tags: [regression]
+  
 slug: bind_list_to_dataframe_lm
 ---
 

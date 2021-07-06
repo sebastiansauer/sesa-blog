@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2021-03-10'
 slug: fallstudie-modellierung-von-flugverspätungen
 categories:
-  - rstats
+  
 tags:
   - tutorial
   - modeling

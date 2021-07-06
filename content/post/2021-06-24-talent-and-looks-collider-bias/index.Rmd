@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2021-06-24'
 draft: false
 slug: talent-and-looks-collider-bias
-categories: [rstats, plotting, musing]
+categories: [plotting, musing]
 tags:
   - tutorial
   - plotting

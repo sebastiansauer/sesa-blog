@@ -5,7 +5,7 @@ draft: TRUE
 date: '2019-11-24'
 slug: how-to-draw-a-waffle-plot
 categories:
-  - rstats
+  
 tags:
   - plotting
 ---

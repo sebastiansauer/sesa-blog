@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2019-07-03'
 slug: generalized-rowwise-operations-using-purrr-pmap
 categories:
-  - rstats
+  
 tags:
   - rowwise
   - purrr

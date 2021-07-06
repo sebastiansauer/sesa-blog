@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2017-05-12'
 title: Plotting true random numbers
 tags:
-  - rstats
+  
   - plotting
 slug: true_random
 ---

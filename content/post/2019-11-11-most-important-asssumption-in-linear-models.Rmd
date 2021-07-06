@@ -4,9 +4,11 @@ author: Sebastian Sauer
 date: '2019-11-11'
 slug: most-important-asssumption-in-linear-models
 categories:
-  - rstats
+  
 tags:
+  - regression
   - rstats
+  
 ---
 
 

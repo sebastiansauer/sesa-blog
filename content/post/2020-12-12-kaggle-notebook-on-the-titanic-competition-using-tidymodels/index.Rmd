@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2020-12-12'
 slug: kaggle-notebook-on-the-titanic-competition-using-tidymodels
 categories:
-  - rstats
+  
 tags:
   - prediction
 ---

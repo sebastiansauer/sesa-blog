@@ -5,10 +5,10 @@ date: '2018-07-05'
 slug: work-with-bibtex-bib-files-like-a-pro
 draft: no
 categories:
-  - rstats
+  
 tags:
   - LaTeX
-  - rstats
+  
 ---
 
 

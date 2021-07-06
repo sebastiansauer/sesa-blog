@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2018-04-11'
 slug: parse-libraries-from-r-project
 categories:
-  - rstats
+  
 tags:
   - r
 ---

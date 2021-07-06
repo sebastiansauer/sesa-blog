@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2017-09-08'
 title: Different ways to present summaries in ggplot2
 tags:
-  - rstats
+  
   - plotting
   - stats
 slug: ggplot-summaries

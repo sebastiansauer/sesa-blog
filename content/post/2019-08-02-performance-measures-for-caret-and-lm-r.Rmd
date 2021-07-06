@@ -4,8 +4,8 @@ author: Sebastian Sauer
 date: '2019-08-02'
 slug: performance-measures-for-caret-and-lm-r
 categories:
-  - rstats
-tags: []
+  
+tags: [modelling, prediction]
 editor_options: 
   chunk_output_type: console
 ---

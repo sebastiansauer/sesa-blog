@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2021-02-11'
 slug: explorative-datenanalyse-zum-datensatz-oecd-wellbeing
 categories:
-  - rstats
+  
 tags:
   - tutorial
   - eda

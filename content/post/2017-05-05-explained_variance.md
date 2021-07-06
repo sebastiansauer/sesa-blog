@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2017-05-05'
 title: Variance explained vs. variance blurred
 tags:
-  - rstats
+  
   - plotting
   - stats
   - intuition

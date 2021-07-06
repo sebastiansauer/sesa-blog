@@ -4,7 +4,7 @@ date: '2017-05-24'
 title: Simple way of plotting normal/logistic/etc. curve
 tags:
   - plotting
-  - rstats
+  
   - stats
   - ggplot2
 slug: plotting_s-curve

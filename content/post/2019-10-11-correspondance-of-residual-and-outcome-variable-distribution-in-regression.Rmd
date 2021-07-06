@@ -5,7 +5,7 @@ date: '2019-10-11'
 draft: TRUE
 slug: correspondance-of-residual-and-outcome-variable-distribution-in-regression
 categories:
-  - rstats
+  
 tags:
   - stats
 ---

@@ -5,7 +5,7 @@ date: '2018-04-11'
 draft: FALSE
 slug: one-way-anova-power-analysis
 categories:
-  - rstats
+  
 tags:
   - r
   - tutorial

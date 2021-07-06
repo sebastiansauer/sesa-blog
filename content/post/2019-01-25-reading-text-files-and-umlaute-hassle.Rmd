@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2019-01-25'
 slug: reading-text-files-and-umlaute-hassle
 categories:
-  - rstats
+  
 tags:
   - text
   - Encoding

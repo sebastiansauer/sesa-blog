@@ -4,9 +4,10 @@ author: ''
 date: '2018-08-09'
 slug: finding-nas-in-multiples-columns-per-rows
 categories:
-  - rstats
+  
 tags:
-  - rstats
+  - wrangling
+  
 ---
 
 

@@ -4,8 +4,8 @@ author: ''
 date: '2018-12-10'
 slug: new-split-apply-combine-variant-in-dplyr-group-split
 categories:
-  - rstats
-tags: []
+  
+tags: [transformation]
 editor_options: 
   chunk_output_type: console
 ---

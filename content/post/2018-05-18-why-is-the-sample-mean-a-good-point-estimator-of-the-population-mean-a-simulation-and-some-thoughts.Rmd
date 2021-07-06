@@ -5,11 +5,11 @@ author: Sebastian Sauer
 date: '2018-05-18'
 slug: why-is-the-sample-mean-a-good-point-estimator-of-the-population-mean-a-simulation-and-some-thoughts
 categories:
-  - rstats
+  
 tags:
   - inference
   - simulation
-  - rstats
+  
 ---
 
 ---
@@ -21,7 +21,7 @@ slug: why-is-the-sample-mean-a-good-point-estimator-for-the-population-parameter
 categories:
   - R
 tags:
-  - rstats
+  
   - inference
   - intuition
   - simulation

@@ -4,7 +4,7 @@ date: '2017-10-30'
 title: Data, machine-friendly, of the 2017 German federal elections
 tags:
   - data
-  - rstats
+  
   - politics
 slug: de-elec-data
 ---

@@ -4,10 +4,10 @@ author: Sebastian Sauer
 date: '2018-01-23'
 slug: visualizing-a-logistic-regression-the-easy-way
 categories:
-  - rstats
+  
   - dataviz
 tags:
-  - rstats
+  
   - dataviz
 ---
 

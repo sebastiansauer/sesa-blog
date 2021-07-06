@@ -5,7 +5,7 @@ title: Some thoughts on tidyveal and environments in R
 tags:
   - tidyeval
   - nse
-  - rstats
+  
 slug: tidyeval_basense
 ---
 

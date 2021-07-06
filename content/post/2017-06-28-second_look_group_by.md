@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2017-06-28'
 title: A second look to grouping with dplyr
 tags:
-  - rstats
+  
   - tidyverse
   - dplyr
   - programming

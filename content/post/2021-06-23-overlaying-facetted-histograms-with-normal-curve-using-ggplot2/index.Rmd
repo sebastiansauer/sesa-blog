@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2021-06-23'
 slug: overlaying-facetted-histograms-with-normal-curve-using-ggplot2
 categories:
-  - rstats
+  
 tags:
   - visualization
   - dataviz

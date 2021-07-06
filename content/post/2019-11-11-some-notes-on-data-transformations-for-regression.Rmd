@@ -4,9 +4,10 @@ author: Sebastian Sauer
 date: '2019-11-11'
 slug: some-notes-on-data-transformations-for-regression
 categories:
-  - rstats
+  
 tags:
-  - rstats
+  - regression
+  - rstats 
 ---
 
 

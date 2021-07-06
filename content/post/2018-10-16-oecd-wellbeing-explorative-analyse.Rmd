@@ -4,9 +4,9 @@ author: ''
 date: '2018-10-16'
 slug: oecd-wellbeing-explorative-analyse
 categories:
-  - rstats
+  
 tags:
-  - rstats
+  
   - german
 editor_options: 
   chunk_output_type: console

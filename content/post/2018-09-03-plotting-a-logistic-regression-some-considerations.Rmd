@@ -5,10 +5,10 @@ draft: FALSE
 date: '2018-09-03'
 slug: plotting-a-logistic-regression-some-considerations
 categories:
-  - rstats
+  
 tags:
   - plotting
-  - rstats
+  
 editor_options: 
   chunk_output_type: console
 ---

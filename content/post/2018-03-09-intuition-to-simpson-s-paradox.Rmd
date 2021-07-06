@@ -4,10 +4,10 @@ author: Sebastian Sauer
 date: '2018-03-09'
 slug: intuition-to-simpson-s-paradox
 categories:
-  - rstats
+  
 tags:
   - tutorial
-  - rstats
+  
   - dataviz
   - plotting
 ---

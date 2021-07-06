@@ -5,9 +5,9 @@ date: '2018-12-13'
 draft: FALSE
 slug: visualizing-a-regression-plane-two-predictors
 categories:
-  - rstats
+  
 tags:
-  - rstats
+  
   - plotting
 editor_options: 
   chunk_output_type: console

@@ -2,8 +2,8 @@
 author: Sebastian Sauer
 date: '2016-10-15'
 title: Multiple ways to subsetting data frames in R
-tags:
-  - rstats
+tags: [judo, subsetting]
+  
 slug: indexing-in-R
 ---
 

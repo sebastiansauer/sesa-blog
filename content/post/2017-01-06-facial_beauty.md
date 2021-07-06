@@ -2,8 +2,8 @@
 author: Sebastian Sauer
 date: '2017-01-06'
 title: Convert data frame from 'wide' to 'long'
-tags:
-  - rstats
+tags: [transformation]
+  
 slug: facial_beauty
 ---
 

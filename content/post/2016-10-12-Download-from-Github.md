@@ -2,8 +2,8 @@
 author: Sebastian Sauer
 date: '2016-10-12'
 title: How to read Github files into R easily
-tags:
-  - rstats
+tags: [Github]
+  
 slug: Download-from-Github
 ---
 

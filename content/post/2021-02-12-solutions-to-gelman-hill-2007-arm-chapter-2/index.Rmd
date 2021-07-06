@@ -5,7 +5,7 @@ date: '2021-02-12'
 draft: TRUE
 slug: solutions-to-gelman-hill-2007-arm-chapter-2
 categories:
-  - rstats
+  
 tags:
   - tutorial
   - regression

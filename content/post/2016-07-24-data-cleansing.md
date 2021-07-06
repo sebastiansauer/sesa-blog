@@ -4,7 +4,7 @@ date: '2016-07-24'
 title: Practical data cleansing in R
 tags:
   - stats
-  - rstats
+  
 slug: data-cleansing
 ---
 

@@ -4,10 +4,10 @@ author: Sebastian Sauer
 date: '2018-04-02'
 slug: visualisation-of-interaction-for-logistic-regression
 categories:
-  - rstats
+  
 tags:
   - plotting
-  - rstats
+  
 ---
 
 

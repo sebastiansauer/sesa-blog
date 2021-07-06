@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2020-11-13'
 slug: fallstudie-zur-regressionsanalyse-ggplot2movies
 categories:
-  - rstats
+  
 tags:
   - tutorial
 

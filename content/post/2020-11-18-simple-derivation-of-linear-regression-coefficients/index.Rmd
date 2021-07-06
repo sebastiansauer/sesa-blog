@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2020-11-18'
 slug: simple-derivation-of-linear-regression-coefficients2
 categories:
-  - rstats
+  
 tags:
   - tutorial
 ---

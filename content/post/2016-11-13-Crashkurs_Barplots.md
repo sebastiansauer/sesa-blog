@@ -5,7 +5,7 @@ title: Crashkurs zur Erstellung von Barplots für Umfrage-Daten
 tags:
   - stats
   - simulation
-  - rstats
+  
   - German
 slug: Crashkurs_Barplots
 ---

@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2016-09-29'
 title: Using purrr to build a data frame of vectors (eg., from effect size statistics)
 tags:
-  - rstats
+  
 slug: purrr-effsize
 ---
 

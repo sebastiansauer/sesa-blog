@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2020-05-15'
 slug: how-to-find-the-package-of-a-r-function
 categories:
-  - rstats
+  
 tags:
   - stats
   - tutorial

@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2017-10-17'
 title: Simple way to separate train and test sample in R
 tags:
-  - rstats
+  
   - data_science
 slug: train-test
 ---

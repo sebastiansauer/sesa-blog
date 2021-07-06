@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2016-11-09'
 title: Horoskopstudie zum Barnumeffekt
 tags:
-  - rstats
+  
   - YACSDA
   - research
 slug: Horoskop-Studie

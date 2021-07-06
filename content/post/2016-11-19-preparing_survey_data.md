@@ -4,7 +4,7 @@ date: '2016-11-19'
 title: Preparing survey results data
 tags:
   - plotting
-  - rstats
+  
   - survey
 slug: preparing_survey_data
 ---

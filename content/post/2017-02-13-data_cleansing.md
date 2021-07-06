@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2017-02-13'
 title: Checklist for Data Cleansing
 tags:
-  - rstats
+  
   - stats
   - tutorial
   - checklist

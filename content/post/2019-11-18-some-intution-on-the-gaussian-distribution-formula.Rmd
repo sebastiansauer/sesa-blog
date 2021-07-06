@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2019-11-18'
 slug: some-intution-on-the-gaussian-distribution-formula
 categories:
-  - rstats
+  
 tags:
   - intuition
 ---

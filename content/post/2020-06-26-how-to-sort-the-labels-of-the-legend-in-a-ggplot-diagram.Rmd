@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2020-06-26'
 slug: how-to-sort-the-labels-of-the-legend-in-a-ggplot-diagram
 categories:
-  - rstats
+  
 tags:
   - plotting
   - ggplot2

@@ -4,9 +4,9 @@ author: Sebastian Sauer
 date: '2019-01-14'
 slug: a-clean-sessioninfo-page
 categories:
-  - rstats
+  
 tags:
-  - rstats
+  
   - reproducibility
 ---
 

@@ -6,7 +6,7 @@ draft: TRUE
 date: '2020-07-01'
 slug: causal-language-appears-to-be-wide-spread-in-psychological-journals-even-if-not-warranted
 categories:
-  - rstats
+  
 tags:
   - causality
 ---

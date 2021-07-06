@@ -5,9 +5,9 @@ date: '2018-05-18'
 slug: simulating-a-correlation-matrix
 draft: yes
 categories:
-  - rstats
+  
 tags:
-  - rstats
+  
   - simulation
   - inference
 ---

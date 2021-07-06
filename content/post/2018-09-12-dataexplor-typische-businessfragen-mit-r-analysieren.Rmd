@@ -5,9 +5,9 @@ draft: FALSE
 date: '2018-09-12'
 slug: dataexplor-typische-businessfragen-mit-r-analysieren
 categories:
-  - rstats
+  
 tags:
-  - rstats
+  
   - german
 editor_options: 
   chunk_output_type: console

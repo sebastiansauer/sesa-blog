@@ -4,7 +4,7 @@ date: '2017-03-05'
 title: Lieblings-R-Befehle
 tags:
   - German
-  - rstats
+  
   - teaching
 slug: Lieblingsbefehle
 ---

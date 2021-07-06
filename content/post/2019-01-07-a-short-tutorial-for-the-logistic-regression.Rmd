@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2019-01-07'
 slug: a-short-tutorial-for-the-logistic-regression
 categories:
-  - rstats
+  
 tags: [tutorial]
 editor_options: 
   chunk_output_type: console

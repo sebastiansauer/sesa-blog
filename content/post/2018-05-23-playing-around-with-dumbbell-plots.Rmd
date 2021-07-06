@@ -6,7 +6,7 @@ slug: playing-around-with-dumbbell-plots
 categories:
   - dataviz
 tags:
-  - rstats
+  
   - plotting
 ---
 

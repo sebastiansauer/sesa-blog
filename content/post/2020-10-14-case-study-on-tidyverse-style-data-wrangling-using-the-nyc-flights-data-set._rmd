@@ -6,10 +6,10 @@ draft: TRUE
 slug: case-study-on-tidyverse-style-data-wrangling-using-the-nyc-flights-data-set
 categories:
   - dataviz
-  - rstats
+  
 tags:
   - tutorial
-  - rstats
+  
   - tidyverse
   - geoviz
   - datawrangling

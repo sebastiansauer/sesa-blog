@@ -4,7 +4,7 @@ author: R package build
 date: '2021-06-15'
 slug: vektorisierter-mittelwert-in-r
 categories:
-  - rstats
+  
 tags:
   - tutorial
 output:

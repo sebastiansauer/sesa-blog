@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2020-07-07'
 slug: randomization-in-presence-of-an-interaction-effect
 categories:
-  - rstats
+  
 tags:
   - simulation
 ---

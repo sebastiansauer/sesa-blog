@@ -4,9 +4,9 @@ author: Sebastian Sauer
 date: '2019-08-27'
 slug: computing-rater-accuracy-across-multiple-raters-and-multiple-criteria
 categories:
-  - rstats
+  
 tags:
-  - rstats
+  
   - tidyverse
   - datawrangling
 ---

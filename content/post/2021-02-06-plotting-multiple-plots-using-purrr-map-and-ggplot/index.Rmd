@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2021-02-06'
 slug: plotting-multiple-plots-using-purrr-map-and-ggplot
 categories:
-  - rstats
+  
 tags:
   - visualization
 output:

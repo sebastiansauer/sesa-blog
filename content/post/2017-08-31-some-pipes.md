@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2017-08-31'
 title: Comparing the pipe with base methods
 tags:
-  - rstats
+  
   - tidyverse
 slug: some-pipes
 ---

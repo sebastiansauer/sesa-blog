@@ -2,8 +2,8 @@
 author: Sebastian Sauer
 date: '2016-10-16'
 title: Checking for NA with dplyr
-tags:
-  - rstats
+tags: [na, missing]
+  
 slug: NAs-with-dplyr
 ---
 

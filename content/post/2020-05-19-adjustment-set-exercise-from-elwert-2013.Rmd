@@ -3,11 +3,9 @@ title: Adjustment set exercise from Elwert 2013
 author: Sebastian Sauer
 date: '2020-05-19'
 slug: adjustment-set-exercise-from-elwert-2013
-categories:
-  - causal
-  - DAG
 tags:
-  - rstats
+  - DAG
+  - causal 
 ---
 
 

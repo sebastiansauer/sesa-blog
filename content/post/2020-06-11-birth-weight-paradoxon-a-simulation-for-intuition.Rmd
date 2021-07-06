@@ -5,7 +5,7 @@ draft: TRUE
 date: '2020-06-11'
 slug: birth-weight-paradoxon-a-simulation-for-intuition
 categories:
-  - rstats
+  
 tags:
   - simulation
 ---

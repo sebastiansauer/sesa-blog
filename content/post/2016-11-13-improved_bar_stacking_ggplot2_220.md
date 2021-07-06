@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2016-11-13'
 title: New bar stacking with ggplot 2.2.0
 tags:
-  - rstats
+  
   - plotting
 slug: improved_bar_stacking_ggplot2_220
 ---

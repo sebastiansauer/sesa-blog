@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2016-08-30'
 title: Shading multiple areas under normal curve
 tags:
-  - rstats
+  
   - plotting
 slug: shade_Normal_curve
 ---

@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2021-02-26'
 slug: how-to-standardize-variables-in-r
 categories:
-  - rstats
+  
 tags:
   - tutorial
 output:

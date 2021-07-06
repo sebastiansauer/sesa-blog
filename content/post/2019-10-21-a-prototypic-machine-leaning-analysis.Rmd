@@ -5,7 +5,7 @@ date: '2019-10-21'
 draft: TRUE
 slug: a-prototypic-machine-leaning-analysis
 categories:
-  - rstats
+  
 tags:
   - machine-learning
 ---

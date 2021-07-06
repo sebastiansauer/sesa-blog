@@ -3,10 +3,8 @@ title: Binning and recoding with R - some recommendations
 author: ''
 date: '2018-08-09'
 slug: binning-and-recoding-with-r-some-recommendations
-categories:
-  - rstats
-tags:
-  - rstats
+
+  
 ---
 
 

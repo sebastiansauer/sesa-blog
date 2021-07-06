@@ -10,10 +10,9 @@ output:
 draft: yes
 slug: crashkurs
 tags:
-- rstats
+
 - tutorial
 - German
-categories: rstats
 ---
 
 

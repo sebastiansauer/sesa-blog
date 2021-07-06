@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2016-11-30'
 title: Pipe the Variance
 tags:
-  - rstats
+  
   - dplyr
 slug: pipe_variance
 ---

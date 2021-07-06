@@ -5,9 +5,9 @@ draft: TRUE
 date: '2018-09-11'
 slug: wenn-excel-aussteigt-datensatz-umbauen-zur-visualisierung
 categories:
-  - rstats
+  
 tags:
-  - rstats
+  
   - plotting
   - German
 editor_options: 

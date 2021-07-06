@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2021-02-24'
 slug: case-study-data-vizualization-on-flight-delays-using-tidyverse-tools
 categories:
-  - rstats
+  
 tags:
   - tutorial
 output:

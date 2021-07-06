@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2020-06-10'
 slug: spell-out-your-model-explicitly
 categories:
-  - rstats
+  
 tags:
   - modeling
 ---

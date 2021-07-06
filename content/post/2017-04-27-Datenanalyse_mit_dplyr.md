@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2017-04-27'
 title: Einführung in die Datenanalyse mit R-Paket 'dplyr' - R User Group Nürnberg
 tags:
-  - rstats
+  
   - talks
   - stats
   - tidyverse

@@ -5,7 +5,7 @@ title: Fallstudie (YACSDA) zur praktischen Datenanalyse mit dplyr
 tags:
   - YACSDA
   - German
-  - rstats
+  
 slug: Fallstudie_Flights
 ---
 

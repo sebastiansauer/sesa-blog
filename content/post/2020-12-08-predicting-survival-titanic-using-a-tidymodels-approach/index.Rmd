@@ -5,7 +5,7 @@ date: '2020-12-08'
 draft: false
 slug: predicting-survival-titanic-using-a-tidymodels-approach
 categories:
-  - rstats
+  
 tags:
   - prediction
 output:

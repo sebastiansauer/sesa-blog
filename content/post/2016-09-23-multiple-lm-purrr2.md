@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2016-09-23'
 title: Running multiple simple regressions with purrr
 tags:
-  - rstats
+  
   - tidyverse
 slug: multiple-lm-purrr2
 ---

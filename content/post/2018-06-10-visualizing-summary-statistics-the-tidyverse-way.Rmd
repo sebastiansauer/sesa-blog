@@ -4,9 +4,9 @@ author: Sebastian Sauer
 date: '2018-06-10'
 slug: visualizing-summary-statistics-the-tidyverse-way
 categories:
-  - rstats
+  
 tags:
-  - rstats
+  
   - plotting
   - visualization
 ---

@@ -4,7 +4,7 @@ date: '2016-09-22'
 title: Code example for plotting boxplots instead of mean bars
 tags:
   - plotting
-  - rstats
+  
 slug: use-boxplots
 ---
 

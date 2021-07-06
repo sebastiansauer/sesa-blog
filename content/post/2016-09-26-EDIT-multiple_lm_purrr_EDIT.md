@@ -4,7 +4,7 @@ date: '2016-09-26'
 title: 'EDIT: Running multiple simple regressions with purrr'
 tags:
   - tidyverse
-  - rstats
+  
 slug: EDIT-multiple_lm_purrr_EDIT
 ---
 

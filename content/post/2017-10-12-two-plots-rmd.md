@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2017-10-12'
 title: Two R plot side by side in .Rmd-Files
 tags:
-  - rstats
+  
   - knitr
 slug: two-plots-rmd
 ---

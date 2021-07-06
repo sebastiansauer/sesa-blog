@@ -8,14 +8,6 @@
 
     <span class="article-meta">
       {{ .Params.author }} / {{ .ReadingTime }} mins read <br>
-      {{ range $i := (slice "tags") }}
-      {{ with ($.Param $i) }}
-      {{ $i | title }}:
-      {{ range $k := . }}
-      <a href='{{ relURL (print "/" $i "/" $k | urlize) }}'>{{ $k }}</a>
-      {{ end }}<br>
-      {{ end }}
-      {{ end }}<br>
     </span>
 
 

@@ -3,7 +3,6 @@ title: Cluster analysis and image size reduction
 author: Sebastian Sauer
 date: '2020-01-10'
 slug: cluster-analysis-and-image-size-reduction
-categories: [rstats]
 tags: [cluster]
 draft: FALSE
 ---

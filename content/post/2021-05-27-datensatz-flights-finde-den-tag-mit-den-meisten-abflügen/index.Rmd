@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2021-05-27'
 slug: datensatz-flights-finde-den-tag-mit-den-meisten-abflügen
 categories:
-  - rstats
+  
 tags:
   - datawrangling
 output:

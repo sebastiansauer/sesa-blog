@@ -5,9 +5,9 @@ date: '2018-09-11'
 draft: FALSE
 slug: wenn-excel-aufgibt-datenvisualisierung-kann-zu-komplex-für-excel-werden
 categories:
-  - rstats
+  
 tags:
-  - rstats
+  
   - plotting
   - german
 editor_options: 

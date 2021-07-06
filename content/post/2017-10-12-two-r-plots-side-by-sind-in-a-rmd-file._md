@@ -4,7 +4,7 @@ author: ''
 date: '2017-10-12'
 slug: two-r-plots-side-by-sind-in-a-rmd-file
 categories:
-  - rstats
+  
 tags:
   - knitr
   - rmd

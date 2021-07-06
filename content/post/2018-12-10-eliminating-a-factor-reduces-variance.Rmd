@@ -1,16 +1,10 @@
+
 ---
-output: html_document
-editor_options: 
-  chunk_output_type: console
----
-\\---
 title: Eliminating a factor reduces variance
 author: ''
 date: '2018-12-10'
 slug: eliminating-a-factor-reduces-variance
 draft: TRUE
-categories:
-  - rstats
 tags:
   - tutorial
   - plotting

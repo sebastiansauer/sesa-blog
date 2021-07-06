@@ -4,10 +4,10 @@ author: Sebastian Sauer
 date: '2017-11-27'
 slug: interactive-diagrams-in-lieu-of-shiny
 categories:
-  - rstats
+  
   - dataviz
 tags:
-  - rstats
+  
   - plotting
   - interactive
   - tidyverse

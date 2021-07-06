@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2016-12-21'
 title: Some tricks on dplyr::filter
 tags:
-  - rstats
+  
   - dplyr
 slug: dplyr_filter
 ---

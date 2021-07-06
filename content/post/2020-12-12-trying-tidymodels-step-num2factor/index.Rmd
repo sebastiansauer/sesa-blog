@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2020-12-12'
 slug: trying-tidymodels-step-num2factor
 categories:
-  - rstats
+  
 tags:
   - prediction
 output:

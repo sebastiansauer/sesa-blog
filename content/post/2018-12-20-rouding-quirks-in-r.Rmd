@@ -5,9 +5,10 @@ date: '2018-12-20'
 draft: TRUE
 slug: rouding-quirks-in-r
 categories:
-  - rstats
+  
 tags:
   - rstats
+  
 ---
 
 

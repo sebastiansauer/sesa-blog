@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2016-08-30'
 title: Simple way to plot a normal distribution with ggplot2
 tags:
-  - rstats
+  
   - plotting
 slug: normal_curve_ggplot2
 ---

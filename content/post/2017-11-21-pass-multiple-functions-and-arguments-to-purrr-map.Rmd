@@ -5,9 +5,9 @@ date: '2017-11-21'
 draft: TRUE
 slug: pass-multiple-functions-and-arguments-to-purrr-map
 categories:
-  - rstats
+  
 tags:
-  - rstats
+  
   - tidyverse
 ---
 

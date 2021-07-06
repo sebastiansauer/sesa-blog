@@ -3,8 +3,7 @@ title: Ein Beispiel zum Nutzen einer Log-Transformation
 author: Sebastian Sauer
 date: '2021-06-17'
 slug: ein-beispiel-zum-nutzen-einer-log-transformation
-categories: []
-tags: []
+tags: [transformation, math, log, exp]
 output:
   blogdown::html_page:
     toc: yes

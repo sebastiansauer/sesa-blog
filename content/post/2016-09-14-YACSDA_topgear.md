@@ -4,7 +4,7 @@ date: '2016-09-14'
 title: Fallstudie zur explorative Datenanalyse (YACSDA) beim Datensatz 'TopGear'
 tags:
   - YACSDA
-  - rstats
+  
   - German
 slug: YACSDA_topgear
 ---

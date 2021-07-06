@@ -4,7 +4,7 @@ date: '2016-11-03'
 title: How to plot a 'percentage plot' with ggplot2
 tags:
   - plotting
-  - rstats
+  
 slug: percentage_plot_ggplot2_V2
 ---
 

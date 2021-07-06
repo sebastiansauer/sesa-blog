@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2017-04-13'
 title: The effect of sample on p-values. A simulation.
 tags:
-  - rstats
+  
   - stats
   - simulation
 slug: pvalue_sample_size

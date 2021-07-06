@@ -5,7 +5,7 @@ date: '2018-12-12'
 slug: changing-the-default-color-scheme-in-ggplot2
 draft: FALSE
 categories:
-  - rstats
+  
 tags:
   - tidyverse
   - plot

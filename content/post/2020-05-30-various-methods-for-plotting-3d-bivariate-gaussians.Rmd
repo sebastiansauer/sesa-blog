@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2020-05-30'
 slug: various-methods-for-plotting-3d-bivariate-gaussians
 categories:
-  - rstats
+  
 tags:
   - plotting
 ---

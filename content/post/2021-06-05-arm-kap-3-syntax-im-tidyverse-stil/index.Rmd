@@ -4,7 +4,7 @@ author: ses
 date: '2021-06-05'
 slug: arm-kap-3-syntax-im-tidyverse-stil
 categories:
-  - rstats
+  
 tags:
   - tutorial
 output:
@@ -451,3 +451,11 @@ Hier zeigt sich nur Rauschen: Die Residuen sind ohne erkennbares Muster um $y=0$
 
 
 Nicht ausgeführt.
+
+
+
+# Referenz
+
+
+S. auch den [Post zu ARM, Kap. 4](/2021/06/15/arm-kap-4-syntax-im-tidyverse-stil/)
+

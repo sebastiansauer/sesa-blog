@@ -5,7 +5,7 @@ title: Some thoughts (and simulation) on overfitting
 tags:
   - stats
   - simulation
-  - rstats
+  
 slug: overfitting_simulation
 ---
 

@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2021-05-19'
 slug: vohrersgage-modellierung-des-preises-von-diamanten
 categories:
-  - rstats
+  
 tags:
   - modeling
   - prediction

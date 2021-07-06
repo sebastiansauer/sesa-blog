@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2020-12-05'
 slug: execution-time-for-largish-data
 categories:
-  - rstats
+  
 tags:
   - stats
 output:

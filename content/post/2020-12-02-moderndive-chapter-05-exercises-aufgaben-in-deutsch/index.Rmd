@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2020-12-02'
 slug: moderndive-chapter-05-exercises-aufgaben-in-deutsch
 categories:
-  - rstats
+  
 tags:
   - tutorial
 output:

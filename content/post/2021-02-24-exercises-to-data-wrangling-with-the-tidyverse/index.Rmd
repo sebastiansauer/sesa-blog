@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2021-02-24'
 slug: exercises-to-data-wrangling-with-the-tidyverse
 categories:
-  - rstats
+  
 tags:
   - tutorial
 output:

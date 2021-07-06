@@ -5,7 +5,7 @@ draft: FALSE
 date: '2019-10-21'
 slug: some-ways-for-plotting-3d-linear-models
 categories:
-  - rstats
+  
 tags:
   - regression
 ---

@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2017-03-27'
 title: Rowwise operations in dplyr
 tags:
-  - rstats
+  
   - tidyverse
 slug: rowwise_dplyr
 ---

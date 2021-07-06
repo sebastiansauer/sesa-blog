@@ -7,9 +7,9 @@ bibliography: "/Users/sebastiansaueruser/Documents/Literatur/ref_mgt/library.bib
 lang: de-De
 slug: playing-around-with-geo-mapping-combining-demographic-data-with-spatial-data
 categories:
-  - rstats
+  
 tags:
-  - rstats
+  
   - plotting
   - visualization
   - geo

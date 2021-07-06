@@ -2,8 +2,8 @@
 author: Sebastian Sauer
 date: '2016-09-28'
 title: Summary for multiple variables using purrr
-tags:
-  - rstats
+tags: [purrr]
+  
 slug: summary-mult-cols-purrr
 ---
 

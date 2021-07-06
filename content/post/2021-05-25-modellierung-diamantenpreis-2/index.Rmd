@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2021-05-25'
 slug: modellierung-diamantenpreis-2
 categories:
-  - rstats
+  
 tags:
   - modeling
 output:

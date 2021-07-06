@@ -4,7 +4,7 @@ date: '2016-11-12'
 title: Plotting survey results using `ggplot2`
 tags:
   - plotting
-  - rstats
+  
   - survey
 slug: plotting_surveys
 ---

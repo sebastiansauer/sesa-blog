@@ -5,7 +5,7 @@ date: '2018-04-09'
 slug: metrics-for-readability-of-slide-decks-for-teaching
 draft: TRUE
 categories:
-  - rstats
+  
 tags:
   - textmining
   - r

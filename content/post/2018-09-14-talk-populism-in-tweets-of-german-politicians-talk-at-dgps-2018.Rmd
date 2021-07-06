@@ -7,7 +7,7 @@ categories:
   - Talks
 tags:
   - populism
-  - rstats
+  
   - plotting
 ---
 

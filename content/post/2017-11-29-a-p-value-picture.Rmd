@@ -6,11 +6,11 @@ slug: a-p-value-picture
 bibliography: data-se.bib
 link-citations: true
 categories:
-  - rstats
+  
 tags:
   - pvalue
   - plotting
-  - rstats
+  
   - German
 ---
 

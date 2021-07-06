@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2020-06-05'
 slug: simulating-values-according-to-some-distribution
 categories:
-  - rstats
+  
 tags:
   - simulation
 ---

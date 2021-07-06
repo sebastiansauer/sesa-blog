@@ -5,7 +5,7 @@ date: '2020-12-09'
 slug: example-for-meng-s-2018-article-on-big-data-bias
 draft: false
 categories:
-  - rstats
+  
 tags:
   - big data
 output:

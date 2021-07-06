@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2017-06-24'
 title: Preparation of extraversion survey data
 tags:
-  - rstats
+  
   - psychometrics
   - survey
 slug: extra_prep

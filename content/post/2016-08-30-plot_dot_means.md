@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2016-08-30'
 title: Plot of mean with exact numbers using ggplot2
 tags:
-  - rstats
+  
   - plotting
 slug: plot_dot_means
 ---

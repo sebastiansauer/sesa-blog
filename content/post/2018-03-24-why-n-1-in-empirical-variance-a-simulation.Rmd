@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2018-03-24'
 slug: why-n-1-in-empirical-variance-a-simulation
 categories:
-  - rstats
+  
 tags:
   - tutorial
   - intuition

@@ -4,9 +4,9 @@ author: Sebastian Sauer
 date: '2018-03-11'
 slug: map-students-to-presentation-slots
 categories:
-  - rstats
+  
 tags:
-  - rstats
+  
   - tutorial
 ---
 

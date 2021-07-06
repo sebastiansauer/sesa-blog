@@ -5,8 +5,8 @@ draft: yes
 date: '2018-10-16'
 slug: oecd-wellbegin-explorative-analysis
 categories:
-  - rstats
+  
 tags:
-  - rstats
+  
   - german
 ---

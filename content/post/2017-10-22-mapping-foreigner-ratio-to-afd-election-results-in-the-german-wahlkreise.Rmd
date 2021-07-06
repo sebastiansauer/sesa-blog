@@ -5,9 +5,9 @@ date: '2017-10-22'
 slug: mapping-foreigner-ratio-to-afd-election-results-in-the-german-wahlkreise
 draft: yes
 categories:
-  - rstats
+  
 tags:
-  - rstats
+  
   - politics
   - populism
   - plotting

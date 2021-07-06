@@ -5,7 +5,7 @@ author: Sebastian Sauer
 date: '2019-11-19'
 slug: correlation-cannot-be-more-extreme-than-1-1-proof-using-cauchy-schwartz-inequality
 categories:
-  - rstats
+  
 tags:
   - correlation
 ---

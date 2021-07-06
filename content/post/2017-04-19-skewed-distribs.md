@@ -4,7 +4,7 @@ date: '2017-04-19'
 title: Plotting skewed distributions
 tags:
   - plotting
-  - rstats
+  
   - stats
 slug: skewed-distribs
 ---

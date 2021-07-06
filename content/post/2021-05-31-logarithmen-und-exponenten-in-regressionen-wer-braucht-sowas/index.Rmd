@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2021-05-31'
 slug: logarithmen-und-exponenten-in-regressionen-wer-braucht-sowas
 categories:
-  - rstats
+  
 tags:
   - tutorial
   - modelling

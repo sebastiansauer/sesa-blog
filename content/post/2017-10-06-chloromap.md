@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2017-10-06'
 title: Drawing a country map
 tags:
-  - rstats
+  
   - plotting
 slug: chloromap
 ---

@@ -4,10 +4,10 @@ author: ''
 date: '2018-11-02'
 slug: plot-columns-repeatedly
 categories:
-  - rstats
+  
 tags:
   - plotting
-  - rstats
+  
 editor_options: 
   chunk_output_type: console
 ---

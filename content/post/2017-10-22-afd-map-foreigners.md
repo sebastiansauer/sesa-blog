@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2017-10-22'
 title: Mapping foreigner ratio to AfD election results in the German Wahlkreise
 tags:
-  - rstats
+  
   - plotting
   - politics
   - populism

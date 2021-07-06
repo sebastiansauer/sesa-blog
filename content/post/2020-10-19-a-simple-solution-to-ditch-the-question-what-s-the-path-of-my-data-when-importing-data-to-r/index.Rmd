@@ -5,7 +5,7 @@ author: Sebastian Sauer
 date: '2020-10-19'
 slug: a-simple-solution-to-ditch-the-question-what-s-the-path-of-my-data-when-importing-data-to-r
 categories:
-  - rstats
+  
 tags:
   - tutorial
 ---

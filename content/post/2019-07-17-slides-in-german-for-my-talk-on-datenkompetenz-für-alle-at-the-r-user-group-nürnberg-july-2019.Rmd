@@ -6,7 +6,7 @@ date: '2019-07-17'
 slug: slides-in-german-for-my-talk-on-datenkompetenz-für-alle-at-the-r-user-group-nürnberg-july-2019
 categories:
   - Talks
-  - rstats
+  
 tags:
   - talks
 ---

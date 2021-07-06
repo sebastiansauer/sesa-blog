@@ -4,10 +4,10 @@ author: Sebastian Sauer
 date: '2017-11-27'
 slug: my-favorite-stats-text-book
 categories:
-  - rstats
+  
 tags:
   - teaching
-  - rstats
+  
 ---
 
 

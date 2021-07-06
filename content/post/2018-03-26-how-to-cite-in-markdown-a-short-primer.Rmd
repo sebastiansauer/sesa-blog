@@ -5,11 +5,11 @@ date: '2018-03-26'
 draft: yes
 slug: how-to-cite-in-markdown-a-short-primer
 categories:
-  - rstats
+  
 tags:
   - RMarkdown
   - writing
-  - rstats
+  
 ---
 
 

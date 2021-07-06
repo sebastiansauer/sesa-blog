@@ -4,7 +4,7 @@ author: "Sebastian Sauer"
 date: '2017-05-16'
 output: pdf_document
 tags:
-- rstats
+
 - tutorial
 - German
 slug: crashkurs

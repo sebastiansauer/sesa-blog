@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2017-01-12'
 title: How to import a strange CSV
 tags:
-  - rstats
+  
   - tutorial
 slug: strange_CSVs
 ---

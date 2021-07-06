@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2017-11-17'
 title: ' Wie gut schätzt eine Stichprobe die Grundgesamtheit?'
 tags:
-  - rstats
+  
   - teaching
   - German
   - tutorial

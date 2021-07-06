@@ -6,7 +6,7 @@ draft: FALSE
 date: '2020-09-23'
 slug: help-me-help-you-wie-man-ein-r-problem-so-formuliert-dass-einem-geholfen-werden-kann
 categories:
-  - rstats
+  
 tags:
   - German
   - teaching

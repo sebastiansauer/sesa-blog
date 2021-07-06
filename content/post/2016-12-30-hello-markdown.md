@@ -2,6 +2,7 @@
 author: Sebastian Sauer
 date: '2016-12-30'
 title: A Plain Markdown Post
+tags: [markdown]
 slug: hello-markdown
 ---
 

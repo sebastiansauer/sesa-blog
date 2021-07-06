@@ -3,10 +3,8 @@ title: Coercing an index over a character vector
 author: ''
 date: '2018-12-06'
 slug: coercing-an-index-over-a-character-vector
-categories:
-  - rstats
-tags:
-  - rstats
+tags: [transformation]
+  
 editor_options: 
   chunk_output_type: console
 ---

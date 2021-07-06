@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2016-11-23'
 title: Some musings on the validation of Satow's Extraversion questionnaire
 tags:
-  - rstats
+  
   - plotting
   - survey
   - YACSDA

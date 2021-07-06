@@ -3,7 +3,7 @@ author: Sebastian Sauer
 date: '2017-01-24'
 title: Convert logit to probability
 tags:
-  - rstats
+  
   - stats
   - tutorial
 slug: convert_logit2prob

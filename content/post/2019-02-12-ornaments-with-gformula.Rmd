@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2019-02-12'
 slug: ornaments-with-gformula
 categories:
-  - rstats
+  
 tags:
   - visualization
   - plotting

@@ -4,7 +4,7 @@ date: '2017-01-20'
 title: The two ggplot2-ways of plottings bars
 tags:
   - plotting
-  - rstats
+  
 slug: two_ways_barplots_with_ggplot2
 ---
 

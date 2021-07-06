@@ -5,7 +5,7 @@ title: Sorting the x-axis in bargraphs using ggplot2
 tags:
   - plotting
   - tidyverse
-  - rstats
+  
 slug: ordering-bars
 ---
 

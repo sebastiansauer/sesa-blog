@@ -3,6 +3,7 @@ author: Sebastian Sauer
 date: '2017-09-12'
 title: Crashkurs Datenanalyse mit R
 slug: r-crashkurs
+tags: [teaching, tutorial]
 ---
 
 
