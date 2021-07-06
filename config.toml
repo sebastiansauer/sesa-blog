@@ -1,4 +1,4 @@
-baseurl = "/"
+baseurl = "https://data-se.netlify.app/"
 languageCode = "en-us"
 title = "sesa blog"
 theme = "hugo-lithium"

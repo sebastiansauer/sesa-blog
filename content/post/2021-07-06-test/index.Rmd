@@ -1,0 +1,12 @@
+---
+title: test
+author: Sebastian Sauer
+date: '2021-07-06'
+slug: test
+draft: TRUE
+categories:
+  - rstats
+  - zettel
+tags:
+  - test
+---

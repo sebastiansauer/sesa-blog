@@ -1,14 +1,20 @@
-+++
-title = "{{ replace .TranslationBaseName "-" " " | title }}"
-date = {{ .Date }}
-draft = false
-author = Sebastian Sauer
+---
+title: "{{ replace .TranslationBaseName "-" " " | title }}"
+author: Sebastian Sauer
+date: {{ .Date }}
+
 tags = []
 categories = []
+
+
+draft: true
+
 output:
   blogdown::html_page:
     toc: true
-+++
+    keep_md: yes
+---
+
 
 
 

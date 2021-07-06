@@ -1,4 +1,4 @@
-.Rproj.user
+
 .Rhistory
 .RData
 .Ruserdata
@@ -11,21 +11,23 @@ Untitled*
 *slidedeck.pdf
 *Rpackages.bib
 *.rds
-*.Rdata
 *.icloud
 
 
-*.csv
+#*.csv
   
 
 *_cache
 *_cache/
+*cache
+
 *.Rproj
-
 .Rproj.user/
+.Rproj.user
 
+/public/
+/resources/
 
-public/
 
 
 
