@@ -70,9 +70,18 @@ Einfache Dashboards, haben den Vorteil, schnell entwickelt werden zu können und
 
 An relevanter Literatur ist z.B. @xie_r_2020 oder @xie_blogdown_2018 zu nennen.
 
-![](https://i.postimg.cc/PrHmVBBD/image.png){ width=100% }
+![](hhttps://i.postimg.cc/PrHmVBBD/image.png){ width=100% }
 
 [Quelle](https://beta.rstudioconnect.com/jjallaire/htmlwidgets-highcharter/htmlwidgets-highcharter.html)
+
+
+
+Eine weitere Idee für eine Anwendung ist die Erstellung eines lokalen Corona-Dashboards:
+
+![](https://statsandr.com/blog/2020-03-23-how-to-create-a-simple-coronavirus-dashboard-specific-to-your-country-in-r_files/How%20to%20create%20a%20simple%20Coronavirus%20dashboard%20specific%20to%20your%20country%20in%20R-1.png){ width=100% }
+
+
+[Quelle](https://statsandr.com/blog/how-to-create-a-simple-coronavirus-dashboard-specific-to-your-country-in-r/)
 
 
 ## Automatisierte Berichte
