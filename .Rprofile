@@ -20,7 +20,7 @@ options(
   blogdown.author = "Sebastian Sauer",
   blogdown.ext = ".Rmd",
   blogdown.subdir = "post",
-  blogdown.yaml.empty = TRUE,
+  blogdown.yaml.empty = FALSE,
   blogdown.new_bundle = TRUE
 )
 
