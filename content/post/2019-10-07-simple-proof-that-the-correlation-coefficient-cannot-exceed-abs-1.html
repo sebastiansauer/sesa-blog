@@ -6,9 +6,11 @@ slug: simple-proof-that-the-correlation-coefficient-cannot-exceed-abs-1
 categories:
   - diverse
 tags:
-  - rstats
+  - tutorial
+  - math  
 ---
 
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
 <div id="load-packages" class="section level1">
@@ -26,7 +28,7 @@ library(MASS)</code></pre>
 <p><span class="math display">\[
 |r| \le 1
 \]</span></p>
-<p>However, proofing this fact is less straightforward. A classical way of proofing the above inequality is by using the Cauchy-Schwarz inequality. From a teacher’s perspective, the CS inequality may not be ideal, because the students may lack some knowledge necessary for appreciating this proof. In order to provide teachers’s (or anyone else for that matter), this posts provides an alternative way, one that does not demand much more than basical algebra and some knowledge about descriptive statistics (particularly including z-scores and correlation). This posts builds on <a href="https://www.google.de/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=2&amp;cad=rja&amp;uact=8&amp;ved=0CDYQFjAB&amp;url=http://wwwg.uni-klu.ac.at/stochastik.schule/2001-10_abstracts/Beitraege/2002-1_riedwyl.pdf&amp;ei=ipd1VJyvH873auHwgIgP&amp;usg=AFQjCNFZXczeveqpwiXgm-yME2qIF2ck2w&amp;sig2=">this paper</a>.</p>
+<p>However, proofing this fact is less straightforward. A classical way of proofing the above inequality is by using the Cauchy-Schwarz inequality. From a teacher’s perspective, the CS inequality may not be ideal, because the students may lack some knowledge necessary for appreciating this proof. In order to provide teachers’s (or anyone else for that matter), this posts provides an alternative way, one that does not demand much more than basic algebra and some knowledge about descriptive statistics (particularly including z-scores and correlation). This posts builds on <a href="https://www.google.de/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=2&amp;cad=rja&amp;uact=8&amp;ved=0CDYQFjAB&amp;url=http://wwwg.uni-klu.ac.at/stochastik.schule/2001-10_abstracts/Beitraege/2002-1_riedwyl.pdf&amp;ei=ipd1VJyvH873auHwgIgP&amp;usg=AFQjCNFZXczeveqpwiXgm-yME2qIF2ck2w&amp;sig2=">this paper</a>.</p>
 </div>
 <div id="definitions" class="section level1">
 <h1>Definitions</h1>

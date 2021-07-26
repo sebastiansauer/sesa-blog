@@ -58,7 +58,6 @@ Let our experiment consist of a t-test with two groups of n=30, and the Null bei
 Let's simply extract the p-value:
 
 ```{r}
-
 get_p_from_ttest_sim <- function(n = 30, my_m = 0, my_sd = 1) {
   
   sample1 <- rnorm(n = n, mean = my_m, sd = my_sd) 

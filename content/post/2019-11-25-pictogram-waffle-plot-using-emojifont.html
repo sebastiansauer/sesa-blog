@@ -4,11 +4,12 @@ author: Sebastian Sauer
 date: '2019-11-25'
 slug: pictogram-waffle-plot-using-emojifont
 categories:
-  - rstats
+  
 tags:
   - plotting
 ---
 
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
 <div id="load-packages" class="section level1">
@@ -106,7 +107,7 @@ d &lt;- crossing(x = 1:10,
   guides(fill = FALSE)
 
 p1</code></pre>
-<p><img src="/post/2019-11-25-pictogram-waffle-plot-using-emojifont_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="/post/2019-11-25-pictogram-waffle-plot-using-emojifont_files/figure-html/plot1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="more-similar-plots" class="section level1">
 <h1>More similar plots</h1>
@@ -150,7 +151,7 @@ p4 &lt;- ggplot(d, aes(x = x, y = y, color = label4)) +
 <div id="plot-altogether" class="section level1">
 <h1>Plot altogether</h1>
 <pre class="r"><code>ggarrange(p1, p2, p3, p4, nrow = 2, ncol = 2)</code></pre>
-<p><img src="/post/2019-11-25-pictogram-waffle-plot-using-emojifont_files/figure-html/unnamed-chunk-8-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="/post/2019-11-25-pictogram-waffle-plot-using-emojifont_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="debrief" class="section level1">
 <h1>Debrief</h1>

@@ -137,7 +137,7 @@ showtext_auto()
 # Plot 1
 
 
-```{r fig.showtext=TRUE}
+```{r plot1, fig.showtext=TRUE}
 p1 <- ggplot(d, aes(x = x, y = y, color = label)) +
   geom_tile(color = "white", size = .5, aes(fill = label), alpha = .2) +
   theme_void() +
@@ -158,7 +158,7 @@ p1
 # More similar plots
 
 
-```{r}
+```{r plot2}
 p2 <- ggplot(d, aes(x = x, y = y, color = label2)) +
   geom_tile(color = "white", size = .5, aes(fill = label2), alpha = .2) +
   theme_void() +

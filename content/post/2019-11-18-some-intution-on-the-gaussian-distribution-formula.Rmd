@@ -87,7 +87,7 @@ plotFun(f(x) ~ x)
 ```
 
 
-In ggplot2 terms:
+In `ggplot2` terms:
 
 ```{r}
 p <- ggplot(data = data.frame(x = x), 

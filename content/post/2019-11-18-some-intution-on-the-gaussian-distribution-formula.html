@@ -4,11 +4,12 @@ author: Sebastian Sauer
 date: '2019-11-18'
 slug: some-intution-on-the-gaussian-distribution-formula
 categories:
-  - rstats
+  
 tags:
   - intuition
 ---
 
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
 <div id="load-packages" class="section level1">
@@ -43,7 +44,7 @@ f(x) = \frac{1}{\sqrt{2\pi \sigma^2}}e^{-\frac{(x-y)^2}{2\sigma^2}}
 x &lt;- seq(from = -5, to = 5, by = 0.1)
 plotFun(f(x) ~ x)</code></pre>
 <p><img src="/post/2019-11-18-some-intution-on-the-gaussian-distribution-formula_files/figure-html/unnamed-chunk-3-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>In ggplot2 terms:</p>
+<p>In <code>ggplot2</code> terms:</p>
 <pre class="r"><code>p &lt;- ggplot(data = data.frame(x = x), 
             mapping = aes(x = x))
 p + stat_function(fun = f)</code></pre>

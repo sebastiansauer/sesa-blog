@@ -39,7 +39,7 @@ library(mosaic)
 ```
 
 
-We are following here the advise of Gelman and Hill (2007).
+We are following here the advise of Gelman and Hill (2007, p. 46-47).
 
 
 # Validity
