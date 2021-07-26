@@ -18,7 +18,7 @@ output:
 
 Manchmal hört man, die Regression verlange, dass die Y-Variable normalverteilt sei. Das ist keine Annahme der Regression. Stattdessen sollten die *Residuen* normalverteilt sein.
 
-Übrigens ist die Normalverteilung der Residuen laut Gelman und Hill 2007 *keine* wichtige Annahmen in vielen Situationen: Der Verlauf der Regressionsgeraden wird nämlich die die Normalität der Residuen nicht beeinflusst. 
+Übrigens ist die Normalverteilung der Residuen laut Gelman und Hill 2007 *keine* wichtige Annahmen in vielen Situationen: Der Verlauf der Regressionsgeraden wird nämlich die die Normalität der Residuen nicht beeinflusst (vgl. S. 46f).
 
 Die Normalität der Residuen spielt dann eine Rolle, wenn man an der Güte individueller Vorhersagen (also für einzelne Beobachtungen) interessiert ist.
 

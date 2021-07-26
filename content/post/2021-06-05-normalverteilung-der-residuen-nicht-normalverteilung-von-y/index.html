@@ -4,7 +4,7 @@ author: ses
 date: '2021-06-05'
 slug: normalverteilung-der-residuen-nicht-normalverteilung-von-y
 categories:
-  - rstats
+  
 tags:
   - tutorial
 output:
@@ -35,14 +35,14 @@ output:
 <div id="motivation" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Motivation</h1>
 <p>Manchmal hört man, die Regression verlange, dass die Y-Variable normalverteilt sei. Das ist keine Annahme der Regression. Stattdessen sollten die <em>Residuen</em> normalverteilt sein.</p>
-<p>Übrigens ist die Normalverteilung der Residuen laut Gelman und Hill 2007 <em>keine</em> wichtige Annahmen in vielen Situationen: Der Verlauf der Regressionsgeraden wird nämlich die die Normalität der Residuen nicht beeinflusst.</p>
+<p>Übrigens ist die Normalverteilung der Residuen laut Gelman und Hill 2007 <em>keine</em> wichtige Annahmen in vielen Situationen: Der Verlauf der Regressionsgeraden wird nämlich die die Normalität der Residuen nicht beeinflusst (vgl. S. 46f).</p>
 <p>Die Normalität der Residuen spielt dann eine Rolle, wenn man an der Güte individueller Vorhersagen (also für einzelne Beobachtungen) interessiert ist.</p>
 <div id="setup" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> Setup</h2>
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
-<pre><code>## ✓ ggplot2 3.3.3     ✓ purrr   0.3.4
-## ✓ tibble  3.1.2     ✓ dplyr   1.0.6
+<pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tibble  3.1.2     ✓ dplyr   1.0.7
 ## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
 ## ✓ readr   1.4.0     ✓ forcats 0.5.1</code></pre>
 <pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
