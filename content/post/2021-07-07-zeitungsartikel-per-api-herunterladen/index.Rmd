@@ -9,6 +9,10 @@ tags:
   - tutorial
   - web
   - textmining
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
 ---
 
 
