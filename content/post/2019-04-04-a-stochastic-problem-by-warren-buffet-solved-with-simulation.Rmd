@@ -7,7 +7,6 @@ categories:
   
 tags:
   - simulation
-  
 editor_options: 
   chunk_output_type: console
 ---
@@ -52,7 +51,7 @@ Here's the proportion of successes from a coin flip:
 
 
 ```{r}
-{do(10) * rflip(n = 10)}[["prop"]]
+{mosaic::do(10) * rflip(n = 10)}[["prop"]]
 ```
 
 
@@ -134,7 +133,7 @@ distrib_unbiased_ci <- distrib_unbiased %>%
 Plot the CIs for the unbiased coin:
 
 
-```{r out.width="100%"}
+```{r plot1, out.width="100%"}
 distrib_unbiased_ci %>% 
   ggplot(aes(x = ID)) +
   geom_hline(yintercept = .5, 

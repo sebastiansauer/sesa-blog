@@ -4,14 +4,14 @@ author: Sebastian Sauer
 date: '2019-04-04'
 slug: a-stochastic-problem-by-warren-buffet-solved-with-simulation
 categories:
-  - rstats
+  
 tags:
   - simulation
-  - rstats
 editor_options: 
   chunk_output_type: console
 ---
 
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
 <p>This post presents a stochastic problem, with application to financial theory taken from <a href="https://www.nzz.ch/finanzen/fonds/dieses-mathematische-raetsel-kann-fast-niemand-loesen-aber-jeder-anleger-sollte-es-kennen-ld.1470821">this</a> magazine article. Some say the problem goes back to Warren Buffett. Thanks to my colleague Norman Markgraf, who pointed it out to me.</p>
@@ -22,8 +22,8 @@ editor_options:
 library(tidyverse)
 library(tictoc)</code></pre>
 <p>Here’s the proportion of successes from a coin flip:</p>
-<pre class="r"><code>{do(10) * rflip(n = 10)}[[&quot;prop&quot;]]
-#&gt;  [1] 0.5 0.6 0.5 0.5 0.3 0.4 0.6 0.7 0.7 0.4</code></pre>
+<pre class="r"><code>{mosaic::do(10) * rflip(n = 10)}[[&quot;prop&quot;]]
+#&gt;  [1] 0.5 0.4 0.4 0.4 0.4 0.5 0.4 0.6 0.5 0.7</code></pre>
 <p>Let’s define a function that does the flipping say a 1000 times with a prespecified (<code>c_coins</code>) number of coins with a given bias.</p>
 <pre class="r"><code>flip_loaded_coin &lt;- function(n_coins, 
                              repeats = 1000, 
@@ -38,7 +38,7 @@ library(tictoc)</code></pre>
 distrib &lt;- 1:200 %&gt;% 
   map_dfc(~ flip_loaded_coin(.x))
 toc()
-#&gt; 38.255 sec elapsed</code></pre>
+#&gt; 8.357 sec elapsed</code></pre>
 <p>Extract the confidence interval for each sample size (1 to 200 in our simulation).</p>
 <pre class="r"><code>distrib_ci &lt;- distrib %&gt;% 
   map_dfr(~ confint(.x)) %&gt;% 
@@ -61,7 +61,7 @@ toc()
 distrib_unbiased &lt;- 1:200 %&gt;% 
   map_dfc(~ flip_loaded_coin(.x, prob = .5))
 toc()
-#&gt; 39.814 sec elapsed</code></pre>
+#&gt; 8.739 sec elapsed</code></pre>
 <p>Extract the confidence interval for each sample size (1 to 200 in our simulation).</p>
 <pre class="r"><code>distrib_unbiased_ci &lt;- distrib_unbiased %&gt;% 
   map_dfr(~ confint(.x)) %&gt;% 
@@ -77,4 +77,4 @@ toc()
                     ymax = `97.5%`,
                     color = bias)) +
   theme(legend.position = c(.9, .1))</code></pre>
-<p><img src="/post/2019-04-04-a-stochastic-problem-by-warren-buffet-solved-with-simulation_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="/post/2019-04-04-a-stochastic-problem-by-warren-buffet-solved-with-simulation_files/figure-html/plot1-1.png" width="100%" style="display: block; margin: auto;" /></p>
