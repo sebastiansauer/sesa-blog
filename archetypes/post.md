@@ -1,9 +1,9 @@
 ---
-title = "{{ replace .TranslationBaseName "-" " " | title }}"
-date = {{ .Date }}
-draft = false
-tags = [rstats]
-categories = []
+title: "{{ replace .TranslationBaseName "-" " " | title }}"
+date: {{ .Date }}
+draft: false
+tags: [rstats]
+categories: []
 output:
   blogdown::html_page:
     toc: true
