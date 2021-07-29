@@ -152,7 +152,7 @@ glimpse(Nullvtlg)
 ```
 
 
-Berechnen wir $\hat{\pi}}$:
+Berechnen wir $\bar{\pi}$:
 
 
 ```{r}
