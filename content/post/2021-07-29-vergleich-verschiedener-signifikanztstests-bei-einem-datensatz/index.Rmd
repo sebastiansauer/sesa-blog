@@ -83,17 +83,18 @@ bier_data <- function(n, x) {
   # n: sample size
   # x: successes
   # This function generates data for Bernoulli chain data
-  
-  
-  out <-
+    out <-
     tibble(id = 1:n,
            success = c(rep.int(1, x), rep.int(0, n-x)))
 
   return(out)
-
 }
 ```
 
+
+Probieren wir's aus.
+
+### Kleine Stichprobe
 
 ```{r}
 d <- bier_data(n = n, x = x)
@@ -102,6 +103,8 @@ glimpse(d)
 ```
 
 
+
+### Große Stichprobe
 
 ```{r}
 d2 <- bier_data(n = n2, x = x2)
@@ -120,10 +123,8 @@ Im Sinne des [Test-Driven-Designs](https://en.wikipedia.org/wiki/Test-driven_dev
 ```{r}
 test_that("Datensatz in Abhängigkeit von n und x erstellt",
           {
-            
             expect_equivalent(nrow(bier_data(34, 12)), 34)
             expect_equivalent(sum(bier_data(34,12)$success), 12)
-            
           })
 ```
 

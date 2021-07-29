@@ -18,25 +18,29 @@ output:
 <li><a href="#fallbeispiel"><span class="toc-section-number">2</span> Fallbeispiel</a></li>
 <li><a href="#datensatz"><span class="toc-section-number">3</span> Datensatz</a>
 <ul>
-<li><a href="#funktion-um-daten-zu-simulieren"><span class="toc-section-number">3.1</span> Funktion, um Daten zu simulieren</a></li>
+<li><a href="#funktion-um-daten-zu-simulieren"><span class="toc-section-number">3.1</span> Funktion, um Daten zu simulieren</a>
+<ul>
+<li><a href="#kleine-stichprobe"><span class="toc-section-number">3.1.1</span> Kleine Stichprobe</a></li>
+<li><a href="#große-stichprobe"><span class="toc-section-number">3.1.2</span> Große Stichprobe</a></li>
+</ul></li>
 <li><a href="#unit-testing"><span class="toc-section-number">3.2</span> Unit Testing</a></li>
 </ul></li>
 <li><a href="#signifikanz-tests"><span class="toc-section-number">4</span> Signifikanz-Tests</a>
 <ul>
 <li><a href="#simulationsbasierte-inferenz-sbi"><span class="toc-section-number">4.1</span> Simulationsbasierte Inferenz (SBI)</a>
 <ul>
-<li><a href="#kleine-stichprobe"><span class="toc-section-number">4.1.1</span> Kleine Stichprobe</a></li>
-<li><a href="#große-stichprobe"><span class="toc-section-number">4.1.2</span> Große Stichprobe</a></li>
+<li><a href="#kleine-stichprobe-1"><span class="toc-section-number">4.1.1</span> Kleine Stichprobe</a></li>
+<li><a href="#große-stichprobe-1"><span class="toc-section-number">4.1.2</span> Große Stichprobe</a></li>
 </ul></li>
 <li><a href="#chi2-test"><span class="toc-section-number">4.2</span> <span class="math inline">\(\chi^2\)</span>-Test</a>
 <ul>
-<li><a href="#kleine-stichprobe-1"><span class="toc-section-number">4.2.1</span> Kleine Stichprobe</a></li>
-<li><a href="#große-stichprobe-1"><span class="toc-section-number">4.2.2</span> Große Stichprobe</a></li>
+<li><a href="#kleine-stichprobe-2"><span class="toc-section-number">4.2.1</span> Kleine Stichprobe</a></li>
+<li><a href="#große-stichprobe-2"><span class="toc-section-number">4.2.2</span> Große Stichprobe</a></li>
 </ul></li>
 <li><a href="#binomialtest"><span class="toc-section-number">4.3</span> Binomialtest</a>
 <ul>
-<li><a href="#kleine-stichprobe-2"><span class="toc-section-number">4.3.1</span> kleine Stichprobe</a></li>
-<li><a href="#große-stichprobe-2"><span class="toc-section-number">4.3.2</span> Große Stichprobe</a></li>
+<li><a href="#kleine-stichprobe-3"><span class="toc-section-number">4.3.1</span> kleine Stichprobe</a></li>
+<li><a href="#große-stichprobe-3"><span class="toc-section-number">4.3.2</span> Große Stichprobe</a></li>
 </ul></li>
 <li><a href="#logistische-regression"><span class="toc-section-number">4.4</span> Logistische Regression</a></li>
 <li><a href="#zwischen-fazit"><span class="toc-section-number">4.5</span> Zwischen-Fazit</a></li>
@@ -90,15 +94,15 @@ x2 &lt;- x * 10</code></pre>
   # n: sample size
   # x: successes
   # This function generates data for Bernoulli chain data
-  
-  
-  out &lt;-
+    out &lt;-
     tibble(id = 1:n,
            success = c(rep.int(1, x), rep.int(0, n-x)))
 
   return(out)
-
 }</code></pre>
+<p>Probieren wir’s aus.</p>
+<div id="kleine-stichprobe" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Kleine Stichprobe</h3>
 <pre class="r"><code>d &lt;- bier_data(n = n, x = x)
 
 glimpse(d)
@@ -106,19 +110,21 @@ glimpse(d)
 #&gt; Columns: 2
 #&gt; $ id      &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,…
 #&gt; $ success &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,…</code></pre>
+</div>
+<div id="große-stichprobe" class="section level3" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Große Stichprobe</h3>
 <pre class="r"><code>d2 &lt;- bier_data(n = n2, x = x2)</code></pre>
+</div>
 </div>
 <div id="unit-testing" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Unit Testing</h2>
 <p>Im Sinne des <a href="https://en.wikipedia.org/wiki/Test-driven_development">Test-Driven-Designs</a>: Schreiben wir zuerst einen Unit Test (oder mehrere) für die geplante (noch nicht geschriebene!) Funktion zur Erstellung der (simulierten) Daten.</p>
 <pre class="r"><code>test_that(&quot;Datensatz in Abhängigkeit von n und x erstellt&quot;,
           {
-            
             expect_equivalent(nrow(bier_data(34, 12)), 34)
             expect_equivalent(sum(bier_data(34,12)$success), 12)
-            
           })
-#&gt; Test passed 🥳</code></pre>
+#&gt; Test passed 🥇</code></pre>
 </div>
 </div>
 <div id="signifikanz-tests" class="section level1" number="4">
@@ -129,7 +135,7 @@ glimpse(d)
 <p><span class="math inline">\(\pi=1/3\)</span> rührt daher, dass es drei Optionen gibt und nur eine davon ist ein Treffer.</p>
 <div id="simulationsbasierte-inferenz-sbi" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Simulationsbasierte Inferenz (SBI)</h2>
-<div id="kleine-stichprobe" class="section level3" number="4.1.1">
+<div id="kleine-stichprobe-1" class="section level3" number="4.1.1">
 <h3><span class="header-section-number">4.1.1</span> Kleine Stichprobe</h3>
 <pre class="r"><code>set.seed(1896) 
 Nullvtlg &lt;- do(10000) * rflip(n = n, prob = prob_null)
@@ -159,7 +165,7 @@ pvalue_simu1
 #&gt; prop_TRUE 
 #&gt;    0.4872</code></pre>
 </div>
-<div id="große-stichprobe" class="section level3" number="4.1.2">
+<div id="große-stichprobe-1" class="section level3" number="4.1.2">
 <h3><span class="header-section-number">4.1.2</span> Große Stichprobe</h3>
 <p>Für die große Stichprobe analog:</p>
 <pre class="r"><code>set.seed(1896) 
@@ -178,7 +184,7 @@ pvalue_simu2
 <div id="chi2-test" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> <span class="math inline">\(\chi^2\)</span>-Test</h2>
 <p>Man beachte, dass der <span class="math inline">\(\chi^2\)</span>-Test nur zweiseitig testet.</p>
-<div id="kleine-stichprobe-1" class="section level3" number="4.2.1">
+<div id="kleine-stichprobe-2" class="section level3" number="4.2.1">
 <h3><span class="header-section-number">4.2.1</span> Kleine Stichprobe</h3>
 <pre class="r"><code>success_freq &lt;- table(d$success)
 success_freq
@@ -193,7 +199,7 @@ success_freq
 pvalue_chi1
 #&gt; [1] 0.4795001</code></pre>
 </div>
-<div id="große-stichprobe-1" class="section level3" number="4.2.2">
+<div id="große-stichprobe-2" class="section level3" number="4.2.2">
 <h3><span class="header-section-number">4.2.2</span> Große Stichprobe</h3>
 <pre class="r"><code>pvalue_chi2 &lt;- 
   chisq.test(x = table(d2$success),
@@ -205,7 +211,7 @@ pvalue_chi2
 </div>
 <div id="binomialtest" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Binomialtest</h2>
-<div id="kleine-stichprobe-2" class="section level3" number="4.3.1">
+<div id="kleine-stichprobe-3" class="section level3" number="4.3.1">
 <h3><span class="header-section-number">4.3.1</span> kleine Stichprobe</h3>
 <pre class="r"><code>pvalue_binom1 &lt;- binom.test(x = x,
                             n = n,
@@ -227,7 +233,7 @@ z
 <pre class="r"><code>1 - pnorm(q = z)
 #&gt; [1] 0.2524925</code></pre>
 </div>
-<div id="große-stichprobe-2" class="section level3" number="4.3.2">
+<div id="große-stichprobe-3" class="section level3" number="4.3.2">
 <h3><span class="header-section-number">4.3.2</span> Große Stichprobe</h3>
 <pre class="r"><code>pvalue_binom2 &lt;- binom.test(x = x2,
                             n = n2,
