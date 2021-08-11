@@ -39,6 +39,7 @@ library(mosaic)
 library(testthat)
 library(magrittr)
 library(sessioninfo)
+library(rstanarm)
 ```
 
 
@@ -267,19 +268,24 @@ pvalue_binom1
 
 Von Hand:
 
+Der [Erwartungswert](https://de.wikipedia.org/wiki/Binomialverteilung#Erwartungswert) $\mathbb{E}$ einer binomialverteilten Zufallsvariablen ist so definiert:
 
-$E(X) = n * 0.5$
+$\mathbb{E} = np$, mit $n$ der Anzahl der Versuche und $p$ der Trefferwahrscheinlichkeit.
+ 
+$E(X) = n * 1/3$
 
 ```{r}
 E_X <- n * 1/3
 E_X
 ```
 
+Der [Varianz](https://de.wikipedia.org/wiki/Binomialverteilung#Varianz) $\mathbb{V}$ einer binomialverteilten Zufallsvariablen ist so definiert:
 
-$Var(X) = n * 0.25$
+$\mathbb{V}) = npq$, mit $q=p-1$.
 
 ```{r}
-Var_X = n * 0.25
+Var_X = n * 1/3 * 2/3
+Var_X
 ```
 
 
@@ -323,9 +329,30 @@ glm1 <- glm(success ~ 1,
             data = d,
             family = "binomial")
 glm1 %>% summary()
-
 ```
 
+Zu beachten ist, dass Logitwerte zurückgegeben werden; diese müssen ggf. noch in Wahrscheinlichkeiten rückgerechnet werden.
+
+```{r}
+exp(coef(glm1))
+```
+
+
+```{r}
+logit2prob <- function(logit){
+  odds <- exp(logit)
+  prob <- odds / (1 + odds)
+  return(prob)
+}
+```
+
+
+```{r}
+logit2prob(coef(glm1))
+```
+
+
+Etwas komfortabler vielleicht geht es mit `predict`:
 
 ```{r}
 predict(glm1, type = "response", 
@@ -336,9 +363,35 @@ predict(glm1, type = "response",
 Allerdings bezieht sich der p-Wert hier auf eine Referenz-Wahrscheinlchkeit von $p_0 = 1/2$, so dass der p-Wert nicht vergleichbar ist mit den obigen Analysen.
 
 
+
+# Bayes-Test mit gleichverteilter Priorverteilung und MCMC-Sampler
+
+
+```{r glm2}
+glm2 <- stan_glm(success ~ 1, 
+            data = d,
+            prior = NULL,
+            refresh = 0,
+            family = "binomial")
+glm2 %>% print()
+```
+
+Auch hier bekommen wir einen Logit zurück, den wir ggf. in eine Wahrscheinlichkeit umrechnen wollen:
+
+
+```{r}
+coef(glm2)
+```
+
+
+```{r}
+logit2prob(coef(glm2))
+```
+
+
 ## Zwischen-Fazit
 
-Da finden sich doch ein paar Abweichungen im p-Wert; die Tests testen nicht (ganz) das Gleiche. Möglich, dass die Voraussetzungen jeweils nicht (ausreichend) erfüllt sind.
+Da finden sich doch ein paar Abweichungen im p-Wert; die Tests testen nicht (ganz) das Gleiche. Möglich, dass die Voraussetzungen jeweils nicht (ausreichend) erfüllt sind. Bei simulationsbasierten Verfahren kommt natürlich noch die Stichproben-Varianz hinzu, die für Ungewissheit im Schätzer sorgt.
 
 
 

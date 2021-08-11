@@ -43,22 +43,25 @@ output:
 <li><a href="#große-stichprobe-3"><span class="toc-section-number">4.3.2</span> Große Stichprobe</a></li>
 </ul></li>
 <li><a href="#logistische-regression"><span class="toc-section-number">4.4</span> Logistische Regression</a></li>
-<li><a href="#zwischen-fazit"><span class="toc-section-number">4.5</span> Zwischen-Fazit</a></li>
 </ul></li>
-<li><a href="#konfidenz-intervall"><span class="toc-section-number">5</span> Konfidenz-Intervall</a>
+<li><a href="#bayes-test-mit-gleichverteilter-priorverteilung-und-mcmc-sampler"><span class="toc-section-number">5</span> Bayes-Test mit gleichverteilter Priorverteilung und MCMC-Sampler</a>
 <ul>
-<li><a href="#simulationsbasierte-inferenz-sbi-1"><span class="toc-section-number">5.1</span> Simulationsbasierte Inferenz (SBI)</a></li>
-<li><a href="#chi2-test-1"><span class="toc-section-number">5.2</span> <span class="math inline">\(\chi^2\)</span>-Test</a>
+<li><a href="#zwischen-fazit"><span class="toc-section-number">5.1</span> Zwischen-Fazit</a></li>
+</ul></li>
+<li><a href="#konfidenz-intervall"><span class="toc-section-number">6</span> Konfidenz-Intervall</a>
 <ul>
-<li><a href="#chi-square-bootstrap"><span class="toc-section-number">5.2.1</span> Chi Square Bootstrap</a></li>
-<li><a href="#chi-p-value-bootstrap"><span class="toc-section-number">5.2.2</span> Chi p-value Bootstrap</a></li>
+<li><a href="#simulationsbasierte-inferenz-sbi-1"><span class="toc-section-number">6.1</span> Simulationsbasierte Inferenz (SBI)</a></li>
+<li><a href="#chi2-test-1"><span class="toc-section-number">6.2</span> <span class="math inline">\(\chi^2\)</span>-Test</a>
+<ul>
+<li><a href="#chi-square-bootstrap"><span class="toc-section-number">6.2.1</span> Chi Square Bootstrap</a></li>
+<li><a href="#chi-p-value-bootstrap"><span class="toc-section-number">6.2.2</span> Chi p-value Bootstrap</a></li>
 </ul></li>
-<li><a href="#binomial-test-näherung-über-normalverteilung"><span class="toc-section-number">5.3</span> Binomial-Test, Näherung über Normalverteilung</a></li>
-<li><a href="#logistische-regression-1"><span class="toc-section-number">5.4</span> Logistische Regression</a></li>
-<li><a href="#zwischen-fazit-1"><span class="toc-section-number">5.5</span> Zwischen-Fazit</a></li>
+<li><a href="#binomial-test-näherung-über-normalverteilung"><span class="toc-section-number">6.3</span> Binomial-Test, Näherung über Normalverteilung</a></li>
+<li><a href="#logistische-regression-1"><span class="toc-section-number">6.4</span> Logistische Regression</a></li>
+<li><a href="#zwischen-fazit-1"><span class="toc-section-number">6.5</span> Zwischen-Fazit</a></li>
 </ul></li>
-<li><a href="#fazit"><span class="toc-section-number">6</span> Fazit</a></li>
-<li><a href="#reproducibility"><span class="toc-section-number">7</span> Reproducibility</a></li>
+<li><a href="#fazit"><span class="toc-section-number">7</span> Fazit</a></li>
+<li><a href="#reproducibility"><span class="toc-section-number">8</span> Reproducibility</a></li>
 </ul>
 </div>
 
@@ -68,7 +71,8 @@ output:
 library(mosaic)
 library(testthat)
 library(magrittr)
-library(sessioninfo)</code></pre>
+library(sessioninfo)
+library(rstanarm)</code></pre>
 </div>
 <div id="fallbeispiel" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Fallbeispiel</h1>
@@ -219,12 +223,17 @@ pvalue_chi2
 pvalue_binom1
 #&gt; [1] 0.4829805</code></pre>
 <p>Von Hand:</p>
-<p><span class="math inline">\(E(X) = n * 0.5\)</span></p>
+<p>Der <a href="https://de.wikipedia.org/wiki/Binomialverteilung#Erwartungswert">Erwartungswert</a> <span class="math inline">\(\mathbb{E}\)</span> einer binomialverteilten Zufallsvariablen ist so definiert:</p>
+<p><span class="math inline">\(\mathbb{E} = np\)</span>, mit <span class="math inline">\(n\)</span> der Anzahl der Versuche und <span class="math inline">\(p\)</span> der Trefferwahrscheinlichkeit.</p>
+<p><span class="math inline">\(E(X) = n * 1/3\)</span></p>
 <pre class="r"><code>E_X &lt;- n * 1/3
 E_X
 #&gt; [1] 12</code></pre>
-<p><span class="math inline">\(Var(X) = n * 0.25\)</span></p>
-<pre class="r"><code>Var_X = n * 0.25</code></pre>
+<p>Der <a href="https://de.wikipedia.org/wiki/Binomialverteilung#Varianz">Varianz</a> <span class="math inline">\(\mathbb{V}\)</span> einer binomialverteilten Zufallsvariablen ist so definiert:</p>
+<p><span class="math inline">\(\mathbb{V}) = npq\)</span>, mit <span class="math inline">\(q=p-1\)</span>.</p>
+<pre class="r"><code>Var_X = n * 1/3 * 2/3
+Var_X
+#&gt; [1] 8</code></pre>
 <p>Bei genügend großen Stichproben ist <span class="math inline">\(X\)</span> normalverteilt, daher lässt sich ein z-Wert berechnen:</p>
 <pre class="r"><code>z &lt;- (x - E_X) / sqrt(Var_X)
 z
@@ -267,6 +276,19 @@ glm1 %&gt;% summary()
 #&gt; AIC: 50.114
 #&gt; 
 #&gt; Number of Fisher Scoring iterations: 4</code></pre>
+<p>Zu beachten ist, dass Logitwerte zurückgegeben werden; diese müssen ggf. noch in Wahrscheinlichkeiten rückgerechnet werden.</p>
+<pre class="r"><code>exp(coef(glm1))
+#&gt; (Intercept) 
+#&gt;   0.6363636</code></pre>
+<pre class="r"><code>logit2prob &lt;- function(logit){
+  odds &lt;- exp(logit)
+  prob &lt;- odds / (1 + odds)
+  return(prob)
+}</code></pre>
+<pre class="r"><code>logit2prob(coef(glm1))
+#&gt; (Intercept) 
+#&gt;   0.3888889</code></pre>
+<p>Etwas komfortabler vielleicht geht es mit <code>predict</code>:</p>
 <pre class="r"><code>predict(glm1, type = &quot;response&quot;, 
         newdata = NULL)
 #&gt;         1         2         3         4         5         6         7         8 
@@ -281,15 +303,43 @@ glm1 %&gt;% summary()
 #&gt; 0.3888889 0.3888889 0.3888889 0.3888889</code></pre>
 <p>Allerdings bezieht sich der p-Wert hier auf eine Referenz-Wahrscheinlchkeit von <span class="math inline">\(p_0 = 1/2\)</span>, so dass der p-Wert nicht vergleichbar ist mit den obigen Analysen.</p>
 </div>
-<div id="zwischen-fazit" class="section level2" number="4.5">
-<h2><span class="header-section-number">4.5</span> Zwischen-Fazit</h2>
-<p>Da finden sich doch ein paar Abweichungen im p-Wert; die Tests testen nicht (ganz) das Gleiche. Möglich, dass die Voraussetzungen jeweils nicht (ausreichend) erfüllt sind.</p>
+</div>
+<div id="bayes-test-mit-gleichverteilter-priorverteilung-und-mcmc-sampler" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Bayes-Test mit gleichverteilter Priorverteilung und MCMC-Sampler</h1>
+<pre class="r"><code>glm2 &lt;- stan_glm(success ~ 1, 
+            data = d,
+            prior = NULL,
+            refresh = 0,
+            family = &quot;binomial&quot;)
+glm2 %&gt;% print()
+#&gt; stan_glm
+#&gt;  family:       binomial [logit]
+#&gt;  formula:      success ~ 1
+#&gt;  observations: 36
+#&gt;  predictors:   1
+#&gt; ------
+#&gt;             Median MAD_SD
+#&gt; (Intercept) -0.4    0.4  
+#&gt; 
+#&gt; ------
+#&gt; * For help interpreting the printed output see ?print.stanreg
+#&gt; * For info on the priors used see ?prior_summary.stanreg</code></pre>
+<p>Auch hier bekommen wir einen Logit zurück, den wir ggf. in eine Wahrscheinlichkeit umrechnen wollen:</p>
+<pre class="r"><code>coef(glm2)
+#&gt; (Intercept) 
+#&gt;  -0.4339619</code></pre>
+<pre class="r"><code>logit2prob(coef(glm2))
+#&gt; (Intercept) 
+#&gt;   0.3931807</code></pre>
+<div id="zwischen-fazit" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Zwischen-Fazit</h2>
+<p>Da finden sich doch ein paar Abweichungen im p-Wert; die Tests testen nicht (ganz) das Gleiche. Möglich, dass die Voraussetzungen jeweils nicht (ausreichend) erfüllt sind. Bei simulationsbasierten Verfahren kommt natürlich noch die Stichproben-Varianz hinzu, die für Ungewissheit im Schätzer sorgt.</p>
 </div>
 </div>
-<div id="konfidenz-intervall" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> Konfidenz-Intervall</h1>
-<div id="simulationsbasierte-inferenz-sbi-1" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> Simulationsbasierte Inferenz (SBI)</h2>
+<div id="konfidenz-intervall" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Konfidenz-Intervall</h1>
+<div id="simulationsbasierte-inferenz-sbi-1" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Simulationsbasierte Inferenz (SBI)</h2>
 <pre class="r"><code>set.seed(1896)
 Bootvtlg &lt;- do(1e4) * prop( ~success, 
                             data = resample(d), 
@@ -305,7 +355,7 @@ sd_boot
 <pre class="r"><code>ggplot(Bootvtlg) +
   aes(x = prop_1) +
   geom_bar()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-28-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-34-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Wie man sieht, ist die Verteilung (annähernd) normalverteilt. D.h. man kann die Das Konfidenzintervall über die Näherung der Normalverteilungsquantile berechnen (s.u.).</p>
 <p>KI-Grenzen:</p>
 <pre class="r"><code>ci95 &lt;- quantile( ~ prop_1, data = Bootvtlg, probs = c(0.025, 0.975))
@@ -322,11 +372,11 @@ ci95[2]*n
 #&gt;    20</code></pre>
 <p>Anders gesagt liegen die Intervallgrenzen bei 8 und 20.</p>
 </div>
-<div id="chi2-test-1" class="section level2" number="5.2">
-<h2><span class="header-section-number">5.2</span> <span class="math inline">\(\chi^2\)</span>-Test</h2>
+<div id="chi2-test-1" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> <span class="math inline">\(\chi^2\)</span>-Test</h2>
 <p>Mit dem <span class="math inline">\(chi^2\)</span>-Test kann man kein Konfidenzintervall für den Anteil bekommen, da die Prüfgröße nicht der Anteil ist.</p>
-<div id="chi-square-bootstrap" class="section level3" number="5.2.1">
-<h3><span class="header-section-number">5.2.1</span> Chi Square Bootstrap</h3>
+<div id="chi-square-bootstrap" class="section level3" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Chi Square Bootstrap</h3>
 <p>Man könnte höchstens, wenn man unbedingt will, Die <span class="math inline">\(\chi^2\)</span>-Prüfgröße bootstrappen…</p>
 <p>Also los:</p>
 <pre class="r"><code>chi_boot &lt;- do(10000) * {chisq.test(x = table(resample(d$success)),
@@ -338,10 +388,10 @@ ci95[2]*n
 #&gt; $ X.squared &lt;dbl&gt; 1.250000e-01, 1.250000e-01, 1.125000e+00, 5.000000e-01, 1.25…</code></pre>
 <pre class="r"><code>ggplot(chi_boot, aes(x = X.squared)) +
   geom_histogram(bins = 20)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-33-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-39-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="chi-p-value-bootstrap" class="section level3" number="5.2.2">
-<h3><span class="header-section-number">5.2.2</span> Chi p-value Bootstrap</h3>
+<div id="chi-p-value-bootstrap" class="section level3" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Chi p-value Bootstrap</h3>
 <p>In gleicher Manier kann man den p-Wert als Zufallsvariable auffassen und bootstrappen:</p>
 <pre class="r"><code>chi_p_boot &lt;- do(10000) * {chisq.test(x = table(resample(d$success)),
                                   p = success_prob
@@ -352,11 +402,11 @@ ci95[2]*n
 #&gt; $ result &lt;dbl&gt; 1.00000000, 0.15729921, 0.72367361, 0.47950012, 0.28884437, 0.4…</code></pre>
 <pre class="r"><code>ggplot(chi_p_boot, aes(x = result)) +
   geom_histogram()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-36-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-42-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
-<div id="binomial-test-näherung-über-normalverteilung" class="section level2" number="5.3">
-<h2><span class="header-section-number">5.3</span> Binomial-Test, Näherung über Normalverteilung</h2>
+<div id="binomial-test-näherung-über-normalverteilung" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> Binomial-Test, Näherung über Normalverteilung</h2>
 <p>Wie in der SBI gesehen, ist die Stichprobenverteilung bzw. die Bootstrapverteilung annähernd normalverteilt und zwar mit folgenden Parametern:</p>
 <pre class="r"><code>mue_boot &lt;- x
 sigma_boot &lt;- sqrt(Var_X)</code></pre>
@@ -364,8 +414,8 @@ sigma_boot &lt;- sqrt(Var_X)</code></pre>
 <pre class="r"><code>sd_boot*n
 #&gt; [1] 2.935288</code></pre>
 </div>
-<div id="logistische-regression-1" class="section level2" number="5.4">
-<h2><span class="header-section-number">5.4</span> Logistische Regression</h2>
+<div id="logistische-regression-1" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> Logistische Regression</h2>
 <p>Das kann man so machen (<a href="https://stackoverflow.com/questions/14423325/confidence-intervals-for-predictions-from-logistic-regression">Quelle</a>):</p>
 <pre class="r"><code>ci_glm1 &lt;- predict(glm1, type = &quot;response&quot;, se.fit = TRUE)
 ci_glm1
@@ -418,18 +468,18 @@ upr[1]*n
 #&gt; 19.73298</code></pre>
 <p>Also liegen die Intervallgrenzen etwa bei 8 (unten) bzw. 19.7329767 (oben).</p>
 </div>
-<div id="zwischen-fazit-1" class="section level2" number="5.5">
-<h2><span class="header-section-number">5.5</span> Zwischen-Fazit</h2>
+<div id="zwischen-fazit-1" class="section level2" number="6.5">
+<h2><span class="header-section-number">6.5</span> Zwischen-Fazit</h2>
 <p>Die Werte der Konfidenzintervall-Grenzen sind ziemlich ähnlich; das überrascht nicht, denn die Bootverteilung ist schön normalverteilt; die Binomialmethode basiert ebenfalls auf einer Approximation der Normalverteilung. Daher resultieren hier ähnliche Werte.</p>
 </div>
 </div>
-<div id="fazit" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> Fazit</h1>
+<div id="fazit" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Fazit</h1>
 <p>Die Bootstrap-Methode funktioniert hier gut; natürlich hat sie auch hier <a href="https://arxiv.org/abs/1411.5279">Fallstricke</a>.</p>
 <p>Der p-Wert unterscheidet sich je Methode, weil die Signifikanztests unterschiedliche Prüfgrößen berechnen, sprich verschiedene Dinge berechnen.</p>
 </div>
-<div id="reproducibility" class="section level1" number="7">
-<h1><span class="header-section-number">7</span> Reproducibility</h1>
+<div id="reproducibility" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Reproducibility</h1>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value                       
 #&gt;  version  R version 4.1.0 (2021-05-18)
