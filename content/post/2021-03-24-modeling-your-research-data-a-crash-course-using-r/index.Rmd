@@ -107,6 +107,7 @@ All learning materials (such as literature, code, data) will be provided in elec
 # UPFRONT student preparation
 
 - *Install R and RStudio*, see [ModernDive Chap. 1.1](https://moderndive.com/1-getting-started.html#r-rstudio). In case you have your R running on your system, please make sure that you're uptodate. If outdated, download and install the most recent versions of the software. Similarly, hit the "Update" button in RStudio's "Packages" tab to update your packages if you have not done so for a couple of months.
+- Install the necessary R packages as used in the book chapters covered in this course (see the sections on "Needed packages" in each chapter). If in doubt, see [here](https://moderndive.com/1-getting-started.html#packages) the instructions on how to install R packages. [Here's](#packages) the actual list on the R packages we'll need.
 - Students new to R are advised to learn the basics, see [ModernDive, Chap 1.2 - 1.5](https://moderndive.com/1-getting-started.html#code)
 - Sign-up to [RStudio Cloud](https://rstudio.cloud/)
 - Bring your own laptop
@@ -292,17 +293,18 @@ While I wholeheartedly recommend such books, we will not be able to discuss many
 
 
 
-## R Packages
+## R Packages {#packages}
 
 All R packages are accessible through the course book; please consult the relevant chapters. Please install all R packages used before the course. [Here's a tutorial](https://moderndive.com/1-getting-started.html#packages) on how to install R packages.
 
-The most imporatant R packages for this course are:
+The most important R packages for this course are:
 
-- tidyverse
-- gapminder
-- moderndive
-- nycflights13
-
+  - tidyverse
+  - gapminder
+  - nycflights13
+  - fivethirtyeight
+  - skimr
+  - ISLR
 
 ## Data
 

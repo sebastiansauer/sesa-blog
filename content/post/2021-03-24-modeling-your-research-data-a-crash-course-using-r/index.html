@@ -4,11 +4,11 @@ author: Sebastian Sauer
 date: '2021-03-24'
 slug: modeling-your-research-data-a-crash-course-using-r
 categories:
-  - rstats
+  
 tags:
   - teaching
   - tutorial
-  - rstats
+  
   - modeling
   - eda
 output:
@@ -59,7 +59,7 @@ output:
 <li><a href="#more-resources"><span class="toc-section-number">16</span> More resources</a>
 <ul>
 <li><a href="#recommendations"><span class="toc-section-number">16.1</span> Recommendations</a></li>
-<li><a href="#r-packages"><span class="toc-section-number">16.2</span> R Packages</a></li>
+<li><a href="#packages"><span class="toc-section-number">16.2</span> R Packages</a></li>
 <li><a href="#data"><span class="toc-section-number">16.3</span> Data</a></li>
 <li><a href="#labs-case-studies"><span class="toc-section-number">16.4</span> Labs (case studies)</a></li>
 <li><a href="#sketching-causal-models"><span class="toc-section-number">16.5</span> Sketching causal models</a></li>
@@ -116,6 +116,7 @@ output:
 <h1><span class="header-section-number">8</span> UPFRONT student preparation</h1>
 <ul>
 <li><em>Install R and RStudio</em>, see <a href="https://moderndive.com/1-getting-started.html#r-rstudio">ModernDive Chap. 1.1</a>. In case you have your R running on your system, please make sure that you’re uptodate. If outdated, download and install the most recent versions of the software. Similarly, hit the “Update” button in RStudio’s “Packages” tab to update your packages if you have not done so for a couple of months.</li>
+<li>Install the necessary R packages as used in the book chapters covered in this course (see the sections on “Needed packages” in each chapter). If in doubt, see <a href="https://moderndive.com/1-getting-started.html#packages">here</a> the instructions on how to install R packages. <a href="#packages">Here’s</a> the actual list on the R packages we’ll need.</li>
 <li>Students new to R are advised to learn the basics, see <a href="https://moderndive.com/1-getting-started.html#code">ModernDive, Chap 1.2 - 1.5</a></li>
 <li>Sign-up to <a href="https://rstudio.cloud/">RStudio Cloud</a></li>
 <li>Bring your own laptop
@@ -280,15 +281,17 @@ So that I can find out if this is happening, I encourage feedback—be it positi
 For an introduction to graphical causal models, check out <a href="https://journals.sagepub.com/doi/full/10.1177/2515245917745629">Julia Rohrer’s paper</a>. For a more in-depth journey, consider reading <a href="https://books.google.de/books/about/Counterfactuals_and_Causal_Inference.html?id=lFTP49c5wJoC&amp;redir_esc=y">this book</a>.
 While I wholeheartedly recommend such books, we will not be able to discuss many of the ideas presented therein in class (in this course) due to time constraints.</p>
 </div>
-<div id="r-packages" class="section level2" number="16.2">
+<div id="packages" class="section level2" number="16.2">
 <h2><span class="header-section-number">16.2</span> R Packages</h2>
 <p>All R packages are accessible through the course book; please consult the relevant chapters. Please install all R packages used before the course. <a href="https://moderndive.com/1-getting-started.html#packages">Here’s a tutorial</a> on how to install R packages.</p>
-<p>The most imporatant R packages for this course are:</p>
+<p>The most important R packages for this course are:</p>
 <ul>
 <li>tidyverse</li>
 <li>gapminder</li>
-<li>moderndive</li>
 <li>nycflights13</li>
+<li>fivethirtyeight</li>
+<li>skimr</li>
+<li>ISLR</li>
 </ul>
 </div>
 <div id="data" class="section level2" number="16.3">
