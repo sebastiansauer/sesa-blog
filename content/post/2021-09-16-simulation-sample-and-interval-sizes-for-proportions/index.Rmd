@@ -207,7 +207,7 @@ n_max
 
 # Plot results
 
-```{r out.width="100%", fig.asp=1}
+```{r out.width="120%", fig.asp=.7}
 df %>% 
   filter(i > 30) %>% 
   ggplot(aes(x = i, y = width)) +
@@ -227,8 +227,8 @@ df %>%
            color = "red") +
   labs(x = "sample size (log)",
        y = "margin of error",
-       subtitle = "...smaller than 2E",
-       title = "Simulating the sample size to estimate the width of compatibility intervals",
+       subtitle = "for estimating the width of compatibility intervals",
+       title = "Simulating minimum sample sizes",
        caption = glue("Alpha: {alpha}, desired E = {E}\n Each x-value depicts the average of {K} samples")) +
   theme_minimal()
 ```
