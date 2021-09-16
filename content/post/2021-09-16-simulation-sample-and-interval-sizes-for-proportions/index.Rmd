@@ -44,7 +44,7 @@ Let's further assume we are looking at a binary event $X$ with a success $x$ pro
 
 We'll simulate $k$ samples for each sample size $n_i$.
 
-Let $Y = \sum^k_1(X_j)n^{-1}_k$, where $j = 1,...,k$. Note that $Y \sim \mathfrak{Bin}(n, p)$, ie., distributed binomially with parameters $n_k$ and $p$.
+
 
 
 

@@ -23,7 +23,6 @@ library(glue)</code></pre>
 <p>Let’s simulate the width of a <span class="math inline">\(1-\alpha\)</span> compatibility interval with a given margin of error <span class="math inline">\(E\)</span> for varying samples sizes <span class="math inline">\(n_i\)</span>, where <span class="math inline">\(i = 1..N\)</span>, and <span class="math inline">\(N\)</span> is the maximum sample size we can afford.</p>
 <p>Let’s further assume we are looking at a binary event <span class="math inline">\(X\)</span> with a success <span class="math inline">\(x\)</span> probability of <span class="math inline">\(Pr(X=x)=p\)</span>.</p>
 <p>We’ll simulate <span class="math inline">\(k\)</span> samples for each sample size <span class="math inline">\(n_i\)</span>.</p>
-<p>Let <span class="math inline">\(Y = \sum^k_1(X_j)n^{-1}_k\)</span>, where <span class="math inline">\(j = 1,...,k\)</span>. Note that <span class="math inline">\(Y \sim \mathfrak{Bin}(n, p)\)</span>, ie., distributed binomially with parameters <span class="math inline">\(n_k\)</span> and <span class="math inline">\(p\)</span>.</p>
 </div>
 <div id="define-constants" class="section level1">
 <h1>Define constants</h1>
