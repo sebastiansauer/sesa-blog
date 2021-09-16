@@ -229,7 +229,7 @@ df %>%
        y = "margin of error",
        subtitle = "for estimating the width of compatibility intervals",
        title = "Simulating minimum sample sizes",
-       caption = glue("Alpha: {alpha}, desired E = {E}\n Each x-value depicts the average of {K} samples")) +
+       caption = glue("Alpha: {alpha}, desired E = {E}, p = 1/2. See text for details.\n Each x-value depicts the average of {K} samples")) +
   theme_minimal()
 ```
 
