@@ -107,6 +107,8 @@ df <- tibble(
 
 # Simulation
 
+Let's draw $N$ samples with increasing sample size from 1 to $N=`r N`$, each time with $K=`r K`$ repetitions, assuming independent draws and a Binomial distribution with $p=`r p`$.
+
 ```{r}
 for (i in 1:N) {
   # draw K "coin flip" samples of size i, 

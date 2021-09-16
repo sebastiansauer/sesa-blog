@@ -82,6 +82,7 @@ q  # quantile in the normal distribution for alpha</code></pre>
 </div>
 <div id="simulation" class="section level1" number="6">
 <h1><span class="header-section-number">6</span> Simulation</h1>
+<p>Let’s draw <span class="math inline">\(N\)</span> samples with increasing sample size from 1 to <span class="math inline">\(N=10^{4}\)</span>, each time with <span class="math inline">\(K=1000\)</span> repetitions, assuming independent draws and a Binomial distribution with <span class="math inline">\(p=0.5\)</span>.</p>
 <pre class="r"><code>for (i in 1:N) {
   # draw K &quot;coin flip&quot; samples of size i, 
   # with succcess propability p: 
