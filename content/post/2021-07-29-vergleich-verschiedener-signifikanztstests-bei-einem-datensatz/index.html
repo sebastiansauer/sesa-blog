@@ -230,7 +230,7 @@ pvalue_binom1
 E_X
 #&gt; [1] 12</code></pre>
 <p>Der <a href="https://de.wikipedia.org/wiki/Binomialverteilung#Varianz">Varianz</a> <span class="math inline">\(\mathbb{V}\)</span> einer binomialverteilten Zufallsvariablen ist so definiert:</p>
-<p><span class="math inline">\(\mathbb{V}) = npq\)</span>, mit <span class="math inline">\(q=p-1\)</span>.</p>
+<p><span class="math inline">\(\mathbb{V} = npq\)</span>, mit <span class="math inline">\(q=p-1\)</span>.</p>
 <pre class="r"><code>Var_X = n * 1/3 * 2/3
 Var_X
 #&gt; [1] 8</code></pre>
@@ -355,7 +355,7 @@ sd_boot
 <pre class="r"><code>ggplot(Bootvtlg) +
   aes(x = prop_1) +
   geom_bar()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-34-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-33-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Wie man sieht, ist die Verteilung (annähernd) normalverteilt. D.h. man kann die Das Konfidenzintervall über die Näherung der Normalverteilungsquantile berechnen (s.u.).</p>
 <p>KI-Grenzen:</p>
 <pre class="r"><code>ci95 &lt;- quantile( ~ prop_1, data = Bootvtlg, probs = c(0.025, 0.975))
@@ -388,7 +388,7 @@ ci95[2]*n
 #&gt; $ X.squared &lt;dbl&gt; 1.250000e-01, 1.250000e-01, 1.125000e+00, 5.000000e-01, 1.25…</code></pre>
 <pre class="r"><code>ggplot(chi_boot, aes(x = X.squared)) +
   geom_histogram(bins = 20)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-39-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-38-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="chi-p-value-bootstrap" class="section level3" number="6.2.2">
 <h3><span class="header-section-number">6.2.2</span> Chi p-value Bootstrap</h3>
@@ -402,7 +402,7 @@ ci95[2]*n
 #&gt; $ result &lt;dbl&gt; 1.00000000, 0.15729921, 0.72367361, 0.47950012, 0.28884437, 0.4…</code></pre>
 <pre class="r"><code>ggplot(chi_p_boot, aes(x = result)) +
   geom_histogram()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-42-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-41-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="binomial-test-näherung-über-normalverteilung" class="section level2" number="6.3">

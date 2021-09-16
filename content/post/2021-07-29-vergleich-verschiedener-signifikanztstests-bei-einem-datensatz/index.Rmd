@@ -281,7 +281,7 @@ E_X
 
 Der [Varianz](https://de.wikipedia.org/wiki/Binomialverteilung#Varianz) $\mathbb{V}$ einer binomialverteilten Zufallsvariablen ist so definiert:
 
-$\mathbb{V}) = npq$, mit $q=p-1$.
+$\mathbb{V} = npq$, mit $q=p-1$.
 
 ```{r}
 Var_X = n * 1/3 * 2/3

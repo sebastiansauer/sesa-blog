@@ -39,8 +39,6 @@ Seien $X$ die Daten einer Stichprobe mit $s=6$ Treffern bei $n=9$ Versuchen, wob
 
 
 
-
-
 Unser Ziel ist es, den Anteil $\pi$ (für die Anzahl der Treffer in der Population) zu schätzen. 
 
 Dafür probieren wir verschiedene Implementationen der Bayes-Inferenz in R aus.
