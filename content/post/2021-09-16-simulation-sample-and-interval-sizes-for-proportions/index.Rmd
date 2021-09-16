@@ -227,8 +227,9 @@ df %>%
            color = "red") +
   labs(x = "sample size (log)",
        y = "margin of error",
-       title = "Simulating the width of compatibility intervals",
-       caption = glue("Alpha: {alpha}, desired E = {E}")) +
+       subtitle = "...smaller than 2E",
+       title = "Simulating the sample size to estimate the width of compatibility intervals",
+       caption = glue("Alpha: {alpha}, desired E = {E}\n Each x-value depicts the average of {K} samples")) +
   theme_minimal()
 ```
 

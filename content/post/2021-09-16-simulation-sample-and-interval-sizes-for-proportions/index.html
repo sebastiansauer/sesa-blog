@@ -175,8 +175,9 @@ n_max</code></pre>
            color = &quot;red&quot;) +
   labs(x = &quot;sample size (log)&quot;,
        y = &quot;margin of error&quot;,
-       title = &quot;Simulating the width of compatibility intervals&quot;,
-       caption = glue(&quot;Alpha: {alpha}, desired E = {E}&quot;)) +
+       subtitle = &quot;...smaller than 2E&quot;,
+       title = &quot;Simulating the sample size to estimate the width of compatibility intervals&quot;,
+       caption = glue(&quot;Alpha: {alpha}, desired E = {E}\n Each x-value depicts the average of {K} samples&quot;)) +
   theme_minimal()</code></pre>
 <p><img src="unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
