@@ -1,0 +1,114 @@
+---
+title: Simulation sample and interval sizes for proportions
+author: Sebastian Sauer
+date: '2021-09-16'
+slug: simulation-sample-and-interval-sizes-for-proportions
+categories:
+  - rstats
+tags:
+  - simulation
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+
+
+<div id="setup" class="section level1">
+<h1>Setup</h1>
+<pre class="r"><code>library(tidyverse)
+library(scales)
+library(glue)</code></pre>
+</div>
+<div id="task" class="section level1">
+<h1>Task</h1>
+<p>Let’s simulate the width of a <span class="math inline">\(1-\alpha\)</span> compatibility interval with a given margin of error <span class="math inline">\(E\)</span> for varying samples sizes <span class="math inline">\(n_i\)</span>, where <span class="math inline">\(i = 1..N\)</span>, and <span class="math inline">\(N\)</span> is the maximum sample size we can afford.</p>
+<p>Let’s further assume we are looking at a binary event <span class="math inline">\(X\)</span> with a success <span class="math inline">\(x\)</span> probability of <span class="math inline">\(Pr(X=x)=p\)</span>.</p>
+<p>We’ll simulate <span class="math inline">\(k\)</span> samples for each sample size <span class="math inline">\(n_i\)</span>.</p>
+<p>Let <span class="math inline">\(Y = \sum^k_1(X_j)n^{-1}_k\)</span>, where <span class="math inline">\(j = 1,...,k\)</span>. Note that <span class="math inline">\(Y \sim \mathfrak{Bin}(n, p)\)</span>, ie., distributed binomially with parameters <span class="math inline">\(n_k\)</span> and <span class="math inline">\(p\)</span>.</p>
+</div>
+<div id="define-constants" class="section level1">
+<h1>Define constants</h1>
+<pre class="r"><code>N &lt;- 1e04
+E &lt;- .05
+p &lt;- 1/2
+alpha = .05
+k &lt;- 1e03
+
+q &lt;- abs(qnorm(p = alpha/2))</code></pre>
+<p>Note that <span class="math inline">\(p=1/2\)</span> is the maximum conservative assumption yielding the largest sample size.</p>
+</div>
+<div id="prepare-data-frame-for-the-simulation" class="section level1">
+<h1>Prepare data frame for the simulation</h1>
+<pre class="r"><code>df &lt;- tibble(
+  i = 1:N,
+  estimate = NA,
+  se = NA,
+  lwr = NA,
+  upr = NA,
+  width = NA,
+  small_enough = NA
+)</code></pre>
+</div>
+<div id="simulation" class="section level1">
+<h1>Simulation</h1>
+<pre class="r"><code>for (i in 1:N) {
+  
+  tmp &lt;- rbinom(n = k, size = i, prob = p)
+  prop_success &lt;- tmp/i
+  df$estimate[i] &lt;- mean(prop_success)
+  df$se[i] &lt;- sd(prop_success)
+  df$lwr[i] &lt;- df$estimate[i] - q * df$se[i]
+  df$upr[i] &lt;- df$estimate[i] + q * df$se[i]
+  df$width[i] &lt;- df$upr[i] - df$lwr[i] 
+  
+  if (df$width[i] &lt; 2*E)
+   {df$small_enough[i] &lt;- TRUE} else {
+     df$small_enough[i] &lt;- FALSE}
+}</code></pre>
+</div>
+<div id="minimum-sample-size" class="section level1">
+<h1>Minimum sample size</h1>
+<p>What’s the minimum sample size <span class="math inline">\(n_{min}\)</span> needed such that <span class="math inline">\(w \le 2E\)</span>, where <span class="math inline">\(w\)</span> denotes the width of the compatibility interval?</p>
+<pre class="r"><code>n_min &lt;- 
+  df$width %&gt;% 
+  detect_index(~ .x &lt;= 2*E)
+
+n_min</code></pre>
+<pre><code>## [1] 365</code></pre>
+<p>What’s the <em>maximum</em> sample size <span class="math inline">\(n_{max}\)</span> needed such that <span class="math inline">\(w &gt; 2E\)</span>?</p>
+<pre class="r"><code>n_max &lt;- 
+  df$width %&gt;% 
+  detect_index(~ .x &gt; 2*E, .dir = &quot;backward&quot;)
+
+n_max</code></pre>
+<pre><code>## [1] 400</code></pre>
+</div>
+<div id="plot-results" class="section level1">
+<h1>Plot results</h1>
+<pre class="r"><code>df %&gt;% 
+  filter(i &gt; 30) %&gt;% 
+  ggplot(aes(x = i, y= width)) +
+  geom_line() + 
+  scale_x_continuous(trans=log10_trans()) + 
+  geom_hline(yintercept = 2*E, linetype =&quot;dashed&quot;, color = &quot;grey60&quot;) +
+  annotate(&quot;label&quot;, x = 100, y = .1, label = &quot;2E&quot;) +
+  geom_vline(xintercept = n_max, linetype = &quot;dashed&quot;, 
+             color = &quot;blue&quot;) +
+  geom_vline(xintercept = n_min, linetype = &quot;dashed&quot;,
+             color = &quot;red&quot;) +
+  annotate(&quot;label&quot;, x = n_max, y = .3, 
+           label = glue(&quot;nmax={n_max}&quot;), 
+           color = &quot;blue&quot;) +
+  annotate(&quot;label&quot;, x = n_max, y = .2, 
+           label = glue(&quot;nmin={n_min}&quot;),
+           color = &quot;red&quot;) +
+  labs(x = &quot;sample size&quot;,
+       y = &quot;margin of error&quot;,
+       title = &quot;Simulating the width of compatibility intervals&quot;,
+       caption = glue(&quot;Alpha: {alpha}, desired E = {E}&quot;)) +
+  theme_minimal()</code></pre>
+<p><img src="unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="summary" class="section level1">
+<h1>Summary</h1>
+<p>The simulation shows that we need a sample size <span class="math inline">\(n\)</span> of approx. around 365 to 400 to get a compatibility interval of width <span class="math inline">\(E\)</span> for an alpha level of <span class="math inline">\(1-\alpha\)</span>.</p>
+</div>

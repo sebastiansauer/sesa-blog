@@ -1,0 +1,158 @@
+---
+title: Simulation sample and interval sizes for proportions
+author: Sebastian Sauer
+date: '2021-09-16'
+slug: simulation-sample-and-interval-sizes-for-proportions
+categories:
+  - rstats
+tags:
+  - simulation
+---
+
+```{r global-knitr-options, include=FALSE}
+knitr::opts_chunk$set(fig.pos = 'H',
+  fig.asp = 0.618,
+  fig.width = 5,
+  fig.cap = "", 
+  out.width = "70%",
+  fig.path = "",
+  fig.align = "center",
+  fig.show = "hold",
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = TRUE)
+```
+
+
+
+# Setup
+
+```{r}
+library(tidyverse)
+library(scales)
+library(glue)
+```
+
+
+# Task
+
+
+Let's simulate the width of a $1-\alpha$ compatibility interval with a given margin of error $E$ for varying samples sizes $n_i$, where $i = 1..N$, and $N$ is the maximum sample size we can afford.
+
+Let's further assume we are looking at a binary event $X$ with a success $x$ probability of $Pr(X=x)=p$.
+
+We'll simulate $k$ samples for each sample size $n_i$.
+
+Let $Y = \sum^k_1(X_j)n^{-1}_k$, where $j = 1,...,k$. Note that $Y \sim \mathfrak{Bin}(n, p)$, ie., distributed binomially with parameters $n_k$ and $p$.
+
+
+
+# Define constants
+
+```{r}
+N <- 1e04
+E <- .05
+p <- 1/2
+alpha = .05
+k <- 1e03
+
+q <- abs(qnorm(p = alpha/2))
+```
+
+Note that $p=1/2$ is the maximum conservative assumption yielding the largest sample size.
+
+# Prepare data frame for the simulation
+
+```{r}
+df <- tibble(
+  i = 1:N,
+  estimate = NA,
+  se = NA,
+  lwr = NA,
+  upr = NA,
+  width = NA,
+  small_enough = NA
+)
+```
+
+
+# Simulation
+
+```{r}
+for (i in 1:N) {
+  
+  tmp <- rbinom(n = k, size = i, prob = p)
+  prop_success <- tmp/i
+  df$estimate[i] <- mean(prop_success)
+  df$se[i] <- sd(prop_success)
+  df$lwr[i] <- df$estimate[i] - q * df$se[i]
+  df$upr[i] <- df$estimate[i] + q * df$se[i]
+  df$width[i] <- df$upr[i] - df$lwr[i] 
+  
+  if (df$width[i] < 2*E)
+   {df$small_enough[i] <- TRUE} else {
+     df$small_enough[i] <- FALSE}
+}
+```
+
+
+
+
+# Minimum sample size
+
+What's the minimum sample size $n_{min}$ needed such that $w \le 2E$, where $w$ denotes the width of the compatibility interval?
+
+```{r}
+n_min <- 
+  df$width %>% 
+  detect_index(~ .x <= 2*E)
+
+n_min
+```
+
+
+What's the *maximum* sample size $n_{max}$ needed such that $w > 2E$?
+
+```{r}
+n_max <- 
+  df$width %>% 
+  detect_index(~ .x > 2*E, .dir = "backward")
+
+n_max
+```
+
+
+# Plot results
+
+```{r out.width="100%", fig.asp=0.618}
+df %>% 
+  filter(i > 30) %>% 
+  ggplot(aes(x = i, y= width)) +
+  geom_line() + 
+  scale_x_continuous(trans=log10_trans()) + 
+  geom_hline(yintercept = 2*E, linetype ="dashed", color = "grey60") +
+  annotate("label", x = 100, y = .1, label = "2E") +
+  geom_vline(xintercept = n_max, linetype = "dashed", 
+             color = "blue") +
+  geom_vline(xintercept = n_min, linetype = "dashed",
+             color = "red") +
+  annotate("label", x = n_max, y = .3, 
+           label = glue("nmax={n_max}"), 
+           color = "blue") +
+  annotate("label", x = n_max, y = .2, 
+           label = glue("nmin={n_min}"),
+           color = "red") +
+  labs(x = "sample size",
+       y = "margin of error",
+       title = "Simulating the width of compatibility intervals",
+       caption = glue("Alpha: {alpha}, desired E = {E}")) +
+  theme_minimal()
+```
+
+
+
+# Summary
+
+The simulation shows that we need a sample size $n$ of approx. around `r n_min` to `r n_max` to get a compatibility interval of width $E$ for an alpha level of $1-\alpha$.
+
