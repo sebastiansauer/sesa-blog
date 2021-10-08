@@ -12,8 +12,14 @@ tags:
 ---
 
 
-```{r setup, include=TRUE, echo = FALSE}
+```{r setup, include=TRUE, echo = TRUE}
 knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+```{r message=FALSE}
+library(tidyverse)
+library(knitr)
 ```
 
 
@@ -28,8 +34,7 @@ Betrachte wir die Heilquoten der beiden Ärzte für jede der beiden Krankheiten 
 
 
 ```{r}
-library(tidyverse)
-library(knitr)
+
 
 heal <- tribble(
   ~Name,     ~Krankheit,     ~geheilt,    ~verloren,    ~Summe,     ~Heilquote,
@@ -51,14 +56,15 @@ Moment, betrachten wir die *gesamte* Heilquote der Ärzte. Mit "gesamt" ist geme
 
 ```{r}
 heal %>% 
-  gather(key = Ergebnis, value = Anzahl_Patienten, -c(Name, Krankheit, Summe, Heilquote)) -> heal_summary1
+  gather(key = Ergebnis, value = Anzahl_Patienten, 
+         -c(Name, Krankheit, Summe, Heilquote)) -> heal_summary1
 ```
 
 ```{r}
 heal_summary1 %>% 
   group_by(Name, Ergebnis) %>% 
   summarise(Anzahl_pro_Ergebnis = sum(Anzahl_Patienten))  %>% 
-  ungroup %>% 
+  ungroup() %>% 
   spread(key = Ergebnis, value = Anzahl_pro_Ergebnis) %>% 
   mutate(Heilquote_gesamt = geheilt / (geheilt + verloren)) -> heal_summary2
 
