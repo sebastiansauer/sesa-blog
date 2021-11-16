@@ -377,7 +377,7 @@ Dazu definieren wir, dass die Sterblichkeit (Letalität) 1% beträgt, das ist le
 
 [Statista](https://de.statista.com/statistik/daten/studie/1103785/umfrage/mortalitaetsrate-des-coronavirus-nach-laendern/#professional) zitiert eine Letalitätsrate von etwa 2% für Deutschland (11.11.2021).
 
-Bei [Quarks](https://www.quarks.de/gesundheit/medizin/wie-viele-menschen-sterben-an-corona/) ist von einer höheren Sterblichkkeit zu lesen für die Altersgruppe, die wir betrachten (60+ bzw. 80+).
+Bei [Quarks](https://www.quarks.de/gesundheit/medizin/wie-viele-menschen-sterben-an-corona/) ist von einer höheren Sterblichkeit zu lesen für die Altersgruppe, die wir betrachten (60+ bzw. 80+).
 
 Auf diese Schätzung werden wir im Verlauf noch zurückgreifen.
 
@@ -538,11 +538,14 @@ Das entspricht einem Reduktionsfaktor von 36.
 Betrachten wir die Reduktionsfaktoren (R)
  für verschiedene Werte von C.
  
-Dabei berechnen wir den Reduktionsfaktor für eine Impfquote von 90%, entsprechend der angenommenen Impfquote in den höheren Lebensdekaden.  
+Dabei berechnen wir den Reduktionsfaktor R für eine Impfquote von 90%, 
+entsprechend der angenommenen Impfquote in den höheren Lebensdekaden.  
+Wie gesagt: Würde die Impfung nicht schützen, 
+so müsste der Anteil der Geimpften unter den Corona-Toten gleich dem Anteil der Geimpften der Allgemeinbevölkerung (90%) sein.
 
-```{r}
+```{r fig.asp = 1, fig.width=6}
 d <-
-  tibble(C = c(10:1, 1/2, 1/3, 1/4, 1/1),
+  tibble(C = c(10:1, 1/2),
          R = 9/C)
 
 d %>% 
@@ -553,7 +556,29 @@ d %>%
 d %>% 
   ggplot(aes(x = C, y = R)) +
   geom_line() +
-  geom_point(size = 2, alpha = .7)
+  geom_point(size = 2, alpha = .7) +
+  labs(x = "Chance (C) zu sterben für Geimpfte",
+       y = "Reduktionsfaktor (R)",
+       title = "Wirksamkeit einer Corona-Impfung\nbei Impfquote von 90%",
+       subtitle = "R gibt den Faktor an, um den sich die Sterblichkeit\ndurch die Impfung reduziert im Vergliech zu keiner Impfung",
+       caption = "Datenquelle: RKI-Wochenbericht vom 11.11.2021") +
+  scale_x_continuous(breaks = c(1, 5, 9)) +
+  scale_y_continuous(breaks = c(1, 2, 3, 10)) +
+  geom_vline(xintercept = c(3, 4.5,9), 
+             linetype = "dotted",
+             color = "grey40") +
+  annotate(x = 9, y = 5,
+           geom = "label",
+           alpha = .7,
+           label = "C=9:\nkeine Wirksamkeit") +
+  annotate(x = 4.5, y = 8,
+           alpha = .7,             
+           geom = "label",
+           label = "C=4.5:\nhalbe Sterblichkeit") +
+  annotate(x = 3, y = 15,
+           alpha = .7,             
+           geom = "label",
+           label = "C=3:\nein Drittel Sterblichkeit") 
 ```
 
 
