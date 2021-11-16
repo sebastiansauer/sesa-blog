@@ -44,6 +44,11 @@ library(gt)
 ```
 
 
+```{r echo = FALSE}
+library(hrbrthemes)
+theme_set(theme_ipsum_rc())
+```
+
 
 # Jedes dritte Bett mit Geimpften belegt?!
 
@@ -53,6 +58,49 @@ dass jeder dritte Corona-Tote geimpft war.
 Der Artikel bezieht sich auf das RKI als Quelle.
 
 Ähnliche Zahlen waren an [diversen Orten](https://www.n-tv.de/panorama/Sterben-wirklich-viele-Geimpfte-an-Corona-article22932056.html) zu lesen.
+
+
+# Frage: Wie viele Menschen mit Corona wurden ins Krankenhaus eingeliefert?
+
+Schauen wir zunächst, wie viele Menschen in letzter Zeit (KW41-44; diese Zahl ist explizit ausgewiesen im [aktuellen RKI-Wochenbericht](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Situationsberichte/Wochenbericht/Wochenbericht_2021-11-11.pdf?__blob=publicationFile)).
+
+
+```{r}
+covid_kw_41_44 <- 
+  tibble::tribble(
+         ~age, ~cases, ~hosp_cases, ~hosp_cases_vacc,
+  "12-17",                           23119L,                              119L,                                                   4L,
+  "18-59",                          159647L,                             3637L,                                                 825L,
+  "18-59",                           37735L,                             5587L,                                                2522L
+  )
+
+covid_kw_41_44 %>% 
+  gt()
+```
+
+die Daten sind RKI-2021-11-11 entnommen (S. 22).
+
+- `cases`: Symptomatische COVID-19-Fälle (mit Angabe Impfstatus)
+- `hosp-cases`: Hospitalisierte COVID-19-Fälle (symptomatisch mit Angabe Impfstatus)
+- `hosp-cases-vacc`: Hospitalisierte COVID-19-Fälle mit wahrscheinlichem Impfdurchbruch
+
+# Antwort: Hospitalisierungsquoten lagen jüngst zwischen 1% und 15%
+
+Berechnen wir die Anteile von (geimpften) Krankenhauseinweisungen für den Berichtszeitraum KW 41-44.
+
+
+```{r}
+covid_kw_41_44 <- 
+  covid_kw_41_44 %>% 
+  mutate(prop_hosp = hosp_cases / cases,
+         prop_hops_vacc = hosp_cases_vacc / hosp_cases)
+
+covid_kw_41_44 %>% 
+  gt() %>% 
+  fmt_number(where(is.numeric), decimals = 2)
+```
+
+Man sieht, dass die Hospitalisierungsquote bei Jugendlichen bei 1% lag, bei 18-59-Jährigen bei 2% und bei den über 60-Jährigen bei 15% (Berichtszeitraum KW 41-44 diesen Jahres).
 
 # Frage: Ist jede Dritte Corona-Tote geimpft?
 
@@ -71,12 +119,57 @@ Für die Altersgruppe 18-59 Jahren sehen die Zahlen hingegen besser zugunsten de
 - Anteil wahrscheinliche Impfdurchbrüche an verstorbenen COVID-19-Fällen: *18,5*
 
 
+Ergänzen wir unsere Tabelle entsprechend:
+
+
+```{r}
+covid_kw_41_44 <- 
+covid_kw_41_44 %>% 
+  mutate(
+    cases_dead = c(0, 54, 840),
+    cases_dead_vacc = c(0, 10, 350),
+    prop_cases_dead = cases_dead_vacc / cases_dead)
+
+covid_kw_41_44 %>% 
+  select(age, contains("dead")) %>% 
+  gt() %>% 
+  fmt_number(where(is.numeric), decimals = 2)
+```
+
+
 # Antwort: Ja, diese Zahl stimmt oder ist höher
 
-Der Anteil von Impfdurchbrüchen an verstorbenen Covid-19-Fällen für die Altersgruppe 60+ist also höher als die Bildzeitung berichtete, 
-nämlich bei 41.7% laut RKI-Wochbenbericht vom 11.11.2021 (im Folgenden als RKI-2021-11-11 bezeichnet); 
+Berechnen wir die Summe  der Coronafälle, die Summe der hospitalisierten Fälle sowie Summe:
+
+```{r}
+covid_kw_41_44 %>% 
+  summarise(sum_cases = sum(cases),
+            sum_hosp_cases = sum(hosp_cases),
+            sum_hops_cases_vacc = sum(hosp_cases_vacc))
+```
+
+Die Summe ist jeweils über alle Altersgruppen berechnet.
+
+Teilen wir die Summe der hospitalisierten Fälle *mit* Impfung (`sum_hos_cases_vacc`) durch die Summe der hospitalisierten Fälle, bekommen wir den *Anteil der geimpften hospitalisierten Fälle* ("Anteil der wahrscheinlichen Impfdurchbrüchen an hospitalisierten Covid-19-Fällen").
+
+```{r}
+covid_kw_41_44 %>% 
+  summarise(sum_cases = sum(cases),
+            sum_hosp_cases = sum(hosp_cases),
+            sum_hops_cases_vacc = sum(hosp_cases_vacc)) %>% 
+  mutate(across(everything(), as.integer)) %>% 
+  mutate(prop_hosp_vacc = sum_hops_cases_vacc / sum_hosp_cases) %>% 
+  gt() %>% 
+  fmt_number(4, decimals = 2)
+```
+
+Wir bekommen als Zahl etwa die Zahl, die die Bildzeitung berichtete, *ein rundes Drittel der Coronafälle im Krankenhaus sind geimpft*.
+
+
+Der Anteil von Impfdurchbrüchen an *verstorbenen* Covid-19-Fällen für die Altersgruppe 60+ ist also höher als die Bildzeitung berichtete, 
+nämlich bei 41.7% laut RKI-Wochenbericht vom 11.11.2021 (im Folgenden als RKI-2021-11-11 bezeichnet); 
 vermutlich bezog sich die Bildzeitung auf einen älteren Wochenbericht.
-Für die Altersgruppe 18-59 ist der Anteil an Impfdurchbrüchen aber deutlich geringer.
+Für die Altersgruppe 18-59 ist der Anteil an Impfdurchbrüchen bzw. Todesfällen aber deutlich geringer.
 
 *Geimpft* wird dabei so definiert vom RKI:
 
@@ -92,6 +185,16 @@ Das Argument, das hinter dieser Frage steht (und sie bejaht), geht etwa so:
 Wenn es fast genauso viele Coronatote bei den Geimpften gibt wie bei den Ungeimpften, dann ist die Impfung (fast) nicht wirksam. 
 Gleiche Todesrate (zwischen Geimpften und Ungeimpften) bedeutet gleicher Schutz vor Corona, 
 oder etwa nicht?
+
+
+Dazu die Bildzeitung:
+
+
+```{r}
+knitr::include_graphics("https://media-exp1.licdn.com/dms/image/C4D22AQFborIm6TnOVA/feedshare-shrink_1280/0/1636900096574?e=1640217600&v=beta&t=HVPXsel7xx-bTK7i7nuWnpFylJVFOFvf9T44hPXWmmM")
+```
+
+
 
 # Antwort: Der Anteil der Impfdurchbrüche ist abhängig von der Impfquote
 
@@ -350,6 +453,8 @@ Dazu kommt, dass der Reduktionsfaktor bei Jüngeren Menschen (< 60 Jahren) noch 
 
 Das Resüme lautet also, dass die Impfung - basierend auf den Daten oben - hoch wirksam ist.
 
+
+Die Bildzeitung fällt in diesem Zusammenhang negativ auf. Ihre Berichtserstattung ist in diesem Punkt falsch. Ob bewusst irreführend oder fachlich inkompetent lässt sich nicht direkt beantworten. Rein logisch gesehen ist beides möglich.
 
 
 
