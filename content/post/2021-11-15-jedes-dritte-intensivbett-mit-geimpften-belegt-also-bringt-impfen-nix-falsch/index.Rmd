@@ -38,7 +38,7 @@ knitr::opts_chunk$set(
 ```
 
 
-```{r}
+```{r echo = FALSE}
 library(tidyverse)
 library(gt)
 ```
@@ -68,14 +68,15 @@ Der Artikel bezieht sich auf das RKI als Quelle.
 
 In der Presse war kürzlich zu lesen, dass ein guter Teil der Coronafälle (bzw. Intensivbetten oder Todesfälle) geimpft ist, ca. ein Drittel.
 Wenn aber ein Drittel Geimpfter unter den Corona(Todes-)fällen bzw. in Krankenhaus(intensiv-)betten zu finden ist, so müsste man doch schließen, dass die Impfung wenig bis nichts nützt.
-Oder etwa nicht.
+Oder etwa nicht?!
 
-Dieser Schluss ist falsch, wie im Folgenden gezeigt.
+Nein. Obiger Schluss ist falsch, wie im Folgenden gezeigt.
 
-Kurz gesagt: 
-Geht man von einer Impfquote von 90% bei der Altersgruppe 60+ aus, so müsste man einen Anteil von 90% Geimpfter in den Corona-Todesfällen sehen, wenn die Impfung keinen Schutz bietet. 90% entspricht einem Verhältnis von 9:1=9.
+Kurz gesagt:
+Geht man von einer Impfquote von 90% bei der Altersgruppe 60+ aus, so müsste man einen Anteil von 90% Geimpfter in den Corona-Todesfällen sehen, 
+wenn die Impfung keinen Schutz bietet. 90% entspricht einem Verhältnis von 9 zu 1, d.h. 9:1=9.
 
-Tatsächlich findet man aber, wie von der Presse aufgegriffen, einen Anteil von ca. einem guten Drittel Geimpfter bei den Corona-Todesfällen bei der Altersgruppe 60+ (der Anteil ist ähnlich, egal ob wir Hospitalisierung, Intensivfälle oder Todesfälle betrachten). Ein Drittel entspricht einem Verhältnis von 1:2=0.5.
+Tatsächlich findet man aber, wie von der Presse aufgegriffen, einen Anteil von ca. einem guten Drittel Geimpfter bei den Corona-Todesfällen bei der Altersgruppe 60+ (der Anteil ist ähnlich, egal ob wir Hospitalisierung, Intensivfälle oder Todesfälle betrachten). Ein Drittel entspricht einem Verhältnis von 1 zu 2, d.h. 1:2=0.5.
 
 Im Vergleich zu keiner Impfung bzw. keinen Schutz reduziert die Impfung also die Gefahr eines Todesfall (ähnlich für Hospitalisierung oder Intensiv) um den Faktor 18, da $9 : 18 = 0.5$.
 
@@ -83,7 +84,7 @@ Im Vergleich zu keiner Impfung bzw. keinen Schutz reduziert die Impfung also die
 red_vacc <-
   tibble(
     C = c(9, 0.5),
-    C_lab = c("9:1=9", "1:2=0.5"),
+    C_lab = c("9 zu 1: 9:1=9", "1 zu 2: 1:2=0.5"),
     cond = fct_inorder(c("Kein Schutz", "hoher Schutz"))
   )
 
@@ -136,7 +137,7 @@ covid_kw_41_44 <-
          ~age, ~cases, ~hosp_cases, ~hosp_cases_vacc,
   "12-17",                           23119L,                              119L,                                                   4L,
   "18-59",                          159647L,                             3637L,                                                 825L,
-  "18-59",                           37735L,                             5587L,                                                2522L
+  "60+",                           37735L,                             5587L,                                                2522L
   )
 
 covid_kw_41_44 %>% 
@@ -165,7 +166,12 @@ covid_kw_41_44 %>%
   fmt_number(where(is.numeric), decimals = 2)
 ```
 
-Man sieht, dass die Hospitalisierungsquote bei Jugendlichen bei 1% lag, bei 18-59-Jährigen bei 2% und bei den über 60-Jährigen bei 15% (Berichtszeitraum KW 41-44 diesen Jahres).
+Man sieht, dass die Hospitalisierungsquote (aggregiert über den Impfstatus) bei Jugendlichen bei 1% lag, 
+bei 18-59-Jährigen bei 2% und bei den über 60-Jährigen bei 15% (Berichtszeitraum KW 41-44 diesen Jahres).
+
+Die Hospitalisierungsquote bei den *Geimpften* war jedoch höher: 3% bei den Jugendlichen, 23% bei den 18-59-Jährigen und 45% bei der Altersgruppe 60+.
+
+
 
 # Frage: Ist jede Dritte Corona-Tote geimpft?
 
@@ -281,7 +287,7 @@ An [anderer Stelle](https://www.rki.de/SharedDocs/FAQ/COVID-Impfen/FAQ_Todesfael
 >    In diesem Sicherheitsbericht des PEI heißt es: "Das Risiko für einen schweren und auch tödlichen Verlauf einer SARS-CoV-2-Infektion steigt mit steigendem Alter rapide an. Sehr alte Menschen sind am meisten gefährdet, an der Infektion zu versterben. ..."
 
 
-# Antwort: Die Impfquote beträgt ca. 85% unter den Coronatoten
+# Antwort: Die Impfquote unter den Coronatoten ist hoch
 
 Betrachten wir die Altersverteilung der Todesfälle in Zusammenhang mit Corona [Quelle RKI 11.11.2021](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Projekte_RKI/COVID-19_Todesfaelle.html).
 
@@ -396,7 +402,7 @@ Jetzt wissen wir also, welchen Anteil von Geimpften wir bei den Verstorbenen zu 
 *wenn* die Impfung keine Wirkung haben sollte.
 
 
-Das Beispiel zeigt: Bei den Geimpften ist die Chance zu versterben (im Folgenden mit *C* abgekürzt) etwa 1% (9/891) und bei den Ungeimpften ebenfalls:
+Das Beispiel zeigt: Bei den Geimpften ist die Chance zu versterben (im Folgenden mit *C* abgekürzt) etwa 1% (9/891) und bei den Ungeimpften ebenfalls etwa 1%:
 
 ```{r}
 (letalität_geimpft <- 9/891)
@@ -408,7 +414,7 @@ Das *Chancenverhältnis* (zwischen Geimpften und Ungeimpften) an Corona zu verst
 
 Der Anteil der Geimpften unter den Toten beträgt 9/10=90%.
 
-Achtung: Das ist nur ein Rechenbeispiel, um zu zeigen, welche Zahlen zu erwarten wären, wenn die Impfung wirkungslos sein sollte. Das Beispiel zeigt nicht, dass  die Impfung wirkungslos ist.
+Achtung: Das ist nur ein Rechenbeispiel, um zu zeigen, welche Zahlen zu erwarten wären, wenn die Impfung wirkungslos sein sollte. Das Beispiel zeigt *nicht*, dass  die Impfung wirkungslos ist.
 
 
 
@@ -416,7 +422,7 @@ Achtung: Das ist nur ein Rechenbeispiel, um zu zeigen, welche Zahlen zu erwarten
 # Welchen Anteil an Geimpften unter den Toten gäbe es, wenn die Impfung schützen würde?
 
 
-Gehen wir der Einfachheit halber davon aus, dass die Impfung die Chance des Versterbens halbiert (mal 0.5). Wir bleiben bei einer Impfquote von 90% und gehen jetzt, realistischer, von einer Letalität von 1% bei den Geimpften und von 2% bei den Ungeimpften (C=1% bzw. C=2%). Die Sterblichkeit ist in diesem Beispiel also bei den Geimpften halb so groß wie bei den Ungeimpften (Faktor 0.5).
+Gehen wir der Einfachheit halber davon aus, dass die Impfung die *C*hance des Versterbens *halbiert* (mal 0.5). Wir bleiben bei einer Impfquote von 90% und gehen jetzt, realistischer, von einer Letalität (Chance $C$ zu sterben) von 1% bei den Geimpften (9 zu 89: $9/891\approx 0.01=1\%$) und von 2% bei den Ungeimpften (2 zu 98: $2/98\approx 0.02=2\%$). Die Sterblichkeit ist in diesem Beispiel also bei den Geimpften *halb so groß* wie bei den Ungeimpften (Faktor 0.5 bzw. 1/2).
 
 
 ```{r}
@@ -513,14 +519,17 @@ Tatsächlich gilt aber, auf Basis der oben zitierten Quellen, etwa $C=1/2$ im Hi
 
 # Antwort: Reduktion von 9 auf 1/2 ist ein Reduktionsfaktor von 18
 
-Wir fragen uns also "9 mal wieviel ergibt 1/3?".
+Wir fragen uns also "9 mal wieviel ergibt 1/2?".
 
 Die Antwort lautet 18.
 
-Die Impfung ist also - auf Basis der Annahmen für C - um den Reduktionsfaktor 18 wirksamer als keine Impfung. Geimpfte Personen verringern ihre Chance auf Sterblichkeit demnach um diesen Faktor.
+Die Impfung ist also - auf Basis der Annahmen für C - um den Reduktionsfaktor *18 wirksamer als keine Impfung*.
+Geimpfte Personen verringern ihre Chance auf Sterblichkeit demnach um diesen Faktor.
 
 
-Nimmt man an, dass $C=1/1$, dass also unter zwei Coronatoten einer geimpft war, so verringert sich $C$ um den Faktor 9.
+Nimmt man an, dass $C=1/1$, 
+dass also unter zwei Corona-Toten einer geimpft war, 
+so erhält man einen Reduktionsfaktor von 9.
 
 
 Greift man die Zahl von 18,5% Impfdurchbrüchen an verstorbenen Covid-19-Fällen in der Altersgruppe 18-59 auf, so erhält man ein C von etwa 1:4=0.25. 
@@ -529,7 +538,7 @@ Das entspricht einem Reduktionsfaktor von 36.
 Betrachten wir die Reduktionsfaktoren (R)
  für verschiedene Werte von C.
  
-Dabei berechen wir die Reduktion für eine Impfquote von 90%.
+Dabei berechnen wir den Reduktionsfaktor für eine Impfquote von 90%, entsprechend der angenommenen Impfquote in den höheren Lebensdekaden.  
 
 ```{r}
 d <-
@@ -553,18 +562,27 @@ d %>%
 
 
 "Jeder dritte Coronatote ist geimpft!" kann suggerieren, dass die Impfung wenig nützt.
-Tatsächlich ist das Gegenteil der Fall: "Jeder dritte Coronatote ist geimpft" spricht für einen sehr hohen Schutz der Impfung.
+Tatsächlich ist das Gegenteil der Fall: "Jeder dritte Coronatote ist geimpft" spricht für einen sehr hohen Schutz der Impfung - *wenn* die Impfquote sehr hoch ist.
 
-Dazu kommt, dass der Reduktionsfaktor bei Jüngeren Menschen (< 60 Jahren) noch höher liegt, vermutlich da deren Immunsystem besser auf die Impfung anspringt, sie also mehr von der Impfung profitieren. Allerdings ist die Impfquote geringer als bei den Älteren, was den Reduktionsfaktor begrenzen könnte.
+Dazu kommt, dass der Reduktionsfaktor bei jüngeren Menschen (< 60 Jahren) noch höher liegt, vermutlich da deren Immunsystem besser auf die Impfung anspringt, sie also mehr von der Impfung profitieren. Allerdings ist die Impfquote geringer als bei den Älteren, was den Reduktionsfaktor begrenzen könnte.
 
-Das Resümé lautet also, dass die Impfung - basierend auf den Daten oben - hoch wirksam ist.
-
-
-Die Bildzeitung fällt in diesem Zusammenhang negativ auf. Ihre Berichtserstattung suggeriert, dass die Impfung geringe oder keine Wirkung habe. Das ist falsch, wie wir oben gesehen haben: Die Wirkung der Impfung ist stark.
+Das Resümee lautet also, dass die Impfung - basierend auf den Daten oben - hoch wirksam ist.
 
 
+Medien wie die Bildzeitung fällt in diesem Zusammenhang negativ auf. 
+Solche Berichtserstattung suggeriert fälschlich, dass die Impfung geringe oder keine Wirkung habe. 
+Das ist falsch, wie wir oben gesehen haben: 
+Die Wirkung der Impfung ist stark.
 
 
+
+
+# SessionInfo
+
+
+```{r}
+sessioninfo::session_info()
+```
 
 
 

@@ -29,7 +29,7 @@ editor_options:
 <li><a href="#frage-wenn-es-so-viele-geimpfte-corona-opfer-gibt-dann-ist-die-impfung-also-kaum-wirksam"><span class="toc-section-number">7</span> Frage: Wenn es so viele geimpfte Corona-Opfer gibt, dann ist die Impfung also kaum wirksam?</a></li>
 <li><a href="#antwort-der-anteil-der-impfdurchbrüche-ist-abhängig-von-der-impfquote"><span class="toc-section-number">8</span> Antwort: Der Anteil der Impfdurchbrüche ist abhängig von der Impfquote</a></li>
 <li><a href="#frage-wie-hoch-ist-die-impfquote-unter-den-coronatoten"><span class="toc-section-number">9</span> Frage: Wie hoch ist die Impfquote unter den Coronatoten?</a></li>
-<li><a href="#antwort-die-impfquote-beträgt-ca.-85-unter-den-coronatoten"><span class="toc-section-number">10</span> Antwort: Die Impfquote beträgt ca. 85% unter den Coronatoten</a></li>
+<li><a href="#antwort-die-impfquote-unter-den-coronatoten-ist-hoch"><span class="toc-section-number">10</span> Antwort: Die Impfquote unter den Coronatoten ist hoch</a></li>
 <li><a href="#frage-welcher-anteil-der-geimpften-fände-sich-unter-den-toten-wenn-die-impfung-nichts-helfen-würde"><span class="toc-section-number">11</span> Frage: Welcher Anteil der Geimpften fände sich unter den Toten, wenn die Impfung nichts helfen würde?</a></li>
 <li><a href="#antwort-würde-die-corona-impfung-nicht-helfen-wäre-der-anteil-der-geimpften-an-den-toten-gleich-zum-anteil-der-geimpften-an-der-bevölkerung"><span class="toc-section-number">12</span> Antwort: Würde die Corona-Impfung nicht helfen, wäre der Anteil der Geimpften an den Toten gleich zum Anteil der Geimpften an der Bevölkerung</a></li>
 <li><a href="#frage-kann-ich-dazu-mal-ein-einfaches-rechenbeispiel-sehen"><span class="toc-section-number">13</span> Frage: Kann ich dazu mal ein einfaches Rechenbeispiel sehen?</a></li>
@@ -42,11 +42,10 @@ editor_options:
 <li><a href="#frage-um-welchen-faktor-ist-c-geringer-als-bei-unwirksamkeit"><span class="toc-section-number">20</span> Frage: Um welchen Faktor ist C geringer als bei Unwirksamkeit?</a></li>
 <li><a href="#antwort-reduktion-von-9-auf-12-ist-ein-reduktionsfaktor-von-18"><span class="toc-section-number">21</span> Antwort: Reduktion von 9 auf 1/2 ist ein Reduktionsfaktor von 18</a></li>
 <li><a href="#fazit-die-impfung-ist-hoch-wirksam"><span class="toc-section-number">22</span> Fazit: Die Impfung ist hoch wirksam</a></li>
+<li><a href="#sessioninfo"><span class="toc-section-number">23</span> SessionInfo</a></li>
 </ul>
 </div>
 
-<pre class="r"><code>library(tidyverse)
-library(gt)</code></pre>
 <div id="der-dritte-corona-tote-geimpft" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Der dritte Corona-Tote geimpft?!</h1>
 <p>Kürzlich (12.10.2021) war u.a. in der <a href="https://www.bild.de/bild-plus/ratgeber/2021/ratgeber/corona-mehr-geimpfte-auf-intensivstation-brauchen-wir-alle-die-dritte-impfung-77912360,view=conversionToLogin.bild.html">Bildzeitung</a> zu lesen,
@@ -61,11 +60,12 @@ dass jeder dritte Corona-Tote geimpft war:</p>
 <h1><span class="header-section-number">2</span> tl;dr</h1>
 <p>In der Presse war kürzlich zu lesen, dass ein guter Teil der Coronafälle (bzw. Intensivbetten oder Todesfälle) geimpft ist, ca. ein Drittel.
 Wenn aber ein Drittel Geimpfter unter den Corona(Todes-)fällen bzw. in Krankenhaus(intensiv-)betten zu finden ist, so müsste man doch schließen, dass die Impfung wenig bis nichts nützt.
-Oder etwa nicht.</p>
-<p>Dieser Schluss ist falsch, wie im Folgenden gezeigt.</p>
+Oder etwa nicht?!</p>
+<p>Nein. Obiger Schluss ist falsch, wie im Folgenden gezeigt.</p>
 <p>Kurz gesagt:
-Geht man von einer Impfquote von 90% bei der Altersgruppe 60+ aus, so müsste man einen Anteil von 90% Geimpfter in den Corona-Todesfällen sehen, wenn die Impfung keinen Schutz bietet. 90% entspricht einem Verhältnis von 9:1=9.</p>
-<p>Tatsächlich findet man aber, wie von der Presse aufgegriffen, einen Anteil von ca. einem guten Drittel Geimpfter bei den Corona-Todesfällen bei der Altersgruppe 60+ (der Anteil ist ähnlich, egal ob wir Hospitalisierung, Intensivfälle oder Todesfälle betrachten). Ein Drittel entspricht einem Verhältnis von 1:2=0.5.</p>
+Geht man von einer Impfquote von 90% bei der Altersgruppe 60+ aus, so müsste man einen Anteil von 90% Geimpfter in den Corona-Todesfällen sehen,
+wenn die Impfung keinen Schutz bietet. 90% entspricht einem Verhältnis von 9 zu 1, d.h. 9:1=9.</p>
+<p>Tatsächlich findet man aber, wie von der Presse aufgegriffen, einen Anteil von ca. einem guten Drittel Geimpfter bei den Corona-Todesfällen bei der Altersgruppe 60+ (der Anteil ist ähnlich, egal ob wir Hospitalisierung, Intensivfälle oder Todesfälle betrachten). Ein Drittel entspricht einem Verhältnis von 1 zu 2, d.h. 1:2=0.5.</p>
 <p>Im Vergleich zu keiner Impfung bzw. keinen Schutz reduziert die Impfung also die Gefahr eines Todesfall (ähnlich für Hospitalisierung oder Intensiv) um den Faktor 18, da <span class="math inline">\(9 : 18 = 0.5\)</span>.</p>
 <p><img src="chunk-img/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Dieses Argument ist im Folgenden in einiger Länge aufgeführt.</p>
@@ -78,17 +78,17 @@ Geht man von einer Impfquote von 90% bei der Altersgruppe 60+ aus, so müsste ma
          ~age, ~cases, ~hosp_cases, ~hosp_cases_vacc,
   &quot;12-17&quot;,                           23119L,                              119L,                                                   4L,
   &quot;18-59&quot;,                          159647L,                             3637L,                                                 825L,
-  &quot;18-59&quot;,                           37735L,                             5587L,                                                2522L
+  &quot;60+&quot;,                           37735L,                             5587L,                                                2522L
   )
 
 covid_kw_41_44 %&gt;% 
   gt()</code></pre>
-<div id="wzedqvyolo" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="hlkjaloydt" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#wzedqvyolo .gt_table {
+#hlkjaloydt .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -113,7 +113,7 @@ covid_kw_41_44 %&gt;%
   border-left-color: #D3D3D3;
 }
 
-#wzedqvyolo .gt_heading {
+#hlkjaloydt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -125,7 +125,7 @@ covid_kw_41_44 %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#wzedqvyolo .gt_title {
+#hlkjaloydt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -135,7 +135,7 @@ covid_kw_41_44 %&gt;%
   border-bottom-width: 0;
 }
 
-#wzedqvyolo .gt_subtitle {
+#hlkjaloydt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -145,13 +145,13 @@ covid_kw_41_44 %&gt;%
   border-top-width: 0;
 }
 
-#wzedqvyolo .gt_bottom_border {
+#hlkjaloydt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wzedqvyolo .gt_col_headings {
+#hlkjaloydt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -166,7 +166,7 @@ covid_kw_41_44 %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#wzedqvyolo .gt_col_heading {
+#hlkjaloydt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -186,7 +186,7 @@ covid_kw_41_44 %&gt;%
   overflow-x: hidden;
 }
 
-#wzedqvyolo .gt_column_spanner_outer {
+#hlkjaloydt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -198,15 +198,15 @@ covid_kw_41_44 %&gt;%
   padding-right: 4px;
 }
 
-#wzedqvyolo .gt_column_spanner_outer:first-child {
+#hlkjaloydt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wzedqvyolo .gt_column_spanner_outer:last-child {
+#hlkjaloydt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wzedqvyolo .gt_column_spanner {
+#hlkjaloydt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -218,7 +218,7 @@ covid_kw_41_44 %&gt;%
   width: 100%;
 }
 
-#wzedqvyolo .gt_group_heading {
+#hlkjaloydt .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -240,7 +240,7 @@ covid_kw_41_44 %&gt;%
   vertical-align: middle;
 }
 
-#wzedqvyolo .gt_empty_group_heading {
+#hlkjaloydt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -255,15 +255,15 @@ covid_kw_41_44 %&gt;%
   vertical-align: middle;
 }
 
-#wzedqvyolo .gt_from_md > :first-child {
+#hlkjaloydt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wzedqvyolo .gt_from_md > :last-child {
+#hlkjaloydt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wzedqvyolo .gt_row {
+#hlkjaloydt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -282,7 +282,7 @@ covid_kw_41_44 %&gt;%
   overflow-x: hidden;
 }
 
-#wzedqvyolo .gt_stub {
+#hlkjaloydt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -294,7 +294,7 @@ covid_kw_41_44 %&gt;%
   padding-left: 12px;
 }
 
-#wzedqvyolo .gt_summary_row {
+#hlkjaloydt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -304,7 +304,7 @@ covid_kw_41_44 %&gt;%
   padding-right: 5px;
 }
 
-#wzedqvyolo .gt_first_summary_row {
+#hlkjaloydt .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -314,7 +314,7 @@ covid_kw_41_44 %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#wzedqvyolo .gt_grand_summary_row {
+#hlkjaloydt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -324,7 +324,7 @@ covid_kw_41_44 %&gt;%
   padding-right: 5px;
 }
 
-#wzedqvyolo .gt_first_grand_summary_row {
+#hlkjaloydt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -334,11 +334,11 @@ covid_kw_41_44 %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#wzedqvyolo .gt_striped {
+#hlkjaloydt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wzedqvyolo .gt_table_body {
+#hlkjaloydt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -347,7 +347,7 @@ covid_kw_41_44 %&gt;%
   border-bottom-color: #D3D3D3;
 }
 
-#wzedqvyolo .gt_footnotes {
+#hlkjaloydt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -361,13 +361,13 @@ covid_kw_41_44 %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#wzedqvyolo .gt_footnote {
+#hlkjaloydt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#wzedqvyolo .gt_sourcenotes {
+#hlkjaloydt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -381,41 +381,41 @@ covid_kw_41_44 %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#wzedqvyolo .gt_sourcenote {
+#hlkjaloydt .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#wzedqvyolo .gt_left {
+#hlkjaloydt .gt_left {
   text-align: left;
 }
 
-#wzedqvyolo .gt_center {
+#hlkjaloydt .gt_center {
   text-align: center;
 }
 
-#wzedqvyolo .gt_right {
+#hlkjaloydt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wzedqvyolo .gt_font_normal {
+#hlkjaloydt .gt_font_normal {
   font-weight: normal;
 }
 
-#wzedqvyolo .gt_font_bold {
+#hlkjaloydt .gt_font_bold {
   font-weight: bold;
 }
 
-#wzedqvyolo .gt_font_italic {
+#hlkjaloydt .gt_font_italic {
   font-style: italic;
 }
 
-#wzedqvyolo .gt_super {
+#hlkjaloydt .gt_super {
   font-size: 65%;
 }
 
-#wzedqvyolo .gt_footnote_marks {
+#hlkjaloydt .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -440,7 +440,7 @@ covid_kw_41_44 %&gt;%
 <td class="gt_row gt_right">159647</td>
 <td class="gt_row gt_right">3637</td>
 <td class="gt_row gt_right">825</td></tr>
-    <tr><td class="gt_row gt_left">18-59</td>
+    <tr><td class="gt_row gt_left">60+</td>
 <td class="gt_row gt_right">37735</td>
 <td class="gt_row gt_right">5587</td>
 <td class="gt_row gt_right">2522</td></tr>
@@ -467,12 +467,12 @@ covid_kw_41_44 %&gt;%
 covid_kw_41_44 %&gt;% 
   gt() %&gt;% 
   fmt_number(where(is.numeric), decimals = 2)</code></pre>
-<div id="jlwvfnneis" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="muznxwyaqb" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#jlwvfnneis .gt_table {
+#muznxwyaqb .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -497,7 +497,7 @@ covid_kw_41_44 %&gt;%
   border-left-color: #D3D3D3;
 }
 
-#jlwvfnneis .gt_heading {
+#muznxwyaqb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -509,7 +509,7 @@ covid_kw_41_44 %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#jlwvfnneis .gt_title {
+#muznxwyaqb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -519,7 +519,7 @@ covid_kw_41_44 %&gt;%
   border-bottom-width: 0;
 }
 
-#jlwvfnneis .gt_subtitle {
+#muznxwyaqb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -529,13 +529,13 @@ covid_kw_41_44 %&gt;%
   border-top-width: 0;
 }
 
-#jlwvfnneis .gt_bottom_border {
+#muznxwyaqb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#jlwvfnneis .gt_col_headings {
+#muznxwyaqb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -550,7 +550,7 @@ covid_kw_41_44 %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#jlwvfnneis .gt_col_heading {
+#muznxwyaqb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -570,7 +570,7 @@ covid_kw_41_44 %&gt;%
   overflow-x: hidden;
 }
 
-#jlwvfnneis .gt_column_spanner_outer {
+#muznxwyaqb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -582,15 +582,15 @@ covid_kw_41_44 %&gt;%
   padding-right: 4px;
 }
 
-#jlwvfnneis .gt_column_spanner_outer:first-child {
+#muznxwyaqb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#jlwvfnneis .gt_column_spanner_outer:last-child {
+#muznxwyaqb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#jlwvfnneis .gt_column_spanner {
+#muznxwyaqb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -602,7 +602,7 @@ covid_kw_41_44 %&gt;%
   width: 100%;
 }
 
-#jlwvfnneis .gt_group_heading {
+#muznxwyaqb .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -624,7 +624,7 @@ covid_kw_41_44 %&gt;%
   vertical-align: middle;
 }
 
-#jlwvfnneis .gt_empty_group_heading {
+#muznxwyaqb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -639,15 +639,15 @@ covid_kw_41_44 %&gt;%
   vertical-align: middle;
 }
 
-#jlwvfnneis .gt_from_md > :first-child {
+#muznxwyaqb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#jlwvfnneis .gt_from_md > :last-child {
+#muznxwyaqb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#jlwvfnneis .gt_row {
+#muznxwyaqb .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -666,7 +666,7 @@ covid_kw_41_44 %&gt;%
   overflow-x: hidden;
 }
 
-#jlwvfnneis .gt_stub {
+#muznxwyaqb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -678,7 +678,7 @@ covid_kw_41_44 %&gt;%
   padding-left: 12px;
 }
 
-#jlwvfnneis .gt_summary_row {
+#muznxwyaqb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -688,7 +688,7 @@ covid_kw_41_44 %&gt;%
   padding-right: 5px;
 }
 
-#jlwvfnneis .gt_first_summary_row {
+#muznxwyaqb .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -698,7 +698,7 @@ covid_kw_41_44 %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#jlwvfnneis .gt_grand_summary_row {
+#muznxwyaqb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -708,7 +708,7 @@ covid_kw_41_44 %&gt;%
   padding-right: 5px;
 }
 
-#jlwvfnneis .gt_first_grand_summary_row {
+#muznxwyaqb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -718,11 +718,11 @@ covid_kw_41_44 %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#jlwvfnneis .gt_striped {
+#muznxwyaqb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#jlwvfnneis .gt_table_body {
+#muznxwyaqb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -731,7 +731,7 @@ covid_kw_41_44 %&gt;%
   border-bottom-color: #D3D3D3;
 }
 
-#jlwvfnneis .gt_footnotes {
+#muznxwyaqb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -745,13 +745,13 @@ covid_kw_41_44 %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#jlwvfnneis .gt_footnote {
+#muznxwyaqb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#jlwvfnneis .gt_sourcenotes {
+#muznxwyaqb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -765,41 +765,41 @@ covid_kw_41_44 %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#jlwvfnneis .gt_sourcenote {
+#muznxwyaqb .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#jlwvfnneis .gt_left {
+#muznxwyaqb .gt_left {
   text-align: left;
 }
 
-#jlwvfnneis .gt_center {
+#muznxwyaqb .gt_center {
   text-align: center;
 }
 
-#jlwvfnneis .gt_right {
+#muznxwyaqb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#jlwvfnneis .gt_font_normal {
+#muznxwyaqb .gt_font_normal {
   font-weight: normal;
 }
 
-#jlwvfnneis .gt_font_bold {
+#muznxwyaqb .gt_font_bold {
   font-weight: bold;
 }
 
-#jlwvfnneis .gt_font_italic {
+#muznxwyaqb .gt_font_italic {
   font-style: italic;
 }
 
-#jlwvfnneis .gt_super {
+#muznxwyaqb .gt_super {
   font-size: 65%;
 }
 
-#jlwvfnneis .gt_footnote_marks {
+#muznxwyaqb .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -830,7 +830,7 @@ covid_kw_41_44 %&gt;%
 <td class="gt_row gt_right">825.00</td>
 <td class="gt_row gt_right">0.02</td>
 <td class="gt_row gt_right">0.23</td></tr>
-    <tr><td class="gt_row gt_left">18-59</td>
+    <tr><td class="gt_row gt_left">60+</td>
 <td class="gt_row gt_right">37,735.00</td>
 <td class="gt_row gt_right">5,587.00</td>
 <td class="gt_row gt_right">2,522.00</td>
@@ -841,7 +841,9 @@ covid_kw_41_44 %&gt;%
   
 </table>
 </div>
-<p>Man sieht, dass die Hospitalisierungsquote bei Jugendlichen bei 1% lag, bei 18-59-Jährigen bei 2% und bei den über 60-Jährigen bei 15% (Berichtszeitraum KW 41-44 diesen Jahres).</p>
+<p>Man sieht, dass die Hospitalisierungsquote (aggregiert über den Impfstatus) bei Jugendlichen bei 1% lag,
+bei 18-59-Jährigen bei 2% und bei den über 60-Jährigen bei 15% (Berichtszeitraum KW 41-44 diesen Jahres).</p>
+<p>Die Hospitalisierungsquote bei den <em>Geimpften</em> war jedoch höher: 3% bei den Jugendlichen, 23% bei den 18-59-Jährigen und 45% bei der Altersgruppe 60+.</p>
 </div>
 <div id="frage-ist-jede-dritte-corona-tote-geimpft" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> Frage: Ist jede Dritte Corona-Tote geimpft?</h1>
@@ -870,12 +872,12 @@ covid_kw_41_44 %&gt;%
   select(age, contains(&quot;dead&quot;)) %&gt;% 
   gt() %&gt;% 
   fmt_number(where(is.numeric), decimals = 2)</code></pre>
-<div id="sbugyeirrq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="znkaqgwmat" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#sbugyeirrq .gt_table {
+#znkaqgwmat .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -900,7 +902,7 @@ covid_kw_41_44 %&gt;%
   border-left-color: #D3D3D3;
 }
 
-#sbugyeirrq .gt_heading {
+#znkaqgwmat .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -912,7 +914,7 @@ covid_kw_41_44 %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#sbugyeirrq .gt_title {
+#znkaqgwmat .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -922,7 +924,7 @@ covid_kw_41_44 %&gt;%
   border-bottom-width: 0;
 }
 
-#sbugyeirrq .gt_subtitle {
+#znkaqgwmat .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -932,13 +934,13 @@ covid_kw_41_44 %&gt;%
   border-top-width: 0;
 }
 
-#sbugyeirrq .gt_bottom_border {
+#znkaqgwmat .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#sbugyeirrq .gt_col_headings {
+#znkaqgwmat .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -953,7 +955,7 @@ covid_kw_41_44 %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#sbugyeirrq .gt_col_heading {
+#znkaqgwmat .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -973,7 +975,7 @@ covid_kw_41_44 %&gt;%
   overflow-x: hidden;
 }
 
-#sbugyeirrq .gt_column_spanner_outer {
+#znkaqgwmat .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -985,15 +987,15 @@ covid_kw_41_44 %&gt;%
   padding-right: 4px;
 }
 
-#sbugyeirrq .gt_column_spanner_outer:first-child {
+#znkaqgwmat .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#sbugyeirrq .gt_column_spanner_outer:last-child {
+#znkaqgwmat .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#sbugyeirrq .gt_column_spanner {
+#znkaqgwmat .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1005,7 +1007,7 @@ covid_kw_41_44 %&gt;%
   width: 100%;
 }
 
-#sbugyeirrq .gt_group_heading {
+#znkaqgwmat .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1027,7 +1029,7 @@ covid_kw_41_44 %&gt;%
   vertical-align: middle;
 }
 
-#sbugyeirrq .gt_empty_group_heading {
+#znkaqgwmat .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1042,15 +1044,15 @@ covid_kw_41_44 %&gt;%
   vertical-align: middle;
 }
 
-#sbugyeirrq .gt_from_md > :first-child {
+#znkaqgwmat .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#sbugyeirrq .gt_from_md > :last-child {
+#znkaqgwmat .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#sbugyeirrq .gt_row {
+#znkaqgwmat .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1069,7 +1071,7 @@ covid_kw_41_44 %&gt;%
   overflow-x: hidden;
 }
 
-#sbugyeirrq .gt_stub {
+#znkaqgwmat .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1081,7 +1083,7 @@ covid_kw_41_44 %&gt;%
   padding-left: 12px;
 }
 
-#sbugyeirrq .gt_summary_row {
+#znkaqgwmat .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1091,7 +1093,7 @@ covid_kw_41_44 %&gt;%
   padding-right: 5px;
 }
 
-#sbugyeirrq .gt_first_summary_row {
+#znkaqgwmat .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1101,7 +1103,7 @@ covid_kw_41_44 %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#sbugyeirrq .gt_grand_summary_row {
+#znkaqgwmat .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1111,7 +1113,7 @@ covid_kw_41_44 %&gt;%
   padding-right: 5px;
 }
 
-#sbugyeirrq .gt_first_grand_summary_row {
+#znkaqgwmat .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1121,11 +1123,11 @@ covid_kw_41_44 %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#sbugyeirrq .gt_striped {
+#znkaqgwmat .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#sbugyeirrq .gt_table_body {
+#znkaqgwmat .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1134,7 +1136,7 @@ covid_kw_41_44 %&gt;%
   border-bottom-color: #D3D3D3;
 }
 
-#sbugyeirrq .gt_footnotes {
+#znkaqgwmat .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1148,13 +1150,13 @@ covid_kw_41_44 %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#sbugyeirrq .gt_footnote {
+#znkaqgwmat .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#sbugyeirrq .gt_sourcenotes {
+#znkaqgwmat .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1168,41 +1170,41 @@ covid_kw_41_44 %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#sbugyeirrq .gt_sourcenote {
+#znkaqgwmat .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#sbugyeirrq .gt_left {
+#znkaqgwmat .gt_left {
   text-align: left;
 }
 
-#sbugyeirrq .gt_center {
+#znkaqgwmat .gt_center {
   text-align: center;
 }
 
-#sbugyeirrq .gt_right {
+#znkaqgwmat .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#sbugyeirrq .gt_font_normal {
+#znkaqgwmat .gt_font_normal {
   font-weight: normal;
 }
 
-#sbugyeirrq .gt_font_bold {
+#znkaqgwmat .gt_font_bold {
   font-weight: bold;
 }
 
-#sbugyeirrq .gt_font_italic {
+#znkaqgwmat .gt_font_italic {
   font-style: italic;
 }
 
-#sbugyeirrq .gt_super {
+#znkaqgwmat .gt_super {
   font-size: 65%;
 }
 
-#sbugyeirrq .gt_footnote_marks {
+#znkaqgwmat .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -1227,7 +1229,7 @@ covid_kw_41_44 %&gt;%
 <td class="gt_row gt_right">54.00</td>
 <td class="gt_row gt_right">10.00</td>
 <td class="gt_row gt_right">0.19</td></tr>
-    <tr><td class="gt_row gt_left">18-59</td>
+    <tr><td class="gt_row gt_left">60+</td>
 <td class="gt_row gt_right">840.00</td>
 <td class="gt_row gt_right">350.00</td>
 <td class="gt_row gt_right">0.42</td></tr>
@@ -1258,12 +1260,12 @@ covid_kw_41_44 %&gt;%
   mutate(prop_hosp_vacc = sum_hosp_cases_vacc / sum_hosp_cases) %&gt;% 
   gt() %&gt;% 
   fmt_number(4, decimals = 2)</code></pre>
-<div id="xgpqawgnyr" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="trmmxrndgz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#xgpqawgnyr .gt_table {
+#trmmxrndgz .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1288,7 +1290,7 @@ covid_kw_41_44 %&gt;%
   border-left-color: #D3D3D3;
 }
 
-#xgpqawgnyr .gt_heading {
+#trmmxrndgz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1300,7 +1302,7 @@ covid_kw_41_44 %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#xgpqawgnyr .gt_title {
+#trmmxrndgz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1310,7 +1312,7 @@ covid_kw_41_44 %&gt;%
   border-bottom-width: 0;
 }
 
-#xgpqawgnyr .gt_subtitle {
+#trmmxrndgz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1320,13 +1322,13 @@ covid_kw_41_44 %&gt;%
   border-top-width: 0;
 }
 
-#xgpqawgnyr .gt_bottom_border {
+#trmmxrndgz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xgpqawgnyr .gt_col_headings {
+#trmmxrndgz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1341,7 +1343,7 @@ covid_kw_41_44 %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#xgpqawgnyr .gt_col_heading {
+#trmmxrndgz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1361,7 +1363,7 @@ covid_kw_41_44 %&gt;%
   overflow-x: hidden;
 }
 
-#xgpqawgnyr .gt_column_spanner_outer {
+#trmmxrndgz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1373,15 +1375,15 @@ covid_kw_41_44 %&gt;%
   padding-right: 4px;
 }
 
-#xgpqawgnyr .gt_column_spanner_outer:first-child {
+#trmmxrndgz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xgpqawgnyr .gt_column_spanner_outer:last-child {
+#trmmxrndgz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xgpqawgnyr .gt_column_spanner {
+#trmmxrndgz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1393,7 +1395,7 @@ covid_kw_41_44 %&gt;%
   width: 100%;
 }
 
-#xgpqawgnyr .gt_group_heading {
+#trmmxrndgz .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1415,7 +1417,7 @@ covid_kw_41_44 %&gt;%
   vertical-align: middle;
 }
 
-#xgpqawgnyr .gt_empty_group_heading {
+#trmmxrndgz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1430,15 +1432,15 @@ covid_kw_41_44 %&gt;%
   vertical-align: middle;
 }
 
-#xgpqawgnyr .gt_from_md > :first-child {
+#trmmxrndgz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xgpqawgnyr .gt_from_md > :last-child {
+#trmmxrndgz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xgpqawgnyr .gt_row {
+#trmmxrndgz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1457,7 +1459,7 @@ covid_kw_41_44 %&gt;%
   overflow-x: hidden;
 }
 
-#xgpqawgnyr .gt_stub {
+#trmmxrndgz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1469,7 +1471,7 @@ covid_kw_41_44 %&gt;%
   padding-left: 12px;
 }
 
-#xgpqawgnyr .gt_summary_row {
+#trmmxrndgz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1479,7 +1481,7 @@ covid_kw_41_44 %&gt;%
   padding-right: 5px;
 }
 
-#xgpqawgnyr .gt_first_summary_row {
+#trmmxrndgz .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1489,7 +1491,7 @@ covid_kw_41_44 %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#xgpqawgnyr .gt_grand_summary_row {
+#trmmxrndgz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1499,7 +1501,7 @@ covid_kw_41_44 %&gt;%
   padding-right: 5px;
 }
 
-#xgpqawgnyr .gt_first_grand_summary_row {
+#trmmxrndgz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1509,11 +1511,11 @@ covid_kw_41_44 %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#xgpqawgnyr .gt_striped {
+#trmmxrndgz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xgpqawgnyr .gt_table_body {
+#trmmxrndgz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1522,7 +1524,7 @@ covid_kw_41_44 %&gt;%
   border-bottom-color: #D3D3D3;
 }
 
-#xgpqawgnyr .gt_footnotes {
+#trmmxrndgz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1536,13 +1538,13 @@ covid_kw_41_44 %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#xgpqawgnyr .gt_footnote {
+#trmmxrndgz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#xgpqawgnyr .gt_sourcenotes {
+#trmmxrndgz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1556,41 +1558,41 @@ covid_kw_41_44 %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#xgpqawgnyr .gt_sourcenote {
+#trmmxrndgz .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#xgpqawgnyr .gt_left {
+#trmmxrndgz .gt_left {
   text-align: left;
 }
 
-#xgpqawgnyr .gt_center {
+#trmmxrndgz .gt_center {
   text-align: center;
 }
 
-#xgpqawgnyr .gt_right {
+#trmmxrndgz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xgpqawgnyr .gt_font_normal {
+#trmmxrndgz .gt_font_normal {
   font-weight: normal;
 }
 
-#xgpqawgnyr .gt_font_bold {
+#trmmxrndgz .gt_font_bold {
   font-weight: bold;
 }
 
-#xgpqawgnyr .gt_font_italic {
+#trmmxrndgz .gt_font_italic {
   font-style: italic;
 }
 
-#xgpqawgnyr .gt_super {
+#trmmxrndgz .gt_super {
   font-size: 65%;
 }
 
-#xgpqawgnyr .gt_footnote_marks {
+#trmmxrndgz .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -1656,8 +1658,8 @@ Der Anteil der Coronatoten in der Allgemeinbevölkerung ist also abhängig von d
 <p>In diesem Sicherheitsbericht des PEI heißt es: “Das Risiko für einen schweren und auch tödlichen Verlauf einer SARS-CoV-2-Infektion steigt mit steigendem Alter rapide an. Sehr alte Menschen sind am meisten gefährdet, an der Infektion zu versterben. …”</p>
 </blockquote>
 </div>
-<div id="antwort-die-impfquote-beträgt-ca.-85-unter-den-coronatoten" class="section level1" number="10">
-<h1><span class="header-section-number">10</span> Antwort: Die Impfquote beträgt ca. 85% unter den Coronatoten</h1>
+<div id="antwort-die-impfquote-unter-den-coronatoten-ist-hoch" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> Antwort: Die Impfquote unter den Coronatoten ist hoch</h1>
 <p>Betrachten wir die Altersverteilung der Todesfälle in Zusammenhang mit Corona <a href="https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Projekte_RKI/COVID-19_Todesfaelle.html">Quelle RKI 11.11.2021</a>.</p>
 <p>Daten einlesen:</p>
 <pre class="r"><code>xlsx_path &lt;- &quot;/Users/sebastiansaueruser/datasets/Covid/COVID-19_Todesfaelle-2021-11-11.xlsx&quot;
@@ -1733,12 +1735,12 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
        &quot;Summe&quot;,     900L,       100L,  1000L
   ) %&gt;% 
   gt()</code></pre>
-<div id="dbugvzngol" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="ikumvrkxaw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#dbugvzngol .gt_table {
+#ikumvrkxaw .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1763,7 +1765,7 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   border-left-color: #D3D3D3;
 }
 
-#dbugvzngol .gt_heading {
+#ikumvrkxaw .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1775,7 +1777,7 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   border-right-color: #D3D3D3;
 }
 
-#dbugvzngol .gt_title {
+#ikumvrkxaw .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1785,7 +1787,7 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   border-bottom-width: 0;
 }
 
-#dbugvzngol .gt_subtitle {
+#ikumvrkxaw .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1795,13 +1797,13 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   border-top-width: 0;
 }
 
-#dbugvzngol .gt_bottom_border {
+#ikumvrkxaw .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#dbugvzngol .gt_col_headings {
+#ikumvrkxaw .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1816,7 +1818,7 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   border-right-color: #D3D3D3;
 }
 
-#dbugvzngol .gt_col_heading {
+#ikumvrkxaw .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1836,7 +1838,7 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   overflow-x: hidden;
 }
 
-#dbugvzngol .gt_column_spanner_outer {
+#ikumvrkxaw .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1848,15 +1850,15 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   padding-right: 4px;
 }
 
-#dbugvzngol .gt_column_spanner_outer:first-child {
+#ikumvrkxaw .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#dbugvzngol .gt_column_spanner_outer:last-child {
+#ikumvrkxaw .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#dbugvzngol .gt_column_spanner {
+#ikumvrkxaw .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1868,7 +1870,7 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   width: 100%;
 }
 
-#dbugvzngol .gt_group_heading {
+#ikumvrkxaw .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1890,7 +1892,7 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   vertical-align: middle;
 }
 
-#dbugvzngol .gt_empty_group_heading {
+#ikumvrkxaw .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1905,15 +1907,15 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   vertical-align: middle;
 }
 
-#dbugvzngol .gt_from_md > :first-child {
+#ikumvrkxaw .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#dbugvzngol .gt_from_md > :last-child {
+#ikumvrkxaw .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#dbugvzngol .gt_row {
+#ikumvrkxaw .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1932,7 +1934,7 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   overflow-x: hidden;
 }
 
-#dbugvzngol .gt_stub {
+#ikumvrkxaw .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1944,7 +1946,7 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   padding-left: 12px;
 }
 
-#dbugvzngol .gt_summary_row {
+#ikumvrkxaw .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1954,7 +1956,7 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   padding-right: 5px;
 }
 
-#dbugvzngol .gt_first_summary_row {
+#ikumvrkxaw .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1964,7 +1966,7 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   border-top-color: #D3D3D3;
 }
 
-#dbugvzngol .gt_grand_summary_row {
+#ikumvrkxaw .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1974,7 +1976,7 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   padding-right: 5px;
 }
 
-#dbugvzngol .gt_first_grand_summary_row {
+#ikumvrkxaw .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1984,11 +1986,11 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   border-top-color: #D3D3D3;
 }
 
-#dbugvzngol .gt_striped {
+#ikumvrkxaw .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#dbugvzngol .gt_table_body {
+#ikumvrkxaw .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1997,7 +1999,7 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#dbugvzngol .gt_footnotes {
+#ikumvrkxaw .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2011,13 +2013,13 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   border-right-color: #D3D3D3;
 }
 
-#dbugvzngol .gt_footnote {
+#ikumvrkxaw .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#dbugvzngol .gt_sourcenotes {
+#ikumvrkxaw .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2031,41 +2033,41 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   border-right-color: #D3D3D3;
 }
 
-#dbugvzngol .gt_sourcenote {
+#ikumvrkxaw .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#dbugvzngol .gt_left {
+#ikumvrkxaw .gt_left {
   text-align: left;
 }
 
-#dbugvzngol .gt_center {
+#ikumvrkxaw .gt_center {
   text-align: center;
 }
 
-#dbugvzngol .gt_right {
+#ikumvrkxaw .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#dbugvzngol .gt_font_normal {
+#ikumvrkxaw .gt_font_normal {
   font-weight: normal;
 }
 
-#dbugvzngol .gt_font_bold {
+#ikumvrkxaw .gt_font_bold {
   font-weight: bold;
 }
 
-#dbugvzngol .gt_font_italic {
+#ikumvrkxaw .gt_font_italic {
   font-style: italic;
 }
 
-#dbugvzngol .gt_super {
+#ikumvrkxaw .gt_super {
   font-size: 65%;
 }
 
-#dbugvzngol .gt_footnote_marks {
+#ikumvrkxaw .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -2101,18 +2103,18 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
 </div>
 <p>Jetzt wissen wir also, welchen Anteil von Geimpften wir bei den Verstorbenen zu erwarten haben,
 <em>wenn</em> die Impfung keine Wirkung haben sollte.</p>
-<p>Das Beispiel zeigt: Bei den Geimpften ist die Chance zu versterben (im Folgenden mit <em>C</em> abgekürzt) etwa 1% (9/891) und bei den Ungeimpften ebenfalls:</p>
+<p>Das Beispiel zeigt: Bei den Geimpften ist die Chance zu versterben (im Folgenden mit <em>C</em> abgekürzt) etwa 1% (9/891) und bei den Ungeimpften ebenfalls etwa 1%:</p>
 <pre class="r"><code>(letalität_geimpft &lt;- 9/891)</code></pre>
 <pre><code>## [1] 0.01010101</code></pre>
 <pre class="r"><code>(letatität_ungeimpft &lt;- 1/99)</code></pre>
 <pre><code>## [1] 0.01010101</code></pre>
 <p>Das <em>Chancenverhältnis</em> (zwischen Geimpften und Ungeimpften) an Corona zu versterben, ist also 1:1=1.</p>
 <p>Der Anteil der Geimpften unter den Toten beträgt 9/10=90%.</p>
-<p>Achtung: Das ist nur ein Rechenbeispiel, um zu zeigen, welche Zahlen zu erwarten wären, wenn die Impfung wirkungslos sein sollte. Das Beispiel zeigt nicht, dass die Impfung wirkungslos ist.</p>
+<p>Achtung: Das ist nur ein Rechenbeispiel, um zu zeigen, welche Zahlen zu erwarten wären, wenn die Impfung wirkungslos sein sollte. Das Beispiel zeigt <em>nicht</em>, dass die Impfung wirkungslos ist.</p>
 </div>
 <div id="welchen-anteil-an-geimpften-unter-den-toten-gäbe-es-wenn-die-impfung-schützen-würde" class="section level1" number="15">
 <h1><span class="header-section-number">15</span> Welchen Anteil an Geimpften unter den Toten gäbe es, wenn die Impfung schützen würde?</h1>
-<p>Gehen wir der Einfachheit halber davon aus, dass die Impfung die Chance des Versterbens halbiert (mal 0.5). Wir bleiben bei einer Impfquote von 90% und gehen jetzt, realistischer, von einer Letalität von 1% bei den Geimpften und von 2% bei den Ungeimpften (C=1% bzw. C=2%). Die Sterblichkeit ist in diesem Beispiel also bei den Geimpften halb so groß wie bei den Ungeimpften (Faktor 0.5).</p>
+<p>Gehen wir der Einfachheit halber davon aus, dass die Impfung die <em>C</em>hance des Versterbens <em>halbiert</em> (mal 0.5). Wir bleiben bei einer Impfquote von 90% und gehen jetzt, realistischer, von einer Letalität (Chance <span class="math inline">\(C\)</span> zu sterben) von 1% bei den Geimpften (9 zu 89: <span class="math inline">\(9/891\approx 0.01=1\%\)</span>) und von 2% bei den Ungeimpften (2 zu 98: <span class="math inline">\(2/98\approx 0.02=2\%\)</span>). Die Sterblichkeit ist in diesem Beispiel also bei den Geimpften <em>halb so groß</em> wie bei den Ungeimpften (Faktor 0.5 bzw. 1/2).</p>
 <pre class="r"><code>tibble::tribble(
        ~Status, ~Geimpft, ~Ungeimpft, ~Summe,
   &quot;verstorben&quot;,       9L,         2L,    11L,
@@ -2120,12 +2122,12 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
        &quot;Summe&quot;,     900L,       100L,  1000L
   ) %&gt;% 
   gt()</code></pre>
-<div id="qfxzcssqgs" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="kzymcbsgpe" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#qfxzcssqgs .gt_table {
+#kzymcbsgpe .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2150,7 +2152,7 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   border-left-color: #D3D3D3;
 }
 
-#qfxzcssqgs .gt_heading {
+#kzymcbsgpe .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2162,7 +2164,7 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   border-right-color: #D3D3D3;
 }
 
-#qfxzcssqgs .gt_title {
+#kzymcbsgpe .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2172,7 +2174,7 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   border-bottom-width: 0;
 }
 
-#qfxzcssqgs .gt_subtitle {
+#kzymcbsgpe .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2182,13 +2184,13 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   border-top-width: 0;
 }
 
-#qfxzcssqgs .gt_bottom_border {
+#kzymcbsgpe .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qfxzcssqgs .gt_col_headings {
+#kzymcbsgpe .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2203,7 +2205,7 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   border-right-color: #D3D3D3;
 }
 
-#qfxzcssqgs .gt_col_heading {
+#kzymcbsgpe .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2223,7 +2225,7 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   overflow-x: hidden;
 }
 
-#qfxzcssqgs .gt_column_spanner_outer {
+#kzymcbsgpe .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2235,15 +2237,15 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   padding-right: 4px;
 }
 
-#qfxzcssqgs .gt_column_spanner_outer:first-child {
+#kzymcbsgpe .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qfxzcssqgs .gt_column_spanner_outer:last-child {
+#kzymcbsgpe .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qfxzcssqgs .gt_column_spanner {
+#kzymcbsgpe .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2255,7 +2257,7 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   width: 100%;
 }
 
-#qfxzcssqgs .gt_group_heading {
+#kzymcbsgpe .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2277,7 +2279,7 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   vertical-align: middle;
 }
 
-#qfxzcssqgs .gt_empty_group_heading {
+#kzymcbsgpe .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2292,15 +2294,15 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   vertical-align: middle;
 }
 
-#qfxzcssqgs .gt_from_md > :first-child {
+#kzymcbsgpe .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qfxzcssqgs .gt_from_md > :last-child {
+#kzymcbsgpe .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qfxzcssqgs .gt_row {
+#kzymcbsgpe .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2319,7 +2321,7 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   overflow-x: hidden;
 }
 
-#qfxzcssqgs .gt_stub {
+#kzymcbsgpe .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2331,7 +2333,7 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   padding-left: 12px;
 }
 
-#qfxzcssqgs .gt_summary_row {
+#kzymcbsgpe .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2341,7 +2343,7 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   padding-right: 5px;
 }
 
-#qfxzcssqgs .gt_first_summary_row {
+#kzymcbsgpe .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2351,7 +2353,7 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   border-top-color: #D3D3D3;
 }
 
-#qfxzcssqgs .gt_grand_summary_row {
+#kzymcbsgpe .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2361,7 +2363,7 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   padding-right: 5px;
 }
 
-#qfxzcssqgs .gt_first_grand_summary_row {
+#kzymcbsgpe .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2371,11 +2373,11 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   border-top-color: #D3D3D3;
 }
 
-#qfxzcssqgs .gt_striped {
+#kzymcbsgpe .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qfxzcssqgs .gt_table_body {
+#kzymcbsgpe .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2384,7 +2386,7 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#qfxzcssqgs .gt_footnotes {
+#kzymcbsgpe .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2398,13 +2400,13 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   border-right-color: #D3D3D3;
 }
 
-#qfxzcssqgs .gt_footnote {
+#kzymcbsgpe .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#qfxzcssqgs .gt_sourcenotes {
+#kzymcbsgpe .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2418,41 +2420,41 @@ so sollten auch 90% der Coronatoten geimpft sein.</p>
   border-right-color: #D3D3D3;
 }
 
-#qfxzcssqgs .gt_sourcenote {
+#kzymcbsgpe .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#qfxzcssqgs .gt_left {
+#kzymcbsgpe .gt_left {
   text-align: left;
 }
 
-#qfxzcssqgs .gt_center {
+#kzymcbsgpe .gt_center {
   text-align: center;
 }
 
-#qfxzcssqgs .gt_right {
+#kzymcbsgpe .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qfxzcssqgs .gt_font_normal {
+#kzymcbsgpe .gt_font_normal {
   font-weight: normal;
 }
 
-#qfxzcssqgs .gt_font_bold {
+#kzymcbsgpe .gt_font_bold {
   font-weight: bold;
 }
 
-#qfxzcssqgs .gt_font_italic {
+#kzymcbsgpe .gt_font_italic {
   font-style: italic;
 }
 
-#qfxzcssqgs .gt_super {
+#kzymcbsgpe .gt_super {
   font-size: 65%;
 }
 
-#qfxzcssqgs .gt_footnote_marks {
+#kzymcbsgpe .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -2528,12 +2530,12 @@ p &amp;= \frac{c}{c+1}
 d %&gt;% 
   gt() %&gt;% 
   fmt_number(1:3, decimals = 2)</code></pre>
-<div id="kftsffbacr" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="rxxympbxvl" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#kftsffbacr .gt_table {
+#rxxympbxvl .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2558,7 +2560,7 @@ d %&gt;%
   border-left-color: #D3D3D3;
 }
 
-#kftsffbacr .gt_heading {
+#rxxympbxvl .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2570,7 +2572,7 @@ d %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#kftsffbacr .gt_title {
+#rxxympbxvl .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2580,7 +2582,7 @@ d %&gt;%
   border-bottom-width: 0;
 }
 
-#kftsffbacr .gt_subtitle {
+#rxxympbxvl .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2590,13 +2592,13 @@ d %&gt;%
   border-top-width: 0;
 }
 
-#kftsffbacr .gt_bottom_border {
+#rxxympbxvl .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#kftsffbacr .gt_col_headings {
+#rxxympbxvl .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2611,7 +2613,7 @@ d %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#kftsffbacr .gt_col_heading {
+#rxxympbxvl .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2631,7 +2633,7 @@ d %&gt;%
   overflow-x: hidden;
 }
 
-#kftsffbacr .gt_column_spanner_outer {
+#rxxympbxvl .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2643,15 +2645,15 @@ d %&gt;%
   padding-right: 4px;
 }
 
-#kftsffbacr .gt_column_spanner_outer:first-child {
+#rxxympbxvl .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#kftsffbacr .gt_column_spanner_outer:last-child {
+#rxxympbxvl .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#kftsffbacr .gt_column_spanner {
+#rxxympbxvl .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2663,7 +2665,7 @@ d %&gt;%
   width: 100%;
 }
 
-#kftsffbacr .gt_group_heading {
+#rxxympbxvl .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2685,7 +2687,7 @@ d %&gt;%
   vertical-align: middle;
 }
 
-#kftsffbacr .gt_empty_group_heading {
+#rxxympbxvl .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2700,15 +2702,15 @@ d %&gt;%
   vertical-align: middle;
 }
 
-#kftsffbacr .gt_from_md > :first-child {
+#rxxympbxvl .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#kftsffbacr .gt_from_md > :last-child {
+#rxxympbxvl .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#kftsffbacr .gt_row {
+#rxxympbxvl .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2727,7 +2729,7 @@ d %&gt;%
   overflow-x: hidden;
 }
 
-#kftsffbacr .gt_stub {
+#rxxympbxvl .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2739,7 +2741,7 @@ d %&gt;%
   padding-left: 12px;
 }
 
-#kftsffbacr .gt_summary_row {
+#rxxympbxvl .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2749,7 +2751,7 @@ d %&gt;%
   padding-right: 5px;
 }
 
-#kftsffbacr .gt_first_summary_row {
+#rxxympbxvl .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2759,7 +2761,7 @@ d %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#kftsffbacr .gt_grand_summary_row {
+#rxxympbxvl .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2769,7 +2771,7 @@ d %&gt;%
   padding-right: 5px;
 }
 
-#kftsffbacr .gt_first_grand_summary_row {
+#rxxympbxvl .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2779,11 +2781,11 @@ d %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#kftsffbacr .gt_striped {
+#rxxympbxvl .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#kftsffbacr .gt_table_body {
+#rxxympbxvl .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2792,7 +2794,7 @@ d %&gt;%
   border-bottom-color: #D3D3D3;
 }
 
-#kftsffbacr .gt_footnotes {
+#rxxympbxvl .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2806,13 +2808,13 @@ d %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#kftsffbacr .gt_footnote {
+#rxxympbxvl .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#kftsffbacr .gt_sourcenotes {
+#rxxympbxvl .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2826,41 +2828,41 @@ d %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#kftsffbacr .gt_sourcenote {
+#rxxympbxvl .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#kftsffbacr .gt_left {
+#rxxympbxvl .gt_left {
   text-align: left;
 }
 
-#kftsffbacr .gt_center {
+#rxxympbxvl .gt_center {
   text-align: center;
 }
 
-#kftsffbacr .gt_right {
+#rxxympbxvl .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#kftsffbacr .gt_font_normal {
+#rxxympbxvl .gt_font_normal {
   font-weight: normal;
 }
 
-#kftsffbacr .gt_font_bold {
+#rxxympbxvl .gt_font_bold {
   font-weight: bold;
 }
 
-#kftsffbacr .gt_font_italic {
+#rxxympbxvl .gt_font_italic {
   font-style: italic;
 }
 
-#kftsffbacr .gt_super {
+#rxxympbxvl .gt_super {
   font-size: 65%;
 }
 
-#kftsffbacr .gt_footnote_marks {
+#rxxympbxvl .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -2950,15 +2952,18 @@ Betrachtet man 10 an Corona verstorbene Personen, so fände man 9 geimpfte und 1
 </div>
 <div id="antwort-reduktion-von-9-auf-12-ist-ein-reduktionsfaktor-von-18" class="section level1" number="21">
 <h1><span class="header-section-number">21</span> Antwort: Reduktion von 9 auf 1/2 ist ein Reduktionsfaktor von 18</h1>
-<p>Wir fragen uns also “9 mal wieviel ergibt 1/3?”.</p>
+<p>Wir fragen uns also “9 mal wieviel ergibt 1/2?”.</p>
 <p>Die Antwort lautet 18.</p>
-<p>Die Impfung ist also - auf Basis der Annahmen für C - um den Reduktionsfaktor 18 wirksamer als keine Impfung. Geimpfte Personen verringern ihre Chance auf Sterblichkeit demnach um diesen Faktor.</p>
-<p>Nimmt man an, dass <span class="math inline">\(C=1/1\)</span>, dass also unter zwei Coronatoten einer geimpft war, so verringert sich <span class="math inline">\(C\)</span> um den Faktor 9.</p>
+<p>Die Impfung ist also - auf Basis der Annahmen für C - um den Reduktionsfaktor <em>18 wirksamer als keine Impfung</em>.
+Geimpfte Personen verringern ihre Chance auf Sterblichkeit demnach um diesen Faktor.</p>
+<p>Nimmt man an, dass <span class="math inline">\(C=1/1\)</span>,
+dass also unter zwei Corona-Toten einer geimpft war,
+so erhält man einen Reduktionsfaktor von 9.</p>
 <p>Greift man die Zahl von 18,5% Impfdurchbrüchen an verstorbenen Covid-19-Fällen in der Altersgruppe 18-59 auf, so erhält man ein C von etwa 1:4=0.25.
 Das entspricht einem Reduktionsfaktor von 36.</p>
 <p>Betrachten wir die Reduktionsfaktoren (R)
 für verschiedene Werte von C.</p>
-<p>Dabei berechen wir die Reduktion für eine Impfquote von 90%.</p>
+<p>Dabei berechnen wir den Reduktionsfaktor für eine Impfquote von 90%, entsprechend der angenommenen Impfquote in den höheren Lebensdekaden.</p>
 <pre class="r"><code>d &lt;-
   tibble(C = c(10:1, 1/2, 1/3, 1/4, 1/1),
          R = 9/C)
@@ -2966,12 +2971,12 @@ für verschiedene Werte von C.</p>
 d %&gt;% 
   gt() %&gt;% 
   fmt_number(everything(), decimals = 2) </code></pre>
-<div id="kggaazojdf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="xygibqdjti" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#kggaazojdf .gt_table {
+#xygibqdjti .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2996,7 +3001,7 @@ d %&gt;%
   border-left-color: #D3D3D3;
 }
 
-#kggaazojdf .gt_heading {
+#xygibqdjti .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3008,7 +3013,7 @@ d %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#kggaazojdf .gt_title {
+#xygibqdjti .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3018,7 +3023,7 @@ d %&gt;%
   border-bottom-width: 0;
 }
 
-#kggaazojdf .gt_subtitle {
+#xygibqdjti .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3028,13 +3033,13 @@ d %&gt;%
   border-top-width: 0;
 }
 
-#kggaazojdf .gt_bottom_border {
+#xygibqdjti .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#kggaazojdf .gt_col_headings {
+#xygibqdjti .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3049,7 +3054,7 @@ d %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#kggaazojdf .gt_col_heading {
+#xygibqdjti .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3069,7 +3074,7 @@ d %&gt;%
   overflow-x: hidden;
 }
 
-#kggaazojdf .gt_column_spanner_outer {
+#xygibqdjti .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3081,15 +3086,15 @@ d %&gt;%
   padding-right: 4px;
 }
 
-#kggaazojdf .gt_column_spanner_outer:first-child {
+#xygibqdjti .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#kggaazojdf .gt_column_spanner_outer:last-child {
+#xygibqdjti .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#kggaazojdf .gt_column_spanner {
+#xygibqdjti .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3101,7 +3106,7 @@ d %&gt;%
   width: 100%;
 }
 
-#kggaazojdf .gt_group_heading {
+#xygibqdjti .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3123,7 +3128,7 @@ d %&gt;%
   vertical-align: middle;
 }
 
-#kggaazojdf .gt_empty_group_heading {
+#xygibqdjti .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3138,15 +3143,15 @@ d %&gt;%
   vertical-align: middle;
 }
 
-#kggaazojdf .gt_from_md > :first-child {
+#xygibqdjti .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#kggaazojdf .gt_from_md > :last-child {
+#xygibqdjti .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#kggaazojdf .gt_row {
+#xygibqdjti .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3165,7 +3170,7 @@ d %&gt;%
   overflow-x: hidden;
 }
 
-#kggaazojdf .gt_stub {
+#xygibqdjti .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3177,7 +3182,7 @@ d %&gt;%
   padding-left: 12px;
 }
 
-#kggaazojdf .gt_summary_row {
+#xygibqdjti .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3187,7 +3192,7 @@ d %&gt;%
   padding-right: 5px;
 }
 
-#kggaazojdf .gt_first_summary_row {
+#xygibqdjti .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3197,7 +3202,7 @@ d %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#kggaazojdf .gt_grand_summary_row {
+#xygibqdjti .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3207,7 +3212,7 @@ d %&gt;%
   padding-right: 5px;
 }
 
-#kggaazojdf .gt_first_grand_summary_row {
+#xygibqdjti .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3217,11 +3222,11 @@ d %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#kggaazojdf .gt_striped {
+#xygibqdjti .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#kggaazojdf .gt_table_body {
+#xygibqdjti .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3230,7 +3235,7 @@ d %&gt;%
   border-bottom-color: #D3D3D3;
 }
 
-#kggaazojdf .gt_footnotes {
+#xygibqdjti .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3244,13 +3249,13 @@ d %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#kggaazojdf .gt_footnote {
+#xygibqdjti .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#kggaazojdf .gt_sourcenotes {
+#xygibqdjti .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3264,41 +3269,41 @@ d %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#kggaazojdf .gt_sourcenote {
+#xygibqdjti .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#kggaazojdf .gt_left {
+#xygibqdjti .gt_left {
   text-align: left;
 }
 
-#kggaazojdf .gt_center {
+#xygibqdjti .gt_center {
   text-align: center;
 }
 
-#kggaazojdf .gt_right {
+#xygibqdjti .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#kggaazojdf .gt_font_normal {
+#xygibqdjti .gt_font_normal {
   font-weight: normal;
 }
 
-#kggaazojdf .gt_font_bold {
+#xygibqdjti .gt_font_bold {
   font-weight: bold;
 }
 
-#kggaazojdf .gt_font_italic {
+#xygibqdjti .gt_font_italic {
   font-style: italic;
 }
 
-#kggaazojdf .gt_super {
+#xygibqdjti .gt_super {
   font-size: 65%;
 }
 
-#kggaazojdf .gt_footnote_marks {
+#xygibqdjti .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -3355,8 +3360,107 @@ d %&gt;%
 <div id="fazit-die-impfung-ist-hoch-wirksam" class="section level1" number="22">
 <h1><span class="header-section-number">22</span> Fazit: Die Impfung ist hoch wirksam</h1>
 <p>“Jeder dritte Coronatote ist geimpft!” kann suggerieren, dass die Impfung wenig nützt.
-Tatsächlich ist das Gegenteil der Fall: “Jeder dritte Coronatote ist geimpft” spricht für einen sehr hohen Schutz der Impfung.</p>
-<p>Dazu kommt, dass der Reduktionsfaktor bei Jüngeren Menschen (&lt; 60 Jahren) noch höher liegt, vermutlich da deren Immunsystem besser auf die Impfung anspringt, sie also mehr von der Impfung profitieren. Allerdings ist die Impfquote geringer als bei den Älteren, was den Reduktionsfaktor begrenzen könnte.</p>
-<p>Das Resümé lautet also, dass die Impfung - basierend auf den Daten oben - hoch wirksam ist.</p>
-<p>Die Bildzeitung fällt in diesem Zusammenhang negativ auf. Ihre Berichtserstattung suggeriert, dass die Impfung geringe oder keine Wirkung habe. Das ist falsch, wie wir oben gesehen haben: Die Wirkung der Impfung ist stark.</p>
+Tatsächlich ist das Gegenteil der Fall: “Jeder dritte Coronatote ist geimpft” spricht für einen sehr hohen Schutz der Impfung - <em>wenn</em> die Impfquote sehr hoch ist.</p>
+<p>Dazu kommt, dass der Reduktionsfaktor bei jüngeren Menschen (&lt; 60 Jahren) noch höher liegt, vermutlich da deren Immunsystem besser auf die Impfung anspringt, sie also mehr von der Impfung profitieren. Allerdings ist die Impfquote geringer als bei den Älteren, was den Reduktionsfaktor begrenzen könnte.</p>
+<p>Das Resümee lautet also, dass die Impfung - basierend auf den Daten oben - hoch wirksam ist.</p>
+<p>Medien wie die Bildzeitung fällt in diesem Zusammenhang negativ auf.
+Solche Berichtserstattung suggeriert fälschlich, dass die Impfung geringe oder keine Wirkung habe.
+Das ist falsch, wie wir oben gesehen haben:
+Die Wirkung der Impfung ist stark.</p>
+</div>
+<div id="sessioninfo" class="section level1" number="23">
+<h1><span class="header-section-number">23</span> SessionInfo</h1>
+<pre class="r"><code>sessioninfo::session_info()</code></pre>
+<pre><code>## ─ Session info ───────────────────────────────────────────────────────────────
+##  setting  value                       
+##  version  R version 4.1.0 (2021-05-18)
+##  os       macOS Big Sur 10.16         
+##  system   x86_64, darwin17.0          
+##  ui       X11                         
+##  language (EN)                        
+##  collate  en_US.UTF-8                 
+##  ctype    en_US.UTF-8                 
+##  tz       Europe/Berlin               
+##  date     2021-11-16                  
+## 
+## ─ Packages ───────────────────────────────────────────────────────────────────
+##  package     * version date       lib source                           
+##  assertthat    0.2.1   2019-03-21 [1] CRAN (R 4.1.0)                   
+##  backports     1.2.1   2020-12-09 [1] CRAN (R 4.1.0)                   
+##  blogdown      1.4     2021-07-23 [2] CRAN (R 4.1.0)                   
+##  bookdown      0.24.2  2021-10-15 [1] Github (rstudio/bookdown@ba51c26)
+##  broom         0.7.9   2021-07-27 [1] CRAN (R 4.1.0)                   
+##  bslib         0.3.1   2021-10-06 [1] CRAN (R 4.1.0)                   
+##  cellranger    1.1.0   2016-07-27 [1] CRAN (R 4.1.0)                   
+##  checkmate     2.0.0   2020-02-06 [2] CRAN (R 4.1.0)                   
+##  cli           3.0.1   2021-07-17 [1] CRAN (R 4.1.0)                   
+##  colorspace    2.0-2   2021-06-24 [1] CRAN (R 4.1.0)                   
+##  crayon        1.4.1   2021-02-08 [1] CRAN (R 4.1.0)                   
+##  DBI           1.1.1   2021-01-15 [1] CRAN (R 4.1.0)                   
+##  dbplyr        2.1.1   2021-04-06 [1] CRAN (R 4.1.0)                   
+##  digest        0.6.28  2021-09-23 [1] CRAN (R 4.1.0)                   
+##  dplyr       * 1.0.7   2021-06-18 [1] CRAN (R 4.1.0)                   
+##  ellipsis      0.3.2   2021-04-29 [1] CRAN (R 4.1.0)                   
+##  evaluate      0.14    2019-05-28 [1] CRAN (R 4.1.0)                   
+##  extrafont     0.17    2014-12-08 [2] CRAN (R 4.1.0)                   
+##  extrafontdb   1.0     2012-06-11 [2] CRAN (R 4.1.0)                   
+##  fansi         0.5.0   2021-05-25 [1] CRAN (R 4.1.0)                   
+##  farver        2.1.0   2021-02-28 [1] CRAN (R 4.1.0)                   
+##  fastmap       1.1.0   2021-01-25 [2] CRAN (R 4.1.0)                   
+##  forcats     * 0.5.1   2021-01-27 [1] CRAN (R 4.1.0)                   
+##  fs            1.5.0   2020-07-31 [1] CRAN (R 4.1.0)                   
+##  gdtools       0.2.3   2021-01-06 [2] CRAN (R 4.1.0)                   
+##  generics      0.1.0   2020-10-31 [1] CRAN (R 4.1.0)                   
+##  ggplot2     * 3.3.5   2021-06-25 [1] CRAN (R 4.1.0)                   
+##  glue          1.4.2   2020-08-27 [1] CRAN (R 4.1.0)                   
+##  gt          * 0.3.1   2021-08-07 [1] CRAN (R 4.1.0)                   
+##  gtable        0.3.0   2019-03-25 [1] CRAN (R 4.1.0)                   
+##  haven         2.4.1   2021-04-23 [1] CRAN (R 4.1.0)                   
+##  highr         0.9     2021-04-16 [1] CRAN (R 4.1.0)                   
+##  hms           1.1.1   2021-09-26 [1] CRAN (R 4.1.0)                   
+##  hrbrthemes  * 0.8.0   2020-03-06 [2] CRAN (R 4.1.0)                   
+##  htmltools     0.5.2   2021-08-25 [1] CRAN (R 4.1.0)                   
+##  httr          1.4.2   2020-07-20 [1] CRAN (R 4.1.0)                   
+##  jquerylib     0.1.4   2021-04-26 [1] CRAN (R 4.1.0)                   
+##  jsonlite      1.7.2   2020-12-09 [1] CRAN (R 4.1.0)                   
+##  knitr         1.36    2021-09-29 [1] CRAN (R 4.1.0)                   
+##  labeling      0.4.2   2020-10-20 [1] CRAN (R 4.1.0)                   
+##  lifecycle     1.0.1   2021-09-24 [1] CRAN (R 4.1.0)                   
+##  lubridate     1.7.10  2021-02-26 [1] CRAN (R 4.1.0)                   
+##  magrittr      2.0.1   2020-11-17 [1] CRAN (R 4.1.0)                   
+##  modelr        0.1.8   2020-05-19 [1] CRAN (R 4.1.0)                   
+##  munsell       0.5.0   2018-06-12 [1] CRAN (R 4.1.0)                   
+##  pillar        1.6.4   2021-10-18 [1] CRAN (R 4.1.0)                   
+##  pkgconfig     2.0.3   2019-09-22 [1] CRAN (R 4.1.0)                   
+##  purrr       * 0.3.4   2020-04-17 [1] CRAN (R 4.1.0)                   
+##  R6            2.5.1   2021-08-19 [1] CRAN (R 4.1.0)                   
+##  Rcpp          1.0.7   2021-07-07 [1] CRAN (R 4.1.0)                   
+##  readr       * 2.0.0   2021-07-20 [1] CRAN (R 4.1.0)                   
+##  readxl        1.3.1   2019-03-13 [1] CRAN (R 4.1.0)                   
+##  reprex        2.0.0   2021-04-02 [1] CRAN (R 4.1.0)                   
+##  rlang         0.4.12  2021-10-18 [1] CRAN (R 4.1.0)                   
+##  rmarkdown     2.11    2021-09-14 [1] CRAN (R 4.1.0)                   
+##  rstudioapi    0.13    2020-11-12 [1] CRAN (R 4.1.0)                   
+##  Rttf2pt1      1.3.9   2021-07-22 [2] CRAN (R 4.1.0)                   
+##  rvest         1.0.0   2021-03-09 [1] CRAN (R 4.1.0)                   
+##  sass          0.4.0   2021-05-12 [1] CRAN (R 4.1.0)                   
+##  scales        1.1.1   2020-05-11 [1] CRAN (R 4.1.0)                   
+##  sessioninfo   1.1.1   2018-11-05 [2] CRAN (R 4.1.0)                   
+##  stringi       1.7.5   2021-10-04 [1] CRAN (R 4.1.0)                   
+##  stringr     * 1.4.0   2019-02-10 [1] CRAN (R 4.1.0)                   
+##  systemfonts   1.0.2   2021-05-11 [2] CRAN (R 4.1.0)                   
+##  tibble      * 3.1.5   2021-09-30 [1] CRAN (R 4.1.0)                   
+##  tidyr       * 1.1.4   2021-09-27 [1] CRAN (R 4.1.0)                   
+##  tidyselect    1.1.1   2021-04-30 [1] CRAN (R 4.1.0)                   
+##  tidyverse   * 1.3.1   2021-04-15 [1] CRAN (R 4.1.0)                   
+##  tzdb          0.1.2   2021-07-20 [2] CRAN (R 4.1.0)                   
+##  utf8          1.2.2   2021-07-24 [1] CRAN (R 4.1.0)                   
+##  vctrs         0.3.8   2021-04-29 [1] CRAN (R 4.1.0)                   
+##  withr         2.4.2   2021-04-18 [1] CRAN (R 4.1.0)                   
+##  xfun          0.26    2021-09-14 [1] CRAN (R 4.1.0)                   
+##  xml2          1.3.2   2020-04-23 [1] CRAN (R 4.1.0)                   
+##  yaml          2.2.1   2020-02-01 [1] CRAN (R 4.1.0)                   
+## 
+## [1] /Users/sebastiansaueruser/Library/R/x86_64/4.1/library
+## [2] /Library/Frameworks/R.framework/Versions/4.1/Resources/library</code></pre>
 </div>
