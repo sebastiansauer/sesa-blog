@@ -1,5 +1,5 @@
 ---
-title: Jedes dritte Intensivbett mit Geimpften belegt, also bringt Impfen nix? Falsch.
+title: Jedes dritte Corona-Tote ist geimpft, also bringt Impfen nix? Falsch.
 author: Sebastian Sauer
 date: '2021-11-15'
 slug: jedes-dritte-intensivbett-mit-geimpften-belegt-also-bringt-impfen-nix-falsch
@@ -50,14 +50,79 @@ theme_set(theme_ipsum_rc())
 ```
 
 
-# Jedes dritte Bett mit Geimpften belegt?!
+# Der dritte Corona-Tote geimpft?!
 
 
 Kürzlich (12.10.2021) war u.a. in der [Bildzeitung](https://www.bild.de/bild-plus/ratgeber/2021/ratgeber/corona-mehr-geimpfte-auf-intensivstation-brauchen-wir-alle-die-dritte-impfung-77912360,view=conversionToLogin.bild.html) zu lesen, 
-dass jeder dritte Corona-Tote geimpft war. 
+dass jeder dritte Corona-Tote geimpft war:
+
+>   Das heiß, rund ein Drittel aller Corona-Toten bei den über 60-Jährigen war geimpft!
+
 Der Artikel bezieht sich auf das RKI als Quelle.
 
-Ähnliche Zahlen waren an [diversen Orten](https://www.n-tv.de/panorama/Sterben-wirklich-viele-Geimpfte-an-Corona-article22932056.html) zu lesen.
+Ähnliche Zahlen waren auch an [anderen Orten](https://www.n-tv.de/panorama/Sterben-wirklich-viele-Geimpfte-an-Corona-article22932056.html) zu lesen.
+
+
+
+# tl;dr
+
+In der Presse war kürzlich zu lesen, dass ein guter Teil der Coronafälle (bzw. Intensivbetten oder Todesfälle) geimpft ist, ca. ein Drittel.
+Wenn aber ein Drittel Geimpfter unter den Corona(Todes-)fällen bzw. in Krankenhaus(intensiv-)betten zu finden ist, so müsste man doch schließen, dass die Impfung wenig bis nichts nützt.
+Oder etwa nicht.
+
+Dieser Schluss ist falsch, wie im Folgenden gezeigt.
+
+Kurz gesagt: 
+Geht man von einer Impfquote von 90% bei der Altersgruppe 60+ aus, so müsste man einen Anteil von 90% Geimpfter in den Corona-Todesfällen sehen, wenn die Impfung keinen Schutz bietet. 90% entspricht einem Verhältnis von 9:1=9.
+
+Tatsächlich findet man aber, wie von der Presse aufgegriffen, einen Anteil von ca. einem guten Drittel Geimpfter bei den Corona-Todesfällen bei der Altersgruppe 60+ (der Anteil ist ähnlich, egal ob wir Hospitalisierung, Intensivfälle oder Todesfälle betrachten). Ein Drittel entspricht einem Verhältnis von 1:2=0.5.
+
+Im Vergleich zu keiner Impfung bzw. keinen Schutz reduziert die Impfung also die Gefahr eines Todesfall (ähnlich für Hospitalisierung oder Intensiv) um den Faktor 18, da $9 : 18 = 0.5$.
+
+```{r fig.asp = 1, fig.width=6, echo = FALSE}
+red_vacc <-
+  tibble(
+    C = c(9, 0.5),
+    C_lab = c("9:1=9", "1:2=0.5"),
+    cond = fct_inorder(c("Kein Schutz", "hoher Schutz"))
+  )
+
+
+xlabs <- c(
+  "Anteil Geimpfter unter Corona-Toten,\nwenn die Impfung keine Schutz böte",
+  "tatsächlicher Anteil Geimpfter\nunter Corona-Toten"
+)
+
+ggplot(red_vacc) +
+  aes(x = cond, y = C) +
+  geom_col(width = 0.5) +
+  scale_y_continuous(breaks = NULL, limits = c(0, 12)) +
+  geom_label(aes(label = C_lab),
+             nudge_y = +1) +
+  annotate(geom = "curve", 
+           x = 1, y = 9,
+           xend = 2, yend = 0,
+           curvature = 0.2,
+           arrow = arrow(length = unit(2, "mm"))) +
+  annotate(
+    geom = "label",
+    x = 1.5,
+    y = 4,
+    size = 3,
+    label = "Faktor: 18"
+  ) +
+  labs(title = 
+         "Corona-Impfung hilft",
+       subtitle = 
+         "Durch die Impfung verringert sich die Chance\nzu sterben um den Faktor 18",
+       caption = "Datenquelle: RKI-Wochenbericht vom 11.11.2021, Altergruppe 60+, KW 41-44 2021",
+       x = "",
+       y = "Anteil der Geimpften unter Corona-Toten") +
+  scale_x_discrete(labels = xlabs)
+```
+
+
+Dieses Argument ist im Folgenden in einiger Länge aufgeführt.
 
 
 # Frage: Wie viele Menschen mit Corona wurden ins Krankenhaus eingeliefert?
@@ -93,7 +158,7 @@ Berechnen wir die Anteile von (geimpften) Krankenhauseinweisungen für den Beric
 covid_kw_41_44 <- 
   covid_kw_41_44 %>% 
   mutate(prop_hosp = hosp_cases / cases,
-         prop_hops_vacc = hosp_cases_vacc / hosp_cases)
+         prop_hosp_vacc = hosp_cases_vacc / hosp_cases)
 
 covid_kw_41_44 %>% 
   gt() %>% 
@@ -116,7 +181,7 @@ Für die Altersgruppe 18-59 Jahren sehen die Zahlen hingegen besser zugunsten de
 
 - Anteil wahrscheinliche Impfdurchbrüche an hospitalisierten COVID-19-Fällen: *22,7%*
 - Anteil wahrscheinliche Impfdurchbrüche an COVID-19-Fällen auf Intensivstation: *12,9%*
-- Anteil wahrscheinliche Impfdurchbrüche an verstorbenen COVID-19-Fällen: *18,5*
+- Anteil wahrscheinliche Impfdurchbrüche an verstorbenen COVID-19-Fällen: *18,5%*
 
 
 Ergänzen wir unsere Tabelle entsprechend:
@@ -145,7 +210,7 @@ Berechnen wir die Summe  der Coronafälle, die Summe der hospitalisierten Fälle
 covid_kw_41_44 %>% 
   summarise(sum_cases = sum(cases),
             sum_hosp_cases = sum(hosp_cases),
-            sum_hops_cases_vacc = sum(hosp_cases_vacc))
+            sum_hosp_cases_vacc = sum(hosp_cases_vacc))
 ```
 
 Die Summe ist jeweils über alle Altersgruppen berechnet.
@@ -156,9 +221,9 @@ Teilen wir die Summe der hospitalisierten Fälle *mit* Impfung (`sum_hos_cases_v
 covid_kw_41_44 %>% 
   summarise(sum_cases = sum(cases),
             sum_hosp_cases = sum(hosp_cases),
-            sum_hops_cases_vacc = sum(hosp_cases_vacc)) %>% 
+            sum_hosp_cases_vacc = sum(hosp_cases_vacc)) %>% 
   mutate(across(everything(), as.integer)) %>% 
-  mutate(prop_hosp_vacc = sum_hops_cases_vacc / sum_hosp_cases) %>% 
+  mutate(prop_hosp_vacc = sum_hosp_cases_vacc / sum_hosp_cases) %>% 
   gt() %>% 
   fmt_number(4, decimals = 2)
 ```
@@ -218,6 +283,47 @@ An [anderer Stelle](https://www.rki.de/SharedDocs/FAQ/COVID-Impfen/FAQ_Todesfael
 
 # Antwort: Die Impfquote beträgt ca. 85% unter den Coronatoten
 
+Betrachten wir die Altersverteilung der Todesfälle in Zusammenhang mit Corona [Quelle RKI 11.11.2021](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Projekte_RKI/COVID-19_Todesfaelle.html).
+
+
+Daten einlesen:
+
+```{r}
+xlsx_path <- "/Users/sebastiansaueruser/datasets/Covid/COVID-19_Todesfaelle-2021-11-11.xlsx"
+covid_deaths <- readxl::read_xlsx(xlsx_path,
+                                  sheet = 5)
+
+covid_deaths2 <-
+  covid_deaths %>% 
+  pivot_longer(cols = -c(1,2),
+               names_to = "Altersgruppe",
+               values_to = "Anzahl") %>% 
+  mutate(Anzahl = parse_number(Anzahl))
+```
+
+
+Daten zusammenfassen:
+
+```{r}
+covid_deaths2 %>% 
+  group_by(Altersgruppe) %>% 
+  summarise(Anzahl_Sterbefaelle = sum(Anzahl)) %>% 
+  ggplot() +
+  aes(y = Altersgruppe,
+      x = Anzahl_Sterbefaelle) +
+  geom_col() +
+  scale_x_continuous(labels = scales::label_scientific(),
+                     breaks = c(0, 25000, 50000),
+                     limits = c(0, 50000)) +
+  geom_text(
+    aes(label = Anzahl_Sterbefaelle),
+    size = 2,
+    nudge_x = 5000
+  )
+```
+
+
+Wie man sieht, ist eine Schätzung des mittleren Alters von Todesfällen in Zusammenhang mit einer Corona-Erkranung in der 9. Lebensdekade zu suchen.
 
 Laut dem [Impfquoten-Monitoring des RKI (Stand 15.11.2021)](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Daten/Impfquoten-Tab.html) ist in der Altersgruppe 60+ etwa ein Anteil von 85.6% geimpft. Die gleiche Zahl ist im [Impfdashboard, 15.11.21, 20.59h](https://impfdashboard.de/) zu lesen.
 
@@ -236,7 +342,7 @@ dass mehr Menschen geimpft wurden, als es die bekannten Statistiken angeben:
 Die Impfquote ist also womöglich etwas höher als 85.6% bei der Altersgruppe 60+: "Eine Unterschätzung der Quote von bis zu 5 Prozentpunkten war bereits zuvor berichtet worden" (RKI-2021-11-11, S. 19).
 Für speziell die Altersgruppe 80+ habe ich keine Zahlen zur Impfquote gefunden.
 
-Für das folgende Rechenbeispiel gehen wir von 90% Impfquote bei den Coronatoten aus. Auch wenn die Zahl nicht exakt stimmt (aber grob vermutlich schon), bleiben die Schlussfolgerungen gleich.
+Für das folgende Rechenbeispiel gehen wir von 90% Impfquote bei den Corona-Toten aus. Auch wenn die Zahl nicht exakt stimmt (aber grob vermutlich schon), bleiben die Schlussfolgerungen gleich.
 
 
 # Frage: Welcher Anteil der Geimpften fände sich unter den Toten, wenn die Impfung nichts helfen würde?
@@ -402,7 +508,7 @@ ggplot(d) +
 Wäre die Impfung unwirksam, würde gelten $C=9$, wie oben angenommen. 
 Betrachtet man 10 an Corona verstorbene Personen, so fände man 9 geimpfte und 1 ungeimpfte Personen.
 
-Tatsächlich gilt aber, auf Basis der oben zitierten Quellen, etwa $C=1/2$: Man findet bei 3 an Corona verstorbene Personen 1 geimpfte und 2 ungeimpfte Personen.
+Tatsächlich gilt aber, auf Basis der oben zitierten Quellen, etwa $C=1/2$ im Hinblick auf (Schutz vor) Tod: Man findet bei 3 an Corona verstorbene Personen 1 geimpfte und 2 ungeimpfte Personen (42% bei 60+ und 18,5% bei den 18-59-Jährigen, laut RKI-2021-11-11).
 
 
 # Antwort: Reduktion von 9 auf 1/2 ist ein Reduktionsfaktor von 18
@@ -449,12 +555,16 @@ d %>%
 "Jeder dritte Coronatote ist geimpft!" kann suggerieren, dass die Impfung wenig nützt.
 Tatsächlich ist das Gegenteil der Fall: "Jeder dritte Coronatote ist geimpft" spricht für einen sehr hohen Schutz der Impfung.
 
-Dazu kommt, dass der Reduktionsfaktor bei Jüngeren Menschen (< 60 Jahren) noch höher liegt, vermutlich da deren Immunsystem besser auf die Impfung anspringt, sie also mehr von der Impfung profitieren.
+Dazu kommt, dass der Reduktionsfaktor bei Jüngeren Menschen (< 60 Jahren) noch höher liegt, vermutlich da deren Immunsystem besser auf die Impfung anspringt, sie also mehr von der Impfung profitieren. Allerdings ist die Impfquote geringer als bei den Älteren, was den Reduktionsfaktor begrenzen könnte.
 
-Das Resüme lautet also, dass die Impfung - basierend auf den Daten oben - hoch wirksam ist.
+Das Resümé lautet also, dass die Impfung - basierend auf den Daten oben - hoch wirksam ist.
 
 
-Die Bildzeitung fällt in diesem Zusammenhang negativ auf. Ihre Berichtserstattung ist in diesem Punkt falsch. Ob bewusst irreführend oder fachlich inkompetent lässt sich nicht direkt beantworten. Rein logisch gesehen ist beides möglich.
+Die Bildzeitung fällt in diesem Zusammenhang negativ auf. Ihre Berichtserstattung suggeriert, dass die Impfung geringe oder keine Wirkung habe. Das ist falsch, wie wir oben gesehen haben: Die Wirkung der Impfung ist stark.
+
+
+
+
 
 
 
