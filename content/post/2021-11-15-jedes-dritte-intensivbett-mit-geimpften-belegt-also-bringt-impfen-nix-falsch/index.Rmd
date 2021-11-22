@@ -382,9 +382,11 @@ so sollten auch 90% der Coronatoten geimpft sein.
 
 # Frage: Kann ich dazu mal ein einfaches Rechenbeispiel sehen?
 
-Betrachten wir ein Beispiel, in dem *Impfen* und *Sterblichkeit* unabhängig sind voneinander. 
+Betrachten wir ein fiktives Beispiel, in dem *Impfen* und *Sterblichkeit* unabhängig sind voneinander. 
 
-Dazu definieren wir, dass die Sterblichkeit (Letalität) 1% beträgt, das ist leicht zu rechnen. Uns geht es in diesem Beispiel nur um die Verdeutlichung, welche Zahlen bei Unabhängigkeit zu erwarten sind.
+Dazu definieren wir, dass die Sterblichkeit (Letalität) 1% beträgt, das ist leicht zu rechnen.
+Uns geht es in diesem Beispiel nur um die Verdeutlichung, 
+welche Zahlen bei *Unabhängigkeit* (von Impfen und Sterblichkeit) zu erwarten sind.
 
 [Statista](https://de.statista.com/statistik/daten/studie/1103785/umfrage/mortalitaetsrate-des-coronavirus-nach-laendern/#professional) zitiert eine Letalitätsrate von etwa 2% für Deutschland (11.11.2021).
 
@@ -395,7 +397,10 @@ Auf diese Schätzung werden wir im Verlauf noch zurückgreifen.
 
 # Antwort: Hier ist ein Rechenbeispiel, das Unabhängigkeit von Impfung und Wirksamkeit annimmt
 
-Betrachten wir der Einfachheit halber eine Gruppe von 1000 Leuten. 90% dieser Menschen sind geimpft (10% nicht). Die Sterblichkeit beträgt 1% und zwar unabhängig von der Impfquote. Mit anderen Worten: Sterblichkeit und Impfquote sind unabhängig voneinander.
+Betrachten wir der Einfachheit halber folgendes, fiktives Beispiel: 
+Eine Gruppe von 1000 Leuten; 90% dieser Menschen sind geimpft (10% nicht). 
+Die Sterblichkeit beträgt 1% und zwar unabhängig von der Impfquote. 
+Mit anderen Worten: Sterblichkeit und Impfquote sind unabhängig voneinander.
 
 ```{r}
 tibble::tribble(
@@ -421,11 +426,14 @@ Das Beispiel zeigt: Bei den Geimpften ist die Chance zu versterben (im Folgenden
 ```
 
 
-Das *Chancenverhältnis* (zwischen Geimpften und Ungeimpften) an Corona zu versterben, ist also 1:1=1.
+Das *Chancenverhältnis* (zwischen Geimpften und Ungeimpften) an Corona zu versterben, 
+ist also 1:1=1.
 
 Der Anteil der Geimpften unter den Toten beträgt 9/10=90%.
 
-Achtung: Das ist nur ein Rechenbeispiel, um zu zeigen, welche Zahlen zu erwarten wären, wenn die Impfung wirkungslos sein sollte. Das Beispiel zeigt *nicht*, dass  die Impfung wirkungslos ist.
+Achtung: Das ist nur ein Rechenbeispiel, um zu zeigen, 
+welche Zahlen zu erwarten wären, wenn die Impfung wirkungslos sein sollte. 
+Das Beispiel zeigt *nicht*, dass  die Impfung wirkungslos ist.
 
 
 
@@ -433,7 +441,10 @@ Achtung: Das ist nur ein Rechenbeispiel, um zu zeigen, welche Zahlen zu erwarten
 # Welchen Anteil an Geimpften unter den Toten gäbe es, wenn die Impfung schützen würde?
 
 
-Gehen wir der Einfachheit halber davon aus, dass die Impfung die *C*hance des Versterbens *halbiert* (mal 0.5). Wir bleiben bei einer Impfquote von 90% und gehen jetzt, realistischer, von einer Letalität (Chance $C$ zu sterben) von 1% bei den Geimpften (9 zu 89: $9/891\approx 0.01=1\%$) und von 2% bei den Ungeimpften (2 zu 98: $2/98\approx 0.02=2\%$). Die Sterblichkeit ist in diesem Beispiel also bei den Geimpften *halb so groß* wie bei den Ungeimpften (Faktor 0.5 bzw. 1/2).
+Gehen wir der Einfachheit halber davon aus, dass die Impfung die *C*hance des Versterbens *halbiert* (mal 0.5). 
+Wir bleiben bei einer Impfquote von 90% und gehen jetzt, realistischer, 
+von einer Letalität (Chance $C$ zu sterben) von 1% bei den Geimpften (9 zu 89: $9/891\approx 0.01=1\%$) und von 2% bei den Ungeimpften (2 zu 98: $2/98\approx 0.02=2\%$). 
+Die Sterblichkeit ist in diesem Beispiel also bei den Geimpften *halb so groß* wie bei den Ungeimpften (Faktor 0.5 bzw. 1/2).
 
 
 ```{r}
@@ -455,7 +466,8 @@ Der Anteil der Geimpften unter den Toten beträgt 9/11=82%.
 9/11
 ```
 
-Wir haben die Chance zu versterben halbiert, aber der Anteil der Geimpften unter den Toten hat sich (nur) um ca. 8% verringert.
+Wir haben die Chance zu versterben halbiert, 
+aber der Anteil der Geimpften unter den Toten hat sich (nur) um ca. 8% verringert.
 
 # Frage: Was ist der Zusammenhang von Chancen und Anteil?
 
@@ -467,7 +479,8 @@ Beispiel: 1 verstorbene Person (von 100) vs. 99 lebendige Personen (von 100) erg
 
 Der Anteil der Überlebenden (oder Verstorbenen) kann als Schätzwert für die Wahrscheinlichkeit (Pr oder p, wie Probability) herhalten.
 
-Beispiel: Stirbt 1 von 100 Personen, so ist die Wahrscheinlichkeit $p$ zu versterben 1/100=1%, und die Wahrscheinlichkeit, *nicht* zu versterben (also zu überleben) 100%-1%=99%.
+Beispiel: Stirbt 1 von 100 Personen, so ist die Wahrscheinlichkeit $p$ zu versterben 1/100=1%,
+und die Wahrscheinlichkeit, *nicht* zu versterben (also zu überleben) 100%-1%=99%.
 
 # Man kann  einfach umrechnen
 
@@ -486,7 +499,9 @@ p &= \frac{c}{c+1}
 
 # Frage: Wie sind die Anteile der Geimpften unter den Toten in Abhängigkeit der Chance?
 
-Wir haben gerade gesehen, dass sich der Anteil der Geimpften unter den Toten (nur relativ) wenig verändert, obwohl die Chance, zu versterben sich halbiert hat (für Geimpfte) bzw. sich verdoppelt hat für Ungeimpfte, relativ zur Chance zu versterben für Geimpfte.
+Wir haben gerade gesehen, dass sich der Anteil der Geimpften unter den Toten (nur relativ) wenig verändert, obwohl die Chance, 
+zu versterben sich halbiert hat (für Geimpfte) bzw. 
+sich verdoppelt hat für Ungeimpfte, relativ zur Chance zu versterben für Geimpfte.
 
 
 # Antwort: Die Anteile verändern sich relativ wenig, wenn man die Chancen mehrfach verringert
@@ -523,9 +538,11 @@ ggplot(d) +
 
 
 Wäre die Impfung unwirksam, würde gelten $C=9$, wie oben angenommen. 
-Betrachtet man 10 an Corona verstorbene Personen, so fände man 9 geimpfte und 1 ungeimpfte Personen.
+Betrachtet man 10 an Corona verstorbene Personen, 
+so fände man 9 geimpfte und 1 ungeimpfte Personen.
 
-Tatsächlich gilt aber, auf Basis der oben zitierten Quellen, etwa $C=1/2$ im Hinblick auf (Schutz vor) Tod: Man findet bei 3 an Corona verstorbene Personen 1 geimpfte und 2 ungeimpfte Personen (42% bei 60+ und 18,5% bei den 18-59-Jährigen, laut RKI-2021-11-11).
+Tatsächlich gilt aber, auf Basis der oben zitierten Quellen, etwa $C=1/2$ im Hinblick auf (Schutz vor) Tod: 
+Man findet bei 3 an Corona verstorbene Personen 1 geimpfte und 2 ungeimpfte Personen (42% bei 60+ und 18,5% bei den 18-59-Jährigen, laut RKI-2021-11-11).
 
 
 # Antwort: Reduktion von 9 auf 1/2 ist ein Reduktionsfaktor von 18
@@ -543,7 +560,8 @@ dass also unter zwei Corona-Toten einer geimpft war,
 so erhält man einen Reduktionsfaktor von 9.
 
 
-Greift man die Zahl von 18,5% Impfdurchbrüchen an verstorbenen Covid-19-Fällen in der Altersgruppe 18-59 auf, so erhält man ein C von etwa 1:4=0.25. 
+Greift man die Zahl von 18,5% Impfdurchbrüchen an verstorbenen Covid-19-Fällen in der Altersgruppe 18-59 auf, 
+so erhält man ein C von etwa 1:4=0.25. 
 Das entspricht einem Reduktionsfaktor von 36.
 
 Betrachten wir die Reduktionsfaktoren (R)
@@ -598,9 +616,13 @@ d %>%
 
 
 "Jeder dritte Coronatote ist geimpft!" kann suggerieren, dass die Impfung wenig nützt.
-Tatsächlich ist das Gegenteil der Fall: "Jeder dritte Coronatote ist geimpft" spricht für einen sehr hohen Schutz der Impfung - *wenn* die Impfquote sehr hoch ist.
+Tatsächlich ist das Gegenteil der Fall: 
+"Jeder dritte Coronatote ist geimpft" spricht für einen sehr hohen Schutz der Impfung - *wenn* die Impfquote sehr hoch ist. 
+(Was nicht heißt, dass der Impfschutz nicht auch bei geringer Impfquote sehr gut ist.)
 
-Dazu kommt, dass der Reduktionsfaktor bei jüngeren Menschen (< 60 Jahren) noch höher liegt, vermutlich da deren Immunsystem besser auf die Impfung anspringt, sie also mehr von der Impfung profitieren. Allerdings ist die Impfquote geringer als bei den Älteren, was den Reduktionsfaktor begrenzen könnte.
+Dazu kommt, dass der Reduktionsfaktor bei jüngeren Menschen (< 60 Jahren) noch höher liegen könnte, 
+vermutlich da deren Immunsystem besser auf die Impfung anspringt, sie also mehr von der Impfung profitieren. 
+Allerdings ist die Impfquote geringer als bei den Älteren, was den Reduktionsfaktor begrenzen wiederum könnte.
 
 Das Resümee lautet also, dass die Impfung - basierend auf den Daten oben - hoch wirksam ist.
 
