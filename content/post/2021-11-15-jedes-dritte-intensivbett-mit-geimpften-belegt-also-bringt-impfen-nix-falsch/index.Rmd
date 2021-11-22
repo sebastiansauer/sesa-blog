@@ -225,15 +225,19 @@ covid_kw_41_44 %>%
 
 Die Summe ist jeweils über alle Altersgruppen berechnet.
 
-Teilen wir die Summe der hospitalisierten Fälle *mit* Impfung (`sum_hos_cases_vacc`) durch die Summe der hospitalisierten Fälle, bekommen wir den *Anteil der geimpften hospitalisierten Fälle* ("Anteil der wahrscheinlichen Impfdurchbrüchen an hospitalisierten Covid-19-Fällen").
+Teilen wir die Summe der hospitalisierten Fälle *mit* Impfung (`sum_hos_cases_vacc`) durch die Summe der hospitalisierten Fälle, 
+bekommen wir den *Anteil (p wie proportion) der geimpften hospitalisierten Fälle* ("Anteil der wahrscheinlichen Impfdurchbrüchen an hospitalisierten (H) Covid-19-Fällen"), `prop_hosp_vacc`, $p(I|H)$:
 
 ```{r}
-covid_kw_41_44 %>% 
+covid_kw_41_44 <- 
+  covid_kw_41_44 %>% 
   summarise(sum_cases = sum(cases),
             sum_hosp_cases = sum(hosp_cases),
             sum_hosp_cases_vacc = sum(hosp_cases_vacc)) %>% 
   mutate(across(everything(), as.integer)) %>% 
-  mutate(prop_hosp_vacc = sum_hosp_cases_vacc / sum_hosp_cases) %>% 
+  mutate(prop_hosp_vacc = sum_hosp_cases_vacc / sum_hosp_cases) 
+
+covid_kw_41_44 %>% 
   gt() %>% 
   fmt_number(4, decimals = 2)
 ```
@@ -244,7 +248,8 @@ Wir bekommen als Zahl etwa die Zahl, die die Bildzeitung berichtete, *ein rundes
 Der Anteil von Impfdurchbrüchen an *verstorbenen* Covid-19-Fällen für die Altersgruppe 60+ ist also höher als die Bildzeitung berichtete, 
 nämlich bei 41.7% laut RKI-Wochenbericht vom 11.11.2021 (im Folgenden als RKI-2021-11-11 bezeichnet); 
 vermutlich bezog sich die Bildzeitung auf einen älteren Wochenbericht.
-Für die Altersgruppe 18-59 ist der Anteil an Impfdurchbrüchen bzw. Todesfällen aber deutlich geringer.
+Für die Altersgruppe 18-59 ist der Anteil an Impfdurchbrüchen bzw. 
+Todesfällen aber deutlich geringer.
 
 *Geimpft* wird dabei so definiert vom RKI:
 
@@ -273,10 +278,11 @@ knitr::include_graphics("https://media-exp1.licdn.com/dms/image/C4D22AQFborIm6Tn
 
 # Antwort: Der Anteil der Impfdurchbrüche ist abhängig von der Impfquote
 
-Die Kurzversion der Antwort wabt schon seit einiger Zeit durch das Netz und die Nachrichten: 
+Die Kurzversion der Antwort wabert schon seit einiger Zeit durch das Netz und die Nachrichten: 
 Wären 100% der Menschen geimpft, 
-so wären auch 100% der Coronatoten geimpft.
-Der Anteil der Coronatoten in der Allgemeinbevölkerung ist also abhängig von der Impfquote.
+so wären auch 100% der Corona-Toten geimpft.
+Der *Anteil der Corona-Toten* in der Allgemeinbevölkerung ist also *abhängig von der Impfquote*.
+Das heißt nicht (zwangsläufig), dass der Impfschutz abhängig ist von der Impfquote.
 
 Und ja, auch unter Geimpften gibt es Menschen, 
 die aufgrund (oder mit) Corona sterben. 
