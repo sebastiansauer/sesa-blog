@@ -169,7 +169,11 @@ covid_kw_41_44 %>%
 Man sieht, dass die Hospitalisierungsquote (aggregiert über den Impfstatus) bei Jugendlichen bei 1% lag, 
 bei 18-59-Jährigen bei 2% und bei den über 60-Jährigen bei 15% (Berichtszeitraum KW 41-44 diesen Jahres).
 
-Die Hospitalisierungsquote bei den *Geimpften* war jedoch höher: 3% bei den Jugendlichen, 23% bei den 18-59-Jährigen und 45% bei der Altersgruppe 60+.
+Von den hospitalisierten Personen, $H$,
+war pro Altersgruppe folgender Anteil $p$ geimpft $I$, also $p(I|H)$: 
+3% bei den Jugendlichen, 23% bei den 18-59-Jährigen und 45% bei der Altersgruppe 60+.
+Entsprechend war der restliche Anteil nicht geimpft:
+$97%$ bei den Jugendlichen, 77% bei den 18-59-Jährigen und 55% bei der Altersgruppe 60+.
 
 
 
@@ -269,11 +273,15 @@ knitr::include_graphics("https://media-exp1.licdn.com/dms/image/C4D22AQFborIm6Tn
 
 # Antwort: Der Anteil der Impfdurchbrüche ist abhängig von der Impfquote
 
-Die Kursversion der Antwort wabt schon seit einiger Zeit durch das Netz und die Nachrichten: 
-Wären 100% der Menschen geimpft, so wären auch 100% der Coronatoten geimpft.
+Die Kurzversion der Antwort wabt schon seit einiger Zeit durch das Netz und die Nachrichten: 
+Wären 100% der Menschen geimpft, 
+so wären auch 100% der Coronatoten geimpft.
 Der Anteil der Coronatoten in der Allgemeinbevölkerung ist also abhängig von der Impfquote.
 
-Und ja, auch unter Geimpften gibt es Menschen, die aufgrund (oder mit) Corona sterben. Nur sind es weniger und wenn ja, wie viele weniger?
+Und ja, auch unter Geimpften gibt es Menschen, 
+die aufgrund (oder mit) Corona sterben. 
+Nur sind es weniger als bei den Geimpften?
+Und wenn ja, wie viele weniger?
 
 
 # Frage: Wie hoch ist die Impfquote unter den Coronatoten?
@@ -287,7 +295,7 @@ An [anderer Stelle](https://www.rki.de/SharedDocs/FAQ/COVID-Impfen/FAQ_Todesfael
 >    In diesem Sicherheitsbericht des PEI heißt es: "Das Risiko für einen schweren und auch tödlichen Verlauf einer SARS-CoV-2-Infektion steigt mit steigendem Alter rapide an. Sehr alte Menschen sind am meisten gefährdet, an der Infektion zu versterben. ..."
 
 
-# Antwort: Die Impfquote unter den Coronatoten ist hoch
+# Antwort: Die Coronatoten sind mehrheitlich hochbetagt und Hochbetagte haben eine hohe Impfquote
 
 Betrachten wir die Altersverteilung der Todesfälle in Zusammenhang mit Corona [Quelle RKI 11.11.2021](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Projekte_RKI/COVID-19_Todesfaelle.html).
 
@@ -329,7 +337,7 @@ covid_deaths2 %>%
 ```
 
 
-Wie man sieht, ist eine Schätzung des mittleren Alters von Todesfällen in Zusammenhang mit einer Corona-Erkranung in der 9. Lebensdekade zu suchen.
+Wie man sieht, ist eine Schätzung des mittleren Alters von Todesfällen in Zusammenhang mit einer Corona-Erkranung etwa in der 9. Lebensdekade zu suchen.
 
 Laut dem [Impfquoten-Monitoring des RKI (Stand 15.11.2021)](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Daten/Impfquoten-Tab.html) ist in der Altersgruppe 60+ etwa ein Anteil von 85.6% geimpft. Die gleiche Zahl ist im [Impfdashboard, 15.11.21, 20.59h](https://impfdashboard.de/) zu lesen.
 
@@ -345,10 +353,13 @@ dass mehr Menschen geimpft wurden, als es die bekannten Statistiken angeben:
 >   Nach einer neuen Erhebung des Robert-Koch-Instituts (RKI) ist die Impfquote unter den Erwachsenen in Deutschland höher als bislang angenommen.
 
 
-Die Impfquote ist also womöglich etwas höher als 85.6% bei der Altersgruppe 60+: "Eine Unterschätzung der Quote von bis zu 5 Prozentpunkten war bereits zuvor berichtet worden" (RKI-2021-11-11, S. 19).
+Die Impfquote ist also womöglich etwas höher als 85.6% bei der Altersgruppe 60+: 
+"Eine Unterschätzung der Quote von bis zu 5 Prozentpunkten war bereits zuvor berichtet worden" (RKI-2021-11-11, S. 19).
 Für speziell die Altersgruppe 80+ habe ich keine Zahlen zur Impfquote gefunden.
 
-Für das folgende Rechenbeispiel gehen wir von 90% Impfquote bei den Corona-Toten aus. Auch wenn die Zahl nicht exakt stimmt (aber grob vermutlich schon), bleiben die Schlussfolgerungen gleich.
+Für das folgende Rechenbeispiel gehen wir von 90% Impfquote für die Altersgruppe 60+ aus. 
+Auch wenn die Zahl nicht exakt stimmt (aber grob vermutlich schon), 
+bleiben die Schlussfolgerungen gleich.
 
 
 # Frage: Welcher Anteil der Geimpften fände sich unter den Toten, wenn die Impfung nichts helfen würde?
@@ -364,7 +375,7 @@ wenn Händigkeit unabhängig von der Coronasterblichkeit ist,
 so sollten auch 10% der Coronatoten Linkshänder sein.
 
 
-Auf unsere Frage bezogen: Wenn der Anteil der Geimpften ca. 90% der relevante Bevölkerungsgruppe ausmacht *und* 
+Auf unsere Frage bezogen: Wenn der Anteil der Geimpften ca. 90% der relevanten Bevölkerungsgruppe ausmacht *und* 
 wenn Impfen unabhängig von der Coronasterblichkeit ist, 
 so sollten auch 90% der Coronatoten geimpft sein.
 
@@ -583,7 +594,7 @@ d %>%
 
 
 
-# Fazit: Die Impfung ist hoch wirksam
+# Fazit: Die Impfung ist hoch wirksam laut diesen Daten
 
 
 "Jeder dritte Coronatote ist geimpft!" kann suggerieren, dass die Impfung wenig nützt.
@@ -596,8 +607,46 @@ Das Resümee lautet also, dass die Impfung - basierend auf den Daten oben - hoch
 
 Medien wie die Bildzeitung fällt in diesem Zusammenhang negativ auf. 
 Solche Berichtserstattung suggeriert fälschlich, dass die Impfung geringe oder keine Wirkung habe. 
-Das ist falsch, wie wir oben gesehen haben: 
-Die Wirkung der Impfung ist stark.
+Das ist falsch, die vorliegenden Daten zeigen,
+dass Impfen eine starke Schutzwirkung hat, zumindest aktuell.
+
+Weitere Analysen anderer Kennzahlen sind nötig, 
+um zu einer "vorläufig abschließenden" Einschätzung zur Wirksamkeit von Corona zu kommen.
+Zwar liegen schon eine Reihe von Ergebnissen vor,
+aber es nicht Ziel der vorliegenden Analyse, 
+eine Synthese dieser Forschungsstränge zu versuchen.
+
+
+
+# Grenzen der Analyse
+
+Um aus einer Analyse bzw. einer Studie Schlussfolgerungen zu ziehen, 
+müssen (zumindest) zwei Abschnitte dieser Analyse überprüft werden.
+Zum einen die methodische Qualität; die Frage also, 
+ob "handwerklich" korrekt und präzise, lege artis, vorgegangen wurde.
+Zum zweiten aber auch, ob die Schlüsse,
+die aus den Ergebnissen gezogen wurden, nicht überinterpretiert wurden.
+
+Zum ersten Punkt ist zu sagen,
+dass hier z.B. nicht berücksichtigt wurde,
+dass der Impfschutz im Zeitverlauf (nach der Impfung) abnimmt.
+Aktuell weißt das RKI dazu noch keine Daten aus.
+Vielleicht gibt es aber andernorts Daten dazu;
+das habe ich nicht geprüft.
+
+Zum zweiten Punkt ist zu sagen, dass nicht aus einem Puzzlestück auf das ganze Puzzle
+geschlossen werden sollte.
+Will heißen, eine einzelne Studie berechtigt dann noch nicht dazu,
+eine breite Forschungsfrage ("Impfen hilft viel gegen Corona") zu beantworten,
+wenn noch andere, methodisch divergierende Studien, vorliegen.
+Nur in der Zusammenschau aller (oder zumindest vieler) Puzzlestücke,
+also Studienergebnisse, sollte man zu einem allgemeinem Fazit für die Forschungsfrage kommen.
+Auf Basis einer einzelnen Studie sollte man sich begrenzen mit Aussagen wie 
+"Laut dieser Studie ist Impfen wirksam gegen Corona" und 
+hinzufügen "aber da die vorliegende Studie nur einen Teilaspekt untersucht,
+sind keine abschließenden Aussagen" über die Forschungsfrage möglich.
+
+
 
 
 
