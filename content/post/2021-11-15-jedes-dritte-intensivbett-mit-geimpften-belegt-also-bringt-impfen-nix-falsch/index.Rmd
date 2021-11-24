@@ -286,7 +286,7 @@ Das heißt nicht (zwangsläufig), dass der Impfschutz abhängig ist von der Impf
 
 Und ja, auch unter Geimpften gibt es Menschen, 
 die aufgrund (oder mit) Corona sterben. 
-Nur sind es weniger als bei den Geimpften?
+Aber: Sind es weniger als bei den *Un*geimpften?
 Und wenn ja, wie viele weniger?
 
 
@@ -661,6 +661,18 @@ dass der Impfschutz im Zeitverlauf (nach der Impfung) abnimmt.
 Aktuell weißt das RKI dazu noch keine Daten aus.
 Vielleicht gibt es aber andernorts Daten dazu;
 das habe ich nicht geprüft.
+
+Es handelt sich bei dieser Analyse um Beobachtungsdaten. 
+Bei Beobachtungsdaten stellt sich immer die Frage, wie vergleichbar die beiden Gruppen (Geimpft vs. Ungeimpft) sind, 
+etwa im Hinblick auf Altersverteilung und Vorerkrankungen.
+In dem Maße, wie die Gruppen vergleichbar sind, 
+macht ein Vergleich Sinn.
+Das ist natürlich der Grund, 
+warum Experimente zu Recht als "Königsweg der Forschung" bezeichnet werden,
+da bei gut gemachten Experimenten die Vergleichbarkeit der Gruppen maximiert ist.
+Entsprechend sollte man zur Beantwortung der Forschungsfrage möglichst auf entsprechende experimentelle Daten zurückgreifen.
+
+
 
 Zum zweiten Punkt ist zu sagen, dass nicht aus einem Puzzlestück auf das ganze Puzzle
 geschlossen werden sollte.
