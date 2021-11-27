@@ -48,6 +48,10 @@ library(tidyverse)  # Datenjudo
 library(rstatix)  # EDA-Komfort
 library(forcats)  # Faktorvariablen sortieren
 library(tictoc)  # Rechenzeit messen
+library(gt)  # Tabellen im html
+library(lubridate)  # Datumsangaben
+library(ggrepel)  # Nicht überschneidende Labels
+library(corrr)   # Korrelation, tidy
 ```
 
 
@@ -214,6 +218,21 @@ hosp_latest %>%
 ```
 
 
+#### Nach Datum
+
+
+Erstellen wir ein paar weitere Variablen, die das Datum widerspiegeln:
+
+```{r}
+hosp_latest <-
+hosp_latest %>% 
+  mutate(Monat = month(Datum),
+         Woche = week(Datum),
+         Quartal = quarter(Datum),
+         Jahr = year(Datum)) %>% 
+  select(Datum, Monat, Woche, Quartal, Jahr, everything())
+```
+
 
 # Impfungen in Deutschland
 
@@ -260,6 +279,35 @@ vacc_latest %>%
        caption = "Datenquelle: RKI")
 ```
 
+
+Und hier als Vektor der Impfquoten (genauer gesagt: `Impfquote_gesamt_voll`), absteigend sortiert:
+
+```{r}
+vacc_latest_df <-
+  vacc_latest %>% 
+  filter(!Bundesland %in% c("Bundesressorts", "Deutschland")) %>% 
+  mutate(Bundesland = factor(Bundesland)) %>% 
+  select(Bundesland, Impfquote_gesamt_voll) %>% 
+  arrange(-Impfquote_gesamt_voll)
+
+vacc_latest_df %>%   
+  gt() %>% 
+  tab_options(
+              heading.align = "left"
+              )
+```
+
+
+Und wir speichern die Reihenfolge der Bundesländer nach Impfquote für spätere Verwendung in einem Vektor:
+
+
+```{r}
+bundeslaender_nach_impfquote <- 
+  vacc_latest_df %>% 
+  pull(Bundesland)
+
+bundeslaender_nach_impfquote
+```
 
 
 ## Impfquoten im Zeitverlauf
@@ -350,7 +398,7 @@ toc()
 Da das etwas Zeit kostet,
 macht es vielleicht Sinn, den Datensatz lokal abzuspeichern.
 
-```{r}
+```{r eval = FALSE}
 write_csv(vacc_time_df,
           file = "/Users/sebastiansaueruser/datasets/Covid/vacc_time_df.csv")
 ```
@@ -359,14 +407,472 @@ write_csv(vacc_time_df,
 Halt, besser noch in diesem Repo,
 damit die Daten für Sie einfach zugreifbar sind:
 
-```{r}
+```{r eval = FALSE}
 write_csv(vacc_time_df,
           file = "static/datasets/vacc_time_df.csv")
 ```
 
 
+Sie können [hier](https://raw.githubusercontent.com/sebastiansauer/sesa-blog/main/static/datasets/vacc_time_df.csv) die Daten herunterladen.
+
+
+## EDA
+
+### Impfquote Deutschland im Zeitverlauf
+
+```{r}
+vacc_time_df %>% 
+  filter(Bundesland == "Deutschland") %>% 
+  ggplot() +
+  aes(x = Datum, y = Impfquote_gesamt_voll) +
+  geom_line()
+```
+
+
+### Impfquote der Bundesländer im Zeitverlauf
+
+```{r}
+vacc_time_df %>% 
+  filter(Bundesland != "Deutschland") %>% 
+  ggplot() +
+  aes(x = Datum, y = Impfquote_gesamt_voll) +
+  geom_line() +
+  facet_wrap(~ Bundesland, nrow = 4)
+```
+
+```{r}
+vacc_time_df %>% 
+  filter(Bundesland != "Deutschland") %>% 
+  ggplot() +
+  aes(x = Datum, y = Impfquote_gesamt_voll, color = Bundesland) +
+  geom_line() +
+  scale_color_viridis_d()
+```
+
+
+Die Daten reichen von ... bis ... :
+
+```{r}
+vacc_time_df %>% 
+  filter(Datum == min(Datum)) %>% 
+  pull(Datum)
+```
+
+```{r}
+vacc_time_df %>% 
+  filter(Datum == max(Datum)) %>% 
+  pull(Datum)
+```
+
+
+
+Noch ein ganz nettes Detail:
+Sortieren wir die Legende nach der Höhe der Impfquote.
+
+
+Zuerst brauchen wir eine nach Impfquote geordnete Liste. 
+Die haben wir oben schon mal erstellt:
+
+```{r}
+bundeslaender_nach_impfquote
+```
+
+
+
+```{r}
+vacc_time_df %>% 
+  filter(Bundesland != "Deutschland") %>% 
+  ggplot() +
+  aes(x = Datum, y = Impfquote_gesamt_voll, color = Bundesland) +
+  geom_line() +
+  scale_color_viridis_d(breaks = bundeslaender_nach_impfquote)
+```
+
+
+Häufig ist es sinnvoll, Liniendiagramme mit mehreren Linien gleich mit dem passenden Label zu versehen. 
+Probieren wir das:
+
+
+```{r fig.asp = 1}
+vacc_time_df %>% 
+  filter(Bundesland != "Deutschland") %>% 
+  ggplot() +
+  aes(x = Datum, y = Impfquote_gesamt_voll, color = Bundesland) +
+  geom_line() +
+  scale_color_viridis_d(breaks = NULL) +
+  geom_label(data = vacc_time_df %>% filter(Datum == max(Datum)),
+             aes(label = Bundesland))
+```
+
+
+Hm. Die Position der Labels ist nicht gut.
+Versuchen wir, die Hälfte der Labels links im Diagramm, die andere Hälte rechts zu plotten.
+
+Bestimmen wir dazu zuerst eine Hälfte an Bundesländern;
+die, die wir links plotten:
+
+```{r}
+bl_links <- bundeslaender_nach_impfquote[c(2,4,6,8,10,12,14,16)]
+bl_rechts <- setdiff(bundeslaender_nach_impfquote,
+                     bl_links)
+```
+
+```{r}
+bl_links
+```
+
+```{r}
+bl_rechts
+```
+
+Jetzt bauen wir uns einen passenden Datensatz:
+
+```{r}
+vacc_time_labels <- 
+  vacc_time_df %>% 
+  filter(Datum == max(Datum)) %>% 
+  mutate(bl_gruppe = case_when(
+    Bundesland %in% bl_links ~ ymd("2021-09-16"),
+    TRUE ~ ymd("2021-11-23")
+  )) %>% 
+  select(Bundesland, bl_gruppe, Impfquote_gesamt_voll)
+```
+
+
+
+
+```{r fig.asp = 1}
+vacc_time_df %>% 
+  filter(Bundesland != "Deutschland") %>% 
+  ggplot() +
+  aes(x = Datum, y = Impfquote_gesamt_voll, color = Bundesland) +
+  geom_line() +
+  scale_color_viridis_d(breaks = NULL) +
+  geom_label(data = vacc_time_labels,
+             aes(label = Bundesland,
+                 x = bl_gruppe))
+```
+
+Sieht irgendwie  nicht so toll aus...
+
+
+```{r}
+vacc_time_df %>% 
+  filter(Bundesland != "Deutschland") %>% 
+  ggplot() +
+  aes(x = Datum, y = Impfquote_gesamt_voll, color = Bundesland) +
+  geom_line() +
+  scale_color_viridis_d(breaks = NULL) +
+  geom_label_repel(data = vacc_time_df %>% filter(Datum == max(Datum),
+                                                  Bundesland != "Deutschland"),
+             aes(label = Bundesland))
+```
+
+
+Hm, alles andere als perfekt. Aber lassen wir es damit gut sein und
+wenden uns wichtigeren Themen zu.
+Es ist allzu leicht, sich in (vielleicht ganz unterhaltsamen) Details zu verstricken.
+
 
 # Daten joinen
 
+"Verheiraten" wir die Daten zu Impfquoten und Hospitalisierungen.
 
-Bringen wir H
+Das geht mit einem `join`. 
+Das Argument `by` gibt den "Schlüssel" (ID) an,
+anhand dessen Zeilen aus den beiden Tabellen "verheiratet" werden.
+
+[Hier](https://github.com/gadenbuie/tidyexplain#inner-join) findet sich eine gute visuelle Erklärung.
+
+```{r}
+hosp_vacc <- 
+  hosp_latest %>% 
+  inner_join(vacc_latest %>% select(-c(Bundesland, Datum)),
+             by = c("Bundesland_Id" = "BundeslandId_Impfort"))
+```
+
+
+Beim `inner_join` werden nur Zeilen übernommen, 
+für die es in beiden Tabellen eine Entsprechung (einen Wert für die ID-Variable) gibt.
+
+
+# Zusammenhangsanalysen
+
+Vielleicht ist der wichtigste Hinweis an dieser Stelle,
+dass Beobachtungsdaten (also nicht von guten Experimenten stammend)
+keine Aussagen über Kausaleinflüsse erlauben -
+oder nur unter starken Annahmen.
+
+## Zusammenhang von Impfquote und Hospitalisierung
+
+### Im Zeitverlauf
+
+Hier stellt sich die Frage, auf welchen Zeitrahmen wir aggregieren, 
+um eine Korrelation zu berechnen?
+Je kürzer der Zeitrahmen, desto instabiler die Schätzwerte.
+Je länger der Zeitrahmen, desto mehr werden Veränderungen im Zeitverlauf unter den Teppich gekehrt.
+In so einer Situation ist es vielleicht am besten, 
+sich den Koeffizienten in hoher zeitlicher Auflösung anzuschauen,
+um dann zu entscheiden, wie sehr man aggregieren kann.
+
+```{r}
+korr_vacc_hosp <- 
+  hosp_vacc %>% 
+  select(Jahr,
+         Woche, Impfquote_gesamt_voll, 
+         Inz_7T_Hosp = `7T_Hospitalisierung_Inzidenz`) %>% 
+  filter(Jahr == 2021) %>% 
+  group_by(Woche) %>% 
+  summarise(Korr_Woche = cor(Impfquote_gesamt_voll,
+                             Inz_7T_Hosp))
+  
+```
+
+
+```{r}
+korr_vacc_hosp_joined <- 
+  korr_vacc_hosp %>% 
+  left_join(hosp_vacc %>% select(Datum, Woche, Monat, Quartal)) %>% 
+  group_by(Woche) %>% 
+  filter(row_number() == 1)
+```
+
+#### Korrelation nach Woche
+
+```{r}
+korr_vacc_hosp_joined %>% 
+  mutate(Quartal = factor(Quartal)) %>% 
+  ggplot() +
+  aes(y = Korr_Woche) +
+  geom_rect(aes(
+    x = NULL,
+    y = NULL,
+    xmin = Woche-1, 
+    xmax = Woche, 
+    ymin = -Inf,
+    ymax = +Inf,
+    fill = Quartal),
+    alpha = .5) +
+  scale_fill_manual(values = c("grey", "lightgreen", "darkgreen", "indianred4")) +
+    geom_hline(yintercept = 0, color = "white", size = 2) +
+  geom_point(alpha = .7, aes(x = Woche)) +
+  geom_line(aes(x = Woche)) +
+  labs(title = "Korrelation von Hospitalisierung und Impfquote pro Woche",
+       caption = "Quartale des Jahres 2021 sind eingefärbt. Datenquelle: RKI",
+       x = "Kalenderwoche 2021",
+       y = "Korrelation (Wochenbasis)")
+```
+
+
+Die positive Korrelation im Sommer 2021 - je mehr Impfung, desto mehr Hospitalisierung - ist vor dem Hintergrund der extrem niedrigen Inzidenzzahlen in dieser Zeit zu sehen.
+
+
+
+
+#### Korrelation nach Monat
+
+
+```{r}
+korr_vacc_hosp_monat <- 
+  hosp_vacc %>% 
+  select(Jahr,
+         Monat, 
+         Impfquote_gesamt_voll, 
+         Inz_7T_Hosp = `7T_Hospitalisierung_Inzidenz`) %>% 
+  filter(Jahr == 2021) %>% 
+  group_by(Monat) %>% 
+  summarise(Korr_Monat = cor(Impfquote_gesamt_voll,
+                             Inz_7T_Hosp))
+  
+```
+
+```{r}
+korr_vacc_hosp_monat %>% 
+  gt() %>% 
+  fmt_number(2, decimals = 2)
+```
+
+
+
+```{r}
+korr_vacc_hosp_monat_joined <- 
+  korr_vacc_hosp_monat %>% 
+  left_join(hosp_vacc %>% select(Datum, Monat, Quartal)) %>% 
+  group_by(Monat) %>% 
+  filter(row_number() == 1)
+```
+
+
+```{r}
+korr_vacc_hosp_monat_joined %>% 
+  mutate(Quartal = factor(Quartal)) %>% 
+  ggplot() +
+  aes(y = Korr_Monat) +
+  geom_rect(aes(
+    x = NULL,
+    y = NULL,
+    xmin = Monat-1, 
+    xmax = Monat, 
+    ymin = -Inf,
+    ymax = +Inf,
+    fill = Quartal),
+    alpha = .5) +
+  scale_fill_manual(values = c("grey", "lightgreen", "darkgreen", "indianred4")) +
+    geom_hline(yintercept = 0, color = "white", size = 2) +
+  geom_point(alpha = .7, aes(x = Monat)) +
+  geom_line(aes(x = Monat)) +
+  labs(title = "Korrelation von Hospitalisierung und Impfquote pro Monat",
+       caption = "Quartale des Jahres 2021 sind eingefärbt. Datenquelle: RKI",
+       x = "Kalenderwoche 2021",
+       y = "Korrelation (Wochenbasis)")
+```
+
+
+Insgesamt ergibt sich ein ähnliches Bild,
+wenn man noch Monat oder nach Woche aggregiert und dann die Korrelation jeweils berechnet.
+
+
+
+### Korrelation nach Bundesland
+
+#### November 2021
+
+```{r}
+hosp_vacc %>% 
+  filter(Monat == 11, Bundesland != "Bundesgebiet") %>% 
+  select(I = Impfquote_gesamt_voll,
+         H = `7T_Hospitalisierung_Inzidenz`,
+         B = Bundesland) %>% 
+  group_by(B) %>% 
+  summarise(I = mean(I),
+            H = mean(H)) %>% 
+  ggplot() +
+  aes(x = I,
+      y = H) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(x = "Impfquote (vollständig)",
+       y = "7Tage-Hospitalisierungsquote",
+       title = "Zusammenhang von Impfen und Hospitalisierung",
+       subtitle = "Daten für November 2021, alle Altersgruppe",
+       caption = "Datenquelle: RKI")
+```
+
+
+Fügen wir noch die Namen der Bundesländer zu den Punkten hinzu, aber vielleicht besser die Kurzform der Namen. 
+
+
+```{r}
+state_names <- 
+  tibble::tribble(
+    ~Bundesland, ~Kurzform,                          ~state,
+    "Deutschland",      "DE",                       "Germany",
+    "Baden-Württemberg",      "BW",             "Baden-Württemberg",
+    "Bayern",      "BY",          "Bavaria (FreeState)",
+    "Berlin",      "BE",                        "Berlin",
+    "Brandenburg",      "BB",                   "Brandenburg",
+    "Bremen",      "HB",       "Bremen (Hanseatic City)",
+    "Hamburg",      "HH",      "Hamburg (Hanseatic City)",
+    "Hessen",      "HE",                         "Hesse",
+    "Mecklenburg-Vorpommern",      "MV", "Mecklenburg-Western Pomerania",
+    "Niedersachsen",      "NI",                  "Lower Saxony",
+    "Nordrhein-Westfalen",      "NW",        "North Rhine-Westphalia",
+    "Rheinland-Pfalz",      "RP",          "Rhineland-Palatinate",
+    "Saarland",      "SL",                      "Saarland",
+    "Sachsen",      "SN",           "Saxony (Free tate)",
+    "Sachsen-Anhalt",      "ST",                 "Saxony-Anhalt",
+    "Schleswig-Holstein",      "SH",            "Schleswig-Holstein",
+    "Thüringen",      "TH",        "Thuringia (Free State)",
+    "Bundesgebiet",                "De", "Federal area"
+  )
+
+```
+
+
+[Quelle](https://www.destatis.de/DE/Methoden/abkuerzung-bundeslaender-DE-EN.html)
+
+Joinen wir die Kürzel der Bundesländer:
+
+```{r}
+hosp_vacc2 <- 
+  hosp_vacc %>% 
+  left_join(state_names)
+```
+
+
+```{r}
+hosp_vacc_bundesland_nov <- 
+hosp_vacc %>% 
+  filter(Monat == 11, Bundesland != "Bundesgebiet") %>% 
+  select(I = Impfquote_gesamt_voll,
+         H = `7T_Hospitalisierung_Inzidenz`,
+         Bundesland) %>% 
+  group_by(Bundesland) %>% 
+  summarise(I = mean(I),
+            H = mean(H)) %>% 
+  left_join(state_names)
+
+
+hosp_vacc_bundesland_nov %>% 
+  ggplot() +
+  aes(x = I,
+      y = H) +
+  geom_point(alpha = .5) +
+  geom_smooth(method = "lm") +
+  labs(x = "Impfquote (vollständig)",
+       y = "7Tage-Hospitalisierungsquote",
+       title = "Zusammenhang von Impfen und Hospitalisierung",
+       subtitle = "Daten für November 2021, alle Altersgruppe",
+       caption = "Datenquelle: RKI") +
+  geom_text(aes(label = Kurzform))
+```
+
+
+### Pro Quartal
+
+Aggregieren wir den Dantesatz pro Quartal und pro Bundesland;:
+
+```{r}
+hosp_vacc_bundesland_pro_Quartal <- 
+hosp_vacc %>% 
+  filter(Bundesland != "Bundesgebiet") %>% 
+  select(I = Impfquote_gesamt_voll,
+         H = `7T_Hospitalisierung_Inzidenz`,
+         Bundesland,
+         Quartal) %>% 
+  group_by(Bundesland, Quartal) %>% 
+  summarise(I = mean(I),
+            H = mean(H)) %>% 
+  left_join(state_names)
+```
+
+
+Dann erstellen wir das letzte Diagramm, aber dieses Mal eines pro Quartal:
+
+```{r}
+Quartal_values <- c("1. Quartal", "2. Quartal",
+                           "3. Quartal", "4. Quartal")
+names(Quartal_values) <- c(1:4)
+
+
+hosp_vacc_bundesland_pro_Quartal %>% 
+  ggplot() +
+  aes(x = I,
+      y = H) +
+  geom_point(alpha = .5) +
+  geom_smooth(method = "lm") +
+  labs(x = "Impfquote (vollständig)",
+       y = "7Tage-Hospitalisierungsquote",
+       title = "Zusammenhang von Impfen und Hospitalisierung",
+       subtitle = "Aufgeteilt nach Quartale, aggregiert über alle Altersgruppe",
+       caption = "Datenquelle: RKI") +
+  geom_text(aes(label = Kurzform)) +
+facet_wrap(~ Quartal, labeller = labeller(Quartal = Quartal_values))
+````
+
+
+Wir sehen, dass es im 3. Quartal in der Inzidenz kaum Streuung gibt, was die sehr geringe Korrelation erklärt.
+
+
+
+
