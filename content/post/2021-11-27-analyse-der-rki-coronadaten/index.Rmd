@@ -19,7 +19,6 @@ editor_options:
 ---
 
 
-# Setup
 
 
 ```{r global-knitr-options, include=FALSE}
@@ -33,14 +32,14 @@ editor_options:
   #fig.path = "chunk-img/",
   dpi = 300,
   # tidy = TRUE,
-  echo = FALSE,
+  echo = TRUE,
   message = FALSE,
   warning = FALSE,
-  cache = FALSE,
+  cache = TRUE,
   fig.show = "hold")
 ```
 
-## R-Pakete
+# R-Pakete
 
 ```{r include=FALSE}
 library(rcrossref)  # zitieren
@@ -52,6 +51,7 @@ library(gt)  # Tabellen im html
 library(lubridate)  # Datumsangaben
 library(ggrepel)  # Nicht überschneidende Labels
 library(corrr)   # Korrelation, tidy
+library(dagitty)  # Kausalanalyse
 ```
 
 
@@ -304,7 +304,8 @@ Und wir speichern die Reihenfolge der Bundesländer nach Impfquote für spätere
 ```{r}
 bundeslaender_nach_impfquote <- 
   vacc_latest_df %>% 
-  pull(Bundesland)
+  pull(Bundesland) %>% 
+  fct_inorder()  # Faktorstufen ordnen entsprechend ihrer empirischen Reihenfolge
 
 bundeslaender_nach_impfquote
 ```
@@ -386,7 +387,7 @@ Könnte klappen...
 
 Jetzt "mappen" wir auf jeden Dateinamen die Funktion `read_csv`:
 
-```{r}
+```{r load-many-csvs}
 tic()
 vacc_time_df <- 
   vacc_time_files_w_path %>% 
@@ -431,13 +432,13 @@ vacc_time_df %>%
 
 ### Impfquote der Bundesländer im Zeitverlauf
 
-```{r}
+```{r fig.asp = 1.3}
 vacc_time_df %>% 
-  filter(Bundesland != "Deutschland") %>% 
+  filter(!Bundesland %in% c("Deutschland", "Bundesressorts")) %>% 
   ggplot() +
   aes(x = Datum, y = Impfquote_gesamt_voll) +
   geom_line() +
-  facet_wrap(~ Bundesland, nrow = 4)
+  facet_wrap(~ Bundesland, ncol = 4)
 ```
 
 ```{r}
@@ -493,7 +494,7 @@ Häufig ist es sinnvoll, Liniendiagramme mit mehreren Linien gleich mit dem pass
 Probieren wir das:
 
 
-```{r fig.asp = 1}
+```{r fig.asp = 1.5}
 vacc_time_df %>% 
   filter(Bundesland != "Deutschland") %>% 
   ggplot() +
@@ -501,43 +502,13 @@ vacc_time_df %>%
   geom_line() +
   scale_color_viridis_d(breaks = NULL) +
   geom_label(data = vacc_time_df %>% filter(Datum == max(Datum)),
-             aes(label = Bundesland))
+             aes(label = Bundesland),
+             size = 2)
 ```
 
 
-Hm. Die Position der Labels ist nicht gut.
-Versuchen wir, die Hälfte der Labels links im Diagramm, die andere Hälte rechts zu plotten.
-
-Bestimmen wir dazu zuerst eine Hälfte an Bundesländern;
-die, die wir links plotten:
-
-```{r}
-bl_links <- bundeslaender_nach_impfquote[c(2,4,6,8,10,12,14,16)]
-bl_rechts <- setdiff(bundeslaender_nach_impfquote,
-                     bl_links)
-```
-
-```{r}
-bl_links
-```
-
-```{r}
-bl_rechts
-```
-
-Jetzt bauen wir uns einen passenden Datensatz:
-
-```{r}
-vacc_time_labels <- 
-  vacc_time_df %>% 
-  filter(Datum == max(Datum)) %>% 
-  mutate(bl_gruppe = case_when(
-    Bundesland %in% bl_links ~ ymd("2021-09-16"),
-    TRUE ~ ymd("2021-11-23")
-  )) %>% 
-  select(Bundesland, bl_gruppe, Impfquote_gesamt_voll)
-```
-
+Hm. Die Position der Labels ist nicht gut. 
+Vielleicht etwas dezenter?   
 
 
 
@@ -548,12 +519,17 @@ vacc_time_df %>%
   aes(x = Datum, y = Impfquote_gesamt_voll, color = Bundesland) +
   geom_line() +
   scale_color_viridis_d(breaks = NULL) +
-  geom_label(data = vacc_time_labels,
-             aes(label = Bundesland,
-                 x = bl_gruppe))
+  geom_text(data = vacc_time_df %>% filter(Datum == max(Datum),
+                                           Bundesland != "Deutschland"),
+             aes(label = Bundesland),
+             size = 2,
+             nudge_x = +5)
 ```
 
-Sieht irgendwie  nicht so toll aus...
+Naja, ok.
+
+
+Oder vielleicht mit `geom_label_repel()`, das versucht, Überschneidungen der Labels zu verhindern:
 
 
 ```{r}
@@ -785,7 +761,12 @@ state_names <-
     "Thüringen",      "TH",        "Thuringia (Free State)",
     "Bundesgebiet",                "De", "Federal area"
   )
+```
 
+
+```{r}
+state_names %>% 
+  gt()
 ```
 
 
@@ -800,7 +781,7 @@ hosp_vacc2 <-
 ```
 
 
-```{r}
+```{r hosp-vacc-bl-nov}
 hosp_vacc_bundesland_nov <- 
 hosp_vacc %>% 
   filter(Monat == 11, Bundesland != "Bundesgebiet") %>% 
@@ -810,7 +791,7 @@ hosp_vacc %>%
   group_by(Bundesland) %>% 
   summarise(I = mean(I),
             H = mean(H)) %>% 
-  left_join(state_names)
+  left_join(state_names %>% select(-state))
 
 
 hosp_vacc_bundesland_nov %>% 
@@ -828,13 +809,22 @@ hosp_vacc_bundesland_nov %>%
 ```
 
 
-### Pro Quartal
-
-Aggregieren wir den Dantesatz pro Quartal und pro Bundesland;:
+Und so sieht die zugehörige Tabelle aus:
 
 ```{r}
+hosp_vacc_bundesland_nov %>% 
+  gt() %>% 
+  fmt_number(3, decimals = 2)
+```
+
+
+### Pro Quartal
+
+Aggregieren wir den Datensatz pro Quartal und pro Bundesland;:
+
+```{r hosp-vacc-bundes-land-aggr}
 hosp_vacc_bundesland_pro_Quartal <- 
-hosp_vacc %>% 
+  hosp_vacc %>% 
   filter(Bundesland != "Bundesgebiet") %>% 
   select(I = Impfquote_gesamt_voll,
          H = `7T_Hospitalisierung_Inzidenz`,
@@ -847,14 +837,31 @@ hosp_vacc %>%
 ```
 
 
-Dann erstellen wir das letzte Diagramm, aber dieses Mal eines pro Quartal:
-
+So sieht die zugehörige Tabelle aus (die ersten paar Zeilen)
 ```{r}
+hosp_vacc_bundesland_pro_Quartal %>% 
+  ungroup() %>% 
+  slice_head(n = 10) %>% 
+  gt() %>% 
+  fmt_number(3, decimals = 2)
+```
+
+
+
+Dann updaten wir das letzte Diagramm, nur eben dieses Mal erstellen pro Quartal ein Diagramm.
+
+Zuvor legen wir noch schönere Bezeichnungen der Facetten an, nicht nur 1,2,3,4, sondern "1. Quartal, "2. Quartal" etc.:
+
+
+```{r quartal-values}
 Quartal_values <- c("1. Quartal", "2. Quartal",
-                           "3. Quartal", "4. Quartal")
+                    "3. Quartal", "4. Quartal")
 names(Quartal_values) <- c(1:4)
+```
 
+Ansonsten ist es das gleiche Vorgehen wie eben auch:
 
+```{r corr-bundesland-quartal, eval = TRUE, fig.asp = 1.5}
 hosp_vacc_bundesland_pro_Quartal %>% 
   ggplot() +
   aes(x = I,
@@ -867,12 +874,156 @@ hosp_vacc_bundesland_pro_Quartal %>%
        subtitle = "Aufgeteilt nach Quartale, aggregiert über alle Altersgruppe",
        caption = "Datenquelle: RKI") +
   geom_text(aes(label = Kurzform)) +
-facet_wrap(~ Quartal, labeller = labeller(Quartal = Quartal_values))
-````
-
-
-Wir sehen, dass es im 3. Quartal in der Inzidenz kaum Streuung gibt, was die sehr geringe Korrelation erklärt.
+  facet_wrap(~ Quartal, labeller = labeller(Quartal = Quartal_values))
+```
 
 
 
+Wir sehen, dass es im 3. Quartal in der Inzidenz kaum Streuung gibt, 
+was die sehr geringe Korrelation erklärt.
+
+
+# Fazit zum Zusammenhang von Hospitalisierung und Impfquote
+
+
+## Deskriptiv
+
+Es fand sich ein negativer Zusammenhang von Hospitalisierung und Impfquote. Nur im Sommer, 
+als die Hospitalisierung praktisch Null war und daher keine Streuung aufwies, 
+fand sich (eine mathematisch notwendige Konsequenz) fast keine Korrelation.
+
+
+## Aber worum geht es uns eigentlich?
+
+Warum haben wir uns überhaupt für die Frage nach dem Zusammenhang von Impfquote und Hospitalisierung interessiert?
+Interessiert uns *allein* der *deskriptive* Sachverhalt des Kovariierens der beiden Größen?
+Ich glaube nicht.
+Wenn wir hören, dass "Störche und Babies korreliert sind",
+und vielleicht sogar Schmunzeln beim Gedanken,
+"wenn es viele Störche gibt, dann gibt es auch viele Babies (und umgekehrt)",
+haben wir eine *kausale* Verbindung,
+einen ursächlichen Einfluss von Störchen auf Babies im Kopf.
+Ich meine, nur deswegen finden wir den Zusammenhang interessant.
+Unser Kopf (unsere Wahrnehmung) hat einen Filter für kausale Einflüsse.
+Evolutionär kann man das sicher gut erklären:
+Wenn man weiß, was die Ursache für ein Problem ist,
+hat bessere Karten, das Problem zu lösen,
+als derjenige, der keinen Schimmer hat, 
+warum die Dinge gerade schieflaufen.
+Unser Hirn muss, könnte man aus evolutionäre Sicht behaupten,
+auf Kausalzusammenhänge getrimmt sein.
+
+Deswegen, meine ich, interessieren wir uns für den Zusammenhang
+von Impfquote und Inzidenz (der Hospitalisierung).
+Wir sind, naturgemäß und einsichtigerweise,
+sehr an dieser Frage interessiert, es ist eine sehr wichtige Frage.
+
+Allerdings: aus Korrelation kann man nicht einfach so Kausalzusammenhänge ableiten.
+
+Anders gesagt,
+wenn wir - vielleicht nur implizit - glauben, 
+die Impfquote I ist die (eine) Ursache von Hospitalisierung H,
+haben wir z.B. dieses Kausalmodell im Kopf:
+
+
+
+### Kausalmodell 1
+
+Kausalmodelle kann man mit *Directed Acyclic Graphs* (DAGs) darstellen.
+
+Also, ein Modell, das mit unserem impliziten Kausalmodell d'accord geht,
+sagt, sinngemäß:
+
+"Die Hospitalisierungsquote H wird von der Impfquote H beeinflusst.
+Natürlich spielen weitere, unbekannte Faktoren U eine Rolle;
+die haben aber nichts mit H zu tun."
+
+Als DAG:
+
+```{r}
+dag1 <-
+  dagitty(
+    'dag {
+    I [pos = "0,1"]
+    H [pos = "1,0"]
+    U [pos = "0, -1"]
+    I -> H
+    U -> H
+    }
+    '
+  )
+plot(dag1)
+
+```
+
+
+Nur wenn U nichts mit I zu tun hat (zumindest in einem bestimmten Sinn nichts zu tun hat),
+können wir mit der Korrelation von I und H den kausalen Effekt wahrnehmen,
+dem wir vermutlich auf der Fährte sind,
+zumindest ist das ein lohnendes Ziel.
+
+### Kausalmodell 2
+
+Allerdings könnte die Wahrheit auch so aussehen:
+
+
+
+
+```{r}
+dag2 <-
+  dagitty(
+    'dag {
+    I [pos = "0,1"]
+    H [pos = "1,0"]
+    U1 [pos = "0, -1"]
+    U2 [pos = "-1,0"]
+    I -> H
+    U1 -> H
+    U2 -> U1
+    U2 -> I
+    }
+    '
+  )
+plot(dag2)
+```
+
+
+Jetzt ist die Korrelation (allgemeiner: der statistische Zusammenhang) von I mit H nicht mehr so unbedarft.
+U2 hat seine Finger im Spiel.
+U1 ist nämlich über U2 (eine weitere unbekannte oder ungemessene Größe) mit I (und weiter nach H) verbunden.
+Man spricht von einer *Konfundierung*:
+In der Assoziation von I mit H mischt sich ein weiterer kausaler Pfad:
+Der von U1->U2->I->H.
+Damit ist die Assoziation  von I mit H die Summe (oder besser: die Mischung) von zwei Pfaden und man kann nicht ohne Weiteres sagen,
+welcher Pfad wieviel der Assoziation versursacht.
+Schlechte Nachrichten.
+Wenn wir aber U1 und U2 messen können, 
+können wir wiederum Hoffnung schöpfen,
+die kausalen Pfade klar zu ziehen.
+
+
+### Interpretation hängt vom Kausalmodell ab
+
+Ob wir also diese (oder eine andere) Korrelation interpretieren können 
+(und interpretieren, so glaube ich, ist oft oder in hohem Maße eine kausale Sache) hängt vom Kausalmodell ab, 
+an das wir glauben.
+
+Natürlich sind noch viele andere Kausalmodelle denkbar.
+Ja, die Sache ist kompliziert.
+
+Das ist übrigens der Grund, 
+warum die Menschen Experimente erfunden haben.
+Mit Experimenten kann man diese gordischen Kausalknoten durchschneiden,
+und dann vergleichsweise einfach die Kausalstrukturen klären.
+Leider sind Experimente nicht immer möglich.
+
+Glücklicherweise im Fall der Frage 
+"Was bringt Impfen gegen Corona?" schon.
+Da gibt es Experimente, die diese Frage untersuchen.
+Vermutlich sind diese Studien die besten Möglichkeiten,
+die kausale Frage nach der Wirksamkeit von Impfung zu klären.
+
+Natürlich, wenn man an ein Kausalmodell glaubt - bzw. es gut begründen kann - das die Vergleichbarkeit der Gruppen nahelegt, 
+dann ist wieder alles gut. 
+Wir wären also zurück beim Kausalmodell 1, oben.
 
