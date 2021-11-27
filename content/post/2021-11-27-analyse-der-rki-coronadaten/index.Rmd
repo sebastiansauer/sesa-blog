@@ -1027,3 +1027,53 @@ Natürlich, wenn man an ein Kausalmodell glaubt - bzw. es gut begründen kann - 
 dann ist wieder alles gut. 
 Wir wären also zurück beim Kausalmodell 1, oben.
 
+
+## Interpretation hängt von der gesamten Befundlage ab
+
+Eine schwierige Frage zu beantworten sollte nicht auf Basis einer einzelnen Studie, 
+gerade wenn diese verschiedene Kausalinterpretationen erlaubt, passieren.
+Die "Gesamtantwort" muss im Lichte der Zusammenschau aller verfügbaren Ergebnissen geschehen.
+Das ist das Gleiche wie zu sagen,
+dass man ein Puzzle nicht anhand eines einzelnen Puzzlestücks einschätzen kann (in aller Regel).
+
+
+
+Was die Wirksamkeit der Corona-Impfung betrifft,
+sprechen die verfügbaren Daten, vor allem die aus hoch qualitativen Studien,
+zugunsten der Wirksamkeit der Impfung.
+
+Beispiele für hoch qualitative Studien zur Wirksamkeit der Corona-Impfung sind z.B. [hier](https://www.zotero.org/groups/4519707/covid_vaccination_effects) zu finden.
+
+
+
+Leider ist Corona so eine Art Puzzle, 
+das (durch Mutationen des Genoms) seine Form andauernd und vielleicht sogar massiv ändern kann.
+Und natürlich sind noch viele Fragen zur Biologie des Virus offen.
+So muss ein Fazit in diesem wie in vielen Fällen vorläufig bleiben.
+
+Immerhin haben wir die Impfung, die, in Zusammenschau der verfügbaren Daten,
+offenbar - Stand heute - hoch wirksam ist.
+In so kurzer Zeit eine so wirksame Therapie entwickelt zu haben,
+ist vermutlich ein großer, vielleicht historischer Erfolg,
+der Wissenschaft.
+
+
+
+## Notiz zum Umgang mit Fehlinformationen
+
+
+Leider kursieren eine Menge von Fehlinformationen zum Thema Corona-Impfung (im Internet).
+Eine ausführliche Beschäftigung damit würde den Rahmen dieses Posts sprengen.
+Nur zwei Notizen zu den Methoden, die gerne verwendet werden.
+Zum einen wird ein Befund herausgegriffen und verabsolutiert.
+Es wird nicht versucht, eine Zusammenschau von Informationen anzustrengend.
+Zum anderen wird gerne ein "Fakt" berichtet - etwa zur Frage, wie wirksam eine Corona-Impfung ist,
+der zwar nicht falsch ist, aber Wesentliches außen vor lässt.
+So wird vielleicht von einer möglichen Ursache gesprochen, 
+aber eine zweite außen vorgelassen.
+Oder es wird von einem Fall mit schweren Nebenwirkungen einer Impfung berichtet, aber nicht davon,
+dass eine viel größere Zahl von Menschenleben durch die Impfung gerettet wurde.
+
+Zum Glück gibt es auch viele gute Berichtserstattung, z.B. - eine Replik auf einen Fall ähnlich gelagert zu dem gerade Beschriebenen - [hier](https://www.tagesschau.de/faktenfinder/impfquote-uebersterblichkeit-101.html).
+
+
