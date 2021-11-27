@@ -1,5 +1,5 @@
 ---
-title: Analyse der RKI-Coronadaten
+title: Analyse einiger RKI-Coronadaten
 author: Sebastian Sauer
 date: '2021-11-27'
 slug: analyse-der-rki-coronadaten
