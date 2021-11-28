@@ -1,5 +1,5 @@
 ---
-title: Analyse einiger RKI-Coronadaten
+title: "Analyse einiger RKI-Coronadaten: Eine reproduzierbare Fallstudie"
 author: Sebastian Sauer
 date: '2021-11-27'
 slug: analyse-der-rki-coronadaten
@@ -75,8 +75,9 @@ editor_options:
 <li><a href="#kausalmodell-2"><span class="toc-section-number">8.2.2</span> Kausalmodell 2</a></li>
 <li><a href="#interpretation-hängt-vom-kausalmodell-ab"><span class="toc-section-number">8.2.3</span> Interpretation hängt vom Kausalmodell ab</a></li>
 </ul></li>
-<li><a href="#interpretation-hängt-von-der-gesamten-befundlage-ab"><span class="toc-section-number">8.3</span> Interpretation hängt von der gesamten Befundlage ab</a></li>
-<li><a href="#notiz-zum-umgang-mit-fehlinformationen"><span class="toc-section-number">8.4</span> Notiz zum Umgang mit Fehlinformationen</a></li>
+<li><a href="#wo-sind-hier-die-modelle"><span class="toc-section-number">8.3</span> Wo sind hier die Modelle?</a></li>
+<li><a href="#interpretation-hängt-von-der-gesamten-befundlage-ab"><span class="toc-section-number">8.4</span> Interpretation hängt von der gesamten Befundlage ab</a></li>
+<li><a href="#notiz-zum-umgang-mit-fehlinformationen"><span class="toc-section-number">8.5</span> Notiz zum Umgang mit Fehlinformationen</a></li>
 </ul></li>
 </ul>
 </div>
@@ -2851,8 +2852,66 @@ dann ist wieder alles gut.
 Wir wären also zurück beim Kausalmodell 1, oben.</p>
 </div>
 </div>
-<div id="interpretation-hängt-von-der-gesamten-befundlage-ab" class="section level2" number="8.3">
-<h2><span class="header-section-number">8.3</span> Interpretation hängt von der gesamten Befundlage ab</h2>
+<div id="wo-sind-hier-die-modelle" class="section level2" number="8.3">
+<h2><span class="header-section-number">8.3</span> Wo sind hier die Modelle?</h2>
+<p>Wär es jetzt nicht allerhöchste Zeit,
+mit dem Modellieren anzufangen?
+Eine paar ausgefeilte Regressionsmodelle zu prüfen?
+An sich ja.
+Leider gibt es zwei Probleme.
+Erstens muss man weitere Daten, also Kennwerte weiterer Messgrößen (Variablen) haben,
+die man dann in einer multiplen Analyse (eine Regression mit mehreren Prädiktoren) untersuchen kann.
+Und natürlich nicht irgendwelche Daten, sondern “die richtigen”.
+Das führt uns zum zweiten Problem.
+Die verbreitete Praxis, alle Daten, die man hat,
+in ein Regressionsmodell zu “kippen” und dann das Beste zu hoffen,
+ist der falsche Weg.</p>
+<p>Das Hinzunehmen von Prädiktoren ohne ein stimmiges Kausalmodell
+kann genauso viel schaden wie nützen.</p>
+<p>Anders gesagt: Ohne ein (stimmiges) Kausalmodell kann man sich
+das Modellieren schenken,
+wenn es darum geht, “echte Effekte”,
+Kausaleffekte also, zu schätzen.</p>
+<p>Geht es einem hingegen “nur” darum,
+vorhersagen zu machen,
+etwa “Wie viele Coronafälle sind für nächste Woche zu erwarten?”,
+dann ist kein Kausalmodell nötig (obwohl auch nützlich).
+Vorhersagen kann man anhand rein statistischer Zusammenhänge tätigen.
+In der Regel geht es einem aber
+(in solchen Situationen wie der hier untersuchten Forschungsfrage)
+um kausale Fragen, die ohne ein Kausalmodell kaum zu beantworten sind.</p>
+<p>Natürlich könnte man argumentieren,
+ein Kausalmodell sei einem wurscht,
+man will sich nur an den statistischen Zusammenhängen erfreuen.
+So eine Behauptung gleicht der Aussage,
+man interessiere sich “einfach so” für den
+Zusammenhang von Störchen und Babies.</p>
+<p><img src="https://de.wikipedia.org/wiki/Scheinkorrelation#/media/Datei:Scheinkorrelation_Storchenpopulation_Geburtenzahl.jpg" width="100%" style="display: block; margin: auto;" /></p>
+<p><a href="https://commons.wikimedia.org/wiki/File:Scheinkorrelation_Storchenpopulation_Geburtenzahl.jpg">Quelle: Herbert Kuhl, Wikimedia</a></p>
+<p>Etwas Googeln liefert ein paar weitere schöne Beispiele
+für Korrelationen ohne Anspruch an Kausalität:</p>
+<ul>
+<li>Höhe des Deutschen Meisters im Stabhochsprung bei den Deutschen Hallenmeisterschaften und Anzahl der für Versuche und andere wissenschaftliche Zwecke verwendeten Kaninchen</li>
+<li>Geldvermögen der privaten Haushalte (orange) und Zahl der Patienten, die aus Krankenhäusern entlassen wurden und bei denen “Bestimmte infektiöse und parasitäre Krankheiten” diagnostiziert wurden</li>
+<li>Beschäftigte auf Campingplätzen und Erntemenge von Gurken auf dem Freiland</li>
+</ul>
+<p><a href="https://scheinkorrelation.jimdofree.com/">Quelle</a></p>
+<p>In allen diesen Beispielen fand sich eine (fast) perfekte Korrelation (0.9-1).
+Es fällt mir schwer,
+mir vorzustellen,
+dass man sich “rein deskriptiv” für diese Zusammenhänge interessiert.</p>
+<p>Kurz gesagt: Modellieren macht nur Sinn,
+wenn man ein Kausalmodell hat;
+zumindest wenn man eine kausale Frage beantworten möchte.</p>
+<p>Ich will nicht abstreiten,
+dass es hier nicht möglich wäre,
+ein stimmiges Kausalmodell zu erstellen.
+Allerdings ist sehr viel mehr Wissen nötig
+als eine einfache Korrelation.</p>
+<p>Für die Zwecke dieser Fallstudie lassen wir es an dieser Stelle bewenden.</p>
+</div>
+<div id="interpretation-hängt-von-der-gesamten-befundlage-ab" class="section level2" number="8.4">
+<h2><span class="header-section-number">8.4</span> Interpretation hängt von der gesamten Befundlage ab</h2>
 <p>Eine schwierige Frage zu beantworten sollte nicht auf Basis einer einzelnen Studie,
 gerade wenn diese verschiedene Kausalinterpretationen erlaubt, passieren.
 Die “Gesamtantwort” muss im Lichte der Zusammenschau aller verfügbaren Ergebnissen geschehen.
@@ -2872,8 +2931,8 @@ In so kurzer Zeit eine so wirksame Therapie entwickelt zu haben,
 ist vermutlich ein großer, vielleicht historischer Erfolg,
 der Wissenschaft.</p>
 </div>
-<div id="notiz-zum-umgang-mit-fehlinformationen" class="section level2" number="8.4">
-<h2><span class="header-section-number">8.4</span> Notiz zum Umgang mit Fehlinformationen</h2>
+<div id="notiz-zum-umgang-mit-fehlinformationen" class="section level2" number="8.5">
+<h2><span class="header-section-number">8.5</span> Notiz zum Umgang mit Fehlinformationen</h2>
 <p>Leider kursieren eine Menge von Fehlinformationen zum Thema Corona-Impfung (im Internet).
 Eine ausführliche Beschäftigung damit würde den Rahmen dieses Posts sprengen.
 Nur zwei Notizen zu den Methoden, die gerne verwendet werden.

@@ -1,5 +1,5 @@
 ---
-title: Analyse einiger RKI-Coronadaten
+title: "Analyse einiger RKI-Coronadaten: Eine reproduzierbare Fallstudie"
 author: Sebastian Sauer
 date: '2021-11-27'
 slug: analyse-der-rki-coronadaten
@@ -1026,6 +1026,87 @@ die kausale Frage nach der Wirksamkeit von Impfung zu klären.
 Natürlich, wenn man an ein Kausalmodell glaubt - bzw. es gut begründen kann - das die Vergleichbarkeit der Gruppen nahelegt, 
 dann ist wieder alles gut. 
 Wir wären also zurück beim Kausalmodell 1, oben.
+
+
+
+
+## Wo sind hier die Modelle?
+
+
+Wär es jetzt nicht allerhöchste Zeit,
+mit dem Modellieren anzufangen?
+Eine paar ausgefeilte Regressionsmodelle zu prüfen?
+An sich ja.
+Leider gibt es zwei Probleme.
+Erstens muss man weitere Daten, also Kennwerte weiterer Messgrößen (Variablen) haben,
+die man dann in einer multiplen Analyse (eine Regression mit mehreren Prädiktoren) untersuchen kann.
+Und natürlich nicht irgendwelche Daten, sondern "die richtigen".
+Das führt uns zum zweiten Problem.
+Die verbreitete Praxis, alle Daten, die man hat,
+in ein Regressionsmodell zu "kippen" und dann das Beste zu hoffen,
+ist der falsche Weg.
+
+Das Hinzunehmen von Prädiktoren ohne ein stimmiges Kausalmodell
+kann genauso viel schaden wie nützen.
+
+Anders gesagt: Ohne ein (stimmiges) Kausalmodell kann man sich
+das Modellieren schenken,
+wenn es darum geht, "echte Effekte", 
+Kausaleffekte also, zu schätzen.
+
+Geht es einem hingegen "nur" darum,
+vorhersagen zu machen,
+etwa "Wie viele Coronafälle sind für nächste Woche zu erwarten?",
+dann ist kein Kausalmodell nötig (obwohl auch nützlich).
+Vorhersagen kann man anhand rein statistischer Zusammenhänge tätigen.
+In der Regel geht es einem aber 
+(in solchen Situationen wie der hier untersuchten Forschungsfrage)
+um kausale Fragen, die ohne ein Kausalmodell kaum zu beantworten sind.
+
+Natürlich könnte man argumentieren,
+ein Kausalmodell sei einem wurscht,
+man will sich nur an den statistischen Zusammenhängen erfreuen.
+So eine Behauptung gleicht der Aussage,
+man interessiere sich "einfach so" für den
+Zusammenhang von Störchen und Babies.
+
+
+```{r echo = FALSE}
+knitr::include_graphics("https://de.wikipedia.org/wiki/Scheinkorrelation#/media/Datei:Scheinkorrelation_Storchenpopulation_Geburtenzahl.jpg")
+```
+
+[Quelle: Herbert Kuhl, Wikimedia](https://commons.wikimedia.org/wiki/File:Scheinkorrelation_Storchenpopulation_Geburtenzahl.jpg)
+
+
+Etwas Googeln liefert ein paar weitere schöne Beispiele
+für Korrelationen ohne Anspruch an Kausalität:
+
+- Höhe des Deutschen Meisters im Stabhochsprung bei den Deutschen Hallenmeisterschaften und Anzahl der für Versuche und andere wissenschaftliche Zwecke verwendeten Kaninchen 
+- Geldvermögen der privaten Haushalte (orange) und Zahl der Patienten, die aus Krankenhäusern entlassen wurden und bei denen "Bestimmte infektiöse und parasitäre Krankheiten" diagnostiziert wurden
+- Beschäftigte auf Campingplätzen und Erntemenge von Gurken auf dem Freiland
+
+[Quelle](https://scheinkorrelation.jimdofree.com/)
+
+In allen diesen Beispielen fand sich eine (fast) perfekte Korrelation (0.9-1).
+Es fällt mir schwer, 
+mir vorzustellen,
+dass man sich "rein deskriptiv" für diese Zusammenhänge interessiert.
+
+Kurz gesagt: Modellieren macht nur Sinn,
+wenn man ein Kausalmodell hat;
+zumindest wenn man eine kausale Frage beantworten möchte.
+
+
+Ich will nicht abstreiten,
+dass es hier nicht möglich wäre,
+ein stimmiges Kausalmodell zu erstellen.
+Allerdings ist sehr viel mehr Wissen nötig
+als eine einfache Korrelation.
+
+Für die Zwecke dieser Fallstudie lassen wir es an dieser Stelle bewenden.
+
+
+
 
 
 ## Interpretation hängt von der gesamten Befundlage ab
