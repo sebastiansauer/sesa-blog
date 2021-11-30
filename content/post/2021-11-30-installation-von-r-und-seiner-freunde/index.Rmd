@@ -20,7 +20,7 @@ editor_options:
 # Überblick
 
 
-Wir wollen uns hier nicht mit Fragen beschäftigen [Warum R?]() (und auch nicht mit [Warum, R?]()).
+Wir wollen uns hier nicht mit Fragen beschäftigen [Warum R?](https://www.r-bloggers.com/2014/03/why-use-r-five-reasons/) (und auch nicht mit [Warum, R?](https://www.burns-stat.com/pages/Tutor/R_inferno.pdf)).
 Stattdessen soll Ihnen diese Seite helfen, R und was sonst noch so dazu gehört, zu installieren.
 
 Wenn man lose von "R" spricht, meint man eigentlich neben R noch zusätzlich Software:
@@ -33,7 +33,7 @@ Wenn man lose von "R" spricht, meint man eigentlich neben R noch zusätzlich Sof
 
 
 Im Folgenden ist für diese Punkte jeweils eine kurze Erklärung gegeben.
-Verzage nicht: Im Internet finden sich viele Ort, da werden Sie geholfen, 
+Verzage nicht: Im Internet finden sich viele Ort, da werden Sie geholfen (v.a. [StackOverflow](https://stackoverflow.com/)), 
 wenn Sie bei der Installation oder Verwendung von R Probleme haben sollten.
 
 
@@ -250,4 +250,12 @@ bieten aber komfortable Zusatzfunktionen wie Visualisierungen und vereinfachte S
 # Wenn nichts mehr hilft ...
 
 Wenn Sie Probleme mit der Installation haben, 
-ist der vielleicht beste Tip bei [StackOverflow](https://stackoverflow.com/) nach einer Lösung zu suchen.
+ist der vielleicht beste Tipp bei [StackOverflow](https://stackoverflow.com/) nach einer Lösung zu suchen.
+
+Allgemeiner: Googeln hilft. 
+Wenn Sie ein Problem haben,
+ist die Wahrscheinlichkeit hoch,
+dass es sonst jemand auch schon mal hatte,
+ihr Problem.
+
+
