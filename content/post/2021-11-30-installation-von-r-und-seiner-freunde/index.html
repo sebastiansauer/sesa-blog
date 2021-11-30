@@ -1,0 +1,199 @@
+---
+title: Installation von R und seiner Freunde
+author: Sebastian Sauer
+date: '2021-11-30'
+slug: installation-von-r-und-seiner-freunde
+categories:
+  - rstats
+tags:
+  - tutorial
+output:
+  blogdown::html_page:
+    toc: yes
+    number_sections: yes
+editor_options: 
+  chunk_output_type: console
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+<ul>
+<li><a href="#überblick"><span class="toc-section-number">1</span> Überblick</a></li>
+<li><a href="#versions-infos-und-update"><span class="toc-section-number">2</span> Versions-Infos und Update</a></li>
+<li><a href="#installation"><span class="toc-section-number">3</span> Installation</a>
+<ul>
+<li><a href="#r"><span class="toc-section-number">3.1</span> R</a></li>
+<li><a href="#rstudio"><span class="toc-section-number">3.2</span> RStudio</a></li>
+<li><a href="#rstudio-cloud"><span class="toc-section-number">3.3</span> RStudio Cloud</a></li>
+<li><a href="#r-pakete"><span class="toc-section-number">3.4</span> R-Pakete</a>
+<ul>
+<li><a href="#was-sind-r-pakete"><span class="toc-section-number">3.4.1</span> Was sind R-Pakete?</a></li>
+<li><a href="#welche-r-pakete-brauche-ich"><span class="toc-section-number">3.4.2</span> Welche R-Pakete brauche ich?</a></li>
+</ul></li>
+<li><a href="#bayes-software"><span class="toc-section-number">3.5</span> Bayes-Software</a></li>
+</ul></li>
+<li><a href="#wenn-nichts-mehr-hilft"><span class="toc-section-number">4</span> Wenn nichts mehr hilft …</a></li>
+</ul>
+</div>
+
+<div id="überblick" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Überblick</h1>
+<p>Wir wollen uns hier nicht mit Fragen beschäftigen <a href="">Warum R?</a> (und auch nicht mit <a href="">Warum, R?</a>).
+Stattdessen soll Ihnen diese Seite helfen, R und was sonst noch so dazu gehört, zu installieren.</p>
+<p>Wenn man lose von “R” spricht, meint man eigentlich neben R noch zusätzlich Software:</p>
+<ul>
+<li>R</li>
+<li>RStudio</li>
+<li>R-Pakete</li>
+<li>Bayes-Software</li>
+</ul>
+<p>Im Folgenden ist für diese Punkte jeweils eine kurze Erklärung gegeben.
+Verzage nicht: Im Internet finden sich viele Ort, da werden Sie geholfen,
+wenn Sie bei der Installation oder Verwendung von R Probleme haben sollten.</p>
+</div>
+<div id="versions-infos-und-update" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Versions-Infos und Update</h1>
+<p>Auch wenn Sie R (und seine Freunde) schon installiert haben,
+lohnt es sich, zu schauen, ob Sie (sie) noch aktuell sind,
+oder ein “outdated model”, um dem Terminator zu sprechen.</p>
+<p>Prüfen Sie die Versionsnummer von R, z.b. so:</p>
+<pre class="r"><code>getRversion()</code></pre>
+<pre><code>## [1] &#39;4.1.0&#39;</code></pre>
+<p>So bekommen Sie einen Überblick über die <em>geladenen</em> Pakete
+(Das Paket <code>sessioninfo</code>) muss installiert sein.</p>
+<pre class="r"><code>library(sessioninfo)
+package_info()</code></pre>
+<p>Infos zu einem beliebigen, installierten Paket (z.B. die Versionsnummer) kann man z.B. so bekommen</p>
+<pre class="r"><code>package_info(&quot;ggplot2&quot;)</code></pre>
+</div>
+<div id="installation" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Installation</h1>
+<div id="r" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> R</h2>
+<p>R ist ein Softwarepaket für statistische Berechnungen, mehr Infos <a href="https://de.wikipedia.org/wiki/R_%28Programmiersprache%29">hier</a>.</p>
+<p>R können Sie <a href="https://cloud.r-project.org/">hier</a> herunterladen,
+für alle gängigen Betriebssysteme (Windows, Mac, Linux) und in der aktuellen Version.</p>
+<p>Wenn Sie gefragt werden, dass Sie einen “Mirror” auswählen sollen,
+heißt das, Sie sollen einen Computer wählen, von dem Sie R herunterladen.
+Der sollte möglichst nicht zu weit weg stehen,
+dann spart es vielleicht etwas Zeit und Bandbreite.</p>
+</div>
+<div id="rstudio" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> RStudio</h2>
+<p>RStudio ist eine grafische Benutzeroberfläche für R (GUI).
+Das hört sich nach “ganz nett, aber brauch ich das” an.
+Tatsächlich ist RStudio für das praktische Arbeiten ein großer Gewinn.</p>
+<p><a href="https://www.rstudio.com/products/rstudio/download/">Zum Download</a>, wieder für alle gängigen Betriebssysteme.</p>
+</div>
+<div id="rstudio-cloud" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> RStudio Cloud</h2>
+<p><a href="https://rstudio.cloud/">RStudio Cloud</a> ist eine gute Alternative,
+wenn Sie R und Co. nicht auf Ihrem Rechner installieren möchten/können.
+Ein gewisser Zeitumfang ist kostenlos;
+größere Pakete sind dann kostenpflichtig.</p>
+</div>
+<div id="r-pakete" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> R-Pakete</h2>
+<div id="was-sind-r-pakete" class="section level3" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Was sind R-Pakete?</h3>
+<p>Was sind R-Pakete? R an sich kommt mit einem begrenzten Umfang von Funktionen.
+Die ganzen neuen Entwicklungen in der Statistik/Datenanalyse finden sich in Erweiterungen von R,
+die man “Pakete” (packages) nennt.
+Stellen Sie sich das wie ein Add-on/Plug-in vor, wie Sie es vielleicht bei Ihrem Browser nutzen:
+Erweiterungssoftware für ein Programm, so dass die Funktionalität erweitert wird.</p>
+<p>Es gibt eine Art zentralen “App Store”,
+namens <a href="https://cran.r-project.org/">CRAN</a>
+von dem man (kostenlos, ohne Anmeldung, virengeprüft)
+R-Pakete installieren kann.</p>
+<p>Zum Installieren von R-Paketen kann man den Befehl <code>install.packages()</code> verwenden,
+s. Beispiel unten.</p>
+</div>
+<div id="welche-r-pakete-brauche-ich" class="section level3" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Welche R-Pakete brauche ich?</h3>
+<p>Hier ist eine Auswahl von Paketen,
+die ich gerne nutze:</p>
+<pre class="r"><code>pckgs1 &lt;-
+  c(
+    &quot;tidyverse&quot;,
+    &quot;rstatix&quot;,
+    &quot;corrr&quot;
+  )</code></pre>
+<p>Führen Sie den Code oben aus und dann führen Sie den folgenden Code aus,
+um die Pakete zu installieren:</p>
+<pre class="r"><code>install.packages(pckgs1)</code></pre>
+<p>Eine (alphabetisch sortierte) Liste von R-Paketen auf CRAN findet sich <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html">hier</a>.
+Und ein Überblick von R-Paketen nach Themen gibt’s <a href="https://cran.r-project.org/web/views/">hier</a>.</p>
+<p>Hier ist eine ausführlichere Liste an R-Paketen,
+natürlich ist das eine subjektive Auswahl,
+so ähnlich wie wenn Sie mich nach meinen Lieblingsgerichten fragen würden.</p>
+<pre class="r"><code>pckgs2 &lt;- 
+  c(
+    &quot;tidyverse&quot;,
+    &quot;rstanarm&quot;,
+    &quot;bayesplot&quot;,
+    &quot;rstatix&quot;,
+    &quot;forcats&quot;,
+    &quot;tidytext&quot;,
+    &quot;janeaustenr&quot;,
+    &quot;stringr&quot;,
+    &quot;wordcloud&quot;,
+    &quot;gutenbergr&quot;,
+    &quot;forcats&quot;,
+    &quot;scales&quot;,
+    &quot;janitor&quot;,
+    &quot;tidymodels&quot;,
+    &quot;modelr&quot;,
+    &quot;leaps&quot;,
+    &quot;parallel&quot;,
+    &quot;corrr&quot;,
+    &quot;ggfortify&quot;,
+    &quot;fastDummies&quot;,
+    &quot;nycflights&quot;,
+    &quot;arm&quot;,
+    &quot;hrbrthemes&quot;,
+    &quot;viridis&quot;,
+    &quot;GGally&quot;,
+    &quot;cow&quot;,
+    &quot;skimr&quot;
+  )</code></pre>
+<pre class="r"><code>install.packages(pckgs2)</code></pre>
+</div>
+</div>
+<div id="bayes-software" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Bayes-Software</h2>
+<p>Bayes-Inferenz kann rechenintensiv sein.
+Daher braucht’s Software, die schnell rechnen kann.
+Außerdem sollte die Software sich gut mit Wahrscheinlichkeitsrechnung auskennen,
+denn Bayes ist nichts anderes als angewandte Wahrscheinlichkeitsrechnung.</p>
+<p>Aktuell ist die Software <a href="https://mc-stan.org/">Stan</a> die führende Software für diesen Zweck.</p>
+<p>Bevor Sie aber Stan installieren können, brauchen Sie eine (Software für eine)
+“schnelle Rechenmaschine” auf Ihrem Computer installiert.
+Stan nutzt dafür C++.</p>
+<p>Um C++ zu installieren gehen Sie so vor:</p>
+<ul>
+<li>Mac: Installieren Sie die <a href="https://macpaw.com/how-to/install-command-line-tools">Command Line Tools</a>;
+viele Anleitungen finden sich dafür online.</li>
+<li>Windows: Installieren Sie die <a href="https://cran.rstudio.com/bin/windows/Rtools/">Rtools</a></li>
+<li>Linux: Schauen Sie mal auf die <a href="https://github.com/stan-dev/rstan/wiki/Configuring-C-Toolchain-for-Linux">Seite von Stan</a></li>
+</ul>
+<p>Wenn C++ installiert ist, ist das Schwierigste geschafft.</p>
+<p>Jetzt können Sie in gewohnter Weise die restliche Software - d.i. vor allem Stan - als R-Pakete installieren:</p>
+<pre class="r"><code>pckgs_bayes &lt;-
+  c(&quot;rstan&quot;,
+    &quot;rstanarm&quot;,
+    &quot;bayesplot&quot;,
+    &quot;bayestestR&quot;
+    &quot;tidybayes&quot;)
+
+install.packages(pckgs_bayes)</code></pre>
+<p><code>rstan</code> ist ein R-Paket, das Stan und eine Verbindung zu Stan von R bereitstellt.
+Die übrigen Pakete greifen alle auf Stan zurück,
+bieten aber komfortable Zusatzfunktionen wie Visualisierungen und vereinfachte Syntax.</p>
+</div>
+</div>
+<div id="wenn-nichts-mehr-hilft" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Wenn nichts mehr hilft …</h1>
+<p>Wenn Sie Probleme mit der Installation haben,
+ist der vielleicht beste Tip bei <a href="https://stackoverflow.com/">StackOverflow</a> nach einer Lösung zu suchen.</p>
+</div>

@@ -1,0 +1,253 @@
+---
+title: Installation von R und seiner Freunde
+author: Sebastian Sauer
+date: '2021-11-30'
+slug: installation-von-r-und-seiner-freunde
+categories:
+  - rstats
+tags:
+  - tutorial
+output:
+  blogdown::html_page:
+    toc: yes
+    number_sections: yes
+editor_options: 
+  chunk_output_type: console
+---
+
+
+
+# Überblick
+
+
+Wir wollen uns hier nicht mit Fragen beschäftigen [Warum R?]() (und auch nicht mit [Warum, R?]()).
+Stattdessen soll Ihnen diese Seite helfen, R und was sonst noch so dazu gehört, zu installieren.
+
+Wenn man lose von "R" spricht, meint man eigentlich neben R noch zusätzlich Software:
+
+- R
+- RStudio
+- R-Pakete
+- Bayes-Software
+
+
+
+Im Folgenden ist für diese Punkte jeweils eine kurze Erklärung gegeben.
+Verzage nicht: Im Internet finden sich viele Ort, da werden Sie geholfen, 
+wenn Sie bei der Installation oder Verwendung von R Probleme haben sollten.
+
+
+# Versions-Infos und Update 
+
+Auch wenn Sie R (und seine Freunde) schon installiert haben,
+lohnt es sich, zu schauen, ob Sie (sie) noch aktuell sind,
+oder ein "outdated model", um dem Terminator zu sprechen.
+
+Prüfen Sie die Versionsnummer von R, z.b. so:
+
+```{r}
+getRversion()
+```
+
+
+So bekommen Sie einen Überblick über die *geladenen* Pakete
+(Das Paket `sessioninfo`) muss installiert sein.
+
+
+```{r eval = FALSE}
+library(sessioninfo)
+package_info()
+```
+
+
+Infos zu einem beliebigen, installierten Paket (z.B. die Versionsnummer) kann man z.B. so bekommen
+
+```{r eval = FALSE}
+package_info("ggplot2")
+```
+
+
+
+
+# Installation
+
+
+## R
+
+R ist ein Softwarepaket für statistische Berechnungen, mehr Infos [hier](https://de.wikipedia.org/wiki/R_%28Programmiersprache%29).
+
+
+
+
+R können Sie [hier](https://cloud.r-project.org/) herunterladen,
+für alle gängigen Betriebssysteme (Windows, Mac, Linux) und in der aktuellen Version.
+
+Wenn Sie gefragt werden, dass Sie einen "Mirror" auswählen sollen,
+heißt das, Sie sollen einen Computer wählen, von dem Sie R herunterladen.
+Der sollte möglichst nicht zu weit weg stehen,
+dann spart es vielleicht etwas Zeit und Bandbreite.
+
+
+
+## RStudio
+
+RStudio ist eine grafische Benutzeroberfläche für R (GUI).
+Das hört sich nach "ganz nett, aber brauch ich das" an.
+Tatsächlich ist RStudio für das praktische Arbeiten ein großer Gewinn.
+
+[Zum Download](https://www.rstudio.com/products/rstudio/download/), wieder für alle gängigen Betriebssysteme.
+
+
+## RStudio Cloud 
+
+[RStudio Cloud](https://rstudio.cloud/) ist eine gute Alternative, 
+wenn Sie R und Co. nicht auf Ihrem Rechner installieren möchten/können.
+Ein gewisser Zeitumfang ist kostenlos;
+größere Pakete sind dann kostenpflichtig.
+
+
+## R-Pakete
+
+### Was sind R-Pakete?
+
+Was sind R-Pakete? R an sich kommt mit einem begrenzten Umfang von Funktionen.
+Die ganzen neuen Entwicklungen in der Statistik/Datenanalyse finden sich in Erweiterungen von R,
+die man "Pakete" (packages) nennt.
+Stellen Sie sich das wie ein Add-on/Plug-in vor, wie Sie es vielleicht bei Ihrem Browser nutzen:
+Erweiterungssoftware für ein Programm, so dass die Funktionalität erweitert wird.
+
+Es gibt eine Art zentralen "App Store", 
+namens [CRAN](https://cran.r-project.org/)
+von dem man (kostenlos, ohne Anmeldung, virengeprüft)
+R-Pakete installieren kann.
+
+Zum Installieren von R-Paketen kann man den Befehl `install.packages()` verwenden,
+s. Beispiel unten.
+
+
+### Welche R-Pakete brauche ich?
+
+
+Hier ist eine Auswahl von Paketen, 
+die ich gerne nutze:
+
+
+```{r}
+pckgs1 <-
+  c(
+    "tidyverse",
+    "rstatix",
+    "corrr"
+  )
+```
+
+Führen Sie den Code oben aus und dann führen Sie den folgenden Code aus,
+um die Pakete zu installieren:
+
+```{r eval = FALSE}
+install.packages(pckgs1)
+```
+
+
+Eine (alphabetisch sortierte) Liste von R-Paketen auf CRAN findet sich [hier](https://cran.r-project.org/web/packages/available_packages_by_name.html).
+Und ein Überblick von R-Paketen nach Themen gibt's [hier](https://cran.r-project.org/web/views/).
+
+
+Hier ist eine ausführlichere Liste an R-Paketen,
+natürlich ist das eine subjektive Auswahl,
+so ähnlich wie wenn Sie mich nach meinen Lieblingsgerichten fragen würden.
+
+
+```{r}
+pckgs2 <- 
+  c(
+    "tidyverse",
+    "rstanarm",
+    "bayesplot",
+    "rstatix",
+    "forcats",
+    "tidytext",
+    "janeaustenr",
+    "stringr",
+    "wordcloud",
+    "gutenbergr",
+    "forcats",
+    "scales",
+    "janitor",
+    "tidymodels",
+    "modelr",
+    "leaps",
+    "parallel",
+    "corrr",
+    "ggfortify",
+    "fastDummies",
+    "nycflights",
+    "arm",
+    "hrbrthemes",
+    "viridis",
+    "GGally",
+    "cow",
+    "skimr"
+  )
+```
+
+
+
+```{r eval = FALSE}
+install.packages(pckgs2)
+```
+
+
+
+
+
+## Bayes-Software
+
+
+Bayes-Inferenz kann rechenintensiv sein.
+Daher braucht's Software, die schnell rechnen kann.
+Außerdem sollte die Software sich gut mit Wahrscheinlichkeitsrechnung auskennen,
+denn Bayes ist nichts anderes als angewandte Wahrscheinlichkeitsrechnung.
+
+Aktuell ist die Software [Stan](https://mc-stan.org/) die führende Software für diesen Zweck.
+
+Bevor Sie aber  Stan installieren können, brauchen Sie eine (Software für eine) 
+"schnelle Rechenmaschine" auf Ihrem Computer installiert.
+Stan nutzt dafür C++.
+
+Um C++ zu installieren gehen Sie so vor:
+
+- Mac: Installieren Sie die [Command Line Tools](https://macpaw.com/how-to/install-command-line-tools);
+viele Anleitungen finden sich dafür online.
+- Windows: Installieren Sie die [Rtools](https://cran.rstudio.com/bin/windows/Rtools/)
+- Linux: Schauen Sie mal auf die [Seite von Stan](https://github.com/stan-dev/rstan/wiki/Configuring-C-Toolchain-for-Linux)
+
+
+Wenn C++ installiert ist, ist das Schwierigste geschafft.
+
+Jetzt können Sie in gewohnter Weise die restliche Software - d.i. vor allem Stan -  als R-Pakete installieren:
+
+
+```{r eval = FALSE}
+pckgs_bayes <-
+  c("rstan",
+    "rstanarm",
+    "bayesplot",
+    "bayestestR"
+    "tidybayes")
+
+install.packages(pckgs_bayes)
+```
+
+
+`rstan` ist ein R-Paket, das Stan und eine Verbindung zu Stan von R bereitstellt.
+Die übrigen Pakete greifen alle auf Stan zurück,
+bieten aber komfortable Zusatzfunktionen wie Visualisierungen und vereinfachte Syntax.
+
+
+
+
+# Wenn nichts mehr hilft ...
+
+Wenn Sie Probleme mit der Installation haben, 
+ist der vielleicht beste Tip bei [StackOverflow](https://stackoverflow.com/) nach einer Lösung zu suchen.
