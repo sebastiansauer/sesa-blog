@@ -102,8 +102,11 @@ Tatsächlich ist RStudio für das praktische Arbeiten ein großer Gewinn.
 
 [RStudio Cloud](https://rstudio.cloud/) ist eine gute Alternative, 
 wenn Sie R und Co. nicht auf Ihrem Rechner installieren möchten/können.
-Ein gewisser Zeitumfang ist kostenlos;
-größere Pakete sind dann kostenpflichtig.
+Ein gewisser Zeitumfang ist kostenlos^[25 Projektstunden pro Monat zum Zeitpunkt des Schreibens].
+größere Pakete sind dann kostenpflichtig^[5$ für Projektstunden im Monat zum Zeitpunkt des Schreibens].
+
+
+Sie können sich [hier](https://rstudio.cloud/plans/free) einen kostenlosen Account anlegen.
 
 
 ## R-Pakete
@@ -155,7 +158,7 @@ Und ein Überblick von R-Paketen nach Themen gibt's [hier](https://cran.r-projec
 
 Hier ist eine ausführlichere Liste an R-Paketen,
 natürlich ist das eine subjektive Auswahl,
-so ähnlich wie wenn Sie mich nach meinen Lieblingsgerichten fragen würden.
+so ähnlich, wie wenn Sie mich nach meinen Lieblingsgerichten fragen würden.
 
 
 ```{r}
