@@ -106,7 +106,33 @@ Ein gewisser Zeitumfang ist kostenlos^[25 Projektstunden pro Monat zum Zeitpunkt
 größere Pakete sind dann kostenpflichtig^[5$ für Projektstunden im Monat zum Zeitpunkt des Schreibens].
 
 
-Sie können sich [hier](https://rstudio.cloud/plans/free) einen kostenlosen Account anlegen.
+### Konto anlegen
+
+Sie können sich [hier](https://rstudio.cloud/plans/free) einen (ggf. kostenlosen) Account anlegen.
+
+
+### Projekte
+
+Analog zu den RStudio-Projekten gibt es genauso in RStudio Cloud Projekte.
+Ein Projekt ist im Prinzip ein Ordner, in dem sie alle relevanten Information (Daten, Code ...) zusammentragen.
+
+Es ist praktisch, wenn Schulungsmaterialien (Daten, Syntax ...) in einem RStudio-Projekt bzw. - noch komfortabler für Sie - einem RStudio-Cloud-Projekt bereitliegen.
+In einem RStudio-Projekt kann Ihr Dozenti Ihnen die benötigten Pakete schon vorab installieren,
+was logischerweise das Komfortgefühl erhöht.
+
+Damit Sie ein RStudio-Cloud-Projekt nutzen können, muss Ihnen Ihr Dozenti den Link zum Projekt bereitstellen.
+Das könnte z.B. so aussehen <https://rstudio.cloud/project/3324354>.
+
+Wenn Sie dieses Projekt öffnen, haben Sie erstmal *nur* *Leserechte*.
+Das erkennen Sie an dem roten Schriftzug "Temporary Copy".
+Um Schreibrechte zu bekommen, müssen Sie das Projekt in Ihrem Konto abspeichern.
+Dafür klicken Sie auf den Button "Save a Permanent Copy".
+
+```{r echo = FALSE}
+knitr::include_graphics("rstudio-save-a-permanent-copy.png")
+```
+
+
 
 
 ## R-Pakete
@@ -126,6 +152,17 @@ R-Pakete installieren kann.
 
 Zum Installieren von R-Paketen kann man den Befehl `install.packages()` verwenden,
 s. Beispiel unten.
+
+Natürlich müssen Sie auch wenn Sie RStudio Cloud in einem eigenen Projekt arbeiten, die nötigen Pakete installieren.
+⚠️ Einige Pakte benötigen mehr als die 1 GB Arbeitsspeicher, die im freien Zugang von RStudio enthalten sind. 
+Für diese Pakete müssten Sie dann ein kostenpflichtiges Abo eingehen, 
+wenn Sie die Pakete in Ihrem Projekt installieren wollen.
+
+Arbeiten Sie in einem Ihnen bereitgestellten Projekt, 
+hat ein netter Mensch die nötigen Pakete für Sie vielleicht schon installiert; 
+Sie müssen dann die Pakete nicht noch extra installieren.
+
+
 
 
 ### Welche R-Pakete brauche ich?

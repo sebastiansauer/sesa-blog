@@ -25,7 +25,11 @@ editor_options:
 <ul>
 <li><a href="#r"><span class="toc-section-number">3.1</span> R</a></li>
 <li><a href="#rstudio"><span class="toc-section-number">3.2</span> RStudio</a></li>
-<li><a href="#rstudio-cloud"><span class="toc-section-number">3.3</span> RStudio Cloud</a></li>
+<li><a href="#rstudio-cloud"><span class="toc-section-number">3.3</span> RStudio Cloud</a>
+<ul>
+<li><a href="#konto-anlegen"><span class="toc-section-number">3.3.1</span> Konto anlegen</a></li>
+<li><a href="#projekte"><span class="toc-section-number">3.3.2</span> Projekte</a></li>
+</ul></li>
 <li><a href="#r-pakete"><span class="toc-section-number">3.4</span> R-Pakete</a>
 <ul>
 <li><a href="#was-sind-r-pakete"><span class="toc-section-number">3.4.1</span> Was sind R-Pakete?</a></li>
@@ -92,7 +96,25 @@ Tatsächlich ist RStudio für das praktische Arbeiten ein großer Gewinn.</p>
 wenn Sie R und Co. nicht auf Ihrem Rechner installieren möchten/können.
 Ein gewisser Zeitumfang ist kostenlos<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.
 größere Pakete sind dann kostenpflichtig<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
-<p>Sie können sich <a href="https://rstudio.cloud/plans/free">hier</a> einen kostenlosen Account anlegen.</p>
+<div id="konto-anlegen" class="section level3" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Konto anlegen</h3>
+<p>Sie können sich <a href="https://rstudio.cloud/plans/free">hier</a> einen (ggf. kostenlosen) Account anlegen.</p>
+</div>
+<div id="projekte" class="section level3" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Projekte</h3>
+<p>Analog zu den RStudio-Projekten gibt es genauso in RStudio Cloud Projekte.
+Ein Projekt ist im Prinzip ein Ordner, in dem sie alle relevanten Information (Daten, Code …) zusammentragen.</p>
+<p>Es ist praktisch, wenn Schulungsmaterialien (Daten, Syntax …) in einem RStudio-Projekt bzw. - noch komfortabler für Sie - einem RStudio-Cloud-Projekt bereitliegen.
+In einem RStudio-Projekt kann Ihr Dozenti Ihnen die benötigten Pakete schon vorab installieren,
+was logischerweise das Komfortgefühl erhöht.</p>
+<p>Damit Sie ein RStudio-Cloud-Projekt nutzen können, muss Ihnen Ihr Dozenti den Link zum Projekt bereitstellen.
+Das könnte z.B. so aussehen <a href="https://rstudio.cloud/project/3324354" class="uri">https://rstudio.cloud/project/3324354</a>.</p>
+<p>Wenn Sie dieses Projekt öffnen, haben Sie erstmal <em>nur</em> <em>Leserechte</em>.
+Das erkennen Sie an dem roten Schriftzug “Temporary Copy”.
+Um Schreibrechte zu bekommen, müssen Sie das Projekt in Ihrem Konto abspeichern.
+Dafür klicken Sie auf den Button “Save a Permanent Copy”.</p>
+<p><img src="rstudio-save-a-permanent-copy.png" width="493" /></p>
+</div>
 </div>
 <div id="r-pakete" class="section level2" number="3.4">
 <h2><span class="header-section-number">3.4</span> R-Pakete</h2>
@@ -109,6 +131,13 @@ von dem man (kostenlos, ohne Anmeldung, virengeprüft)
 R-Pakete installieren kann.</p>
 <p>Zum Installieren von R-Paketen kann man den Befehl <code>install.packages()</code> verwenden,
 s. Beispiel unten.</p>
+<p>Natürlich müssen Sie auch wenn Sie RStudio Cloud in einem eigenen Projekt arbeiten, die nötigen Pakete installieren.
+⚠️ Einige Pakte benötigen mehr als die 1 GB Arbeitsspeicher, die im freien Zugang von RStudio enthalten sind.
+Für diese Pakete müssten Sie dann ein kostenpflichtiges Abo eingehen,
+wenn Sie die Pakete in Ihrem Projekt installieren wollen.</p>
+<p>Arbeiten Sie in einem Ihnen bereitgestellten Projekt,
+hat ein netter Mensch die nötigen Pakete für Sie vielleicht schon installiert;
+Sie müssen dann die Pakete nicht noch extra installieren.</p>
 </div>
 <div id="welche-r-pakete-brauche-ich" class="section level3" number="3.4.2">
 <h3><span class="header-section-number">3.4.2</span> Welche R-Pakete brauche ich?</h3>
@@ -127,7 +156,7 @@ um die Pakete zu installieren:</p>
 Und ein Überblick von R-Paketen nach Themen gibt’s <a href="https://cran.r-project.org/web/views/">hier</a>.</p>
 <p>Hier ist eine ausführlichere Liste an R-Paketen,
 natürlich ist das eine subjektive Auswahl,
-so ähnlich wie wenn Sie mich nach meinen Lieblingsgerichten fragen würden.</p>
+so ähnlich, wie wenn Sie mich nach meinen Lieblingsgerichten fragen würden.</p>
 <pre class="r"><code>pckgs2 &lt;- 
   c(
     &quot;tidyverse&quot;,
