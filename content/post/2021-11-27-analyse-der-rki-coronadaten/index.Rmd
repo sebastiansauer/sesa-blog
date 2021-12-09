@@ -144,7 +144,9 @@ Zur Berechnung der adjustierten 7T-Inzidenz schreibt das RKI [hier](https://gith
 ## Adjustierte Daten
 
 ### Daten importieren
-
+ 
+Weitere Informationen - wie das Codebook (d.h. die Erläuterungen zu den Variablen)
+- finden Sie auf dem [Github-Repo des RKI](https://github.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland).
 
 ```{r}
 hosp_file <- "https://raw.githubusercontent.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland/master/Archiv/2021-11-24_Deutschland_adjustierte-COVID-19-Hospitalisierungen.csv"
@@ -167,6 +169,7 @@ hosp_adj %>%
 ## Unadjustierte Daten
 
 ### Daten importieren
+
 
 ```{r}
 hosp_latest_file <- "https://github.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland/raw/master/Archiv/2021-11-27_Deutschland_COVID-19-Hospitalisierungen.csv"
@@ -235,6 +238,10 @@ hosp_latest %>%
 
 
 # Impfungen in Deutschland
+
+
+Weitere Informationen - wie das Codebook (d.h. die Erläuterungen zu den Variablen)
+- finden Sie auf dem [Github-Repo des RKI](https://github.com/robert-koch-institut/COVID-19-Impfungen_in_Deutschland).
 
 
 ## Neueste Daten
