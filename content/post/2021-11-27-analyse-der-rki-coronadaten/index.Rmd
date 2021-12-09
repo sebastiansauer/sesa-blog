@@ -1194,3 +1194,9 @@ dass eine viel größere Zahl von Menschenleben durch die Impfung gerettet wurde
 Zum Glück gibt es auch viele gute Berichtserstattung, z.B. - eine Replik auf einen Fall ähnlich gelagert zu dem gerade Beschriebenen - [hier](https://www.tagesschau.de/faktenfinder/impfquote-uebersterblichkeit-101.html).
 
 
+# sessionInfo
+
+```{r}
+sessioninfo::session_info()
+```
+
