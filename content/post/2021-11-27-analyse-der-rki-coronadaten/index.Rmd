@@ -52,6 +52,7 @@ library(lubridate)  # Datumsangaben
 library(ggrepel)  # Nicht überschneidende Labels
 library(corrr)   # Korrelation, tidy
 library(dagitty)  # Kausalanalyse
+library(directlabels)  # Zeitreihen mit Labels beschriften
 ```
 
 
@@ -421,6 +422,15 @@ write_csv(vacc_time_df,
 ```
 
 
+Nämlich so:
+
+```{r eval = FALSE}
+vacc_time_df <-
+  read_csv("https://raw.githubusercontent.com/sebastiansauer/sesa-blog/main/static/datasets/vacc_time_df.csv")
+```
+
+
+
 Sie können [hier](https://raw.githubusercontent.com/sebastiansauer/sesa-blog/main/static/datasets/vacc_time_df.csv) die Daten herunterladen.
 
 
@@ -539,7 +549,7 @@ Naja, ok.
 Oder vielleicht mit `geom_label_repel()`, das versucht, Überschneidungen der Labels zu verhindern:
 
 
-```{r}
+```{r fig.asp=1.5}
 vacc_time_df %>% 
   filter(Bundesland != "Deutschland") %>% 
   ggplot() +
@@ -558,6 +568,18 @@ Es ist allzu leicht, sich in (vielleicht ganz unterhaltsamen) Details zu verstri
 
 [Hier](http://rolandtanglao.com/2018/10/01/p1-directlabels-in-r-labels-at-the-end-of-lines/) gibt es noch ein interessantes Paket, um Liniendiagramme mit Labels zu versehen.
 
+
+```{r fig.asp = 1.5}
+
+vacc_time_df %>% 
+  filter(Bundesland != "Deutschland") %>% 
+  ggplot() +
+  aes(x = Datum, y = Impfquote_gesamt_voll, color = Bundesland) +
+  geom_line() +
+  scale_color_viridis_d(breaks = NULL) +
+  geom_dl(aes(label = Bundesland),
+          method = list(dl.trans(x = x + 0.2), "last.points", cex = 0.8)) 
+```
 
 
 
@@ -1044,7 +1066,7 @@ Wir wären also zurück beim Kausalmodell 1, oben.
 ## Wo sind hier die Modelle?
 
 
-Wär es jetzt nicht allerhöchste Zeit,
+Wäre es jetzt nicht allerhöchste Zeit,
 mit dem Modellieren anzufangen?
 Eine paar ausgefeilte Regressionsmodelle zu prüfen?
 An sich ja.
