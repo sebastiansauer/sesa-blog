@@ -1083,8 +1083,11 @@ Zusammenhang von Störchen und Babies.
 
 
 ```{r echo = FALSE}
-knitr::include_graphics("https://de.wikipedia.org/wiki/Scheinkorrelation#/media/Datei:Scheinkorrelation_Storchenpopulation_Geburtenzahl.jpg")
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/2/2f/Scheinkorrelation_Storchenpopulation_Geburtenzahl.jpg?download")
 ```
+
+
+
 
 [Quelle: Herbert Kuhl, Wikimedia](https://commons.wikimedia.org/wiki/File:Scheinkorrelation_Storchenpopulation_Geburtenzahl.jpg)
 
