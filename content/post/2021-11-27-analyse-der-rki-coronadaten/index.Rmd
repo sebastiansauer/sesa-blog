@@ -592,6 +592,8 @@ vacc_time_df %>%
 
 # Daten joinen
 
+## Verheiraten 
+
 "Verheiraten" wir die Daten zu Impfquoten und Hospitalisierungen.
 
 Das geht mit einem `join`. 
@@ -611,6 +613,8 @@ hosp_vacc <-
 Beim `inner_join` werden nur Zeilen übernommen, 
 für die es in beiden Tabellen eine Entsprechung (einen Wert für die ID-Variable) gibt.
 
+
+## In Datei speichern
 
 Speichern wir uns diesen Datensatz ab,
 so dass Sie einfach darauf zugreifen können:
