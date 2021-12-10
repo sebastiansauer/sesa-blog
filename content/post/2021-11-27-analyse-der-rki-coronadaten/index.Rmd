@@ -612,6 +612,32 @@ Beim `inner_join` werden nur Zeilen übernommen,
 für die es in beiden Tabellen eine Entsprechung (einen Wert für die ID-Variable) gibt.
 
 
+Speichern wir uns diesen Datensatz ab,
+so dass Sie einfach darauf zugreifen können:
+
+
+
+```{r write-hosp-vacc, eval = FALSE}
+write_csv(hosp_vacc,
+          file = "static/datasets/hosp_vacc.csv")
+```
+
+
+Nämlich so:
+
+```{r read-hosp-vacc, eval = FALSE}
+hosp_vacc <-
+  read_csv("https://raw.githubusercontent.com/sebastiansauer/sesa-blog/main/static/datasets/hosp_vacc.csv")
+```
+
+
+
+Alternativ können Sie [hier](https://raw.githubusercontent.com/sebastiansauer/sesa-blog/main/static/datasets/hosp_vacc.csv) die Daten herunterladen.
+
+
+
+
+
 # Zusammenhangsanalysen
 
 Vielleicht ist der wichtigste Hinweis an dieser Stelle,
