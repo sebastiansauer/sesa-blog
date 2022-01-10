@@ -179,15 +179,19 @@ so ähnlich, wie wenn Sie mich nach meinen Lieblingsgerichten fragen würden.</p
     &quot;corrr&quot;,
     &quot;ggfortify&quot;,
     &quot;fastDummies&quot;,
-    &quot;nycflights&quot;,
+    &quot;nycflights13&quot;,
     &quot;arm&quot;,
     &quot;hrbrthemes&quot;,
     &quot;viridis&quot;,
     &quot;GGally&quot;,
-    &quot;cow&quot;,
+    &quot;cowplot&quot;,
     &quot;skimr&quot;
   )</code></pre>
 <pre class="r"><code>install.packages(pckgs2)</code></pre>
+<p>Eine automatisierte Methode, um (nur) die Pakete zu installieren,
+die noch nicht auf Ihrem Rechner (oder dem RStudio Cloud Server) installiert sind,
+bietet das R-Paket <code>pacman</code> (welches dann auch installiert sein muss):</p>
+<pre class="r"><code>pacman::p_load(char = pckgs2)</code></pre>
 </div>
 </div>
 <div id="bayes-software" class="section level2" number="3.5">

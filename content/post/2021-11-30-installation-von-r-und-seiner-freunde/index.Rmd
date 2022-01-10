@@ -221,12 +221,12 @@ pckgs2 <-
     "corrr",
     "ggfortify",
     "fastDummies",
-    "nycflights",
+    "nycflights13",
     "arm",
     "hrbrthemes",
     "viridis",
     "GGally",
-    "cow",
+    "cowplot",
     "skimr"
   )
 ```
@@ -237,6 +237,14 @@ pckgs2 <-
 install.packages(pckgs2)
 ```
 
+
+Eine automatisierte Methode, um (nur) die Pakete zu installieren, 
+die noch nicht auf Ihrem Rechner (oder dem RStudio Cloud Server) installiert sind, 
+bietet das R-Paket `pacman` (welches dann auch installiert sein muss):
+
+```{r}
+pacman::p_load(char = pckgs2)
+```
 
 
 
