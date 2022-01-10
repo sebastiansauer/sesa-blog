@@ -227,7 +227,8 @@ pckgs2 <-
     "viridis",
     "GGally",
     "cowplot",
-    "skimr"
+    "skimr",
+    "see"
   )
 ```
 
@@ -281,7 +282,7 @@ pckgs_bayes <-
   c("rstan",
     "rstanarm",
     "bayesplot",
-    "bayestestR"
+    "bayestestR",
     "tidybayes")
 
 install.packages(pckgs_bayes)
