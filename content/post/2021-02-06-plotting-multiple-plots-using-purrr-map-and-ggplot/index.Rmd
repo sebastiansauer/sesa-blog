@@ -84,7 +84,7 @@ Next try.
 # Way 2
 
 
-```{r fig.show="hold" }
+```{r fig.show="hold", results="hide" }
 dens_fun <- function(var, name) {
   
   ggplot(mtcars, aes(x = var)) +
