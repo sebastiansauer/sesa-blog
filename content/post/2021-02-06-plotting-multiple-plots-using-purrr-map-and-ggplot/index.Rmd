@@ -26,8 +26,7 @@ knitr::opts_chunk$set(
   fig.align = 'center',
   fig.width = 6,
   fig.asp = 0.618,  # 1 / phi
-  fig.show = "hold",
-  size = "tiny"
+  fig.show = "hold"
 )
 ```
 
@@ -65,7 +64,7 @@ There are a number of good solutions outthere such as [this one](https://aosmith
 # Way 1
 
 
-```{r fig.show="hold", out.width="30%", results = "hide" }
+```{r fig.show="hold", out.width="70%" }
 mtcars %>% 
   select(where(is.numeric)) %>% 
   map( ~ {ggplot(mtcars, aes(x = .)) + geom_density()}
@@ -74,17 +73,18 @@ mtcars %>%
 
 Note that the chunks options above were like this:
 
-`{r fig.show="hold", out.width="30%", results = "hide"}`
+`{r fig.show="hold", out.width=70%"}`
 
 
-Works. But does not show the variable names. Next try.
+Works. But does not show the variable names. 
+Next try.
 
 
 
 # Way 2
 
 
-```{r fig.show="hold", out.width="30%", results = "hide" }
+```{r fig.show="hold" }
 dens_fun <- function(var, name) {
   
   ggplot(mtcars, aes(x = var)) +
