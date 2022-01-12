@@ -35,7 +35,8 @@ editor_options:
 <li><a href="#was-sind-r-pakete"><span class="toc-section-number">3.4.1</span> Was sind R-Pakete?</a></li>
 <li><a href="#welche-r-pakete-brauche-ich"><span class="toc-section-number">3.4.2</span> Welche R-Pakete brauche ich?</a></li>
 </ul></li>
-<li><a href="#bayes-software"><span class="toc-section-number">3.5</span> Bayes-Software</a></li>
+<li><a href="#hinweise"><span class="toc-section-number">3.5</span> Hinweise</a></li>
+<li><a href="#bayes-software"><span class="toc-section-number">3.6</span> Bayes-Software</a></li>
 </ul></li>
 <li><a href="#wenn-nichts-mehr-hilft"><span class="toc-section-number">4</span> Wenn nichts mehr hilft …</a></li>
 </ul>
@@ -195,8 +196,17 @@ bietet das R-Paket <code>pacman</code> (welches dann auch installiert sein muss)
 <pre class="r"><code>pacman::p_load(char = pckgs2)</code></pre>
 </div>
 </div>
-<div id="bayes-software" class="section level2" number="3.5">
-<h2><span class="header-section-number">3.5</span> Bayes-Software</h2>
+<div id="hinweise" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Hinweise</h2>
+<ul>
+<li>Sie müssen Pakete nur einmal installieren, aber jedes Mal starten, wenn Sie R (bzw. RStudio) öffnen (mit <code>library(paketname)</code>).</li>
+<li>Hin und wieder sollten Sie Ihre Pakete aktualisieren. Am einfachsten geht das mit Klick auf den Button “Update” im Reiter “Packages” in RStudio.</li>
+<li>Wenn Sie Pakete installieren (oder updaten, was auf das gleiche hinausläuft), sollten <em>keine</em> Pakete gestartet sein. Das erreichen Sie am einfachsen, wenn Sie R neu starten (oder RStudio neu starten); zu dem Zeitpunkt sind keine Pakete geladen. Führen Sie jetzt die Installation (das Aktualisieren) der Pakete aus.</li>
+<li>Wenn R Sie fragt, ob Sie R neu starten wollen, bevor Sie die Pakete installieren, drücken Sie auf “nein” (wenn Sie wissen, dass keine Pakete gestartet sind).</li>
+</ul>
+</div>
+<div id="bayes-software" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> Bayes-Software</h2>
 <p>Bayes-Inferenz kann rechenintensiv sein.
 Daher braucht’s Software, die schnell rechnen kann.
 Außerdem sollte die Software sich gut mit Wahrscheinlichkeitsrechnung auskennen,

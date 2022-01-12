@@ -248,6 +248,13 @@ pacman::p_load(char = pckgs2)
 ```
 
 
+## Hinweise
+
+- Sie müssen Pakete nur einmal installieren, aber jedes Mal starten, wenn Sie R (bzw. RStudio) öffnen (mit `library(paketname)`).
+- Hin und wieder sollten Sie Ihre Pakete aktualisieren. Am einfachsten geht das mit Klick auf den Button "Update" im Reiter "Packages" in RStudio.
+- Wenn Sie Pakete installieren (oder updaten, was auf das gleiche hinausläuft), sollten *keine* Pakete gestartet sein. Das erreichen Sie am einfachsen, wenn Sie R neu starten (oder RStudio neu starten); zu dem Zeitpunkt sind keine Pakete geladen. Führen Sie jetzt die Installation (das Aktualisieren) der Pakete aus.
+- Wenn R Sie fragt, ob Sie R neu starten wollen, bevor Sie die Pakete installieren, drücken Sie auf "nein" (wenn Sie wissen, dass keine Pakete gestartet sind).
+
 
 
 ## Bayes-Software
