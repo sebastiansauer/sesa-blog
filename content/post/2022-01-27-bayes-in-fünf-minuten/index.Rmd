@@ -198,11 +198,17 @@ mit welcher Wahrscheinlichkeit - basierend auf den Daten und dem Modell -
 man mit einem Unterschied größer als Null zwischen Gruppen rechnen kann?
 
 
+Wandeln wir das Modellobjekt in eine Tabelle um:
 
 ```{r}
-m1 %>% 
-  as_tibble() %>%  # Modellergebnis in Tabelle (tibble) umwandeln
-  count(am > 0)  # Zählen wie oft `am > 0` der Fall ist
+m1_stipros <-
+  m1 %>% 
+  as_tibble()   # Modellergebnis m1 in Tabelle (tibble) umwandeln
+```
+
+```{r echo = FALSE}
+
+(m1_stipros)
 ```
 
 

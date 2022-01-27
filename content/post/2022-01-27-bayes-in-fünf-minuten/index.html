@@ -82,7 +82,7 @@ so ähnlich wie ein Schweizer Taschenmesser.</p>
 <h1>Unterschied zwischen den zwei Gruppen</h1>
 <pre class="r"><code>coef(m1)</code></pre>
 <pre><code>## (Intercept)          am 
-##   17.176251    7.168571</code></pre>
+##    17.14117     7.23137</code></pre>
 <p>Was wir bekommen,
 sind Punktschätzer für die Population:</p>
 <p>Der Achsenabschnitt wird auf ca. 17 geschätzt.
@@ -97,9 +97,9 @@ Formulieren wir die Frage doch so um:</p>
 </blockquote>
 <pre class="r"><code>posterior_interval(m1)</code></pre>
 <pre><code>##                    5%       95%
-## (Intercept) 15.231152 19.063431
-## am           4.159553 10.242292
-## sigma        4.040905  6.219674</code></pre>
+## (Intercept) 15.254335 19.033602
+## am           4.272263 10.316920
+## sigma        4.083712  6.269345</code></pre>
 <p>Das 90%-KI wird auf den Bereich von ca. 4 bis 10 geschätzt.
 Die Null liegt <em>nicht</em> in diesem Intervall.</p>
 <p>Folglich verwerfen wir die Nullhypothese.</p>
@@ -109,9 +109,9 @@ Die Null liegt <em>nicht</em> in diesem Intervall.</p>
 <p>Also gut…</p>
 <pre class="r"><code>posterior_interval(m1, prob = .89)  # oder auch prob = .95 etc.</code></pre>
 <pre><code>##                  5.5%     94.5%
-## (Intercept) 15.289955 19.019949
-## am           4.255656 10.154517
-## sigma        4.071641  6.167259</code></pre>
+## (Intercept) 15.308339 18.980810
+## am           4.360551 10.214754
+## sigma        4.101605  6.228754</code></pre>
 </div>
 <div id="warum-eigentlich-89" class="section level1">
 <h1>Warum eigentlich 89%?</h1>
@@ -123,13 +123,24 @@ Noch Fragen? 😄</p>
 <p>Eine interessante Variante der Forschungsfrage ist zu fragen,
 mit welcher Wahrscheinlichkeit - basierend auf den Daten und dem Modell -
 man mit einem Unterschied größer als Null zwischen Gruppen rechnen kann?</p>
-<pre class="r"><code>m1 %&gt;% 
-  as_tibble() %&gt;%  # Modellergebnis in Tabelle (tibble) umwandeln
-  count(am &gt; 0)  # Zählen wie oft `am &gt; 0` der Fall ist</code></pre>
-<pre><code>## # A tibble: 1 × 2
-##   `am &gt; 0`     n
-##   &lt;lgl&gt;    &lt;int&gt;
-## 1 TRUE      4000</code></pre>
+<p>Wandeln wir das Modellobjekt in eine Tabelle um:</p>
+<pre class="r"><code>m1_stipros &lt;-
+  m1 %&gt;% 
+  as_tibble()   # Modellergebnis m1 in Tabelle (tibble) umwandeln</code></pre>
+<pre><code>## # A tibble: 4,000 × 3
+##    `(Intercept)`    am sigma
+##            &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1          15.8  8.25  4.56
+##  2          18.9  5.32  5.23
+##  3          15.7  8.23  4.10
+##  4          15.7  8.76  4.54
+##  5          16.0  9.43  4.82
+##  6          18.6  4.69  5.04
+##  7          15.3  9.21  4.97
+##  8          16.8  8.39  5.03
+##  9          16.2  8.17  3.66
+## 10          17.2  7.06  5.04
+## # … with 3,990 more rows</code></pre>
 <p>Wie man sieht,
 findet das Modell in allen 4000 Stichproben (4000 ist der Defaultwert)
 einen Unterschied größer Null.</p>

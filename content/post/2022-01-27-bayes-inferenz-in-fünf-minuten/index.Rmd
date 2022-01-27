@@ -75,7 +75,7 @@ Warum ist Bayes einfacher? Vergleichen wir die Definition des p-Werts mit der De
 
 
 Also, wenn Sie mich fragen: Ich finde die Definition kompliziert. 
-In einer Studie fand sich, dass sich viele psychologische WissenschaftlerInnen und sogar der Statistik-Dozentis (Fachrichtung Psychologie) die Definition *falsch* verstehen.
+In einigen Studien (s.u.) fand sich, dass sich viele psychologische WissenschaftlerInnen und sogar der Statistik-Dozentis die Definition eines p-Werts *falsch* verstehen.
 
 Vielleicht am bekanntesten sind die Studien von Gerd Gigerenzer dazu, z.B. diese hier:
 
