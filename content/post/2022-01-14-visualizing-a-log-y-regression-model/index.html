@@ -1,0 +1,54 @@
+---
+title: Visualizing a log-y regression model
+author: Sebastian Sauer
+date: '2022-01-14'
+slug: visualizing-a-log-y-regression-model
+categories:
+  - rstats
+tags:
+  - modeling
+  - visualization
+  - plotting
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+
+
+<div id="setup" class="section level1">
+<h1>Setup</h1>
+</div>
+<div id="using-a-log-y-regression" class="section level1">
+<h1>Using a log-Y regression</h1>
+<p>Gelman et al., in “Regression and other stories” are stating that “when additivity and linearity are not reasonable assumptions” it may sense to “take the logarithms of outcomes that are all positive” (p. 189).</p>
+<p>A log-y regression can be defined as follows, in the simplest case:</p>
+<p><span class="math display">\[\text{log} \, y = b_0 + b_1X_1 + \ldots + \epsilon\]</span>
+Exponentiating both sides yields</p>
+<p><span class="math display">\[y = e^{b_0 + b_1X_1 + \ldots + \epsilon}\]</span></p>
+<p>This is a multiplicative model as can be seen perhaps more lucidly in this notation:</p>
+<p><span class="math display">\[y = e^{b0} \cdot e^{b1} \cdot \ldots \cdot e^{\epsilon}\]</span></p>
+<p>In essence, we can make use uf log-y regression for modelling
+<em>multiplicative</em> assocations between x and y.</p>
+<p>A multiplicative associations also means that it is not <em>linear</em>.</p>
+<p>Let’s have a look at an example.</p>
+<pre><code>##  (Intercept)           hp 
+##  3.460466874 -0.003428734</code></pre>
+<p>The coefficent of the predictor is reported as -0.0034287.
+Exponentiating this values yields approx.</p>
+<pre><code>##        hp 
+## 0.9965771</code></pre>
+<p>Thus, one more unit in <span class="math inline">\(X\)</span> increases <span class="math inline">\(Y\)</span> by exp(b1).
+In this case, <code>exp(1)</code> amounts to 0.9965771.
+Of course, factors below one indicate a decrease in <span class="math inline">\(Y\)</span>.</p>
+<p>In this example, we find a decrease of approx. 0.035% change in y associated with a one unit change in x.</p>
+<p>Let’s have a look at the predictions:</p>
+<p><img src="chunk-img/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>There’s a useful shortcut to interpreting log-y regression coefficients.</p>
+<p>Compare this following (small) figures and their respective exponentiated values:</p>
+<p><img src="chunk-img/unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>As can be seen, as long as the (x) values are small - as it is often the case for (properly scaled) regression model coefficients - we can easily translate between the x’s and their exponentiated values.
+The values are very similar, given that the x is around zero (say, between -.25 and +.25).</p>
+<p>In short, in a log-y regression a coefficient of <code>x</code> means a change of <code>b1</code> percent in <code>y</code> (given that the coefficent is around zero).</p>
+<p>Let’s have a check:</p>
+<pre><code>## [1] 31.44682</code></pre>
+<p><img src="chunk-img/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
