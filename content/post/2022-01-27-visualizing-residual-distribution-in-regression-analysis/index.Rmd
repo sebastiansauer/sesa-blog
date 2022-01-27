@@ -37,17 +37,24 @@ A residual is defined as
 
 $r_i = y_i - X_i \hat{\beta}$.
 
-That is, a residual is a tangible thing in the sense that it describes observables (Gelman 2021, chap. 11.3, p. 161):
+That is, a residual is a tangible thing in the sense that it describes observables (cf. Gelman 2021, chap. 11.3, p. 161).
+That is, the residuals are the difference between observed and predicted values.
 
-$e = y - X_i \beta$.
 
-In contrast, the error term is defined as the difference between the observed value and the true (unobserved) value.
+
+
+In contrast, the error term is defined as the difference between the observed value and the true (unobserved) value:
+
+
+$e_i = y_i - X_i \beta$.
+
 The residuals can be thought of as estimates of the errors [source](https://stats.stackexchange.com/questions/133389/what-is-the-difference-between-errors-and-residuals).
 
 (Also see [this](https://stackoverflow.com/questions/56754560/what-is-the-exact-difference-between-error-and-residual)).
 
 Frequently, it is assumed that the errors are distributed normally.
 
+Let's visualize error terms assuming normality.
 
 # Setup
 
@@ -172,6 +179,12 @@ vertical_dnorm <- function(predictor_value, mod, pred_y, k = 2){
 ```
 
 
+We have not standardized the height of the normal curve in the plot.
+The normal curve of the errors should appear equally heigh,
+no matter what the scale of the x axis is.
+Let's take care of that some other time.
+
+
 ```{r}
 #debug(vertical_dnorm)
 d1 <- vertical_dnorm(predictor_value = 0, mod = lm1, pred_y = predict(lm1, tibble(hp_z = 0))) 
@@ -193,14 +206,17 @@ p1 +
   geom_path(data = d3, aes(x,y)) 
 ```
 
-The sigmas look quite wide.
+Yeah.
+
+
+The sigmas look quite wide though.
 Let's check:
 
 ```{r}
 sigma(lm1)
 ```
 
-Well, they are just what they are.
+Ok, the plot appears reasonable. 
 
 
 
