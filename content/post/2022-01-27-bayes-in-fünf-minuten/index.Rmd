@@ -59,12 +59,12 @@ das ist ähnlich zum t-Test.
 # Vorbereitung
 
 ```{r}
-data("mtcars")  #
-library(rstanarm)  # Bayes
-library(tidyverse)  # Datenjudo
+data("mtcars")  # Datensatz laden
+library(rstanarm)  # Funktionen für Bayes-Statistik laden
+library(tidyverse)  # Für Datenjudo
 ```
 
-Der Datensatz `mtcars` ist "fest eingebaut" in R, so dass wir ihn nicht irgendwo herunterladen müsstenn.
+Der Datensatz `mtcars` ist "fest eingebaut" in R, so dass wir ihn nicht irgendwo herunterladen müssen.
 
 
 Hilfe zum Datensatz bekommt man so:
@@ -103,14 +103,18 @@ mtcars %>%
            color = "red", size = 5, alpha = .7) +
   scale_y_continuous(
     breaks = preds,
-    labels = preds)
+    labels = preds) +
+  scale_x_continuous(breaks = c(0,1))
 ```
 
+Jeder (leicht verwackelte) Punkt stellt ein Auto dar. 
+Die Line ist die Regressionsgerade.
+Die roten Punkte sind die Mittelwerte der beiden Gruppen.
 
 
 # Zur Interpretation der Regression
 
-Die einfache Regression (also mit 1 UV) hat zwei Koeffizienten:
+Die einfache Regression (also mit nur einer UV) hat zwei Koeffizienten:
 Achsenabschnitt und Steigung.
 
 Bei einer binären (zweistufigen) UV bedeutet das:
@@ -158,7 +162,7 @@ Die Steigung (Unterschied zwischen den Gruppen) wird auf ca. 7 geschätzt.
 In Bayes gibt es das Wort "signifikant" nicht.
 Formulieren wir die Frage doch so um:
 
->   Liegt der Wert "Null" innerhalb oder außerhalb des 90%-Konfidenzintervalls (KI?
+>   Liegt der Wert "Null" innerhalb oder außerhalb des 90%-Konfidenzintervalls (KI)?
 
 
 ```{r}
@@ -184,7 +188,32 @@ posterior_interval(m1, prob = .89)  # oder auch prob = .95 etc.
 # Warum eigentlich 89%?
 
 Richard McElreath begründet die 89 so: Es ist die kleinste Primzahl kleiner als 95.
-Noch Fragen? :smile
+Noch Fragen? 😄
+
+
+# Mit welcher Wahrscheinlichkeit ist der Unterschied größer als Null?
+
+Eine interessante Variante der Forschungsfrage ist zu fragen,
+mit welcher Wahrscheinlichkeit - basierend auf den Daten und dem Modell - 
+man mit einem Unterschied größer als Null zwischen Gruppen rechnen kann?
+
+
+
+```{r}
+m1 %>% 
+  as_tibble() %>%  # Modellergebnis in Tabelle (tibble) umwandeln
+  count(am > 0)  # Zählen wie oft `am > 0` der Fall ist
+```
+
+
+Wie man sieht,
+findet das Modell in allen 4000 Stichproben (4000 ist der Defaultwert)
+einen Unterschied größer Null.
+
+Wir resümieren also:
+
+>   Laut Modell beträgt die Wahrscheinlichkeit praktisch 100%, dass wir einen Unterschied größer Null zwischen den Gruppenmittelwerten finden.
+
 
 
 

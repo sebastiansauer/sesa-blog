@@ -38,10 +38,10 @@ das ist ähnlich zum t-Test.</p>
 </div>
 <div id="vorbereitung" class="section level1">
 <h1>Vorbereitung</h1>
-<pre class="r"><code>data(&quot;mtcars&quot;)  #
-library(rstanarm)  # Bayes
-library(tidyverse)  # Datenjudo</code></pre>
-<p>Der Datensatz <code>mtcars</code> ist “fest eingebaut” in R, so dass wir ihn nicht irgendwo herunterladen müsstenn.</p>
+<pre class="r"><code>data(&quot;mtcars&quot;)  # Datensatz laden
+library(rstanarm)  # Funktionen für Bayes-Statistik laden
+library(tidyverse)  # Für Datenjudo</code></pre>
+<p>Der Datensatz <code>mtcars</code> ist “fest eingebaut” in R, so dass wir ihn nicht irgendwo herunterladen müssen.</p>
 <p>Hilfe zum Datensatz bekommt man so:</p>
 <pre class="r"><code>help(mtcars) # Hilfe/Codebook zum Datensatz 
 # Output hier nicht dargestellt</code></pre>
@@ -52,10 +52,13 @@ library(tidyverse)  # Datenjudo</code></pre>
 aber hilfreich,
 daher hier nur kurz ein Bild ohne Syntax:</p>
 <p><img src="chunk-img/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Jeder (leicht verwackelte) Punkt stellt ein Auto dar.
+Die Line ist die Regressionsgerade.
+Die roten Punkte sind die Mittelwerte der beiden Gruppen.</p>
 </div>
 <div id="zur-interpretation-der-regression" class="section level1">
 <h1>Zur Interpretation der Regression</h1>
-<p>Die einfache Regression (also mit 1 UV) hat zwei Koeffizienten:
+<p>Die einfache Regression (also mit nur einer UV) hat zwei Koeffizienten:
 Achsenabschnitt und Steigung.</p>
 <p>Bei einer binären (zweistufigen) UV bedeutet das:</p>
 <ul>
@@ -79,7 +82,7 @@ so ähnlich wie ein Schweizer Taschenmesser.</p>
 <h1>Unterschied zwischen den zwei Gruppen</h1>
 <pre class="r"><code>coef(m1)</code></pre>
 <pre><code>## (Intercept)          am 
-##   17.176828    7.191718</code></pre>
+##   17.176251    7.168571</code></pre>
 <p>Was wir bekommen,
 sind Punktschätzer für die Population:</p>
 <p>Der Achsenabschnitt wird auf ca. 17 geschätzt.
@@ -90,13 +93,13 @@ Die Steigung (Unterschied zwischen den Gruppen) wird auf ca. 7 geschätzt.</p>
 <p>In Bayes gibt es das Wort “signifikant” nicht.
 Formulieren wir die Frage doch so um:</p>
 <blockquote>
-<p>Liegt der Wert “Null” innerhalb oder außerhalb des 90%-Konfidenzintervalls (KI?</p>
+<p>Liegt der Wert “Null” innerhalb oder außerhalb des 90%-Konfidenzintervalls (KI)?</p>
 </blockquote>
 <pre class="r"><code>posterior_interval(m1)</code></pre>
 <pre><code>##                    5%       95%
-## (Intercept) 15.305426 19.002113
-## am           4.283285 10.191900
-## sigma        4.094537  6.247447</code></pre>
+## (Intercept) 15.231152 19.063431
+## am           4.159553 10.242292
+## sigma        4.040905  6.219674</code></pre>
 <p>Das 90%-KI wird auf den Bereich von ca. 4 bis 10 geschätzt.
 Die Null liegt <em>nicht</em> in diesem Intervall.</p>
 <p>Folglich verwerfen wir die Nullhypothese.</p>
@@ -106,14 +109,34 @@ Die Null liegt <em>nicht</em> in diesem Intervall.</p>
 <p>Also gut…</p>
 <pre class="r"><code>posterior_interval(m1, prob = .89)  # oder auch prob = .95 etc.</code></pre>
 <pre><code>##                  5.5%     94.5%
-## (Intercept) 15.349152 18.966175
-## am           4.341207 10.080387
-## sigma        4.112788  6.200624</code></pre>
+## (Intercept) 15.289955 19.019949
+## am           4.255656 10.154517
+## sigma        4.071641  6.167259</code></pre>
 </div>
 <div id="warum-eigentlich-89" class="section level1">
 <h1>Warum eigentlich 89%?</h1>
 <p>Richard McElreath begründet die 89 so: Es ist die kleinste Primzahl kleiner als 95.
-Noch Fragen? :smile</p>
+Noch Fragen? 😄</p>
+</div>
+<div id="mit-welcher-wahrscheinlichkeit-ist-der-unterschied-größer-als-null" class="section level1">
+<h1>Mit welcher Wahrscheinlichkeit ist der Unterschied größer als Null?</h1>
+<p>Eine interessante Variante der Forschungsfrage ist zu fragen,
+mit welcher Wahrscheinlichkeit - basierend auf den Daten und dem Modell -
+man mit einem Unterschied größer als Null zwischen Gruppen rechnen kann?</p>
+<pre class="r"><code>m1 %&gt;% 
+  as_tibble() %&gt;%  # Modellergebnis in Tabelle (tibble) umwandeln
+  count(am &gt; 0)  # Zählen wie oft `am &gt; 0` der Fall ist</code></pre>
+<pre><code>## # A tibble: 1 × 2
+##   `am &gt; 0`     n
+##   &lt;lgl&gt;    &lt;int&gt;
+## 1 TRUE      4000</code></pre>
+<p>Wie man sieht,
+findet das Modell in allen 4000 Stichproben (4000 ist der Defaultwert)
+einen Unterschied größer Null.</p>
+<p>Wir resümieren also:</p>
+<blockquote>
+<p>Laut Modell beträgt die Wahrscheinlichkeit praktisch 100%, dass wir einen Unterschied größer Null zwischen den Gruppenmittelwerten finden.</p>
+</blockquote>
 </div>
 <div id="fertig" class="section level1">
 <h1>Fertig</h1>

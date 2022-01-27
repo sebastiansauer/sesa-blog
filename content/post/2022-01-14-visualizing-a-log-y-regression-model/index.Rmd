@@ -9,6 +9,8 @@ tags:
   - modeling
   - visualization
   - plotting
+editor_options: 
+  chunk_output_type: console
 ---
 
 
@@ -129,49 +131,51 @@ ggplot(dat) +
 ```
 
 
-As can be seen, as long as the (x) values are small - as it is often the case for (properly scaled) regression model coefficients - we can easily translate between the x's and their exponentiated values.
-The values are very similar, given that the x is around zero (say, between -.25 and +.25).
+<!-- As can be seen, as long as the (x) values are small - as it is often the case for (properly scaled) regression model coefficients - we can easily translate between the x's and their exponentiated values. -->
+<!-- The values are very similar, given that the x is around zero (say, between -.25 and +.25). -->
 
 
-In short, in a log-y regression a coefficient of `x` means a change of `b1` percent in `y` (given that the coefficent is around zero).
+<!-- In short, in a log-y regression a coefficient of `x` means a change of `b1` percent in `y` (given that the coefficent is around zero). -->
 
 
-Let's check this shortcut:
+<!-- Let's check this shortcut: -->
 
 
-```{r}
-intercept_exp <- exp(coef(m1)[1])
-change_percent <- exp(coef(m1)[2])
-change_percent_reduction <- (1 - exp(coef(m1)[2]))
-```
+<!-- ```{r} -->
+<!-- intercept_exp <- exp(coef(m1)[1]) -->
+<!-- change_percent <- exp(coef(m1)[2]) -->
+<!-- change_percent_reduction <- (1 - exp(coef(m1)[2])) -->
+<!-- ``` -->
 
 
-```{r}
-dat2 <-
-  tibble(
-    hp = 0:400,
-    reduction = change_percent ^ hp,
-    mpg_approx = intercept_exp * reduction*intercept_exp)
-  )
-```
+<!-- ```{r} -->
+<!-- dat2 <- -->
+<!--   tibble( -->
+<!--     hp = 0:400, -->
+<!--     reduction = change_percent ^ hp, -->
+<!--     mpg_approx = intercept_exp * reduction*intercept_exp) -->
+<!--   ) -->
+<!-- ``` -->
 
 
-```{r}
-head(dat2)
-```
-
-
-
+<!-- ```{r} -->
+<!-- head(dat2) -->
+<!-- ``` -->
 
 
 
-```{r}
-ggplot(mtcars) +
-  aes(x = hp, y = mpg) +
-  geom_point() +
-  geom_line(data = pred_grid,
-            aes(x = hp, y = pred_exp)) +
-  geom_line(data = dat2,
-            aes(x = hp, y = mpg_approx),
-            color = "blue")
-```
+
+
+
+<!-- ```{r} -->
+<!-- ggplot(mtcars) + -->
+<!--   aes(x = hp, y = mpg) + -->
+<!--   geom_point() + -->
+<!--   geom_line(data = pred_grid, -->
+<!--             aes(x = hp, y = pred_exp)) + -->
+<!--   geom_line(data = dat2, -->
+<!--             aes(x = hp, y = mpg_approx), -->
+<!--             color = "blue") -->
+<!-- ``` -->
+
+
