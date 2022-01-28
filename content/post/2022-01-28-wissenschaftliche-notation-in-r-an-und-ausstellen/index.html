@@ -12,8 +12,8 @@ tags:
 <script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
 
 
-<div id="wissenschaftliche-notation" class="section level1">
-<h1>Wissenschaftliche Notation</h1>
+<div id="wissenschaftliche-notation-was-is-das" class="section level1">
+<h1>Wissenschaftliche Notation, was is das?</h1>
 <p>Zahlen können in der “fixierten” oder normalen Notation geschrieben sein:</p>
 <pre class="r"><code>1</code></pre>
 <pre><code>## [1] 1</code></pre>
@@ -22,14 +22,19 @@ tags:
 <pre><code>## [1] 10</code></pre>
 <p>und so weiter.</p>
 <p>Die sog. <em>wissenschaftliche Notation</em> von Zahlen sieht so aus:</p>
-<pre class="r"><code>1000000000000000</code></pre>
 <pre><code>## [1] 1e+15</code></pre>
 <p>Die wissenschaftliche Notation dieser großen Zahl sagt uns: “Das ist eine Zahl, die mit der Ziffer 1 beginnt und dann folgen 15 Nullen”.</p>
 <p>Das <em>e</em> steht für <em>Exponent</em>. Eigentlich nutzt der Computer die typische Taschenrechner-Schreibweise,
 von dem, was in der Mathe so geschrieben würde:</p>
 <p><span class="math inline">\(1\cdot10^{15}\)</span>.</p>
 <p>Die wissenschaftliche Notation ist bei sehr großen und sehr kleinen Zahlen praktisch,
-da es schwierig ist, viele Nuller.</p>
+da es schwierig ist, viele Nuller einfach zu erkennen.</p>
+<p>Übrigens heißt “1e+15” übersetzt ins das “fixierte Format”:</p>
+<p><code>1000000000000000</code>.</p>
+<p>Welche Varianten ist Ihnen lieber (und wann)?</p>
+</div>
+<div id="an--und-ausschalten-der-wissenschaftlichen-notation" class="section level1">
+<h1>An- und Ausschalten der wissenschaftlichen Notation</h1>
 <p>Es gibt mehrere Möglichkeiten,
 die wissenschaftliche Notation an- oder auszuschalten bzw.
 R dazu bringen, sie weniger schnell oder schneller anzuwenden.</p>

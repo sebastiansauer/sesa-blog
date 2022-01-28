@@ -29,7 +29,7 @@ tags:
 
 
 
-# Wissenschaftliche Notation
+# Wissenschaftliche Notation, was is das?
 
 Zahlen können in der "fixierten" oder normalen Notation geschrieben sein:
 
@@ -49,7 +49,7 @@ und so weiter.
 Die sog. *wissenschaftliche Notation* von Zahlen sieht so aus:
 
 
-```{r}
+```{r echo = FALSE}
 1000000000000000
 ```
 
@@ -62,8 +62,17 @@ von dem, was in der Mathe so geschrieben würde:
 $1\cdot10^{15}$.
 
 Die wissenschaftliche Notation ist bei sehr großen und sehr kleinen Zahlen praktisch,
-da es schwierig ist, viele Nuller.
+da es schwierig ist, viele Nuller einfach zu erkennen.
 
+Übrigens heißt "1e+15" übersetzt ins das "fixierte Format":
+
+`1000000000000000`.
+
+
+Welche Varianten ist Ihnen lieber (und wann)?
+
+
+# An- und Ausschalten der wissenschaftlichen Notation
 
 Es gibt mehrere Möglichkeiten,
 die wissenschaftliche Notation an- oder auszuschalten bzw.
