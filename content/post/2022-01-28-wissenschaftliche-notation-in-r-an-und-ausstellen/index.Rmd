@@ -125,6 +125,13 @@ In der [Hilfe von `options`](https://www.rdocumentation.org/packages/base/versio
 
 
 
+Tipp: Sich mit der wissenschaftlichen Notation vertraut machen,
+ist vielleicht die nützlichere Lösung.
+
+
+
+
+
 
 
 
