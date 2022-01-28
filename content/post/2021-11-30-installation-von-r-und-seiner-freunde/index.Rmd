@@ -102,8 +102,12 @@ Tatsächlich ist RStudio für das praktische Arbeiten ein großer Gewinn.
 
 [RStudio Cloud](https://rstudio.cloud/) ist eine gute Alternative, 
 wenn Sie R und Co. nicht auf Ihrem Rechner installieren möchten/können.
-Ein gewisser Zeitumfang ist kostenlos^[25 Projektstunden pro Monat zum Zeitpunkt des Schreibens].
-größere Pakete sind dann kostenpflichtig^[5$ für Projektstunden im Monat zum Zeitpunkt des Schreibens].
+Sie können es im Browser nutzen; 
+eine Installation auf Ihrem Rechner ist *nict* nötig.
+Praktische Sache.
+Ein gewisser Zeitumfang ist kostenlos^[25 Projektstunden pro Monat zum Zeitpunkt des Schreibens], s. die [Plans](https://rstudio.cloud/plans/free).
+Für [Studentis gibt es günstigere Pläne](https://rstudio.cloud/plans/premium?discount=academic).
+Größere Pakete sind dann kostenpflichtig^[5$ für Projektstunden im Monat zum Zeitpunkt des Schreibens].
 
 
 ### Konto anlegen
@@ -255,51 +259,6 @@ pacman::p_load(char = pckgs2)
 - Hin und wieder sollten Sie Ihre Pakete aktualisieren. Am einfachsten geht das mit Klick auf den Button "Update" im Reiter "Packages" in RStudio.
 - Wenn Sie Pakete installieren (oder updaten, was auf das gleiche hinausläuft), sollten *keine* Pakete gestartet sein. Das erreichen Sie am einfachsen, wenn Sie R neu starten (oder RStudio neu starten); zu dem Zeitpunkt sind keine Pakete geladen. Führen Sie jetzt die Installation (das Aktualisieren) der Pakete aus.
 - Wenn R Sie fragt, ob Sie R neu starten wollen, bevor Sie die Pakete installieren, drücken Sie auf "nein" (wenn Sie wissen, dass keine Pakete gestartet sind).
-
-
-
-## Bayes-Software
-
-
-Bayes-Inferenz kann rechenintensiv sein.
-Daher braucht's Software, die schnell rechnen kann.
-Außerdem sollte die Software sich gut mit Wahrscheinlichkeitsrechnung auskennen,
-denn Bayes ist nichts anderes als angewandte Wahrscheinlichkeitsrechnung.
-
-Aktuell ist die Software [Stan](https://mc-stan.org/) die führende Software für diesen Zweck.
-
-Bevor Sie aber  Stan installieren können, brauchen Sie eine (Software für eine) 
-"schnelle Rechenmaschine" auf Ihrem Computer installiert.
-Stan nutzt dafür C++.
-
-Um C++ zu installieren gehen Sie so vor:
-
-- Mac: Installieren Sie die [Command Line Tools](https://macpaw.com/how-to/install-command-line-tools);
-viele Anleitungen finden sich dafür online.
-- Windows: Installieren Sie die [Rtools](https://cran.rstudio.com/bin/windows/Rtools/)
-- Linux: Schauen Sie mal auf die [Seite von Stan](https://github.com/stan-dev/rstan/wiki/Configuring-C-Toolchain-for-Linux)
-
-
-Wenn C++ installiert ist, ist das Schwierigste geschafft.
-
-Jetzt können Sie in gewohnter Weise die restliche Software - d.i. vor allem Stan -  als R-Pakete installieren:
-
-
-```{r eval = FALSE}
-pckgs_bayes <-
-  c("rstan",
-    "rstanarm",
-    "bayesplot",
-    "bayestestR",
-    "tidybayes")
-
-install.packages(pckgs_bayes)
-```
-
-
-`rstan` ist ein R-Paket, das Stan und eine Verbindung zu Stan von R bereitstellt.
-Die übrigen Pakete greifen alle auf Stan zurück,
-bieten aber komfortable Zusatzfunktionen wie Visualisierungen und vereinfachte Syntax.
 
 
 
