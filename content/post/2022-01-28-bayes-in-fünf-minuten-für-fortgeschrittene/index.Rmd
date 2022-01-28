@@ -172,7 +172,7 @@ Dieses Konzept nennt man auch das Testen auf einen "Region of practical equivale
 
 Sagen wir, wir definieren einen Unterschied von *1 Meile* (bei `mpg`) als "praktisch Null"
  (vernachlässigbar, äquivalent).
-Mit anderen Worten: Falls die beiden Gruppen von Autos im Schnitt mit einer Gallone Sprit gleich weit kommen *plus-minus 1 Meile*, dann sagen wir, dass der *Unterschied* im Spritverbrauch *praktisch Null* ist.
+Mit anderen Worten: Falls die beiden Gruppen von Autos im Schnitt mit einer Gallone Sprit gleich weit kommen *plus/minus 1 Meile*, dann sagen wir, dass der *Unterschied* im Spritverbrauch *praktisch Null* ist.
 
 In R können wir ROPE so berechnen:
 
@@ -247,7 +247,7 @@ m1_ppv <- m1_ppv %>%
   as_tibble() # in ordentliche Tabelle umwandeln
 ```
 
-Sieht dann so aus:
+Sieht dann so aus (die ersten paar Zeilen):
 
 
 ```{r echo = FALSE}
@@ -258,7 +258,7 @@ m1_ppv %>%
 
 
 - Erste Spalte: Gruppe 1 (`am = 0`).
-- Zweite Spalte: Gruppe 2 1 (`am = 1`).
+- Zweite Spalte: Gruppe 2 (`am = 1`).
 
 Jetzt berechnen wir die Streuung in jeder Spalte,
 dann wissen wir die Ungewissheit in den Vorhersagen!
@@ -271,7 +271,7 @@ m1_ppv %>%
 ```
 
 
-Plotten wir mal die Vorhersagen:
+Plotten wir mal die Vorhersagen, genauer gesagt ihre Streuung, also die Ungewissheit in den Vorhersagen:
 
 
 ```{r}
@@ -298,12 +298,15 @@ m1_ppv2 %>%
   pivot_longer(everything()) %>% 
   ggplot(aes(x = value, fill = name)) +
   geom_density(alpha = .7) +
-  theme_minimal()
+  theme_minimal() +
+  labs(fill = "Art des Getriebes")
 ```
 
 
 # Wie groß ist die Wahrscheinlichkeit, dass ein Automatik-Auto mehr Sprit braucht, als ein Schalt-Auto?
 
+Stellen Sie sich also vor: Wir ziehen zufällig ein Auto aus jeder der beiden Gruppen.
+Wie groß ist die Wahrscheinlichkeit, dass das Automatik-Auto mehr Sprit braucht (als das Auto mit manuellem Getriebe)?
 
 Die Frage können wir wie folgt beantworten:
 Schauen wir uns unsere 4000 Vorhersagen pro Gruppe (Automatik vs. Schaltung) an.
@@ -355,6 +358,7 @@ in durchaus ziemlich cooler Wiese äh Weise.
 
 
 
+Das letzte Wort hat der late Philosophy Twitter Star Karl L.:
 
 <a href="https://imgflip.com/i/630b4f"><img src="https://i.imgflip.com/630b4f.jpg" title="made at imgflip.com"/></a><div><a href="https://imgflip.com/memegenerator">from Imgflip Meme Generator</a></div>
 

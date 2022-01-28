@@ -79,7 +79,7 @@ so ähnlich wie ein Schweizer Taschenmesser.</p>
 <h1>Unterschied zwischen den zwei Gruppen</h1>
 <pre class="r"><code>coef(m1)</code></pre>
 <pre><code>## (Intercept)          am 
-##   17.144216    7.249306</code></pre>
+##   17.142936    7.220695</code></pre>
 <p>Was wir bekommen,
 sind Punktschätzer für die Population:</p>
 <p>Der Achsenabschnitt wird auf ca. 17 geschätzt.
@@ -95,7 +95,7 @@ und zu testen, ob wir diesen Bereich ausschließen können.</p>
 <a href="https://journals.sagepub.com/doi/full/10.1177/2515245918771304">hier ist ein schönes Paper</a> dazu.</p>
 <p>Sagen wir, wir definieren einen Unterschied von <em>1 Meile</em> (bei <code>mpg</code>) als “praktisch Null”
 (vernachlässigbar, äquivalent).
-Mit anderen Worten: Falls die beiden Gruppen von Autos im Schnitt mit einer Gallone Sprit gleich weit kommen <em>plus-minus 1 Meile</em>, dann sagen wir, dass der <em>Unterschied</em> im Spritverbrauch <em>praktisch Null</em> ist.</p>
+Mit anderen Worten: Falls die beiden Gruppen von Autos im Schnitt mit einer Gallone Sprit gleich weit kommen <em>plus/minus 1 Meile</em>, dann sagen wir, dass der <em>Unterschied</em> im Spritverbrauch <em>praktisch Null</em> ist.</p>
 <p>In R können wir ROPE so berechnen:</p>
 <pre class="r"><code>library(bayestestR)
 m1_rope &lt;- rope(m1, range = c(-1,1))
@@ -123,7 +123,7 @@ Der Spritverbrauch unterscheidet sich mehr als “praktisch Null” zwischen den
 Kann man auch so berechnen:</p>
 <pre class="r"><code>predict(m1, newdata = tibble(am = c(0,1)))</code></pre>
 <pre><code>##        1        2 
-## 17.15962 24.43661</code></pre>
+## 17.15779 24.39492</code></pre>
 <p>Mit <code>newdata</code> haben wir gesagt “Hey R, mach mal ne Vorhersage für zwei neue Karren.
 Und zwar einmal eine mit <code>am=0</code> und eine mit <code>am=1</code>.
 Das ist nichts anderes als ein Autom mit Automatikgetriebe und eines mit manueller Schaltung.</p>
@@ -143,13 +143,13 @@ geht man von der sog. <em>Posteriori-Prädiktiv-Verteilung</em> (PPV) aus.</p>
 
 m1_ppv &lt;- m1_ppv %&gt;% 
   as_tibble() # in ordentliche Tabelle umwandeln</code></pre>
-<p>Sieht dann so aus:</p>
-<div id="yawgcyvokj" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<p>Sieht dann so aus (die ersten paar Zeilen):</p>
+<div id="dxuhxpeukf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#yawgcyvokj .gt_table {
+#dxuhxpeukf .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -174,7 +174,7 @@ m1_ppv &lt;- m1_ppv %&gt;%
   border-left-color: #D3D3D3;
 }
 
-#yawgcyvokj .gt_heading {
+#dxuhxpeukf .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -186,7 +186,7 @@ m1_ppv &lt;- m1_ppv %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#yawgcyvokj .gt_title {
+#dxuhxpeukf .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -196,7 +196,7 @@ m1_ppv &lt;- m1_ppv %&gt;%
   border-bottom-width: 0;
 }
 
-#yawgcyvokj .gt_subtitle {
+#dxuhxpeukf .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -206,13 +206,13 @@ m1_ppv &lt;- m1_ppv %&gt;%
   border-top-width: 0;
 }
 
-#yawgcyvokj .gt_bottom_border {
+#dxuhxpeukf .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#yawgcyvokj .gt_col_headings {
+#dxuhxpeukf .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -227,7 +227,7 @@ m1_ppv &lt;- m1_ppv %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#yawgcyvokj .gt_col_heading {
+#dxuhxpeukf .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -247,7 +247,7 @@ m1_ppv &lt;- m1_ppv %&gt;%
   overflow-x: hidden;
 }
 
-#yawgcyvokj .gt_column_spanner_outer {
+#dxuhxpeukf .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -259,15 +259,15 @@ m1_ppv &lt;- m1_ppv %&gt;%
   padding-right: 4px;
 }
 
-#yawgcyvokj .gt_column_spanner_outer:first-child {
+#dxuhxpeukf .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#yawgcyvokj .gt_column_spanner_outer:last-child {
+#dxuhxpeukf .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#yawgcyvokj .gt_column_spanner {
+#dxuhxpeukf .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -279,7 +279,7 @@ m1_ppv &lt;- m1_ppv %&gt;%
   width: 100%;
 }
 
-#yawgcyvokj .gt_group_heading {
+#dxuhxpeukf .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -301,7 +301,7 @@ m1_ppv &lt;- m1_ppv %&gt;%
   vertical-align: middle;
 }
 
-#yawgcyvokj .gt_empty_group_heading {
+#dxuhxpeukf .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -316,15 +316,15 @@ m1_ppv &lt;- m1_ppv %&gt;%
   vertical-align: middle;
 }
 
-#yawgcyvokj .gt_from_md > :first-child {
+#dxuhxpeukf .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#yawgcyvokj .gt_from_md > :last-child {
+#dxuhxpeukf .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#yawgcyvokj .gt_row {
+#dxuhxpeukf .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -343,7 +343,7 @@ m1_ppv &lt;- m1_ppv %&gt;%
   overflow-x: hidden;
 }
 
-#yawgcyvokj .gt_stub {
+#dxuhxpeukf .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -355,7 +355,7 @@ m1_ppv &lt;- m1_ppv %&gt;%
   padding-left: 12px;
 }
 
-#yawgcyvokj .gt_summary_row {
+#dxuhxpeukf .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -365,7 +365,7 @@ m1_ppv &lt;- m1_ppv %&gt;%
   padding-right: 5px;
 }
 
-#yawgcyvokj .gt_first_summary_row {
+#dxuhxpeukf .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -375,7 +375,7 @@ m1_ppv &lt;- m1_ppv %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#yawgcyvokj .gt_grand_summary_row {
+#dxuhxpeukf .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -385,7 +385,7 @@ m1_ppv &lt;- m1_ppv %&gt;%
   padding-right: 5px;
 }
 
-#yawgcyvokj .gt_first_grand_summary_row {
+#dxuhxpeukf .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -395,11 +395,11 @@ m1_ppv &lt;- m1_ppv %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#yawgcyvokj .gt_striped {
+#dxuhxpeukf .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#yawgcyvokj .gt_table_body {
+#dxuhxpeukf .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -408,7 +408,7 @@ m1_ppv &lt;- m1_ppv %&gt;%
   border-bottom-color: #D3D3D3;
 }
 
-#yawgcyvokj .gt_footnotes {
+#dxuhxpeukf .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -422,13 +422,13 @@ m1_ppv &lt;- m1_ppv %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#yawgcyvokj .gt_footnote {
+#dxuhxpeukf .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#yawgcyvokj .gt_sourcenotes {
+#dxuhxpeukf .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -442,41 +442,41 @@ m1_ppv &lt;- m1_ppv %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#yawgcyvokj .gt_sourcenote {
+#dxuhxpeukf .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#yawgcyvokj .gt_left {
+#dxuhxpeukf .gt_left {
   text-align: left;
 }
 
-#yawgcyvokj .gt_center {
+#dxuhxpeukf .gt_center {
   text-align: center;
 }
 
-#yawgcyvokj .gt_right {
+#dxuhxpeukf .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#yawgcyvokj .gt_font_normal {
+#dxuhxpeukf .gt_font_normal {
   font-weight: normal;
 }
 
-#yawgcyvokj .gt_font_bold {
+#dxuhxpeukf .gt_font_bold {
   font-weight: bold;
 }
 
-#yawgcyvokj .gt_font_italic {
+#dxuhxpeukf .gt_font_italic {
   font-style: italic;
 }
 
-#yawgcyvokj .gt_super {
+#dxuhxpeukf .gt_super {
   font-size: 65%;
 }
 
-#yawgcyvokj .gt_footnote_marks {
+#dxuhxpeukf .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -491,18 +491,18 @@ m1_ppv &lt;- m1_ppv %&gt;%
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_center">19.61020</td>
-<td class="gt_row gt_center">27.37910</td></tr>
-    <tr><td class="gt_row gt_center">19.89725</td>
-<td class="gt_row gt_center">15.74478</td></tr>
-    <tr><td class="gt_row gt_center">12.72710</td>
-<td class="gt_row gt_center">33.74505</td></tr>
-    <tr><td class="gt_row gt_center">30.58341</td>
-<td class="gt_row gt_center">22.87082</td></tr>
-    <tr><td class="gt_row gt_center">17.64878</td>
-<td class="gt_row gt_center">33.03409</td></tr>
-    <tr><td class="gt_row gt_center">16.72789</td>
-<td class="gt_row gt_center">14.68288</td></tr>
+    <tr><td class="gt_row gt_center">9.443872</td>
+<td class="gt_row gt_center">26.69451</td></tr>
+    <tr><td class="gt_row gt_center">16.978284</td>
+<td class="gt_row gt_center">26.99028</td></tr>
+    <tr><td class="gt_row gt_center">19.387923</td>
+<td class="gt_row gt_center">15.53653</td></tr>
+    <tr><td class="gt_row gt_center">8.913925</td>
+<td class="gt_row gt_center">14.31588</td></tr>
+    <tr><td class="gt_row gt_center">20.383035</td>
+<td class="gt_row gt_center">13.35528</td></tr>
+    <tr><td class="gt_row gt_center">20.673459</td>
+<td class="gt_row gt_center">21.59201</td></tr>
   </tbody>
   
   
@@ -510,7 +510,7 @@ m1_ppv &lt;- m1_ppv %&gt;%
 </div>
 <ul>
 <li>Erste Spalte: Gruppe 1 (<code>am = 0</code>).</li>
-<li>Zweite Spalte: Gruppe 2 1 (<code>am = 1</code>).</li>
+<li>Zweite Spalte: Gruppe 2 (<code>am = 1</code>).</li>
 </ul>
 <p>Jetzt berechnen wir die Streuung in jeder Spalte,
 dann wissen wir die Ungewissheit in den Vorhersagen!</p>
@@ -520,8 +520,8 @@ dann wissen wir die Ungewissheit in den Vorhersagen!</p>
 <pre><code>## # A tibble: 1 × 2
 ##   am_0_sd am_1_sd
 ##     &lt;dbl&gt;   &lt;dbl&gt;
-## 1    5.29    5.36</code></pre>
-<p>Plotten wir mal die Vorhersagen:</p>
+## 1    5.08    5.32</code></pre>
+<p>Plotten wir mal die Vorhersagen, genauer gesagt ihre Streuung, also die Ungewissheit in den Vorhersagen:</p>
 <pre class="r"><code>m1_ppv %&gt;% 
   ggplot() +
   geom_density(aes(x = `1`), fill = &quot;blue&quot;, alpha = .7) +
@@ -536,11 +536,14 @@ dann wissen wir die Ungewissheit in den Vorhersagen!</p>
   pivot_longer(everything()) %&gt;% 
   ggplot(aes(x = value, fill = name)) +
   geom_density(alpha = .7) +
-  theme_minimal()</code></pre>
+  theme_minimal() +
+  labs(fill = &quot;Art des Getriebes&quot;)</code></pre>
 <p><img src="chunk-img/unnamed-chunk-16-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="wie-groß-ist-die-wahrscheinlichkeit-dass-ein-automatik-auto-mehr-sprit-braucht-als-ein-schalt-auto" class="section level1">
 <h1>Wie groß ist die Wahrscheinlichkeit, dass ein Automatik-Auto mehr Sprit braucht, als ein Schalt-Auto?</h1>
+<p>Stellen Sie sich also vor: Wir ziehen zufällig ein Auto aus jeder der beiden Gruppen.
+Wie groß ist die Wahrscheinlichkeit, dass das Automatik-Auto mehr Sprit braucht (als das Auto mit manuellem Getriebe)?</p>
 <p>Die Frage können wir wie folgt beantworten:
 Schauen wir uns unsere 4000 Vorhersagen pro Gruppe (Automatik vs. Schaltung) an.
 Bei wie vielen dieser 4000 Paare hat die Automatikgruppe einen höheren Spritverbrauch
@@ -555,8 +558,8 @@ wskt_spritverbrauch</code></pre>
 <pre><code>## # A tibble: 2 × 2
 ##   weniger_verbrauch_automatik     n
 ##   &lt;lgl&gt;                       &lt;int&gt;
-## 1 FALSE                        3348
-## 2 TRUE                          652</code></pre>
+## 1 FALSE                        3354
+## 2 TRUE                          646</code></pre>
 <p>Also: In den meisten Fällen gilt: Ein Auto mit Automatik kommt weniger weit mit einer Meile Sprit.
 Mit anderen Worten: In den meisten Fällen hat einer Automatik-Auto einen geringen Wert in <code>mpg</code>.</p>
 <p>In diesem Beispiel liegt der Anteil bei:</p>
@@ -568,8 +571,8 @@ wskt_spritverbrauch</code></pre>
 <pre><code>## # A tibble: 2 × 3
 ##   weniger_verbrauch_automatik     n  prop
 ##   &lt;lgl&gt;                       &lt;int&gt; &lt;dbl&gt;
-## 1 FALSE                        3348 0.837
-## 2 TRUE                          652 0.163</code></pre>
+## 1 FALSE                        3354 0.838
+## 2 TRUE                          646 0.162</code></pre>
 <p>Die Anteile nehmen wir als Schätzwerte für die Wahrscheinlichkeit.
 Also: Die Wahrscheinlichkeit, dass ein Automatik-Auto weniger Sprit verbraucht,
 liegt nach unserem Modell bei ca. 0.16.</p>
@@ -582,6 +585,7 @@ Das war etwas fortgeschrittener als im <a href="https://data-se.netlify.app/2022
 <p>Aber dafür haben wir viel erreicht:
 In weites Spektrum wichtiger Forschungsfragen haben wir abgedeckt,
 in durchaus ziemlich cooler Wiese äh Weise.</p>
+<p>Das letzte Wort hat der late Philosophy Twitter Star Karl L.:</p>
 <a href="https://imgflip.com/i/630b4f"><img src="https://i.imgflip.com/630b4f.jpg" title="made at imgflip.com"/></a>
 <div>
 <a href="https://imgflip.com/memegenerator">from Imgflip Meme Generator</a>
