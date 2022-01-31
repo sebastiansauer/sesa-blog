@@ -30,7 +30,7 @@ dass sei so ähnlich wei beim Arztbesuch, Ferndiagnosen wären schwierig. Man m�
 den "Patienten" (die R-Syntax) genau vor sich sehen.
 
 Insgesamt sehr nervig, was die R-Expertin da sagt: Als ob es Ihnen keine Arbeit machen
-würde, das Problem exakt zu beschreiben und alles "reproduzierbar" zu gesalten,
+würde, das Problem exakt zu beschreiben und alles "reproduzierbar" zu gestalten,
 wie die ExpeRtin sind ausdrückte (was immer "reproduzierbar" bedeuten soll).
 
 Wieso will die ExpeRtin das so genau beschrieben haben? Kann sie nicht einfach so helfen?
@@ -41,13 +41,14 @@ Die Angelegenheit ist ja jetzt schon nervig genug!
 
 
 Wenn Sie jemanden um Hilfe bitten und die Wahrscheinlichkeit, dass die Person für Sie Ihr
-Problem löst, sollten Sie folgende Eckpunkte beachten.
+Problem löst, maximieren möchten, sollten Sie folgende Eckpunkte beachten.
 
 
 - *Ziel*: Erläutern Sie präzise, welches Verhalten von R Sie erwarten bzw. was sie erreichen möchten.
 - *Zustand*: Erläutern Sie, was stattdessen passiert; geben Sie etwaige Fehlermeldungen.
-- *Schon probiert*: Geben Sie an, was Sie selber versucht haben, um das Problem zu lösen und was dabei herausgekommen ist.
-- *Syntax*: Stellen Sie die Syntax, die das Problem erzeugt, in *Textform* bereit, nicht als Screenshot. Sonst muss Ihre Hilferin die Syntax abtippen.
+- *Erst recherchieren*: Recherchieren Sie erst, ob das Problem nicht schon (mehrfach) gelöst wurde, also irgendwo im Internet beschrieben wurde. www.stackoverflow.com ist vielleicht der beste Ort, um Hilfe zu finden.
+- *Schon probiert*: Geben Sie an, was Sie selber versucht haben, um das Problem zu lösen und was dabei herausgekommen ist. Sie können auch Links zu Posts zu ähnlichen Problemen angeben, die Sie gefunden haben, die Ihnen aber nicht hilfen konnten.
+- *Syntax*: Stellen Sie die Syntax, die das Problem erzeugt, in *Textform* bereit (am besten online z.B. als [Github Gist](https://gist.github.com/)), nicht als Screenshot. Sonst muss Ihre Hilferin die Syntax abtippen.
 - *Minimal*: Machen Sie die Syntax so einfach und so kurz wie möglich, um nicht vom Wesentlichen abzulenken. Es bietet sich z.B. an, auf einfache, in R eingebaute Datensätze, wie `mtcars` zurückzugreifen.
 - *Reproduzierbar*: Stellen Sie sicher, dass die Syntax dass Problem konsistent aufwirft. Und stellen sie sicher, dass Ihrer Helferin alle nötigen Infos zur Verfügung stehen, um die Syntax zum Laufen zu kriegen; so müssen benötigte Daten verfügbar sein.
 - *Aktuell*: Stellen Sie sicher, dass die von Ihnen verwendete Sofware aktuell ist.
@@ -69,7 +70,7 @@ dass es möglichst einfach gelöst werden kann.
 - https://stackoverflow.com/help/minimal-reproducible-example
 - https://robjhyndman.com/hyndsight/minimal-reproducible-examples/
 - https://community.rstudio.com/t/faq-how-to-do-a-minimal-reproducible-example-reprex-for-beginners/23061
-
+- Sauer (2019), S. 33f
 
 
 
