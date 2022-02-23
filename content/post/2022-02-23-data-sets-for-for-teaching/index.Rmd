@@ -79,6 +79,15 @@ Note that the data sets are provided as standard CSV files (comma separeted, dot
 
 
 
+# Data repositories
+
+Check this out for longish compilations of data sets useful for data analysis:
+
+
+- [Kaggle](https://www.kaggle.com/datasets)
+- [R Datasets](https://vincentarelbundock.github.io/Rdatasets/articles/data.html)
+
+
 # How to import into R
 
 

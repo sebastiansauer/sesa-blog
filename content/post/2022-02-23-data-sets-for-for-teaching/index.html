@@ -19,8 +19,9 @@ output:
 <ul>
 <li><a href="#load-packages"><span class="toc-section-number">1</span> Load packages</a></li>
 <li><a href="#data"><span class="toc-section-number">2</span> Data</a></li>
-<li><a href="#how-to-import-into-r"><span class="toc-section-number">3</span> How to import into R</a></li>
-<li><a href="#reproducibility"><span class="toc-section-number">4</span> Reproducibility</a></li>
+<li><a href="#data-repositories"><span class="toc-section-number">3</span> Data repositories</a></li>
+<li><a href="#how-to-import-into-r"><span class="toc-section-number">4</span> How to import into R</a></li>
+<li><a href="#reproducibility"><span class="toc-section-number">5</span> Reproducibility</a></li>
 </ul>
 </div>
 
@@ -82,8 +83,16 @@ output:
 </ul>
 <p>Note that the data sets are provided as standard CSV files (comma separeted, dots as delimiters).</p>
 </div>
-<div id="how-to-import-into-r" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> How to import into R</h1>
+<div id="data-repositories" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Data repositories</h1>
+<p>Check this out for longish compilations of data sets useful for data analysis:</p>
+<ul>
+<li><a href="https://www.kaggle.com/datasets">Kaggle</a></li>
+<li><a href="https://vincentarelbundock.github.io/Rdatasets/articles/data.html">R Datasets</a></li>
+</ul>
+</div>
+<div id="how-to-import-into-r" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> How to import into R</h1>
 <ol style="list-style-type: decimal">
 <li>Open the web page of the data by clicking on the respective <code>[csv]</code> link (above)</li>
 <li>Copy the URL of that web page to your clipboard (control-c)</li>
@@ -117,8 +126,8 @@ d &lt;- read_csv(data_url)</code></pre>
 <p>Don’t worry about the first column with the strange name <code>...1</code>, that’s
 nothing but a technical artifact. Just ignore it.</p>
 </div>
-<div id="reproducibility" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Reproducibility</h1>
+<div id="reproducibility" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Reproducibility</h1>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value                       
 #&gt;  version  R version 4.1.2 (2021-11-01)
