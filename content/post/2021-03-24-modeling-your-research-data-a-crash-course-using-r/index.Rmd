@@ -323,6 +323,15 @@ There are a lot of case studies scatter on the internet.
 
 [Dagitty](http://dagitty.net/dags.html) is great tool for sketching causal graphs (DAGs), it can be usd in your browser or as R package. [Here's](dagitty.net/mmxqlaB) an example of a collider bias. Check out [this post](https://data-se.netlify.app/2020/06/04/when-adding-variable-hurts-the-collider-bias/) for an intuitive explanation.
 
+
+
+## German introductary course
+
+Readers who speak German may check out this [Blitzkurs](https://sebastiansauer.github.io/r-blitzkurs/) into data analysis using R.
+
+
+
+
 # Where are the slides?
 
 
