@@ -26,7 +26,6 @@ output:
 <li><a href="#second-unquoted-parameter"><span class="toc-section-number">4</span> Second: Unquoted parameter</a></li>
 <li><a href="#check"><span class="toc-section-number">5</span> Check</a></li>
 <li><a href="#bonus"><span class="toc-section-number">6</span> Bonus</a></li>
-<li><a href="#reproducibility"><span class="toc-section-number">7</span> Reproducibility</a></li>
 </ul>
 </div>
 
@@ -66,21 +65,21 @@ that uses tidyverse commands internally.</p>
   
   return(out)
 }</code></pre>
-<p>Ok, here’s the function call, note the <em>quoated</em> parameter <code>"hp"</code>:</p>
+<p>Ok, here’s comes the function call, note the <em>quoted</em> parameter “hp”:</p>
 <pre class="r"><code>out1 &lt;- pull_string(mtcars, &quot;hp&quot;)
 out1
 #&gt;  [1] 110 110  93 110 175 105 245  62  95 123 123 180 180 180 205 215 230  66  52
 #&gt; [20]  65  97 150 150 245 175  66  91 113 264 175 335 109</code></pre>
-<p>The “curly curly” <code>{{</code> operator provides the candy here.
+<p>The “curly curly” {{ operator provides the candy here.
 It explains to the tidyverse function that <code>var_symbol</code> needs to evaluated in the environment of the data frame.</p>
 <p>Note that we first translated <code>var</code> from a string to a symbol, using <code>as.name()</code>:</p>
 <pre class="r"><code>as.name(&quot;hp&quot;)
 #&gt; hp</code></pre>
-<p>Next to <code>as.name()</code>the curly-curly operator can be made use of.</p>
+<p>Next to <code>as.name()</code> the curly-curly operator can be made use of.</p>
 </div>
 <div id="second-unquoted-parameter" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> Second: Unquoted parameter</h1>
-<p>Ok, next, the <em>unquoted</em> parameter in our function.</p>
+<p>Ok, let’s move on, next, the <em>unquoted</em> parameter in our function.</p>
 <pre class="r"><code>pull_unquoted &lt;- function(data, var) {
   
   out &lt;-
@@ -88,7 +87,6 @@ It explains to the tidyverse function that <code>var_symbol</code> needs to eval
     pull({{var}})
   
   return(out)
-    
 }
 
 out2 &lt;- pull_unquoted(mtcars, hp)
@@ -112,105 +110,4 @@ because we already got in unquoted, ie., as a “symbol”.</p>
 we can use the following expression:</p>
 <pre class="r"><code>deparse(substitute(var))
 #&gt; [1] &quot;var&quot;</code></pre>
-</div>
-<div id="reproducibility" class="section level1" number="7">
-<h1><span class="header-section-number">7</span> Reproducibility</h1>
-<pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
-#&gt;  setting  value                       
-#&gt;  version  R version 4.1.2 (2021-11-01)
-#&gt;  os       macOS Big Sur 10.16         
-#&gt;  system   x86_64, darwin17.0          
-#&gt;  ui       X11                         
-#&gt;  language (EN)                        
-#&gt;  collate  en_US.UTF-8                 
-#&gt;  ctype    en_US.UTF-8                 
-#&gt;  tz       Europe/Berlin               
-#&gt;  date     2022-03-11                  
-#&gt; 
-#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
-#&gt;  package     * version date       lib source                            
-#&gt;  assertthat    0.2.1   2019-03-21 [1] CRAN (R 4.1.0)                    
-#&gt;  backports     1.4.1   2021-12-13 [1] CRAN (R 4.1.0)                    
-#&gt;  blogdown      1.8     2022-02-16 [2] CRAN (R 4.1.2)                    
-#&gt;  bookdown      0.24.2  2021-10-15 [1] Github (rstudio/bookdown@ba51c26) 
-#&gt;  brio          1.1.3   2021-11-30 [1] CRAN (R 4.1.0)                    
-#&gt;  broom         0.7.12  2022-01-28 [1] CRAN (R 4.1.2)                    
-#&gt;  bslib         0.3.1   2021-10-06 [1] CRAN (R 4.1.0)                    
-#&gt;  cachem        1.0.6   2021-08-19 [1] CRAN (R 4.1.0)                    
-#&gt;  callr         3.7.0   2021-04-20 [1] CRAN (R 4.1.0)                    
-#&gt;  cellranger    1.1.0   2016-07-27 [1] CRAN (R 4.1.0)                    
-#&gt;  cli           3.2.0   2022-02-14 [1] CRAN (R 4.1.2)                    
-#&gt;  codetools     0.2-18  2020-11-04 [2] CRAN (R 4.1.2)                    
-#&gt;  colorout    * 1.2-2   2022-01-04 [1] Github (jalvesaq/colorout@79931fd)
-#&gt;  colorspace    2.0-3   2022-02-21 [1] CRAN (R 4.1.2)                    
-#&gt;  crayon        1.5.0   2022-02-14 [1] CRAN (R 4.1.2)                    
-#&gt;  DBI           1.1.2   2021-12-20 [1] CRAN (R 4.1.0)                    
-#&gt;  dbplyr        2.1.1   2021-04-06 [1] CRAN (R 4.1.0)                    
-#&gt;  desc          1.4.0   2021-09-28 [1] CRAN (R 4.1.0)                    
-#&gt;  devtools      2.4.3   2021-11-30 [1] CRAN (R 4.1.0)                    
-#&gt;  digest        0.6.29  2021-12-01 [1] CRAN (R 4.1.0)                    
-#&gt;  dplyr       * 1.0.8   2022-02-08 [1] CRAN (R 4.1.2)                    
-#&gt;  ellipsis      0.3.2   2021-04-29 [1] CRAN (R 4.1.0)                    
-#&gt;  evaluate      0.14    2019-05-28 [1] CRAN (R 4.1.0)                    
-#&gt;  fansi         1.0.2   2022-01-14 [1] CRAN (R 4.1.2)                    
-#&gt;  fastmap       1.1.0   2021-01-25 [2] CRAN (R 4.1.0)                    
-#&gt;  forcats     * 0.5.1   2021-01-27 [1] CRAN (R 4.1.0)                    
-#&gt;  fs            1.5.2   2021-12-08 [1] CRAN (R 4.1.0)                    
-#&gt;  generics      0.1.2   2022-01-31 [1] CRAN (R 4.1.2)                    
-#&gt;  ggplot2     * 3.3.5   2021-06-25 [1] CRAN (R 4.1.0)                    
-#&gt;  glue          1.6.2   2022-02-24 [1] CRAN (R 4.1.2)                    
-#&gt;  gtable        0.3.0   2019-03-25 [1] CRAN (R 4.1.0)                    
-#&gt;  haven         2.4.3   2021-08-04 [1] CRAN (R 4.1.0)                    
-#&gt;  hms           1.1.1   2021-09-26 [1] CRAN (R 4.1.0)                    
-#&gt;  htmltools     0.5.2   2021-08-25 [1] CRAN (R 4.1.0)                    
-#&gt;  httr          1.4.2   2020-07-20 [1] CRAN (R 4.1.0)                    
-#&gt;  jquerylib     0.1.4   2021-04-26 [1] CRAN (R 4.1.0)                    
-#&gt;  jsonlite      1.7.3   2022-01-17 [1] CRAN (R 4.1.2)                    
-#&gt;  knitr         1.37    2021-12-16 [1] CRAN (R 4.1.0)                    
-#&gt;  lifecycle     1.0.1   2021-09-24 [1] CRAN (R 4.1.0)                    
-#&gt;  lubridate     1.8.0   2021-10-07 [1] CRAN (R 4.1.0)                    
-#&gt;  magrittr      2.0.2   2022-01-26 [1] CRAN (R 4.1.2)                    
-#&gt;  memoise       2.0.0   2021-01-26 [2] CRAN (R 4.1.0)                    
-#&gt;  modelr        0.1.8   2020-05-19 [1] CRAN (R 4.1.0)                    
-#&gt;  munsell       0.5.0   2018-06-12 [1] CRAN (R 4.1.0)                    
-#&gt;  pillar        1.7.0   2022-02-01 [1] CRAN (R 4.1.2)                    
-#&gt;  pkgbuild      1.2.0   2020-12-15 [2] CRAN (R 4.1.0)                    
-#&gt;  pkgconfig     2.0.3   2019-09-22 [1] CRAN (R 4.1.0)                    
-#&gt;  pkgload       1.2.4   2021-11-30 [1] CRAN (R 4.1.0)                    
-#&gt;  prettyunits   1.1.1   2020-01-24 [1] CRAN (R 4.1.0)                    
-#&gt;  processx      3.5.2   2021-04-30 [1] CRAN (R 4.1.0)                    
-#&gt;  ps            1.6.0   2021-02-28 [1] CRAN (R 4.1.0)                    
-#&gt;  purrr       * 0.3.4   2020-04-17 [1] CRAN (R 4.1.0)                    
-#&gt;  R6            2.5.1   2021-08-19 [1] CRAN (R 4.1.0)                    
-#&gt;  Rcpp          1.0.8   2022-01-13 [1] CRAN (R 4.1.2)                    
-#&gt;  readr       * 2.1.2   2022-01-30 [1] CRAN (R 4.1.2)                    
-#&gt;  readxl        1.3.1   2019-03-13 [1] CRAN (R 4.1.0)                    
-#&gt;  remotes       2.4.0   2021-06-02 [2] CRAN (R 4.1.0)                    
-#&gt;  reprex        2.0.1   2021-08-05 [1] CRAN (R 4.1.0)                    
-#&gt;  rlang         1.0.2   2022-03-04 [1] CRAN (R 4.1.2)                    
-#&gt;  rmarkdown     2.11    2021-09-14 [1] CRAN (R 4.1.0)                    
-#&gt;  rprojroot     2.0.2   2020-11-15 [2] CRAN (R 4.1.0)                    
-#&gt;  rstudioapi    0.13    2020-11-12 [1] CRAN (R 4.1.0)                    
-#&gt;  rvest         1.0.2   2021-10-16 [1] CRAN (R 4.1.0)                    
-#&gt;  sass          0.4.0   2021-05-12 [1] CRAN (R 4.1.0)                    
-#&gt;  scales        1.1.1   2020-05-11 [1] CRAN (R 4.1.0)                    
-#&gt;  sessioninfo   1.1.1   2018-11-05 [2] CRAN (R 4.1.0)                    
-#&gt;  stringi       1.7.6   2021-11-29 [1] CRAN (R 4.1.0)                    
-#&gt;  stringr     * 1.4.0   2019-02-10 [1] CRAN (R 4.1.0)                    
-#&gt;  testthat      3.1.2   2022-01-20 [1] CRAN (R 4.1.2)                    
-#&gt;  tibble      * 3.1.6   2021-11-07 [1] CRAN (R 4.1.0)                    
-#&gt;  tidyr       * 1.2.0   2022-02-01 [1] CRAN (R 4.1.2)                    
-#&gt;  tidyselect    1.1.2   2022-02-21 [1] CRAN (R 4.1.2)                    
-#&gt;  tidyverse   * 1.3.1   2021-04-15 [1] CRAN (R 4.1.0)                    
-#&gt;  tzdb          0.1.2   2021-07-20 [2] CRAN (R 4.1.0)                    
-#&gt;  usethis       2.0.1   2021-02-10 [2] CRAN (R 4.1.0)                    
-#&gt;  utf8          1.2.2   2021-07-24 [1] CRAN (R 4.1.0)                    
-#&gt;  vctrs         0.3.8   2021-04-29 [1] CRAN (R 4.1.0)                    
-#&gt;  withr         2.5.0   2022-03-03 [1] CRAN (R 4.1.2)                    
-#&gt;  xfun          0.29    2021-12-14 [1] CRAN (R 4.1.0)                    
-#&gt;  xml2          1.3.3   2021-11-30 [1] CRAN (R 4.1.0)                    
-#&gt;  yaml          2.2.2   2022-01-25 [1] CRAN (R 4.1.2)                    
-#&gt; 
-#&gt; [1] /Users/sebastiansaueruser/Library/R/x86_64/4.1/library
-#&gt; [2] /Library/Frameworks/R.framework/Versions/4.1/Resources/library</code></pre>
 </div>

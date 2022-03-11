@@ -85,7 +85,7 @@ pull_string <- function(data, var){
 }
 ```
 
-Ok, here's the function call, note the *quoated* parameter `"hp"`:
+Ok, here's comes the function call, note the *quoted* parameter "hp":
 
 ```{r}
 out1 <- pull_string(mtcars, "hp")
@@ -94,7 +94,7 @@ out1
 
 
 
-The "curly curly" `{{` operator provides the candy here. 
+The "curly curly" {{ operator provides the candy here. 
 It explains to the tidyverse function that `var_symbol` needs to evaluated in the environment of the data frame.
 
 Note that we first translated `var` from a string to a symbol, using `as.name()`:
@@ -104,12 +104,12 @@ Note that we first translated `var` from a string to a symbol, using `as.name()`
 as.name("hp")
 ```
 
-Next to `as.name()`the curly-curly operator can be made use of.
+Next to `as.name()` the curly-curly operator can be made use of.
 
 
 # Second: Unquoted parameter
 
-Ok, next, the *unquoted* parameter in our function.
+Ok, let's move on, next, the *unquoted* parameter in our function.
 
 ```{r}
 pull_unquoted <- function(data, var) {
@@ -119,7 +119,6 @@ pull_unquoted <- function(data, var) {
     pull({{var}})
   
   return(out)
-    
 }
 
 out2 <- pull_unquoted(mtcars, hp)
@@ -154,13 +153,6 @@ deparse(substitute(var))
 ```
 
 
-# Reproducibility
 
-```{r reproducibility, echo = FALSE}
-## Reproducibility info
-options(width = 120)
-devtools::session_info()
-
-```
 
 
