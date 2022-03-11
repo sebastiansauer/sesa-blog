@@ -25,7 +25,8 @@ output:
 <li><a href="#first-quoted-string-parameter"><span class="toc-section-number">3</span> First: Quoted (string) parameter</a></li>
 <li><a href="#second-unquoted-parameter"><span class="toc-section-number">4</span> Second: Unquoted parameter</a></li>
 <li><a href="#check"><span class="toc-section-number">5</span> Check</a></li>
-<li><a href="#reproducibility"><span class="toc-section-number">6</span> Reproducibility</a></li>
+<li><a href="#bonus"><span class="toc-section-number">6</span> Bonus</a></li>
+<li><a href="#reproducibility"><span class="toc-section-number">7</span> Reproducibility</a></li>
 </ul>
 </div>
 
@@ -105,8 +106,15 @@ because we already got in unquoted, ie., as a “symbol”.</p>
 #&gt; [1] TRUE</code></pre>
 <p>Seems so!</p>
 </div>
-<div id="reproducibility" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> Reproducibility</h1>
+<div id="bonus" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Bonus</h1>
+<p>To translate from symbol to string,
+we can use the following expression:</p>
+<pre class="r"><code>deparse(substitute(var))
+#&gt; [1] &quot;var&quot;</code></pre>
+</div>
+<div id="reproducibility" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Reproducibility</h1>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value                       
 #&gt;  version  R version 4.1.2 (2021-11-01)

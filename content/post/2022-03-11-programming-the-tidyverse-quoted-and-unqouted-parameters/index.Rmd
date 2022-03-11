@@ -143,6 +143,17 @@ identical(out1, out2)
 Seems so!
 
 
+
+# Bonus
+
+To translate from symbol to string, 
+we can use the following expression:
+
+```{r}
+deparse(substitute(var))
+```
+
+
 # Reproducibility
 
 ```{r reproducibility, echo = FALSE}
