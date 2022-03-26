@@ -22,7 +22,10 @@ output:
 <li><a href="#motivation"><span class="toc-section-number">3</span> Motivation</a></li>
 <li><a href="#way-1"><span class="toc-section-number">4</span> Way 1</a></li>
 <li><a href="#way-2"><span class="toc-section-number">5</span> Way 2</a></li>
-<li><a href="#reproducibility"><span class="toc-section-number">6</span> Reproducibility</a></li>
+<li><a href="#way-3"><span class="toc-section-number">6</span> Way 3</a></li>
+<li><a href="#more-general"><span class="toc-section-number">7</span> More general</a></li>
+<li><a href="#introducing-curly-curly"><span class="toc-section-number">8</span> Introducing curly-curly <code>{{</code></a></li>
+<li><a href="#reproducibility"><span class="toc-section-number">9</span> Reproducibility</a></li>
 </ul>
 </div>
 
@@ -33,7 +36,7 @@ output:
 <div id="sample-data" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Sample data</h1>
 <p><code>mtcars</code> to the rescue!</p>
-<pre class="r"><code>data(mtcars)</code></pre>
+<pre class="r"><code>mtcars &lt;- read_csv(&quot;https://vincentarelbundock.github.io/Rdatasets/csv/datasets/mtcars.csv&quot;)</code></pre>
 </div>
 <div id="motivation" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Motivation</h1>
@@ -67,7 +70,7 @@ output:
 #&gt; $gear
 #&gt; 
 #&gt; $carb</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-2.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-3.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-4.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-5.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-6.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-7.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-8.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-9.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-10.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-11.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-1.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-2.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-3.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-4.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-5.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-6.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-7.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-8.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-9.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-10.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-11.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Note that the chunks options above were like this:</p>
 <p><code>{r fig.show="hold", out.width=70%"}</code></p>
 <p>Works. But does not show the variable names.
@@ -88,10 +91,86 @@ mtcars %&gt;%
   map2(.y = names(.),
        ~ dens_fun(.x, .y)
   )</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-2.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-3.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-4.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-5.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-6.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-7.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-8.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-9.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-10.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-11.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-2.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-3.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-4.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-5.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-6.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-7.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-8.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-9.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-10.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-11.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="reproducibility" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> Reproducibility</h1>
+<div id="way-3" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Way 3</h1>
+<p>Now let’s assume with a character vector, <code>cols</code>, encompassing the columns to be processed.</p>
+<pre class="r"><code>cols &lt;- c(&quot;mpg&quot;, &quot;hp&quot;, &quot;qsec&quot;)</code></pre>
+<p>To address a variable - eg., <code>"hp"</code>, stored as a string, in recent tidyverse parlance should
+make use of <code>.data[["hp"]]</code>.</p>
+<pre class="r"><code>dens_fun2 &lt;- function(var_string) {
+  
+  ggplot(mtcars, aes(x = .data[[var_string]])) +
+    geom_density() +
+    labs(x = var_string,
+         title = var_string)
+}</code></pre>
+<p>See:</p>
+<pre class="r"><code>dens_fun2(&quot;hp&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/run-dens-fun2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Now let’s cycle through some columns:</p>
+<pre class="r"><code>cols %&gt;% 
+  map(~ dens_fun2(.x))
+#&gt; [[1]]
+#&gt; 
+#&gt; [[2]]
+#&gt; 
+#&gt; [[3]]</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-2.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-3.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="more-general" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> More general</h1>
+<p>Not all in life is <code>mtcars</code>. Let’s be more general.</p>
+<p>And: there’s also the <code>iris</code> data set.</p>
+<pre class="r"><code>iris &lt;- read_csv(&quot;https://vincentarelbundock.github.io/Rdatasets/csv/datasets/iris.csv&quot;)</code></pre>
+<pre class="r"><code>dens_fun3 &lt;- function(df, var_string) {
+  
+  ggplot(df, aes(x = .data[[var_string]])) +
+    geom_density() +
+    labs(x = var_string,
+         title = var_string)
+}</code></pre>
+<pre class="r"><code>dens_fun3(iris, &quot;Sepal.Length&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="introducing-curly-curly" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Introducing curly-curly <code>{{</code></h1>
+<p>Or, alternatively, we can build our plot not with strings (character) variables as input,
+but bare, unquoted column names such as <code>Sepal.Length</code>.</p>
+<p>For that purpose,
+we need to quote and evaluate the parameter,
+which is a buit unusual at the beginning:</p>
+<pre class="r"><code>dens_fun4 &lt;- function(df, col) {
+  
+  ggplot(df, aes({{col}})) +
+    geom_density() +
+    labs(title = deparse(substitute(col)))
+}</code></pre>
+<p>To make things worse,
+we need a string for the title lable.</p>
+<pre class="r"><code>iris %&gt;% 
+  dens_fun4(Sepal.Length)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>iris %&gt;% 
+  select(where(is.numeric)) %&gt;% 
+  map(~ dens_fun4(iris, .))
+#&gt; $...1
+#&gt; 
+#&gt; $Sepal.Length
+#&gt; 
+#&gt; $Sepal.Width
+#&gt; 
+#&gt; $Petal.Length
+#&gt; 
+#&gt; $Petal.Width</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-2.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-3.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-4.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-5.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Unfortunately,
+the title lab did not work out.
+We’ll fix that in some other post.</p>
+</div>
+<div id="reproducibility" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Reproducibility</h1>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value                       
 #&gt;  version  R version 4.1.0 (2021-05-18)

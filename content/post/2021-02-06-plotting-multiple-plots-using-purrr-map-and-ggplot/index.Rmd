@@ -45,8 +45,8 @@ library(tidyverse)  # data wrangling
 
 `mtcars` to the rescue!
 
-```{r}
-data(mtcars)
+```{r mtcars}
+mtcars <- read_csv("https://vincentarelbundock.github.io/Rdatasets/csv/datasets/mtcars.csv")
 ```
 
 
@@ -64,7 +64,7 @@ There are a number of good solutions outthere such as [this one](https://aosmith
 # Way 1
 
 
-```{r fig.show="hold", out.width="70%" }
+```{r way1, fig.show="hold", out.width="70%" }
 mtcars %>% 
   select(where(is.numeric)) %>% 
   map( ~ {ggplot(mtcars, aes(x = .)) + geom_density()}
@@ -84,7 +84,7 @@ Next try.
 # Way 2
 
 
-```{r fig.show="hold", results="hide" }
+```{r way2, fig.show="hold", results="hide" }
 dens_fun <- function(var, name) {
   
   ggplot(mtcars, aes(x = var)) +
@@ -99,6 +99,114 @@ mtcars %>%
        ~ dens_fun(.x, .y)
   )
 ```
+
+
+
+# Way 3
+
+Now let's assume with a character vector, `cols`, encompassing the columns to be processed.
+
+```{r}
+cols <- c("mpg", "hp", "qsec")
+```
+
+
+To address a variable - eg., `"hp"`,  stored as a string, in recent tidyverse parlance should 
+make use of `.data[["hp"]]`.
+
+```{r dens-fun2}
+dens_fun2 <- function(var_string) {
+  
+  ggplot(mtcars, aes(x = .data[[var_string]])) +
+    geom_density() +
+    labs(x = var_string,
+         title = var_string)
+}
+```
+
+See:
+
+```{r run-dens-fun2}
+dens_fun2("hp")
+```
+
+Now let's cycle through some columns:
+
+```{r}
+cols %>% 
+  map(~ dens_fun2(.x))
+```
+
+
+# More general
+
+
+Not all in life is `mtcars`. Let's be more general.
+
+And: there's also the `iris` data set.
+
+```{r iris}
+iris <- read_csv("https://vincentarelbundock.github.io/Rdatasets/csv/datasets/iris.csv")
+```
+
+
+
+```{r}
+dens_fun3 <- function(df, var_string) {
+  
+  ggplot(df, aes(x = .data[[var_string]])) +
+    geom_density() +
+    labs(x = var_string,
+         title = var_string)
+}
+```
+
+
+
+
+```{r}
+dens_fun3(iris, "Sepal.Length")
+```
+
+
+# Introducing curly-curly `{{`
+
+Or, alternatively, we can build our plot not with strings (character) variables as input,
+but bare, unquoted column names such as `Sepal.Length`.
+
+
+For that purpose,
+we need to quote and evaluate the parameter,
+which is a buit unusual at the beginning:
+
+```{r}
+dens_fun4 <- function(df, col) {
+  
+  ggplot(df, aes({{col}})) +
+    geom_density() +
+    labs(title = deparse(substitute(col)))
+}
+```
+
+To make things worse,
+we need a string for the title lable.
+
+```{r}
+iris %>% 
+  dens_fun4(Sepal.Length)
+```
+
+
+```{r}
+iris %>% 
+  select(where(is.numeric)) %>% 
+  map(~ dens_fun4(iris, .))
+```
+
+Unfortunately,
+the title lab did not work out.
+We'll fix that in some other post.
+
 
 
 
