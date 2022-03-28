@@ -169,10 +169,13 @@ dens_fun3(iris, "Sepal.Length")
 ```
 
 
-# Introducing curly-curly `{{`
+# Introducing curly-curly 
 
-Or, alternatively, we can build our plot not with strings (character) variables as input,
+Or, alternatively, we can build our plot *not* with strings (character) variables as input,
 but bare, unquoted column names such as `Sepal.Length`.
+
+This operator is called "curly curly",
+as it consists of two curly braces.
 
 
 For that purpose,

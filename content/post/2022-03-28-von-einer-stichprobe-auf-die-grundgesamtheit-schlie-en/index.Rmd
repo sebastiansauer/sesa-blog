@@ -43,6 +43,7 @@ knitr::opts_chunk$set(
 
 ```{r load-libs, message = FALSE, warning = FALSE}
 library(tidyverse)  # Datenjudo
+library(infer)  # Inferenzstatistik
 ```
 
 
@@ -147,6 +148,9 @@ viele_stipros <-
 head(viele_stipros)
 ```
 
+Ach ja, das Schließen von einer Stichprobe auf eine Grundgesamtheit nennt man
+
+~~Interferenzstatistik~~, ~~Inderfernestatistik~~ -- schließende Statistik oder *Inferenzstatistik*.
 
 # Zusammenfassen der Stichproben
 

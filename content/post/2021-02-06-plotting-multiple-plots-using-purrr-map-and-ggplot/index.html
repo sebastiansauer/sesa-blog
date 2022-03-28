@@ -24,7 +24,7 @@ output:
 <li><a href="#way-2"><span class="toc-section-number">5</span> Way 2</a></li>
 <li><a href="#way-3"><span class="toc-section-number">6</span> Way 3</a></li>
 <li><a href="#more-general"><span class="toc-section-number">7</span> More general</a></li>
-<li><a href="#introducing-curly-curly"><span class="toc-section-number">8</span> Introducing curly-curly <code>{{</code></a></li>
+<li><a href="#introducing-curly-curly"><span class="toc-section-number">8</span> Introducing curly-curly</a></li>
 <li><a href="#reproducibility"><span class="toc-section-number">9</span> Reproducibility</a></li>
 </ul>
 </div>
@@ -70,7 +70,7 @@ output:
 #&gt; $gear
 #&gt; 
 #&gt; $carb</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-1.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-2.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-3.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-4.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-5.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-6.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-7.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-8.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-9.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-10.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-11.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/way1-1.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/way1-2.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/way1-3.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/way1-4.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/way1-5.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/way1-6.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/way1-7.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/way1-8.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/way1-9.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/way1-10.png" width="70%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/way1-11.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Note that the chunks options above were like this:</p>
 <p><code>{r fig.show="hold", out.width=70%"}</code></p>
 <p>Works. But does not show the variable names.
@@ -91,7 +91,7 @@ mtcars %&gt;%
   map2(.y = names(.),
        ~ dens_fun(.x, .y)
   )</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-2.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-3.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-4.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-5.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-6.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-7.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-8.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-9.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-10.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-11.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/way2-1.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/way2-2.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/way2-3.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/way2-4.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/way2-5.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/way2-6.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/way2-7.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/way2-8.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/way2-9.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/way2-10.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/way2-11.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="way-3" class="section level1" number="6">
 <h1><span class="header-section-number">6</span> Way 3</h1>
@@ -117,7 +117,7 @@ make use of <code>.data[["hp"]]</code>.</p>
 #&gt; [[2]]
 #&gt; 
 #&gt; [[3]]</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-2.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-3.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-2.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-3.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="more-general" class="section level1" number="7">
 <h1><span class="header-section-number">7</span> More general</h1>
@@ -132,12 +132,14 @@ make use of <code>.data[["hp"]]</code>.</p>
          title = var_string)
 }</code></pre>
 <pre class="r"><code>dens_fun3(iris, &quot;Sepal.Length&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="introducing-curly-curly" class="section level1" number="8">
-<h1><span class="header-section-number">8</span> Introducing curly-curly <code>{{</code></h1>
-<p>Or, alternatively, we can build our plot not with strings (character) variables as input,
+<h1><span class="header-section-number">8</span> Introducing curly-curly</h1>
+<p>Or, alternatively, we can build our plot <em>not</em> with strings (character) variables as input,
 but bare, unquoted column names such as <code>Sepal.Length</code>.</p>
+<p>This operator is called “curly curly”,
+as it consists of two curly braces.</p>
 <p>For that purpose,
 we need to quote and evaluate the parameter,
 which is a buit unusual at the beginning:</p>
@@ -151,7 +153,7 @@ which is a buit unusual at the beginning:</p>
 we need a string for the title lable.</p>
 <pre class="r"><code>iris %&gt;% 
   dens_fun4(Sepal.Length)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>iris %&gt;% 
   select(where(is.numeric)) %&gt;% 
   map(~ dens_fun4(iris, .))
@@ -164,7 +166,7 @@ we need a string for the title lable.</p>
 #&gt; $Petal.Length
 #&gt; 
 #&gt; $Petal.Width</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-2.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-3.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-4.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-5.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-2.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-3.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-4.png" width="100%" style="display: block; margin: auto;" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-5.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Unfortunately,
 the title lab did not work out.
 We’ll fix that in some other post.</p>

@@ -30,6 +30,7 @@ output:
 
 ```r
 library(tidyverse)  # Datenjudo
+library(infer)  # Inferenzstatistik
 ```
 
 
@@ -153,6 +154,9 @@ head(viele_stipros)
 #> 6         1  95.9
 ```
 
+Ach ja, das Schließen von einer Stichprobe auf eine Grundgesamtheit nennt man
+
+~~Interferenzstatistik~~, ~~Inderfernestatistik~~ -- schließende Statistik oder *Inferenzstatistik*.
 
 # Zusammenfassen der Stichproben
 
