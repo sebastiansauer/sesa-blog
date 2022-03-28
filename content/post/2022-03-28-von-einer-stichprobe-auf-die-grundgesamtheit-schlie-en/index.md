@@ -1,8 +1,7 @@
 ---
 title: "Simulation des wiederholten Stichprobenziehens"
 author: Sebastian Sauer
-date: 2022-03-28T20:26:30+02:00
-
+date: 2022-03-28
 tags: 
   - rstats
 categories: 
@@ -10,12 +9,13 @@ categories:
   - tutorial
 
 
-draft: true
+draft: FALSE
 
 output:
   blogdown::html_page:
     toc: true
     keep_md: yes
+    number_sections: true
 ---
 
 
@@ -217,6 +217,12 @@ viele_stipros_zfsg %>%
 # Fazit
 
 Hey, das Zeug scheint zu klappen!
+
+Das könnte auch der Grund sein,
+warum ein Koch einfach nur einen kleinen Löffel seiner Supper abschmeckt (nachdem er gut umgerüht hat),
+und nicht eine "Vollerhebung" seiner Supper machen muss,
+um sich zu vergewissern, dass sie gut schmeckt.
+
 
 
 

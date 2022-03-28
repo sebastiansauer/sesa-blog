@@ -1,8 +1,7 @@
 ---
 title: "Simulation des wiederholten Stichprobenziehens"
 author: Sebastian Sauer
-date: 2022-03-28T20:26:30+02:00
-
+date: 2022-03-28
 tags: 
   - rstats
 categories: 
@@ -10,37 +9,38 @@ categories:
   - tutorial
 
 
-draft: true
+draft: FALSE
 
 output:
   blogdown::html_page:
     toc: true
     keep_md: yes
+    number_sections: true
 ---
 
 <script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
 
 <div id="TOC">
 <ul>
-<li><a href="#vorbereitung">Vorbereitung</a></li>
-<li><a href="#kann-man-wirklich-von-einer-stichprobe-auf-eine-grundgesamtheit-schließen">Kann man wirklich von einer Stichprobe auf eine Grundgesamtheit schließen?</a></li>
-<li><a href="#hier-ist-eine-population">Hier ist eine Population</a></li>
-<li><a href="#wir-ziehen-eine-stichprobe">Wir ziehen eine Stichprobe</a></li>
-<li><a href="#moment">Moment</a></li>
-<li><a href="#also-gut-ziehen-wir-viele-stichproben">Also gut, ziehen wir viele Stichproben</a></li>
-<li><a href="#zusammenfassen-der-stichproben">Zusammenfassen der Stichproben</a></li>
-<li><a href="#visualisierung">Visualisierung</a></li>
-<li><a href="#fazit">Fazit</a></li>
-<li><a href="#reproduzierbarkeit">Reproduzierbarkeit</a></li>
+<li><a href="#vorbereitung"><span class="toc-section-number">1</span> Vorbereitung</a></li>
+<li><a href="#kann-man-wirklich-von-einer-stichprobe-auf-eine-grundgesamtheit-schließen"><span class="toc-section-number">2</span> Kann man wirklich von einer Stichprobe auf eine Grundgesamtheit schließen?</a></li>
+<li><a href="#hier-ist-eine-population"><span class="toc-section-number">3</span> Hier ist eine Population</a></li>
+<li><a href="#wir-ziehen-eine-stichprobe"><span class="toc-section-number">4</span> Wir ziehen eine Stichprobe</a></li>
+<li><a href="#moment"><span class="toc-section-number">5</span> Moment</a></li>
+<li><a href="#also-gut-ziehen-wir-viele-stichproben"><span class="toc-section-number">6</span> Also gut, ziehen wir viele Stichproben</a></li>
+<li><a href="#zusammenfassen-der-stichproben"><span class="toc-section-number">7</span> Zusammenfassen der Stichproben</a></li>
+<li><a href="#visualisierung"><span class="toc-section-number">8</span> Visualisierung</a></li>
+<li><a href="#fazit"><span class="toc-section-number">9</span> Fazit</a></li>
+<li><a href="#reproduzierbarkeit"><span class="toc-section-number">10</span> Reproduzierbarkeit</a></li>
 </ul>
 </div>
 
-<div id="vorbereitung" class="section level1">
-<h1>Vorbereitung</h1>
+<div id="vorbereitung" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Vorbereitung</h1>
 <pre class="r"><code>library(tidyverse)  # Datenjudo</code></pre>
 </div>
-<div id="kann-man-wirklich-von-einer-stichprobe-auf-eine-grundgesamtheit-schließen" class="section level1">
-<h1>Kann man wirklich von einer Stichprobe auf eine Grundgesamtheit schließen?</h1>
+<div id="kann-man-wirklich-von-einer-stichprobe-auf-eine-grundgesamtheit-schließen" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Kann man wirklich von einer Stichprobe auf eine Grundgesamtheit schließen?</h1>
 <p>Alle Welt behauptet, dass man von einer Stichprobe auf eine Grundgesamtheit schließen könne.
 Aber stimmt das wirklich? Welcher von den Profs,
 die das tagaus, tagein gebetsmühlenartig von sich geben,
@@ -48,8 +48,8 @@ hat das eigentlich bewiesen?</p>
 <p>Tja.</p>
 <p>Probieren wir es einfach aus.</p>
 </div>
-<div id="hier-ist-eine-population" class="section level1">
-<h1>Hier ist eine Population</h1>
+<div id="hier-ist-eine-population" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Hier ist eine Population</h1>
 <p>Wir definieren uns eine Population bzw. eine Verteilung für eine Variable.</p>
 <p>Sagen wir, um es konkret zu machen,
 uns interessiert die Zeit, die mittelfränkisch junge Erwachsene pro Tag am Handy verbringen (im Schnitt).
@@ -64,8 +64,8 @@ d &lt;- tibble(
   x = rnorm(1e6, mean = 120, sd = 20)
 )</code></pre>
 </div>
-<div id="wir-ziehen-eine-stichprobe" class="section level1">
-<h1>Wir ziehen eine Stichprobe</h1>
+<div id="wir-ziehen-eine-stichprobe" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Wir ziehen eine Stichprobe</h1>
 <p>Wir ziehen eine Stichprobe (sample, <code>smple</code>),
 sagen wir der Größe <span class="math inline">\(n=50\)</span>:</p>
 <pre class="r"><code>smple &lt;- 
@@ -80,13 +80,13 @@ sagen wir der Größe <span class="math inline">\(n=50\)</span>:</p>
 #&gt; 1   122.  18.3</code></pre>
 <p>Ah! Unsere Stichprobe gibt die Population (synonym: Grundgesamtheit ordentlich wieder).</p>
 </div>
-<div id="moment" class="section level1">
-<h1>Moment</h1>
+<div id="moment" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Moment</h1>
 <p>Halt, könnten Sie jetzt sagen.
 Das war ja bestimmt nur Zufall. Glück gehabt. Blindes Huhn und so weiter.</p>
 </div>
-<div id="also-gut-ziehen-wir-viele-stichproben" class="section level1">
-<h1>Also gut, ziehen wir viele Stichproben</h1>
+<div id="also-gut-ziehen-wir-viele-stichproben" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Also gut, ziehen wir viele Stichproben</h1>
 <p>Um uns zu überzeugen,
 ob es sich um einen Zufallsbefund gehandelt hat oder nicht,
 ziehen wir also viele (sagen wir, <span class="math inline">\(k=1000\)</span>) Stichproben (mit Zurücklegen) aus der Population und schauen uns dann deren Mittelwerte und Streuungen an.
@@ -116,8 +116,8 @@ head(viele_stipros)
 #&gt; 5         1 132. 
 #&gt; 6         1  95.9</code></pre>
 </div>
-<div id="zusammenfassen-der-stichproben" class="section level1">
-<h1>Zusammenfassen der Stichproben</h1>
+<div id="zusammenfassen-der-stichproben" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Zusammenfassen der Stichproben</h1>
 <pre class="r"><code>viele_stipros_zfsg &lt;- 
   viele_stipros %&gt;%
   group_by(replicate) %&gt;% 
@@ -145,8 +145,8 @@ head(viele_stipros_zfsg)
 #&gt;     &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 #&gt; 1    120.       19.9  115.  124.</code></pre>
 </div>
-<div id="visualisierung" class="section level1">
-<h1>Visualisierung</h1>
+<div id="visualisierung" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Visualisierung</h1>
 <pre class="r"><code>viele_stipros_zfsg %&gt;% 
   ggplot(aes(x = x_mean)) +
   geom_histogram() +
@@ -158,12 +158,16 @@ head(viele_stipros_zfsg)
   labs(caption = &quot;Die vertikale Linie zeigt den Mittelwert.\nDer horizontale Balken zeigt das 90%-PI.&quot;)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="fazit" class="section level1">
-<h1>Fazit</h1>
+<div id="fazit" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Fazit</h1>
 <p>Hey, das Zeug scheint zu klappen!</p>
+<p>Das könnte auch der Grund sein,
+warum ein Koch einfach nur einen kleinen Löffel seiner Supper abschmeckt (nachdem er gut umgerüht hat),
+und nicht eine “Vollerhebung” seiner Supper machen muss,
+um sich zu vergewissern, dass sie gut schmeckt.</p>
 </div>
-<div id="reproduzierbarkeit" class="section level1">
-<h1>Reproduzierbarkeit</h1>
+<div id="reproduzierbarkeit" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> Reproduzierbarkeit</h1>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value                       
 #&gt;  version  R version 4.1.3 (2022-03-10)

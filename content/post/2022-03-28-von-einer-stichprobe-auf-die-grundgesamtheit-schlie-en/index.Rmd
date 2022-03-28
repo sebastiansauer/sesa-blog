@@ -1,8 +1,7 @@
 ---
 title: "Simulation des wiederholten Stichprobenziehens"
 author: Sebastian Sauer
-date: 2022-03-28T20:26:30+02:00
-
+date: 2022-03-28
 tags: 
   - rstats
 categories: 
@@ -10,12 +9,13 @@ categories:
   - tutorial
 
 
-draft: true
+draft: FALSE
 
 output:
   blogdown::html_page:
     toc: true
     keep_md: yes
+    number_sections: true
 ---
 
 
