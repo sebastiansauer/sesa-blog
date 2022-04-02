@@ -58,7 +58,7 @@ Um uns Tipperei zu sparen,
 geben wir dieser Variablen den Namen <span class="math inline">\(X\)</span>.</p>
 <p>Sagen wir weiter, wir würden die die Handy-Daddel-Zeiten aller Menschen minütiös nachverfolgen und kennen also die wahre Daddelzeit, <span class="math inline">\(X\)</span>.</p>
 <p>Sagen wir, um die Sache einfach zu halten, <span class="math inline">\(X\)</span> ist normalverteilt mit Mittelwert 120 und Streuung 20 (in Minuten):</p>
-<p><span class="math display">\[X \sim \mathcal{N}(\mu = 120,\sigma = 20)\]</span>.</p>
+<p><span class="math display">\[X \sim \mathcal{N}(\mu = 120,\sigma = 20).\]</span></p>
 <p>Auf dieser Basis “erzeugen” wir uns die täglichen mittleren Daddelzeiten. Sagen wir, die Population umfasse <span class="math inline">\(n=10^6\)</span> Personen.</p>
 <pre class="r"><code>set.seed(42)  # Zufallszahlen festlegen
 d &lt;- tibble(
@@ -69,7 +69,8 @@ d &lt;- tibble(
 <h1><span class="header-section-number">4</span> Wir ziehen eine Stichprobe</h1>
 <p>Wir ziehen eine Stichprobe (sample, <code>smple</code>),
 sagen wir der Größe <span class="math inline">\(n=50\)</span>:</p>
-<pre class="r"><code>smple &lt;- 
+<pre class="r"><code>set.seed(42)
+smple &lt;- 
   d %&gt;% 
   sample_n(size = 50)</code></pre>
 <pre class="r"><code>smple %&gt;% 
@@ -97,7 +98,7 @@ wie eng die Stichproben-Mittelwerte um den wahren Populationsparameter,
 also dem Mittelwert der Population, herum streuen.</p>
 <p>Dazu hilft uns das Paket <code>infer</code>:</p>
 <pre class="r"><code>library(infer)</code></pre>
-<p>Mit <code>rep_sample_n()</code> könnenn wir viele Stichproben ziehen:</p>
+<p>Mit <code>rep_sample_n()</code> können wir viele Stichproben ziehen:</p>
 <pre class="r"><code>set.seed(42)
 viele_stipros &lt;-
   d %&gt;% 

@@ -64,7 +64,7 @@ Sagen wir weiter, wir würden die die Handy-Daddel-Zeiten aller Menschen minüti
 
 Sagen wir, um die Sache einfach zu halten, $X$ ist normalverteilt mit Mittelwert 120 und Streuung 20 (in Minuten):
 
-$$X \sim \mathcal{N}(\mu = 120,\sigma = 20)$$.
+$$X \sim \mathcal{N}(\mu = 120,\sigma = 20).$$
 
 
 Auf dieser Basis "erzeugen" wir uns die täglichen mittleren Daddelzeiten. Sagen wir, die Population umfasse $n=10^6$ Personen.
@@ -87,6 +87,7 @@ sagen wir der Größe $n=50$:
 
 
 ```r
+set.seed(42)
 smple <- 
   d %>% 
   sample_n(size = 50)
@@ -129,7 +130,7 @@ Dazu hilft uns das Paket `infer`:
 library(infer)
 ```
 
-Mit `rep_sample_n()` könnenn wir viele Stichproben ziehen:
+Mit `rep_sample_n()` können wir viele Stichproben ziehen:
 
 
 
