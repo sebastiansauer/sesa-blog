@@ -26,7 +26,8 @@ output:
 <li><a href="#check"><span class="toc-section-number">6</span> Check</a></li>
 <li><a href="#rename"><span class="toc-section-number">7</span> Rename</a></li>
 <li><a href="#some-caveats"><span class="toc-section-number">8</span> Some caveats</a></li>
-<li><a href="#reproducibility"><span class="toc-section-number">9</span> Reproducibility</a></li>
+<li><a href="#further-reading"><span class="toc-section-number">9</span> Further reading</a></li>
+<li><a href="#reproducibility"><span class="toc-section-number">10</span> Reproducibility</a></li>
 </ul>
 </div>
 
@@ -68,7 +69,10 @@ Google credentials are handed over by the user’s sign-in approval.)</p>
 <p>Use the following function in an interactive session:</p>
 <pre class="r"><code>d &lt;- read_sheet(sheet_url)</code></pre>
 <p>Yielding this result:</p>
-<p><code>✓ Reading from "Studie zur Smartphonenutzung und Konzentration (Responses)". ✓ Range Form responses 1.</code></p>
+<p>`
+✓ Reading from “Studie zur Smartphonenutzung und Konzentration (Responses)”.</p>
+<p>✓ Range Form responses 1.
+`</p>
 </div>
 <div id="check" class="section level1" number="6">
 <h1><span class="header-section-number">6</span> Check</h1>
@@ -490,8 +494,13 @@ which is more difficult to process afterwards.
 For that reason, it is preferable to force pure number responses in the form,
 where applicable.</p>
 </div>
-<div id="reproducibility" class="section level1" number="9">
-<h1><span class="header-section-number">9</span> Reproducibility</h1>
+<div id="further-reading" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Further reading</h1>
+<p>A good starting point is the <a href="https://googlesheets4.tidyverse.org/">docs page of googlesheets4</a>.</p>
+<p>In addition, there’s a <a href="https://github.com/rstudio/cheatsheets/blob/main/data-import.pdf">cheatsheet</a> available.</p>
+</div>
+<div id="reproducibility" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> Reproducibility</h1>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value                       
 #&gt;  version  R version 4.1.3 (2022-03-10)
