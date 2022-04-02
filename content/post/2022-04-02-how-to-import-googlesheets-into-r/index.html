@@ -24,7 +24,9 @@ output:
 <li><a href="#authentificate"><span class="toc-section-number">4</span> Authentificate</a></li>
 <li><a href="#read-it"><span class="toc-section-number">5</span> Read it</a></li>
 <li><a href="#check"><span class="toc-section-number">6</span> Check</a></li>
-<li><a href="#reproducibility"><span class="toc-section-number">7</span> Reproducibility</a></li>
+<li><a href="#rename"><span class="toc-section-number">7</span> Rename</a></li>
+<li><a href="#some-caveats"><span class="toc-section-number">8</span> Some caveats</a></li>
+<li><a href="#reproducibility"><span class="toc-section-number">9</span> Reproducibility</a></li>
 </ul>
 </div>
 
@@ -56,12 +58,17 @@ see the example below:</p>
 <h1><span class="header-section-number">4</span> Authentificate</h1>
 <p>First step (after starting the package(s)) is to authentificate:</p>
 <pre class="r"><code>gs4_deauth()</code></pre>
+<p>You’ll be directed to a Google Login page. Use your Google credentials to sign-in.</p>
+<p>(Note that this approach only works in an interactive session, where the
+Google credentials are handed over by the user’s sign-in approval.)</p>
 <p>Here we are assuming that the the sheet is freely accessible.</p>
 </div>
 <div id="read-it" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> Read it</h1>
-<pre class="r"><code>
-d &lt;- read_sheet(sheet_url)</code></pre>
+<p>Use the following function in an interactive session:</p>
+<pre class="r"><code>d &lt;- read_sheet(sheet_url)</code></pre>
+<p>Yielding this result:</p>
+<p><code>✓ Reading from "Studie zur Smartphonenutzung und Konzentration (Responses)". ✓ Range Form responses 1.</code></p>
 </div>
 <div id="check" class="section level1" number="6">
 <h1><span class="header-section-number">6</span> Check</h1>
@@ -460,9 +467,31 @@ d &lt;- read_sheet(sheet_url)</code></pre>
   
 </table>
 </div>
+<pre class="r"><code>d %&gt;% 
+  glimpse()
+#&gt; Rows: 95
+#&gt; Columns: 6
+#&gt; $ Timestamp                                                                          &lt;dttm&gt; …
+#&gt; $ `Was war Ihre mittlere Handynutzungszeit in der letzten  Woche in ganzen Minuten?` &lt;dbl&gt; …
+#&gt; $ `Was war Ihre Reaktionszeit im Stroop-Test (Herr Gaul) in Millsekunden?`           &lt;dbl&gt; …
+#&gt; $ `Was war Ihr Anteil an richtigen Antworten im Stroop-Test in Prozent?`             &lt;dbl&gt; …
+#&gt; $ `Wie oft haben Sie Handy pro Tag entsperrt (im Schnitt) letzte Woche?`             &lt;dbl&gt; …
+#&gt; $ `Geschlecht?`                                                                      &lt;chr&gt; …</code></pre>
 </div>
-<div id="reproducibility" class="section level1" number="7">
-<h1><span class="header-section-number">7</span> Reproducibility</h1>
+<div id="rename" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Rename</h1>
+<pre class="r"><code>names(d) &lt;- c(&quot;Timestamp&quot;, &quot;usage_time&quot;, &quot;rt&quot;, &quot;correct_prop&quot;, &quot;pickups_n&quot;, &quot;sex&quot;)</code></pre>
+</div>
+<div id="some-caveats" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Some caveats</h1>
+<p>If the columns are not pure numbers,
+then the columns will be parsed as lists,
+which is more difficult to process afterwards.
+For that reason, it is preferable to force pure number responses in the form,
+where applicable.</p>
+</div>
+<div id="reproducibility" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Reproducibility</h1>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value                       
 #&gt;  version  R version 4.1.3 (2022-03-10)
