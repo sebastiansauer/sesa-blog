@@ -38,6 +38,7 @@ knitr::opts_chunk$set(
 ```{r load-libs, message = FALSE, warning = FALSE}
 library(tidyverse)  # data wrangling
 library(nomnoml)  # graphs
+library(magick)  # render SVG image
 ```
 
 # Motivation
@@ -138,12 +139,27 @@ nomnoml(p1, png = "p1.svg")
 
 
 
+# Load from SVG
+
+A SVG file can be downloaded from the [nomnoml site]() with the included nicety that the source code is embedded.
+
+
+For that purpose, we need some funcionality to render the SVG,
+for which purpose the R package `magick`  is handy.
+
+```{r}
+library(magick)
+
+image_read(path = "nomnoml.svg")
+```
+
+
 
 # Caveats
 
 Some of the language appears not to be available via the R API.
 
-In addition, the rendering quality of larger graphs detiorates.
+In addition, the rendering quality of larger graphs detiorates apparently.
 
 
 
