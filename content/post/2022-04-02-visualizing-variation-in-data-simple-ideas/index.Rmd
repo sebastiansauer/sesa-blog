@@ -82,6 +82,46 @@ ggplot(d) +
 ```
 
 
+
+# Plot 3
+
+
+```{r}
+ggplot(d) +
+  aes(x = var, fill = type) +
+  geom_density(alpha = .5)
+```
+
+
+
+
+
+# Plot 4
+
+```{r}
+d2 <-
+  d %>% 
+  group_by(type) %>% 
+  mutate(avg = mean(var)) %>% 
+  ungroup() %>% 
+  mutate(delta = var - avg)
+  
+```
+
+
+```{r}
+ggplot(d2) +
+  aes(x = id, y = var) +
+  facet_wrap(~ type) +
+  geom_hline(yintercept = 0, color = "grey40") +
+  geom_point() +
+  theme_minimal() +
+  geom_errorbar(aes(x = id, ymin = var-delta, ymax = var), color = "blue")
+```
+
+
+
+
 # Reproducibility
 
 ```{r reproducibility, echo = FALSE}

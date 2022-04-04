@@ -21,7 +21,9 @@ output:
 <li><a href="#simulate-data"><span class="toc-section-number">2</span> Simulate data</a></li>
 <li><a href="#plot-1"><span class="toc-section-number">3</span> Plot 1</a></li>
 <li><a href="#plot-2"><span class="toc-section-number">4</span> Plot 2</a></li>
-<li><a href="#reproducibility"><span class="toc-section-number">5</span> Reproducibility</a></li>
+<li><a href="#plot-3"><span class="toc-section-number">5</span> Plot 3</a></li>
+<li><a href="#plot-4"><span class="toc-section-number">6</span> Plot 4</a></li>
+<li><a href="#reproducibility"><span class="toc-section-number">7</span> Reproducibility</a></li>
 </ul>
 </div>
 
@@ -60,8 +62,33 @@ high_spread &lt;-
   geom_boxplot()</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="reproducibility" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> Reproducibility</h1>
+<div id="plot-3" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Plot 3</h1>
+<pre class="r"><code>ggplot(d) +
+  aes(x = var, fill = type) +
+  geom_density(alpha = .5)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="plot-4" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Plot 4</h1>
+<pre class="r"><code>d2 &lt;-
+  d %&gt;% 
+  group_by(type) %&gt;% 
+  mutate(avg = mean(var)) %&gt;% 
+  ungroup() %&gt;% 
+  mutate(delta = var - avg)
+  </code></pre>
+<pre class="r"><code>ggplot(d2) +
+  aes(x = id, y = var) +
+  facet_wrap(~ type) +
+  geom_hline(yintercept = 0, color = &quot;grey40&quot;) +
+  geom_point() +
+  theme_minimal() +
+  geom_errorbar(aes(x = id, ymin = var-delta, ymax = var), color = &quot;blue&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="reproducibility" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Reproducibility</h1>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value                       
 #&gt;  version  R version 4.1.3 (2022-03-10)

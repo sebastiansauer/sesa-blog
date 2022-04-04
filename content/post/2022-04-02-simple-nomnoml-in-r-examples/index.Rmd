@@ -121,8 +121,6 @@ Use the knitr/rmarkdown options to control the size of the output chunk.
 `out.width="50%"` or similar options should do the trick.
 
 
-
-
 # Save to disk
 
 As png:
@@ -137,6 +135,80 @@ As svg:
 ```{r eval = FALSE}
 nomnoml(p1, png = "p1.svg")
 ```
+
+
+
+
+# Caveats
+
+Some of the language appears not to be available via the R API.
+
+In addition, the rendering quality of larger graphs detiorates.
+
+
+
+
+```{r tidymodels-workflow, out.width="100%"}
+d <- 
+"
+[Workflow|
+  [preprocessing|
+    [Vorverarbeitung]
+    [Imputation]
+    [Transformation]
+    [Prädiktorwahl]
+    [Feature Engineering]
+    [AV-Wahl]
+    [...]
+  ]
+  [fitting |
+    [Modell berechnen]
+    [...]
+  ]
+  [postprocessing|
+    [Grenzwerte für Klass. festlegen]
+    [...]
+  ]
+]
+"
+nomnoml(d, height = 500)
+```
+
+
+However,
+some more clever reshaping of the graph may mitigate the problem.
+
+
+```{r nomnoml-variant, out.width = "70%"}
+d2 <- 
+"
+Workflow|
+  [preprocessing|
+   Vorverarbeitung;
+   Imputation;
+   Transformation;
+   Prädiktorwahl
+   AV-Wahl
+   ...
+  
+  ]
+  [fitting |
+    Modell berechnen
+    ...
+  ]
+  [postprocessing|
+    Grenzwerte für Klass. festlegen
+    ...
+  ]
+]
+
+"
+nomnoml(d2, height = 500)
+```
+
+
+
+
 
 
 # Reproducibility
