@@ -257,7 +257,7 @@ rownames(grid_wide) <- seq(50, 300, by = 10)
 
 
 
-```{r}
+```{r out.width = "100%", fig.asp = 1}
 xaxis <- list(
   title = "hp"
   #range = c(50, 300)
@@ -273,9 +273,11 @@ zaxis <- list(
   #range = c(10, 30)
 )
 
-p <- plot_ly(z = ~grid_wide, 
+p <- plot_ly(
+  z = ~grid_wide, 
              x = seq(50, 300, by = 10),
              y = seq(50, 500, by = 10)) %>% 
+  #add_markers() %>% 
   add_surface(
   contours = list(
     z = list(
