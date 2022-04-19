@@ -98,7 +98,7 @@ p1
 
 # Scatter plot with 3D surface
 
-```{r}
+```{r out.width="100%", fig.asp = 1}
 p2 <- add_trace(p = p1,
                 z = grid_wide,
                 x = seq(50, 300, by = 10),
