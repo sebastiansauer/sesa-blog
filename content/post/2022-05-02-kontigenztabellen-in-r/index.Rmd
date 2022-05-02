@@ -298,7 +298,7 @@ meine_tab <-
 
 Und raus mit euch:
 
-```{r}
+```{r eval = FALSE}
 write_csv(meine_tab, "meine_tab.csv")
 ```
 
@@ -310,7 +310,7 @@ Achtung: Excel will liebe eine besondere CSV-Datei, aus der Hilfeseite:
 >   All columns are encoded as UTF-8. write_excel_csv() and write_excel_csv2() also include a UTF-8 Byte order mark which indicates to Excel the csv is UTF-8 encoded.
 
 
-```{r}
+```{r eval = FALSE}
 write_excel_csv(meine_tab, "meine_tab_excel.csv")
 ```
 
@@ -321,7 +321,7 @@ write_excel_csv(meine_tab, "meine_tab_excel.csv")
 
 
 
-```{r}
+```{r eval = FALSE}
 write_excel_csv2(meine_tab, "meine_tab_excel2.csv")
 ```
 
@@ -336,7 +336,7 @@ die nutzen wir:
 library(rio)
 ```
 
-```{r}
+```{r eval = FALSE}
 export(meine_tab, file = "meine_tab.xlsx")
 ```
 
@@ -407,7 +407,7 @@ meine_tab_flex <- flextable(meine_tab)
 Und dann exporiteren wir:
 
 
-```{r}
+```{r eval = FALSE}
 save_as_docx("Tabelle 1 " = meine_tab_flex, path = "meine_tab.docx")
 
 save_as_pptx("Tabelle 1 " = meine_tab_flex, path = "meine_tab.pptx")
