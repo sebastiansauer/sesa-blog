@@ -1,0 +1,290 @@
+---
+title: Kontigenztabellen in R
+author: Sebastian Sauer
+date: '2022-05-02'
+slug: kontigenztabellen-in-r
+tags:
+  - tutorial
+output:
+  blogdown::html_page:
+    toc: yes
+    number_sections: yes
+---
+
+
+
+```{r knitr-setup, echo = FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = TRUE,
+  out.width = "100%",
+  fig.align = 'center',
+  fig.width = 6,
+  fig.asp = 0.618,  # 1 / phi
+  fig.show = "hold",
+  size = "tiny"
+)
+```
+
+
+
+# Pakete und Daten
+
+```{r load-libs, message = FALSE, warning = FALSE}
+library(tidyverse)  # data wrangling
+
+data("mtcars")
+```
+
+
+
+# Häufigkeiten berechnen
+
+## Tidyverse
+
+### Univariat
+
+Wie viele Autos gibt es mit Automatik- bzw. mit manueller Schaltung?
+Anders gesagt: Was ist die Häufigkeitverteilung von `am`?
+
+
+```{r}
+mtcars %>% 
+  count(am)
+```
+
+Anteile dazu:
+
+```{r}
+mtcars %>% 
+  count(am) %>% 
+  mutate(prop = n / sum(n))
+```
+
+
+
+### Bivariat
+
+Wie viele Autos mit mehr als 100 PS gibt es in den Stufen von `am`?
+
+```{r}
+mtcars %>%  
+  count(am, hp > 200) %>% 
+  mutate(prop = n / sum(n))
+```
+
+Die Anteile sind hier auf *alle* Autos bezogen.
+
+### Bezogen auf was?
+
+Vielleicht möchten wir die Anteile lieber pro Stufe von `am`? 
+
+```{r}
+mtcars %>%  
+  count(am, hp > 200) %>% 
+  group_by(am) %>% 
+  mutate(prop = n / sum(n))
+```
+
+### Kontingenztabelle durch Pivotieren
+
+Nicht wirklich praktisch im Tidyverse:
+
+```{r}
+mtcars %>%  
+  count(am, hp > 200) %>% 
+  group_by(am) %>% 
+  mutate(prop = n / sum(n)) %>% 
+  select(-n) %>% 
+  pivot_wider(names_from = am, values_from = prop)
+```
+
+
+## Easystats
+
+
+```{r}
+library(easystats)
+```
+
+
+Mit `data_tabulate()` bekommt man Häufigkeitstabellen, 
+aber keine "richtigen" Kontingenztabellen, scheint's:
+
+```{r}
+data_tabulate(mtcars, select = c("am", "vs"))
+```
+
+`data_tabulate` gibt's wohl erst ab 0.4.0.17 in ``{{datawizard}}``. 
+
+
+
+```{r}
+mtcars %>% 
+  group_by(am) %>% 
+  data_tabulate("vs")
+```
+
+
+# sjmisc
+
+
+```{r}
+library(sjmisc)
+```
+
+### Kontingenztabelle
+
+```{r}
+mtcars %>% 
+  flat_table(am, vs)
+```
+
+### Anteile
+
+
+Aufsummiert pro Zeile:
+
+```{r}
+mtcars %>% 
+  flat_table(am, vs, margin = "row")
+```
+
+Aufsummiert pro Spalte:
+
+
+```{r}
+mtcars %>% 
+  flat_table(am, vs, margin = "col")
+```
+
+
+Aufsummiert auf die ganze Tabelle:
+
+
+```{r}
+mtcars %>% 
+  flat_table(am, vs, margin = "cell")
+```
+
+
+### Kontingenztabelle gruppiert
+
+
+```{r}
+mtcars %>% 
+  group_by(hp > 100) %>% 
+  flat_table(am, vs)
+```
+
+
+
+## Base R
+
+
+### Kontingenztabelle
+
+```{r}
+table(mtcars$am, mtcars$vs)
+```
+
+
+Oder, komfortabler:
+
+```{r}
+with(mtcars, table(am, vs))
+```
+
+
+### ftable
+
+Auch nett:
+
+
+```{r}
+mtcars %>% 
+  select(am, vs) %>% 
+  ftable()
+```
+
+
+### Anteile
+
+
+```{r}
+table(mtcars$am, mtcars$vs) %>% prop.table()
+```
+
+
+Bzw.:
+
+```{r}
+with(mtcars, table(am, vs)) %>% prop.table()
+```
+
+Mit `margin` kann man die Dimension (Spalten vs. Zeilenin 2D) wählen,
+über die summiert wird.
+
+Summiere pro Spalte:
+
+```{r}
+with(mtcars, table(am, vs)) %>% prop.table(margin = 1)
+```
+
+Summiere pro Zeile:
+
+```{r}
+with(mtcars, table(am, vs)) %>% prop.table(margin = 2)
+```
+
+
+
+# Schöne Tabellen in html
+
+
+## gt
+
+
+```{r}
+library(gt)
+```
+
+Naja, geht so:
+
+
+### flat_table
+
+```{r}
+mtcars %>%
+  flat_table(am, vs, margin = "cell") %>% 
+  as_tibble() %>% 
+  gt()
+```
+
+
+### pivot_wider
+
+```{r}
+mtcars %>%  
+  count(am, hp > 200) %>% 
+  group_by(am) %>% 
+  mutate(prop = n / sum(n)) %>% 
+  select(-n) %>% 
+  pivot_wider(names_from = am, values_from = prop) %>% 
+  gt()
+```
+
+
+# Reproducibility
+
+```{r reproducibility, echo = FALSE}
+## Reproducibility info
+options(width = 120)
+devtools::session_info()
+
+```
+
+
