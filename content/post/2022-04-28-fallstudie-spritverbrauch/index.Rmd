@@ -3,7 +3,7 @@ title: "Energie sparen (!)"
 author: "Karsten Lübke und Sebastian Sauer"
 date: "`r Sys.Date()`"
 slug: fallstudie-spritverbrauch
-draft: TRUE
+draft: FALSE
 output:
   blogdown::html_page:
     toc: yes
