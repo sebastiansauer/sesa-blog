@@ -2,7 +2,7 @@
 title: A simple solution to ditch the question "what's the path of my data" when importing
   data to R
 author: Sebastian Sauer
-date: '2020-10-19'
+date: '`r Sys.time()`'
 slug: a-simple-solution-to-ditch-the-question-what-s-the-path-of-my-data-when-importing-data-to-r
 categories:
   
@@ -38,7 +38,7 @@ library(tidyverse)
 
 
 
-# Motivation
+# Motivation: Get your data into R, different ways
 
 
 Importing data to R can cause headaches for newbies. For some, the concept of relative and absolute paths is new. 
@@ -49,7 +49,7 @@ That's why I compiled here some recommendations on how to important data into R 
 # Pragmatic goal
 
 
-If you are in a hurry, just pick one way, maybe the first approach.
+If you are in a hurry, just pick *one way*, maybe the first approach.
 The pragmatic goal is to get your data into R. The rest is mere detail 😄.
 
 
