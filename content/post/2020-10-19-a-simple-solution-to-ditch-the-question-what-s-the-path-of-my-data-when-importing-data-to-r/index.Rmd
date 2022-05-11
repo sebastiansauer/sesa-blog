@@ -70,6 +70,8 @@ Note that the menu offers some options such as skipping the first few lines, cha
 or adjusting the CSV file details (such as different delimiters eg ";" used in German Excel files).
 
 
+See [this picture](https://community.rstudio.com/uploads/default/original/2X/0/0b5d697ffafc33b1c9d8de3f6359df41a5825d18.png) for an illustration of the respective RStudio menu. 
+
 What RStudio does is to get the absolute path to your data file and paste it into `read_csv()`.
 
 For example, an abolute path on *my* machine to a data file is this:
