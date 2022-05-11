@@ -1,33 +1,48 @@
 ---
-title: A simple solution to ditch the question "what's the path of my data" when importing
-  data to R
+title: Importing data into R
 author: Sebastian Sauer
-date: '2022-05-11 09:52:34'
-slug: a-simple-solution-to-ditch-the-question-what-s-the-path-of-my-data-when-importing-data-to-r
+date: '2022-05-11'
+slug: importing-data-into-r
 categories:
-  
+  - rstats
 tags:
   - tutorial
+output:
+  blogdown::html_page:
+    toc: yes
+    number_sections: yes
 ---
 
 
+<div id="TOC">
+<ul>
+<li><a href="#load-packages" id="toc-load-packages"><span class="toc-section-number">1</span> Load packages</a></li>
+<li><a href="#motivation-get-your-data-into-r-different-ways" id="toc-motivation-get-your-data-into-r-different-ways"><span class="toc-section-number">2</span> Motivation: Get your data into R, different ways</a></li>
+<li><a href="#pragmatic-goal" id="toc-pragmatic-goal"><span class="toc-section-number">3</span> Pragmatic goal</a></li>
+<li><a href="#approach-1-quick-and-easy" id="toc-approach-1-quick-and-easy"><span class="toc-section-number">4</span> Approach 1: Quick and easy</a></li>
+<li><a href="#approach-2-start-an-rstudio-project" id="toc-approach-2-start-an-rstudio-project"><span class="toc-section-number">5</span> Approach 2: Start an RStudio project</a></li>
+<li><a href="#approach-3-import-from-an-online-source" id="toc-approach-3-import-from-an-online-source"><span class="toc-section-number">6</span> Approach 3: Import from an online source</a></li>
+<li><a href="#approach-4-learn-what-a-path-means" id="toc-approach-4-learn-what-a-path-means"><span class="toc-section-number">7</span> Approach 4: Learn what a path means</a></li>
+<li><a href="#example-time-dataset-tips" id="toc-example-time-dataset-tips"><span class="toc-section-number">8</span> Example time – dataset <code>tips</code></a></li>
+</ul>
+</div>
 
-<div id="load-packages" class="section level1">
-<h1>Load packages</h1>
+<div id="load-packages" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Load packages</h1>
 <pre class="r"><code>library(tidyverse)</code></pre>
 </div>
-<div id="motivation-get-your-data-into-r-different-ways" class="section level1">
-<h1>Motivation: Get your data into R, different ways</h1>
+<div id="motivation-get-your-data-into-r-different-ways" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Motivation: Get your data into R, different ways</h1>
 <p>Importing data into R can cause headaches for newbies. For some, the concept of relative and absolute paths is new.
 That’s why I compiled here some recommendations on how to important data into R and on how to ditch the “what’s my path” problem.</p>
 </div>
-<div id="pragmatic-goal" class="section level1">
-<h1>Pragmatic goal</h1>
+<div id="pragmatic-goal" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Pragmatic goal</h1>
 <p>If you are in a hurry, just pick <em>one way</em>, maybe the first approach.
 The pragmatic goal is to get your data into R. The rest is mere detail 😄.</p>
 </div>
-<div id="approach-1-quick-and-easy" class="section level1">
-<h1>Approach 1: Quick and easy</h1>
+<div id="approach-1-quick-and-easy" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Approach 1: Quick and easy</h1>
 <p>This approach is useful for beginners, as it is quick and simple.
 This approach assumes the data file (as csv format) is located somewhere on your disk (and you know where to find it).</p>
 <ol style="list-style-type: decimal">
@@ -48,8 +63,8 @@ you can safely work with absolute path.
 If you would like to make your work portable,
 consider understanding relativ paths. Read on.</p>
 </div>
-<div id="approach-2-start-an-rstudio-project" class="section level1">
-<h1>Approach 2: Start an RStudio project</h1>
+<div id="approach-2-start-an-rstudio-project" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Approach 2: Start an RStudio project</h1>
 <p>That’s an approach I generally recommend.</p>
 <ol style="list-style-type: decimal">
 <li>Start an <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects">RStudio project</a>.</li>
@@ -71,10 +86,10 @@ and the data file is named <code>mydata.csv</code>:</p>
 <p>In case you are unsure where you <em>current</em> project folder (also called <em>working directory</em>) is,
 try</p>
 <pre class="r"><code>getwd()
-#&gt; [1] &quot;/Users/sebastiansaueruser/Google Drive/research/Publikationen/blog_ses/sesa-blog/content/post/2020-10-19-a-simple-solution-to-ditch-the-question-what-s-the-path-of-my-data-when-importing-data-to-r&quot;</code></pre>
+#&gt; [1] &quot;/Users/sebastiansaueruser/Google Drive/research/Publikationen/blog_ses/sesa-blog/content/post/2022-05-11-importing-data-into-r&quot;</code></pre>
 </div>
-<div id="approach-3-import-from-an-online-source" class="section level1">
-<h1>Approach 3: Import from an online source</h1>
+<div id="approach-3-import-from-an-online-source" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Approach 3: Import from an online source</h1>
 <p>That’s also simple and convenient – as long as someone has put the data online.</p>
 <ol style="list-style-type: decimal">
 <li>Identify the URL of your data set, and copy it.</li>
@@ -85,8 +100,8 @@ that will work irrespective from which machine you access it.
 Handy.</p>
 <p>Note: In case you download a zip file, remember to unzip it before accessing the files.</p>
 </div>
-<div id="approach-4-learn-what-a-path-means" class="section level1">
-<h1>Approach 4: Learn what a path means</h1>
+<div id="approach-4-learn-what-a-path-means" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Approach 4: Learn what a path means</h1>
 <p>This is a more thorough approach, but one which will pay out in the long run.</p>
 <p>It is helpful to understand the difference between an <em>abolute</em> path and a <em>relative</em> path.
 There is a ton of tutorials on that in the web, e.g., checkout <a href="https://www.computerhope.com/issues/ch001708.htm">this one</a> or <a href="https://www.lifewire.com/absolute-and-relative-paths-3466467">this one</a>.</p>
@@ -97,8 +112,8 @@ There is a ton of tutorials on that in the web, e.g., checkout <a href="https://
 <li>Paste it into your import function, e.g, `d &lt;- read.csv(“/Users/sebastiansaueruser/datasets/tips.csv”)</li>
 </ol>
 </div>
-<div id="example-time-dataset-tips" class="section level1">
-<h1>Example time – dataset <code>tips</code></h1>
+<div id="example-time-dataset-tips" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Example time – dataset <code>tips</code></h1>
 <pre class="r"><code>tips &lt;- read.csv(&quot;https://vincentarelbundock.github.io/Rdatasets/csv/reshape2/tips.csv&quot;)</code></pre>
 <p>Exercises:</p>
 <ol style="list-style-type: decimal">

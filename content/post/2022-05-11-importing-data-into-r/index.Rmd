@@ -1,14 +1,18 @@
 ---
-title: A simple solution to ditch the question "what's the path of my data" when importing
-  data to R
+title: Importing data into R
 author: Sebastian Sauer
-date: '`r Sys.time()`'
-slug: a-simple-solution-to-ditch-the-question-what-s-the-path-of-my-data-when-importing-data-to-r
+date: '2022-05-11'
+slug: importing-data-into-r
 categories:
-  
+  - rstats
 tags:
   - tutorial
+output:
+  blogdown::html_page:
+    toc: yes
+    number_sections: yes
 ---
+
 
 
 
@@ -179,6 +183,8 @@ Exercises:
 1. Import from the URL.
 2. Download the file to your PC and import it via the absolute path.
 3.  Download the file to your PC, move it to your current project folder, and import it via the relativ path.
+
+
 
 
 
