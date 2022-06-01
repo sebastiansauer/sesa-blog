@@ -43,4 +43,4 @@ MIT. That's a permissive licence. Please cite this blog, and enjoy.
 
 ## DOI
 
-The DOI of this blog is [![DOI](https://zenodo.org/badge/73370743.svg)](https://zenodo.org/badge/latestdoi/73370743) (timestamp: 2017-05-04).
+The DOI of this blog is[![DOI](https://zenodo.org/badge/316807482.svg)](https://zenodo.org/badge/latestdoi/316807482).
