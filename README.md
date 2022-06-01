@@ -22,4 +22,5 @@ Posts are organized as note books, as the crow flies, which is, as my thinking w
 
 This blog has a DOI:
 
-[![DOI](https://zenodo.org/badge/111418468.svg)](https://zenodo.org/badge/latestdoi/111418468)
+[![DOI](https://zenodo.org/badge/316807482.svg)](https://zenodo.org/badge/latestdoi/316807482)
+
