@@ -66,15 +66,27 @@ Sogar die Stichprobengröße war ziemlich groß.</p>
   tibble(
     konz_t1 = rnorm(60),
     konz_t2 = c(rnorm(30), rnorm(30, mean = 1)),
-    gruppe = c(rep(&quot;Placebo&quot;, 30), rep(&quot;Exp&quot;, 30)))
-  </code></pre>
+    gruppe = c(rep(&quot;Placebo&quot;, 30), rep(&quot;Exp&quot;, 30)))</code></pre>
 <p>Wir haben uns <span class="math inline">\(n=60\)</span> Daten simuliert, 30 pro Gruppe (Experimental- und Placebogruppe).
 Zu <span class="math inline">\(t1\)</span>, vor dem Experiment, haben beide Populationen den gleichen Mittelwert, nämlich 0.
 Wir haben alle Werte aus einer Normalverteilung mit <span class="math inline">\(\mu=0, \sigma=1\)</span> gezogen.
 Bei <span class="math inline">\(t2\)</span> haben wir die Werte so simuliert,
 dass die Experimentalgruppe jetzt aus einer Normalverteilung mit <span class="math inline">\(\mu=1\)</span> gezogen wird.</p>
+<p>Das sieht dann so aus (die ersten paar Zeilen):</p>
+<pre class="r"><code>d %&gt;% 
+  head()
+#&gt; # A tibble: 6 × 3
+#&gt;   konz_t1 konz_t2 gruppe 
+#&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;  
+#&gt; 1  0.0315   0.507 Placebo
+#&gt; 2  0.540   -2.30  Placebo
+#&gt; 3  0.732    0.708 Placebo
+#&gt; 4  0.0861   0.368 Placebo
+#&gt; 5  1.23    -2.34  Placebo
+#&gt; 6 -2.54     0.418 Placebo</code></pre>
 <p>Das Simulieren der Daten ist bei einem echten Experiment natürlich nicht nötig.
 Durch das Messen bzw. das Durchführen des Experiments bekommen Sie die Daten “von allein”.</p>
+<p>Beachten Sie, dass <em>alle</em> Daten in <em>einer</em> Tabelle stehen, nicht etwa in mehreren Tabellen.</p>
 </div>
 <div id="differenzwert-berechnen" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> Differenzwert berechnen</h1>
@@ -91,7 +103,7 @@ Durch das Messen bzw. das Durchführen des Experiments bekommen Sie die Daten �
   geom_violin(alpha = .5) +
   geom_jitter(alpha = .7, width = .1) +
   stat_summary(geom = &quot;line&quot;, fun = mean, color = &quot;red&quot;, group = 1)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Wie man sieht, scheint der Zuwachs zwischen den Gruppen bei der Experimentalgruppe tatsächlich größer zu sein.</p>
 </div>
 <div id="deskriptive-statistik" class="section level1" number="6">
@@ -104,13 +116,13 @@ Durch das Messen bzw. das Durchführen des Experiments bekommen Sie die Daten �
 #&gt; 
 #&gt; Variable  | Mean |   SD |  IQR |         Range | Skewness | Kurtosis |  n | n_Missing
 #&gt; -------------------------------------------------------------------------------------
-#&gt; differenz | 1.09 | 1.67 | 2.53 | [-1.66, 5.01] |     0.14 |    -0.34 | 30 |         0
+#&gt; differenz | 1.31 | 1.46 | 2.07 | [-1.81, 4.57] |    -0.04 |    -0.20 | 30 |         0
 #&gt; 
 #&gt; # gruppe=Placebo
 #&gt; 
-#&gt; Variable  | Mean |   SD |  IQR |         Range | Skewness | Kurtosis |  n | n_Missing
-#&gt; -------------------------------------------------------------------------------------
-#&gt; differenz | 0.14 | 1.10 | 1.37 | [-2.09, 2.39] |     0.18 |    -0.33 | 30 |         0</code></pre>
+#&gt; Variable  |  Mean |   SD |  IQR |         Range | Skewness | Kurtosis |  n | n_Missing
+#&gt; --------------------------------------------------------------------------------------
+#&gt; differenz | -0.18 | 1.50 | 1.62 | [-3.57, 2.95] |    -0.51 |     0.28 | 30 |         0</code></pre>
 </div>
 <div id="deskriptive-statistik-als-schöne-tabelle" class="section level1" number="7">
 <h1><span class="header-section-number">7</span> Deskriptive Statistik als schöne Tabelle</h1>
@@ -120,12 +132,12 @@ Durch das Messen bzw. das Durchführen des Experiments bekommen Sie die Daten �
   describe_distribution() %&gt;% 
   gt() %&gt;% 
   fmt_number(columns = where(is.numeric))</code></pre>
-<div id="qzriyirepu" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="ppteefwyin" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#qzriyirepu .gt_table {
+#ppteefwyin .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -150,7 +162,7 @@ Durch das Messen bzw. das Durchführen des Experiments bekommen Sie die Daten �
   border-left-color: #D3D3D3;
 }
 
-#qzriyirepu .gt_heading {
+#ppteefwyin .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -162,7 +174,7 @@ Durch das Messen bzw. das Durchführen des Experiments bekommen Sie die Daten �
   border-right-color: #D3D3D3;
 }
 
-#qzriyirepu .gt_title {
+#ppteefwyin .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -172,7 +184,7 @@ Durch das Messen bzw. das Durchführen des Experiments bekommen Sie die Daten �
   border-bottom-width: 0;
 }
 
-#qzriyirepu .gt_subtitle {
+#ppteefwyin .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -182,13 +194,13 @@ Durch das Messen bzw. das Durchführen des Experiments bekommen Sie die Daten �
   border-top-width: 0;
 }
 
-#qzriyirepu .gt_bottom_border {
+#ppteefwyin .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qzriyirepu .gt_col_headings {
+#ppteefwyin .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -203,7 +215,7 @@ Durch das Messen bzw. das Durchführen des Experiments bekommen Sie die Daten �
   border-right-color: #D3D3D3;
 }
 
-#qzriyirepu .gt_col_heading {
+#ppteefwyin .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -223,7 +235,7 @@ Durch das Messen bzw. das Durchführen des Experiments bekommen Sie die Daten �
   overflow-x: hidden;
 }
 
-#qzriyirepu .gt_column_spanner_outer {
+#ppteefwyin .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -235,15 +247,15 @@ Durch das Messen bzw. das Durchführen des Experiments bekommen Sie die Daten �
   padding-right: 4px;
 }
 
-#qzriyirepu .gt_column_spanner_outer:first-child {
+#ppteefwyin .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qzriyirepu .gt_column_spanner_outer:last-child {
+#ppteefwyin .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qzriyirepu .gt_column_spanner {
+#ppteefwyin .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -255,7 +267,7 @@ Durch das Messen bzw. das Durchführen des Experiments bekommen Sie die Daten �
   width: 100%;
 }
 
-#qzriyirepu .gt_group_heading {
+#ppteefwyin .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -277,7 +289,7 @@ Durch das Messen bzw. das Durchführen des Experiments bekommen Sie die Daten �
   vertical-align: middle;
 }
 
-#qzriyirepu .gt_empty_group_heading {
+#ppteefwyin .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -292,15 +304,15 @@ Durch das Messen bzw. das Durchführen des Experiments bekommen Sie die Daten �
   vertical-align: middle;
 }
 
-#qzriyirepu .gt_from_md > :first-child {
+#ppteefwyin .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qzriyirepu .gt_from_md > :last-child {
+#ppteefwyin .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qzriyirepu .gt_row {
+#ppteefwyin .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -319,7 +331,7 @@ Durch das Messen bzw. das Durchführen des Experiments bekommen Sie die Daten �
   overflow-x: hidden;
 }
 
-#qzriyirepu .gt_stub {
+#ppteefwyin .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -331,7 +343,7 @@ Durch das Messen bzw. das Durchführen des Experiments bekommen Sie die Daten �
   padding-left: 12px;
 }
 
-#qzriyirepu .gt_summary_row {
+#ppteefwyin .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -341,7 +353,7 @@ Durch das Messen bzw. das Durchführen des Experiments bekommen Sie die Daten �
   padding-right: 5px;
 }
 
-#qzriyirepu .gt_first_summary_row {
+#ppteefwyin .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -351,7 +363,7 @@ Durch das Messen bzw. das Durchführen des Experiments bekommen Sie die Daten �
   border-top-color: #D3D3D3;
 }
 
-#qzriyirepu .gt_grand_summary_row {
+#ppteefwyin .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -361,7 +373,7 @@ Durch das Messen bzw. das Durchführen des Experiments bekommen Sie die Daten �
   padding-right: 5px;
 }
 
-#qzriyirepu .gt_first_grand_summary_row {
+#ppteefwyin .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -371,11 +383,11 @@ Durch das Messen bzw. das Durchführen des Experiments bekommen Sie die Daten �
   border-top-color: #D3D3D3;
 }
 
-#qzriyirepu .gt_striped {
+#ppteefwyin .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qzriyirepu .gt_table_body {
+#ppteefwyin .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -384,7 +396,7 @@ Durch das Messen bzw. das Durchführen des Experiments bekommen Sie die Daten �
   border-bottom-color: #D3D3D3;
 }
 
-#qzriyirepu .gt_footnotes {
+#ppteefwyin .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -398,13 +410,13 @@ Durch das Messen bzw. das Durchführen des Experiments bekommen Sie die Daten �
   border-right-color: #D3D3D3;
 }
 
-#qzriyirepu .gt_footnote {
+#ppteefwyin .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#qzriyirepu .gt_sourcenotes {
+#ppteefwyin .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -418,41 +430,41 @@ Durch das Messen bzw. das Durchführen des Experiments bekommen Sie die Daten �
   border-right-color: #D3D3D3;
 }
 
-#qzriyirepu .gt_sourcenote {
+#ppteefwyin .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#qzriyirepu .gt_left {
+#ppteefwyin .gt_left {
   text-align: left;
 }
 
-#qzriyirepu .gt_center {
+#ppteefwyin .gt_center {
   text-align: center;
 }
 
-#qzriyirepu .gt_right {
+#ppteefwyin .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qzriyirepu .gt_font_normal {
+#ppteefwyin .gt_font_normal {
   font-weight: normal;
 }
 
-#qzriyirepu .gt_font_bold {
+#ppteefwyin .gt_font_bold {
   font-weight: bold;
 }
 
-#qzriyirepu .gt_font_italic {
+#ppteefwyin .gt_font_italic {
   font-style: italic;
 }
 
-#qzriyirepu .gt_super {
+#ppteefwyin .gt_super {
   font-size: 65%;
 }
 
-#qzriyirepu .gt_footnote_marks {
+#ppteefwyin .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -477,24 +489,24 @@ Durch das Messen bzw. das Durchführen des Experiments bekommen Sie die Daten �
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left">differenz</td>
-<td class="gt_row gt_right">1.09</td>
-<td class="gt_row gt_right">1.67</td>
-<td class="gt_row gt_right">2.53</td>
-<td class="gt_row gt_right">&minus;1.66</td>
-<td class="gt_row gt_right">5.01</td>
-<td class="gt_row gt_right">0.14</td>
-<td class="gt_row gt_right">&minus;0.34</td>
+<td class="gt_row gt_right">1.31</td>
+<td class="gt_row gt_right">1.46</td>
+<td class="gt_row gt_right">2.07</td>
+<td class="gt_row gt_right">&minus;1.81</td>
+<td class="gt_row gt_right">4.57</td>
+<td class="gt_row gt_right">&minus;0.04</td>
+<td class="gt_row gt_right">&minus;0.20</td>
 <td class="gt_row gt_right">30.00</td>
 <td class="gt_row gt_right">0.00</td>
 <td class="gt_row gt_left">gruppe=Exp</td></tr>
     <tr><td class="gt_row gt_left">differenz</td>
-<td class="gt_row gt_right">0.14</td>
-<td class="gt_row gt_right">1.10</td>
-<td class="gt_row gt_right">1.37</td>
-<td class="gt_row gt_right">&minus;2.09</td>
-<td class="gt_row gt_right">2.39</td>
-<td class="gt_row gt_right">0.18</td>
-<td class="gt_row gt_right">&minus;0.33</td>
+<td class="gt_row gt_right">&minus;0.18</td>
+<td class="gt_row gt_right">1.50</td>
+<td class="gt_row gt_right">1.62</td>
+<td class="gt_row gt_right">&minus;3.57</td>
+<td class="gt_row gt_right">2.95</td>
+<td class="gt_row gt_right">&minus;0.51</td>
+<td class="gt_row gt_right">0.28</td>
 <td class="gt_row gt_right">30.00</td>
 <td class="gt_row gt_right">0.00</td>
 <td class="gt_row gt_left">gruppe=Placebo</td></tr>
@@ -510,7 +522,7 @@ Durch das Messen bzw. das Durchführen des Experiments bekommen Sie die Daten �
 <pre class="r"><code>cohens_d(differenz ~ gruppe, data = d2)
 #&gt; Cohen&#39;s d |       95% CI
 #&gt; ------------------------
-#&gt; 0.67      | [0.15, 1.19]
+#&gt; 1.01      | [0.47, 1.54]
 #&gt; 
 #&gt; - Estimated using pooled SD.</code></pre>
 <p>Sie könnten schreiben:</p>
@@ -537,12 +549,12 @@ m1
 #&gt;  predictors:   2
 #&gt; ------
 #&gt;               Median MAD_SD
-#&gt; (Intercept)    1.1    0.3  
-#&gt; gruppePlacebo -0.9    0.3  
+#&gt; (Intercept)    1.3    0.3  
+#&gt; gruppePlacebo -1.5    0.4  
 #&gt; 
 #&gt; Auxiliary parameter(s):
 #&gt;       Median MAD_SD
-#&gt; sigma 1.4    0.1   
+#&gt; sigma 1.5    0.1   
 #&gt; 
 #&gt; ------
 #&gt; * For help interpreting the printed output see ?print.stanreg
@@ -550,10 +562,10 @@ m1
 <p>Ok, der mediane Effekt zwischen den Gruppen wird auf ca. -1.5 geschätzt.</p>
 <p>Aber ein Konfidenzintervall wäre schön:</p>
 <pre class="r"><code>posterior_interval(m1, prob = .95)
-#&gt;                     2.5%     97.5%
-#&gt; (Intercept)    0.5826424  1.581280
-#&gt; gruppePlacebo -1.6770910 -0.223052
-#&gt; sigma          1.2099773  1.720551</code></pre>
+#&gt;                     2.5%      97.5%
+#&gt; (Intercept)    0.7657152  1.8679423
+#&gt; gruppePlacebo -2.2549596 -0.7436646
+#&gt; sigma          1.2476414  1.7896489</code></pre>
 <p>Ah, jetzt sehen wir, dass das 95%-PI auf ca. -2.3 bis -0.7 geschätzt wird.
 Es gibt also einen Effekt zwischen den Gruppen: Die Null (der “Null-Effekt”) ist nicht im Schätzbereich plausibler Werte enthalten.
 Ob der Effekt groß ist, ist eine andere Frage - keine statistische.</p>
@@ -561,10 +573,10 @@ Ob der Effekt groß ist, ist eine andere Frage - keine statistische.</p>
 wenn auch die Informationen etwas reichhaltiger sind:</p>
 <pre class="r"><code>library(easystats)
 parameters(m1)
-#&gt; Parameter     | Median |         95% CI |     pd | % in ROPE |  Rhat |     ESS |                 Prior
-#&gt; ------------------------------------------------------------------------------------------------------
-#&gt; (Intercept)   |   1.09 | [ 0.58,  1.58] |   100% |        0% | 1.000 | 3904.00 | Normal (0.62 +- 3.71)
-#&gt; gruppePlacebo |  -0.95 | [-1.68, -0.22] | 99.33% |        0% | 1.000 | 3801.00 | Normal (0.00 +- 7.35)</code></pre>
+#&gt; Parameter     | Median |         95% CI |   pd | % in ROPE |  Rhat |     ESS |                 Prior
+#&gt; ----------------------------------------------------------------------------------------------------
+#&gt; (Intercept)   |   1.32 | [ 0.77,  1.87] | 100% |        0% | 1.000 | 3338.00 | Normal (0.56 +- 4.12)
+#&gt; gruppePlacebo |  -1.50 | [-2.25, -0.74] | 100% |        0% | 1.000 | 3841.00 | Normal (0.00 +- 8.18)</code></pre>
 <p>Was ist <code>pd</code>:</p>
 <blockquote>
 <p>Compute the Probability of Direction (pd, also known as the Maximum Probability of Effect - MPE). It varies between 50% and 100% (i.e., 0.5 and 1) and can be interpreted as the probability (expressed in percentage) that a parameter (described by its posterior distribution) is strictly positive or negative (whichever is the most probable). It is mathematically defined as the proportion of the posterior distribution that is of the median’s sign. Although differently expressed, this index is fairly similar (i.e., is strongly correlated) to the frequentist p-value.</p>
@@ -577,10 +589,10 @@ parameters(m1)
 <h1><span class="header-section-number">10</span> Parameter (Koeffizienten des Modells) plotten</h1>
 <p>Für <code>parameters()</code> gibt es auch eine <code>plot</code>-Methode:</p>
 <pre class="r"><code>plot(parameters(m1))</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Alternativ bietet <code>rstanarm</code> auch eine Plot-Methoden:</p>
 <pre class="r"><code>plot(m1)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ja-ist-der-effekt-jetzt-groß-oder-nicht" class="section level1" number="11">
 <h1><span class="header-section-number">11</span> Ja, ist der Effekt jetzt groß oder nicht?</h1>
@@ -596,7 +608,7 @@ d2 &lt;-
 <pre class="r"><code>m2 &lt;- stan_glm(differenz_z ~ gruppe, data = d2, refresh = 0)
 coef(m2)
 #&gt;   (Intercept) gruppePlacebo 
-#&gt;     0.3173400    -0.6320966</code></pre>
+#&gt;     0.4540214    -0.9044253</code></pre>
 <p>Ja, der Effekt ist deutlich größer als 0.1! Damit ist der Effekt größer als “vernachlässigbar klein”.</p>
 </div>
 <div id="rope" class="section level1" number="12">
@@ -608,11 +620,11 @@ das sollte uns das gleiche wie oben bestätigen:</p>
 #&gt; 
 #&gt; Parameter     | inside ROPE
 #&gt; ---------------------------
-#&gt; (Intercept)   |     10.00 %
+#&gt; (Intercept)   |      0.00 %
 #&gt; gruppePlacebo |      0.00 %</code></pre>
 <p>0% im Rope! Das Rope kann ausgeschlossen werden.</p>
 <pre class="r"><code>plot(rope(m2))</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-16-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="was-ist-mit-r-quadrat" class="section level1" number="13">
 <h1><span class="header-section-number">13</span> Was ist mit R-Quadrat?</h1>
@@ -620,7 +632,7 @@ das sollte uns das gleiche wie oben bestätigen:</p>
 <pre class="r"><code>r2_bayes(m2)
 #&gt; # Bayesian R2 with Compatibility Interval
 #&gt; 
-#&gt;   Conditional R2: 0.100 (95% CI [7.486e-07, 0.232])</code></pre>
+#&gt;   Conditional R2: 0.204 (95% CI [0.038, 0.364])</code></pre>
 </div>
 <div id="fazit" class="section level1" number="14">
 <h1><span class="header-section-number">14</span> Fazit</h1>

@@ -79,7 +79,6 @@ d <-
     konz_t1 = rnorm(60),
     konz_t2 = c(rnorm(30), rnorm(30, mean = 1)),
     gruppe = c(rep("Placebo", 30), rep("Exp", 30)))
-  
 ```
 
 Wir haben uns $n=60$ Daten simuliert, 30 pro Gruppe (Experimental- und Placebogruppe).
@@ -89,8 +88,19 @@ Bei $t2$ haben wir die Werte so simuliert,
 dass die Experimentalgruppe jetzt aus einer Normalverteilung mit $\mu=1$ gezogen wird.
 
 
+Das sieht dann so aus (die ersten paar Zeilen):
+
+```{r}
+d %>% 
+  head()
+```
+
+
 Das Simulieren der Daten ist bei einem echten Experiment natürlich nicht nötig.
 Durch das Messen bzw. das Durchführen des Experiments bekommen Sie die Daten "von allein".
+
+Beachten Sie, dass *alle* Daten in *einer* Tabelle stehen, nicht etwa in mehreren Tabellen.
+
 
 # Differenzwert berechnen
 
