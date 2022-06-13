@@ -1,0 +1,82 @@
+---
+title: Free resources for aspiring data adepts
+author: Sebastian Sauer
+date: '2022-06-13'
+slug: free-resources-for-aspiring-data-adepts
+categories:
+  - rstats
+tags:
+  - resources
+output:
+  blogdown::html_page:
+    toc: yes
+    number_sections: yes
+---
+
+
+
+```{r knitr-setup, echo = FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = TRUE,
+  out.width = "100%",
+  fig.align = 'center',
+  fig.width = 6,
+  fig.asp = 0.618,  # 1 / phi
+  fig.show = "hold",
+  size = "tiny"
+)
+```
+
+# Why data science?
+
+
+Data science is of of the most vibrating fields of research and industries at present.
+Its ubiquity and importance is likely on the rise.
+Due to its importance, it's a great place for vivid minds to contribute and to develop.
+Joining this field allows to participate in of the leadings fields allows for personal growth and give access to a vibrant community.
+Of course, there are other highly exciting fields too!
+
+
+# Free resources overview
+
+Here is a short, non-complete, subjective, opinionated curation of worthwhile *free* resources for those wanting to become a data practitioner, i.e. "data scientist".
+
+## Machine learning conceps
+
+- [An Introduction to Statistical Learning](https://www.statlearning.com/), widely received and acknowledged book, free pdf version of book available
+
+
+## Math basics
+
+- [Mathematics for Machine Learning](https://deisenroth.cc/publication/deisenroth-2020/), concisse overview von math foundations of machine learning, free pdf version of book available
+
+
+## R basics
+
+- [R for data science](https://r4ds.had.co.nz/), standard book on how to use R for data analysis and more advanced aspects such as modeling, free online book
+
+
+## Machine learning framework with R
+
+
+- [Tidy Modeling with R](https://www.tmwr.org/), latest attempt to provide a comprehensive machine learning framework for R, built by RStudio
+
+
+
+## R online environment
+
+- [RStudio Cloud](https://rstudio.cloud/), offers free (up to some hours per month) access to a convenient R Studio online environment
+
+
+## Online course
+
+- [Stanford Machine Learning Coursera Course](https://www.coursera.org/learn/machine-learning#syllabus) offers a good introduction by popular teachers free of charge
+
+
+
+
+
