@@ -77,6 +77,10 @@ Here is a short, non-complete, subjective, opinionated curation of worthwhile *f
 - [Stanford Machine Learning Coursera Course](https://www.coursera.org/learn/machine-learning#syllabus) offers a good introduction by popular teachers free of charge
 
 
+## Beautiful intuition
 
+- [Intuition on decision trees](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/), visualized in a stunning, simply beuatiful way, part 1 of a 2 elements series
+
+- [Model Tuning and the Bias-Variance Tradeoff](http://www.r2d3.us/visual-intro-to-machine-learning-part-2/), part 2 of a 2 elements series, vividly illustrates the pivotal concept of over- (and under-) fitting in machine learning
 
 
