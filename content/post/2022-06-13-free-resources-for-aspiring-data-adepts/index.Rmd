@@ -83,4 +83,22 @@ Here is a short, non-complete, subjective, opinionated curation of worthwhile *f
 
 - [Model Tuning and the Bias-Variance Tradeoff](http://www.r2d3.us/visual-intro-to-machine-learning-part-2/), part 2 of a 2 elements series, vividly illustrates the pivotal concept of over- (and under-) fitting in machine learning
 
+## Blogs
+
+- There are heaps of great blogs around, but I particularly like [Julia Silge's blog](https://juliasilge.com/blog/) on machine learning using the Tidy Models framework.
+
+
+## Help
+
+- The canocical site to receive help is, of course, [StackOverflow.com](https://stackoverflow.com/). Make sure you understand how to post a [reproducible, minimal example](https://stackoverflow.com/help/minimal-reproducible-example) of your problem before you proceed, and you will be rewarded by a great community, all for free.
+
+
+## YouTube channels
+
+- Again, there are plenty channels around. Here's one opinionated pick: Again, [Julia Silge's channel](https://www.youtube.com/c/JuliaSilge) is a great place to start, and it coalesces nicely with her blog.
+
+- Just for the beauty of it, and, well the deep wisdom incorporated, plus the stunning  beauty of its visualization, I feel it's kind of mandatory to having visited [3blue1brown's](https://www.youtube.com/c/3blue1brown) channel for an overview of math related to machine learning.
+
+
+
 
