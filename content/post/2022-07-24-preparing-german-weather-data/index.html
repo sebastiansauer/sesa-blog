@@ -27,10 +27,11 @@ output:
 </ul></li>
 <li><a href="#download-multiple-files-and-bind-them-together-rowwise" id="toc-download-multiple-files-and-bind-them-together-rowwise"><span class="toc-section-number">6</span> Download multiple files and bind them together rowwise</a></li>
 <li><a href="#format-to-long" id="toc-format-to-long"><span class="toc-section-number">7</span> Format to long</a></li>
-<li><a href="#save-to-disk" id="toc-save-to-disk"><span class="toc-section-number">8</span> Save to disk</a></li>
-<li><a href="#reference-temperature" id="toc-reference-temperature"><span class="toc-section-number">9</span> Reference temperature</a></li>
-<li><a href="#debrief" id="toc-debrief"><span class="toc-section-number">10</span> Debrief</a></li>
-<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">11</span> Reproducibility</a></li>
+<li><a href="#more-post-processing" id="toc-more-post-processing"><span class="toc-section-number">8</span> More post-processing</a></li>
+<li><a href="#save-to-disk" id="toc-save-to-disk"><span class="toc-section-number">9</span> Save to disk</a></li>
+<li><a href="#precipitation" id="toc-precipitation"><span class="toc-section-number">10</span> Precipitation</a></li>
+<li><a href="#debrief" id="toc-debrief"><span class="toc-section-number">11</span> Debrief</a></li>
+<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">12</span> Reproducibility</a></li>
 </ul>
 </div>
 
@@ -746,22 +747,28 @@ d_air_temp2 %&gt;%
   pivot_longer(cols = -c(Jahr,, Monat), names_to = &quot;region&quot;, values_to = &quot;temp&quot;) %&gt;% 
   rename(year = Jahr, month = Monat)</code></pre>
 </div>
-<div id="save-to-disk" class="section level1" number="8">
-<h1><span class="header-section-number">8</span> Save to disk</h1>
+<div id="more-post-processing" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> More post-processing</h1>
+<pre class="r"><code>d_air_temp3 &lt;-
+  d_air_temp3 %&gt;% 
+  janitor::clean_names()</code></pre>
+</div>
+<div id="save-to-disk" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Save to disk</h1>
 <p>I’m saving to my personal folder. Your folder path will be different.</p>
-<pre class="r"><code>write_csv(d_air_temp3, file = &quot;/Users/sebastiansaueruser/github-repos/datasets/csv/air_temp_de_dev_DWD.csv&quot;)</code></pre>
+<pre class="r"><code>write_csv(d_air_temp3, file = &quot;/Users/sebastiansaueruser/github-repos/datasets/csv/air_temp_de_dev_DWD.csv&quot;)
+
+save(d_air_temp3, file = &quot;/Users/sebastiansaueruser/github-repos/datasets/Rdata/air_temp_de_dev_DWD.Rdata&quot;)</code></pre>
 </div>
-<div id="reference-temperature" class="section level1" number="9">
-<h1><span class="header-section-number">9</span> Reference temperature</h1>
-<p>In this data set, the temperatures are denotes in devations from a long term average.
-I think this reference time is 1961-1990, <a href="https://www.dwd.de/DE/leistungen/besondereereignisse/verschiedenes/20210119_neue_referenzperiode.html;jsessionid=B502C793E6F64A251E0902D8F85B9FA8.live31081?nn=16102">building on this source</a>, but after 2021, the reference period has been flipped to 1991-2020.</p>
+<div id="precipitation" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> Precipitation</h1>
 </div>
-<div id="debrief" class="section level1" number="10">
-<h1><span class="header-section-number">10</span> Debrief</h1>
+<div id="debrief" class="section level1" number="11">
+<h1><span class="header-section-number">11</span> Debrief</h1>
 <p>This is nice stuff, however, the temperatures provided are <em>deviations</em> from a long term average, which may be of interest at times, but not so tangible as actual temperatures.</p>
 </div>
-<div id="reproducibility" class="section level1" number="11">
-<h1><span class="header-section-number">11</span> Reproducibility</h1>
+<div id="reproducibility" class="section level1" number="12">
+<h1><span class="header-section-number">12</span> Reproducibility</h1>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value
 #&gt;  version  R version 4.2.0 (2022-04-22)

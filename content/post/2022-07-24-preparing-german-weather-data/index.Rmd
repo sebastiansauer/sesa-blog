@@ -72,14 +72,13 @@ I'm not pretending to do full-fetched meterology research.
 What's being done is a rather playful appraoch to derive some basic insights noentheless.
 
 
-# Download data
 
 
-##  Air temperature means
+#  Air temperature means
 
 Here's the URL stem, indicating a folder where the data can be found:
 
-```{r url-stem}
+```{r url-stem-temp}
 url_stem <- "https://opendata.dwd.de/climate_environment/CDC/regional_averages_DE/monthly/air_temperature_mean/"
 ```
 
@@ -176,25 +175,123 @@ d_air_temp3 <-
 ```
 
 
+# More post-processing
+
+```{r}
+d_air_temp3 <-
+  d_air_temp3 %>% 
+  janitor::clean_names()
+```
+
+
 # Save to disk
 
 I'm saving to my personal folder. Your folder path will be different.
 
 ```{r}
-write_csv(d_air_temp3, file = "/Users/sebastiansaueruser/github-repos/datasets/csv/air_temp_de_dev_DWD.csv")
+write_csv(d_air_temp3, file = "/Users/sebastiansaueruser/github-repos/datasets/csv/air_temp_de_DWD.csv")
+
+save(d_air_temp3, file = "/Users/sebastiansaueruser/github-repos/datasets/Rdata/air_temp_de_DWD.Rdata")
 ```
 
 
-# Reference temperature
-
-In this data set, the temperatures are denotes in devations from a long term average.
-I think this reference time is 1961-1990, [building on this source](https://www.dwd.de/DE/leistungen/besondereereignisse/verschiedenes/20210119_neue_referenzperiode.html;jsessionid=B502C793E6F64A251E0902D8F85B9FA8.live31081?nn=16102), but after 2021, the reference period has been flipped to 1991-2020.
+# Precipitation
 
 
+```{r url-stem-precip}
+url_stem <- "https://opendata.dwd.de/climate_environment/CDC/regional_averages_DE/monthly/precipitation/"
+```
 
-# Debrief
 
-This is nice stuff, however, the temperatures provided are *deviations* from a long term average, which may be of interest at times, but not so tangible as actual temperatures.
+There's one file for each month, providing the mean air temperature for the German Bundesländer:
+
+```{r build-file-names-precip}
+months <- str_pad(1:12, width = 2, side = "left", pad = "0")
+months
+month_precip_data <- glue("regional_averages_rr_{months}.txt")
+month_precip_data
+
+```
+
+
+Let's glue the whole path:
+
+```{r build-urls}
+precip_path <- paste0(url_stem, month_precip_data)
+precip_path
+```
+
+
+
+
+```{r download-all-files}
+d_precip <- 
+  precip_path %>% 
+  map_df(~ read_delim(., skip = 1, col_types = cols(.default = "c"))) %>% 
+  select(-`...20`)
+```
+
+
+ 
+Second, let's parse the numbers out of the strings.
+
+```{r parse-numbers}
+d_precip2 <-
+  d_precip %>% 
+  mutate(across(.cols = everything(),
+                 .fns = parse_number))
+
+d_precip2 %>% 
+  head() 
+```
+
+
+
+
+
+# Format to long 
+
+```{r format-lng}
+d_precip3 <-
+  d_precip2 %>% 
+  pivot_longer(cols = -c(Jahr,, Monat), names_to = "region", values_to = "precip") %>% 
+  rename(year = Jahr, month = Monat)
+
+head(d_precip3)
+```
+
+
+# Save to disk
+
+I'm saving to my personal folder. Your folder path will be different.
+
+```{r}
+write_csv(d_precip3, file = "/Users/sebastiansaueruser/github-repos/datasets/csv/precip_DWD.csv")
+
+save(d_precip3, file = "/Users/sebastiansaueruser/github-repos/datasets/Rdata/precip_DWD.Rdata")
+```
+
+
+# Join data
+
+```{r}
+d_precip_temp <- 
+d_precip3 %>% 
+  full_join(d_air_temp3)
+```
+
+
+
+
+# Save to disk
+
+I'm saving to my personal folder. Your folder path will be different.
+
+```{r}
+write_csv(d_precip_temp, file = "/Users/sebastiansaueruser/github-repos/datasets/csv/precip_temp.csv")
+
+save(d_precip3, file = "/Users/sebastiansaueruser/github-repos/datasets/Rdata/precip_temp.Rdata")
+```
 
 
 
