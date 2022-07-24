@@ -288,9 +288,9 @@ d_precip3 %>%
 I'm saving to my personal folder. Your folder path will be different.
 
 ```{r}
-write_csv(d_precip_temp, file = "/Users/sebastiansaueruser/github-repos/datasets/csv/precip_temp.csv")
+write_csv(d_precip_temp, file = "/Users/sebastiansaueruser/github-repos/datasets/csv/precip_temp_DWD.csv")
 
-save(d_precip3, file = "/Users/sebastiansaueruser/github-repos/datasets/Rdata/precip_temp.Rdata")
+save(d_precip3, file = "/Users/sebastiansaueruser/github-repos/datasets/Rdata/precip_temp_DWD.Rdata")
 ```
 
 
