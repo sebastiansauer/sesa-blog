@@ -64,6 +64,7 @@ Here is a short, non-complete, subjective, opinionated curation of worthwhile *f
 
 
 - [Tidy Modeling with R](https://www.tmwr.org/), latest attempt to provide a comprehensive machine learning framework for R, built by RStudio
+- Here's the [tidymodels website](https://www.tidymodels.org/) providing some overview on the framework. However, the book may provide an even more comprohensive journey.
 
 
 
