@@ -48,7 +48,7 @@ library(tidymodels)
 # Data
 
 ```{r}
-data("penguins", package = "palmerpenguins")
+data("penguins", package = "modeldata")
 ```
 
 
@@ -77,6 +77,7 @@ m1 %>%
 
 
 In case any predictor beta has been shrunken to zero, we would get a note, see for instance [this post](https://www.tidymodels.org/learn/models/coefficients/) 
+
 
 
 # Reproducibility
