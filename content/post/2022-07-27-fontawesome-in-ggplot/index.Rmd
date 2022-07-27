@@ -63,12 +63,19 @@ p1 + p2
 
 Alternatively: to `p1 + p2`:
 
-```{r}
+```{r out.width="75%", fig.asp = .5, fig.width = 15}
 patchwork::wrap_plots(p1, p2)
 ```
 
 
 We use `patchwork` here for patching the two plots together.
+
+Remember to use `out.width` to manage the size of the chunk output.
+
+For instance, I used the following chunk settings: `out.width="75%", fig.asp = .5, fig.width = 15`.
+
+
+
 
 
 

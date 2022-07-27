@@ -37,8 +37,10 @@ p1 + p2</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Alternatively: to <code>p1 + p2</code>:</p>
 <pre class="r"><code>patchwork::wrap_plots(p1, p2)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p>We use <code>patchwork</code> here for patching the two plots together.</p>
+<p>Remember to use <code>out.width</code> to manage the size of the chunk output.</p>
+<p>For instance, I used the following chunk settings: <code>out.width="75%", fig.asp = .5, fig.width = 15</code>.</p>
 </div>
 <div id="reproducibility" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Reproducibility</h1>
