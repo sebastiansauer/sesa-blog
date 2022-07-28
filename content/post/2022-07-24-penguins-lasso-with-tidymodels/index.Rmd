@@ -102,6 +102,10 @@ m2 <- wf1 %>%
 
 # Results
 
+Use `tidy()` to extract model coefficients:
+
+
+
 ```{r}
 tidy(m2)
 ```
@@ -119,12 +123,15 @@ m2 %>%
   extract_fit_parsnip()
 ```
 
-same as:    
+Similar to:    
 
 ```{r eval = TRUE}
 m2 %>% 
   extract_fit_engine()
 ```
+
+
+More information, such as the difference between the last two functions, can be found [here](https://www.tidymodels.org/learn/models/coefficients/), the tidymodels page on model coefficients.
 
 
 
