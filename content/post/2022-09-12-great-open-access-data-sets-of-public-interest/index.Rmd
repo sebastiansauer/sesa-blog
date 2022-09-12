@@ -94,4 +94,4 @@ Check for yourself! I do not take any responsibilities.
 
 - [The Journal of Open Psychology Data (JOPD)](https://openpsychologydata.metajnl.com/)
 
- [Psychology data from the Race Implicit Association Test on the Project Implicit Demo website](https://osf.io/52qxL/)
+- [Psychology data from the Race Implicit Association Test on the Project Implicit Demo website](https://osf.io/52qxL/)
