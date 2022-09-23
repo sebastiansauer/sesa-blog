@@ -77,6 +77,8 @@ Check for yourself! I do not take any responsibilities.
 
 - [Covid-19 Cases in Germany](https://github.com/robert-koch-institut/SARS-CoV-2_Infektionen_in_Deutschland) provided by the [RKI](https://www.rki.de/DE/Home/homepage_node.html).
 
+- Paper [COVIDiSTRESS Global Survey dataset on psychological and behavioural consequences of the COVID-19 outbreak](https://www.nature.com/articles/s41597-020-00784-9) with [open data at osf.io](https://osf.io/cjxua).
+
 - [Global Health Data Exchange](https://ghdx.healthdata.org/)
 
 - [WHO Global Tuberculosis Programme](https://www.who.int/teams/global-tuberculosis-programme/data#csv_files)
