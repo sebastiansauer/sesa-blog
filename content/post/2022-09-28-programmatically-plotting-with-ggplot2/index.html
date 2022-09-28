@@ -20,12 +20,15 @@ output:
 <div id="TOC">
 <ul>
 <li><a href="#setup" id="toc-setup"><span class="toc-section-number">1</span> Setup</a></li>
-<li><a href="#define-a-function" id="toc-define-a-function"><span class="toc-section-number">2</span> Define a function</a></li>
-<li><a href="#lets-go" id="toc-lets-go"><span class="toc-section-number">3</span> Let’s go</a>
+<li><a href="#lets-go" id="toc-lets-go"><span class="toc-section-number">2</span> Let’s go</a>
 <ul>
-<li><a href="#way-2" id="toc-way-2"><span class="toc-section-number">3.1</span> Way 2</a></li>
-<li><a href="#way-3" id="toc-way-3"><span class="toc-section-number">3.2</span> Way 3</a></li>
+<li><a href="#way-1" id="toc-way-1"><span class="toc-section-number">2.1</span> Way 1</a></li>
+<li><a href="#way-2" id="toc-way-2"><span class="toc-section-number">2.2</span> Way 2</a></li>
+<li><a href="#way-2-1" id="toc-way-2-1"><span class="toc-section-number">2.3</span> Way 2</a></li>
+<li><a href="#way-3" id="toc-way-3"><span class="toc-section-number">2.4</span> Way 3</a></li>
+<li><a href="#way-4" id="toc-way-4"><span class="toc-section-number">2.5</span> Way 4</a></li>
 </ul></li>
+<li><a href="#further-reading" id="toc-further-reading"><span class="toc-section-number">3</span> Further reading</a></li>
 <li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">4</span> Reproducibility</a></li>
 </ul>
 </div>
@@ -33,13 +36,41 @@ output:
 <div id="setup" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Setup</h1>
 <pre class="r"><code>library(tidyverse)  # data wrangling
-library(easystats)</code></pre>
+library(easystats)  # comfort in stats</code></pre>
 <pre class="r"><code>data(mtcars)</code></pre>
+<p>In essence,</p>
+<p>we want to build this kind of plot programmatically:</p>
+<pre class="r"><code>mtcars %&gt;% 
+  ggplot(aes(x=hp)) +
+  geom_histogram()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="define-a-function" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> Define a function</h1>
-<p>Unquoted variable names</p>
-<pre class="r"><code>plot_descriptives &lt;- function(data, var, group) {
+<div id="lets-go" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Let’s go</h1>
+<div id="way-1" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Way 1</h2>
+<p>Let’s use unquoted variable names.</p>
+<pre class="r"><code>plot_descriptives0 &lt;- function(data, var) {
+  
+
+  data %&gt;% 
+   ggplot(aes(x = {{var}})) +
+   geom_histogram()
+}
+
+plot_descriptives0(mtcars, hp)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>This line gives us the variable name as a string:</p>
+<pre class="r"><code>deparse(substitute(var))
+#&gt; [1] &quot;var&quot;</code></pre>
+<p>More specifically:</p>
+<pre class="r"><code>deparse(substitute(mtcars$hp))
+#&gt; [1] &quot;mtcars$hp&quot;</code></pre>
+</div>
+<div id="way-2" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Way 2</h2>
+<p>Somewhat more elaborated, but same idea:</p>
+<pre class="r"><code>plot_descriptives1 &lt;- function(data, var, group) {
   
   var_string &lt;- deparse(substitute(var))
   
@@ -62,19 +93,11 @@ library(easystats)</code></pre>
     coord_flip() +
     theme(legend.position = &quot;bottom&quot;)
 }</code></pre>
+<pre class="r"><code>plot_descriptives1(mtcars, hp, cyl)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="lets-go" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Let’s go</h1>
-<pre class="r"><code>plot_descriptives(mtcars, hp, cyl)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<div id="way-2" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Way 2</h2>
-<p>In essence,</p>
-<p>we want to build this plot programmatically:</p>
-<pre class="r"><code>mtcars %&gt;% 
-  ggplot(aes(x=hp)) +
-  geom_histogram()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="way-2-1" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Way 2</h2>
 <p>This time, we have variables as <em>strings</em>:</p>
 <pre class="r"><code>plot_descriptives2 &lt;- function(data, var) {
   
@@ -85,10 +108,10 @@ library(easystats)</code></pre>
 }</code></pre>
 <p>However, <code>aes_string</code> is deprecated.</p>
 <pre class="r"><code>plot_descriptives2(mtcars, &quot;hp&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="way-3" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Way 3</h2>
+<div id="way-3" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Way 3</h2>
 <p>Here we use <code>sym</code></p>
 <pre class="r"><code>?sym
 #&gt; Help on topic &#39;sym&#39; was found in the following packages:
@@ -107,6 +130,10 @@ library(easystats)</code></pre>
 <pre class="r"><code>sym(&quot;hp&quot;)
 #&gt; hp</code></pre>
 <p><code>!!</code> is used to evaluate a symbol, ie., gives back the “real” column, such as <code>hp</code>.</p>
+<pre class="r"><code>help(&quot;!!&quot;)</code></pre>
+<blockquote>
+<p>The !! operator unquotes its argument. It gets evaluated immediately in the surrounding context.</p>
+</blockquote>
 <pre class="r"><code>plot_descriptives3 &lt;- function(data, var) {
   
   var_enquo &lt;- sym(var)
@@ -117,8 +144,31 @@ library(easystats)</code></pre>
 }
 
 plot_descriptives3(mtcars, &quot;hp&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
+<div id="way-4" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Way 4</h2>
+<p>We can swqp the “bang-bang” <code>!!</code> in favor of “curly-curly” <code>{{</code>:</p>
+<pre class="r"><code>plot_descriptives4 &lt;- function(data, var) {
+  
+  var_enquo &lt;- sym(var)
+  
+  data %&gt;% 
+    ggplot(aes(x = {{var_enquo}})) +
+    geom_histogram()
+}
+
+plot_descriptives4(mtcars, &quot;hp&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="further-reading" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Further reading</h1>
+<p>There are many sources, here are some:</p>
+<ul>
+<li><a href="https://stackoverflow.com/questions/53381764/what-does-sym-do-regarding-tidyeval" class="uri">https://stackoverflow.com/questions/53381764/what-does-sym-do-regarding-tidyeval</a></li>
+<li><a href="https://www.rdocumentation.org/packages/modeltime.gluonts/versions/0.1.0/topics/tidyeval" class="uri">https://www.rdocumentation.org/packages/modeltime.gluonts/versions/0.1.0/topics/tidyeval</a></li>
+</ul>
 </div>
 <div id="reproducibility" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> Reproducibility</h1>

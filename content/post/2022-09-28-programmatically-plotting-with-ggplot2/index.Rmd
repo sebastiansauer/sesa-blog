@@ -40,7 +40,7 @@ knitr::opts_chunk$set(
 
 ```{r load-libs, message = FALSE, warning = FALSE}
 library(tidyverse)  # data wrangling
-library(easystats)
+library(easystats)  # comfort in stats
 ```
 
 
@@ -50,12 +50,76 @@ data(mtcars)
 ```
 
 
-# Define a function
+In essence,
 
-Unquoted variable names
+we want to build this kind of plot programmatically:
+
+
 
 ```{r}
-plot_descriptives <- function(data, var, group) {
+mtcars %>% 
+  ggplot(aes(x=hp)) +
+  geom_histogram()
+```
+
+
+
+
+# Let's go
+
+## Way 1
+
+Let's use unquoted variable names.
+
+```{r}
+plot_descriptives0 <- function(data, var) {
+  
+
+  data %>% 
+   ggplot(aes(x = {{var}})) +
+   geom_histogram()
+}
+
+plot_descriptives0(mtcars, hp)
+```
+
+
+```{r}
+plot_descriptives0 <- function(data, var) {
+  
+var <- deparse(substitute(var))
+  
+  data %>% 
+   ggplot(aes(x = {{var}})) +
+   geom_histogram()
+}
+
+plot_descriptives0(mtcars, "hp")
+```
+
+
+
+
+This line gives us the variable name as a string:
+```{r}
+deparse(substitute(var))
+```
+
+More specifically:
+
+```{r}
+deparse(substitute(mtcars$hp))
+```
+
+
+
+
+## Way 2
+
+Somewhat more elaborated, but same idea:
+
+```{r}
+plot_descriptives1 <- function(data, var, group) {
   
   var_string <- deparse(substitute(var))
   
@@ -81,28 +145,16 @@ plot_descriptives <- function(data, var, group) {
 ```
 
 
-# Let's go
-
 
 
 ```{r}
-plot_descriptives(mtcars, hp, cyl)
+plot_descriptives1(mtcars, hp, cyl)
 ```
 
 
 ## Way 2
 
-In essence,
 
-we want to build this plot programmatically:
-
-
-
-```{r}
-mtcars %>% 
-  ggplot(aes(x=hp)) +
-  geom_histogram()
-```
 
 This time, we have variables as *strings*:
 
@@ -147,7 +199,7 @@ sym("hp")
 
 
 ```{r}
-? !!
+help("!!")
 ```
 
 
@@ -165,6 +217,25 @@ plot_descriptives3 <- function(data, var) {
 }
 
 plot_descriptives3(mtcars, "hp")
+```
+
+
+
+## Way 4
+
+We can swqp the "bang-bang" `!!` in favor of "curly-curly" `{{`:
+
+```{r}
+plot_descriptives4 <- function(data, var) {
+  
+  var_enquo <- sym(var)
+  
+  data %>% 
+    ggplot(aes(x = {{var_enquo}})) +
+    geom_histogram()
+}
+
+plot_descriptives4(mtcars, "hp")
 ```
 
 
