@@ -84,35 +84,6 @@ plot_descriptives0(mtcars, hp)
 ```
 
 
-```{r}
-plot_descriptives0 <- function(data, var) {
-  
-var <- deparse(substitute(var))
-  
-  data %>% 
-   ggplot(aes(x = {{var}})) +
-   geom_histogram()
-}
-
-plot_descriptives0(mtcars, "hp")
-```
-
-
-
-
-This line gives us the variable name as a string:
-```{r}
-deparse(substitute(var))
-```
-
-More specifically:
-
-```{r}
-deparse(substitute(mtcars$hp))
-```
-
-
-
 
 ## Way 2
 
@@ -150,6 +121,23 @@ plot_descriptives1 <- function(data, var, group) {
 ```{r}
 plot_descriptives1(mtcars, hp, cyl)
 ```
+
+
+
+
+This line gives us the variable name as a string:
+```{r}
+deparse(substitute(var))
+```
+
+More specifically:
+
+```{r}
+deparse(substitute(mtcars$hp))
+```
+
+
+
 
 
 ## Way 2

@@ -60,12 +60,6 @@ library(easystats)  # comfort in stats</code></pre>
 
 plot_descriptives0(mtcars, hp)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>This line gives us the variable name as a string:</p>
-<pre class="r"><code>deparse(substitute(var))
-#&gt; [1] &quot;var&quot;</code></pre>
-<p>More specifically:</p>
-<pre class="r"><code>deparse(substitute(mtcars$hp))
-#&gt; [1] &quot;mtcars$hp&quot;</code></pre>
 </div>
 <div id="way-2" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> Way 2</h2>
@@ -94,7 +88,13 @@ plot_descriptives0(mtcars, hp)</code></pre>
     theme(legend.position = &quot;bottom&quot;)
 }</code></pre>
 <pre class="r"><code>plot_descriptives1(mtcars, hp, cyl)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>This line gives us the variable name as a string:</p>
+<pre class="r"><code>deparse(substitute(var))
+#&gt; [1] &quot;var&quot;</code></pre>
+<p>More specifically:</p>
+<pre class="r"><code>deparse(substitute(mtcars$hp))
+#&gt; [1] &quot;mtcars$hp&quot;</code></pre>
 </div>
 <div id="way-2-1" class="section level2" number="2.3">
 <h2><span class="header-section-number">2.3</span> Way 2</h2>
@@ -108,7 +108,7 @@ plot_descriptives0(mtcars, hp)</code></pre>
 }</code></pre>
 <p>However, <code>aes_string</code> is deprecated.</p>
 <pre class="r"><code>plot_descriptives2(mtcars, &quot;hp&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="way-3" class="section level2" number="2.4">
 <h2><span class="header-section-number">2.4</span> Way 3</h2>
@@ -144,7 +144,7 @@ plot_descriptives0(mtcars, hp)</code></pre>
 }
 
 plot_descriptives3(mtcars, &quot;hp&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="way-4" class="section level2" number="2.5">
 <h2><span class="header-section-number">2.5</span> Way 4</h2>
@@ -159,7 +159,7 @@ plot_descriptives3(mtcars, &quot;hp&quot;)</code></pre>
 }
 
 plot_descriptives4(mtcars, &quot;hp&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="further-reading" class="section level1" number="3">
