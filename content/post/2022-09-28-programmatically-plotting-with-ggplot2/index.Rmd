@@ -51,7 +51,6 @@ data(mtcars)
 
 
 In essence,
-
 we want to build this kind of plot programmatically:
 
 
@@ -148,7 +147,6 @@ This time, we have variables as *strings*:
 
 ```{r}
 plot_descriptives2 <- function(data, var) {
-  
   data %>% 
     ggplot(aes_string(x = var)) +
     geom_histogram() +
@@ -186,9 +184,6 @@ sym("hp")
 `!!` is used to evaluate a symbol, ie., gives back the "real" column, such as `hp`.
 
 
-```{r}
-help("!!")
-```
 
 
 >   The !! operator unquotes its argument. It gets evaluated immediately in the surrounding context.
