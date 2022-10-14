@@ -143,7 +143,7 @@ deparse(substitute(mtcars$hp))
 
 
 
-This time, we have variables as *strings*:
+This time, we have variables as *strings*
 
 ```{r}
 plot_descriptives2 <- function(data, var) {
@@ -181,7 +181,7 @@ sym("hp")
 ```
 
 
-`!!` is used to evaluate a symbol, ie., gives back the "real" column, such as `hp`.
+!! is used to evaluate a symbol, ie., gives back the "real" column, such as `hp`.
 
 
 
@@ -200,13 +200,14 @@ plot_descriptives3 <- function(data, var) {
 }
 
 plot_descriptives3(mtcars, "hp")
+
 ```
 
 
 
 ## Way 4
 
-We can swqp the "bang-bang" `!!` in favor of "curly-curly" `{{`:
+We can swqp the "bang-bang" !! in favor of "curly-curly" :
 
 ```{r}
 plot_descriptives4 <- function(data, var) {
