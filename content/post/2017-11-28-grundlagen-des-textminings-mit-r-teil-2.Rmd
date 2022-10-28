@@ -241,7 +241,7 @@ afd_senti %>%
   pull(token)
 ```
 
-Diese "Hitliste" wird zumeist (19/20) von negativ polarisierten Begriffen aufgefüllt, wobei "besonders" ein Intensivierwort ist, welches das Bezugswort verstärt ("besonders gefährlich"). Das Argument `keep_all = TRUE` sorgt dafür, dass alle Spalten zurückgegeben werden, nicht nur die durchsuchte Spalte `token`. Mit `pull` haben wir aus dem Dataframe, der von den dplyr-Verben überwegeben wird, die Spalte `pull` "herausgezogen"; hier nur um Platz zu sparen bzw. der Übersichtlichkeit halber.
+Diese "Hitliste" wird zumeist (19/20) von negativ polarisierten Begriffen aufgefüllt, wobei "besonders" ein Intensivierwort ist, welches das Bezugswort verstärkt ("besonders gefährlich"). Das Argument `keep_all = TRUE` sorgt dafür, dass alle Spalten zurückgegeben werden, nicht nur die durchsuchte Spalte `token`. Mit `pull` haben wir aus dem Dataframe, der von den dplyr-Verben überwegeben wird, die Spalte `pull` "herausgezogen"; hier nur um Platz zu sparen bzw. der Übersichtlichkeit halber.
 
 
      

@@ -71,6 +71,7 @@ dass es möglichst einfach gelöst werden kann.
 - https://robjhyndman.com/hyndsight/minimal-reproducible-examples/
 - https://community.rstudio.com/t/faq-how-to-do-a-minimal-reproducible-example-reprex-for-beginners/23061
 - [Sauer (2019)](https://link.springer.com/book/10.1007/978-3-658-21587-3), S. 33f
+- https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example?rq=1
 
 
 
