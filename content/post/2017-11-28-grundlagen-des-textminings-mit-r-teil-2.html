@@ -4,9 +4,8 @@ author: Sebastian Sauer
 date: '2017-11-28'
 slug: grundlagen-des-textminings-mit-r-teil-2
 categories:
-  - rstats
+  - rstats 
 tags:
-  - rstats
   - textmining
   - German
 ---
@@ -24,21 +23,19 @@ library(skimr)  # Überblicksstatistiken</code></pre>
 <blockquote>
 <p>Bitte installieren Sie <em>rechtzeitig</em> alle Pakete, z.B. in RStudio über den Reiter <em>Packages … Install</em>.</p>
 </blockquote>
-<pre><code>## 
-## Attaching package: &#39;knitr&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:skimr&#39;:
-## 
-##     kable</code></pre>
 <div id="aus-dem-letzten-post" class="section level2">
 <h2>Aus dem letzten Post</h2>
 <p>Daten einlesen:</p>
 <pre class="r"><code>osf_link &lt;- paste0(&quot;https://osf.io/b35r7/?action=download&quot;)
 afd &lt;- read_csv(osf_link)</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   page = col_double(),
-##   content = col_character()
-## )</code></pre>
+<pre><code>## Rows: 96 Columns: 2
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (1): content
+## dbl (1): page
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <p>Aus breit mach lang:</p>
 <pre class="r"><code>afd %&gt;% 
   unnest_tokens(output = token, input = content) %&gt;% 
@@ -47,8 +44,8 @@ afd &lt;- read_csv(osf_link)</code></pre>
 <pre class="r"><code>data(stopwords_de, package = &quot;lsa&quot;)
 
 stopwords_de &lt;- data_frame(word = stopwords_de)</code></pre>
-<pre><code>## Warning: `data_frame()` is deprecated, use `tibble()`.
-## This warning is displayed once per session.</code></pre>
+<pre><code>## Warning: `data_frame()` was deprecated in tibble 1.1.0.
+## ℹ Please use `tibble()` instead.</code></pre>
 <pre class="r"><code># Für das Joinen werden gleiche Spaltennamen benötigt
 stopwords_de &lt;- stopwords_de %&gt;% 
   rename(token = word)  
@@ -103,10 +100,9 @@ afd_long %&gt;%
 <p>“Liefere nur Buchstaben<em>folgen</em> zurück, lösche alles übrige”</p>
 <pre class="r"><code>str_extract_all(string, &quot;[:alpha:]+&quot;)</code></pre>
 <pre><code>## [[1]]
-##  [1] &quot;Correlation&quot;  &quot;of&quot;           &quot;unemployment&quot; &quot;and&quot;         
-##  [5] &quot;AfD&quot;          &quot;votes&quot;        &quot;at&quot;           &quot;btw&quot;         
-##  [9] &quot;r&quot;            &quot;https&quot;        &quot;t&quot;            &quot;co&quot;          
-## [13] &quot;YHyqTguVWx&quot;</code></pre>
+##  [1] &quot;Correlation&quot;  &quot;of&quot;           &quot;unemployment&quot; &quot;and&quot;          &quot;AfD&quot;         
+##  [6] &quot;votes&quot;        &quot;at&quot;           &quot;btw&quot;          &quot;r&quot;            &quot;https&quot;       
+## [11] &quot;t&quot;            &quot;co&quot;           &quot;YHyqTguVWx&quot;</code></pre>
 <p>Der Quantitätsoperator <code>+</code> liefert alle Stellen zurück, in denen der gesuchte Ausdruck <em>einmal oder häufiger</em> vorkommt. Die Ergebnisse werden als Vektor von Wörtern zurückgegeben. Ein anderer Quantitätsoperator ist <code>*</code>, der für 0 oder mehr Treffer steht. Möchte man einen Vektor, der aus Stringen-Elementen besteht zu einem Strring zusammenfüngen, hilft <code>paste(string)</code> oder <code>str_c(string, collapse = " ")</code>.</p>
 <pre class="r"><code>str_replace_all(string, &quot;[^[:alpha:]+]&quot;, &quot;&quot;)</code></pre>
 <pre><code>## [1] &quot;CorrelationofunemploymentandAfDvotesatbtwrhttpstcoYHyqTguVWx&quot;</code></pre>
@@ -124,16 +120,16 @@ Wenn ja, dann addiere den Sentimentswert dieses Tokens zum bestehenden Sentiment
 Wenn nein, dann gehe weiter zum nächsten Wort.<br />
 Liefere zum Schluss die Summenwerte pro Sentiment zurück.</p>
 </div>
-
 <p>Es gibt Sentiment-Lexika, die lediglich einen Punkt für “positive Konnotation” bzw. “negative Konnotation” geben; andere Lexiko weisen differenzierte Gefühlskonnotationen auf. Wir nutzen hier das Sentimentlexikon <code>sentiws</code>. Sie können es hier herunterladen:</p>
 <pre class="r"><code>sentiws &lt;- read_csv(&quot;https://osf.io/x89wq/?action=download&quot;)</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   neg_pos = col_character(),
-##   word = col_character(),
-##   value = col_double(),
-##   inflections = col_character()
-## )</code></pre>
+<pre><code>## Rows: 3468 Columns: 4
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (3): neg_pos, word, inflections
+## dbl (1): value
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <p>Alternativ können Sie die Daten aus dem Paket <code>pradadata</code> laden. Allerdings müssen Sie dieses Paket von Github installieren:</p>
 <pre class="r"><code>install.packages(&quot;devtools&quot;, dep = TRUE)
 devtools::install_github(&quot;sebastiansauer/pradadata&quot;)</code></pre>
@@ -232,12 +228,11 @@ afd_senti %&gt;%
   mutate(value_abs = abs(value)) %&gt;% 
   top_n(20, value_abs) %&gt;% 
   pull(token)</code></pre>
-<pre><code>##  [1] &quot;ungerecht&quot;    &quot;besonders&quot;    &quot;gefährlich&quot;   &quot;überflüssig&quot; 
-##  [5] &quot;behindern&quot;    &quot;gefährden&quot;    &quot;brechen&quot;      &quot;unzureichend&quot;
-##  [9] &quot;gemein&quot;       &quot;verletzt&quot;     &quot;zerstören&quot;    &quot;trennen&quot;     
-## [13] &quot;falsch&quot;       &quot;vermeiden&quot;    &quot;zerstört&quot;     &quot;schwach&quot;     
-## [17] &quot;belasten&quot;     &quot;schädlich&quot;    &quot;töten&quot;        &quot;verbieten&quot;</code></pre>
-<p>Diese “Hitliste” wird zumeist (19/20) von negativ polarisierten Begriffen aufgefüllt, wobei “besonders” ein Intensivierwort ist, welches das Bezugswort verstärt (“besonders gefährlich”). Das Argument <code>keep_all = TRUE</code> sorgt dafür, dass alle Spalten zurückgegeben werden, nicht nur die durchsuchte Spalte <code>token</code>. Mit <code>pull</code> haben wir aus dem Dataframe, der von den dplyr-Verben überwegeben wird, die Spalte <code>pull</code> “herausgezogen”; hier nur um Platz zu sparen bzw. der Übersichtlichkeit halber.</p>
+<pre><code>##  [1] &quot;ungerecht&quot;    &quot;besonders&quot;    &quot;gefährlich&quot;   &quot;überflüssig&quot;  &quot;behindern&quot;   
+##  [6] &quot;gefährden&quot;    &quot;brechen&quot;      &quot;unzureichend&quot; &quot;gemein&quot;       &quot;verletzt&quot;    
+## [11] &quot;zerstören&quot;    &quot;trennen&quot;      &quot;falsch&quot;       &quot;vermeiden&quot;    &quot;zerstört&quot;    
+## [16] &quot;schwach&quot;      &quot;belasten&quot;     &quot;schädlich&quot;    &quot;töten&quot;        &quot;verbieten&quot;</code></pre>
+<p>Diese “Hitliste” wird zumeist (19/20) von negativ polarisierten Begriffen aufgefüllt, wobei “besonders” ein Intensivierwort ist, welches das Bezugswort verstärkt (“besonders gefährlich”). Das Argument <code>keep_all = TRUE</code> sorgt dafür, dass alle Spalten zurückgegeben werden, nicht nur die durchsuchte Spalte <code>token</code>. Mit <code>pull</code> haben wir aus dem Dataframe, der von den dplyr-Verben überwegeben wird, die Spalte <code>pull</code> “herausgezogen”; hier nur um Platz zu sparen bzw. der Übersichtlichkeit halber.</p>
 <p>Nun könnte man noch den erzielten “Netto-Sentimentswert” des Corpus ins Verhältnis setzen Sentimentswert des Lexikons: Wenn es insgesamt im Sentiment-Lexikon sehr negativ zuginge, wäre ein negativer Sentimentwer in einem beliebigen Corpus nicht überraschend. <code>skimr::skim()</code> gibt uns einen Überblick der üblichen deskriptiven Statistiken.</p>
 <pre class="r"><code>sentiws %&gt;% 
   select(value, neg_pos) %&gt;% 
@@ -246,7 +241,7 @@ afd_senti %&gt;%
 <p>Insgesamt ist das Lexikon ziemlich ausgewogen; negative Werte sind leicht in der Überzahl im Lexikon. Unser Corpus hat eine ähnliche mittlere emotionale Konnotation wie das Lexikon:</p>
 <pre class="r"><code>afd_senti %&gt;% 
   summarise(senti_sum = mean(value) %&gt;% round(2))</code></pre>
-<pre><code>## # A tibble: 1 x 1
+<pre><code>## # A tibble: 1 × 1
 ##   senti_sum
 ##       &lt;dbl&gt;
 ## 1     -0.03</code></pre>

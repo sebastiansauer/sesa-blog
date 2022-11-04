@@ -5,6 +5,8 @@ date: '2022-01-31'
 slug: erbie-einfache-reproduzierbare-beispiele-ihres-problems-mit-r-syntax
 categories:
   - rstats
+  - reprex
+  - erbie
 tags:
   - tutorial
 ---
