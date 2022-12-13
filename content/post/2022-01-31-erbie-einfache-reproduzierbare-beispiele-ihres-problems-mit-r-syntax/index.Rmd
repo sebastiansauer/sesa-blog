@@ -69,6 +69,8 @@ dass es möglichst einfach gelöst werden kann.
 
 # Weiterführende Hinweise
 
+
+- http://adv-r.had.co.nz/Reproducibility.html
 - https://stackoverflow.com/help/minimal-reproducible-example
 - https://robjhyndman.com/hyndsight/minimal-reproducible-examples/
 - https://community.rstudio.com/t/faq-how-to-do-a-minimal-reproducible-example-reprex-for-beginners/23061
