@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.101.0" />
+
+
+<title>A simple solution to ditch the question &#34;what&#39;s the path of my data&#34; when importing data to R - sesa blog</title>
+<meta property="og:title" content="A simple solution to ditch the question &#34;what&#39;s the path of my data&#34; when importing data to R - sesa blog">
+
+
+  <link href='https://data-se.netlify.app/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo-data-se.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="/privacy/">Data privacy</a></li>
+    
+    <li><a href="/tags/">Tags</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+
+<main class="content" role="main">
+
+    <h1 class="article-title">A simple solution to ditch the question &#34;what&#39;s the path of my data&#34; when importing data to R</h1>
+
+
+    <span class="article-meta">
+      Sebastian Sauer / 4 mins read <br>
+    </span>
+
+
+
+    
+    <span class="article-date">2022-05-11</span>
+    
+
+    <div class="article-content">
+      
+
+
+<div id="load-packages" class="section level1">
+<h1>Load packages</h1>
+<pre class="r"><code>library(tidyverse)</code></pre>
+</div>
+<div id="motivation-get-your-data-into-r-different-ways" class="section level1">
+<h1>Motivation: Get your data into R, different ways</h1>
+<p>Importing data into R can cause headaches for newbies. For some, the concept of relative and absolute paths is new.
+That’s why I compiled here some recommendations on how to important data into R and on how to ditch the “what’s my path” problem.</p>
+</div>
+<div id="pragmatic-goal" class="section level1">
+<h1>Pragmatic goal</h1>
+<p>If you are in a hurry, just pick <em>one way</em>, maybe the first approach.
+The pragmatic goal is to get your data into R. The rest is mere detail 😄.</p>
+</div>
+<div id="approach-1-quick-and-easy" class="section level1">
+<h1>Approach 1: Quick and easy</h1>
+<p>This approach is useful for beginners, as it is quick and simple.
+This approach assumes the data file (as csv format) is located somewhere on your disk (and you know where to find it).</p>
+<ol style="list-style-type: decimal">
+<li>In RStudio, click on the pane <em>Environment</em> and then on <em>Import Dataset</em> and then on <code>From Text (readr)</code>.</li>
+<li>In the menu, click on <em>Browse</em> to search the file on your computer.</li>
+<li>Finally, click on <em>Import</em> to import the CSV file into R.</li>
+</ol>
+<p>Note that the menu offers some options such as skipping the first few lines, changing the name of the R tibble,
+or adjusting the CSV file details (such as different delimiters eg “;” used in German Excel files).</p>
+<p>See <a href="https://community.rstudio.com/uploads/default/original/2X/0/0b5d697ffafc33b1c9d8de3f6359df41a5825d18.png">this picture</a> for an illustration of the respective RStudio menu.</p>
+<p>What RStudio does is to get the absolute path to your data file and paste it into <code>read_csv()</code>.</p>
+<p>For example, an abolute path on <em>my</em> machine to a data file is this:
+<code>/Users/sebastiansaueruser/datasets/tips.csv</code>.</p>
+<p>An absolute path is great, because it’s simple, but the downside is this path
+will not work on <em>your</em> machine.
+As long as you are not concerned with other machines,
+you can safely work with absolute path.
+If you would like to make your work portable,
+consider understanding relativ paths. Read on.</p>
+</div>
+<div id="approach-2-start-an-rstudio-project" class="section level1">
+<h1>Approach 2: Start an RStudio project</h1>
+<p>That’s an approach I generally recommend.</p>
+<ol style="list-style-type: decimal">
+<li>Start an <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects">RStudio project</a>.</li>
+<li>Put your code files and your data files in <em>this very</em> folder.</li>
+<li>Import the data without specifying any paths, eg., <code>d &lt;- read.csv("mydata.csv)</code></li>
+</ol>
+<p>RStudio will consider the RStudio project folder <em>which you specified</em>
+as the “root” of any (relative) paths you specify.
+As a consequence, if you put your data in this path,
+you will not need to specify any path - just give the file name to <code>read_csv()</code>.</p>
+<p>In case the data are stored in a <em>sub</em> folder in your project folder,
+you will need to specify this subfolder.</p>
+<p>An helpful approach is provided by the package <code>{{here}}</code>.
+As an example, let’s assume the subfolder where your data file resides is called <code>data</code>,
+and the data file is named <code>mydata.csv</code>:</p>
+<pre class="r"><code>d &lt;- read_csv(here(&quot;data&quot;, &quot;mydata.csv&quot;))</code></pre>
+<p>This command essentially tells R “Hey R, look here, that is, in my current project folder,
+<em>then</em> look in the subfolder”data” and then take the file “mydata.csv”.</p>
+<p>In case you are unsure where you <em>current</em> project folder (also called <em>working directory</em>) is,
+try</p>
+<pre class="r"><code>getwd()
+#&gt; [1] &quot;/Users/sebastiansaueruser/Google Drive/research/Publikationen/blog_ses/sesa-blog/content/post/2020-10-19-a-simple-solution-to-ditch-the-question-what-s-the-path-of-my-data-when-importing-data-to-r&quot;</code></pre>
+</div>
+<div id="approach-3-import-from-an-online-source" class="section level1">
+<h1>Approach 3: Import from an online source</h1>
+<p>That’s also simple and convenient – as long as someone has put the data online.</p>
+<ol style="list-style-type: decimal">
+<li>Identify the URL of your data set, and copy it.</li>
+<li>Open up an R/Rmd script file and paste the URL to your import function, e.g,. <code>d &lt;- read.csv("https://vincentarelbundock.github.io/Rdatasets/csv/reshape2/tips.csv")</code></li>
+</ol>
+<p>Note that the URL provides an absolute URL
+that will work irrespective from which machine you access it.
+Handy.</p>
+<p>Note: In case you download a zip file, remember to unzip it before accessing the files.</p>
+</div>
+<div id="approach-4-learn-what-a-path-means" class="section level1">
+<h1>Approach 4: Learn what a path means</h1>
+<p>This is a more thorough approach, but one which will pay out in the long run.</p>
+<p>It is helpful to understand the difference between an <em>abolute</em> path and a <em>relative</em> path.
+There is a ton of tutorials on that in the web, e.g., checkout <a href="https://www.computerhope.com/issues/ch001708.htm">this one</a> or <a href="https://www.lifewire.com/absolute-and-relative-paths-3466467">this one</a>.</p>
+<p>Here’s an approach for absolute file paths:</p>
+<ol style="list-style-type: decimal">
+<li>Identify the location (path) of your data file on your computer.</li>
+<li>Copy it to the clipboard (depends on your operating system)^[Mac: Click right, hold Option key, select “copy path name”. Windows: Click right, hold shift, select “copy path name”. Linux users will know in the first place how to proceed 🥳).</li>
+<li>Paste it into your import function, e.g, `d &lt;- read.csv(“/Users/sebastiansaueruser/datasets/tips.csv”)</li>
+</ol>
+</div>
+<div id="example-time-dataset-tips" class="section level1">
+<h1>Example time – dataset <code>tips</code></h1>
+<pre class="r"><code>tips &lt;- read.csv(&quot;https://vincentarelbundock.github.io/Rdatasets/csv/reshape2/tips.csv&quot;)</code></pre>
+<p>Exercises:</p>
+<ol style="list-style-type: decimal">
+<li>Import from the URL.</li>
+<li>Download the file to your PC and import it via the absolute path.</li>
+<li>Download the file to your PC, move it to your current project folder, and import it via the relativ path.</li>
+</ol>
+</div>
+
+    </div>
+
+
+  </article>
+
+
+
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script>
+  var disqus_config = function () {
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var d = document, s = d.createElement('script');
+    s.src = '//https-data-se-netlify-com.disqus.com/embed.js'; s.async = true;
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+

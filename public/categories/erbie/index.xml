@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>erbie on sesa blog</title>
+    <link>https://data-se.netlify.app/categories/erbie/</link>
+    <description>Recent content in erbie on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 31 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/categories/erbie/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Erbie: Einfache, reproduzierbare Beispiele Ihres Problems mit (R-)Syntax</title>
+      <link>https://data-se.netlify.app/2022/01/31/erbie-einfache-reproduzierbare-beispiele-ihres-problems-mit-r-syntax/</link>
+      <pubDate>Mon, 31 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2022/01/31/erbie-einfache-reproduzierbare-beispiele-ihres-problems-mit-r-syntax/</guid>
+      <description>Hilfe, mein R läuft nicht? Was soll ich tun? Angenommen, Sie haben ein Problem mit R … Oder präzisieren wir, Sie haben ein Problem mit einer bestimmten R-Syntax (ob R auch ein Problem mit uns haben kann, ist nicht bekannt).
+Jedenfall wollen Sie, dass R etwas bestimmtes tut. Macht es aber nicht. Jetzt könnte man es mit anschreien versuchen; Maschinen lassen das geduldig über sich ergehen. Man könnte den Computer zum Fenster rausschmeißen, das könnte auch Erleichterung bringen … Dem hab ich’s jetzt mal richtig gezeigt.</description>
+    </item>
+    
+  </channel>
+</rss>

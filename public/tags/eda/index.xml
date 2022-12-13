@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>eda on sesa blog</title>
+    <link>https://data-se.netlify.app/tags/eda/</link>
+    <description>Recent content in eda on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 28 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/eda/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kurs: &#34;Vorhersage-Modellierung&#34;</title>
+      <link>https://data-se.netlify.app/2022/01/28/kurs-vorhersage-modellierung/</link>
+      <pubDate>Fri, 28 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2022/01/28/kurs-vorhersage-modellierung/</guid>
+      <description>Einführung in die Vorhersage-Modellierung 🔮 Ein Kurs zur Grundlagen der Datenanalyse und der Vorhersage-Modellierung mit R.
+Hier geht es zum Kurs.
+Alle Materialien des Kurses sind frei verfügbar, können kostenfrei genutzt werden und sind quelloffen.</description>
+    </item>
+    
+    <item>
+      <title>Analyse einiger RKI-Coronadaten: Eine reproduzierbare Fallstudie</title>
+      <link>https://data-se.netlify.app/2021/11/27/analyse-der-rki-coronadaten/</link>
+      <pubDate>Sat, 27 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2021/11/27/analyse-der-rki-coronadaten/</guid>
+      <description>1 R-Pakete 2 Hintergrund 3 Inzidenzen in Deutschland - Daten vom RKI 4 Hospitalisierungen in Deutschland 4.1 Adjustierte Daten 4.1.1 Daten importieren 4.1.2 EDA 4.2 Unadjustierte Daten 4.2.1 Daten importieren 4.2.2 EDA 5 Impfungen in Deutschland 5.1 Neueste Daten 5.1.1 Daten laden 5.1.2 EDA 5.2 Impfquoten im Zeitverlauf 5.2.1 Daten laden 1 5.2.2 Daten laden 2 5.3 EDA 5.3.1 Impfquote Deutschland im Zeitverlauf 5.3.2 Impfquote der Bundesländer im Zeitverlauf 6 Daten joinen 7 Zusammenhangsanalysen 7.</description>
+    </item>
+    
+    <item>
+      <title>Modeling your research data: A crash course using R</title>
+      <link>https://data-se.netlify.app/2021/03/24/modeling-your-research-data-a-crash-course-using-r/</link>
+      <pubDate>Wed, 24 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2021/03/24/modeling-your-research-data-a-crash-course-using-r/</guid>
+      <description>1 Course description 2 We’re on a crash course 3 More on modelling 4 Course prerequisites 5 Learning objectives 6 Course Literature 7 Course logistics 8 UPFRONT student preparation 9 Didactic outline 10 Schedule 10.1 Overview on topics covered 10.2 Block 1: Explorative Data Analysis 10.2.1 Visualization 10.2.2 Data Wrangling 10.2.3 Exercises / Case study 10.3 Block 2: Statistical Modelling: Basic 10.3.1 Theory 10.3.2 Case study 10.4 Block 3: Statistical Modelling: Multiple Regression and interaction 10.</description>
+    </item>
+    
+    <item>
+      <title>EDA zu Flugverspätungen</title>
+      <link>https://data-se.netlify.app/2021/03/08/eda-zu-flugversp%C3%A4tungen/</link>
+      <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2021/03/08/eda-zu-flugversp%C3%A4tungen/</guid>
+      <description>1 Pakete laden 2 Hintergrund und Ziel 3 Daten laden 4 Was ist Verspätung? 4.1 Wie ähnlich sind Ankunfts- und Abflugsverspätung? 5 Verteilung der Verspätung 5.1 flights2: Extremwerte (der Verspätung) definieren 5.1.1 Boxplot-Methode 5.2 Fehlende Werte berechnen 5.3 flights3 6 Deskriptive Statistiken 6.1 Mit summarise 6.2 Mit skimr 7 Korrelate von Verspätung 7.1 Metrische Prädiktoren 7.1.1 Nur mit cor 7.1.2 Mit across 7.1.3 Mit correlate 7.2 Nominale Prädiktoren 7.2.1 Carrier 7.</description>
+    </item>
+    
+    <item>
+      <title>Explorative Datenanalyse zum Datensatz &#34;OECD Wellbeing&#34;</title>
+      <link>https://data-se.netlify.app/2021/02/11/explorative-datenanalyse-zum-datensatz-oecd-wellbeing/</link>
+      <pubDate>Thu, 11 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2021/02/11/explorative-datenanalyse-zum-datensatz-oecd-wellbeing/</guid>
+      <description>1 Load packages 2 Benötigte Pakete 3 Datensatz laden 4 Erster Blick 5 Metrische Variablen einzeln (univariat) 5.1 Histogramm nach Gruppen 5.2 VERTIEFUNG: Histogramm für alle Variablen 6 Forschungsfrage 7 Datensatz filtern - nur Länder, keine Landesteile 8 Vergleich der Lebenszufriedenheit der Länder 8.1 Umwandling in eine Faktor-Variable 8.2 Ranking und Top-10-Prozent der Zufriedenheit 8.3 Vertiefung 8.4 Vertiefung 8.5 Vertiefung 9 Zusammenhang zweier metrischer Variablen – Punktediagramm 9.0.1 Und so weiter 9.</description>
+    </item>
+    
+    <item>
+      <title>YACSDA: Topgear</title>
+      <link>https://data-se.netlify.app/2021/02/11/yacda-topgear/</link>
+      <pubDate>Thu, 11 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2021/02/11/yacda-topgear/</guid>
+      <description>1 Load packages 1.1 Numerischer Überblick 1.2 Wie verteilen sich die Preise? 1.3 Wie ist der Zusammenhang von Preis und Beurteilung des Autos? 2 Wie verteilt sich das Gewicht der Autos? 3 Hängt Gewicht mit Preis zusammen? 4 Wie verteilt sich die Geschwindigkeit der Autos? 5 Hängt Preis mit Geschwindigkeit zusammen? 5.1 Wie hängt Geschwindigkeit mit Beurteilung zusammen? 5.2 Welche Hersteller hat die meisten Autotypen? 5.3 Die 10% größten Hersteller 5.</description>
+    </item>
+    
+  </channel>
+</rss>

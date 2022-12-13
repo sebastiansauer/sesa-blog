@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bayes on sesa blog</title>
+    <link>https://data-se.netlify.app/tags/bayes/</link>
+    <description>Recent content in Bayes on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 09 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/bayes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Comparing Jamovi and rstanarm</title>
+      <link>https://data-se.netlify.app/2022/05/09/comparing-jamovi-and-rstanarm/</link>
+      <pubDate>Mon, 09 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2022/05/09/comparing-jamovi-and-rstanarm/</guid>
+      <description>1 Load packages 2 Motivation 3 data 4 Model 1 4.1 rstanarm 4.2 Jamovi 5 Model 2 5.1 rstanarm 5.2 Jamovi 5.3 Interim conclusion 6 Reproducibility 1 Load packages library(tidyverse) # data wrangling 2 Motivation Let’s try to see how much the results of Jamovi (2.2.5) and rstanarm (2.21.1) converge. It’s probably difficult to say because the defaults are different, and it may not be straight forward to translate back and forth.</description>
+    </item>
+    
+    <item>
+      <title>Bayes in fünf Minuten, für Fortgeschrittene</title>
+      <link>https://data-se.netlify.app/2022/01/28/bayes-in-f%C3%BCnf-minuten-f%C3%BCr-fortgeschrittene/</link>
+      <pubDate>Fri, 28 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2022/01/28/bayes-in-f%C3%BCnf-minuten-f%C3%BCr-fortgeschrittene/</guid>
+      <description>Das ist wieder ein Fünf-Minuten-Bayes-Kurs Sie würden gerne Bayes lernen und dafür zwischen 1-3 Wochen Zeit investieren? Dann sind Sie hier falsch. Dieser Post zeigt einen Kurzüberblick in leicht fortgechrittenen Bayes-Statistik in fünf Minuten. Naja, ich probiere es jedenfalls.
+Forschungsfrage Sagen wir, uns interessiert folgende Forschungsfrage, die mit Methoden der Inferenz-Statistik untersucht werden soll. In diesem Fall Bayes-Inferenz (nicht Frequentistische Statistik).
+Verbrauchen Autos mit Automatik-Getriebe im Durchschnitt mehr Sprit als Autos mit manuellem Getriebe?</description>
+    </item>
+    
+    <item>
+      <title>Kurs &#34;Bayes:Start&#34;</title>
+      <link>https://data-se.netlify.app/2022/01/28/kurs-bayes-start/</link>
+      <pubDate>Fri, 28 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2022/01/28/kurs-bayes-start/</guid>
+      <description>Bayes lernen Sie möchten (oder müssen) Bayes lernen? Hier ist ein Kurs dazu.
+Alle Materialien des Kurses sind frei verfügbar, können kostenfrei genutzt werden und sind quelloffen.</description>
+    </item>
+    
+    <item>
+      <title>Bayes in fünf Minuten</title>
+      <link>https://data-se.netlify.app/2022/01/27/bayes-in-f%C3%BCnf-minuten/</link>
+      <pubDate>Thu, 27 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2022/01/27/bayes-in-f%C3%BCnf-minuten/</guid>
+      <description>Das ist ein Fünf-Minuten-Bayes-Kurs Sie würden gerne Bayes lernen und dafür zwischen 1-3 Wochen Zeit investieren? Dann sind Sie hier falsch. Dieser Post zeigt einen Kurzüberblick in Bayes-Statistik in fünf Minuten. Naja, ich probiere es jedenfalls.
+Forschungsfrage Sagen wir, uns interessiert folgende Forschungsfrage, die mit Methoden der Inferenz-Statistik untersucht werden soll. In diesem Fall Bayes-Inferenz (nicht Frequentistische Statistik).
+Verbrauchen Autos mit Automatik-Getriebe im Durchschnitt mehr Sprit als Autos mit manuellem Getriebe?</description>
+    </item>
+    
+    <item>
+      <title>Warum Bayes anstelle von Frequentismus?</title>
+      <link>https://data-se.netlify.app/2022/01/27/warum-bayes/</link>
+      <pubDate>Thu, 27 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2022/01/27/warum-bayes/</guid>
+      <description>Plädoyer pro Bayes Dieser Post ist ein Plädoyer, Bayes-Statistik in der Statistikausbildung und in der praktischen Forschung zu nutzen. Keines der hier vorgetragenen Argumente ist neu. Die Thematik ist schon 1000 Mal diskutiert worden und oft umfangreicher und systematischer, ja besser, als in diesem Post. Ich schreibe hier kurz meine Sichtweise zusammen und verweise auf weitere Liteatur.
+Bayes-Inferenz kenn ich nicht! Die klassische Statistikausbildung in den Sozialwissenschaften beinhaltet meist kein oder kaum Bayes.</description>
+    </item>
+    
+    <item>
+      <title>MAD SD und 1.483</title>
+      <link>https://data-se.netlify.app/2021/08/11/mad-sd-und-1-483/</link>
+      <pubDate>Wed, 11 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2021/08/11/mad-sd-und-1-483/</guid>
+      <description>Setup library(tidyverse) library(mosaic) Sind wir nicht alle ein bisschen MAD? Der MAD oder Median Absolute Deviation ist eine robuste Kennzahl der Variabilität (eines quantitativen Merkmals).
+Definition MAD Seien \(X_1, X_2, ..., X_n\) die Beobachtungen einer Stichprobe zu einem Merkmal \(X\).
+Dann ist der MAD so definiert:
+\(\text {MAD} =\operatorname{median} (|X_{i}-{\tilde {X}}|)\).
+Anders gesagt, der MAD ist der Median der Absolutwerte der Residuen.
+Robust? Robust heißt kurz (und vereinfacht) gesagt, dass der Kennwert nicht (zu sehr) von Extremwerten beeinflusst wird.</description>
+    </item>
+    
+    <item>
+      <title>Bayesian modeling of populist party success in German federal elections - A notebook from the lab</title>
+      <link>https://data-se.netlify.app/2018/08/25/bayesian-modeling-of-populist-party-success-in-german-federal-elections/</link>
+      <pubDate>Sat, 25 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/08/25/bayesian-modeling-of-populist-party-success-in-german-federal-elections/</guid>
+      <description>Following up on an earlier post, we will model the voting success of the (most prominent) populist party, AfD, in the recent federal elections. This time, Bayesian modeling techniques will be used, drawing on the excellent textbook my McElreath.
+Note that this post is rather a notebook of my thinking, doing, and erring. I’ve made no efforts to hide scaffolding. I think it will be confusing to the uniniate and the initiate as well …</description>
+    </item>
+    
+  </channel>
+</rss>

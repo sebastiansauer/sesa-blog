@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>machine-learning on sesa blog</title>
+    <link>https://data-se.netlify.app/tags/machine-learning/</link>
+    <description>Recent content in machine-learning on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 17 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Visualizing decision trees</title>
+      <link>https://data-se.netlify.app/2020/10/17/visualizing-decision-trees/</link>
+      <pubDate>Sat, 17 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2020/10/17/visualizing-decision-trees/</guid>
+      <description>Load packages library(tidyverse) #remotes::install_github(&amp;quot;grantmcdermott/parttree&amp;quot;) library(parttree) library(rpart) library(rpart.plot) library(parsnip) library(titanic) library(tidyverse) Train learner Build the tree using parsnip with rpart as the model engine:
+set.seed(123) titanic_train$Survived = as.factor(titanic_train$Survived) ti_tree = decision_tree() %&amp;gt;% set_engine(&amp;quot;rpart&amp;quot;) %&amp;gt;% set_mode(&amp;quot;classification&amp;quot;) %&amp;gt;% fit(Survived ~ Pclass + Age, data = titanic_train) Plot the model partitions titanic_train %&amp;gt;% ggplot(aes(x=Pclass, y=Age)) + geom_jitter(aes(col=Survived), alpha=0.7) + geom_parttree(data = ti_tree, aes(fill=Survived), alpha = 0.1) + theme_minimal() Plot the tree
+rpart.plot(ti_tree[[&amp;quot;fit&amp;quot;]], box.palette=&amp;quot;RdBu&amp;quot;, shadow.</description>
+    </item>
+    
+  </channel>
+</rss>

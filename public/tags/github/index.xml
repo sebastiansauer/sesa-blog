@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Github on sesa blog</title>
+    <link>https://data-se.netlify.app/tags/github/</link>
+    <description>Recent content in Github on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 12 Oct 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/github/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to read Github files into R easily</title>
+      <link>https://data-se.netlify.app/2016/10/12/download-from-github/</link>
+      <pubDate>Wed, 12 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2016/10/12/download-from-github/</guid>
+      <description>Downloading a folder (repository) from Github as a whole The most direct way to get data from Github to your computer/ into R, is to download the repository. That is, click the big green button:
+The big, green button saying &amp;ldquo;Clone or download&amp;rdquo;, click it and choose &amp;ldquo;download zip&amp;rdquo;.
+Of course, for those using Git and Github, it would be appropriate to clone the repository. And, although appearing more advanced, cloning has the definitive advantage that you&amp;rsquo;ll enjoy the whole of the Github features.</description>
+    </item>
+    
+  </channel>
+</rss>

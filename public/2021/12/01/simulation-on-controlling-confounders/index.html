@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.101.0" />
+
+
+<title>Simulation on controlling confounders - sesa blog</title>
+<meta property="og:title" content="Simulation on controlling confounders - sesa blog">
+
+
+  <link href='https://data-se.netlify.app/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo-data-se.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="/privacy/">Data privacy</a></li>
+    
+    <li><a href="/tags/">Tags</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+
+<main class="content" role="main">
+
+    <h1 class="article-title">Simulation on controlling confounders</h1>
+
+
+    <span class="article-meta">
+      Sebastian Sauer / 1 mins read <br>
+    </span>
+
+
+
+    
+    <span class="article-date">2021-12-01</span>
+    
+
+    <div class="article-content">
+      
+<script src="https://data-se.netlify.app/2021/12/01/simulation-on-controlling-confounders/index_files/header-attrs/header-attrs.js"></script>
+
+
+<div id="confounder" class="section level1">
+<h1>Confounder</h1>
+<p>A confounder is on of the few (maybe three) “atoms” of causality, following the framework of Judea Parl and others.</p>
+<p>A confounder can be depicted like this:</p>
+<p><img src="chunk-img/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><a href="http://www.nejm.org/doi/abs/10.1056/NEJMon1211064">Following a study</a> that reported a strong correlation between chocolate consumption and Nobel prices.</p>
+<p><img src="https://i0.wp.com/knowingneurons.com/wp-content/uploads/2013/06/correlation_550.png?w=550&ssl=1" width="50%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="simulating-a-confounder-structure" class="section level1">
+<h1>Simulating a confounder structure</h1>
+<p>Now let’s simulate a simple confounder structure.</p>
+<p>Here’s some code that will help us:</p>
+<p>Let’s have a look at the code:</p>
+<pre><code>## 
+## n &lt;- 100
+## 
+## set.seed(42)
+## 
+## d_sim &lt;-
+##   tibble(
+##     x = rnorm(n, 0, 0.5),
+##     y = rnorm(n, 0, 0.5),
+##     group = &quot;A&quot;
+##   ) %&gt;%
+##   bind_rows(
+##     tibble(
+##       x = rnorm(n, 1, 0.5),
+##       y = rnorm(n, 1, 0.5),
+##       group = &quot;B&quot;)
+##   )
+## 
+## 
+## p_konf1 &lt;-
+##   d_sim %&gt;%
+##   ggplot(aes(x = x, y = y)) +
+##   geom_point() +
+##   geom_smooth(method = &quot;lm&quot;) +
+##   labs(title = &quot;Ohne Kontrolle der Konfundierungsvariablen&quot;)
+## 
+## p_konf2 &lt;-
+##   d_sim %&gt;%
+##   ggplot(aes(x = x, y = y, color = group)) +
+##   geom_point() +
+##   geom_smooth(method = &quot;lm&quot;) +
+##   labs(title = &quot;Mit Kontrolle der Konfundierungsvariablen&quot;) +
+##   theme(legend.position = &quot;bottom&quot;)</code></pre>
+</div>
+<div id="here-are-the-plots" class="section level1">
+<h1>Here are the plots:</h1>
+<p><img src="chunk-img/unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;" /><img src="chunk-img/unnamed-chunk-7-2.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+
+    </div>
+
+
+  </article>
+
+
+
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script>
+  var disqus_config = function () {
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var d = document, s = d.createElement('script');
+    s.src = '//https-data-se-netlify-com.disqus.com/embed.js'; s.async = true;
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+

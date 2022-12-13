@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>musing on sesa blog</title>
+    <link>https://data-se.netlify.app/categories/musing/</link>
+    <description>Recent content in musing on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 24 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/categories/musing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Talent and Looks -- Collider bias</title>
+      <link>https://data-se.netlify.app/2021/06/24/talent-and-looks-collider-bias/</link>
+      <pubDate>Thu, 24 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2021/06/24/talent-and-looks-collider-bias/</guid>
+      <description>Background Some musing on the collider bias.
+Let’s try to reverse engineer this image
+Setup library(tidyverse) library(ggdag) Simulate some data n &amp;lt;- 1000 d &amp;lt;- tibble( x = rnorm(n, mean = 0, sd = 1), y = rnorm(n, mean = 0, sd = 1), e = rnorm(n, mean = 0, sd = 0.3), z = abs(x) * abs(y)) d: Uncorrelated data The farer from the centroid the lighter the color.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ARM on sesa blog</title>
+    <link>https://data-se.netlify.app/tags/arm/</link>
+    <description>Recent content in ARM on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 15 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/arm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ARM, Kap. 4 Syntax im Tidyverse-Stil</title>
+      <link>https://data-se.netlify.app/2021/06/15/arm-kap-4-syntax-im-tidyverse-stil/</link>
+      <pubDate>Tue, 15 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2021/06/15/arm-kap-4-syntax-im-tidyverse-stil/</guid>
+      <description>1 Pakete laden 2 Lineare Transformationen 2.1 Daten laden: kidsiq 2.2 lm1: Interaktionseffekt 2.3 lm2: Zentrieren 2.4 lm3: z-Transformation 3 Modelle mit log(y) 3.1 Daten laden 3.2 lm4: earn_log 3.3 lm5: earn_log mit zwei Prädiktoren 3.4 lm6: Mit z-Transformation und Interaktion 4 LogY-LogX-Modelle 5 Weitere Transformationen 5.1 Diskretisierung metrischer Prädiktoren 6 “Buschbeispiel” - mesquite 6.1 Daten laden 6.2 Lineares Modell mit allen Prädiktoren 6.3 Multiplikatives Modell 7 Referenz 1 Pakete laden library(tidyverse) library(arm) # nicht wirklich wichtig, nur für Funktion &amp;quot;display&amp;quot; library(foreign) library(rio) 2 Lineare Transformationen 2.</description>
+    </item>
+    
+  </channel>
+</rss>

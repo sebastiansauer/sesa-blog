@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>regression on sesa blog</title>
+    <link>https://data-se.netlify.app/tags/regression/</link>
+    <description>Recent content in regression on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 23 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/regression/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ableitung der Koeffizienten der einfachen Regression</title>
+      <link>https://data-se.netlify.app/2022/05/23/ableitung-der-koeffizienten-der-einfachen-regression/</link>
+      <pubDate>Mon, 23 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2022/05/23/ableitung-der-koeffizienten-der-einfachen-regression/</guid>
+      <description>1 Was ist die Regression? 2 Wie findet man die Regressionsgerade? 2.1 \(b_0\) 2.2 \(b_1\) 2.3 Weitere Umformung von \(b_1\) 3 Quellenangabe 4 Fazit library(tidyverse) 1 Was ist die Regression? In diesem Post geht es um die einfache Regression (d.h. mit einem Prädiktor); genauer gesagt um die Frage, wie man auf die Formeln der Koeffizienten der einfachen Regression kommt.
+Gehen wir von einigen zweidimensionalen Datenpunkten aus, die zu einem Phänomen gemessen wurden: \({(x_1, y_1), (x_2, y_2), \ldots, (x_n,y_n)}\).</description>
+    </item>
+    
+    <item>
+      <title>Kurs: &#34;Vorhersage-Modellierung&#34;</title>
+      <link>https://data-se.netlify.app/2022/01/28/kurs-vorhersage-modellierung/</link>
+      <pubDate>Fri, 28 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2022/01/28/kurs-vorhersage-modellierung/</guid>
+      <description>Einführung in die Vorhersage-Modellierung 🔮 Ein Kurs zur Grundlagen der Datenanalyse und der Vorhersage-Modellierung mit R.
+Hier geht es zum Kurs.
+Alle Materialien des Kurses sind frei verfügbar, können kostenfrei genutzt werden und sind quelloffen.</description>
+    </item>
+    
+    <item>
+      <title>Visualizing error distribution in regression analysis</title>
+      <link>https://data-se.netlify.app/2022/01/27/visualizing-residual-distribution-in-regression-analysis/</link>
+      <pubDate>Thu, 27 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2022/01/27/visualizing-residual-distribution-in-regression-analysis/</guid>
+      <description>Errors and residuals in Regression A residual is defined as
+\(r_i = y_i - X_i \hat{\beta}\).
+That is, a residual is a tangible thing in the sense that it describes observables (cf. Gelman 2021, chap. 11.3, p. 161). That is, the residuals are the difference between observed and predicted values.
+In contrast, the error term is defined as the difference between the observed value and the true (unobserved) value:</description>
+    </item>
+    
+    <item>
+      <title>Analyse einiger RKI-Coronadaten: Eine reproduzierbare Fallstudie</title>
+      <link>https://data-se.netlify.app/2021/11/27/analyse-der-rki-coronadaten/</link>
+      <pubDate>Sat, 27 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2021/11/27/analyse-der-rki-coronadaten/</guid>
+      <description>1 R-Pakete 2 Hintergrund 3 Inzidenzen in Deutschland - Daten vom RKI 4 Hospitalisierungen in Deutschland 4.1 Adjustierte Daten 4.1.1 Daten importieren 4.1.2 EDA 4.2 Unadjustierte Daten 4.2.1 Daten importieren 4.2.2 EDA 5 Impfungen in Deutschland 5.1 Neueste Daten 5.1.1 Daten laden 5.1.2 EDA 5.2 Impfquoten im Zeitverlauf 5.2.1 Daten laden 1 5.2.2 Daten laden 2 5.3 EDA 5.3.1 Impfquote Deutschland im Zeitverlauf 5.3.2 Impfquote der Bundesländer im Zeitverlauf 6 Daten joinen 7 Zusammenhangsanalysen 7.</description>
+    </item>
+    
+    <item>
+      <title>Plotting a regression surface (3D)</title>
+      <link>https://data-se.netlify.app/2020/12/08/plotting-a-regression-surface-3d/</link>
+      <pubDate>Tue, 08 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2020/12/08/plotting-a-regression-surface-3d/</guid>
+      <description>Load packages library(tidyverse) library(plotly) Data Some sample data
+data(tips, package= &amp;quot;reshape2&amp;quot;) Regression model lm1 &amp;lt;- lm(tip ~ total_bill + size, data = tips) lm1_coef &amp;lt;- coef(lm1) Sequence x1_seq &amp;lt;- seq(min(tips$total_bill), max(tips$total_bill), length.out = 25) x2_seq &amp;lt;- seq(min(tips$size), max(tips$size), length.out = 6) Compute grid z2 &amp;lt;- t(outer(x1_seq, x2_seq, function(x,y) lm1_coef[1]+lm1_coef[2]*x+lm1_coef[3]*y)) z2 #&amp;gt; [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] #&amp;gt; [1,] 1.146172 1.330595 1.515017 1.699439 1.883862 2.068284 2.252706 2.437128 #&amp;gt; [2,] 1.</description>
+    </item>
+    
+    <item>
+      <title>Most important asssumption in linear models ... and the second most</title>
+      <link>https://data-se.netlify.app/2019/11/11/most-important-asssumption-in-linear-models/</link>
+      <pubDate>Mon, 11 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2019/11/11/most-important-asssumption-in-linear-models/</guid>
+      <description>Load packages library(tidyverse) library(mosaic) We are following here the advise of Gelman and Hill (2007, p. 46-47).
+Validity Quite obviously, the right predictors must be included in the model in order to learn something from the model. The “right” predictors means: avoiding the wrong ones, and including the correct ones. Easier said than done, particularly with a look to the causal inference aspects. Let’s turn to the next most important assumption.</description>
+    </item>
+    
+    <item>
+      <title>Some ways for plotting 3D linear models</title>
+      <link>https://data-se.netlify.app/2019/10/21/some-ways-for-plotting-3d-linear-models/</link>
+      <pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2019/10/21/some-ways-for-plotting-3d-linear-models/</guid>
+      <description>Load packages library(tidyverse) # data wrangling library(mosaic) # funplot library(plotly) # interactive plots library(scatterplot3d) # nomen est omen library(rsm) # 3d scatterplots Motivation Linear models are a standard way of predicting or explaining some data. Visualizing data is not only of didactical value but provides heuristical value too, as demonstrated by Anscombe’s Quartet.
+Visualizing linear models in 2D is straightforward, but visualizing linear models with more than one predictor is much less so.</description>
+    </item>
+    
+    <item>
+      <title>Bind lists to data frame for aggregating linear models results</title>
+      <link>https://data-se.netlify.app/2016/11/04/bind_list_to_dataframe_lm/</link>
+      <pubDate>Fri, 04 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2016/11/04/bind_list_to_dataframe_lm/</guid>
+      <description>I found myself doing the following: I had a bunch of predictors, one (numeric) outcome, and wanted to run I simple regression for each of the predictors. Having a bunch of model results, I would like to have them bundled in one data frame.
+So, here is one way to do it.
+First, load some data.
+data(mtcars) str(mtcars) ## &amp;#39;data.frame&amp;#39;:	32 obs. of 11 variables: ## $ mpg : num 21 21 22.</description>
+    </item>
+    
+  </channel>
+</rss>

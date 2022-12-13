@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tutorial on sesa blog</title>
+    <link>https://data-se.netlify.app/categories/tutorial/</link>
+    <description>Recent content in tutorial on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 28 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/categories/tutorial/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Simulation des wiederholten Stichprobenziehens</title>
+      <link>https://data-se.netlify.app/2022/03/28/simulation-des-wiederholten-stichprobenziehens/</link>
+      <pubDate>Mon, 28 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2022/03/28/simulation-des-wiederholten-stichprobenziehens/</guid>
+      <description>1 Vorbereitung 2 Kann man wirklich von einer Stichprobe auf eine Grundgesamtheit schließen? 3 Hier ist eine Population 4 Wir ziehen eine Stichprobe 5 Moment 6 Also gut, ziehen wir viele Stichproben 7 Zusammenfassen der Stichproben 8 Visualisierung 9 Fazit 10 Reproduzierbarkeit 1 Vorbereitung library(tidyverse) # Datenjudo library(infer) # Inferenzstatistik 2 Kann man wirklich von einer Stichprobe auf eine Grundgesamtheit schließen? Alle Welt behauptet, dass man von einer Stichprobe auf eine Grundgesamtheit schließen könne.</description>
+    </item>
+    
+  </channel>
+</rss>

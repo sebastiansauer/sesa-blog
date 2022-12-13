@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>rstats on sesa blog</title>
+    <link>https://data-se.netlify.app/tags/rstats/</link>
+    <description>Recent content in rstats on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 02 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/rstats/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Empirische Verteilungsfunktion</title>
+      <link>https://data-se.netlify.app/2022/05/02/empirische-verteilungsfunktion/</link>
+      <pubDate>Mon, 02 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2022/05/02/empirische-verteilungsfunktion/</guid>
+      <description>1 R-Pakete 2 Hintergrund 3 Verteilungsfunktion der Normalverteilung 4 Empirische Verteilungsfunktion 4.1 Tidyverse 4.1.1 Tidyverse 1 4.1.2 Tidyverse 2 4.1.3 Plotten der ECDF 4.1.4 Quantile 4.2 Base R 4.2.1 Quantile 4.2.2 ECDF 4.2.3 Plot 4.3 Mosaic 4.3.1 ECDF 4.3.2 Quantile 5 Reproducibility 1 R-Pakete library(tidyverse) # data wrangling theme_set(theme_minimal()) # Stylesheet für ggplot2 2 Hintergrund Will man eine Verteilung untersuchen, sind Verteilungsfunktion \(F\) und Quantilsfunktion \(F^{-1}\) wichtige Größen. Nicht nur für theoretische, sondern auch für empirische Verteilungen kann man diese Funktionen anwenden.</description>
+    </item>
+    
+    <item>
+      <title>Simulation des wiederholten Stichprobenziehens</title>
+      <link>https://data-se.netlify.app/2022/03/28/simulation-des-wiederholten-stichprobenziehens/</link>
+      <pubDate>Mon, 28 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2022/03/28/simulation-des-wiederholten-stichprobenziehens/</guid>
+      <description>1 Vorbereitung 2 Kann man wirklich von einer Stichprobe auf eine Grundgesamtheit schließen? 3 Hier ist eine Population 4 Wir ziehen eine Stichprobe 5 Moment 6 Also gut, ziehen wir viele Stichproben 7 Zusammenfassen der Stichproben 8 Visualisierung 9 Fazit 10 Reproduzierbarkeit 1 Vorbereitung library(tidyverse) # Datenjudo library(infer) # Inferenzstatistik 2 Kann man wirklich von einer Stichprobe auf eine Grundgesamtheit schließen? Alle Welt behauptet, dass man von einer Stichprobe auf eine Grundgesamtheit schließen könne.</description>
+    </item>
+    
+    <item>
+      <title>Simulationsbasierte Inferenz – Kurzfassung</title>
+      <link>https://data-se.netlify.app/2020/06/26/simulationsbasierte-inferenz-kurzfassung/</link>
+      <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2020/06/26/simulationsbasierte-inferenz-kurzfassung/</guid>
+      <description>Simulationsbasierte Inferenz Simulationsbasierte Inferenz (SBI) ist eine Variante der Inferenzstatistik, in der Schätzwerte einer Population nicht anhand theoretischer Verteilungen (wie der Normalverteilung) hergeleitet werden, sondern durch Nachstellen eines Versuchs mithilfe des Computers. Damit wird der Zugang zur Inferenzstastistik vereinfacht und es werden Parameterberechnung möglich (bzw. genauer), die vorher (ohne Computersimulationen) nicht möglich waren.
+Folien Hier finden sich meine Folien zur Kurzfassung der SBI (als HTML-Version). Die HTLM-Folien können nur online betrachtet werden.</description>
+    </item>
+    
+    <item>
+      <title>Introduction to Statistics: A modeling-based approach -- Course Syllabus</title>
+      <link>https://data-se.netlify.app/2020/06/19/introduction-to-statistics-a-modeling-based-approach-course-syllabus/</link>
+      <pubDate>Fri, 19 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2020/06/19/introduction-to-statistics-a-modeling-based-approach-course-syllabus/</guid>
+      <description>1 Load packages 2 Course description 3 Course prerequisites 4 Learning objectives 5 Course Literature 6 Course logistics 7 UPFRONT student preparation 8 Didactic outline 9 Schedule 9.1 Overview on topics covered 9.2 Block 1: Explorative Data Analysis 9.2.1 Visualization 9.2.2 Data Wrangling 9.2.3 Exercises / Case study 9.3 Block 2: Statistical Modelling: Basic 9.3.1 Theory 9.3.2 Case study 9.4 Block 3: Statistical Modelling: Multiple Regression and interaction 9.4.1 Theory 9.</description>
+    </item>
+    
+    <item>
+      <title>Adjustment set exercise from Elwert 2013</title>
+      <link>https://data-se.netlify.app/2020/05/19/adjustment-set-exercise-from-elwert-2013/</link>
+      <pubDate>Tue, 19 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2020/05/19/adjustment-set-exercise-from-elwert-2013/</guid>
+      <description>Load packages library(tidyverse) library(ggdag) library(dagitty) Define DAG I’ve drawn the DAG in dagitty.net, that’s why the coordinates look weird.
+dag3_str &amp;lt;- &amp;#39; dag { bb=&amp;quot;-2.865,-5.146,2.956,4.896&amp;quot; U [latet, pos=&amp;quot;2.456,-0.958&amp;quot;] X [exposure, pos=&amp;quot;-2.365,-4.309&amp;quot;] Y [outcome, pos=&amp;quot;-0.271,4.059&amp;quot;] Z1 [pos=&amp;quot;-0.491,-1.925&amp;quot;] Z2 [pos=&amp;quot;-0.915,1.269&amp;quot;] Z3 [pos=&amp;quot;1.713,1.984&amp;quot;] U -&amp;gt; Z1 U -&amp;gt; Z3 X -&amp;gt; Z1 Z2 -&amp;gt; Y Z2 -&amp;gt; Z1 Z2 -&amp;gt; Z3 Z3 -&amp;gt; Y }&amp;#39; Then tidify:
+dag3 &amp;lt;- dagitty(dag3_str) dag3_tidy &amp;lt;- tidy_dagitty(dag3) dag3_tidy #&amp;gt; # A DAG with 6 nodes and 7 edges #&amp;gt; # #&amp;gt; # Exposure: X #&amp;gt; # Outcome: Y #&amp;gt; # #&amp;gt; # A tibble: 9 x 8 #&amp;gt; name x y direction to xend yend circular #&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;fct&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;lgl&amp;gt; #&amp;gt; 1 U 2.</description>
+    </item>
+    
+    <item>
+      <title>Plotting equivalence class for confounder triangle</title>
+      <link>https://data-se.netlify.app/2020/05/19/plotting-equivalence-class-for-confounder-triangle/</link>
+      <pubDate>Tue, 19 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2020/05/19/plotting-equivalence-class-for-confounder-triangle/</guid>
+      <description>Load packages library(tidyverse) library(ggdag) library(dagitty) Define DAG dag1_str &amp;lt;- &amp;#39;dag { C [pos = &amp;quot;2,2&amp;quot;] X [exposure, pos = &amp;quot;1,1&amp;quot;] Y [outcome, pos = &amp;quot;3,1&amp;quot;] C -&amp;gt; X C -&amp;gt; Y }&amp;#39; Plot DAGs First tidify:
+dag1 &amp;lt;- dagitty(dag1_str) dag1_tidy &amp;lt;- tidy_dagitty(dag1) dag1_tidy #&amp;gt; # A DAG with 3 nodes and 2 edges #&amp;gt; # #&amp;gt; # Exposure: X #&amp;gt; # Outcome: Y #&amp;gt; # #&amp;gt; # A tibble: 4 x 8 #&amp;gt; name x y direction to xend yend circular #&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;int&amp;gt; &amp;lt;int&amp;gt; &amp;lt;fct&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;int&amp;gt; &amp;lt;int&amp;gt; &amp;lt;lgl&amp;gt; #&amp;gt; 1 C 2 2 -&amp;gt; X 1 1 FALSE #&amp;gt; 2 C 2 2 -&amp;gt; Y 3 1 FALSE #&amp;gt; 3 X 1 1 &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt; NA NA FALSE #&amp;gt; 4 Y 3 1 &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt; NA NA FALSE Then plot:</description>
+    </item>
+    
+    <item>
+      <title>Statistical power: Why small effects need big samples – An intuition</title>
+      <link>https://data-se.netlify.app/2020/05/15/statistical-power-why-small-effects-need-big-samples-an-intuition/</link>
+      <pubDate>Fri, 15 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2020/05/15/statistical-power-why-small-effects-need-big-samples-an-intuition/</guid>
+      <description>Load packages library(tidyverse) Why small effects need big samples That’s a question that periodically comes up in class. Suppose someone is planning a study. As demanded by her teacher, she computes the needed sample size upfront. So the question arises: Given some to-be-achieved level of power (80%), some effect size, and some other details: How large does my sample need to be?
+Some students are puzzled by the fact that small effects need larges samples.</description>
+    </item>
+    
+    <item>
+      <title>Simulating Berkson&#39;s paradox</title>
+      <link>https://data-se.netlify.app/2020/04/16/simulation-berkson-s-paradox/</link>
+      <pubDate>Thu, 16 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2020/04/16/simulation-berkson-s-paradox/</guid>
+      <description>This post was inspired by this paper of Karsten Luebke and coauthors.
+library(ggdag) library(ggthemes) library(mosaic) We’ll stratify our sample into two groups: students (Studium) and non-students (kein Studium).
+Structural causal model First, we define the structure of our causal model.
+set.seed(42) # reproducibilty N &amp;lt;- 1e03 IQ = rnorm(N) Fleiss = rnorm(N) Eignung = 1/2 * IQ + 1/2 * Fleiss + rnorm(N, 0, .1) That is, aptitude (Eignung) is a function of intelligence (IQ) and dilligence (Fleiss), where the input variables have the same impact on the outcome variable (aptitude).</description>
+    </item>
+    
+    <item>
+      <title>Folien für den Workshop zur simulationsbasierten Inferenz, 2020-02-05</title>
+      <link>https://data-se.netlify.app/2020/02/02/folien-f%C3%BCr-den-workshop-zur-simulationsbasierten-inferenz-2020-02-05/</link>
+      <pubDate>Sun, 02 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2020/02/02/folien-f%C3%BCr-den-workshop-zur-simulationsbasierten-inferenz-2020-02-05/</guid>
+      <description>Workshop zu simulationsbasierter Inferenz Die Folien für meinen Workshop zur simulationsbasierten Inferenz finden sich hier.
+Die PDF-Version findet sich hier.
+Der Quellcode liegt hier.
+Die Folien sind unter CC-BY 4.0 De lizensiert.</description>
+    </item>
+    
+    <item>
+      <title>Most important asssumption in linear models ... and the second most</title>
+      <link>https://data-se.netlify.app/2019/11/11/most-important-asssumption-in-linear-models/</link>
+      <pubDate>Mon, 11 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2019/11/11/most-important-asssumption-in-linear-models/</guid>
+      <description>Load packages library(tidyverse) library(mosaic) We are following here the advise of Gelman and Hill (2007, p. 46-47).
+Validity Quite obviously, the right predictors must be included in the model in order to learn something from the model. The “right” predictors means: avoiding the wrong ones, and including the correct ones. Easier said than done, particularly with a look to the causal inference aspects. Let’s turn to the next most important assumption.</description>
+    </item>
+    
+    <item>
+      <title>Some notes on data transformations for regression</title>
+      <link>https://data-se.netlify.app/2019/11/11/some-notes-on-data-transformations-for-regression/</link>
+      <pubDate>Mon, 11 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2019/11/11/some-notes-on-data-transformations-for-regression/</guid>
+      <description>Load packages library(tidyverse) library(mosaic) Motivation What are data transformation good for? Why do we bother to transform variables for regression analysis? This post explores some nuances around these themes.
+Simulate an exponentially distributed assocation len &amp;lt;- 42 # 42 x values x &amp;lt;- rep(runif(len), 30) # each x value repeated 30 times y &amp;lt;- dexp(x) + rnorm(length(x), mean = 0, sd = .01) # add some noise Plot it:</description>
+    </item>
+    
+    <item>
+      <title>Computing rater accuracy across multiple raters and multiple criteria</title>
+      <link>https://data-se.netlify.app/2019/08/27/computing-rater-accuracy-across-multiple-raters-and-multiple-criteria/</link>
+      <pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2019/08/27/computing-rater-accuracy-across-multiple-raters-and-multiple-criteria/</guid>
+      <description>Load packages library(tidyverse) Background Computing inter-rater reliability is a well-known, albeit maybe not very frequent task in data analysis. If there’s only one criteria and two raters, the proceeding is straigt forward; Cohen’s Kappa is the most widely used coefficient for that purpose. It is more challenging to compare multiple raters on one criterion; Fleiss’ Kappa is one way to get a coefficient. If there are multiple criteria, one way is to compute the mean of multiple Fleiss’ coefficients.</description>
+    </item>
+    
+    <item>
+      <title>A clean sessionInfo page</title>
+      <link>https://data-se.netlify.app/2019/01/14/a-clean-sessioninfo-page/</link>
+      <pubDate>Mon, 14 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2019/01/14/a-clean-sessioninfo-page/</guid>
+      <description>Writing a technical or academic report, or even a presentation, it is sensible to render the (R) code in such a writing reproducible. Same thing applies when asking for help at StackOverflow: you’ll be asked for a reprex.
+One aspect for rendering a report reproducible is to include details on the version of packages needed. The well-known command sessionInf() provides the building blocks for that. However, the output of that function can feel verbose, and it consumes a lot of space.</description>
+    </item>
+    
+    <item>
+      <title>Barplots with mosaic</title>
+      <link>https://data-se.netlify.app/2019/01/10/barplots-with-mosaic/</link>
+      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2019/01/10/barplots-with-mosaic/</guid>
+      <description>Plotting barplots is a frequent endeavor for the analysis of qualitative data. Numerous methods for plotting barplots exist; the popular R package mosaic also provides methods.
+More recently, mosaic switched to a ggplot wrapper for plotting diagrams, that is gf_XXX(), packaged in ggformula. That implies that input data is expected to be tidy, because ggplot, a central member of the tidyverse, excepts its input data to be tidy.
+Let’s check an example.</description>
+    </item>
+    
+    <item>
+      <title>Visualizing a regression plane (two predictors)</title>
+      <link>https://data-se.netlify.app/2018/12/13/visualizing-a-regression-plane-two-predictors/</link>
+      <pubDate>Thu, 13 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/12/13/visualizing-a-regression-plane-two-predictors/</guid>
+      <description>Plotting a “simple” regression (one regression) is pretty straight forward in R.
+Setup library(tidyverse) data(mtcars) library(mosaic) library(modelr) library(plotly) Define model lm1 &amp;lt;- lm(mpg ~ hp, data = mtcars) mtcars &amp;lt;- mtcars %&amp;gt;% mutate(lm1_pred = predict(lm1)) Plot One way:
+ggplot(mtcars) + aes(y = mpg, x = hp) + geom_point() + geom_lm() Another way:
+ggplot(mtcars) + aes(x = hp) + geom_point(aes(y = mpg)) + geom_point(aes(y = lm1_pred), color = &amp;quot;blue&amp;quot;) + geom_line(aes(y = lm1_pred), color = &amp;quot;blue&amp;quot;) Using the ggformula interface to ggplot2:</description>
+    </item>
+    
+    <item>
+      <title>Applying a function to each row of a data frame</title>
+      <link>https://data-se.netlify.app/2018/12/07/applying-a-function-to-each-row-of-a-data-frame/</link>
+      <pubDate>Fri, 07 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/12/07/applying-a-function-to-each-row-of-a-data-frame/</guid>
+      <description>A typical and quite straight forward operation in R and the tidyverse is to apply a function on each column of a data frame (or on each element of a list, which is the same for that regard).
+However, the orthogonal question of “how to apply a function on each row” is much less labored. We will look at this question in this post, and explore some (of many) answers to this question.</description>
+    </item>
+    
+    <item>
+      <title>Coercing an index over a character vector</title>
+      <link>https://data-se.netlify.app/2018/12/06/coercing-an-index-over-a-character-vector/</link>
+      <pubDate>Thu, 06 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/12/06/coercing-an-index-over-a-character-vector/</guid>
+      <description>Assume we have a vector (of type character) such as countries, names, or products. Each element is allowed to show up multiple times. Further assume that there is a rather large number of unique (different) elements. What we would like to achieve is to give each element a unique ID, where the ID ranges from 1 to k (k is the number of different elements).
+Of course there are different ways to achieve this goal, we’ll explore one or two.</description>
+    </item>
+    
+    <item>
+      <title>What are the names of the cars with 4 cylinders?</title>
+      <link>https://data-se.netlify.app/2018/12/03/what-are-the-names-of-the-cars-with-4-cylinders/</link>
+      <pubDate>Mon, 03 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/12/03/what-are-the-names-of-the-cars-with-4-cylinders/</guid>
+      <description>Recently, some one asked me in a workshop this question: “What are the names of the cars with 4 (6,8) cylinders?” (he referred to the mtcars data set). That was a workshop on the tidyverse, so the question is how to answer this question using tidyverse techniques.
+First, let’s load the usual culprits.
+library(tidyverse) library(purrrlyr) library(knitr) library(stringr) data(mtcars) d &amp;lt;- as_tibble(mtcars) %&amp;gt;% rownames_to_column(var = &amp;quot;car_names&amp;quot;) d %&amp;gt;% head() %&amp;gt;% kable() car_names mpg cyl disp hp drat wt qsec vs am gear carb Mazda RX4 21.</description>
+    </item>
+    
+    <item>
+      <title>Compute all pairwise differences in matrix</title>
+      <link>https://data-se.netlify.app/2018/11/21/compute-all-pairwise-differences-in-matrix/</link>
+      <pubDate>Wed, 21 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/11/21/compute-all-pairwise-differences-in-matrix/</guid>
+      <description>A quite frequent task in many fields of applied math is to compute pairwise differences of elements in a matrix. Actually, it need not be a difference; a product is frequent, too. In this post, we explore some (base) R ways to achieve this.
+library(mosaic) library(gdata) library(tidyverse) Using outer() An elegant approach, using base R, is applying outer(). That’s useful if one has two vectors, and wants to compute the outer product:</description>
+    </item>
+    
+    <item>
+      <title>Plot columns repeatedly</title>
+      <link>https://data-se.netlify.app/2018/11/02/plot-columns-repeatedly/</link>
+      <pubDate>Fri, 02 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/11/02/plot-columns-repeatedly/</guid>
+      <description>Suppose you have a large number of columns of a dataframe, and you want to plot each column – say a histogram for each column.
+This post shows some ways of achieving this.
+Let’s take the mtcars dataset as an example.
+data(mtcars) We will use the tidyverse approach:
+library(tidyverse) Way 1 mtcars %&amp;gt;% select_if(is_numeric) %&amp;gt;% map2(., names(.), ~ {ggplot(data = data_frame(.x), aes(x = .x)) + geom_histogram() + labs(x= .y)}) #&amp;gt; $mpg #&amp;gt; #&amp;gt; $cyl #&amp;gt; #&amp;gt; $disp #&amp;gt; #&amp;gt; $hp #&amp;gt; #&amp;gt; $drat #&amp;gt; #&amp;gt; $wt #&amp;gt; #&amp;gt; $qsec #&amp;gt; #&amp;gt; $vs #&amp;gt; #&amp;gt; $am #&amp;gt; #&amp;gt; $gear #&amp;gt; #&amp;gt; $carb Some explanations:</description>
+    </item>
+    
+    <item>
+      <title>OECD Wellbeing - Explorative Analyse</title>
+      <link>https://data-se.netlify.app/2018/10/16/oecd-wellbeing-explorative-analyse/</link>
+      <pubDate>Tue, 16 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/10/16/oecd-wellbeing-explorative-analyse/</guid>
+      <description>In diesem Post untersuchen wir einige Aspekte der explorativen Datenanalyse für den Datensatz oecd wellbeing aus dem Jahr 2016.
+Hinweis: Als Vertiefung gekennzeichnete Abschnitt sind nicht prüfungsrelevant.
+Benötigte Pakete Ein Standard-Paket zur grundlegenden Datenanalyse:
+library(mosaic) Datensatz laden Der Datensatz kann hier bezogen werden.
+Doi: https://doi.org/10.1787/data-00707-en.
+Falls der Datensatz lokal (auf Ihrem Rechner) vorliegt, können Sie ihn in gewohnter Manier laden. Geben Sie dazu den Pfad zum Datensatz ein:
+oecd &amp;lt;- read.</description>
+    </item>
+    
+    <item>
+      <title>OECD Wellbeing dataset (2016)</title>
+      <link>https://data-se.netlify.app/2018/10/16/oecd-wellbeing-dataset-2016/</link>
+      <pubDate>Tue, 16 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/10/16/oecd-wellbeing-dataset-2016/</guid>
+      <description>Packages We will need the following packages in this post:
+library(mosaic) library(knitr) library(DT) The OECD wellbeing study series The OECD keeps measuring the wellbeing (and associated variables) among its members states.
+On the project website, the OECD states:
+In recent years, concerns have emerged regarding the fact that macro-economic statistics, such as GDP, don’t provide a sufficiently detailed picture of the living conditions that ordinary people experience. While these concerns were already evident during the years of strong growth and good economic performance that characterised the early part of the decade, the financial and economic crisis has further amplified them.</description>
+    </item>
+    
+    <item>
+      <title>Talk - Populism in tweets of German politicians (talk at DGPs 2018)</title>
+      <link>https://data-se.netlify.app/2018/09/14/talk-populism-in-tweets-of-german-politicians-talk-at-dgps-2018/</link>
+      <pubDate>Fri, 14 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/09/14/talk-populism-in-tweets-of-german-politicians-talk-at-dgps-2018/</guid>
+      <description>The slides of my talk Populism in tweets of German politicians
+can be found here http://data-se.netlify.com/slides/populist-twitter/populist-twitter-dgps2018.html#1.
+Data, code, and more can be found at Github: https://github.com/sebastiansauer/polits_tweet_mining</description>
+    </item>
+    
+    <item>
+      <title>DataExploR: Typische Businessfragen mit R analysieren</title>
+      <link>https://data-se.netlify.app/2018/09/12/dataexplor-typische-businessfragen-mit-r-analysieren/</link>
+      <pubDate>Wed, 12 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/09/12/dataexplor-typische-businessfragen-mit-r-analysieren/</guid>
+      <description>In diesem Post untersuchen wir eine recht häufige Fragestellung im Bereich der Datenanalyse – die Auswertung von Umfragedaten. Umfragen sind eine gängige Angelegenheit in vielen Organisationen: man möchte wissen, ob die Kunden zufrieden sind oder was die Mitarbeiter vom Management denken. Wir werden nicht alle Aspekte der Analyse betrachten – da gibt es viel zu tun –, sondern ein paar zentrale Aspekte herausgreifen.
+Laden wir zuerst ein paar nützliche Pakete:</description>
+    </item>
+    
+    <item>
+      <title>Wenn Excel aufgibt: Datenvisualisierung kann zu komplex für Excel werden</title>
+      <link>https://data-se.netlify.app/2018/09/11/wenn-excel-aufgibt-datenvisualisierung-kann-zu-komplex-f%C3%BCr-excel-werden/</link>
+      <pubDate>Tue, 11 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/09/11/wenn-excel-aufgibt-datenvisualisierung-kann-zu-komplex-f%C3%BCr-excel-werden/</guid>
+      <description>Ms Excel ist ein beliebtes Werkzeug der Datenanalyse, auch für Datenvisualisierung. Es gibt einige Beispiele, dass andere Werkzeuge, wie R, zu ansehnlicheren Diagrammen führen können, s. diesen Post. In diesem Post geht es um eine verwandte Frage: Gibt es Diagramme, die nicht – oder nur sehr aufwendig – mit Excel zu erstellen sind?
+Die Meine Antwort lautet: Ja, die gibt es. Betrachten wir ein Beispiel.
+Bayesianische Modelle visualisieren Als Hintergrund dient uns eine Analyse (s.</description>
+    </item>
+    
+    <item>
+      <title>Reproducible academic writing with RMarkdown - Talk at DGPs 2018</title>
+      <link>https://data-se.netlify.app/2018/09/03/reproducible-academic-writing-with-rmarkdown-talk-at-dgps-2018/</link>
+      <pubDate>Mon, 03 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/09/03/reproducible-academic-writing-with-rmarkdown-talk-at-dgps-2018/</guid>
+      <description>Talk at DGPs 2018.
+Get slides here: http://data-se.netlify.com/slides/rmd-writing/rmd-writing_dgps2018.html.</description>
+    </item>
+    
+    <item>
+      <title>Bayesian modeling of populist party success in German federal elections - A notebook from the lab</title>
+      <link>https://data-se.netlify.app/2018/08/25/bayesian-modeling-of-populist-party-success-in-german-federal-elections/</link>
+      <pubDate>Sat, 25 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/08/25/bayesian-modeling-of-populist-party-success-in-german-federal-elections/</guid>
+      <description>Following up on an earlier post, we will model the voting success of the (most prominent) populist party, AfD, in the recent federal elections. This time, Bayesian modeling techniques will be used, drawing on the excellent textbook my McElreath.
+Note that this post is rather a notebook of my thinking, doing, and erring. I’ve made no efforts to hide scaffolding. I think it will be confusing to the uniniate and the initiate as well …</description>
+    </item>
+    
+    <item>
+      <title>Binning and recoding with R - some recommendations</title>
+      <link>https://data-se.netlify.app/2018/08/09/binning-and-recoding-with-r-some-recommendations/</link>
+      <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/08/09/binning-and-recoding-with-r-some-recommendations/</guid>
+      <description>Recoding means changing the levels of a variable, for instance changing “1” to “woman” and “2” to “man”. Binning means aggregating several variable levels to one, for instance aggregating the values From “1.00 meter” to “1.60 meter” to “small_size”.
+Both operations are frequently necessary in practical data analysis. In this post, we review some methods to accomplish these two tasks.
+Let’s load some example data:
+data(tips, package = &amp;quot;reshape2&amp;quot;) Some packages:</description>
+    </item>
+    
+    <item>
+      <title>Finding NAs in multiples columns (per row)</title>
+      <link>https://data-se.netlify.app/2018/08/09/finding-nas-in-multiples-columns-per-rows/</link>
+      <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/08/09/finding-nas-in-multiples-columns-per-rows/</guid>
+      <description>Assume you would like to check for missing data, but not for one column only but for several columns.
+First, data and some packages:
+data(mtcars) library(tidyverse) Then, let’s introduce some missing data:
+mtcars[c(1,2), 1] &amp;lt;- NA mtcars[c(1, 3:4), 2] &amp;lt;- NA Don’t check columns individually Of course, you do not want to repeat yourself, and check each column individually, like this:
+sum(is.na(mtcars[[1]])) #&amp;gt; [1] 2 sum(is.na(mtcars[, 1])) # same #&amp;gt; [1] 2 Neither one would like to check each row individually:</description>
+    </item>
+    
+    <item>
+      <title>Power calculation for the general linear model</title>
+      <link>https://data-se.netlify.app/2018/07/24/power-calculation-for-the-general-linear-model/</link>
+      <pubDate>Tue, 24 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/07/24/power-calculation-for-the-general-linear-model/</guid>
+      <description>Before conducting an experiment, one should compute the power - or, preferably, estimate the precision of the expected results. There are numerous way to achieve this, here’s one using the R package pwr.
+Package pwr library(pwr) The workhorse function here is pwr.f2.test. Note that f2 refers to the effect size \(f^2\) (see here), defined as:
+\[f^2 = \frac{R^2}{1-R^2}\].
+See for details of the function its help page:
+help(&amp;quot;pwr.f2.test&amp;quot;) pwr.f2.test(u = NULL, v = NULL, f2 = NULL, sig.</description>
+    </item>
+    
+    <item>
+      <title>How to prepare data for a gantt diagram</title>
+      <link>https://data-se.netlify.app/2018/07/05/how-to-prepare-data-for-a-gantt-diagram/</link>
+      <pubDate>Thu, 05 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/07/05/how-to-prepare-data-for-a-gantt-diagram/</guid>
+      <description>There’s the new cool world of project management - agile, scrumbling, cool. There’s the old sluggish way of project management using stuff like gantt diagrams. Let’s stick to the old world and come up with a gantt diagram.
+The gant diagram itself is no big deal. Just some horizontal lines referring to dates. Somewhat more interesting is to populate a raw data frame in a way that allows for convenient plotting.</description>
+    </item>
+    
+    <item>
+      <title>Work with bibtex bib files like a pro</title>
+      <link>https://data-se.netlify.app/2018/07/05/work-with-bibtex-bib-files-like-a-pro/</link>
+      <pubDate>Thu, 05 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/07/05/work-with-bibtex-bib-files-like-a-pro/</guid>
+      <description>Recently, I had to curate a list of publications for our institution. Where’s the point? One might ask. Let’s leave aside that a number of colleagues do not use citation management software to work with their publications. They just hack the citation, if and when needed, in some word files. Done. Fair enough, unless someone tries to come up with a list of all the publication of that institution. In that case, the curator will need some structured data, otherwise he or she will end up copy-pasting the rest of the day.</description>
+    </item>
+    
+    <item>
+      <title>Easy way to convert factors zu numbers</title>
+      <link>https://data-se.netlify.app/2018/06/22/easy-way-to-convert-factors-zu-numbers/</link>
+      <pubDate>Fri, 22 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/06/22/easy-way-to-convert-factors-zu-numbers/</guid>
+      <description>Converting factors to numbers in R can be frustrating. Consider the following sitation: We have some data, and try to convert a factor (sex in tips, see below) to a numeric variable:
+library(tidyverse) library(sjmisc) # for recoding data(tips, package = &amp;quot;reshape2&amp;quot;) glimpse(tips) #&amp;gt; Observations: 244 #&amp;gt; Variables: 7 #&amp;gt; $ total_bill &amp;lt;dbl&amp;gt; 16.99, 10.34, 21.01, 23.68, 24.59, 25.29, 8.77, 26.... #&amp;gt; $ tip &amp;lt;dbl&amp;gt; 1.01, 1.66, 3.50, 3.31, 3.61, 4.</description>
+    </item>
+    
+    <item>
+      <title>Some musings on the logistic map</title>
+      <link>https://data-se.netlify.app/2018/06/19/some-musings-on-the-logistic-map/</link>
+      <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/06/19/some-musings-on-the-logistic-map/</guid>
+      <description>The logistic map is a well-known and simple growth model that is defined by the iterative equation
+\[x_{t+1} = 4rx_t(1-t_t)\],
+where \(r\) is a parameter that can be thought of as a fertility and reproduction rate of the population. The allowed values of \(x\) range between 0 an 1 inclusively, where 0 means the population is extinct. The maximum of 1 can be interpreted as the ecological carrying capacity of the system.</description>
+    </item>
+    
+    <item>
+      <title>Visualizing mean values between two groups  - the tidyverse way</title>
+      <link>https://data-se.netlify.app/2018/06/10/visualizing-summary-statistics-the-tidyverse-way/</link>
+      <pubDate>Sun, 10 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/06/10/visualizing-summary-statistics-the-tidyverse-way/</guid>
+      <description>A frequent job in data visualizing is to present summary statistics. In this post, I show one way to plot mean values between groups using the tidyverse approach in comparison to the mosaic way.
+library(tidyverse) data(mtcars) library(mosaic) library(knitr) library(sjmisc) library(sjPlot) Visualizing mean values between two groups First, let’s compute the mean hp for automatic cars (am == 0) vs. manual cars (am == 1).
+mtcars %&amp;gt;% group_by(am) %&amp;gt;% summarise(hp_am = mean(hp)) -&amp;gt; hp_am Now just hand over this data frame of summarized data to ggplot:</description>
+    </item>
+    
+    <item>
+      <title>Playing around with geo mapping: combining demographic data with spatial data</title>
+      <link>https://data-se.netlify.app/2018/05/28/playing-around-with-geo-mapping-combining-demographic-data-with-spatial-data/</link>
+      <pubDate>Mon, 28 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/05/28/playing-around-with-geo-mapping-combining-demographic-data-with-spatial-data/</guid>
+      <description>In this post, we will play around with some basic geo mapping. More preciseyl, we will explore some easy ways to plot a choropleth map.
+First, let’s load some geo data from Bundeswahlleiter, and combine it with some socio demographic data from the same source.
+Preparation Let’s load some packages:
+library(tidyverse) ## Warning: package &amp;#39;dplyr&amp;#39; was built under R version 3.5.1 library(sf) library(viridis) suppressPackageStartupMessages(library(googleVis)) Geo data:
+my_path_wahlkreise &amp;lt;- &amp;quot;~/Documents/datasets/geo_maps/btw17_geometrie_wahlkreise_shp/Geometrie_Wahlkreise_19DBT.shp&amp;quot; file.</description>
+    </item>
+    
+    <item>
+      <title>Playing around with dumbbell plots</title>
+      <link>https://data-se.netlify.app/2018/05/23/playing-around-with-dumbbell-plots/</link>
+      <pubDate>Wed, 23 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/05/23/playing-around-with-dumbbell-plots/</guid>
+      <description>Dumbbell plots can be used to show differences between two groups. Bob Rudis demonstrated a beautiful application of such plots using ggplot2 board methods.
+In this plot, I will explain or comment his code, and adapt a few changes.
+First, load some packages.
+pacman::p_load(tidyverse, ggalt) Let’s make up some data. Tip: Make up some data conveniently in Excel, copy it to the clipboard, and then paste it as tribble (see below) into R.</description>
+    </item>
+    
+    <item>
+      <title>Playing around with dataviz: Comparing distributions between groups</title>
+      <link>https://data-se.netlify.app/2018/05/18/playing-around-dataviz-comparing-distributions-between-groups/</link>
+      <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/05/18/playing-around-dataviz-comparing-distributions-between-groups/</guid>
+      <description>What’ a nice way to display distributional differences between a (larger) number of groups? Boxplots is one way to go. In addition, the raw data may be shown as dots, but should be demphasized. Third, a trend or big picture comparing the groups will make sense in some cases.
+Ok, based on this reasoning, let’s do som visualizing. Let’s load some data (movies), and the usual culprits of packages.</description>
+    </item>
+    
+    <item>
+      <title>Playing around with dataviz: Showing correlations</title>
+      <link>https://data-se.netlify.app/2018/05/18/playing-around-with-dataviz-showing-correlations/</link>
+      <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/05/18/playing-around-with-dataviz-showing-correlations/</guid>
+      <description>In this plot, we are looking into some ways of displaying association between (two) quantitative variables, aka correlation. Our goal is to present a rich representation of the correlation.
+Let’s take the dataset flights as an example.
+data(flights, package = &amp;quot;nycflights13&amp;quot;) library(tidyverse) ## Warning: package &amp;#39;dplyr&amp;#39; was built under R version 3.5.1 library(viridis) flights %&amp;gt;% filter(arr_delay &amp;lt; 100, dep_delay &amp;lt; 100) %&amp;gt;% ggplot(aes(x = dep_delay, y = arr_delay, color = origin)) + geom_point(alpha = .</description>
+    </item>
+    
+    <item>
+      <title>Why is the sample mean a good point estimator of the population mean? A simulation and some thoughts.</title>
+      <link>https://data-se.netlify.app/2018/05/18/why-is-the-sample-mean-a-good-point-estimator-of-the-population-mean-a-simulation-and-some-thoughts/</link>
+      <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/05/18/why-is-the-sample-mean-a-good-point-estimator-of-the-population-mean-a-simulation-and-some-thoughts/</guid>
+      <description>It is frequently stated that the sample mean is a good or even the best point estimator of the according population value. But why is that? In this post we are trying to get an intuition by using simulation inference methods.
+Assume you played throwing coins with some one at some dark corner. “Some one” throws the coin 10 times, and wins 8 times (the guy was betting on heads, but that’s only for the sake of the story).</description>
+    </item>
+    
+    <item>
+      <title>Visualisation of interaction for the logistic regression</title>
+      <link>https://data-se.netlify.app/2018/04/02/visualisation-of-interaction-for-logistic-regression/</link>
+      <pubDate>Mon, 02 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/04/02/visualisation-of-interaction-for-logistic-regression/</guid>
+      <description>In this post we are plotting an interaction for a logistic regression. Interaction per se is a concept difficult to grasp; for a GLM it may be even more difficult especially for continuous variables’ interaction. Plotting helps to better or more easy grasp what a model tries to tell us.
+First, load some packages.
+library(tidyverse) ## ── Attaching packages ────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ── ## ✔ ggplot2 3.0.0 ✔ purrr 0.</description>
+    </item>
+    
+    <item>
+      <title>Tangible data of normal distributed data</title>
+      <link>https://data-se.netlify.app/2018/03/16/tangible-data-of-normal-distributed-data/</link>
+      <pubDate>Fri, 16 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/03/16/tangible-data-of-normal-distributed-data/</guid>
+      <description>A classical example for a normally distributed variable is height. However, I kept on looking for data as to the mean and sd for some populations, such as Germany. Now I found some reliably looking data here.
+We will not question whether the assumption of normality holds, we just assume it.
+In the source, we can read that in Germany, the adult men population has the following parameters:
+mean: 174cm</description>
+    </item>
+    
+    <item>
+      <title>Map students to presentation slots</title>
+      <link>https://data-se.netlify.app/2018/03/11/map-students-to-presentation-slots/</link>
+      <pubDate>Sun, 11 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/03/11/map-students-to-presentation-slots/</guid>
+      <description>As a teacher, I not only teach but also assess the achievements of students. One example of a typical student assignments is a presentation. You know, powerpoint slides and stuff.
+For that purpose, I often need to map students to one of several time slots. Here’s the R code I use for that purpose.
+library(tidyverse) ## ── Attaching packages ────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ── ## ✔ ggplot2 3.0.0 ✔ purrr 0.</description>
+    </item>
+    
+    <item>
+      <title>How to create columns in a dataframe in R</title>
+      <link>https://data-se.netlify.app/2018/03/07/how-to-create-columns-in-a-dataframe-in-r/</link>
+      <pubDate>Wed, 07 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/03/07/how-to-create-columns-in-a-dataframe-in-r/</guid>
+      <description>Note that we will use this library for this post:
+library(dplyr) ## Warning: package &amp;#39;dplyr&amp;#39; was built under R version 3.5.1 ## ## Attaching package: &amp;#39;dplyr&amp;#39; ## The following objects are masked from &amp;#39;package:stats&amp;#39;: ## ## filter, lag ## The following objects are masked from &amp;#39;package:base&amp;#39;: ## ## intersect, setdiff, setequal, union By the way, loading mosaic, will load dplyr too.
+One of the major data wrangling activities (in R and elsewhere) is to create a new column in a data frame.</description>
+    </item>
+    
+    <item>
+      <title>Simulate p-hacking - adding observations</title>
+      <link>https://data-se.netlify.app/2018/01/24/simulate-p-hacking-adding-observations/</link>
+      <pubDate>Wed, 24 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/01/24/simulate-p-hacking-adding-observations/</guid>
+      <description>Let’s simulate p-values as a funtion of sample size. We assume that some researcher collects one data point, computes the p-value, and repeats until p-value falls below some arbitrary threshold. Oh and yes, there is no real effect. For the sake of spending the budget, assume that our researcher collects a sample size of \(n=100\).
+This idea stems from this great article False-Positive Psychology: Undisclosed Flexibility in Data Collection and Analysis Allows Presenting Anything as Significant; cf.</description>
+    </item>
+    
+    <item>
+      <title>Zusammenhang von Lernen und Noten im Statistikunterricht</title>
+      <link>https://data-se.netlify.app/2017/12/20/zusammenhang-von-lernen-und-noten-im-statistikunterricht/</link>
+      <pubDate>Wed, 20 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2017/12/20/zusammenhang-von-lernen-und-noten-im-statistikunterricht/</guid>
+      <description>Führt Lernen zu besseren Noten? Eigene Erfahrung und allgemeiner Konsens stimmen dem zu; zumindest schadet Lernen des Stoffes nicht und hilft oft, gute Noten bei einer Prüfung zu diesem Stoff zu erzielen. Aber welche Belege, wissenschaftliche Belege gibt es dazu? An unserer Hochschule, die FOM, haben wir eine kleine Untersuchung zu dieser Frage durchgeführt. Genauer gesagt haben wir unseren Studierenden einen Statistik-Test vorlegt und gefagt, wie sehr sie sich für diesen Test vorbereitet hätten.</description>
+    </item>
+    
+    <item>
+      <title>A p-value picture</title>
+      <link>https://data-se.netlify.app/2017/11/29/a-p-value-picture/</link>
+      <pubDate>Wed, 29 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2017/11/29/a-p-value-picture/</guid>
+      <description>Much ado and to say about the p-value. Let me add one more point; actually not really from myself, but from Diez, Barr, and Cetinkaya-Rundel (2012), p. 189; good book in one is looking for “orthodox” statistics.
+library(tidyverse) ## ── Attaching packages ────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ── ## ✔ ggplot2 3.0.0 ✔ purrr 0.2.5 ## ✔ tibble 1.4.2 ✔ dplyr 0.7.6 ## ✔ tidyr 0.8.1 ✔ stringr 1.3.1 ## ✔ readr 1.</description>
+    </item>
+    
+    <item>
+      <title>Grundlagen des Textminings mit R</title>
+      <link>https://data-se.netlify.app/2017/11/28/textmining-grundlagen/</link>
+      <pubDate>Tue, 28 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2017/11/28/textmining-grundlagen/</guid>
+      <description>Lernziele:
+- Sie kennen zentrale Ziele und Begriffe des Textminings. - Sie wissen, was ein &amp;#39;tidy text dataframe&amp;#39; ist. - Sie können Worthäufigkeiten auszählen. - Sie können Worthäufigkeiten anhand einer Wordcloud visualisieren. In dieser Übung benötigte R-Pakete:
+library(tidyverse) # Datenjudo library(stringr) # Textverarbeitung library(tidytext) # Textmining library(lsa) # Stopwörter library(SnowballC) # Wörter trunkieren library(wordcloud) # Wordcloud anzeigen Bitte installieren Sie rechtzeitig alle Pakete, z.B. in RStudio über den Reiter Packages &amp;gt; Install.</description>
+    </item>
+    
+    <item>
+      <title>Interactive diagrams in lieu of shiny?</title>
+      <link>https://data-se.netlify.app/2017/11/27/interactive-diagrams-in-lieu-of-shiny/</link>
+      <pubDate>Mon, 27 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2017/11/27/interactive-diagrams-in-lieu-of-shiny/</guid>
+      <description>One frequent use of the Shiny server software is displaying interactive data diagrams. The pro of using Shiny is the great flexibility; much more than “just graphics” can be done. Basically Shiny provides a flexible GUI for your R program. But if you simply aiming at displaying or exploring some data interactively, a much simplor approach may do it for you; there are some nice libraries available in R for that.</description>
+    </item>
+    
+    <item>
+      <title>My favorite stats text book</title>
+      <link>https://data-se.netlify.app/2017/11/27/my-favorite-stats-text-book/</link>
+      <pubDate>Mon, 27 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2017/11/27/my-favorite-stats-text-book/</guid>
+      <description>Some thoughts how my favorite applied stats text book would look like. I am looking at eg., business fields such as MBA as consumers.
+My ideal applied stats text book is case study oriented (“Assume you would like to predict which movie will score highest next year based on some movie characteristics you know”)
+makes use of recent data analytics techniques such as tree based methods (Random Forests) or Shrinkage models (Lasso)</description>
+    </item>
+    
+    <item>
+      <title>Three ways to dichotomize a variable</title>
+      <link>https://data-se.netlify.app/2017/04/11/three_ways_recoding_cutting/</link>
+      <pubDate>Tue, 11 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2017/04/11/three_ways_recoding_cutting/</guid>
+      <description>Dichotomizing is also called dummy coding. It means: Take a variable with multiple different values (&amp;gt;2), and transform it so that the output variable has 2 different values.
+Note that this &amp;ldquo;thing&amp;rdquo; can be understood as consisting of two different aspects: Recoding and cutting. Recoding means that value &amp;ldquo;a&amp;rdquo; becomes values &amp;ldquo;b&amp;rdquo; etc. Cutting means that a &amp;ldquo;rope&amp;rdquo; of numbers is cut into several shorter &amp;ldquo;ropes&amp;rdquo; (that&amp;rsquo;s why it is called cutting).</description>
+    </item>
+    
+  </channel>
+</rss>

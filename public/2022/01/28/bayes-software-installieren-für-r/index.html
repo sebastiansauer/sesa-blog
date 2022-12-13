@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.101.0" />
+
+
+<title>Bayes-Software installieren für R - sesa blog</title>
+<meta property="og:title" content="Bayes-Software installieren für R - sesa blog">
+
+
+  <link href='https://data-se.netlify.app/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo-data-se.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="/privacy/">Data privacy</a></li>
+    
+    <li><a href="/tags/">Tags</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+
+<main class="content" role="main">
+
+    <h1 class="article-title">Bayes-Software installieren für R</h1>
+
+
+    <span class="article-meta">
+      Sebastian Sauer / 1 mins read <br>
+    </span>
+
+
+
+    
+    <span class="article-date">2022-01-28</span>
+    
+
+    <div class="article-content">
+      
+<script src="https://data-se.netlify.app/2022/01/28/bayes-software-installieren-f%C3%BCr-r/index_files/header-attrs/header-attrs.js"></script>
+
+
+<div id="r-und-seine-freunde-installieren." class="section level1">
+<h1>R und seine Freunde installieren.</h1>
+<p>Schauen Sie, dass Sie zuerst <a href="https://data-se.netlify.app/2021/11/30/installation-von-r-und-seiner-freunde/">R und seine Freunde</a> installiert haben.</p>
+</div>
+<div id="bayes-software" class="section level1">
+<h1>Bayes-Software</h1>
+<p>Bayes-Inferenz kann rechenintensiv sein.
+Daher braucht’s Software, die schnell rechnen kann.
+Außerdem sollte die Software sich gut mit Wahrscheinlichkeitsrechnung auskennen,
+denn Bayes ist nichts anderes als angewandte Wahrscheinlichkeitsrechnung.</p>
+<p>Aktuell ist die Software <a href="https://mc-stan.org/">Stan</a> die führende Software für diesen Zweck.</p>
+<p>Bevor Sie aber Stan installieren können, brauchen Sie eine (Software für eine)
+“schnelle Rechenmaschine” auf Ihrem Computer installiert.
+Stan nutzt dafür C++.</p>
+<p>Um C++ zu installieren gehen Sie so vor:</p>
+<ul>
+<li>Mac: Installieren Sie die <a href="https://macpaw.com/how-to/install-command-line-tools">Command Line Tools</a>;
+viele Anleitungen finden sich dafür online.</li>
+<li>Windows: Installieren Sie die <a href="https://cran.rstudio.com/bin/windows/Rtools/">Rtools</a></li>
+<li>Linux: Schauen Sie mal auf die <a href="https://github.com/stan-dev/rstan/wiki/Configuring-C-Toolchain-for-Linux">Seite von Stan</a></li>
+</ul>
+<p>Wenn C++ installiert ist, ist das Schwierigste geschafft.</p>
+<p>Jetzt können Sie in gewohnter Weise die restliche Software - d.i. vor allem Stan - als R-Pakete installieren:</p>
+<pre class="r"><code>pckgs_bayes &lt;-
+  c(&quot;rstan&quot;,
+    &quot;rstanarm&quot;,
+    &quot;bayesplot&quot;,
+    &quot;bayestestR&quot;,
+    &quot;tidybayes&quot;)
+
+install.packages(pckgs_bayes)</code></pre>
+<p><code>rstan</code> ist ein R-Paket, das Stan und eine Verbindung zu Stan von R bereitstellt.
+Die übrigen Pakete greifen alle auf Stan zurück,
+bieten aber komfortable Zusatzfunktionen wie Visualisierungen und vereinfachte Syntax.</p>
+</div>
+
+    </div>
+
+
+  </article>
+
+
+
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script>
+  var disqus_config = function () {
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var d = document, s = d.createElement('script');
+    s.src = '//https-data-se-netlify-com.disqus.com/embed.js'; s.async = true;
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+

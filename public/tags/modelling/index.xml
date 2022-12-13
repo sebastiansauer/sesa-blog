@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>modelling on sesa blog</title>
+    <link>https://data-se.netlify.app/tags/modelling/</link>
+    <description>Recent content in modelling on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 23 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/modelling/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ableitung der Koeffizienten der einfachen Regression</title>
+      <link>https://data-se.netlify.app/2022/05/23/ableitung-der-koeffizienten-der-einfachen-regression/</link>
+      <pubDate>Mon, 23 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2022/05/23/ableitung-der-koeffizienten-der-einfachen-regression/</guid>
+      <description>1 Was ist die Regression? 2 Wie findet man die Regressionsgerade? 2.1 \(b_0\) 2.2 \(b_1\) 2.3 Weitere Umformung von \(b_1\) 3 Quellenangabe 4 Fazit library(tidyverse) 1 Was ist die Regression? In diesem Post geht es um die einfache Regression (d.h. mit einem Prädiktor); genauer gesagt um die Frage, wie man auf die Formeln der Koeffizienten der einfachen Regression kommt.
+Gehen wir von einigen zweidimensionalen Datenpunkten aus, die zu einem Phänomen gemessen wurden: \({(x_1, y_1), (x_2, y_2), \ldots, (x_n,y_n)}\).</description>
+    </item>
+    
+    <item>
+      <title>Bayes in fünf Minuten</title>
+      <link>https://data-se.netlify.app/2022/01/27/bayes-in-f%C3%BCnf-minuten/</link>
+      <pubDate>Thu, 27 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2022/01/27/bayes-in-f%C3%BCnf-minuten/</guid>
+      <description>Das ist ein Fünf-Minuten-Bayes-Kurs Sie würden gerne Bayes lernen und dafür zwischen 1-3 Wochen Zeit investieren? Dann sind Sie hier falsch. Dieser Post zeigt einen Kurzüberblick in Bayes-Statistik in fünf Minuten. Naja, ich probiere es jedenfalls.
+Forschungsfrage Sagen wir, uns interessiert folgende Forschungsfrage, die mit Methoden der Inferenz-Statistik untersucht werden soll. In diesem Fall Bayes-Inferenz (nicht Frequentistische Statistik).
+Verbrauchen Autos mit Automatik-Getriebe im Durchschnitt mehr Sprit als Autos mit manuellem Getriebe?</description>
+    </item>
+    
+    <item>
+      <title>Logarithmen und Exponenten in Regressionen: Wer braucht sowas?</title>
+      <link>https://data-se.netlify.app/2021/05/31/logarithmen-und-exponenten-in-regressionen-wer-braucht-sowas/</link>
+      <pubDate>Mon, 31 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2021/05/31/logarithmen-und-exponenten-in-regressionen-wer-braucht-sowas/</guid>
+      <description>Die Folien des Vortrags (HTML-Version) liegen hier. Eine Internetverbindung ist nötig, um die Folien zu betrachten.
+Die Rmd-Quelldatei liegt hier.
+Lizenz: CC-BY</description>
+    </item>
+    
+    <item>
+      <title>Introduction to Statistics: A modeling-based approach -- Course Syllabus</title>
+      <link>https://data-se.netlify.app/2020/06/19/introduction-to-statistics-a-modeling-based-approach-course-syllabus/</link>
+      <pubDate>Fri, 19 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2020/06/19/introduction-to-statistics-a-modeling-based-approach-course-syllabus/</guid>
+      <description>1 Load packages 2 Course description 3 Course prerequisites 4 Learning objectives 5 Course Literature 6 Course logistics 7 UPFRONT student preparation 8 Didactic outline 9 Schedule 9.1 Overview on topics covered 9.2 Block 1: Explorative Data Analysis 9.2.1 Visualization 9.2.2 Data Wrangling 9.2.3 Exercises / Case study 9.3 Block 2: Statistical Modelling: Basic 9.3.1 Theory 9.3.2 Case study 9.4 Block 3: Statistical Modelling: Multiple Regression and interaction 9.4.1 Theory 9.</description>
+    </item>
+    
+    <item>
+      <title>Simulating data for a Gamma regression </title>
+      <link>https://data-se.netlify.app/2020/06/17/simulating-data-for-a-gamma-regression/</link>
+      <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2020/06/17/simulating-data-for-a-gamma-regression/</guid>
+      <description>Load packages library(tidyverse) Intro A Gamma distribution is useful for modeling positive, right skewed data such as waiting times; it is a continuous function.
+In this post, we’ll illustrate some properties of the Gamma distribution by simulating a toy example.
+Simulate data and define structural model Let \(X\) be a discrete variable following uniform distribution, and \(x_i \in \{1,2,3\}\).
+set.seed(42) n &amp;lt;- 1000 X &amp;lt;- sample(x = c(1,2,3), size = n, replace = TRUE) hist(X) Let \(y_i = 0.</description>
+    </item>
+    
+    <item>
+      <title>Absolute vs. relative Covid cases in modelling</title>
+      <link>https://data-se.netlify.app/2020/06/10/absolute-vs-relative-covid-cases-in-modelling/</link>
+      <pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2020/06/10/absolute-vs-relative-covid-cases-in-modelling/</guid>
+      <description>Load packages library(tidyverse) library(mosaic) require(scales) library(directlabels) library(ggrepel) library(ggthemes) library(hrbrthemes) options(scipen = 8) Covid-19 growth rate We are in the decline midst wake onset SOMEHWERE in the Corona crisis. A lot of hasty more or less useful research is being conducted.
+One of the circulating claims is: “There Corona growth rate in country X is higher than in country Y!”
+Let’s assume some doubling (growth) rate:
+double_rates &amp;lt;- 5 double_rate_chosen &amp;lt;- 5 # sample(double_rates, size = 1) Two countries with equal Covid-19 growth rate Consider two countries, A und B, with the same Covid-19 growth rate.</description>
+    </item>
+    
+  </channel>
+</rss>

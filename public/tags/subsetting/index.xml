@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>subsetting on sesa blog</title>
+    <link>https://data-se.netlify.app/tags/subsetting/</link>
+    <description>Recent content in subsetting on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 15 Oct 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/subsetting/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Multiple ways to subsetting data frames in R</title>
+      <link>https://data-se.netlify.app/2016/10/15/indexing-in-r/</link>
+      <pubDate>Sat, 15 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2016/10/15/indexing-in-r/</guid>
+      <description>Subsetting a data frame is an essential and frequently performed task. Here, some basic ideas are presented.
+Get some data first.
+str(mtcars) ## &amp;#39;data.frame&amp;#39;:	32 obs. of 11 variables: ## $ mpg : num 21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ... ## $ cyl : num 6 6 4 6 8 6 8 4 4 6 ... ## $ disp: num 160 160 108 258 360 .</description>
+    </item>
+    
+  </channel>
+</rss>

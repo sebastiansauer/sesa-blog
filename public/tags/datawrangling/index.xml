@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>datawrangling on sesa blog</title>
+    <link>https://data-se.netlify.app/tags/datawrangling/</link>
+    <description>Recent content in datawrangling on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 24 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/datawrangling/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>German weather</title>
+      <link>https://data-se.netlify.app/2022/07/24/german-weather/</link>
+      <pubDate>Sun, 24 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2022/07/24/german-weather/</guid>
+      <description>1 Load packages 2 Motivation 3 Load data 4 Main temperature trajectory over time 4.1 Visualization 4.2 Linear model 5 Temperature change per month 5.1 Vis 1: Change per Month for whole of Germany 5.2 Linear model 5.3 Vis 2: Trend by Bundesland 6 Change per decade 6.1 Vis 1 6.2 Vis 2: Temperature change per decade 7 Change in variability 7.1 Vis 8 Debrief 9 Reproducibility 1 Load packages library(tidyverse) # data wrangling library(easystats) library(ggplot2); theme_set(theme_minimal()) # ggplot theme 2 Motivation Let’s explore the change over time in German weather.</description>
+    </item>
+    
+    <item>
+      <title>Preparing German weather data</title>
+      <link>https://data-se.netlify.app/2022/07/24/preparing-german-weather-data/</link>
+      <pubDate>Sun, 24 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2022/07/24/preparing-german-weather-data/</guid>
+      <description>1 Load packages 2 Motivation 3 Licence 4 It’s a playful approach 5 Download data 5.1 Air temperature means 6 Download multiple files and bind them together rowwise 7 Format to long 8 More post-processing 9 Save to disk 10 Precipitation 11 Debrief 12 Reproducibility 1 Load packages library(tidyverse) # data wrangling library(glue) 2 Motivation In this post, we’ll prepare official German weather data. All data are accessed from DWD.</description>
+    </item>
+    
+    <item>
+      <title>Beispiel für pivot_longer()</title>
+      <link>https://data-se.netlify.app/2021/05/27/beispiel-f%C3%BCr-pivot-longer/</link>
+      <pubDate>Thu, 27 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2021/05/27/beispiel-f%C3%BCr-pivot-longer/</guid>
+      <description>1 Setup 2 Daten laden 3 Von lang nach breit 4 Plotten 5 Kommentar 1 Setup library(tidyverse) 2 Daten laden d &amp;lt;- read_csv(&amp;quot;https://raw.githubusercontent.com/sebastiansauer/2021-sose/master/data/Impfbereitschaft/d3.csv&amp;quot;) 3 Von lang nach breit d2 &amp;lt;- d %&amp;gt;% select(willingness:open2) %&amp;gt;% pivot_longer(extra1:open2) d2 %&amp;gt;% slice_head(n = 7) #&amp;gt; # A tibble: 7 x 6 #&amp;gt; willingness health fear cases name value #&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;dbl&amp;gt; #&amp;gt; 1 10 9 5 1 extra1 2 #&amp;gt; 2 10 9 5 1 agree1 2 #&amp;gt; 3 10 9 5 1 cons1 3 #&amp;gt; 4 10 9 5 1 neuro1 2 #&amp;gt; 5 10 9 5 1 open1 4 #&amp;gt; 6 10 9 5 1 extra2 1 #&amp;gt; 7 10 9 5 1 agree2 4 4 Plotten d2 %&amp;gt;% ggplot() + aes(x = willingness, y = value) + facet_wrap(~ name) + geom_point() + geom_smooth(method = &amp;quot;lm&amp;quot;) Jedes Diagramm zeigt den Zusammenhang von Impfbereitschaft mit einem Big-Five-Item.</description>
+    </item>
+    
+    <item>
+      <title>Datensatz flights: Finde den Tag mit den meisten Abflügen</title>
+      <link>https://data-se.netlify.app/2021/05/27/datensatz-flights-finde-den-tag-mit-den-meisten-abfl%C3%BCgen/</link>
+      <pubDate>Thu, 27 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2021/05/27/datensatz-flights-finde-den-tag-mit-den-meisten-abfl%C3%BCgen/</guid>
+      <description>1 Aufgabe: Finde den Tag mit den meisten Abflügen (flights)! 2 Setup 3 Daten laden 4 Spalte mit Datum ergänzen 5 Datensatz zusammenfassen 6 Maximalwert der Spalte n 1 Aufgabe: Finde den Tag mit den meisten Abflügen (flights)! An welchem Tag im Jahr 2013 sind die meisten Flüge aus NYC gestartet?
+2 Setup library(tidyverse) # Datenjudo library(nycflights13) # Daten library(lubridate) # Datumsangaben 3 Daten laden data(flights) 4 Spalte mit Datum ergänzen flights &amp;lt;- flights %&amp;gt;% mutate(date = date(time_hour)) 5 Datensatz zusammenfassen flights2 &amp;lt;- flights %&amp;gt;% group_by(date) %&amp;gt;% summarise(n = n()) Synonym:</description>
+    </item>
+    
+    <item>
+      <title>Zeilenweise Operationen (tidyverse-Stil)</title>
+      <link>https://data-se.netlify.app/2021/05/27/zeilenweise-operationen-tidyverse-stil/</link>
+      <pubDate>Thu, 27 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2021/05/27/zeilenweise-operationen-tidyverse-stil/</guid>
+      <description>1 Aufgabe 2 Setup 3 Daten erzeugen 4 Spalten addieren, die Erste 5 Spalten addieren, die Zweite 6 Spalten addieren, die Dritte 7 Von erster Spalte bis zu letzter Spalte 8 Fazit 1 Aufgabe Berechnen Sie Zeilensummen! … Oder Zeilen-Mittelwerte oder eine andere zeilenbasierte Funktion.
+2 Setup library(tidyverse) # Datenjudo 3 Daten erzeugen d &amp;lt;- tribble( ~&amp;quot;x1&amp;quot;, ~&amp;quot;x2&amp;quot;, ~&amp;quot;x3&amp;quot;, 1, 2, 3, 4, 5, 6, 7, 8, 9 ) d #&amp;gt; # A tibble: 3 x 3 #&amp;gt; x1 x2 x3 #&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; #&amp;gt; 1 1 2 3 #&amp;gt; 2 4 5 6 #&amp;gt; 3 7 8 9 4 Spalten addieren, die Erste d %&amp;gt;% mutate(summe = x1 + x2 + x3) %&amp;gt;% mutate(mw = (x1 + x2 + x3)/3) #&amp;gt; # A tibble: 3 x 5 #&amp;gt; x1 x2 x3 summe mw #&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; #&amp;gt; 1 1 2 3 6 2 #&amp;gt; 2 4 5 6 15 5 #&amp;gt; 3 7 8 9 24 8 Läuft!</description>
+    </item>
+    
+    <item>
+      <title>Computing rater accuracy across multiple raters and multiple criteria</title>
+      <link>https://data-se.netlify.app/2019/08/27/computing-rater-accuracy-across-multiple-raters-and-multiple-criteria/</link>
+      <pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2019/08/27/computing-rater-accuracy-across-multiple-raters-and-multiple-criteria/</guid>
+      <description>Load packages library(tidyverse) Background Computing inter-rater reliability is a well-known, albeit maybe not very frequent task in data analysis. If there’s only one criteria and two raters, the proceeding is straigt forward; Cohen’s Kappa is the most widely used coefficient for that purpose. It is more challenging to compare multiple raters on one criterion; Fleiss’ Kappa is one way to get a coefficient. If there are multiple criteria, one way is to compute the mean of multiple Fleiss’ coefficients.</description>
+    </item>
+    
+  </channel>
+</rss>

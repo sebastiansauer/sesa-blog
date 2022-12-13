@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>na on sesa blog</title>
+    <link>https://data-se.netlify.app/tags/na/</link>
+    <description>Recent content in na on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 16 Oct 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/na/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Checking for NA with dplyr</title>
+      <link>https://data-se.netlify.app/2016/10/16/nas-with-dplyr/</link>
+      <pubDate>Sun, 16 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2016/10/16/nas-with-dplyr/</guid>
+      <description>Often, we want to check for missing values (NAs). There are of course many ways to do so. dplyr provides a quite nice one.
+First, let&amp;rsquo;s load some data:
+library(readr) extra_file &amp;lt;- &amp;#34;https://raw.github.com/sebastiansauer/Daten_Unterricht/master/extra.csv&amp;#34; extra_df &amp;lt;- read_csv(extra_file) Note that extra is a data frame consisting of survey items regarding extraversion and related behavior.
+In case the dataframe is quite largish (many columns) it is helpful to have some quick way. Here, we have 25 columns.</description>
+    </item>
+    
+  </channel>
+</rss>

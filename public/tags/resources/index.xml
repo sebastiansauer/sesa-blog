@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>resources on sesa blog</title>
+    <link>https://data-se.netlify.app/tags/resources/</link>
+    <description>Recent content in resources on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 13 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/resources/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Free resources for aspiring data adepts</title>
+      <link>https://data-se.netlify.app/2022/06/13/free-resources-for-aspiring-data-adepts/</link>
+      <pubDate>Mon, 13 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2022/06/13/free-resources-for-aspiring-data-adepts/</guid>
+      <description>1 Why data science? 2 Free resources overview 2.1 Machine learning conceps 2.2 Math basics 2.3 R basics 2.4 Machine learning framework with R 2.5 R online environment 2.6 Online course 2.7 Beautiful intuition 2.8 Blogs 2.9 Help 2.10 YouTube channels 1 Why data science? Data science is of of the most vibrating fields of research and industries at present. Its ubiquity and importance is likely on the rise. Due to its importance, it’s a great place for vivid minds to contribute and to develop.</description>
+    </item>
+    
+  </channel>
+</rss>

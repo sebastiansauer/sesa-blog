@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>comparison on sesa blog</title>
+    <link>https://data-se.netlify.app/tags/comparison/</link>
+    <description>Recent content in comparison on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 05 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/comparison/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Comparison of R and Knime: Largish data set 1 (taxi rides 2020-06)</title>
+      <link>https://data-se.netlify.app/2020/12/05/comparison-of-r-and-knime-largish-data-set-1-taxi-rides-2020-06/</link>
+      <pubDate>Sat, 05 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2020/12/05/comparison-of-r-and-knime-largish-data-set-1-taxi-rides-2020-06/</guid>
+      <description>Motivation Knime and R have their specific strengths (and weaknesses). Let’s compare the R workflow in this post with this knime workflow.
+Comparison What you think? As an old-fart R user I feel pressed to admit that Knime appears to be a useful and handy tool.
+Caveat Repeating the workflow for a larger data set, NYC yellow cabs 2019-01, it seems that my Knime got stuck (on a 2020 MacBook Pro, 16 GB machine).</description>
+    </item>
+    
+    <item>
+      <title>Comparing Knime and R: ETL_Basics</title>
+      <link>https://data-se.netlify.app/2020/11/28/comparing-knime-and-r-etl-basics/</link>
+      <pubDate>Sat, 28 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2020/11/28/comparing-knime-and-r-etl-basics/</guid>
+      <description>Knime workflow R translation Setup Chunk 1: Read, sort, filter Chunk 2: group and aggregate Chunk 3: filter Chunk 4: concatenate Chunk 5: join Chuunk 6: write to csv Knime workflow Consider this Knime workflow:
+R translation Setup library(tidyverse) library(lubridate) library(knitr) Chunk 1: Read, sort, filter datafile &amp;lt;- &amp;quot;https://raw.githubusercontent.com/sebastiansauer/sesa-blog/main/static/datasets/sales_2008-2011.csv&amp;quot; d &amp;lt;- read_csv(datafile) ## ## ── Column specification ──────────────────────────────────────────────────────── ## cols( ## product = col_character(), ## country = col_character(), ## date = col_date(format = &amp;quot;&amp;quot;), ## quantity = col_double(), ## amount = col_double(), ## card = col_character(), ## Cust_ID = col_character() ## ) glimpse(d) ## Rows: 47 ## Columns: 7 ## $ product &amp;lt;chr&amp;gt; &amp;quot;prod_4&amp;quot;, &amp;quot;prod_3&amp;quot;, &amp;quot;prod_3&amp;quot;, &amp;quot;prod_3&amp;quot;, &amp;quot;prod_3&amp;quot;, &amp;quot;prod_3&amp;quot;, … ## $ country &amp;lt;chr&amp;gt; &amp;quot;unknown&amp;quot;, &amp;quot;China&amp;quot;, &amp;quot;China&amp;quot;, &amp;quot;China&amp;quot;, &amp;quot;USA&amp;quot;, &amp;quot;Brazil&amp;quot;, &amp;quot;USA&amp;quot;… ## $ date &amp;lt;date&amp;gt; 2008-12-12, 2009-04-10, 2009-04-10, 2009-05-10, 2009-05-20,… ## $ quantity &amp;lt;dbl&amp;gt; 1, 2, 2, 2, 20, 15, 2, 2, 20, 15, 15, 1, 1, 20, 1, 1, 25, 2,… ## $ amount &amp;lt;dbl&amp;gt; 3, 160, 160, 160, 1600, 1200, 70, 70, 1600, 600, 600, 35, 35… ## $ card &amp;lt;chr&amp;gt; NA, &amp;quot;N&amp;quot;, &amp;quot;Y&amp;quot;, NA, NA, NA, &amp;quot;Y&amp;quot;, NA, NA, NA, &amp;quot;N&amp;quot;, &amp;quot;Y&amp;quot;, &amp;quot;Y&amp;quot;, NA… ## $ Cust_ID &amp;lt;chr&amp;gt; &amp;quot;Cust_8&amp;quot;, &amp;quot;Cust_2&amp;quot;, &amp;quot;Cust_5&amp;quot;, &amp;quot;Cust_2&amp;quot;, &amp;quot;Cust_3&amp;quot;, &amp;quot;Cust_7&amp;quot;, … The data is already recognized as date; no need for transformation.</description>
+    </item>
+    
+    <item>
+      <title>Comparing Knime and R: Simple Random Forest</title>
+      <link>https://data-se.netlify.app/2020/11/28/comparing-knime-and-r-simple-random-forest/</link>
+      <pubDate>Sat, 28 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2020/11/28/comparing-knime-and-r-simple-random-forest/</guid>
+      <description>Knime Workflow Translate it to R! Load Packages Load Data Stratified sampling Random Forest classification model in R Define and run Random Forest classification model Define learner (model) Define recipe Put workflow together Fit the model to the train data OOB results Model results in test data Multiclass accuracy ROC Confusion Matrix Random Forest regression model in R Define and run the model Update model to regression Define recipe Put workflow together OOB results Model results in test data Variabble importance Collect performance metrics Knime Workflow Consider this Knime workflow:</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>causality on sesa blog</title>
+    <link>https://data-se.netlify.app/tags/causality/</link>
+    <description>Recent content in causality on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 01 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/causality/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Simulation on controlling confounders</title>
+      <link>https://data-se.netlify.app/2021/12/01/simulation-on-controlling-confounders/</link>
+      <pubDate>Wed, 01 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2021/12/01/simulation-on-controlling-confounders/</guid>
+      <description>Confounder A confounder is on of the few (maybe three) “atoms” of causality, following the framework of Judea Parl and others.
+A confounder can be depicted like this:
+Following a study that reported a strong correlation between chocolate consumption and Nobel prices.
+Simulating a confounder structure Now let’s simulate a simple confounder structure.
+Here’s some code that will help us:
+Let’s have a look at the code:
+## ## n &amp;lt;- 100 ## ## set.</description>
+    </item>
+    
+    <item>
+      <title>When adding variable hurts – The collider bias</title>
+      <link>https://data-se.netlify.app/2020/06/04/when-adding-variable-hurts-the-collider-bias/</link>
+      <pubDate>Thu, 04 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2020/06/04/when-adding-variable-hurts-the-collider-bias/</guid>
+      <description>Load packages library(tidyverse) library(conflicted) library(ggdag) library(broom) library(GGally) Motivation Assume there is some scientist with some theory. Her theory holds that X and Z are causes of Y. dag1 shows her DAG (ie., her theory depicted as a causal diagram). Our scientist is concerned with the causal effect of X on Y, where X is a treatment variable (exposure) and Y is the dependent variable under scrutiny (outcome).
+See e.g,. here or here for intros to DAGs and causality.</description>
+    </item>
+    
+    <item>
+      <title>Simulating Berkson&#39;s paradox</title>
+      <link>https://data-se.netlify.app/2020/04/16/simulation-berkson-s-paradox/</link>
+      <pubDate>Thu, 16 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2020/04/16/simulation-berkson-s-paradox/</guid>
+      <description>This post was inspired by this paper of Karsten Luebke and coauthors.
+library(ggdag) library(ggthemes) library(mosaic) We’ll stratify our sample into two groups: students (Studium) and non-students (kein Studium).
+Structural causal model First, we define the structure of our causal model.
+set.seed(42) # reproducibilty N &amp;lt;- 1e03 IQ = rnorm(N) Fleiss = rnorm(N) Eignung = 1/2 * IQ + 1/2 * Fleiss + rnorm(N, 0, .1) That is, aptitude (Eignung) is a function of intelligence (IQ) and dilligence (Fleiss), where the input variables have the same impact on the outcome variable (aptitude).</description>
+    </item>
+    
+  </channel>
+</rss>

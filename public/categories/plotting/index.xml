@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>plotting on sesa blog</title>
+    <link>https://data-se.netlify.app/categories/plotting/</link>
+    <description>Recent content in plotting on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 26 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/categories/plotting/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Some ways to plot the distribution of each variable of a data frame</title>
+      <link>https://data-se.netlify.app/2022/09/26/some-ways-to-plot-the-distribution-of-each-variable-of-a-data-frame/</link>
+      <pubDate>Mon, 26 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2022/09/26/some-ways-to-plot-the-distribution-of-each-variable-of-a-data-frame/</guid>
+      <description>1 Motivation 2 Load packages 3 Load data 4 Let’s plot 4.1 Way 1 4.2 Way 2 4.3 Way 3 4.4 Way 4 5 Reproducibility 1 Motivation Often times, in explorative data analysis, one would like to plot the distribution of the relevant variables. Whereas ggplot provides handy tools to plot one variable after each other, it would come handy to plot ’em all in one go.
+Of course, there are many ways to achieve this comfort.</description>
+    </item>
+    
+    <item>
+      <title>Talent and Looks -- Collider bias</title>
+      <link>https://data-se.netlify.app/2021/06/24/talent-and-looks-collider-bias/</link>
+      <pubDate>Thu, 24 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2021/06/24/talent-and-looks-collider-bias/</guid>
+      <description>Background Some musing on the collider bias.
+Let’s try to reverse engineer this image
+Setup library(tidyverse) library(ggdag) Simulate some data n &amp;lt;- 1000 d &amp;lt;- tibble( x = rnorm(n, mean = 0, sd = 1), y = rnorm(n, mean = 0, sd = 1), e = rnorm(n, mean = 0, sd = 0.3), z = abs(x) * abs(y)) d: Uncorrelated data The farer from the centroid the lighter the color.</description>
+    </item>
+    
+  </channel>
+</rss>

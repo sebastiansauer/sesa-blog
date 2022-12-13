@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>datajudo on sesa blog</title>
+    <link>https://data-se.netlify.app/tags/datajudo/</link>
+    <description>Recent content in datajudo on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 03 Jul 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/datajudo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Testing multiple vectors for equality</title>
+      <link>https://data-se.netlify.app/2019/07/03/testing-multiple-vectors-for-equality/</link>
+      <pubDate>Wed, 03 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2019/07/03/testing-multiple-vectors-for-equality/</guid>
+      <description>Load packages library(tidyverse) Problem statement Assume we have some vectors (eg, 3), and we want to check if they are equal (the same elements in each vector). Assume further we do not in advance the number of vectors to check.
+Here’s some toy data.
+a&amp;lt;- c(1,2,3,4) b&amp;lt;- c(1,2,3,5) c&amp;lt;- c(1,3,4,5) The gist This soluation is based on the code of Akrun from this SO post (slightly adapted).
+sum(reduce(map2(list(a,b,c), list(a), `==`), `&amp;amp;`)) #&amp;gt; [1] 1 Explanation Let’s break that in handy pieces to get a grip on it.</description>
+    </item>
+    
+  </channel>
+</rss>

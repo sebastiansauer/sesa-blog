@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>metascience on sesa blog</title>
+    <link>https://data-se.netlify.app/tags/metascience/</link>
+    <description>Recent content in metascience on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 08 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/metascience/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Metadaten von Forschungsartikeln herunterladen</title>
+      <link>https://data-se.netlify.app/2021/07/08/metadaten-von-forschungsartikeln-herunterladen/</link>
+      <pubDate>Thu, 08 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2021/07/08/metadaten-von-forschungsartikeln-herunterladen/</guid>
+      <description>1 Vorbereitung 2 Via Crossref 2.1 Abfragen, einfach 3 Filter 3.1 Anzahl 4 Dois rausziehen 5 Zitationen herunterladen 6 Abstracts herunterladen 6.1 “Safely” Abstracts herunterladen 6.2 Artikel nur mit Abstracts 6.3 Abstract mit cr_abstract 6.4 Check 6.5 Auf einen Haps 7 Andere APIs 7.1 Google Scholar hat keine API, wie es aussieht 7.1.1 Weitere API 1 Vorbereitung library(tidyverse) library(printr) library(rcrossref) library(gt) 2 Via Crossref Von der Crossref-Webseite:
+Crossref makes research outputs easy to find, cite, link, assess, and reuse.</description>
+    </item>
+    
+    <item>
+      <title>Review of &#34;The 7 Deadly Sins of Psychology&#34; by Chris Chambers</title>
+      <link>https://data-se.netlify.app/2017/06/22/seven-sins/</link>
+      <pubDate>Thu, 22 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2017/06/22/seven-sins/</guid>
+      <description>tl;dr: great book. Read.
+The &amp;ldquo;Seven Sins&amp;rdquo; is concerned about the validity of psychological research. Can we at all, or to what degree, be certain about the conclusions reached in psychological research? More recently, replications efforts have cast doubt on our confidence in psychological research (1). In a similar vein, a recent papers states that in many research areas, researchers mostly report &amp;ldquo;successes&amp;rdquo; in the sense of that they report that their studies confirm their hypotheses - with Psychology leading in the proportion of supported hypotheses (2).</description>
+    </item>
+    
+  </channel>
+</rss>

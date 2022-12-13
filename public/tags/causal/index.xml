@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>causal on sesa blog</title>
+    <link>https://data-se.netlify.app/tags/causal/</link>
+    <description>Recent content in causal on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 01 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/causal/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Simulation on controlling confounders</title>
+      <link>https://data-se.netlify.app/2021/12/01/simulation-on-controlling-confounders/</link>
+      <pubDate>Wed, 01 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2021/12/01/simulation-on-controlling-confounders/</guid>
+      <description>Confounder A confounder is on of the few (maybe three) “atoms” of causality, following the framework of Judea Parl and others.
+A confounder can be depicted like this:
+Following a study that reported a strong correlation between chocolate consumption and Nobel prices.
+Simulating a confounder structure Now let’s simulate a simple confounder structure.
+Here’s some code that will help us:
+Let’s have a look at the code:
+## ## n &amp;lt;- 100 ## ## set.</description>
+    </item>
+    
+  </channel>
+</rss>

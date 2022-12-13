@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>visualization on sesa blog</title>
+    <link>https://data-se.netlify.app/tags/visualization/</link>
+    <description>Recent content in visualization on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 30 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/visualization/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Plot timelines using ggplot</title>
+      <link>https://data-se.netlify.app/2022/11/30/plot-timelines-using-ggplot/</link>
+      <pubDate>Wed, 30 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2022/11/30/plot-timelines-using-ggplot/</guid>
+      <description>1 Load packages 2 Motivation 3 Sample data 4 Visualization 5 Debrief 6 Reproducibility 1 Load packages library(tidyverse) # data wrangling library(vistime) # time line 2 Motivation For project planing, a visualization of some time line is often useful. If it’s not the dates but rather the steps of a process, a graph of steps is more appropriate. However, if the sequence of steps is simple and rather linear, and the dates are the important piece of information to be transmitted, a kind of timeline graph is warranted.</description>
+    </item>
+    
+    <item>
+      <title>Programmatically plotting with ggplot2</title>
+      <link>https://data-se.netlify.app/2022/09/28/programmatically-plotting-with-ggplot2/</link>
+      <pubDate>Wed, 28 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2022/09/28/programmatically-plotting-with-ggplot2/</guid>
+      <description>1 Setup 2 Let’s go 2.1 Way 1 2.2 Way 2 2.3 Way 2 2.4 Way 3 2.5 Way 4 3 Further reading 4 Reproducibility 1 Setup library(tidyverse) # data wrangling library(easystats) # comfort in stats data(mtcars) In essence, we want to build this kind of plot programmatically:
+mtcars %&amp;gt;% ggplot(aes(x=hp)) + geom_histogram() 2 Let’s go 2.1 Way 1 Let’s use unquoted variable names.
+plot_descriptives0 &amp;lt;- function(data, var) { data %&amp;gt;% ggplot(aes(x = {{var}})) + geom_histogram() } plot_descriptives0(mtcars, hp) 2.</description>
+    </item>
+    
+    <item>
+      <title>FontAwesome in ggplot</title>
+      <link>https://data-se.netlify.app/2022/07/27/fontawesome-in-ggplot/</link>
+      <pubDate>Wed, 27 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2022/07/27/fontawesome-in-ggplot/</guid>
+      <description>1 Load packages 2 Reproducibility 1 Load packages library(tidyverse) # data wrangling Use Case
+Sometimes it is nice to decorate your posts with some FontAwesome Icons.
+The easiest way is to use {fontawesome} with the fa() functin.
+However, to get images instead of a font, try the following appraoch:
+library(emojifont) library(patchwork) p1 &amp;lt;- ggplot() + geom_fontawesome(&amp;quot;fa-bolt&amp;quot;, color=&amp;#39;steelblue&amp;#39;) + theme_void() p2 &amp;lt;- ggplot() + geom_fontawesome(&amp;quot;fa-rocket&amp;quot;, color = &amp;quot;steelblue&amp;quot;) + theme_void() p1 + p2 Alternatively: to p1 + p2:</description>
+    </item>
+    
+    <item>
+      <title>FontAwesome in R and R Markdown</title>
+      <link>https://data-se.netlify.app/2022/07/27/fontawesome-in-r-and-r-markdown/</link>
+      <pubDate>Wed, 27 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2022/07/27/fontawesome-in-r-and-r-markdown/</guid>
+      <description>1 Load packages 2 Use Case 3 Way 4 Reproducibility 1 Load packages library(tidyverse) # data wrangling 2 Use Case Some times some nice emojis or icons are of benefit for your new post, right?
+But, what’s a useful way to implement icons?
+3 Way Here’s a quick way of incorporating FontAwesome icons to your RMarkdown document:
+&amp;lt;center&amp;gt; &amp;lt;font size=&amp;quot;15&amp;quot;&amp;gt; ```r library(fontawesome) fa(&amp;quot;r-project&amp;quot;, fill = &amp;quot;steelblue&amp;quot;) fa(&amp;quot;bolt-lightning&amp;quot;, fill = &amp;quot;steelblue&amp;quot;) fa(&amp;quot;discourse&amp;quot;, fill = &amp;quot;steelblue&amp;quot;) fa(&amp;quot;rocket&amp;quot;, fill = &amp;quot;steelblue&amp;quot;) ``` &amp;lt;/font&amp;gt; &amp;lt;/center&amp;gt; Which renders as:</description>
+    </item>
+    
+    <item>
+      <title>3D Regression plane with scatter plot</title>
+      <link>https://data-se.netlify.app/2022/04/19/3d-regression-plane-with-scatter-plot/</link>
+      <pubDate>Tue, 19 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2022/04/19/3d-regression-plane-with-scatter-plot/</guid>
+      <description>1 Load packages 2 Define model 3 Define grid for regression plane 4 Scatter Plot 5 Scatter plot with 3D surface 6 Reproducibility 1 Load packages library(tidyverse) # data wrangling library(plotly) # 3D plot interactive 2 Define model Here’s the linear model with 2 predictors, giving us a model that can be visualized in 3D:
+lm1 &amp;lt;- lm(mpg ~ hp + disp, data = mtcars) As is standard, we’ll predict mpg.</description>
+    </item>
+    
+    <item>
+      <title>Simple nomnoml in R examples</title>
+      <link>https://data-se.netlify.app/2022/04/02/simple-nomnoml-in-r-examples/</link>
+      <pubDate>Sat, 02 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2022/04/02/simple-nomnoml-in-r-examples/</guid>
+      <description>1 Load packages 2 Motivation 3 Introducing Nomnoml 4 R API 5 Adjust the size 6 Change the direction 7 Size of the HTML container 8 Save to disk 9 Load from SVG 10 Caveats 11 Reproducibility 1 Load packages library(tidyverse) # data wrangling library(nomnoml) # graphs library(magick) # render SVG image 2 Motivation Sketching diagrams such as flow charts is a useful thing. There exist a number of well-known (command line) engine for that purpose, such as</description>
+    </item>
+    
+    <item>
+      <title>Visualizing error distribution in regression analysis</title>
+      <link>https://data-se.netlify.app/2022/01/27/visualizing-residual-distribution-in-regression-analysis/</link>
+      <pubDate>Thu, 27 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2022/01/27/visualizing-residual-distribution-in-regression-analysis/</guid>
+      <description>Errors and residuals in Regression A residual is defined as
+\(r_i = y_i - X_i \hat{\beta}\).
+That is, a residual is a tangible thing in the sense that it describes observables (cf. Gelman 2021, chap. 11.3, p. 161). That is, the residuals are the difference between observed and predicted values.
+In contrast, the error term is defined as the difference between the observed value and the true (unobserved) value:</description>
+    </item>
+    
+    <item>
+      <title>Visualizing a log-y regression model</title>
+      <link>https://data-se.netlify.app/2022/01/14/visualizing-a-log-y-regression-model/</link>
+      <pubDate>Fri, 14 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2022/01/14/visualizing-a-log-y-regression-model/</guid>
+      <description>Setup library(tidyverse) data(mtcars) Using a log-Y regression Gelman et al., in “Regression and other stories” are stating that “when additivity and linearity are not reasonable assumptions” it may sense to “take the logarithms of outcomes that are all positive” (p. 189).
+A log-y regression can be defined as follows, in the simplest case:
+\[\text{log} \, y = b_0 + b_1X_1 + \ldots + \epsilon\] Exponentiating both sides yields
+\[y = e^{b_0 + b_1X_1 + \ldots + \epsilon}\]</description>
+    </item>
+    
+    <item>
+      <title>Diagrams with mermaid</title>
+      <link>https://data-se.netlify.app/2021/07/01/diagrams-with-mermaid/</link>
+      <pubDate>Thu, 01 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2021/07/01/diagrams-with-mermaid/</guid>
+      <description>Setup library(tidyverse) library(DiagrammeR) Separating concept and appeal It can be useful to separate the content or concept from its graphical/visual implementation. For this reasons, slide shows have disadvantages: You spend a lot of time dragging arrows and boxes. This time would be better spend in thinking about why and where to move your arrows and boxes.
+In addition, software that intermingles concept and representation typically is a vendor lock: You cannot (easily) get out if you find some more useful softare.</description>
+    </item>
+    
+    <item>
+      <title>Overlaying facetted histograms with normal curve using ggplot2</title>
+      <link>https://data-se.netlify.app/2021/06/23/overlaying-facetted-histograms-with-normal-curve-using-ggplot2/</link>
+      <pubDate>Wed, 23 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2021/06/23/overlaying-facetted-histograms-with-normal-curve-using-ggplot2/</guid>
+      <description>Overlaying histograms with a normal curve Overlaying a histogram (possibly facetted) is not something far fetched when analyzing data. Surprisingly, it appears (to the best of my knowledge) that there’s no comfortable out-of-the-box solution in ggplot2, although it can be of course achieved with some lines of code. Here’s my take.
+Setup library(tidyverse) Some data d &amp;lt;- read_csv(&amp;quot;https://vincentarelbundock.github.io/Rdatasets/csv/openintro/speed_gender_height.csv&amp;quot;) ## Warning: Missing column names filled in: &amp;#39;X1&amp;#39; [1] ## ## ── Column specification ──────────────────────────────────────────────────────── ## cols( ## X1 = col_double(), ## speed = col_double(), ## gender = col_character(), ## height = col_double() ## ) glimpse(d) ## Rows: 1,325 ## Columns: 4 ## $ X1 &amp;lt;dbl&amp;gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, … ## $ speed &amp;lt;dbl&amp;gt; 85, 40, 87, 110, 110, 120, 90, 90, 80, 95, 110, 90, 110, 70, 10… ## $ gender &amp;lt;chr&amp;gt; &amp;quot;female&amp;quot;, &amp;quot;male&amp;quot;, &amp;quot;female&amp;quot;, &amp;quot;female&amp;quot;, &amp;quot;male&amp;quot;, &amp;quot;female&amp;quot;, &amp;quot;female… ## $ height &amp;lt;dbl&amp;gt; 69, 71, 64, 60, 70, 61, 65, 65, 61, 69, 63, 72, 70, 68, 63, 78,… d %&amp;gt;% slice_head(n = 5) ## # A tibble: 5 x 4 ## X1 speed gender height ## &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;dbl&amp;gt; ## 1 1 85 female 69 ## 2 2 40 male 71 ## 3 3 87 female 64 ## 4 4 110 female 60 ## 5 5 110 male 70 Preparing data We’ll use a “total” histogram for the whole sample, to that end, we’ll need to remove the grouping information from the data.</description>
+    </item>
+    
+    <item>
+      <title>Plotting multiple plots using purrr::map and ggplot</title>
+      <link>https://data-se.netlify.app/2021/02/06/plotting-multiple-plots-using-purrr-map-and-ggplot/</link>
+      <pubDate>Sat, 06 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2021/02/06/plotting-multiple-plots-using-purrr-map-and-ggplot/</guid>
+      <description>1 Load packages 2 Sample data 3 Motivation 4 Way 1 5 Way 2 6 Way 3 7 More general 8 Introducing curly-curly 9 Reproducibility 1 Load packages library(tidyverse) # data wrangling 2 Sample data mtcars to the rescue!
+mtcars &amp;lt;- read_csv(&amp;quot;https://vincentarelbundock.github.io/Rdatasets/csv/datasets/mtcars.csv&amp;quot;) 3 Motivation Say we have a data frame where we would like to plot each numeric variables’s distribution.
+There are a number of good solutions outthere such as this one, or here, or here.</description>
+    </item>
+    
+    <item>
+      <title>Plotting a regression surface (3D)</title>
+      <link>https://data-se.netlify.app/2020/12/08/plotting-a-regression-surface-3d/</link>
+      <pubDate>Tue, 08 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2020/12/08/plotting-a-regression-surface-3d/</guid>
+      <description>Load packages library(tidyverse) library(plotly) Data Some sample data
+data(tips, package= &amp;quot;reshape2&amp;quot;) Regression model lm1 &amp;lt;- lm(tip ~ total_bill + size, data = tips) lm1_coef &amp;lt;- coef(lm1) Sequence x1_seq &amp;lt;- seq(min(tips$total_bill), max(tips$total_bill), length.out = 25) x2_seq &amp;lt;- seq(min(tips$size), max(tips$size), length.out = 6) Compute grid z2 &amp;lt;- t(outer(x1_seq, x2_seq, function(x,y) lm1_coef[1]+lm1_coef[2]*x+lm1_coef[3]*y)) z2 #&amp;gt; [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] #&amp;gt; [1,] 1.146172 1.330595 1.515017 1.699439 1.883862 2.068284 2.252706 2.437128 #&amp;gt; [2,] 1.</description>
+    </item>
+    
+    <item>
+      <title>Ex: Visualizing diamonds</title>
+      <link>https://data-se.netlify.app/2020/12/07/ex-visualizing-diamonds/</link>
+      <pubDate>Mon, 07 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2020/12/07/ex-visualizing-diamonds/</guid>
+      <description>1 Load packages 2 Load data 3 Objective 4 Plot 1 5 Plot 2 6 Plot 3: Interactive plot 7 Reproducibility 1 Load packages library(tidyverse) # data wrangling library(plotly) # make interactive JS plots library(printr) # print dataframes as tables 2 Load data data_url &amp;lt;- &amp;quot;https://vincentarelbundock.github.io/Rdatasets/csv/ggplot2/diamonds.csv&amp;quot; diamonds &amp;lt;- read_csv(data_url) glimpse(diamonds) #&amp;gt; Rows: 53,940 #&amp;gt; Columns: 11 #&amp;gt; $ X1 &amp;lt;dbl&amp;gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18… #&amp;gt; $ carat &amp;lt;dbl&amp;gt; 0.</description>
+    </item>
+    
+    <item>
+      <title>Fallstudie zur Datenvisualisierung -- Datensatz &#34;flights&#34;</title>
+      <link>https://data-se.netlify.app/2020/11/12/fallstudie-zur-datenvisualisierung-datensatz-flights/</link>
+      <pubDate>Thu, 12 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2020/11/12/fallstudie-zur-datenvisualisierung-datensatz-flights/</guid>
+      <description>1 Vorbereitung 2 Aufgaben zur Datenvisualisierung 3 Hinweise 4 Lösungen 4.1 1. Visualisieren Sie die Verteilung der Verspätungen der Flüge. 4.2 2. Visualisieren Sie die Verteilung der Verspätung der Flüge pro Abflugsort. 4.3 3. Visualisieren Sie den Zusammenhang von Verspätung und Tageszeit. Reduzieren Sie dabei Overplotting. 4.4 4. Visualisieren Sie den Zusammenhang von Verspätung und Flugstrecke (distance) – aufgeteilt nach Abflugsort und nach Monat! 4.5 5. Visualisieren Sie den Zusammenhang von Verspätung und Tageszeit – für die drei Airlines mit der höchsten Durchschnittsverspätung.</description>
+    </item>
+    
+    <item>
+      <title>Visualizing decision trees</title>
+      <link>https://data-se.netlify.app/2020/10/17/visualizing-decision-trees/</link>
+      <pubDate>Sat, 17 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2020/10/17/visualizing-decision-trees/</guid>
+      <description>Load packages library(tidyverse) #remotes::install_github(&amp;quot;grantmcdermott/parttree&amp;quot;) library(parttree) library(rpart) library(rpart.plot) library(parsnip) library(titanic) library(tidyverse) Train learner Build the tree using parsnip with rpart as the model engine:
+set.seed(123) titanic_train$Survived = as.factor(titanic_train$Survived) ti_tree = decision_tree() %&amp;gt;% set_engine(&amp;quot;rpart&amp;quot;) %&amp;gt;% set_mode(&amp;quot;classification&amp;quot;) %&amp;gt;% fit(Survived ~ Pclass + Age, data = titanic_train) Plot the model partitions titanic_train %&amp;gt;% ggplot(aes(x=Pclass, y=Age)) + geom_jitter(aes(col=Survived), alpha=0.7) + geom_parttree(data = ti_tree, aes(fill=Survived), alpha = 0.1) + theme_minimal() Plot the tree
+rpart.plot(ti_tree[[&amp;quot;fit&amp;quot;]], box.palette=&amp;quot;RdBu&amp;quot;, shadow.</description>
+    </item>
+    
+    <item>
+      <title>Ornaments with ggformula</title>
+      <link>https://data-se.netlify.app/2019/02/12/ornaments-with-gformula/</link>
+      <pubDate>Tue, 12 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2019/02/12/ornaments-with-gformula/</guid>
+      <description>Since some time, there’s a wrapper for ggplot2 available, bundled in the package ggformula. One nice thing is that in that it plays nicely with the popular R package mosaic. mosaic provides some useful functions for modeling along with a tamed and consistent syntax. In this post, we will discuss some “ornaments”, that is, some details of beautification of a plot. I confess that every one will deem it central, but in some cases in comes in handy to know how to “refine” a plot using ggformula.</description>
+    </item>
+    
+    <item>
+      <title>Visualizing mean values between two groups  - the tidyverse way</title>
+      <link>https://data-se.netlify.app/2018/06/10/visualizing-summary-statistics-the-tidyverse-way/</link>
+      <pubDate>Sun, 10 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/06/10/visualizing-summary-statistics-the-tidyverse-way/</guid>
+      <description>A frequent job in data visualizing is to present summary statistics. In this post, I show one way to plot mean values between groups using the tidyverse approach in comparison to the mosaic way.
+library(tidyverse) data(mtcars) library(mosaic) library(knitr) library(sjmisc) library(sjPlot) Visualizing mean values between two groups First, let’s compute the mean hp for automatic cars (am == 0) vs. manual cars (am == 1).
+mtcars %&amp;gt;% group_by(am) %&amp;gt;% summarise(hp_am = mean(hp)) -&amp;gt; hp_am Now just hand over this data frame of summarized data to ggplot:</description>
+    </item>
+    
+    <item>
+      <title>Playing around with geo mapping: combining demographic data with spatial data</title>
+      <link>https://data-se.netlify.app/2018/05/28/playing-around-with-geo-mapping-combining-demographic-data-with-spatial-data/</link>
+      <pubDate>Mon, 28 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2018/05/28/playing-around-with-geo-mapping-combining-demographic-data-with-spatial-data/</guid>
+      <description>In this post, we will play around with some basic geo mapping. More preciseyl, we will explore some easy ways to plot a choropleth map.
+First, let’s load some geo data from Bundeswahlleiter, and combine it with some socio demographic data from the same source.
+Preparation Let’s load some packages:
+library(tidyverse) ## Warning: package &amp;#39;dplyr&amp;#39; was built under R version 3.5.1 library(sf) library(viridis) suppressPackageStartupMessages(library(googleVis)) Geo data:
+my_path_wahlkreise &amp;lt;- &amp;quot;~/Documents/datasets/geo_maps/btw17_geometrie_wahlkreise_shp/Geometrie_Wahlkreise_19DBT.shp&amp;quot; file.</description>
+    </item>
+    
+    <item>
+      <title>Error bars for interaction effects with nominal variables</title>
+      <link>https://data-se.netlify.app/2017/04/18/moderator-errorbars/</link>
+      <pubDate>Tue, 18 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2017/04/18/moderator-errorbars/</guid>
+      <description>Moderator effects (ie., interaction or synergy effects) are a topic of frequent interest in many sciences braches. A lot ink has been spilled over this topic (so did I, eg., here).
+However, in that post I did now show how to visualize error in case of nominal (categorical) independent variable, and categorical moderator.
+Luckily, visualization of this case is quite straight forward with ggplot2.
+First, some data and packages to be loaded:</description>
+    </item>
+    
+  </channel>
+</rss>
