@@ -176,11 +176,11 @@ lm1_coef <- coef(lm1)
 lm1_coef
 ```
 
-## Stan
+## Stan mtcars
 
 
 ```{r stan1}
-lm2 <- stan_glm(mpg ~ hp, data = mtcars, refresh = 0)
+lm2 <- stan_glm(mpg ~ hp, data = mtcars, seed = 42, refresh = 0)
 lm2_coef <- coef(lm2)
 lm2_coef
 ```
@@ -191,11 +191,46 @@ Rerun:
 
 
 ```{r stan2}
-lm2 <- stan_glm(mpg ~ hp, data = mtcars, refresh = 0)
+lm2 <- stan_glm(mpg ~ hp, data = mtcars, seed = 42, refresh = 0)
 lm2_coef <- coef(lm2)
 lm2_coef
 ```
 
+
+## Stan penguins
+
+Import data and run the model:
+
+
+
+
+```{r}
+penguins <- read.csv("https://vincentarelbundock.github.io/Rdatasets/csv/palmerpenguins/penguins.csv")
+
+library(rstanarm)
+lm3 <- stan_glm(body_mass_g ~ bill_length_mm, 
+                seed = 42,
+                refresh = 0,
+                data = penguins)
+coef(lm3)
+```
+
+
+By the way: 
+
+Copy-paste the chunk above (which is self-containing in terms of data and R packages) and then type `reprex::reprex()` in the console (you need to have the package  `reprex` installed). You'll get a reproducible example on your clipboard.
+
+
+Rerun:
+
+
+```{r}
+lm3 <- stan_glm(body_mass_g ~ bill_length_mm, 
+                seed = 42,
+                refresh = 0,
+                data = penguins)
+coef(lm3)
+```
 
 
 # Session info
@@ -204,7 +239,6 @@ lm2_coef
 ## Reproducibility info
 options(width = 120)
 devtools::session_info()
-
 ```
 
 
