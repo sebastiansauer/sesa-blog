@@ -202,6 +202,9 @@ Identical.
 
 We can conclude that the data is identical across the methods (leaving the first column aside).
 
+Note that no random numbers where involved in this analysis.
+
+
 
 # Reproducibility
 
