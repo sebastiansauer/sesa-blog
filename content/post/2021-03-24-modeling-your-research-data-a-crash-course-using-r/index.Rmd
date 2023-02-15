@@ -82,10 +82,16 @@ Upon successful completion of this course, students should be able to:
 - apply the methods to own datasets
 
 
+
+# Course website (book)
+
+The course book (in form of a website) can be found [here](https://stats-nutshell.netlify.app/).
+
+
 # Course Literature
 
 
-This course builds on the freely available e-book [ModernDive](https://moderndive.com/index.html). Each topic is paralleled by an ackompagnying chapter from ModernDive. A hard copy can be purchased [here](https://moderndive.com/index.html). The book is for sale in print [here](https://www.routledge.com/Statistical-Inference-via-Data-Science-A-ModernDive-into-R-and-the-Tidyverse/Ismay-Kim/p/book/9780367409821?utm_source=crcpress.com&utm_medium=referral).
+This course builds on the freely available e-book [ModernDive](https://moderndive.com/index.html).  A hard copy can be purchased [here](https://moderndive.com/index.html). The book is for sale in print [here](https://www.routledge.com/Statistical-Inference-via-Data-Science-A-ModernDive-into-R-and-the-Tidyverse/Ismay-Kim/p/book/9780367409821?utm_source=crcpress.com&utm_medium=referral).
 
 
 
@@ -111,7 +117,7 @@ All learning materials (such as literature, code, data) will be provided in elec
 - Students new to R are advised to learn the basics, see [ModernDive, Chap 1.2 - 1.5](https://moderndive.com/1-getting-started.html#code)
 - Sign-up to [RStudio Cloud](https://rstudio.cloud/)
 - Bring your own laptop
-    - With R and RStudio installed
+    - With R and RStudio installed, alternatively [RStudio Cloud](https://posit.cloud/plans/free) can be used
     - Browse to the [textbook website for this course](ttps://moderndive.com)
 - Make sure your internet connection is stable and your loudspeaker/headset is working; a webcam is helpful.
 - Students are advised to review the course materials after each session.
@@ -124,6 +130,8 @@ This course can rather be considered a workshop in the sense that the instructor
 
 
 # Schedule
+
+*Important: Depending on the time frame, the background of the students and the objectives of the students, we may not touch on each item of the schedule but rather, focus on a part of the schedule.*
 
 
 ## Overview on topics covered

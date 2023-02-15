@@ -41,11 +41,12 @@ library(tidyverse)  # data wrangling
 library(gridExtra)
 library(grid)
 library(gt)
+library(ggpubr)
 ```
 
 
 
-# Show case 1
+# Show case 1: grid.table
 
 
 ```{r}
@@ -62,7 +63,7 @@ plot(tableGrob(d))
 ```
 
 
-# Show case 2
+# Show case 2: tableGrob
 
 The following R code is taken [from this source](https://stackoverflow.com/questions/68517917/r-ggplot-and-gt-outputs-how-can-i-combine-these-on-an-output-image):
 
@@ -79,7 +80,7 @@ tab <-
 grid.arrange(GGP,tableGrob(tab))
 ```
 
-# Show case 3
+# Show case 3: Reduce whitespace
 
 Let's get rid of white space.
 
@@ -102,6 +103,16 @@ mytheme <- gridExtra::ttheme_default(
 mytable <- tableGrob(mtcars, theme = mytheme)
 grid.arrange(mytable)
 ```
+
+# Show case 4: ggpubr
+
+The package `ggpubr` offers some nice capabilities for plotting tables as ggplot objects:
+
+```{r}
+library(ggpubr)
+ggpubr::ggtexttable(head(mtcars), rows = NULL)
+```
+
 
 
 # Reproducibility
