@@ -43,6 +43,11 @@ library(viridisLite)
 ```
 
 
+# Spiro
+
+These images and their code are taken from the [phantastic Spiro R package](https://wjschne.github.io/spiro/articles/Gallery/Gallery.html) bei [W. J. Schneider](https://github.com/wjschne).
+
+
 # You're my favorite
 
 ```{r}

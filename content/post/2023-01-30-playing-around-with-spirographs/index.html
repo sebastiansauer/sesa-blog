@@ -18,8 +18,9 @@ output:
 <div id="TOC">
 <ul>
 <li><a href="#load-packages" id="toc-load-packages"><span class="toc-section-number">1</span> Load packages</a></li>
-<li><a href="#youre-my-favorite" id="toc-youre-my-favorite"><span class="toc-section-number">2</span> You’re my favorite</a></li>
-<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">3</span> Reproducibility</a></li>
+<li><a href="#spiro" id="toc-spiro"><span class="toc-section-number">2</span> Spiro</a></li>
+<li><a href="#youre-my-favorite" id="toc-youre-my-favorite"><span class="toc-section-number">3</span> You’re my favorite</a></li>
+<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">4</span> Reproducibility</a></li>
 </ul>
 </div>
 
@@ -29,8 +30,12 @@ output:
 library(spiro)
 library(viridisLite)</code></pre>
 </div>
-<div id="youre-my-favorite" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> You’re my favorite</h1>
+<div id="spiro" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Spiro</h1>
+<p>These images and their code are taken from the <a href="https://wjschne.github.io/spiro/articles/Gallery/Gallery.html">phantastic Spiro R package</a> bei <a href="https://github.com/wjschne">W. J. Schneider</a>.</p>
+</div>
+<div id="youre-my-favorite" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> You’re my favorite</h1>
 <pre class="r"><code>k &lt;- 36
 files &lt;- paste0(&quot;s&quot;, 1:k, &quot;.svg&quot;)
 pen_radii &lt;- seq(3.8, 1.5, length.out = k)
@@ -69,8 +74,8 @@ tibble::tibble(
     stops = c(0.42,0.93,0.96,0.97,1))</code></pre>
 <p><img src="bitmap.png" /></p>
 </div>
-<div id="reproducibility" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Reproducibility</h1>
+<div id="reproducibility" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Reproducibility</h1>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value
 #&gt;  version  R version 4.2.1 (2022-06-23)
