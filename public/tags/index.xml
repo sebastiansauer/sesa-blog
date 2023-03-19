@@ -6,22 +6,49 @@
     <description>Recent content in Tags on sesa blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 13 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 03 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>simulation</title>
-      <link>https://data-se.netlify.app/tags/simulation/</link>
-      <pubDate>Tue, 13 Dec 2022 00:00:00 +0000</pubDate>
+      <title>ggplot2</title>
+      <link>https://data-se.netlify.app/tags/ggplot2/</link>
+      <pubDate>Fri, 03 Feb 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://data-se.netlify.app/tags/simulation/</guid>
+      <guid>https://data-se.netlify.app/tags/ggplot2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>visualization</title>
       <link>https://data-se.netlify.app/tags/visualization/</link>
-      <pubDate>Wed, 30 Nov 2022 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 03 Feb 2023 00:00:00 +0000</pubDate>
       
       <guid>https://data-se.netlify.app/tags/visualization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>datawrangling</title>
+      <link>https://data-se.netlify.app/tags/datawrangling/</link>
+      <pubDate>Thu, 19 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/tags/datawrangling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tidyverse</title>
+      <link>https://data-se.netlify.app/tags/tidyverse/</link>
+      <pubDate>Mon, 16 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/tags/tidyverse/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>simulation</title>
+      <link>https://data-se.netlify.app/tags/simulation/</link>
+      <pubDate>Tue, 13 Dec 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/tags/simulation/</guid>
       <description></description>
     </item>
     
@@ -40,24 +67,6 @@
       <pubDate>Wed, 28 Sep 2022 00:00:00 +0000</pubDate>
       
       <guid>https://data-se.netlify.app/tags/dataviz/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ggplot2</title>
-      <link>https://data-se.netlify.app/tags/ggplot2/</link>
-      <pubDate>Wed, 28 Sep 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://data-se.netlify.app/tags/ggplot2/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tidyverse</title>
-      <link>https://data-se.netlify.app/tags/tidyverse/</link>
-      <pubDate>Wed, 28 Sep 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://data-se.netlify.app/tags/tidyverse/</guid>
       <description></description>
     </item>
     
@@ -94,15 +103,6 @@
       <pubDate>Wed, 27 Jul 2022 00:00:00 +0000</pubDate>
       
       <guid>https://data-se.netlify.app/tags/rmarkdown/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>datawrangling</title>
-      <link>https://data-se.netlify.app/tags/datawrangling/</link>
-      <pubDate>Sun, 24 Jul 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://data-se.netlify.app/tags/datawrangling/</guid>
       <description></description>
     </item>
     
