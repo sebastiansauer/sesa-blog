@@ -91,7 +91,7 @@ Notice that the file name, here `oecd-wellbegin.csv` need to be changed accordin
 
 
 ```{r echo = FALSE}
-oecd <- read.csv("/Users/sebastiansaueruser/Documents/Publikationen/blog_ses/sebastiansauer.github.io/data/oecd-wellbeing.csv")
+oecd <- read.csv("~/datasets/oecd-wellbeing.csv")
 ```
 
 

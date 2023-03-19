@@ -6,7 +6,6 @@ draft: FALSE
 slug: change-standard-theme-of-ggplot
 categories:
   - dataviz
-  
 tags:
   - plotting
   - ggplot2

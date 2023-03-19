@@ -12,21 +12,6 @@ tags:
   
 ---
 
----
-title: Why is the sample mean a good point estimator for the population parameter?
-  A simulation.
-author: Sebastian Sauer
-date: '2018-05-18'
-slug: why-is-the-sample-mean-a-good-point-estimator-for-the-population-parameter-a-simulation
-categories:
-  - R
-tags:
-  
-  - inference
-  - intuition
-  - simulation
----
-
 
 It is frequently stated that the sample mean is a good or even the best point estimator of the according population value. But why is that? In this post we are trying to get an intuition by using simulation inference methods.
 

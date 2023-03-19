@@ -4,9 +4,9 @@ author: ''
 date: '2018-10-16'
 slug: oecd-wellbeing-dataset-2016
 categories:
-  - rstats
+  
 tags:
-  - rstats
+  
   - data
 ---
 
@@ -51,11 +51,11 @@ Societal progress is about improvements in the well-being of people and househol
 <pre class="r"><code>inspect(oecd)
 #&gt; 
 #&gt; categorical variables:  
-#&gt;          name  class levels   n missing
-#&gt; 1     Country factor     35 429       0
-#&gt; 2      Region factor    427 429       0
-#&gt; 3 region_type factor      2 429       0
-#&gt; 4        Code factor    429 429       0
+#&gt;          name     class levels   n missing
+#&gt; 1     Country character     35 429       0
+#&gt; 2      Region character    427 429       0
+#&gt; 3 region_type character      2 429       0
+#&gt; 4        Code character    429 429       0
 #&gt;                                    distribution
 #&gt; 1 United States (12.1%), Mexico (7.7%) ...     
 #&gt; 2 Luxembourg (0.5%), Mexico (0.5%) ...         
@@ -63,35 +63,52 @@ Societal progress is about improvements in the well-being of people and househol
 #&gt; 4 AT11 (0.2%), AT12 (0.2%) ...                 
 #&gt; 
 #&gt; quantitative variables:  
-#&gt;                        name   class min    Q1 median  Q3 max     mean
-#&gt; 1                 Education numeric   0 5.525    7.9 9.0  10 6.811972
-#&gt; 2                      Jobs numeric   0 5.200    6.9 8.1  10 6.450350
-#&gt; 3                    Income numeric   0 2.000    4.1 5.4  10 4.106993
-#&gt; 4                    Safety numeric   0 5.700    8.3 9.5  10 7.049650
-#&gt; 5                    Health numeric   0 3.100    6.3 8.2  10 5.726340
-#&gt; 6               Environment numeric   0 3.200    5.5 7.5  10 5.400699
-#&gt; 7          Civic_engagement numeric   0 3.100    5.0 7.2  10 5.054312
-#&gt; 8  Accessiblity_to_services numeric   0 5.700    7.2 8.3  10 6.527040
-#&gt; 9                   Housing numeric   0 1.700    5.0 7.2  10 4.796721
-#&gt; 10                Community numeric   0 5.600    7.8 8.8  10 6.875765
-#&gt; 11        Life_satisfaction numeric   0 3.700    6.3 8.5  10 5.799765
-#&gt;          sd   n missing
-#&gt; 1  2.968513 426       3
-#&gt; 2  2.407170 429       0
-#&gt; 3  2.699757 429       0
-#&gt; 4  3.228861 429       0
-#&gt; 5  2.927557 429       0
-#&gt; 6  2.734365 429       0
-#&gt; 7  2.848784 429       0
-#&gt; 8  2.645392 429       0
-#&gt; 9  3.024460 427       2
-#&gt; 10 2.746413 425       4
-#&gt; 11 2.895454 425       4</code></pre>
+#&gt;                        name   class min    Q1 median  Q3 max     mean       sd
+#&gt; 1                 Education numeric   0 5.525    7.9 9.0  10 6.811972 2.968513
+#&gt; 2                      Jobs numeric   0 5.200    6.9 8.1  10 6.450350 2.407170
+#&gt; 3                    Income numeric   0 2.000    4.1 5.4  10 4.106993 2.699757
+#&gt; 4                    Safety numeric   0 5.700    8.3 9.5  10 7.049650 3.228861
+#&gt; 5                    Health numeric   0 3.100    6.3 8.2  10 5.726340 2.927557
+#&gt; 6               Environment numeric   0 3.200    5.5 7.5  10 5.400699 2.734365
+#&gt; 7          Civic_engagement numeric   0 3.100    5.0 7.2  10 5.054312 2.848784
+#&gt; 8  Accessiblity_to_services numeric   0 5.700    7.2 8.3  10 6.527040 2.645392
+#&gt; 9                   Housing numeric   0 1.700    5.0 7.2  10 4.796721 3.024460
+#&gt; 10                Community numeric   0 5.600    7.8 8.8  10 6.875765 2.746413
+#&gt; 11        Life_satisfaction numeric   0 3.700    6.3 8.5  10 5.799765 2.895454
+#&gt;      n missing
+#&gt; 1  426       3
+#&gt; 2  429       0
+#&gt; 3  429       0
+#&gt; 4  429       0
+#&gt; 5  429       0
+#&gt; 6  429       0
+#&gt; 7  429       0
+#&gt; 8  429       0
+#&gt; 9  427       2
+#&gt; 10 425       4
+#&gt; 11 425       4</code></pre>
 <p>Let’s print it as a nice table, but only the first couple of lines:</p>
 <pre class="r"><code>oecd %&gt;% 
   head() %&gt;% 
   kable()</code></pre>
 <table>
+<colgroup>
+<col width="5%" />
+<col width="10%" />
+<col width="7%" />
+<col width="2%" />
+<col width="5%" />
+<col width="2%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="6%" />
+<col width="9%" />
+<col width="14%" />
+<col width="4%" />
+<col width="5%" />
+<col width="10%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">Country</th>

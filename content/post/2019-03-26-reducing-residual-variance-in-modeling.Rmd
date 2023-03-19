@@ -4,7 +4,7 @@ author: Sebastian Sauer
 date: '2019-03-26'
 slug: reducing-residual-variance-in-modeling
 categories:
-  
+  - rstats
 tags:
   - tutorial
 ---
