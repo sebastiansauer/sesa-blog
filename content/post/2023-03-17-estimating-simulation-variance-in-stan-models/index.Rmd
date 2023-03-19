@@ -40,6 +40,7 @@ knitr::opts_chunk$set(
 ```{r load-libs, message = FALSE, warning = FALSE}
 library(tidyverse)  # data wrangling
 library(rstanarm)
+library(gt)
 ```
 
 
@@ -277,7 +278,12 @@ main_results <-
             TeachingRatings_results1,
             tips_results1)
 
-knitr::kable(main_results)
+out2 <- main_results %>% 
+  mutate(across(where(is.numeric), round, 3))
+
+
+gt(main_results) %>% 
+  fmt_number(where(is.numeric), decimals = 3)
 ```
 
 

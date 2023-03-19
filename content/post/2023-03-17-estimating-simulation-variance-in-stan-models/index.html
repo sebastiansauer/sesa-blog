@@ -39,7 +39,8 @@ output:
 <div id="load-packages" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Load packages</h1>
 <pre class="r"><code>library(tidyverse)  # data wrangling
-library(rstanarm)</code></pre>
+library(rstanarm)
+library(gt)</code></pre>
 </div>
 <div id="motivation" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Motivation</h1>
@@ -431,139 +432,531 @@ TeachingRatings_results1
             TeachingRatings_results1,
             tips_results1)
 
-knitr::kable(main_results)</code></pre>
-<table>
-<colgroup>
-<col width="12%" />
-<col width="7%" />
-<col width="8%" />
-<col width="8%" />
-<col width="8%" />
-<col width="7%" />
-<col width="8%" />
-<col width="8%" />
-<col width="8%" />
-<col width="6%" />
-<col width="6%" />
-<col width="6%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">dataset</th>
-<th align="right">std_dev</th>
-<th align="right">variance</th>
-<th align="right">arithm_mean</th>
-<th align="right">med</th>
-<th align="right">iqr</th>
-<th align="right">max_value</th>
-<th align="right">min_value</th>
-<th align="right">max_minus_min</th>
-<th align="right">max_to_min</th>
-<th align="right">var_coeff</th>
-<th align="right">rel_var</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Boston_out</td>
-<td align="right">0.0000853</td>
-<td align="right">0.000000e+00</td>
-<td align="right">2.056740e-02</td>
-<td align="right">2.057130e-02</td>
-<td align="right">0.0001293</td>
-<td align="right">2.073810e-02</td>
-<td align="right">2.035570e-02</td>
-<td align="right">0.0003824</td>
-<td align="right">1.0187857</td>
-<td align="right">0.0041463</td>
-<td align="right">0.0000004</td>
-</tr>
-<tr class="even">
-<td align="left">gtcars_out</td>
-<td align="right">199.5381803</td>
-<td align="right">3.981549e+04</td>
-<td align="right">-2.119879e+04</td>
-<td align="right">-2.116808e+04</td>
-<td align="right">258.0704273</td>
-<td align="right">-2.085120e+04</td>
-<td align="right">-2.185156e+04</td>
-<td align="right">1000.3590151</td>
-<td align="right">0.9542202</td>
-<td align="right">-0.0094127</td>
-<td align="right">-1.8781958</td>
-</tr>
-<tr class="odd">
-<td align="left">msleep_out</td>
-<td align="right">0.0000467</td>
-<td align="right">0.000000e+00</td>
-<td align="right">7.708600e-03</td>
-<td align="right">7.704800e-03</td>
-<td align="right">0.0000656</td>
-<td align="right">7.827800e-03</td>
-<td align="right">7.570000e-03</td>
-<td align="right">0.0002578</td>
-<td align="right">1.0340531</td>
-<td align="right">0.0060634</td>
-<td align="right">0.0000003</td>
-</tr>
-<tr class="even">
-<td align="left">mtcars_out</td>
-<td align="right">0.0113812</td>
-<td align="right">1.295000e-04</td>
-<td align="right">-4.758728e+00</td>
-<td align="right">-4.760092e+00</td>
-<td align="right">0.0144128</td>
-<td align="right">-4.728438e+00</td>
-<td align="right">-4.786539e+00</td>
-<td align="right">0.0581009</td>
-<td align="right">0.9878616</td>
-<td align="right">-0.0023916</td>
-<td align="right">-0.0000272</td>
-</tr>
-<tr class="odd">
-<td align="left">penguins_out</td>
-<td align="right">0.0024560</td>
-<td align="right">6.000000e-06</td>
-<td align="right">-6.427714e-01</td>
-<td align="right">-6.427810e-01</td>
-<td align="right">0.0026624</td>
-<td align="right">-6.346151e-01</td>
-<td align="right">-6.484986e-01</td>
-<td align="right">0.0138835</td>
-<td align="right">0.9785913</td>
-<td align="right">-0.0038209</td>
-<td align="right">-0.0000094</td>
-</tr>
-<tr class="even">
-<td align="left">TeachingRatings_out</td>
-<td align="right">0.0000063</td>
-<td align="right">0.000000e+00</td>
-<td align="right">-1.500000e-05</td>
-<td align="right">-1.550000e-05</td>
-<td align="right">0.0000084</td>
-<td align="right">3.200000e-06</td>
-<td align="right">-2.740000e-05</td>
-<td align="right">0.0000307</td>
-<td align="right">-0.1175264</td>
-<td align="right">-0.4213195</td>
-<td align="right">-0.0000027</td>
-</tr>
-<tr class="odd">
-<td align="left">tips_out</td>
-<td align="right">0.0022838</td>
-<td align="right">5.200000e-06</td>
-<td align="right">1.926246e-01</td>
-<td align="right">1.923049e-01</td>
-<td align="right">0.0031671</td>
-<td align="right">1.995643e-01</td>
-<td align="right">1.877088e-01</td>
-<td align="right">0.0118556</td>
-<td align="right">1.0631593</td>
-<td align="right">0.0118563</td>
-<td align="right">0.0000271</td>
-</tr>
-</tbody>
+out2 &lt;- main_results %&gt;% 
+  mutate(across(where(is.numeric), round, 3))
+
+
+gt(main_results) %&gt;% 
+  fmt_number(where(is.numeric), decimals = 3)</code></pre>
+<div id="zdeqhryjxz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#zdeqhryjxz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#zdeqhryjxz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zdeqhryjxz .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#zdeqhryjxz .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#zdeqhryjxz .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#zdeqhryjxz .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zdeqhryjxz .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zdeqhryjxz .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#zdeqhryjxz .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#zdeqhryjxz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#zdeqhryjxz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#zdeqhryjxz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#zdeqhryjxz .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#zdeqhryjxz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#zdeqhryjxz .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#zdeqhryjxz .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#zdeqhryjxz .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#zdeqhryjxz .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zdeqhryjxz .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#zdeqhryjxz .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#zdeqhryjxz .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zdeqhryjxz .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#zdeqhryjxz .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#zdeqhryjxz .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zdeqhryjxz .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zdeqhryjxz .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#zdeqhryjxz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#zdeqhryjxz .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zdeqhryjxz .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zdeqhryjxz .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zdeqhryjxz .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zdeqhryjxz .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zdeqhryjxz .gt_left {
+  text-align: left;
+}
+
+#zdeqhryjxz .gt_center {
+  text-align: center;
+}
+
+#zdeqhryjxz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#zdeqhryjxz .gt_font_normal {
+  font-weight: normal;
+}
+
+#zdeqhryjxz .gt_font_bold {
+  font-weight: bold;
+}
+
+#zdeqhryjxz .gt_font_italic {
+  font-style: italic;
+}
+
+#zdeqhryjxz .gt_super {
+  font-size: 65%;
+}
+
+#zdeqhryjxz .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#zdeqhryjxz .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#zdeqhryjxz .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#zdeqhryjxz .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#zdeqhryjxz .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#zdeqhryjxz .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#zdeqhryjxz .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="dataset">dataset</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="std_dev">std_dev</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="variance">variance</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="arithm_mean">arithm_mean</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="med">med</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="iqr">iqr</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="max_value">max_value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="min_value">min_value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="max_minus_min">max_minus_min</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="max_to_min">max_to_min</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="var_coeff">var_coeff</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="rel_var">rel_var</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="dataset" class="gt_row gt_left">Boston_out</td>
+<td headers="std_dev" class="gt_row gt_right">0.000</td>
+<td headers="variance" class="gt_row gt_right">0.000</td>
+<td headers="arithm_mean" class="gt_row gt_right">0.021</td>
+<td headers="med" class="gt_row gt_right">0.021</td>
+<td headers="iqr" class="gt_row gt_right">0.000</td>
+<td headers="max_value" class="gt_row gt_right">0.021</td>
+<td headers="min_value" class="gt_row gt_right">0.020</td>
+<td headers="max_minus_min" class="gt_row gt_right">0.000</td>
+<td headers="max_to_min" class="gt_row gt_right">1.019</td>
+<td headers="var_coeff" class="gt_row gt_right">0.004</td>
+<td headers="rel_var" class="gt_row gt_right">0.000</td></tr>
+    <tr><td headers="dataset" class="gt_row gt_left">gtcars_out</td>
+<td headers="std_dev" class="gt_row gt_right">199.538</td>
+<td headers="variance" class="gt_row gt_right">39,815.485</td>
+<td headers="arithm_mean" class="gt_row gt_right">−21,198.794</td>
+<td headers="med" class="gt_row gt_right">−21,168.076</td>
+<td headers="iqr" class="gt_row gt_right">258.070</td>
+<td headers="max_value" class="gt_row gt_right">−20,851.197</td>
+<td headers="min_value" class="gt_row gt_right">−21,851.556</td>
+<td headers="max_minus_min" class="gt_row gt_right">1,000.359</td>
+<td headers="max_to_min" class="gt_row gt_right">0.954</td>
+<td headers="var_coeff" class="gt_row gt_right">−0.009</td>
+<td headers="rel_var" class="gt_row gt_right">−1.878</td></tr>
+    <tr><td headers="dataset" class="gt_row gt_left">msleep_out</td>
+<td headers="std_dev" class="gt_row gt_right">0.000</td>
+<td headers="variance" class="gt_row gt_right">0.000</td>
+<td headers="arithm_mean" class="gt_row gt_right">0.008</td>
+<td headers="med" class="gt_row gt_right">0.008</td>
+<td headers="iqr" class="gt_row gt_right">0.000</td>
+<td headers="max_value" class="gt_row gt_right">0.008</td>
+<td headers="min_value" class="gt_row gt_right">0.008</td>
+<td headers="max_minus_min" class="gt_row gt_right">0.000</td>
+<td headers="max_to_min" class="gt_row gt_right">1.034</td>
+<td headers="var_coeff" class="gt_row gt_right">0.006</td>
+<td headers="rel_var" class="gt_row gt_right">0.000</td></tr>
+    <tr><td headers="dataset" class="gt_row gt_left">mtcars_out</td>
+<td headers="std_dev" class="gt_row gt_right">0.011</td>
+<td headers="variance" class="gt_row gt_right">0.000</td>
+<td headers="arithm_mean" class="gt_row gt_right">−4.759</td>
+<td headers="med" class="gt_row gt_right">−4.760</td>
+<td headers="iqr" class="gt_row gt_right">0.014</td>
+<td headers="max_value" class="gt_row gt_right">−4.728</td>
+<td headers="min_value" class="gt_row gt_right">−4.787</td>
+<td headers="max_minus_min" class="gt_row gt_right">0.058</td>
+<td headers="max_to_min" class="gt_row gt_right">0.988</td>
+<td headers="var_coeff" class="gt_row gt_right">−0.002</td>
+<td headers="rel_var" class="gt_row gt_right">0.000</td></tr>
+    <tr><td headers="dataset" class="gt_row gt_left">penguins_out</td>
+<td headers="std_dev" class="gt_row gt_right">0.002</td>
+<td headers="variance" class="gt_row gt_right">0.000</td>
+<td headers="arithm_mean" class="gt_row gt_right">−0.643</td>
+<td headers="med" class="gt_row gt_right">−0.643</td>
+<td headers="iqr" class="gt_row gt_right">0.003</td>
+<td headers="max_value" class="gt_row gt_right">−0.635</td>
+<td headers="min_value" class="gt_row gt_right">−0.648</td>
+<td headers="max_minus_min" class="gt_row gt_right">0.014</td>
+<td headers="max_to_min" class="gt_row gt_right">0.979</td>
+<td headers="var_coeff" class="gt_row gt_right">−0.004</td>
+<td headers="rel_var" class="gt_row gt_right">0.000</td></tr>
+    <tr><td headers="dataset" class="gt_row gt_left">TeachingRatings_out</td>
+<td headers="std_dev" class="gt_row gt_right">0.000</td>
+<td headers="variance" class="gt_row gt_right">0.000</td>
+<td headers="arithm_mean" class="gt_row gt_right">0.000</td>
+<td headers="med" class="gt_row gt_right">0.000</td>
+<td headers="iqr" class="gt_row gt_right">0.000</td>
+<td headers="max_value" class="gt_row gt_right">0.000</td>
+<td headers="min_value" class="gt_row gt_right">0.000</td>
+<td headers="max_minus_min" class="gt_row gt_right">0.000</td>
+<td headers="max_to_min" class="gt_row gt_right">−0.118</td>
+<td headers="var_coeff" class="gt_row gt_right">−0.421</td>
+<td headers="rel_var" class="gt_row gt_right">0.000</td></tr>
+    <tr><td headers="dataset" class="gt_row gt_left">tips_out</td>
+<td headers="std_dev" class="gt_row gt_right">0.002</td>
+<td headers="variance" class="gt_row gt_right">0.000</td>
+<td headers="arithm_mean" class="gt_row gt_right">0.193</td>
+<td headers="med" class="gt_row gt_right">0.192</td>
+<td headers="iqr" class="gt_row gt_right">0.003</td>
+<td headers="max_value" class="gt_row gt_right">0.200</td>
+<td headers="min_value" class="gt_row gt_right">0.188</td>
+<td headers="max_minus_min" class="gt_row gt_right">0.012</td>
+<td headers="max_to_min" class="gt_row gt_right">1.063</td>
+<td headers="var_coeff" class="gt_row gt_right">0.012</td>
+<td headers="rel_var" class="gt_row gt_right">0.000</td></tr>
+  </tbody>
+  
+  
 </table>
+</div>
 </div>
 <div id="conclusion" class="section level1" number="14">
 <h1><span class="header-section-number">14</span> Conclusion</h1>
