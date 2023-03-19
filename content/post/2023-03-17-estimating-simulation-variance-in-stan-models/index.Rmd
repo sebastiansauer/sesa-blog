@@ -209,8 +209,10 @@ tips_results1
 
 ```{r gtcars, results = "hide"}
 #saveRDS(gtcars_out, file = "gtcars_out.rds")
-if (file.exists("gtcars_out.rds")) {
+gtcars_rdsfile_path <- "/Users/sebastiansaueruser/Publikationen/blog_ses/sesa-blog/gtcars_out.rds"
+if (file.exists(gtcars_rdsfile_path)) {
   cat("RDS file exists")
+  gtcars_out <- readRDS(gtcars_rdsfile_path)
 } else {
   cat("Coduncting simulation...")
   gtcars_out <- get_simu_var_b1(dataset = "gtcars")

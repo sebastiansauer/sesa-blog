@@ -1,0 +1,744 @@
+---
+title: Estimating simulation variance in Stan models
+author: Sebastian Sauer
+date: '2023-03-17'
+slug: estimating-simulation-variance-in-stan-models
+cache: true
+categories:
+  - rstats
+tags:
+  - simulation
+  - Bayes
+output:
+  blogdown::html_page:
+    toc: yes
+    number_sections: yes
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#load-packages" id="toc-load-packages"><span class="toc-section-number">1</span> Load packages</a></li>
+<li><a href="#motivation" id="toc-motivation"><span class="toc-section-number">2</span> Motivation</a></li>
+<li><a href="#model" id="toc-model"><span class="toc-section-number">3</span> Model</a></li>
+<li><a href="#workhorse-function" id="toc-workhorse-function"><span class="toc-section-number">4</span> Workhorse function</a></li>
+<li><a href="#function-for-summarizing-the-simulation-results" id="toc-function-for-summarizing-the-simulation-results"><span class="toc-section-number">5</span> Function for summarizing the simulation results</a></li>
+<li><a href="#dataset-mtcars" id="toc-dataset-mtcars"><span class="toc-section-number">6</span> Dataset <code>mtcars</code></a></li>
+<li><a href="#dataset-msleep" id="toc-dataset-msleep"><span class="toc-section-number">7</span> Dataset <code>msleep</code></a></li>
+<li><a href="#dataset-penguins" id="toc-dataset-penguins"><span class="toc-section-number">8</span> Dataset <code>penguins</code></a></li>
+<li><a href="#dataset-tips" id="toc-dataset-tips"><span class="toc-section-number">9</span> Dataset <code>tips</code></a></li>
+<li><a href="#dataset-gtcars" id="toc-dataset-gtcars"><span class="toc-section-number">10</span> Dataset <code>gtcars</code></a></li>
+<li><a href="#dataset-boston" id="toc-dataset-boston"><span class="toc-section-number">11</span> Dataset <code>Boston</code></a></li>
+<li><a href="#dataset-teachingratings" id="toc-dataset-teachingratings"><span class="toc-section-number">12</span> Dataset <code>TeachingRatings</code></a></li>
+<li><a href="#results-overview" id="toc-results-overview"><span class="toc-section-number">13</span> Results overview</a></li>
+<li><a href="#conclusion" id="toc-conclusion"><span class="toc-section-number">14</span> Conclusion</a></li>
+<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">15</span> Reproducibility</a></li>
+</ul>
+</div>
+
+<div id="load-packages" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Load packages</h1>
+<pre class="r"><code>library(tidyverse)  # data wrangling
+library(rstanarm)</code></pre>
+</div>
+<div id="motivation" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Motivation</h1>
+<p><code>stan_glm()</code> allows for setting a seed value thereby eliminating the variance induced by random numbers.
+However, in case a seed is not used, how much variance is to be expected?
+This is the research question of this analysis.</p>
+<p>Let’s choose <span class="math inline">\(n=100\)</span> repetitions in our simulation.</p>
+</div>
+<div id="model" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Model</h1>
+<p>Let’s compute a simple linear model of this type:</p>
+<p><code>stan_glm(out_var ~ pred1 + pred2, data = d, refresh = 0)</code>.</p>
+</div>
+<div id="workhorse-function" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Workhorse function</h1>
+<pre class="r"><code>get_simu_var_b1 &lt;- function(dataset, n = 100) {
+  
+  all_dfs &lt;- teachertools::teaching_df()
+  
+  d &lt;- teachertools::teaching_df(dataset)
+  #d &lt;- teachertools::teaching_df(&quot;gtcars&quot;)
+  
+  d_name &lt;- attr(d, &quot;df_name&quot;)
+  
+  d_path &lt;- all_dfs |&gt; 
+    dplyr::filter(datasets_names == d_name) |&gt; 
+    dplyr::pull(source)
+  
+  preds_chosen &lt;- attr(d, &quot;preds_chosen&quot;)
+  focus_pred &lt;- attr(d, &quot;focus_pred&quot;)
+  output_var &lt;- attr(d, &quot;output_var&quot;)
+  
+  results &lt;- vector(mode = &quot;numeric&quot;, length = n)
+  
+  for (i in 1:n){
+  
+    mod &lt;- stan_glm(av ~ uv1 + uv2, data = d, refresh = 0)
+    results[i] &lt;- coef(mod)[&quot;uv1&quot;] |&gt; as.numeric()
+    cat(paste0(&quot;i = &quot;, i, &quot; of &quot;, n, &quot;\n&quot;))
+  }
+  return(results)
+}</code></pre>
+</div>
+<div id="function-for-summarizing-the-simulation-results" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Function for summarizing the simulation results</h1>
+<pre class="r"><code>summ_simu &lt;- function(simu_data){
+  out &lt;- 
+     list(
+       dataset = deparse(substitute(simu_data)),
+       std_dev = sd(simu_data),
+       variance = var(simu_data),
+       arithm_mean = mean(simu_data),
+       med = median(simu_data),
+       iqr = IQR(simu_data),
+       max_value = max(simu_data),
+       min_value = min(simu_data),
+       max_minus_min = max(simu_data) - min(simu_data),
+       max_to_min = max(simu_data) / min(simu_data),
+       var_coeff = sd(simu_data) / mean(simu_data),
+       rel_var = var(simu_data) /  mean(simu_data)
+       )
+}</code></pre>
+</div>
+<div id="dataset-mtcars" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Dataset <code>mtcars</code></h1>
+<pre class="r"><code>mtcars_out &lt;- get_simu_var_b1(dataset = &quot;mtcars&quot;)
+hist(mtcars_out)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/mtcars-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>mtcars_results1 &lt;-
+  summ_simu(mtcars_out)
+
+mtcars_results1
+#&gt; $dataset
+#&gt; [1] &quot;mtcars_out&quot;
+#&gt; 
+#&gt; $std_dev
+#&gt; [1] 0.0113812
+#&gt; 
+#&gt; $variance
+#&gt; [1] 0.0001295316
+#&gt; 
+#&gt; $arithm_mean
+#&gt; [1] -4.758728
+#&gt; 
+#&gt; $med
+#&gt; [1] -4.760092
+#&gt; 
+#&gt; $iqr
+#&gt; [1] 0.01441278
+#&gt; 
+#&gt; $max_value
+#&gt; [1] -4.728438
+#&gt; 
+#&gt; $min_value
+#&gt; [1] -4.786539
+#&gt; 
+#&gt; $max_minus_min
+#&gt; [1] 0.05810086
+#&gt; 
+#&gt; $max_to_min
+#&gt; [1] 0.9878616
+#&gt; 
+#&gt; $var_coeff
+#&gt; [1] -0.002391647
+#&gt; 
+#&gt; $rel_var
+#&gt; [1] -2.72198e-05</code></pre>
+</div>
+<div id="dataset-msleep" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Dataset <code>msleep</code></h1>
+<pre class="r"><code>msleep_out &lt;- get_simu_var_b1(dataset = &quot;msleep&quot;)
+hist(msleep_out)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/msleep-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>msleep_results1 &lt;- summ_simu(msleep_out)
+
+msleep_results1
+#&gt; $dataset
+#&gt; [1] &quot;msleep_out&quot;
+#&gt; 
+#&gt; $std_dev
+#&gt; [1] 4.674048e-05
+#&gt; 
+#&gt; $variance
+#&gt; [1] 2.184672e-09
+#&gt; 
+#&gt; $arithm_mean
+#&gt; [1] 0.007708606
+#&gt; 
+#&gt; $med
+#&gt; [1] 0.007704791
+#&gt; 
+#&gt; $iqr
+#&gt; [1] 6.562096e-05
+#&gt; 
+#&gt; $max_value
+#&gt; [1] 0.007827808
+#&gt; 
+#&gt; $min_value
+#&gt; [1] 0.007570025
+#&gt; 
+#&gt; $max_minus_min
+#&gt; [1] 0.0002577828
+#&gt; 
+#&gt; $max_to_min
+#&gt; [1] 1.034053
+#&gt; 
+#&gt; $var_coeff
+#&gt; [1] 0.006063415
+#&gt; 
+#&gt; $rel_var
+#&gt; [1] 2.834069e-07</code></pre>
+</div>
+<div id="dataset-penguins" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Dataset <code>penguins</code></h1>
+<pre class="r"><code>penguins_out &lt;- get_simu_var_b1(dataset = &quot;penguins&quot;)
+hist(penguins_out)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/penguins-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>penguins_results1 &lt;- summ_simu(penguins_out)
+
+penguins_results1
+#&gt; $dataset
+#&gt; [1] &quot;penguins_out&quot;
+#&gt; 
+#&gt; $std_dev
+#&gt; [1] 0.002455989
+#&gt; 
+#&gt; $variance
+#&gt; [1] 6.031884e-06
+#&gt; 
+#&gt; $arithm_mean
+#&gt; [1] -0.6427714
+#&gt; 
+#&gt; $med
+#&gt; [1] -0.642781
+#&gt; 
+#&gt; $iqr
+#&gt; [1] 0.002662391
+#&gt; 
+#&gt; $max_value
+#&gt; [1] -0.6346151
+#&gt; 
+#&gt; $min_value
+#&gt; [1] -0.6484986
+#&gt; 
+#&gt; $max_minus_min
+#&gt; [1] 0.01388349
+#&gt; 
+#&gt; $max_to_min
+#&gt; [1] 0.9785913
+#&gt; 
+#&gt; $var_coeff
+#&gt; [1] -0.003820938
+#&gt; 
+#&gt; $rel_var
+#&gt; [1] -9.384182e-06</code></pre>
+</div>
+<div id="dataset-tips" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Dataset <code>tips</code></h1>
+<pre class="r"><code>tips_out &lt;- get_simu_var_b1(dataset = &quot;tips&quot;)
+hist(tips_out)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/tips-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>tips_results1 &lt;- summ_simu(tips_out)
+
+tips_results1
+#&gt; $dataset
+#&gt; [1] &quot;tips_out&quot;
+#&gt; 
+#&gt; $std_dev
+#&gt; [1] 0.002283815
+#&gt; 
+#&gt; $variance
+#&gt; [1] 5.215813e-06
+#&gt; 
+#&gt; $arithm_mean
+#&gt; [1] 0.1926246
+#&gt; 
+#&gt; $med
+#&gt; [1] 0.1923049
+#&gt; 
+#&gt; $iqr
+#&gt; [1] 0.003167123
+#&gt; 
+#&gt; $max_value
+#&gt; [1] 0.1995643
+#&gt; 
+#&gt; $min_value
+#&gt; [1] 0.1877088
+#&gt; 
+#&gt; $max_minus_min
+#&gt; [1] 0.01185556
+#&gt; 
+#&gt; $max_to_min
+#&gt; [1] 1.063159
+#&gt; 
+#&gt; $var_coeff
+#&gt; [1] 0.0118563
+#&gt; 
+#&gt; $rel_var
+#&gt; [1] 2.707761e-05</code></pre>
+</div>
+<div id="dataset-gtcars" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> Dataset <code>gtcars</code></h1>
+<pre class="r"><code>#saveRDS(gtcars_out, file = &quot;gtcars_out.rds&quot;)
+gtcars_rdsfile_path &lt;- &quot;/Users/sebastiansaueruser/Publikationen/blog_ses/sesa-blog/gtcars_out.rds&quot;
+if (file.exists(gtcars_rdsfile_path)) {
+  cat(&quot;RDS file exists&quot;)
+  gtcars_out &lt;- readRDS(gtcars_rdsfile_path)
+} else {
+  cat(&quot;Coduncting simulation...&quot;)
+  gtcars_out &lt;- get_simu_var_b1(dataset = &quot;gtcars&quot;)
+}
+hist(gtcars_out)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/gtcars-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>gtcars_results1 &lt;- summ_simu(gtcars_out)
+
+gtcars_results1
+#&gt; $dataset
+#&gt; [1] &quot;gtcars_out&quot;
+#&gt; 
+#&gt; $std_dev
+#&gt; [1] 199.5382
+#&gt; 
+#&gt; $variance
+#&gt; [1] 39815.49
+#&gt; 
+#&gt; $arithm_mean
+#&gt; [1] -21198.79
+#&gt; 
+#&gt; $med
+#&gt; [1] -21168.08
+#&gt; 
+#&gt; $iqr
+#&gt; [1] 258.0704
+#&gt; 
+#&gt; $max_value
+#&gt; [1] -20851.2
+#&gt; 
+#&gt; $min_value
+#&gt; [1] -21851.56
+#&gt; 
+#&gt; $max_minus_min
+#&gt; [1] 1000.359
+#&gt; 
+#&gt; $max_to_min
+#&gt; [1] 0.9542202
+#&gt; 
+#&gt; $var_coeff
+#&gt; [1] -0.009412714
+#&gt; 
+#&gt; $rel_var
+#&gt; [1] -1.878196</code></pre>
+</div>
+<div id="dataset-boston" class="section level1" number="11">
+<h1><span class="header-section-number">11</span> Dataset <code>Boston</code></h1>
+<pre class="r"><code>Boston_out &lt;- get_simu_var_b1(dataset = &quot;Boston&quot;)
+hist(Boston_out)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/Boston-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>Boston_results1 &lt;- summ_simu(Boston_out)
+
+Boston_results1
+#&gt; $dataset
+#&gt; [1] &quot;Boston_out&quot;
+#&gt; 
+#&gt; $std_dev
+#&gt; [1] 8.527836e-05
+#&gt; 
+#&gt; $variance
+#&gt; [1] 7.272398e-09
+#&gt; 
+#&gt; $arithm_mean
+#&gt; [1] 0.02056738
+#&gt; 
+#&gt; $med
+#&gt; [1] 0.02057132
+#&gt; 
+#&gt; $iqr
+#&gt; [1] 0.0001292766
+#&gt; 
+#&gt; $max_value
+#&gt; [1] 0.02073811
+#&gt; 
+#&gt; $min_value
+#&gt; [1] 0.02035571
+#&gt; 
+#&gt; $max_minus_min
+#&gt; [1] 0.0003823966
+#&gt; 
+#&gt; $max_to_min
+#&gt; [1] 1.018786
+#&gt; 
+#&gt; $var_coeff
+#&gt; [1] 0.004146291
+#&gt; 
+#&gt; $rel_var
+#&gt; [1] 3.535889e-07</code></pre>
+</div>
+<div id="dataset-teachingratings" class="section level1" number="12">
+<h1><span class="header-section-number">12</span> Dataset <code>TeachingRatings</code></h1>
+<pre class="r"><code>TeachingRatings_out &lt;- get_simu_var_b1(dataset = &quot;TeachingRatings&quot;)
+hist(TeachingRatings_out)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/TeachingRatings-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>TeachingRatings_results1 &lt;- summ_simu(TeachingRatings_out)
+
+TeachingRatings_results1
+#&gt; $dataset
+#&gt; [1] &quot;TeachingRatings_out&quot;
+#&gt; 
+#&gt; $std_dev
+#&gt; [1] 6.331732e-06
+#&gt; 
+#&gt; $variance
+#&gt; [1] 4.009083e-11
+#&gt; 
+#&gt; $arithm_mean
+#&gt; [1] -1.502834e-05
+#&gt; 
+#&gt; $med
+#&gt; [1] -1.545877e-05
+#&gt; 
+#&gt; $iqr
+#&gt; [1] 8.406646e-06
+#&gt; 
+#&gt; $max_value
+#&gt; [1] 3.224198e-06
+#&gt; 
+#&gt; $min_value
+#&gt; [1] -2.743382e-05
+#&gt; 
+#&gt; $max_minus_min
+#&gt; [1] 3.065801e-05
+#&gt; 
+#&gt; $max_to_min
+#&gt; [1] -0.1175264
+#&gt; 
+#&gt; $var_coeff
+#&gt; [1] -0.4213195
+#&gt; 
+#&gt; $rel_var
+#&gt; [1] -2.667682e-06</code></pre>
+</div>
+<div id="results-overview" class="section level1" number="13">
+<h1><span class="header-section-number">13</span> Results overview</h1>
+<pre class="r"><code>main_results &lt;-
+  bind_rows(Boston_results1,
+            gtcars_results1,
+            msleep_results1,
+            mtcars_results1,
+            penguins_results1,
+            TeachingRatings_results1,
+            tips_results1)
+
+knitr::kable(main_results)</code></pre>
+<table>
+<colgroup>
+<col width="12%" />
+<col width="7%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="7%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">dataset</th>
+<th align="right">std_dev</th>
+<th align="right">variance</th>
+<th align="right">arithm_mean</th>
+<th align="right">med</th>
+<th align="right">iqr</th>
+<th align="right">max_value</th>
+<th align="right">min_value</th>
+<th align="right">max_minus_min</th>
+<th align="right">max_to_min</th>
+<th align="right">var_coeff</th>
+<th align="right">rel_var</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Boston_out</td>
+<td align="right">0.0000853</td>
+<td align="right">0.000000e+00</td>
+<td align="right">2.056740e-02</td>
+<td align="right">2.057130e-02</td>
+<td align="right">0.0001293</td>
+<td align="right">2.073810e-02</td>
+<td align="right">2.035570e-02</td>
+<td align="right">0.0003824</td>
+<td align="right">1.0187857</td>
+<td align="right">0.0041463</td>
+<td align="right">0.0000004</td>
+</tr>
+<tr class="even">
+<td align="left">gtcars_out</td>
+<td align="right">199.5381803</td>
+<td align="right">3.981549e+04</td>
+<td align="right">-2.119879e+04</td>
+<td align="right">-2.116808e+04</td>
+<td align="right">258.0704273</td>
+<td align="right">-2.085120e+04</td>
+<td align="right">-2.185156e+04</td>
+<td align="right">1000.3590151</td>
+<td align="right">0.9542202</td>
+<td align="right">-0.0094127</td>
+<td align="right">-1.8781958</td>
+</tr>
+<tr class="odd">
+<td align="left">msleep_out</td>
+<td align="right">0.0000467</td>
+<td align="right">0.000000e+00</td>
+<td align="right">7.708600e-03</td>
+<td align="right">7.704800e-03</td>
+<td align="right">0.0000656</td>
+<td align="right">7.827800e-03</td>
+<td align="right">7.570000e-03</td>
+<td align="right">0.0002578</td>
+<td align="right">1.0340531</td>
+<td align="right">0.0060634</td>
+<td align="right">0.0000003</td>
+</tr>
+<tr class="even">
+<td align="left">mtcars_out</td>
+<td align="right">0.0113812</td>
+<td align="right">1.295000e-04</td>
+<td align="right">-4.758728e+00</td>
+<td align="right">-4.760092e+00</td>
+<td align="right">0.0144128</td>
+<td align="right">-4.728438e+00</td>
+<td align="right">-4.786539e+00</td>
+<td align="right">0.0581009</td>
+<td align="right">0.9878616</td>
+<td align="right">-0.0023916</td>
+<td align="right">-0.0000272</td>
+</tr>
+<tr class="odd">
+<td align="left">penguins_out</td>
+<td align="right">0.0024560</td>
+<td align="right">6.000000e-06</td>
+<td align="right">-6.427714e-01</td>
+<td align="right">-6.427810e-01</td>
+<td align="right">0.0026624</td>
+<td align="right">-6.346151e-01</td>
+<td align="right">-6.484986e-01</td>
+<td align="right">0.0138835</td>
+<td align="right">0.9785913</td>
+<td align="right">-0.0038209</td>
+<td align="right">-0.0000094</td>
+</tr>
+<tr class="even">
+<td align="left">TeachingRatings_out</td>
+<td align="right">0.0000063</td>
+<td align="right">0.000000e+00</td>
+<td align="right">-1.500000e-05</td>
+<td align="right">-1.550000e-05</td>
+<td align="right">0.0000084</td>
+<td align="right">3.200000e-06</td>
+<td align="right">-2.740000e-05</td>
+<td align="right">0.0000307</td>
+<td align="right">-0.1175264</td>
+<td align="right">-0.4213195</td>
+<td align="right">-0.0000027</td>
+</tr>
+<tr class="odd">
+<td align="left">tips_out</td>
+<td align="right">0.0022838</td>
+<td align="right">5.200000e-06</td>
+<td align="right">1.926246e-01</td>
+<td align="right">1.923049e-01</td>
+<td align="right">0.0031671</td>
+<td align="right">1.995643e-01</td>
+<td align="right">1.877088e-01</td>
+<td align="right">0.0118556</td>
+<td align="right">1.0631593</td>
+<td align="right">0.0118563</td>
+<td align="right">0.0000271</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="conclusion" class="section level1" number="14">
+<h1><span class="header-section-number">14</span> Conclusion</h1>
+<p>The simulation results are quite close to each other, the coefficient of variation is always below 5%.
+In situations however where the absolute values are close to zero, the relative deviations can be comparatively high.</p>
+</div>
+<div id="reproducibility" class="section level1" number="15">
+<h1><span class="header-section-number">15</span> Reproducibility</h1>
+<pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
+#&gt;  setting  value
+#&gt;  version  R version 4.2.1 (2022-06-23)
+#&gt;  os       macOS Big Sur ... 10.16
+#&gt;  system   x86_64, darwin17.0
+#&gt;  ui       X11
+#&gt;  language (EN)
+#&gt;  collate  en_US.UTF-8
+#&gt;  ctype    en_US.UTF-8
+#&gt;  tz       Europe/Berlin
+#&gt;  date     2023-03-19
+#&gt;  pandoc   2.19.2 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
+#&gt; 
+#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
+#&gt;  package       * version    date (UTC) lib source
+#&gt;  assertthat      0.2.1      2019-03-21 [1] CRAN (R 4.2.0)
+#&gt;  backports       1.4.1      2021-12-13 [1] CRAN (R 4.2.0)
+#&gt;  base64enc       0.1-3      2015-07-28 [1] CRAN (R 4.2.0)
+#&gt;  bayesplot       1.10.0     2022-11-16 [1] CRAN (R 4.2.0)
+#&gt;  blogdown        1.16       2022-12-13 [1] CRAN (R 4.2.0)
+#&gt;  bookdown        0.33       2023-03-06 [1] CRAN (R 4.2.0)
+#&gt;  boot            1.3-28.1   2022-11-22 [1] CRAN (R 4.2.0)
+#&gt;  broom           1.0.4      2023-03-11 [1] CRAN (R 4.2.0)
+#&gt;  bslib           0.4.2      2022-12-16 [1] CRAN (R 4.2.0)
+#&gt;  cachem          1.0.7      2023-02-24 [1] CRAN (R 4.2.0)
+#&gt;  callr           3.7.3      2022-11-02 [1] CRAN (R 4.2.0)
+#&gt;  caret           6.0-93     2022-08-09 [1] CRAN (R 4.2.0)
+#&gt;  cellranger      1.1.0      2016-07-27 [1] CRAN (R 4.2.0)
+#&gt;  class           7.3-20     2022-01-16 [2] CRAN (R 4.2.1)
+#&gt;  cli             3.6.0      2023-01-09 [1] CRAN (R 4.2.0)
+#&gt;  codetools       0.2-18     2020-11-04 [2] CRAN (R 4.2.1)
+#&gt;  colorout      * 1.2-2      2022-06-13 [1] local
+#&gt;  colorspace      2.1-0      2023-01-23 [1] CRAN (R 4.2.0)
+#&gt;  colourpicker    1.2.0      2022-10-28 [1] CRAN (R 4.2.0)
+#&gt;  crayon          1.5.2      2022-09-29 [1] CRAN (R 4.2.1)
+#&gt;  crosstalk       1.2.0      2021-11-04 [1] CRAN (R 4.2.0)
+#&gt;  data.table      1.14.8     2023-02-17 [1] CRAN (R 4.2.0)
+#&gt;  DBI             1.1.3      2022-06-18 [1] CRAN (R 4.2.0)
+#&gt;  dbplyr          2.3.1      2023-02-24 [1] CRAN (R 4.2.0)
+#&gt;  devtools        2.4.5      2022-10-11 [1] CRAN (R 4.2.1)
+#&gt;  digest          0.6.31     2022-12-11 [1] CRAN (R 4.2.0)
+#&gt;  dplyr         * 1.1.0      2023-01-29 [1] CRAN (R 4.2.0)
+#&gt;  DT              0.27       2023-01-17 [1] CRAN (R 4.2.0)
+#&gt;  dygraphs        1.1.1.6    2018-07-11 [1] CRAN (R 4.2.0)
+#&gt;  ellipsis        0.3.2      2021-04-29 [1] CRAN (R 4.2.0)
+#&gt;  evaluate        0.20       2023-01-17 [1] CRAN (R 4.2.0)
+#&gt;  fansi           1.0.4      2023-01-22 [1] CRAN (R 4.2.0)
+#&gt;  fastmap         1.1.1      2023-02-24 [1] CRAN (R 4.2.0)
+#&gt;  forcats       * 1.0.0      2023-01-29 [1] CRAN (R 4.2.0)
+#&gt;  foreach         1.5.2      2022-02-02 [1] CRAN (R 4.2.0)
+#&gt;  fs              1.6.1      2023-02-06 [1] CRAN (R 4.2.0)
+#&gt;  future          1.32.0     2023-03-07 [1] CRAN (R 4.2.0)
+#&gt;  future.apply    1.10.0     2022-11-05 [1] CRAN (R 4.2.0)
+#&gt;  gargle          1.3.0      2023-01-30 [1] CRAN (R 4.2.0)
+#&gt;  generics        0.1.3      2022-07-05 [1] CRAN (R 4.2.0)
+#&gt;  ggplot2       * 3.4.1      2023-02-10 [1] CRAN (R 4.2.0)
+#&gt;  globals         0.16.2     2022-11-21 [1] CRAN (R 4.2.0)
+#&gt;  glue            1.6.2      2022-02-24 [1] CRAN (R 4.2.0)
+#&gt;  googledrive     2.0.0      2021-07-08 [1] CRAN (R 4.2.0)
+#&gt;  googlesheets4   1.0.1      2022-08-13 [1] CRAN (R 4.2.0)
+#&gt;  gower           1.0.1      2022-12-22 [1] CRAN (R 4.2.0)
+#&gt;  gridExtra       2.3        2017-09-09 [1] CRAN (R 4.2.0)
+#&gt;  gtable          0.3.1      2022-09-01 [1] CRAN (R 4.2.0)
+#&gt;  gtools          3.9.4      2022-11-27 [1] CRAN (R 4.2.0)
+#&gt;  hardhat         1.2.0      2022-06-30 [1] CRAN (R 4.2.0)
+#&gt;  haven           2.5.2      2023-02-28 [1] CRAN (R 4.2.0)
+#&gt;  highr           0.10       2022-12-22 [1] CRAN (R 4.2.0)
+#&gt;  hms             1.1.2      2022-08-19 [1] CRAN (R 4.2.0)
+#&gt;  htmltools       0.5.4      2022-12-07 [1] CRAN (R 4.2.0)
+#&gt;  htmlwidgets     1.6.1      2023-01-07 [1] CRAN (R 4.2.0)
+#&gt;  httpuv          1.6.9      2023-02-14 [1] CRAN (R 4.2.0)
+#&gt;  httr            1.4.5      2023-02-24 [1] CRAN (R 4.2.0)
+#&gt;  igraph          1.4.1      2023-02-24 [1] CRAN (R 4.2.0)
+#&gt;  inline          0.3.19     2021-05-31 [1] CRAN (R 4.2.0)
+#&gt;  ipred           0.9-14     2023-03-09 [1] CRAN (R 4.2.0)
+#&gt;  iterators       1.0.14     2022-02-05 [1] CRAN (R 4.2.0)
+#&gt;  jquerylib       0.1.4      2021-04-26 [1] CRAN (R 4.2.0)
+#&gt;  jsonlite        1.8.4      2022-12-06 [1] CRAN (R 4.2.0)
+#&gt;  knitr           1.42       2023-01-25 [1] CRAN (R 4.2.0)
+#&gt;  later           1.3.0      2021-08-18 [1] CRAN (R 4.2.0)
+#&gt;  lattice         0.20-45    2021-09-22 [2] CRAN (R 4.2.1)
+#&gt;  lava            1.7.2.1    2023-02-27 [1] CRAN (R 4.2.0)
+#&gt;  lifecycle       1.0.3      2022-10-07 [1] CRAN (R 4.2.0)
+#&gt;  listenv         0.9.0      2022-12-16 [1] CRAN (R 4.2.0)
+#&gt;  lme4            1.1-32     2023-03-14 [1] CRAN (R 4.2.0)
+#&gt;  loo             2.5.1      2022-03-24 [1] CRAN (R 4.2.0)
+#&gt;  lubridate       1.9.2      2023-02-10 [1] CRAN (R 4.2.0)
+#&gt;  magrittr        2.0.3      2022-03-30 [1] CRAN (R 4.2.0)
+#&gt;  markdown        1.5        2023-01-31 [1] CRAN (R 4.2.0)
+#&gt;  MASS            7.3-58.3   2023-03-07 [1] CRAN (R 4.2.0)
+#&gt;  Matrix          1.5-3      2022-11-11 [1] CRAN (R 4.2.0)
+#&gt;  matrixStats     0.63.0     2022-11-18 [1] CRAN (R 4.2.0)
+#&gt;  memoise         2.0.1      2021-11-26 [1] CRAN (R 4.2.0)
+#&gt;  mime            0.12       2021-09-28 [1] CRAN (R 4.2.0)
+#&gt;  miniUI          0.1.1.1    2018-05-18 [1] CRAN (R 4.2.0)
+#&gt;  minqa           1.2.5      2022-10-19 [1] CRAN (R 4.2.1)
+#&gt;  ModelMetrics    1.2.2.2    2020-03-17 [1] CRAN (R 4.2.0)
+#&gt;  modelr          0.1.10     2022-11-11 [1] CRAN (R 4.2.0)
+#&gt;  munsell         0.5.0      2018-06-12 [1] CRAN (R 4.2.0)
+#&gt;  nlme            3.1-162    2023-01-31 [1] CRAN (R 4.2.0)
+#&gt;  nloptr          2.0.3      2022-05-26 [1] CRAN (R 4.2.0)
+#&gt;  nnet            7.3-18     2022-09-28 [1] CRAN (R 4.2.0)
+#&gt;  parallelly      1.34.0     2023-01-13 [1] CRAN (R 4.2.1)
+#&gt;  pillar          1.8.1      2022-08-19 [1] CRAN (R 4.2.0)
+#&gt;  pkgbuild        1.4.0      2022-11-27 [1] CRAN (R 4.2.0)
+#&gt;  pkgconfig       2.0.3      2019-09-22 [1] CRAN (R 4.2.0)
+#&gt;  pkgload         1.3.2      2022-11-16 [1] CRAN (R 4.2.0)
+#&gt;  plyr            1.8.8      2022-11-11 [1] CRAN (R 4.2.0)
+#&gt;  prettyunits     1.1.1      2020-01-24 [1] CRAN (R 4.2.0)
+#&gt;  pROC            1.18.0     2021-09-03 [1] CRAN (R 4.2.0)
+#&gt;  processx        3.8.0      2022-10-26 [1] CRAN (R 4.2.0)
+#&gt;  prodlim         2019.11.13 2019-11-17 [1] CRAN (R 4.2.0)
+#&gt;  profvis         0.3.7      2020-11-02 [1] CRAN (R 4.2.0)
+#&gt;  promises        1.2.0.1    2021-02-11 [1] CRAN (R 4.2.0)
+#&gt;  ps              1.7.2      2022-10-26 [1] CRAN (R 4.2.0)
+#&gt;  purrr         * 1.0.1      2023-01-10 [1] CRAN (R 4.2.0)
+#&gt;  R6              2.5.1      2021-08-19 [1] CRAN (R 4.2.0)
+#&gt;  Rcpp          * 1.0.10     2023-01-22 [1] CRAN (R 4.2.0)
+#&gt;  RcppParallel    5.1.6      2023-01-09 [1] CRAN (R 4.2.0)
+#&gt;  readr         * 2.1.4      2023-02-10 [1] CRAN (R 4.2.0)
+#&gt;  readxl          1.4.2      2023-02-09 [1] CRAN (R 4.2.0)
+#&gt;  recipes         1.0.4      2023-01-11 [1] CRAN (R 4.2.0)
+#&gt;  remotes         2.4.2      2021-11-30 [1] CRAN (R 4.2.0)
+#&gt;  reprex          2.0.2      2022-08-17 [1] CRAN (R 4.2.0)
+#&gt;  reshape2        1.4.4      2020-04-09 [1] CRAN (R 4.2.0)
+#&gt;  rlang           1.0.6      2022-09-24 [1] CRAN (R 4.2.0)
+#&gt;  rmarkdown       2.20       2023-01-19 [1] CRAN (R 4.2.0)
+#&gt;  rpart           4.1.19     2022-10-21 [1] CRAN (R 4.2.0)
+#&gt;  rstan           2.21.8     2023-01-17 [1] CRAN (R 4.2.0)
+#&gt;  rstanarm      * 2.21.3     2022-04-09 [1] CRAN (R 4.2.0)
+#&gt;  rstantools      2.2.0      2022-04-08 [1] CRAN (R 4.2.0)
+#&gt;  rstudioapi      0.14       2022-08-22 [1] CRAN (R 4.2.0)
+#&gt;  rvest           1.0.3      2022-08-19 [1] CRAN (R 4.2.0)
+#&gt;  sass            0.4.5      2023-01-24 [1] CRAN (R 4.2.0)
+#&gt;  scales          1.2.1      2022-08-20 [1] CRAN (R 4.2.0)
+#&gt;  sessioninfo     1.2.2      2021-12-06 [1] CRAN (R 4.2.0)
+#&gt;  shiny           1.7.4      2022-12-15 [1] CRAN (R 4.2.0)
+#&gt;  shinyjs         2.1.0      2021-12-23 [1] CRAN (R 4.2.0)
+#&gt;  shinystan       2.6.0      2022-03-03 [1] CRAN (R 4.2.0)
+#&gt;  shinythemes     1.2.0      2021-01-25 [1] CRAN (R 4.2.0)
+#&gt;  StanHeaders     2.21.0-7   2020-12-17 [1] CRAN (R 4.2.0)
+#&gt;  stringi         1.7.12     2023-01-11 [1] CRAN (R 4.2.0)
+#&gt;  stringr       * 1.5.0      2022-12-02 [1] CRAN (R 4.2.0)
+#&gt;  survival        3.5-0      2023-01-09 [1] CRAN (R 4.2.0)
+#&gt;  teachertools    0.2.0.9000 2023-03-17 [1] local
+#&gt;  threejs         0.3.3      2020-01-21 [1] CRAN (R 4.2.0)
+#&gt;  tibble        * 3.1.8      2022-07-22 [1] CRAN (R 4.2.0)
+#&gt;  tidyr         * 1.3.0      2023-01-24 [1] CRAN (R 4.2.0)
+#&gt;  tidyselect      1.2.0      2022-10-10 [1] CRAN (R 4.2.0)
+#&gt;  tidyverse     * 1.3.2      2022-07-18 [1] CRAN (R 4.2.0)
+#&gt;  timechange      0.2.0      2023-01-11 [1] CRAN (R 4.2.0)
+#&gt;  timeDate        4022.108   2023-01-07 [1] CRAN (R 4.2.0)
+#&gt;  tzdb            0.3.0      2022-03-28 [1] CRAN (R 4.2.0)
+#&gt;  urlchecker      1.0.1      2021-11-30 [1] CRAN (R 4.2.0)
+#&gt;  usethis         2.1.6      2022-05-25 [1] CRAN (R 4.2.0)
+#&gt;  utf8            1.2.3      2023-01-31 [1] CRAN (R 4.2.0)
+#&gt;  vctrs           0.5.2      2023-01-23 [1] CRAN (R 4.2.0)
+#&gt;  withr           2.5.0      2022-03-03 [1] CRAN (R 4.2.0)
+#&gt;  xfun            0.37       2023-01-31 [1] CRAN (R 4.2.0)
+#&gt;  xml2            1.3.3      2021-11-30 [1] CRAN (R 4.2.0)
+#&gt;  xtable          1.8-4      2019-04-21 [1] CRAN (R 4.2.0)
+#&gt;  xts             0.12.2     2022-10-16 [1] CRAN (R 4.2.0)
+#&gt;  yaml            2.3.7      2023-01-23 [1] CRAN (R 4.2.0)
+#&gt;  zoo             1.8-11     2022-09-17 [1] CRAN (R 4.2.0)
+#&gt; 
+#&gt;  [1] /Users/sebastiansaueruser/Rlibs
+#&gt;  [2] /Library/Frameworks/R.framework/Versions/4.2/Resources/library
+#&gt; 
+#&gt; ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</code></pre>
+</div>
