@@ -1,0 +1,175 @@
+---
+title: Farbpaletten für nominale Variablen
+author: Sebastian Sauer
+date: '2023-06-30'
+slug: farbpaletten
+categories:
+  - rstats
+draft: no
+tags:
+  - visualization
+  - ggplot2
+  - color
+output:
+  blogdown::html_page:
+    toc: yes
+    number_sections: yes
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#setup" id="toc-setup"><span class="toc-section-number">1</span> Setup</a></li>
+<li><a href="#wesanderson" id="toc-wesanderson"><span class="toc-section-number">2</span> Wesanderson</a></li>
+<li><a href="#awtools" id="toc-awtools"><span class="toc-section-number">3</span> AWTools</a></li>
+<li><a href="#palette-a" id="toc-palette-a"><span class="toc-section-number">4</span> Palette A</a>
+<ul>
+<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">4.0.1</span> Reproducibility</a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="setup" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Setup</h1>
+<pre class="r"><code>library(tidyverse)
+library(paletteer)</code></pre>
+</div>
+<div id="wesanderson" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Wesanderson</h1>
+<p><a href="https://github.com/karthik/wesanderson">Die Paletten von Wes Anderson</a></p>
+<pre class="r"><code>library(wesanderson)</code></pre>
+<pre class="r"><code>wes_palette(&quot;FantasticFox1&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="awtools" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> AWTools</h1>
+</div>
+<div id="palette-a" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Palette A</h1>
+<pre class="r"><code>show_cols &lt;- function(col_pal){
+d &lt;- tibble(x = 1:length(col_pal),
+            col = factor(col_pal))
+
+ggplot(d) +
+  aes(x=x)+
+  geom_bar(aes(fill = col)) +
+  theme_void() +
+  scale_fill_manual(values = col_pal)
+}</code></pre>
+<pre class="r"><code>show_cols(paletteer_d(&quot;awtools::a_palette&quot;, n = 5))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>show_cols(paletteer_d(&quot;awtools::mpalette&quot;, n = 5))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>show_cols(paletteer_d(&quot;ggthemes::colorblind&quot;, n = 5))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>paletteer_d(`&quot;beyonce::X18&quot;`)
+#&gt; &lt;colors&gt;
+#&gt; #424395FF #018AC4FF #5EC2DAFF #EBC915FF #EB549AFF #550133FF</code></pre>
+<pre class="r"><code>paletteer_d(`&quot;beyonce::X18&quot;`, n = 5) %&gt;% show_cols()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>paletteer_d(`&quot;rtist::picasso&quot;`, n = 5) %&gt;% show_cols()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>paletteer_d(`&quot;rtist::oldenburg&quot;`, n = 5) %&gt;% show_cols()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>paletteer_d(`&quot;ggsci::default_locuszoom&quot;`, n = 5) %&gt;% show_cols()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>paletteer_d(`&quot;ggsci::legacy_tron&quot;`, n = 5) %&gt;% show_cols()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>paletteer_d(`&quot;jcolors::default&quot;`, n = 5) %&gt;% show_cols()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>paletteer_d(`&quot;jcolors::pal5&quot;`, n = 5) %&gt;% show_cols()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>paletteer_d(`&quot;jcolors::rainbow&quot;`, n = 5) %&gt;% show_cols()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>paletteer_dynamic(`&quot;ggthemes_solarized::blue&quot;`, n = 5) %&gt;% show_cols()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-16-1.png" width="100%" style="display: block; margin: auto;" />
+<a href="https://colorlisa.com/">Color Lisa</a></p>
+<pre class="r"><code>paletteer_d(&quot;lisa::MarcChagall&quot;, n = 5) %&gt;% show_cols()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>paletteer_d(&quot;lisa::RobertDelaunay&quot;, n = 5) %&gt;% show_cols()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>paletteer_d(&quot;lisa::GeneDavis&quot;, n = 5) %&gt;% show_cols()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="reproducibility" class="section level3" number="4.0.1">
+<h3><span class="header-section-number">4.0.1</span> Reproducibility</h3>
+<pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
+#&gt;  setting  value
+#&gt;  version  R version 4.2.1 (2022-06-23)
+#&gt;  os       macOS Big Sur ... 10.16
+#&gt;  system   x86_64, darwin17.0
+#&gt;  ui       X11
+#&gt;  language (EN)
+#&gt;  collate  en_US.UTF-8
+#&gt;  ctype    en_US.UTF-8
+#&gt;  tz       Europe/Berlin
+#&gt;  date     2023-06-30
+#&gt;  pandoc   3.1.1 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
+#&gt; 
+#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
+#&gt;  package     * version date (UTC) lib source
+#&gt;  blogdown      1.16    2022-12-13 [1] CRAN (R 4.2.0)
+#&gt;  bookdown      0.34    2023-05-09 [1] CRAN (R 4.2.0)
+#&gt;  bslib         0.5.0   2023-06-09 [1] CRAN (R 4.2.0)
+#&gt;  cachem        1.0.8   2023-05-01 [1] CRAN (R 4.2.0)
+#&gt;  cli           3.6.1   2023-03-23 [1] CRAN (R 4.2.0)
+#&gt;  codetools     0.2-19  2023-02-01 [1] CRAN (R 4.2.0)
+#&gt;  colorout    * 1.2-2   2022-06-13 [1] local
+#&gt;  colorspace    2.1-0   2023-01-23 [1] CRAN (R 4.2.0)
+#&gt;  crayon        1.5.2   2022-09-29 [1] CRAN (R 4.2.1)
+#&gt;  digest        0.6.32  2023-06-26 [1] CRAN (R 4.2.0)
+#&gt;  dplyr       * 1.1.2   2023-04-20 [1] CRAN (R 4.2.0)
+#&gt;  evaluate      0.21    2023-05-05 [1] CRAN (R 4.2.0)
+#&gt;  fansi         1.0.4   2023-01-22 [1] CRAN (R 4.2.0)
+#&gt;  farver        2.1.1   2022-07-06 [1] CRAN (R 4.2.0)
+#&gt;  fastmap       1.1.1   2023-02-24 [1] CRAN (R 4.2.0)
+#&gt;  forcats     * 1.0.0   2023-01-29 [1] CRAN (R 4.2.0)
+#&gt;  generics      0.1.3   2022-07-05 [1] CRAN (R 4.2.0)
+#&gt;  ggplot2     * 3.4.2   2023-04-03 [1] CRAN (R 4.2.0)
+#&gt;  glue          1.6.2   2022-02-24 [1] CRAN (R 4.2.0)
+#&gt;  gtable        0.3.3   2023-03-21 [1] CRAN (R 4.2.0)
+#&gt;  highr         0.10    2022-12-22 [1] CRAN (R 4.2.0)
+#&gt;  hms           1.1.3   2023-03-21 [1] CRAN (R 4.2.0)
+#&gt;  htmltools     0.5.5   2023-03-23 [1] CRAN (R 4.2.0)
+#&gt;  jquerylib     0.1.4   2021-04-26 [1] CRAN (R 4.2.0)
+#&gt;  jsonlite      1.8.5   2023-06-05 [1] CRAN (R 4.2.0)
+#&gt;  knitr         1.43    2023-05-25 [1] CRAN (R 4.2.0)
+#&gt;  labeling      0.4.2   2020-10-20 [1] CRAN (R 4.2.0)
+#&gt;  lifecycle     1.0.3   2022-10-07 [1] CRAN (R 4.2.0)
+#&gt;  lubridate   * 1.9.2   2023-02-10 [1] CRAN (R 4.2.0)
+#&gt;  magrittr      2.0.3   2022-03-30 [1] CRAN (R 4.2.0)
+#&gt;  munsell       0.5.0   2018-06-12 [1] CRAN (R 4.2.0)
+#&gt;  paletteer   * 1.5.0   2022-10-19 [1] CRAN (R 4.2.0)
+#&gt;  pillar        1.9.0   2023-03-22 [1] CRAN (R 4.2.0)
+#&gt;  pkgconfig     2.0.3   2019-09-22 [1] CRAN (R 4.2.0)
+#&gt;  prismatic     1.1.1   2022-08-15 [1] CRAN (R 4.2.0)
+#&gt;  purrr       * 1.0.1   2023-01-10 [1] CRAN (R 4.2.0)
+#&gt;  R6            2.5.1   2021-08-19 [1] CRAN (R 4.2.0)
+#&gt;  readr       * 2.1.4   2023-02-10 [1] CRAN (R 4.2.0)
+#&gt;  rematch2      2.1.2   2020-05-01 [1] CRAN (R 4.2.0)
+#&gt;  rlang         1.1.1   2023-04-28 [1] CRAN (R 4.2.0)
+#&gt;  rmarkdown     2.22    2023-06-01 [1] CRAN (R 4.2.0)
+#&gt;  rstudioapi    0.14    2022-08-22 [1] CRAN (R 4.2.0)
+#&gt;  sass          0.4.6   2023-05-03 [1] CRAN (R 4.2.0)
+#&gt;  scales        1.2.1   2022-08-20 [1] CRAN (R 4.2.0)
+#&gt;  sessioninfo   1.2.2   2021-12-06 [1] CRAN (R 4.2.0)
+#&gt;  stringi       1.7.12  2023-01-11 [1] CRAN (R 4.2.0)
+#&gt;  stringr     * 1.5.0   2022-12-02 [1] CRAN (R 4.2.0)
+#&gt;  tibble      * 3.2.1   2023-03-20 [1] CRAN (R 4.2.0)
+#&gt;  tidyr       * 1.3.0   2023-01-24 [1] CRAN (R 4.2.0)
+#&gt;  tidyselect    1.2.0   2022-10-10 [1] CRAN (R 4.2.0)
+#&gt;  tidyverse   * 2.0.0   2023-02-22 [1] CRAN (R 4.2.0)
+#&gt;  timechange    0.2.0   2023-01-11 [1] CRAN (R 4.2.0)
+#&gt;  tzdb          0.3.0   2022-03-28 [1] CRAN (R 4.2.0)
+#&gt;  utf8          1.2.3   2023-01-31 [1] CRAN (R 4.2.0)
+#&gt;  vctrs         0.6.3   2023-06-14 [1] CRAN (R 4.2.0)
+#&gt;  wesanderson * 0.3.6   2018-04-20 [1] CRAN (R 4.2.0)
+#&gt;  withr         2.5.0   2022-03-03 [1] CRAN (R 4.2.0)
+#&gt;  xfun          0.39    2023-04-20 [1] CRAN (R 4.2.0)
+#&gt;  yaml          2.3.7   2023-01-23 [1] CRAN (R 4.2.0)
+#&gt; 
+#&gt;  [1] /Users/sebastiansaueruser/Rlibs
+#&gt;  [2] /Library/Frameworks/R.framework/Versions/4.2/Resources/library
+#&gt; 
+#&gt; ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</code></pre>
+</div>
+</div>

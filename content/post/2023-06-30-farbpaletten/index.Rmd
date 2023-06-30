@@ -1,0 +1,190 @@
+---
+title: Farbpaletten für nominale Variablen
+author: Sebastian Sauer
+date: '2023-06-30'
+slug: farbpaletten
+categories:
+  - rstats
+draft: no
+tags:
+  - visualization
+  - ggplot2
+  - color
+output:
+  blogdown::html_page:
+    toc: yes
+    number_sections: yes
+---
+
+
+
+
+```{r knitr-setup, echo = FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = TRUE,
+  out.width = "100%",
+  fig.align = 'center',
+  fig.width = 6,
+  fig.asp = 0.618,  # 1 / phi
+  fig.show = "hold",
+  size = "tiny"
+)
+```
+
+# Setup
+
+
+```{r setup}
+library(tidyverse)
+library(paletteer)
+```
+
+
+# Wesanderson
+
+[Die Paletten von Wes Anderson](https://github.com/karthik/wesanderson)
+
+```{r}
+library(wesanderson)
+```
+
+
+
+```{r}
+wes_palette("FantasticFox1")
+```
+
+
+
+# AWTools
+
+
+# Palette A
+```{r}
+show_cols <- function(col_pal){
+d <- tibble(x = 1:length(col_pal),
+            col = factor(col_pal))
+
+ggplot(d) +
+  aes(x=x)+
+  geom_bar(aes(fill = col)) +
+  theme_void() +
+  scale_fill_manual(values = col_pal)
+}
+```
+
+
+
+
+```{r}
+show_cols(paletteer_d("awtools::a_palette", n = 5))
+```
+
+
+
+
+
+```{r}
+show_cols(paletteer_d("awtools::mpalette", n = 5))
+```
+
+
+
+
+```{r}
+show_cols(paletteer_d("ggthemes::colorblind", n = 5))
+```
+
+
+
+
+```{r}
+paletteer_d(`"beyonce::X18"`)
+```
+
+
+
+
+
+
+
+```{r}
+paletteer_d(`"beyonce::X18"`, n = 5) %>% show_cols()
+```
+
+
+```{r}
+paletteer_d(`"rtist::picasso"`, n = 5) %>% show_cols()
+```
+
+
+```{r}
+paletteer_d(`"rtist::oldenburg"`, n = 5) %>% show_cols()
+```
+
+
+```{r}
+paletteer_d(`"ggsci::default_locuszoom"`, n = 5) %>% show_cols()
+```
+
+
+
+```{r}
+paletteer_d(`"ggsci::legacy_tron"`, n = 5) %>% show_cols()
+```
+
+
+
+```{r}
+paletteer_d(`"jcolors::default"`, n = 5) %>% show_cols()
+```
+
+
+
+```{r}
+paletteer_d(`"jcolors::pal5"`, n = 5) %>% show_cols()
+```
+
+
+
+```{r}
+paletteer_d(`"jcolors::rainbow"`, n = 5) %>% show_cols()
+```
+
+
+```{r}
+paletteer_dynamic(`"ggthemes_solarized::blue"`, n = 5) %>% show_cols()
+```
+[Color Lisa](https://colorlisa.com/)
+
+```{r}
+paletteer_d("lisa::MarcChagall", n = 5) %>% show_cols()
+```
+
+
+```{r}
+paletteer_d("lisa::RobertDelaunay", n = 5) %>% show_cols()
+```
+
+
+
+```{r}
+paletteer_d("lisa::GeneDavis", n = 5) %>% show_cols()
+```
+
+
+
+
+
+
+### Reproducibility
+
+```{r reproducibility, echo = FALSE}
+## Reproducibility info
+options(width = 120)
+sessioninfo::session_info()
+```
