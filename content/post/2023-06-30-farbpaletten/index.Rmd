@@ -44,26 +44,15 @@ library(paletteer)
 ```
 
 
-# Wesanderson
-
-[Die Paletten von Wes Anderson](https://github.com/karthik/wesanderson)
+# Auswahl
 
 ```{r}
-library(wesanderson)
+wesanderson::wes_palette("FantasticFox1")
 ```
 
 
 
-```{r}
-wes_palette("FantasticFox1")
-```
 
-
-
-# AWTools
-
-
-# Palette A
 ```{r}
 show_cols <- function(col_pal){
 d <- tibble(x = 1:length(col_pal),
@@ -181,7 +170,7 @@ paletteer_d("lisa::GeneDavis", n = 5) %>% show_cols()
 
 
 
-### Reproducibility
+# Reproducibility
 
 ```{r reproducibility, echo = FALSE}
 ## Reproducibility info
