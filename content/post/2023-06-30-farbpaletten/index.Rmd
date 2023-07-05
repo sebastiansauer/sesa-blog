@@ -69,6 +69,7 @@ Hier sind einige (der wichtigsten) Anforderungen an eine Farbpalette für nomina
 4. Robust bei Schwarz-Weiß-Druck
 5. gut benennbare Farben ("grün" und "gelb")
 6. gleich starke Farben (z.B. kann ein sanftes Grau wie eine Abschwächung der Bedeutung wirken)
+7. nicht zu hell, damit sie auf weißem Hintergrund erkennbar sind
 
 
 # Auswahl
@@ -293,6 +294,13 @@ ggplot(mpg, aes(hwy, color = class, fill = class)) +
   scale_fill_okabe_ito(name = "Class", alpha = .9) +
   scale_color_okabe_ito(name = "Class")
 ```
+
+
+
+# Fazit
+
+Mittlerweile gibt es eine Reihe guter Farbpaletten (für R). Okabe und Ito ist ein Beispiel für eine gute Wahl.
+Es gibt aber auch noch andere; so hat [Base R mittlerweile auch eine gute Standardpalette](https://developer.r-project.org/Blog/public/2019/11/21/a-new-palette-for-r/).
 
 
 

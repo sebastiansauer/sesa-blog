@@ -32,7 +32,8 @@ output:
 <li><a href="#jcolors" id="toc-jcolors"><span class="toc-section-number">11</span> jcolors</a></li>
 <li><a href="#color-lisa" id="toc-color-lisa"><span class="toc-section-number">12</span> Color Lisa</a></li>
 <li><a href="#okabe-und-ito" id="toc-okabe-und-ito"><span class="toc-section-number">13</span> Okabe und Ito</a></li>
-<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">14</span> Reproducibility</a></li>
+<li><a href="#fazit" id="toc-fazit"><span class="toc-section-number">14</span> Fazit</a></li>
+<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">15</span> Reproducibility</a></li>
 </ul>
 </div>
 
@@ -60,6 +61,7 @@ library(paletteer)</code></pre>
 <li>Robust bei Schwarz-Weiß-Druck</li>
 <li>gut benennbare Farben (“grün” und “gelb”)</li>
 <li>gleich starke Farben (z.B. kann ein sanftes Grau wie eine Abschwächung der Bedeutung wirken)</li>
+<li>nicht zu hell, damit sie auf weißem Hintergrund erkennbar sind</li>
 </ol>
 </div>
 <div id="auswahl" class="section level1" number="4">
@@ -182,8 +184,13 @@ ggplot(mpg, aes(cty, hwy, color = class)) +
   scale_color_okabe_ito(name = &quot;Class&quot;)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-27-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="reproducibility" class="section level1" number="14">
-<h1><span class="header-section-number">14</span> Reproducibility</h1>
+<div id="fazit" class="section level1" number="14">
+<h1><span class="header-section-number">14</span> Fazit</h1>
+<p>Mittlerweile gibt es eine Reihe guter Farbpaletten (für R). Okabe und Ito ist ein Beispiel für eine gute Wahl.
+Es gibt aber auch noch andere; so hat <a href="https://developer.r-project.org/Blog/public/2019/11/21/a-new-palette-for-r/">Base R mittlerweile auch eine gute Standardpalette</a>.</p>
+</div>
+<div id="reproducibility" class="section level1" number="15">
+<h1><span class="header-section-number">15</span> Reproducibility</h1>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value
 #&gt;  version  R version 4.2.1 (2022-06-23)
