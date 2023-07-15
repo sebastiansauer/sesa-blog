@@ -170,10 +170,10 @@ ggplot(d) +
 <div id="okabe-ito" class="section level1" number="14">
 <h1><span class="header-section-number">14</span> Okabe-Ito</h1>
 <p><a href="https://jfly.uni-koeln.de/color/">Okabe und Ito</a> stellen eine Palette bereit, die unseren Anforderungen genügt!</p>
-<pre class="r"><code>paletteer_d(&quot;colorblindr::OkabeIto&quot;, n = 8)
+<pre class="r"><code>paletteer_d(&quot;colorblindr::OkabeIto&quot;)
 #&gt; &lt;colors&gt;
 #&gt; #E69F00FF #56B4E9FF #009E73FF #F0E442FF #0072B2FF #D55E00FF #CC79A7FF #999999FF</code></pre>
-<pre class="r"><code>paletteer_d(&quot;colorblindr::OkabeIto&quot;, n = 8) %&gt;% show_cols()</code></pre>
+<pre class="r"><code>paletteer_d(&quot;colorblindr::OkabeIto&quot;) %&gt;% show_cols(n=8)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Sagen wir uns gefallen die folgenden 5 Farben daraus:</p>
 <pre class="r"><code>okebeito_auswahl &lt;- paletteer_d(&quot;colorblindr::OkabeIto&quot;)[c(1,3,4,5,7)]
