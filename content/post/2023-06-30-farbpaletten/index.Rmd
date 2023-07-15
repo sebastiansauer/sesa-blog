@@ -44,7 +44,23 @@ library(paletteer)
 ```
 
 
-Das Paket [`paletteer`](https://emilhvitfeldt.github.io/paletteer/) trägt eine große Auswahl an Farbpaletten zusammen und erleichtert die Handhabung.
+Das Paket [`paletteer`](https://emilhvitfeldt.github.io/paletteer/) trägt eine große Auswahl an Farbpaletten zusammen und erleichtert die Handhabung in R.
+
+
+# tl;dr
+
+Die Farbpalette von [Okabe und Ito](https://jfly.uni-koeln.de/color/) ist eine gute Wahl, um eine nominale Variable in Farben zu kodieren.
+
+
+
+
+```{r}
+paletteer_d("colorblindr::OkabeIto")
+```
+
+
+Mehr Details [weiter unten](#okabe-ito).
+
 
 
 # Beispiel für Farbwahl bei einer nominaler Variablen
@@ -254,9 +270,9 @@ paletteer_d("lisa::GeneDavis", n = 5) %>% show_cols()
 ```
 
 
-# Okabe und Ito
+# Okabe-Ito
 
-Okabe und Ito stellen eine Palette bereit, die unseren Anforderungen genügt!
+[Okabe und Ito](https://jfly.uni-koeln.de/color/) stellen eine Palette bereit, die unseren Anforderungen genügt!
 
 
 ```{r}
@@ -294,6 +310,20 @@ ggplot(mpg, aes(hwy, color = class, fill = class)) +
   scale_fill_okabe_ito(name = "Class", alpha = .9) +
   scale_color_okabe_ito(name = "Class")
 ```
+
+
+Die Farbnamen findet man z.B. [hier](https://mikemol.github.io/technique/colorblind/2018/02/11/color-safe-palette.html).
+
+
+# Farbnamen
+
+```{r}
+library(plotrix)
+
+paletteer_d("colorblindr::OkabeIto") %>% 
+  map(color.id)
+```
+
 
 
 
