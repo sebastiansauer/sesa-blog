@@ -279,6 +279,15 @@ paletteer_d("lisa::GeneDavis", n = 5) %>% show_cols()
 paletteer_d("colorblindr::OkabeIto")
 ```
 
+
+
+
+```{r}
+paletteer_d("colorblindr::OkabeIto") %>% show_cols()
+```
+
+
+
 Sagen wir uns gefallen die folgenden 5 Farben daraus:
 
 ```{r}
