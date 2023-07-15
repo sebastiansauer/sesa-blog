@@ -276,14 +276,14 @@ paletteer_d("lisa::GeneDavis", n = 5) %>% show_cols()
 
 
 ```{r}
-paletteer_d("colorblindr::OkabeIto")
+paletteer_d("colorblindr::OkabeIto", n = 8)
 ```
 
 
 
 
 ```{r}
-paletteer_d("colorblindr::OkabeIto") %>% show_cols()
+paletteer_d("colorblindr::OkabeIto", n = 8) %>% show_cols()
 ```
 
 
