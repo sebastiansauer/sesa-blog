@@ -34,15 +34,19 @@ output:
 <li><a href="#color-lisa" id="toc-color-lisa"><span class="toc-section-number">13</span> Color Lisa</a></li>
 <li><a href="#okabe-ito" id="toc-okabe-ito"><span class="toc-section-number">14</span> Okabe-Ito</a></li>
 <li><a href="#farbnamen" id="toc-farbnamen"><span class="toc-section-number">15</span> Farbnamen</a></li>
-<li><a href="#fazit" id="toc-fazit"><span class="toc-section-number">16</span> Fazit</a></li>
-<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">17</span> Reproducibility</a></li>
+<li><a href="#show-color-2" id="toc-show-color-2"><span class="toc-section-number">16</span> Show color 2</a></li>
+<li><a href="#farbenblindheit" id="toc-farbenblindheit"><span class="toc-section-number">17</span> Farbenblindheit</a></li>
+<li><a href="#fazit" id="toc-fazit"><span class="toc-section-number">18</span> Fazit</a></li>
+<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">19</span> Reproducibility</a></li>
 </ul>
 </div>
 
 <div id="setup" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Setup</h1>
 <pre class="r"><code>library(tidyverse)
-library(paletteer)</code></pre>
+library(paletteer)
+library(scales)  # show_col()
+library(colorblindr)  # from github</code></pre>
 <p>Das Paket <a href="https://emilhvitfeldt.github.io/paletteer/"><code>paletteer</code></a> trägt eine große Auswahl an Farbpaletten zusammen und erleichtert die Handhabung in R.</p>
 </div>
 <div id="tldr" class="section level1" number="2">
@@ -118,7 +122,7 @@ ggplot(d) +
 <p>Auch das Paket <a href="https://jrnold.github.io/ggthemes/">`ggthemes</a> stellt eine nette Auswahl vor.</p>
 <pre class="r"><code>show_cols(paletteer_d(&quot;ggthemes::colorblind&quot;, n = 5))</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>Aber auch hier ist mir nicht bekannt, ob die alle unsere “Desiderata” erfüllt sind.</p>
+<p>Schwarz sticht hier hervor; die anderen Farben sind dezent, das Schwarz ist, anders, naja, schwarz!</p>
 </div>
 <div id="weitere-paletten" class="section level1" number="9">
 <h1><span class="header-section-number">9</span> Weitere Paletten</h1>
@@ -227,13 +231,34 @@ paletteer_d(&quot;colorblindr::OkabeIto&quot;) %&gt;%
 #&gt; [[8]]
 #&gt; [1] &quot;gray60&quot; &quot;grey60&quot;</code></pre>
 </div>
-<div id="fazit" class="section level1" number="16">
-<h1><span class="header-section-number">16</span> Fazit</h1>
-<p>Mittlerweile gibt es eine Reihe guter Farbpaletten (für R). Okabe und Ito ist ein Beispiel für eine gute Wahl.
+<div id="show-color-2" class="section level1" number="16">
+<h1><span class="header-section-number">16</span> Show color 2</h1>
+<p>Natürlich hat jemand die Funktion <code>show_cols</code> schon geschrieben, z.B. im Paket <code>scales</code>:</p>
+<pre class="r"><code>scales::show_col(paletteer_d(&quot;colorblindr::OkabeIto&quot;))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-31-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="farbenblindheit" class="section level1" number="17">
+<h1><span class="header-section-number">17</span> Farbenblindheit</h1>
+<pre class="r"><code>show_cols(paletteer_d(&quot;colorblindr::OkabeIto&quot;)) %&gt;% 
+  cvd_grid()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-32-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>paletteer_d(&quot;lisa::GeneDavis&quot;) %&gt;% 
+  show_cols() %&gt;% 
+  cvd_grid()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-33-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>paletteer_d(`&quot;beyonce::X18&quot;`) %&gt;% 
+  show_cols() %&gt;% 
+  cvd_grid()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-34-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fazit" class="section level1" number="18">
+<h1><span class="header-section-number">18</span> Fazit</h1>
+<p>Mittlerweile gibt es eine Reihe guter Farbpaletten (für R).
+Okabe und Ito ist ein Beispiel für eine gute Wahl.
 Es gibt aber auch noch andere; so hat <a href="https://developer.r-project.org/Blog/public/2019/11/21/a-new-palette-for-r/">Base R mittlerweile auch eine gute Standardpalette</a>.</p>
 </div>
-<div id="reproducibility" class="section level1" number="17">
-<h1><span class="header-section-number">17</span> Reproducibility</h1>
+<div id="reproducibility" class="section level1" number="19">
+<h1><span class="header-section-number">19</span> Reproducibility</h1>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value
 #&gt;  version  R version 4.2.1 (2022-06-23)

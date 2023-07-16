@@ -41,6 +41,8 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(tidyverse)
 library(paletteer)
+library(scales)  # show_col()
+library(colorblindr)  # from github
 ```
 
 
@@ -169,8 +171,7 @@ Auch das Paket [`ggthemes](https://jrnold.github.io/ggthemes/) stellt eine nette
 show_cols(paletteer_d("ggthemes::colorblind", n = 5))
 ```
 
-Aber auch hier ist mir nicht bekannt, ob die alle unsere "Desiderata" erfüllt sind.
-
+Schwarz sticht hier hervor; die anderen Farben sind dezent, das Schwarz ist, anders, naja, schwarz!
 
 # Weitere Paletten
 
@@ -250,6 +251,49 @@ paletteer_d(`"jcolors::rainbow"`, n = 5) %>% show_cols()
 ```
 
 
+# Viridis
+
+[Viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html) ist eine bekannte Farbpalette.
+
+
+
+```{r}
+paletteer_c("viridis::viridis", n = 5)
+```
+
+
+```{r}
+paletteer_c("viridis::viridis", n = 5) %>% 
+  show_cols()
+```
+
+
+
+
+```{r}
+paletteer_c("viridis::viridis", n = 7) %>% 
+  show_cols(n = 7)
+```
+
+
+
+# Magma
+
+Eine Variante zu Viridis ist Magma:
+
+
+
+
+```{r}
+paletteer_c("viridis::magma", n = 5)
+```
+
+
+```{r}
+paletteer_c("viridis::magma", n = 5) %>% 
+  show_cols()
+```
+
 # Color Lisa
 
 [Color Lisa](https://colorlisa.com/) ist ebenfalls von bekannten Malern - bzw. deren Farbauswahl - inspiert.
@@ -268,6 +312,8 @@ paletteer_d("lisa::RobertDelaunay", n = 5) %>% show_cols()
 ```{r}
 paletteer_d("lisa::GeneDavis", n = 5) %>% show_cols()
 ```
+
+
 
 
 # Okabe-Ito
@@ -323,6 +369,12 @@ ggplot(mpg, aes(hwy, color = class, fill = class)) +
 
 Die Farbnamen findet man z.B. [hier](https://mikemol.github.io/technique/colorblind/2018/02/11/color-safe-palette.html).
 
+# Tableau 10
+
+```{r}
+show_col(tableau_color_pal("Tableau 10")(10))
+```
+
 
 # Farbnamen
 
@@ -334,11 +386,115 @@ paletteer_d("colorblindr::OkabeIto") %>%
 ```
 
 
+# Show color 2
+
+Natürlich hat jemand die Funktion `show_cols` schon geschrieben, z.B. im Paket `scales`:
+
+
+```{r}
+scales::show_col(paletteer_d("colorblindr::OkabeIto"))
+```
+
+
+
+# Farbenblindheit
+
+## Okabe Ito
+
+```{r}
+show_cols(paletteer_d("colorblindr::OkabeIto"), n = 8) %>% 
+  cvd_grid()
+```
+
+Insgesamt stimmen die Resultate nicht so ganz zufrieden.
+
+Versuchen wir es mit 5 Farben aus Okabe und Ito:
+
+
+
+```{r}
+show_cols(paletteer_d("colorblindr::OkabeIto")) %>% 
+  cvd_grid()
+```
+
+Besser.
+
+Oder mit nur 3 Farben?
+
+
+```{r}
+show_cols(paletteer_d("colorblindr::OkabeIto"), n = 3) %>% 
+  cvd_grid()
+```
+Noch etwas besser.
+
+
+## Gene Davis
+
+```{r}
+paletteer_d("lisa::GeneDavis") %>% 
+  show_cols() %>% 
+  cvd_grid()
+```
+
+Naja, einigermaßen ok.
+
+
+
+## X18
+
+
+```{r}
+paletteer_d(`"beyonce::X18"`) %>% 
+  show_cols() %>% 
+  cvd_grid()
+```
+
+Nicht super, aber vielleicht geht es nicht viel besser.
+
+## Tableau 10
+
+
+```{r}
+show_cols(tableau_color_pal("Tableau 10")(10)) %>% 
+  cvd_grid()
+```
+
+Nicht so super.
+
+## Viridis 
+
+```{r}
+paletteer_c("viridis::viridis", n = 7) %>% 
+  show_cols(n = 7) %>% 
+  cvd_grid()
+```
+
+Oh, gut!
+
+
+Probieren wir mit 5 Farben,
+dann wird es sogar noch einfacher.
+
+```{r}
+paletteer_c("viridis::viridis", n = 5) %>% 
+  show_cols(n = 5) %>% 
+  cvd_grid()
+```
+
+
+Viridis sieht bei Farbschwäche super aus.
+Allerdings ist Viridis nicht unbedingt geignet,
+um nominale Variablen darzustellen,
+zumindest hat man einen "natürlichen" Verlauf der Farbe,
+was eine Sequenz oder eine ordinale Abfolge suggiert.
+
 
 
 # Fazit
 
-Mittlerweile gibt es eine Reihe guter Farbpaletten (für R). Okabe und Ito ist ein Beispiel für eine gute Wahl.
+Mittlerweile gibt es eine Reihe guter Farbpaletten (für R). 
+Okabe und Ito ist ein Beispiel für eine gute Wahl.
 Es gibt aber auch noch andere; so hat [Base R mittlerweile auch eine gute Standardpalette](https://developer.r-project.org/Blog/public/2019/11/21/a-new-palette-for-r/).
 
 
