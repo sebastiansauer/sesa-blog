@@ -20,7 +20,7 @@ Say we start with a basic dataframe (from a CSV file) that contains the followin
 
 ```{r message = FALSE}
 library(tidyverse)
-gant_data_raw <- read_csv2("https://data-se.netlify.com/download/gantt.txt")
+gant_data_raw <- read_csv2("https://data-se.netlify.app/download/gantt.txt")
 ```
 
 
