@@ -31,13 +31,23 @@ output:
 <li><a href="#rtist" id="toc-rtist"><span class="toc-section-number">10</span> rtist</a></li>
 <li><a href="#ggsci" id="toc-ggsci"><span class="toc-section-number">11</span> ggsci</a></li>
 <li><a href="#jcolors" id="toc-jcolors"><span class="toc-section-number">12</span> jcolors</a></li>
-<li><a href="#color-lisa" id="toc-color-lisa"><span class="toc-section-number">13</span> Color Lisa</a></li>
-<li><a href="#okabe-ito" id="toc-okabe-ito"><span class="toc-section-number">14</span> Okabe-Ito</a></li>
-<li><a href="#farbnamen" id="toc-farbnamen"><span class="toc-section-number">15</span> Farbnamen</a></li>
-<li><a href="#show-color-2" id="toc-show-color-2"><span class="toc-section-number">16</span> Show color 2</a></li>
-<li><a href="#farbenblindheit" id="toc-farbenblindheit"><span class="toc-section-number">17</span> Farbenblindheit</a></li>
-<li><a href="#fazit" id="toc-fazit"><span class="toc-section-number">18</span> Fazit</a></li>
-<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">19</span> Reproducibility</a></li>
+<li><a href="#viridis" id="toc-viridis"><span class="toc-section-number">13</span> Viridis</a></li>
+<li><a href="#magma" id="toc-magma"><span class="toc-section-number">14</span> Magma</a></li>
+<li><a href="#color-lisa" id="toc-color-lisa"><span class="toc-section-number">15</span> Color Lisa</a></li>
+<li><a href="#okabe-ito" id="toc-okabe-ito"><span class="toc-section-number">16</span> Okabe-Ito</a></li>
+<li><a href="#tableau-10" id="toc-tableau-10"><span class="toc-section-number">17</span> Tableau 10</a></li>
+<li><a href="#farbnamen" id="toc-farbnamen"><span class="toc-section-number">18</span> Farbnamen</a></li>
+<li><a href="#show-color-2" id="toc-show-color-2"><span class="toc-section-number">19</span> Show color 2</a></li>
+<li><a href="#farbenblindheit" id="toc-farbenblindheit"><span class="toc-section-number">20</span> Farbenblindheit</a>
+<ul>
+<li><a href="#okabe-ito-1" id="toc-okabe-ito-1"><span class="toc-section-number">20.1</span> Okabe Ito</a></li>
+<li><a href="#gene-davis" id="toc-gene-davis"><span class="toc-section-number">20.2</span> Gene Davis</a></li>
+<li><a href="#x18" id="toc-x18"><span class="toc-section-number">20.3</span> X18</a></li>
+<li><a href="#tableau-10-1" id="toc-tableau-10-1"><span class="toc-section-number">20.4</span> Tableau 10</a></li>
+<li><a href="#viridis-1" id="toc-viridis-1"><span class="toc-section-number">20.5</span> Viridis</a></li>
+</ul></li>
+<li><a href="#fazit" id="toc-fazit"><span class="toc-section-number">21</span> Fazit</a></li>
+<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">22</span> Reproducibility</a></li>
 </ul>
 </div>
 
@@ -46,7 +56,8 @@ output:
 <pre class="r"><code>library(tidyverse)
 library(paletteer)
 library(scales)  # show_col()
-library(colorblindr)  # from github</code></pre>
+library(colorblindr)  # from github
+library(ggthemes)</code></pre>
 <p>Das Paket <a href="https://emilhvitfeldt.github.io/paletteer/"><code>paletteer</code></a> trägt eine große Auswahl an Farbpaletten zusammen und erleichtert die Handhabung in R.</p>
 </div>
 <div id="tldr" class="section level1" number="2">
@@ -161,48 +172,76 @@ ggplot(d) +
 <pre class="r"><code>paletteer_d(`&quot;jcolors::rainbow&quot;`, n = 5) %&gt;% show_cols()</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="color-lisa" class="section level1" number="13">
-<h1><span class="header-section-number">13</span> Color Lisa</h1>
-<p><a href="https://colorlisa.com/">Color Lisa</a> ist ebenfalls von bekannten Malern - bzw. deren Farbauswahl - inspiert.</p>
-<pre class="r"><code>paletteer_d(&quot;lisa::MarcChagall&quot;, n = 5) %&gt;% show_cols()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>paletteer_d(&quot;lisa::RobertDelaunay&quot;, n = 5) %&gt;% show_cols()</code></pre>
+<div id="viridis" class="section level1" number="13">
+<h1><span class="header-section-number">13</span> Viridis</h1>
+<p><a href="https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html">Viridis</a> ist eine bekannte Farbpalette.</p>
+<pre class="r"><code>paletteer_c(&quot;viridis::viridis&quot;, n = 5)
+#&gt; &lt;colors&gt;
+#&gt; #440154FF #3B528BFF #21908CFF #5DC863FF #FDE725FF</code></pre>
+<pre class="r"><code>paletteer_c(&quot;viridis::viridis&quot;, n = 5) %&gt;% 
+  show_cols()</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>paletteer_d(&quot;lisa::GeneDavis&quot;, n = 5) %&gt;% show_cols()</code></pre>
+<pre class="r"><code>paletteer_c(&quot;viridis::viridis&quot;, n = 7) %&gt;% 
+  show_cols(n = 7)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="okabe-ito" class="section level1" number="14">
-<h1><span class="header-section-number">14</span> Okabe-Ito</h1>
+<div id="magma" class="section level1" number="14">
+<h1><span class="header-section-number">14</span> Magma</h1>
+<p>Eine Variante zu Viridis ist Magma:</p>
+<pre class="r"><code>paletteer_c(&quot;viridis::magma&quot;, n = 5)
+#&gt; &lt;colors&gt;
+#&gt; #000004FF #51127CFF #B63679FF #FB8861FF #FCFDBFFF</code></pre>
+<pre class="r"><code>paletteer_c(&quot;viridis::magma&quot;, n = 5) %&gt;% 
+  show_cols()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="color-lisa" class="section level1" number="15">
+<h1><span class="header-section-number">15</span> Color Lisa</h1>
+<p><a href="https://colorlisa.com/">Color Lisa</a> ist ebenfalls von bekannten Malern - bzw. deren Farbauswahl - inspiert.</p>
+<pre class="r"><code>paletteer_d(&quot;lisa::MarcChagall&quot;, n = 5) %&gt;% show_cols()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>paletteer_d(&quot;lisa::RobertDelaunay&quot;, n = 5) %&gt;% show_cols()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-27-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>paletteer_d(&quot;lisa::GeneDavis&quot;, n = 5) %&gt;% show_cols()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-28-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="okabe-ito" class="section level1" number="16">
+<h1><span class="header-section-number">16</span> Okabe-Ito</h1>
 <p><a href="https://jfly.uni-koeln.de/color/">Okabe und Ito</a> stellen eine Palette bereit, die unseren Anforderungen genügt!</p>
 <pre class="r"><code>paletteer_d(&quot;colorblindr::OkabeIto&quot;)
 #&gt; &lt;colors&gt;
 #&gt; #E69F00FF #56B4E9FF #009E73FF #F0E442FF #0072B2FF #D55E00FF #CC79A7FF #999999FF</code></pre>
 <pre class="r"><code>paletteer_d(&quot;colorblindr::OkabeIto&quot;) %&gt;% show_cols(n=8)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-30-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Sagen wir uns gefallen die folgenden 5 Farben daraus:</p>
 <pre class="r"><code>okebeito_auswahl &lt;- paletteer_d(&quot;colorblindr::OkabeIto&quot;)[c(1,3,4,5,7)]
 okebeito_auswahl
 #&gt; &lt;colors&gt;
 #&gt; #E69F00FF #009E73FF #F0E442FF #0072B2FF #CC79A7FF</code></pre>
 <pre class="r"><code>okebeito_auswahl %&gt;%  show_cols()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-27-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-32-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Es gibt ein R-Paket, <a href="https://malcolmbarrett.github.io/ggokabeito/"><code>ggokebito</code></a>, das die Farbwahl für ggplot verfügbar macht.</p>
 <pre class="r"><code>library(ggokabeito)
 
 ggplot(mpg, aes(cty, hwy, color = class)) +
   geom_point() +
   scale_color_okabe_ito()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-28-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-33-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Oder für Füllfarben:</p>
 <pre class="r"><code>ggplot(mpg, aes(hwy, color = class, fill = class)) +
   geom_density() +
   scale_fill_okabe_ito(name = &quot;Class&quot;, alpha = .9) +
   scale_color_okabe_ito(name = &quot;Class&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-29-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-34-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Die Farbnamen findet man z.B. <a href="https://mikemol.github.io/technique/colorblind/2018/02/11/color-safe-palette.html">hier</a>.</p>
 </div>
-<div id="farbnamen" class="section level1" number="15">
-<h1><span class="header-section-number">15</span> Farbnamen</h1>
+<div id="tableau-10" class="section level1" number="17">
+<h1><span class="header-section-number">17</span> Tableau 10</h1>
+<pre class="r"><code>show_col(tableau_color_pal(&quot;Tableau 10&quot;)(10))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-35-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="farbnamen" class="section level1" number="18">
+<h1><span class="header-section-number">18</span> Farbnamen</h1>
 <pre class="r"><code>library(plotrix)
 
 paletteer_d(&quot;colorblindr::OkabeIto&quot;) %&gt;% 
@@ -231,34 +270,82 @@ paletteer_d(&quot;colorblindr::OkabeIto&quot;) %&gt;%
 #&gt; [[8]]
 #&gt; [1] &quot;gray60&quot; &quot;grey60&quot;</code></pre>
 </div>
-<div id="show-color-2" class="section level1" number="16">
-<h1><span class="header-section-number">16</span> Show color 2</h1>
+<div id="show-color-2" class="section level1" number="19">
+<h1><span class="header-section-number">19</span> Show color 2</h1>
 <p>Natürlich hat jemand die Funktion <code>show_cols</code> schon geschrieben, z.B. im Paket <code>scales</code>:</p>
 <pre class="r"><code>scales::show_col(paletteer_d(&quot;colorblindr::OkabeIto&quot;))</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-31-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-37-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="farbenblindheit" class="section level1" number="17">
-<h1><span class="header-section-number">17</span> Farbenblindheit</h1>
+<div id="farbenblindheit" class="section level1" number="20">
+<h1><span class="header-section-number">20</span> Farbenblindheit</h1>
+<div id="okabe-ito-1" class="section level2" number="20.1">
+<h2><span class="header-section-number">20.1</span> Okabe Ito</h2>
+<pre class="r"><code>show_cols(paletteer_d(&quot;colorblindr::OkabeIto&quot;), n = 8) %&gt;% 
+  cvd_grid()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-38-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Insgesamt stimmen die Resultate nicht so ganz zufrieden.</p>
+<p>Versuchen wir es mit 5 Farben aus Okabe und Ito:</p>
 <pre class="r"><code>show_cols(paletteer_d(&quot;colorblindr::OkabeIto&quot;)) %&gt;% 
   cvd_grid()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-32-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-39-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Besser.</p>
+<p>Oder mit nur 3 Farben?</p>
+<pre class="r"><code>show_cols(paletteer_d(&quot;colorblindr::OkabeIto&quot;), n = 3) %&gt;% 
+  cvd_grid()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-40-1.png" width="100%" style="display: block; margin: auto;" />
+Noch etwas besser.</p>
+</div>
+<div id="gene-davis" class="section level2" number="20.2">
+<h2><span class="header-section-number">20.2</span> Gene Davis</h2>
 <pre class="r"><code>paletteer_d(&quot;lisa::GeneDavis&quot;) %&gt;% 
   show_cols() %&gt;% 
   cvd_grid()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-33-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-41-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Naja, einigermaßen ok.</p>
+</div>
+<div id="x18" class="section level2" number="20.3">
+<h2><span class="header-section-number">20.3</span> X18</h2>
 <pre class="r"><code>paletteer_d(`&quot;beyonce::X18&quot;`) %&gt;% 
   show_cols() %&gt;% 
   cvd_grid()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-34-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-42-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Nicht super, aber vielleicht geht es nicht viel besser.</p>
 </div>
-<div id="fazit" class="section level1" number="18">
-<h1><span class="header-section-number">18</span> Fazit</h1>
+<div id="tableau-10-1" class="section level2" number="20.4">
+<h2><span class="header-section-number">20.4</span> Tableau 10</h2>
+<pre class="r"><code>show_cols(tableau_color_pal(&quot;Tableau 10&quot;)(10)) %&gt;% 
+  cvd_grid()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-43-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Nicht so super.</p>
+</div>
+<div id="viridis-1" class="section level2" number="20.5">
+<h2><span class="header-section-number">20.5</span> Viridis</h2>
+<pre class="r"><code>paletteer_c(&quot;viridis::viridis&quot;, n = 7) %&gt;% 
+  show_cols(n = 7) %&gt;% 
+  cvd_grid()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-44-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Oh, gut!</p>
+<p>Probieren wir mit 5 Farben,
+dann wird es sogar noch einfacher.</p>
+<pre class="r"><code>paletteer_c(&quot;viridis::viridis&quot;, n = 5) %&gt;% 
+  show_cols(n = 5) %&gt;% 
+  cvd_grid()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-45-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Viridis sieht bei Farbschwäche super aus.
+Allerdings ist Viridis nicht unbedingt geignet,
+um nominale Variablen darzustellen,
+zumindest hat man einen “natürlichen” Verlauf der Farbe,
+was eine Sequenz oder eine ordinale Abfolge suggiert.</p>
+</div>
+</div>
+<div id="fazit" class="section level1" number="21">
+<h1><span class="header-section-number">21</span> Fazit</h1>
 <p>Mittlerweile gibt es eine Reihe guter Farbpaletten (für R).
 Okabe und Ito ist ein Beispiel für eine gute Wahl.
 Es gibt aber auch noch andere; so hat <a href="https://developer.r-project.org/Blog/public/2019/11/21/a-new-palette-for-r/">Base R mittlerweile auch eine gute Standardpalette</a>.</p>
 </div>
-<div id="reproducibility" class="section level1" number="19">
-<h1><span class="header-section-number">19</span> Reproducibility</h1>
+<div id="reproducibility" class="section level1" number="22">
+<h1><span class="header-section-number">22</span> Reproducibility</h1>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value
 #&gt;  version  R version 4.2.1 (2022-06-23)

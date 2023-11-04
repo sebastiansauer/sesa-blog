@@ -2,7 +2,7 @@
 title: Gantt-Diagramme mit ganttrify
 author: Sebastian Sauer
 date: '2023-09-22'
-draft: no
+draft: TRUE 
 categories:
   - rstats
 tags:

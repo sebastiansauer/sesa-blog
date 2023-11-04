@@ -43,6 +43,7 @@ library(tidyverse)
 library(paletteer)
 library(scales)  # show_col()
 library(colorblindr)  # from github
+library(ggthemes)
 ```
 
 
