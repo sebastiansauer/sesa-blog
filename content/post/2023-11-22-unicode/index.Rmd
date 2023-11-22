@@ -109,6 +109,40 @@ fa("user")
 ```
 
 
+# Latex
+
+Man kann den $\LaTeX$ Mathe-Modus (mis)brauchen, um grafische Objekte zu erzeugen:
+
+
+```
+$$
+\begin{array}{|c|c|}
+\hline
+1 & 2 \\
+\hline
+3 & 4 \\
+\hline
+\end{array}
+$$
+````
+
+Das ergibt:
+
+
+$$
+\begin{array}{|c|c|}
+\hline
+1 & 2 \\
+\hline
+3 & 4 \\
+\hline
+\end{array}
+$$
+
+
+
+
+
 
 
 # Reproducibility
