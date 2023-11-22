@@ -74,8 +74,15 @@ Icons von [Font Awesome](https://fontawesome.com/search?m=free) könnte man mit 
 
 Geht aber nicht.
 
+Auch den Unicode eines FontAwesome-Icons kann man nicht einfach so eingeben: `&#xe07b;`.
 
 &#xe07b;
+
+# Warum Icons, nicht Emojis?
+
+Der Vorteil von *Icons* gegenüber Emojis ist, dass man die Farbe ändern kann. Und drehen, wenn man möchte.
+
+Die Schriftgröße (also die Größe des Icons/des Emojis/des Glyphs) kann man in beiden Fällen ändern.
 
 
 # FontAwesome - Quarto
