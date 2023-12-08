@@ -20,6 +20,8 @@ Untitled*
 *_cache
 *_cache/
 *cache
+/*_cache/*
+
 
 *.Rproj
 .Rproj.user/
@@ -27,6 +29,7 @@ Untitled*
 
 #/public/
 /resources/
+
 
 
 
