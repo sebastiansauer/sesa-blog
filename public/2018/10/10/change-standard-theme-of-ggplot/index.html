@@ -88,9 +88,9 @@ library(tidyverse)</code></pre>
 #&gt;     base_rect_size = base_size/22) 
 #&gt; {
 #&gt;     half_line &lt;- base_size/2
-#&gt;     theme(line = element_line(colour = &quot;black&quot;, size = base_line_size, 
+#&gt;     t &lt;- theme(line = element_line(colour = &quot;black&quot;, linewidth = base_line_size, 
 #&gt;         linetype = 1, lineend = &quot;butt&quot;), rect = element_rect(fill = &quot;white&quot;, 
-#&gt;         colour = &quot;black&quot;, size = base_rect_size, linetype = 1), 
+#&gt;         colour = &quot;black&quot;, linewidth = base_rect_size, linetype = 1), 
 #&gt;         text = element_text(family = base_family, face = &quot;plain&quot;, 
 #&gt;             colour = &quot;black&quot;, size = base_size, lineheight = 0.9, 
 #&gt;             hjust = 0.5, vjust = 0.5, angle = 0, margin = margin(), 
@@ -101,7 +101,10 @@ library(tidyverse)</code></pre>
 #&gt;             half_line/2), vjust = 0), axis.text.y = element_text(margin = margin(r = 0.8 * 
 #&gt;             half_line/2), hjust = 1), axis.text.y.right = element_text(margin = margin(l = 0.8 * 
 #&gt;             half_line/2), hjust = 0), axis.ticks = element_line(colour = &quot;grey20&quot;), 
-#&gt;         axis.ticks.length = unit(half_line/2, &quot;pt&quot;), axis.title.x = element_text(margin = margin(t = half_line/2), 
+#&gt;         axis.ticks.length = unit(half_line/2, &quot;pt&quot;), axis.ticks.length.x = NULL, 
+#&gt;         axis.ticks.length.x.top = NULL, axis.ticks.length.x.bottom = NULL, 
+#&gt;         axis.ticks.length.y = NULL, axis.ticks.length.y.left = NULL, 
+#&gt;         axis.ticks.length.y.right = NULL, axis.title.x = element_text(margin = margin(t = half_line/2), 
 #&gt;             vjust = 1), axis.title.x.top = element_text(margin = margin(b = half_line/2), 
 #&gt;             vjust = 0), axis.title.y = element_text(angle = 90, 
 #&gt;             margin = margin(r = half_line/2), vjust = 1), axis.title.y.right = element_text(angle = -90, 
@@ -109,7 +112,7 @@ library(tidyverse)</code></pre>
 #&gt;         legend.spacing = unit(2 * half_line, &quot;pt&quot;), legend.spacing.x = NULL, 
 #&gt;         legend.spacing.y = NULL, legend.margin = margin(half_line, 
 #&gt;             half_line, half_line, half_line), legend.key = element_rect(fill = &quot;grey95&quot;, 
-#&gt;             colour = &quot;white&quot;), legend.key.size = unit(1.2, &quot;lines&quot;), 
+#&gt;             colour = NA), legend.key.size = unit(1.2, &quot;lines&quot;), 
 #&gt;         legend.key.height = NULL, legend.key.width = NULL, legend.text = element_text(size = rel(0.8)), 
 #&gt;         legend.text.align = NULL, legend.title = element_text(hjust = 0), 
 #&gt;         legend.title.align = NULL, legend.position = &quot;right&quot;, 
@@ -118,26 +121,28 @@ library(tidyverse)</code></pre>
 #&gt;             0, &quot;cm&quot;), legend.box.background = element_blank(), 
 #&gt;         legend.box.spacing = unit(2 * half_line, &quot;pt&quot;), panel.background = element_rect(fill = &quot;grey92&quot;, 
 #&gt;             colour = NA), panel.border = element_blank(), panel.grid = element_line(colour = &quot;white&quot;), 
-#&gt;         panel.grid.minor = element_line(size = rel(0.5)), panel.spacing = unit(half_line, 
-#&gt;             &quot;pt&quot;), panel.spacing.x = NULL, panel.spacing.y = NULL, 
-#&gt;         panel.ontop = FALSE, strip.background = element_rect(fill = &quot;grey85&quot;, 
-#&gt;             colour = NA), strip.text = element_text(colour = &quot;grey10&quot;, 
+#&gt;         panel.grid.minor = element_line(linewidth = rel(0.5)), 
+#&gt;         panel.spacing = unit(half_line, &quot;pt&quot;), panel.spacing.x = NULL, 
+#&gt;         panel.spacing.y = NULL, panel.ontop = FALSE, strip.background = element_rect(fill = &quot;grey85&quot;, 
+#&gt;             colour = NA), strip.clip = &quot;inherit&quot;, strip.text = element_text(colour = &quot;grey10&quot;, 
 #&gt;             size = rel(0.8), margin = margin(0.8 * half_line, 
 #&gt;                 0.8 * half_line, 0.8 * half_line, 0.8 * half_line)), 
 #&gt;         strip.text.x = NULL, strip.text.y = element_text(angle = -90), 
-#&gt;         strip.placement = &quot;inside&quot;, strip.placement.x = NULL, 
-#&gt;         strip.placement.y = NULL, strip.switch.pad.grid = unit(half_line/2, 
+#&gt;         strip.text.y.left = element_text(angle = 90), strip.placement = &quot;inside&quot;, 
+#&gt;         strip.placement.x = NULL, strip.placement.y = NULL, strip.switch.pad.grid = unit(half_line/2, 
 #&gt;             &quot;pt&quot;), strip.switch.pad.wrap = unit(half_line/2, 
 #&gt;             &quot;pt&quot;), plot.background = element_rect(colour = &quot;white&quot;), 
 #&gt;         plot.title = element_text(size = rel(1.2), hjust = 0, 
-#&gt;             vjust = 1, margin = margin(b = half_line)), plot.subtitle = element_text(hjust = 0, 
-#&gt;             vjust = 1, margin = margin(b = half_line)), plot.caption = element_text(size = rel(0.8), 
-#&gt;             hjust = 1, vjust = 1, margin = margin(t = half_line)), 
+#&gt;             vjust = 1, margin = margin(b = half_line)), plot.title.position = &quot;panel&quot;, 
+#&gt;         plot.subtitle = element_text(hjust = 0, vjust = 1, margin = margin(b = half_line)), 
+#&gt;         plot.caption = element_text(size = rel(0.8), hjust = 1, 
+#&gt;             vjust = 1, margin = margin(t = half_line)), plot.caption.position = &quot;panel&quot;, 
 #&gt;         plot.tag = element_text(size = rel(1.2), hjust = 0.5, 
 #&gt;             vjust = 0.5), plot.tag.position = &quot;topleft&quot;, plot.margin = margin(half_line, 
 #&gt;             half_line, half_line, half_line), complete = TRUE)
+#&gt;     ggplot_global$theme_all_null %+replace% t
 #&gt; }
-#&gt; &lt;bytecode: 0x7fe1e3df2c08&gt;
+#&gt; &lt;bytecode: 0x7fc3fc834400&gt;
 #&gt; &lt;environment: namespace:ggplot2&gt;</code></pre>
 <p>Now let’s make a copy of it, to be on the save side:</p>
 <pre class="r"><code>theme_gray2 &lt;- theme_gray</code></pre>
@@ -226,6 +231,9 @@ ggplot(mtcars, aes(x = cyl, y = mpg)) +
 
 
     
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 
     
   </body>

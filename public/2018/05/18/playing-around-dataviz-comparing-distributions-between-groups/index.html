@@ -80,9 +80,8 @@
 
 <p>What’ a nice way to display distributional differences between a (larger) number of groups? Boxplots is one way to go. In addition, the raw data may be shown as dots, but should be demphasized. Third, a trend or big picture comparing the groups will make sense in some cases.</p>
 <p>Ok, based on this reasoning, let’s do som visualizing. Let’s load some data (movies), and the usual culprits of packages.</p>
-<pre class="r"><code>library(tidyverse)  </code></pre>
-<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.5.1</code></pre>
-<pre class="r"><code>library(mosaic)
+<pre class="r"><code>library(tidyverse)  
+library(mosaic)
 
 data(movies, package = &quot;ggplot2movies&quot;)</code></pre>
 <p>Now let’s add a variable for <code>decade</code> as <code>year</code> is too fine grained..</p>
@@ -114,10 +113,10 @@ data(movies, package = &quot;ggplot2movies&quot;)</code></pre>
        color = &quot;&quot;,
        fill = &quot;&quot;) +
   guides(color = &quot;none&quot;, fill = &quot;none&quot;)</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
-<pre><code>## Warning: Removed 18343 rows containing non-finite values (stat_smooth).</code></pre>
-<pre><code>## Warning: Removed 18343 rows containing non-finite values (stat_boxplot).</code></pre>
-<pre><code>## Warning: Removed 18343 rows containing missing values (geom_point).</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula = &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 18343 rows containing non-finite values (`stat_smooth()`).</code></pre>
+<pre><code>## Warning: Removed 18343 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+<pre><code>## Warning: Removed 18343 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="/post/2018-05-18-playing-around-dataviz-comparing-distributions-between-groups_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Quite ok. The yellow color from Viridis is not doing the best job here. Note that we have zoomed in so that the movies with very high budgets are off-display (for the sake of better resolution of the majority of movies).</p>
 

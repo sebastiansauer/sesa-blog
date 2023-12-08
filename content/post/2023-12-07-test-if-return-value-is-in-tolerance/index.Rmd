@@ -42,6 +42,7 @@ library(prada)  # function "is_in_tolerance`
 library(rstanarm)  # Bayes regression
 library(easystats)  # R2 etc
 library(DataExplorer)  # data vis
+library(tictoc)
 ```
 
 
@@ -84,11 +85,11 @@ Here's a simple regression with the seed fixed.
 Please see below for the spec of my machine.
 
 ```{r}
-m1 <- rstanarm::stan_glm(mpg ~ hp, 
+reference_model <- rstanarm::stan_glm(mpg ~ hp, 
                          data = mtcars, 
                          seed = 42,
                          refresh = 0)
-coef(m1)
+coef(reference_model)
 ```
 
 And now the same model but without fixing the seed.
@@ -103,12 +104,13 @@ out <-
          r2 = numeric()
   )
 
-n <- 10^3
+n <- 10^2
 ```
 
 
 
-```{r main-loop}
+```{r main-loop, cache=TRUE}
+tic()
 for (i in 1:n) {
   stan_mod <- rstanarm::stan_glm(mpg ~ hp, 
                          data = mtcars,
@@ -121,37 +123,27 @@ for (i in 1:n) {
     )
   out <- rbind(out, mod_results)
   
-  print(glue::glue("i: {i}, b0: {coef(stan_mod)[1]}, b1: {coef(stan_mod)[2]}, r2: {mod_results$r2}\n"))
+  print(glue::glue("i: {i}, b0: {round(coef(stan_mod)[1], 3)}, b1: {round(coef(stan_mod)[2], 3)}, r2: {round(mod_results$r2\n, 3)}"))
 }
-```
-
-
-# Check variability
-
-```{r}
-describe_distribution(out |> select(-id))
-```
-
-
-In comparison, the SD of the y-variable (`mpg`) is:
-
-```{r}
-describe_distribution(mtcars)
-```
-
-
-```{r}
-plot_density(out |> select(-id))
+toc()
 ```
 
 
 # Check if in tolerance region
 
+Let's define the region of tolerance such that:
+
+```{r}
+tol_rel <- .05
+tol_abs <- tol_rel
+```
+
+
 Check for first value manually:
 
 ```{r}
 is_in_tolerance(asis = out$b0[1],
-                tobe = coef(m1)[1],
+                tobe = coef(reference_model)[1],
                 tol_rel = .05,
                 tol_abs = .05 * sd(mtcars$mpg))
 ```
@@ -165,14 +157,14 @@ Okay, now check in a loop all values.
 out <- 
 out |> 
   mutate(b0_in_tolerance = map_lgl(b0, ~ is_in_tolerance(asis = .x,
-                                               tobe = coef(m1)[1],
-                                               tol_rel = .05,
-                                               tol_abs = .05 * sd(mtcars$mpg))))
+                                               tobe = coef(reference_model)[1],
+                                               tol_rel = tol_rel,
+                                               tol_abs = tol_rel * sd(mtcars$mpg))),
+         b0_diff_abs = coef(reference_model)[1] - b0,
+         b0_diff_rel = b0_diff_abs / coef(reference_model)[1])
 ```
 
-```{r}
-count(out, b0_in_tolerance)
-```
+
 
 
 ## b1
@@ -182,14 +174,13 @@ count(out, b0_in_tolerance)
 out <- 
 out |> 
   mutate(b1_in_tolerance = map_lgl(b1, ~ is_in_tolerance(asis = .x,
-                                               tobe = coef(m1)[2],
-                                               tol_rel = .05,
-                                               tol_abs = .05 * sd(mtcars$mpg))))
+                                               tobe = coef(reference_model)[2],
+                                               tol_rel = tol_rel,
+                                               tol_abs = tol_rel * sd(mtcars$mpg))),
+         b1_diff_abs = coef(reference_model)[2] - b1,
+         b1_diff_rel = b1_diff_abs / coef(reference_model)[2])
 ```
 
-```{r}
-count(out, b1_in_tolerance)
-```
 
 
 ## R2
@@ -199,14 +190,54 @@ count(out, b1_in_tolerance)
 out <- 
 out |> 
   mutate(r2_in_tolerance = map_lgl(r2, ~ is_in_tolerance(asis = .x,
-                                               tobe = r2(m1)$R2_Bayes,
-                                               tol_rel = .05,
-                                               tol_abs = .05)))
+                                               tobe = r2(reference_model)$R2_Bayes,
+                                               tol_rel = tol_rel,
+                                               tol_abs = tol_rel)),
+         r2_diff_abs = r2(reference_model)$R2_Bayes - r2,
+         r2_diff_rel = r2_diff_abs / coef(reference_model)[2])
 ```
 
+
+## Count
+
 ```{r}
+count(out, b0_in_tolerance)
+count(out, b1_in_tolerance)
 count(out, r2_in_tolerance)
 ```
+
+
+
+# Check variability
+
+```{r}
+out |> 
+  select(-id) |> 
+  describe_distribution(range = TRUE) 
+```
+
+
+In comparison, the SD of the y-variable (`mpg`) is:
+
+```{r}
+describe_distribution(mtcars |> select(mpg))
+```
+
+
+```{r}
+plot_density(out |> select(-id))
+```
+
+
+
+# Conclusions
+
+The *relative* deviations of the coefficients from the reference model are in the domaine of $10^{-3}$. 
+Hence, setting the maximum deviation to $10-^{2}$ should be save.
+
+
+
+
 
 # Reproducibility
 

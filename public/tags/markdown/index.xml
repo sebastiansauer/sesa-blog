@@ -6,7 +6,19 @@
     <description>Recent content in markdown on sesa blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 27 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 22 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unicode in R und in Markdown</title>
+      <link>https://data-se.netlify.app/2023/11/22/unicode/</link>
+      <pubDate>Wed, 22 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2023/11/22/unicode/</guid>
+      <description>1 Unicode in R 2 Unicode in Markdown 3 Emojis in Markdown 4 FontAwesome 5 Warum Icons, nicht Emojis? 6 FontAwesome - Quarto 7 FontAwesome - R-Paket 8 Latex 9 Reproducibility 1 Unicode in R 25FB ist der Unicode für weißes Quadrat:
+cat(&amp;quot;\u25FB\n&amp;quot;) #&amp;gt; ◻ 2 Unicode in Markdown In Markdown kann man den HTML-Code verwenden, also z.B. &amp;amp;#x25FB;. Das ergibt dann:
+◻
+3 Emojis in Markdown Da Emojis natürlich auch einen Unicode haben, kann man so auch einfach Emojis darstellen.</description>
+    </item>
+    
     <item>
       <title>FontAwesome in R and R Markdown</title>
       <link>https://data-se.netlify.app/2022/07/27/fontawesome-in-r-and-r-markdown/</link>

@@ -6,7 +6,17 @@
     <description>Recent content in datawrangling on sesa blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 19 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/datawrangling/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/datawrangling/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Filtering vectors in R</title>
+      <link>https://data-se.netlify.app/2023/07/15/filtering-vectors/</link>
+      <pubDate>Sat, 15 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2023/07/15/filtering-vectors/</guid>
+      <description>1 Motivation 2 Setup 3 Way 1: Base R 4 Way 2: magrittr 5 Way 3: tidyverse 6 Way 4: purrr 7 Conclusions 1 Motivation We have a vector and we want to filter it by name.
+2 Setup library(tidyverse) ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ── ## ✔ dplyr 1.1.2 ✔ readr 2.1.4 ## ✔ forcats 1.0.0 ✔ stringr 1.5.0 ## ✔ ggplot2 3.4.2 ✔ tibble 3.</description>
+    </item>
+    
     <item>
       <title>Differences according to importing CSV using different functions</title>
       <link>https://data-se.netlify.app/2023/01/19/differences-according-to-importing-csv-using-different-functions/</link>
@@ -25,6 +35,15 @@
       <description>1 Load packages 2 Motivation 3 Minimal example 4 See also 5 Reproducibility 1 Load packages library(tidyverse) # data wrangling 2 Motivation Sometimes is is neccessary to compute functions, such as mean values, rowwise, ie., summing the values for multiple variables (my_vars) for each observation.
 3 Minimal example For the sake of simplicity, we’ll make use of the mtcars dataset.
 data(mtcars) my_vars &amp;lt;- c(&amp;quot;mpg&amp;quot;, &amp;quot;cyl&amp;quot;, &amp;quot;hp&amp;quot;) mtcars &amp;lt;- mtcars |&amp;gt; select(all_of(my_vars)) |&amp;gt; rowwise() |&amp;gt; mutate(mtcars_score = mean(c_across(all_of(my_vars)), na.</description>
+    </item>
+    
+    <item>
+      <title>Setting to NA, conditionally</title>
+      <link>https://data-se.netlify.app/2023/01/16/setting-to-na-conditionally/</link>
+      <pubDate>Mon, 16 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2023/01/16/setting-to-na-conditionally/</guid>
+      <description>1 Load packages 2 Motivation 3 Minimal example 4 Reproducibility 1 Load packages library(tidyverse) # data wrangling 2 Motivation Let’s assume we would like to change the values of multiple variables depending in the state of another variable. For the sake of concreteness, let’s say we have some variable called data_trustworthiness. If this variable (indicating whether or not we can have confidence in some other variables) has the value FALSE for some cases, we would like to set the varialbe measure1 and measure2 to NA, thus reflecting that the data from our measurements are not reliable.</description>
     </item>
     
     <item>

@@ -19,6 +19,15 @@ data(mtcars) my_vars &amp;lt;- c(&amp;quot;mpg&amp;quot;, &amp;quot;cyl&amp;quot
     </item>
     
     <item>
+      <title>Setting to NA, conditionally</title>
+      <link>https://data-se.netlify.app/2023/01/16/setting-to-na-conditionally/</link>
+      <pubDate>Mon, 16 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2023/01/16/setting-to-na-conditionally/</guid>
+      <description>1 Load packages 2 Motivation 3 Minimal example 4 Reproducibility 1 Load packages library(tidyverse) # data wrangling 2 Motivation Let’s assume we would like to change the values of multiple variables depending in the state of another variable. For the sake of concreteness, let’s say we have some variable called data_trustworthiness. If this variable (indicating whether or not we can have confidence in some other variables) has the value FALSE for some cases, we would like to set the varialbe measure1 and measure2 to NA, thus reflecting that the data from our measurements are not reliable.</description>
+    </item>
+    
+    <item>
       <title>Programmatically plotting with ggplot2</title>
       <link>https://data-se.netlify.app/2022/09/28/programmatically-plotting-with-ggplot2/</link>
       <pubDate>Wed, 28 Sep 2022 00:00:00 +0000</pubDate>

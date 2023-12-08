@@ -6,7 +6,63 @@
     <description>Recent content in rstats on sesa blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 03 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/categories/rstats/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 15 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/categories/rstats/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Speed test for parallel processing </title>
+      <link>https://data-se.netlify.app/2023/11/15/speed-test-for-parallel-processing/</link>
+      <pubDate>Wed, 15 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2023/11/15/speed-test-for-parallel-processing/</guid>
+      <description>0.0.1 How fast is fast? 0.0.2 Tidymodels pipeline 0.0.3 Setup 0.0.4 Simple Fit 0.0.5 Resampling 0.0.6 Tuning 0.0.7 More tuning params 0.0.8 Parallel processing 0.0.9 Parallel processing - explicitly 0.0.10 ANOVA race 0.0.11 Acknowledgements 0.0.12 Reproducibility 0.0.1 How fast is fast? Let’s see how quickly some predictive model runs, in order to estimate time consumption for larger machine learning pipelines. In addtion, let’s see how much time is saves when using multiples cores, ie.</description>
+    </item>
+    
+    <item>
+      <title>normal densities animanted</title>
+      <link>https://data-se.netlify.app/2023/11/04/normal-densities-animanted/</link>
+      <pubDate>Sat, 04 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2023/11/04/normal-densities-animanted/</guid>
+      <description>Background Let’s visualize the quantiles of a normal distribution using a density plot.
+Setup library(tidyverse) ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ── ## ✔ dplyr 1.1.3 ✔ readr 2.1.4 ## ✔ forcats 1.0.0 ✔ stringr 1.5.0 ## ✔ ggplot2 3.4.4 ✔ tibble 3.2.1 ## ✔ lubridate 1.9.3 ✔ tidyr 1.3.0 ## ✔ purrr 1.0.2 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ── ## ✖ dplyr::filter() masks stats::filter() ## ✖ dplyr::lag() masks stats::lag() ## ℹ Use the conflicted package (&amp;lt;http://conflicted.</description>
+    </item>
+    
+    <item>
+      <title>Gantt-Diagramme mit ganttrify</title>
+      <link>https://data-se.netlify.app/2023/09/22/gantt-diagramme-mit-ganttrify/</link>
+      <pubDate>Fri, 22 Sep 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2023/09/22/gantt-diagramme-mit-ganttrify/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Filtering vectors in R</title>
+      <link>https://data-se.netlify.app/2023/07/15/filtering-vectors/</link>
+      <pubDate>Sat, 15 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2023/07/15/filtering-vectors/</guid>
+      <description>1 Motivation 2 Setup 3 Way 1: Base R 4 Way 2: magrittr 5 Way 3: tidyverse 6 Way 4: purrr 7 Conclusions 1 Motivation We have a vector and we want to filter it by name.
+2 Setup library(tidyverse) ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ── ## ✔ dplyr 1.1.2 ✔ readr 2.1.4 ## ✔ forcats 1.0.0 ✔ stringr 1.5.0 ## ✔ ggplot2 3.4.2 ✔ tibble 3.</description>
+    </item>
+    
+    <item>
+      <title>Farbpaletten für nominale Variablen</title>
+      <link>https://data-se.netlify.app/2023/06/30/farbpaletten/</link>
+      <pubDate>Fri, 30 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2023/06/30/farbpaletten/</guid>
+      <description>1 Setup 2 tl;dr 3 Beispiel für Farbwahl bei einer nominaler Variablen 4 Anforderungen an eine Farbpalette (für nominale Variablen) 5 Auswahl 6 Hilfsfunktion 7 AWTools 8 ggthemes 9 Weitere Paletten 10 rtist 11 ggsci 12 jcolors 13 Viridis 14 Magma 15 Color Lisa 16 Okabe-Ito 17 Tableau 10 18 Farbnamen 19 Show color 2 20 Farbenblindheit 20.1 Okabe Ito 20.2 Gene Davis 20.3 X18 20.4 Tableau 10 20.5 Viridis 21 Fazit 22 Reproducibility 1 Setup library(tidyverse) library(paletteer) library(scales) # show_col() library(colorblindr) # from github library(ggthemes) Das Paket paletteer trägt eine große Auswahl an Farbpaletten zusammen und erleichtert die Handhabung in R.</description>
+    </item>
+    
+    <item>
+      <title>Estimating simulation variance in Stan models</title>
+      <link>https://data-se.netlify.app/2023/03/17/estimating-simulation-variance-in-stan-models/</link>
+      <pubDate>Fri, 17 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2023/03/17/estimating-simulation-variance-in-stan-models/</guid>
+      <description>1 Load packages 2 Motivation 3 Model 4 Workhorse function 5 Function for summarizing the simulation results 6 Dataset mtcars 7 Dataset msleep 8 Dataset penguins 9 Dataset tips 10 Dataset gtcars 11 Dataset Boston 12 Dataset TeachingRatings 13 Results overview 14 Conclusion 15 Reproducibility 1 Load packages library(tidyverse) # data wrangling library(rstanarm) library(gt) 2 Motivation stan_glm() allows for setting a seed value thereby eliminating the variance induced by random numbers.</description>
+    </item>
+    
     <item>
       <title>Tables, plotted as ggplot objects</title>
       <link>https://data-se.netlify.app/2023/02/03/tables-plotted-as-ggplot-objects/</link>
@@ -46,6 +102,15 @@ plot(tableGrob(d)) 3 Show case 2: tableGrob The following R code is taken from t
       <description>1 Load packages 2 Motivation 3 Minimal example 4 See also 5 Reproducibility 1 Load packages library(tidyverse) # data wrangling 2 Motivation Sometimes is is neccessary to compute functions, such as mean values, rowwise, ie., summing the values for multiple variables (my_vars) for each observation.
 3 Minimal example For the sake of simplicity, we’ll make use of the mtcars dataset.
 data(mtcars) my_vars &amp;lt;- c(&amp;quot;mpg&amp;quot;, &amp;quot;cyl&amp;quot;, &amp;quot;hp&amp;quot;) mtcars &amp;lt;- mtcars |&amp;gt; select(all_of(my_vars)) |&amp;gt; rowwise() |&amp;gt; mutate(mtcars_score = mean(c_across(all_of(my_vars)), na.</description>
+    </item>
+    
+    <item>
+      <title>Setting to NA, conditionally</title>
+      <link>https://data-se.netlify.app/2023/01/16/setting-to-na-conditionally/</link>
+      <pubDate>Mon, 16 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2023/01/16/setting-to-na-conditionally/</guid>
+      <description>1 Load packages 2 Motivation 3 Minimal example 4 Reproducibility 1 Load packages library(tidyverse) # data wrangling 2 Motivation Let’s assume we would like to change the values of multiple variables depending in the state of another variable. For the sake of concreteness, let’s say we have some variable called data_trustworthiness. If this variable (indicating whether or not we can have confidence in some other variables) has the value FALSE for some cases, we would like to set the varialbe measure1 and measure2 to NA, thus reflecting that the data from our measurements are not reliable.</description>
     </item>
     
     <item>
@@ -1698,29 +1763,6 @@ oecd &amp;lt;- read.</description>
     </item>
     
     <item>
-      <title>OECD Wellbeing dataset (2016)</title>
-      <link>https://data-se.netlify.app/2018/10/16/oecd-wellbeing-dataset-2016/</link>
-      <pubDate>Tue, 16 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://data-se.netlify.app/2018/10/16/oecd-wellbeing-dataset-2016/</guid>
-      <description>Packages We will need the following packages in this post:
-library(mosaic) library(knitr) library(DT) The OECD wellbeing study series The OECD keeps measuring the wellbeing (and associated variables) among its members states.
-On the project website, the OECD states:
-In recent years, concerns have emerged regarding the fact that macro-economic statistics, such as GDP, don’t provide a sufficiently detailed picture of the living conditions that ordinary people experience. While these concerns were already evident during the years of strong growth and good economic performance that characterised the early part of the decade, the financial and economic crisis has further amplified them.</description>
-    </item>
-    
-    <item>
-      <title>Change standard theme of ggplot</title>
-      <link>https://data-se.netlify.app/2018/10/10/change-standard-theme-of-ggplot/</link>
-      <pubDate>Wed, 10 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://data-se.netlify.app/2018/10/10/change-standard-theme-of-ggplot/</guid>
-      <description>ggplot2 is customizeable. Frankly, one can change a heap of details - not everything probably, but a lot. Of course, one can add a theme to the ggplot call, in order to change the theme. However, a more catch-it-all approach would be to change the standard theme of ggplot itself. In this post, we’ll investigate this option.
-Load some data and the right packages:
-data(mtcars) library(tidyverse) Here’s the standard theme of ggplot, let’s have a look at it</description>
-    </item>
-    
-    <item>
       <title>DataExploR: Typische Businessfragen mit R analysieren</title>
       <link>https://data-se.netlify.app/2018/09/12/dataexplor-typische-businessfragen-mit-r-analysieren/</link>
       <pubDate>Wed, 12 Sep 2018 00:00:00 +0000</pubDate>
@@ -1851,16 +1893,6 @@ First, let’s load some geo data from Bundeswahlleiter, and combine it with som
 Preparation Let’s load some packages:
 library(tidyverse) ## Warning: package &amp;#39;dplyr&amp;#39; was built under R version 3.5.1 library(sf) library(viridis) suppressPackageStartupMessages(library(googleVis)) Geo data:
 my_path_wahlkreise &amp;lt;- &amp;quot;~/Documents/datasets/geo_maps/btw17_geometrie_wahlkreise_shp/Geometrie_Wahlkreise_19DBT.shp&amp;quot; file.</description>
-    </item>
-    
-    <item>
-      <title>Why is the sample mean a good point estimator of the population mean? A simulation and some thoughts.</title>
-      <link>https://data-se.netlify.app/2018/05/18/why-is-the-sample-mean-a-good-point-estimator-of-the-population-mean-a-simulation-and-some-thoughts/</link>
-      <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://data-se.netlify.app/2018/05/18/why-is-the-sample-mean-a-good-point-estimator-of-the-population-mean-a-simulation-and-some-thoughts/</guid>
-      <description>It is frequently stated that the sample mean is a good or even the best point estimator of the according population value. But why is that? In this post we are trying to get an intuition by using simulation inference methods.
-Assume you played throwing coins with some one at some dark corner. “Some one” throws the coin 10 times, and wins 8 times (the guy was betting on heads, but that’s only for the sake of the story).</description>
     </item>
     
     <item>

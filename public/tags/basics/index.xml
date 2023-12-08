@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>basics on sesa blog</title>
+    <link>https://data-se.netlify.app/tags/basics/</link>
+    <description>Recent content in basics on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 15 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/basics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Filtering vectors in R</title>
+      <link>https://data-se.netlify.app/2023/07/15/filtering-vectors/</link>
+      <pubDate>Sat, 15 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2023/07/15/filtering-vectors/</guid>
+      <description>1 Motivation 2 Setup 3 Way 1: Base R 4 Way 2: magrittr 5 Way 3: tidyverse 6 Way 4: purrr 7 Conclusions 1 Motivation We have a vector and we want to filter it by name.
+2 Setup library(tidyverse) ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ── ## ✔ dplyr 1.1.2 ✔ readr 2.1.4 ## ✔ forcats 1.0.0 ✔ stringr 1.5.0 ## ✔ ggplot2 3.4.2 ✔ tibble 3.</description>
+    </item>
+    
+  </channel>
+</rss>

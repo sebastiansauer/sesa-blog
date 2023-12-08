@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>color on sesa blog</title>
+    <link>https://data-se.netlify.app/tags/color/</link>
+    <description>Recent content in color on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 30 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/color/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Farbpaletten für nominale Variablen</title>
+      <link>https://data-se.netlify.app/2023/06/30/farbpaletten/</link>
+      <pubDate>Fri, 30 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2023/06/30/farbpaletten/</guid>
+      <description>1 Setup 2 tl;dr 3 Beispiel für Farbwahl bei einer nominaler Variablen 4 Anforderungen an eine Farbpalette (für nominale Variablen) 5 Auswahl 6 Hilfsfunktion 7 AWTools 8 ggthemes 9 Weitere Paletten 10 rtist 11 ggsci 12 jcolors 13 Viridis 14 Magma 15 Color Lisa 16 Okabe-Ito 17 Tableau 10 18 Farbnamen 19 Show color 2 20 Farbenblindheit 20.1 Okabe Ito 20.2 Gene Davis 20.3 X18 20.4 Tableau 10 20.5 Viridis 21 Fazit 22 Reproducibility 1 Setup library(tidyverse) library(paletteer) library(scales) # show_col() library(colorblindr) # from github library(ggthemes) Das Paket paletteer trägt eine große Auswahl an Farbpaletten zusammen und erleichtert die Handhabung in R.</description>
+    </item>
+    
+  </channel>
+</rss>
