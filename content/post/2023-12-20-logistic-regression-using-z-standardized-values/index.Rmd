@@ -127,14 +127,14 @@ mtcars |>
 
 
 
-# Model with z-scales predictors
+# Model with z-scaled predictors
 
 
 ```{r}
 mod_z <- glm(am ~ mpg, data = mtcars_z, family = "binomial")
 parameters(mod_z, exponentiate = TRUE)
 ```
-# Model with all variables z-scales
+# Model with all variables z-scaled
 
 Note that it makes no sense to z-scale the outcome variable of a logistic regression.
 

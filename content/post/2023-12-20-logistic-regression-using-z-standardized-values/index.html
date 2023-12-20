@@ -24,8 +24,8 @@ output:
 <li><a href="#model-with-am-as-factor-variable" id="toc-model-with-am-as-factor-variable"><span class="toc-section-number">6</span> Model with <code>am</code> as factor-Variable</a></li>
 <li><a href="#visualizing" id="toc-visualizing"><span class="toc-section-number">7</span> Visualizing</a></li>
 <li><a href="#standardizing-predictors" id="toc-standardizing-predictors"><span class="toc-section-number">8</span> Standardizing predictors</a></li>
-<li><a href="#model-with-z-scales-predictors" id="toc-model-with-z-scales-predictors"><span class="toc-section-number">9</span> Model with z-scales predictors</a></li>
-<li><a href="#model-with-all-variables-z-scales" id="toc-model-with-all-variables-z-scales"><span class="toc-section-number">10</span> Model with all variables z-scales</a></li>
+<li><a href="#model-with-z-scaled-predictors" id="toc-model-with-z-scaled-predictors"><span class="toc-section-number">9</span> Model with z-scaled predictors</a></li>
+<li><a href="#model-with-all-variables-z-scaled" id="toc-model-with-all-variables-z-scaled"><span class="toc-section-number">10</span> Model with all variables z-scaled</a></li>
 <li><a href="#conclusion" id="toc-conclusion"><span class="toc-section-number">11</span> Conclusion</a></li>
 <li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">12</span> Reproducibility</a></li>
 </ul>
@@ -108,8 +108,8 @@ ggplot(mtcars) +
 mtcars |&gt; 
   mutate(across(c(everything(),-am), ~standardize(.x)))</code></pre>
 </div>
-<div id="model-with-z-scales-predictors" class="section level1" number="9">
-<h1><span class="header-section-number">9</span> Model with z-scales predictors</h1>
+<div id="model-with-z-scaled-predictors" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Model with z-scaled predictors</h1>
 <pre class="r"><code>mod_z &lt;- glm(am ~ mpg, data = mtcars_z, family = &quot;binomial&quot;)
 parameters(mod_z, exponentiate = TRUE)
 #&gt; Parameter   | Odds Ratio |   SE |        95% CI |     z |     p
@@ -117,8 +117,8 @@ parameters(mod_z, exponentiate = TRUE)
 #&gt; (Intercept) |       0.65 | 0.29 | [0.25,  1.58] | -0.96 | 0.338
 #&gt; mpg         |       6.36 | 4.40 | [2.09, 34.49] |  2.67 | 0.008</code></pre>
 </div>
-<div id="model-with-all-variables-z-scales" class="section level1" number="10">
-<h1><span class="header-section-number">10</span> Model with all variables z-scales</h1>
+<div id="model-with-all-variables-z-scaled" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> Model with all variables z-scaled</h1>
 <p>Note that it makes no sense to z-scale the outcome variable of a logistic regression.</p>
 </div>
 <div id="conclusion" class="section level1" number="11">
