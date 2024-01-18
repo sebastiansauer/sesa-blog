@@ -19,9 +19,10 @@ output:
 <li><a href="#toy-data" id="toc-toy-data"><span class="toc-section-number">3</span> Toy data</a></li>
 <li><a href="#using-table-and-friends" id="toc-using-table-and-friends"><span class="toc-section-number">4</span> Using <code>table</code> and friends</a></li>
 <li><a href="#using-count" id="toc-using-count"><span class="toc-section-number">5</span> Using <code>count</code></a></li>
-<li><a href="#see-also" id="toc-see-also"><span class="toc-section-number">6</span> See also</a></li>
-<li><a href="#conclusions" id="toc-conclusions"><span class="toc-section-number">7</span> Conclusions</a></li>
-<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">8</span> Reproducibility</a></li>
+<li><a href="#dont-drop-unused-factor-levels" id="toc-dont-drop-unused-factor-levels"><span class="toc-section-number">6</span> Don’t drop unused factor levels</a></li>
+<li><a href="#see-also" id="toc-see-also"><span class="toc-section-number">7</span> See also</a></li>
+<li><a href="#conclusions" id="toc-conclusions"><span class="toc-section-number">8</span> Conclusions</a></li>
+<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">9</span> Reproducibility</a></li>
 </ul>
 </div>
 
@@ -161,16 +162,20 @@ output:
 #&gt; 3  1  0  6 0.18750
 #&gt; 4  1  1  7 0.21875</code></pre>
 </div>
-<div id="see-also" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> See also</h1>
+<div id="dont-drop-unused-factor-levels" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Don’t drop unused factor levels</h1>
+<p>Use <code>count(..., .drop = FALSE)</code> to prevent that unused factor levels are dropped.</p>
+</div>
+<div id="see-also" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> See also</h1>
 <p><a href="https://stackoverflow.com/questions/24576515/relative-frequencies-proportions-with-dplyr">This SO post</a> shows a nice overview on grouping using <code>count</code> from <code>dplyr</code>.</p>
 </div>
-<div id="conclusions" class="section level1" number="7">
-<h1><span class="header-section-number">7</span> Conclusions</h1>
+<div id="conclusions" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Conclusions</h1>
 <p>There are many ways in R to produce contingency tables. Here are two :-)</p>
 </div>
-<div id="reproducibility" class="section level1" number="8">
-<h1><span class="header-section-number">8</span> Reproducibility</h1>
+<div id="reproducibility" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Reproducibility</h1>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value
 #&gt;  version  R version 4.2.1 (2022-06-23)

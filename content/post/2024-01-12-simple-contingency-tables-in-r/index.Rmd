@@ -169,6 +169,12 @@ mtcars |>
   mutate(prop = n/sum(n))
 ```
 
+# Don't drop unused factor levels
+
+Use `count(..., .drop = FALSE)` to prevent that unused factor levels are dropped.
+
+
+
 
 # See also
 
