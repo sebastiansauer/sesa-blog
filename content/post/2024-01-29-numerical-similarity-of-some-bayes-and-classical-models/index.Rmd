@@ -52,9 +52,15 @@ library(tictoc)  # measure computation time
 
 # Motivation
 
-Bayes inference comforts its user with straight forward intepretation, at least in a sense that many practitioners seem to prefer, ie., Bayes post distribution provides the probability of the hypothesis given the data at hand, $Pr(H|D)$. Classical Frequentist inference does not provide this probability, but rather the long-run probability of finding an at least as extreme empirical result, given that the Null hypothesis is true. This is all well-known. 
+## Bayes and Frequentis
 
-However, a disadvantage of Bayes analysis, at least at its current state, is that it has higher technical and computational demands. For beginners, this may present  a substantial (entry) burden. Teaching statistics, I have found that students (and many colleagues) have had difficulties installing Stan (particularly the C++ compiler needed in order to run Stan); Stan is the probabilistic programming language which many front-end Bayes engines use such as `brms` in R.
+Bayes inference comforts its user with an interpretation that many practitioners seem to prefer (and to understand more quickly), ie., Bayes posterior distribution provides the probability of the hypothesis given the data at hand, $Pr(H|D)$. Classical Frequentist inference does not provide this probability, but rather the long-run probability of finding an at least as extreme empirical result, given that the Null hypothesis is true. This is all well-known. 
+
+To be clear, both approaches have their appeal and may be optimal in different sitaution.
+
+## Technical setup for Bayes analysis provides a barrier
+
+However, a disadvantage of Bayes analysis, at least at its current state, is that it has higher technical and computational demands. For beginners in particular, this may present  a substantial (entry) burden. Teaching statistics, I have found that students (and many colleagues) have had difficulties installing Stan (particularly the C++ compiler needed in order to run Stan); Stan is the probabilistic programming language which many front-end Bayes engines use such as `brms` in R.
 
 Thus, the installation process being not so user-friendly, a burden is placed for beginners which may prevent using Bayes methods.
 
@@ -63,23 +69,25 @@ In that light, this post explores the numerical simarilities of Bayes regression
 
 # Numerical convergence of Bayes and Frequentist approaches
 
-To be clear, the philosophical differences and, consequently, the interpretation of Bayes and Frequentist models are very different (see for a proof https://arxiv.org/abs/1411.5018).
+To be clear, the philosophical differences and, consequently, the interpretation of Bayes and Frequentist models are very different.
 
 
 
-However, under some instances, the *numerical* results (for point estimates) may be very similar comparing Bayesian and Frequentist models, and the Frequentist results may thus be interpreted in a Bayesian way.
+However, under *some* instances, the *numerical* results (for point estimates) may be very similar comparing Bayesian and Frequentist models, and the Frequentist results may thus be interpreted in a Bayesian way (see for a proof https://arxiv.org/abs/1411.5018; for an example, see [this paper](https://nsojournals.onlinelibrary.wiley.com/doi/pdf/10.1111/oik.05985)).
 
 
 More precisely, a linear regression model will provide the same *numerical* results as a Bayesian model (ceteris paribus) given that
 
 - the likelihood is normal
-- the priors are flat.
+- the priors are flat
+- data are informative
+
+Note: Flat priors are not non-informative in general.
+
+It is *not* generally advisable to use flat priors as explained in [this post](https://cran.r-project.org/web/packages/rstanarm/vignettes/priors.html).
 
 
-It is *not* advisable to use flat priors as explained in [this post](https://cran.r-project.org/web/packages/rstanarm/vignettes/priors.html).
-
-
-In `rstanarm`, flat priors (for the regression coefficient) can be specified in this following way:
+In `rstanarm`, an R package for applied Bayes regression modelling, flat priors (for the regression coefficient) can be specified in this following way:
 
 ```{r results="hide"}
 flat_prior_test <- stan_glm(mpg ~ hp, data = mtcars, prior = NULL, refresh = 0)
@@ -115,7 +123,9 @@ parameters(lm_mtcars_bayes)
 
 ## Conclusion
 
-There's a small difference due to the fact that the Bayes model involves random numbers. Beside that, the numerical results are (virtually) identical.
+There's a small difference due to the fact that the Bayes model involves random numbers. Beside that, the numerical results (of the point estimates) are (virtually) identical.
+
+We have not put flat priors on the intercept and on sigma, hence those parameters may differ from the frequentist ones.
 
 
 # Example 2: `penguins`
@@ -191,6 +201,10 @@ We have not specified the `prior_intercept` in our Stan models, as we were not i
 As can be seen (and as it is stated in the literature), the point estimates of Bayesian and Frequentist models converge given that a flat prior is used and that the likelihood is normal. Furthermore, the data must be informative enough to "convince" the posterior distribution.
 
 Hence, using `lm` can be seen as second-best option for computing simple Bayesian models. 
+
+Remember that the idea of this post was to provide a simple soluttion practitioners who do not want to install additional softare (such as Stan). 
+Of course, using a second-best option is not optimal by definition.
+
 
 
 
