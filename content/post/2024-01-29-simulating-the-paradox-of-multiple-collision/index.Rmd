@@ -1,0 +1,215 @@
+---
+title: Simulating multiple event collision
+author: Sebastian Sauer
+date: '2024-01-29'
+slug: simulating-multiple-event-collision
+categories:
+  - rstats
+tags:
+  - simulation
+output:
+  blogdown::html_page:
+    toc: yes
+    number_sections: yes
+---
+
+
+
+```{r knitr-setup, echo = FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = FALSE,
+  out.width = "100%",
+  fig.align = 'center',
+  fig.width = 6,
+  fig.asp = 0.618,  # 1 / phi
+  fig.show = "hold",
+  size = "tiny"
+)
+```
+
+
+# Motivation
+
+Have you ever tried to find a time slot for a meeting using a tool such as "Doodle"?
+
+If not, consider yourself lucky.
+Otherwise you will be well aware of the chagrin of finding a time slot that suits all of your colleagues.
+
+Let's call a time slot where all of your colleagues invited for the meeting have a free time slot a *matching time slot*.
+
+Some persons find that the best way to find a matchting time slot is to offer a great number of time slots to your colleagues. 
+Me personally find this appraoch difficult as I would have to keep track of and block a lot of time slots in my calendar. In addition, I felt it would be difficult to find a matching time slot as most colleagues will not take the hazzle and report many free time slots.
+Call me pessimistic, but I suspect that most colleagues will choose about 3 time slots, but not more, because it would be too difficult for them to keep their calendars in sync.
+
+Now, I wondered that's the probability of finding at least one matching time slot when addressing *n* colleagues, providing each of them with *o* options, assuming each colleague will pick *p* options completely random.
+
+In more stochastic parlance, this problem is a somewhat involved example of the collision problem.
+
+Here's a simulation study for that.
+
+# Setup
+
+```{r load-libs, message = FALSE, warning = FALSE}
+library(tidyverse)  # data wrangling
+```
+
+
+Initialize variables:
+
+```{r}
+slots_chosen <- list()
+```
+
+
+
+# Constants/Parameters
+
+
+```{r}
+n_colleagues<- 4  # number of colleagues invited to your meeting
+p <- 3  # number of chosen appointment options per colleague
+o <- 30 # number of possible options to choose from
+r <- 1e4  # number of simulated samples
+```
+
+
+
+# Choose your options
+
+
+```{r}
+for (i in 1:n_colleagues){
+  slots_chosen[[i]] <- sample(1:o, size = p)
+}
+```
+
+
+
+```{r}
+slots_chosen
+```
+
+
+```{r}
+slots_chosen_vec <- unlist(slots_chosen)
+
+slots_chosen_tbl <- slots_chosen_vec |> table() 
+
+slots_chosen_collision <- names(slots_chosen_tbl[slots_chosen_tbl > 1])
+slots_chosen_tbl <- slots_chosen_tbl[slots_chosen_tbl > 1]
+```
+
+
+Put it in a function:
+
+
+```{r}
+count_common_slots <- function(n_colleagues, o, p){
+  
+  for (i in 1:n_colleagues){
+    slots_chosen[[i]] <- sample(1:o, size = p)
+  }
+  slots_chosen_vec <- unlist(slots_chosen)
+  slots_chosen_tbl <- slots_chosen_vec |> table() 
+  
+  slots_chosen_collision <- slots_chosen_tbl[slots_chosen_tbl > 1]
+  
+  slots_chosen_df <- data.frame(slots_chosen_collision)
+  
+  if (nrow(slots_chosen_df) == 0) slots_chosen_df <- data.frame(slots_chosen_vec = factor(NA),
+                                                                Freq = NA_integer_)
+  if (ncol(slots_chosen_df) == 1) slots_chosen_df <- data.frame(slots_chosen_vec = factor(row.names(slots_chosen_df)),
+                                                                Freq = slots_chosen_df$slots_chosen_collision)
+  
+  return(slots_chosen_df)
+}
+```
+
+
+Test it:
+
+```{r}
+#debug(count_common_slots)
+slots_chosen_collision <- count_common_slots(n_colleagues = n_colleagues, o = o, p = p)
+slots_chosen_collision
+```
+
+
+# Repeat it many times
+
+```{r draw-many-simulated-samples}
+smples <- 
+  slots_chosen_collision |> 
+  mutate(id = 1)
+
+for (i in 2:r){
+  tmp <- count_common_slots(n_colleagues = n_colleagues, o = o, p = p)
+  tmp$id <- i
+  
+  smples <-
+    smples |> 
+    bind_rows(tmp)
+  
+  #print(paste0(i,"/",r))
+  }
+```
+
+
+# Results
+
+```{r}
+smples_tbl <-
+smples |> 
+  group_by(id) |> 
+  summarise(n_hits = n()) |> 
+  count(n_hits) |> 
+  mutate(prop = n / sum(n))
+
+smples_tbl
+```
+
+```{r}
+ggplot(smples_tbl) +
+  aes(x = n_hits, y = n) +
+  geom_vline(aes(xintercept = n_colleagues)) +
+  geom_col() +
+  labs(title = "Proportion of collisions",
+       subtitle = paste0(n_colleagues, " colleagues, ", p, " picked time slots, ", o, " options to chose from, ", r, " simulated samples"),
+       caption = "The vertical line indicates the event that enough colleagues chose the same time slot.") +
+  geom_label(aes(label = n, x = n_hits)) 
+```
+
+
+```{r}
+ggplot(smples_tbl) +
+  aes(x = n_hits, y = prop) +
+  geom_vline(aes(xintercept = n_colleagues)) +
+  geom_col() +
+  labs(title = "Proportion of collisions",
+       subtitle = paste0(n_colleagues, " colleagues, ", p, " picked time slots, ", o, " options to chose from, ", r, " simulated samples"),
+       caption = "The vertical line indicates the event that enough colleagues chose the same time slot.") +
+  geom_label(aes(label = prop, x = n_hits))
+```
+
+
+# Conclusion
+
+As can be seen, the probability of finding a matching time slot is quick small. 
+Not impossible, but too low to rely on this approach in my opinion.
+
+
+
+# Reproducibility
+
+```{r reproducibility, echo = FALSE}
+## Reproducibility info
+options(width = 120)
+devtools::session_info()
+
+```
+
+
