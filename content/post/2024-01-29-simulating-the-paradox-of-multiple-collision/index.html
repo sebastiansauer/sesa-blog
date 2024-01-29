@@ -23,7 +23,13 @@ output:
 <li><a href="#repeat-it-many-times" id="toc-repeat-it-many-times"><span class="toc-section-number">5</span> Repeat it many times</a></li>
 <li><a href="#results" id="toc-results"><span class="toc-section-number">6</span> Results</a></li>
 <li><a href="#conclusion" id="toc-conclusion"><span class="toc-section-number">7</span> Conclusion</a></li>
-<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">8</span> Reproducibility</a></li>
+<li><a href="#make-a-matching-more-probable" id="toc-make-a-matching-more-probable"><span class="toc-section-number">8</span> Make a matching more probable</a></li>
+<li><a href="#results-2" id="toc-results-2"><span class="toc-section-number">9</span> Results 2</a></li>
+<li><a href="#conclusions-2" id="toc-conclusions-2"><span class="toc-section-number">10</span> Conclusions 2</a></li>
+<li><a href="#make-a-matching-highly-probable" id="toc-make-a-matching-highly-probable"><span class="toc-section-number">11</span> Make a matching highly probable</a></li>
+<li><a href="#results-3" id="toc-results-3"><span class="toc-section-number">12</span> Results 3</a></li>
+<li><a href="#conclusions-3" id="toc-conclusions-3"><span class="toc-section-number">13</span> Conclusions 3</a></li>
+<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">14</span> Reproducibility</a></li>
 </ul>
 </div>
 
@@ -34,8 +40,8 @@ output:
 Otherwise you will be well aware of the chagrin of finding a time slot that suits all of your colleagues.</p>
 <p>Let’s call a time slot where all of your colleagues invited for the meeting have a free time slot a <em>matching time slot</em>.</p>
 <p>Some persons find that the best way to find a matchting time slot is to offer a great number of time slots to your colleagues.
-Me personally find this appraoch difficult as I would have to keep track of and block a lot of time slots in my calendar. In addition, I felt it would be difficult to find a matching time slot as most colleagues will not take the hazzle and report many free time slots.
-Call me pessimistic, but I suspect that most colleagues will choose about 3 time slots, but not more, because it would be too difficult for them to keep their calendars in sync.</p>
+Personally I find this appraoch difficult as I would have to keep track of and block a lot of time slots in my calendar. In addition, I feel it would be difficult to find a matching time slot as most colleagues will not take the hazzle and report many free time slots.
+Call me pessimistic, but I suspect that most colleagues will choose about 3 time slots, but not more, because it would be too difficult for them to keep their calendars in sync. (A sentiment I share.)</p>
 <p>Now, I wondered that’s the probability of finding at least one matching time slot when addressing <em>n</em> colleagues, providing each of them with <em>o</em> options, assuming each colleague will pick <em>p</em> options completely random.</p>
 <p>In more stochastic parlance, this problem is a somewhat involved example of the collision problem.</p>
 <p>Here’s a simulation study for that.</p>
@@ -48,7 +54,7 @@ Call me pessimistic, but I suspect that most colleagues will choose about 3 time
 </div>
 <div id="constantsparameters" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Constants/Parameters</h1>
-<pre class="r"><code>n_colleagues&lt;- 4  # number of colleagues invited to your meeting
+<pre class="r"><code>n_colleagues &lt;- 4  # number of colleagues invited to your meeting
 p &lt;- 3  # number of chosen appointment options per colleague
 o &lt;- 30 # number of possible options to choose from
 r &lt;- 1e4  # number of simulated samples</code></pre>
@@ -60,16 +66,16 @@ r &lt;- 1e4  # number of simulated samples</code></pre>
 }</code></pre>
 <pre class="r"><code>slots_chosen
 #&gt; [[1]]
-#&gt; [1] 29 21 20
+#&gt; [1]  1 30 19
 #&gt; 
 #&gt; [[2]]
-#&gt; [1] 21  8 15
+#&gt; [1] 20 26 10
 #&gt; 
 #&gt; [[3]]
-#&gt; [1] 17  7 28
+#&gt; [1] 24  7 23
 #&gt; 
 #&gt; [[4]]
-#&gt; [1] 13  2 22</code></pre>
+#&gt; [1] 28 20 11</code></pre>
 <pre class="r"><code>slots_chosen_vec &lt;- unlist(slots_chosen)
 
 slots_chosen_tbl &lt;- slots_chosen_vec |&gt; table() 
@@ -101,7 +107,7 @@ slots_chosen_tbl &lt;- slots_chosen_tbl[slots_chosen_tbl &gt; 1]</code></pre>
 slots_chosen_collision &lt;- count_common_slots(n_colleagues = n_colleagues, o = o, p = p)
 slots_chosen_collision
 #&gt;   slots_chosen_vec Freq
-#&gt; 1                3    3</code></pre>
+#&gt; 1                2    2</code></pre>
 </div>
 <div id="repeat-it-many-times" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> Repeat it many times</h1>
@@ -133,11 +139,11 @@ smples_tbl
 #&gt; # A tibble: 5 × 3
 #&gt;   n_hits     n   prop
 #&gt;    &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;
-#&gt; 1      1  4890 0.489 
-#&gt; 2      2  3512 0.351 
-#&gt; 3      3  1390 0.139 
-#&gt; 4      4   199 0.0199
-#&gt; 5      5     9 0.0009</code></pre>
+#&gt; 1      1  4991 0.499 
+#&gt; 2      2  3479 0.348 
+#&gt; 3      3  1318 0.132 
+#&gt; 4      4   206 0.0206
+#&gt; 5      5     6 0.0006</code></pre>
 <pre class="r"><code>ggplot(smples_tbl) +
   aes(x = n_hits, y = n) +
   geom_vline(aes(xintercept = n_colleagues)) +
@@ -159,11 +165,113 @@ smples_tbl
 </div>
 <div id="conclusion" class="section level1" number="7">
 <h1><span class="header-section-number">7</span> Conclusion</h1>
-<p>As can be seen, the probability of finding a matching time slot is quick small.
+<p>As can be seen, the probability of finding a matching time slot is quick small, given the parameter values above.
 Not impossible, but too low to rely on this approach in my opinion.</p>
 </div>
-<div id="reproducibility" class="section level1" number="8">
-<h1><span class="header-section-number">8</span> Reproducibility</h1>
+<div id="make-a-matching-more-probable" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Make a matching more probable</h1>
+<p>Let’s provide less options too chose from in order to find a time slot for the meeting to your colleagues:</p>
+<pre class="r"><code>o &lt;- 12  # time slot options too chose from</code></pre>
+<pre class="r"><code>smples &lt;- 
+  slots_chosen_collision |&gt; 
+  mutate(id = 1)
+
+for (i in 2:r){
+  tmp &lt;- count_common_slots(n_colleagues = n_colleagues, o = o, p = p)
+  tmp$id &lt;- i
+  
+  smples &lt;-
+    smples |&gt; 
+    bind_rows(tmp)
+  
+  #print(paste0(i,&quot;/&quot;,r))
+  }</code></pre>
+</div>
+<div id="results-2" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Results 2</h1>
+<pre class="r"><code>smples_tbl &lt;-
+smples |&gt; 
+  group_by(id) |&gt; 
+  summarise(n_hits = n()) |&gt; 
+  count(n_hits) |&gt; 
+  mutate(prop = n / sum(n))
+
+smples_tbl
+#&gt; # A tibble: 6 × 3
+#&gt;   n_hits     n   prop
+#&gt;    &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;
+#&gt; 1      1   176 0.0176
+#&gt; 2      2  1955 0.196 
+#&gt; 3      3  4484 0.448 
+#&gt; 4      4  2900 0.29  
+#&gt; 5      5   480 0.048 
+#&gt; 6      6     5 0.0005</code></pre>
+<pre class="r"><code>ggplot(smples_tbl) +
+  aes(x = n_hits, y = prop) +
+  geom_vline(aes(xintercept = n_colleagues)) +
+  geom_col() +
+  labs(title = &quot;Proportion of collisions&quot;,
+       subtitle = paste0(n_colleagues, &quot; colleagues, &quot;, p, &quot; picked time slots, &quot;, o, &quot; options to chose from, &quot;, r, &quot; simulated samples&quot;),
+       caption = &quot;The vertical line indicates the event that enough colleagues chose the same time slot.&quot;) +
+  geom_label(aes(label = prop, x = n_hits))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="conclusions-2" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> Conclusions 2</h1>
+<p>Now we can see that a matching has become more probable, although still not highly likely.</p>
+</div>
+<div id="make-a-matching-highly-probable" class="section level1" number="11">
+<h1><span class="header-section-number">11</span> Make a matching highly probable</h1>
+<p>Let’s provide only a few options too chose from in order to find a time slot for the meeting to your colleagues:</p>
+<pre class="r"><code>o &lt;- 5  # number of time slot options too chose from</code></pre>
+<pre class="r"><code>smples &lt;- 
+  slots_chosen_collision |&gt; 
+  mutate(id = 1)
+
+for (i in 2:r){
+  tmp &lt;- count_common_slots(n_colleagues = n_colleagues, o = o, p = p)
+  tmp$id &lt;- i
+  
+  smples &lt;-
+    smples |&gt; 
+    bind_rows(tmp)
+  
+  #print(paste0(i,&quot;/&quot;,r))
+  }</code></pre>
+</div>
+<div id="results-3" class="section level1" number="12">
+<h1><span class="header-section-number">12</span> Results 3</h1>
+<pre class="r"><code>smples_tbl &lt;-
+smples |&gt; 
+  group_by(id) |&gt; 
+  summarise(n_hits = n()) |&gt; 
+  count(n_hits) |&gt; 
+  mutate(prop = n / sum(n))
+
+smples_tbl
+#&gt; # A tibble: 4 × 3
+#&gt;   n_hits     n   prop
+#&gt;    &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;
+#&gt; 1      1     1 0.0001
+#&gt; 2      3  1467 0.147 
+#&gt; 3      4  6057 0.606 
+#&gt; 4      5  2475 0.248</code></pre>
+<pre class="r"><code>ggplot(smples_tbl) +
+  aes(x = n_hits, y = prop) +
+  geom_vline(aes(xintercept = n_colleagues)) +
+  geom_col() +
+  labs(title = &quot;Proportion of collisions&quot;,
+       subtitle = paste0(n_colleagues, &quot; colleagues, &quot;, p, &quot; picked time slots, &quot;, o, &quot; options to chose from, &quot;, r, &quot; simulated samples&quot;),
+       caption = &quot;The vertical line indicates the event that enough colleagues chose the same time slot.&quot;) +
+  geom_label(aes(label = prop, x = n_hits))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-16-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="conclusions-3" class="section level1" number="13">
+<h1><span class="header-section-number">13</span> Conclusions 3</h1>
+<p>Now we can see that a matching has become highly probable.</p>
+</div>
+<div id="reproducibility" class="section level1" number="14">
+<h1><span class="header-section-number">14</span> Reproducibility</h1>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value
 #&gt;  version  R version 4.2.1 (2022-06-23)
