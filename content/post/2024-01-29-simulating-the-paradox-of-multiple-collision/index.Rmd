@@ -70,41 +70,22 @@ slots_chosen <- list()
 
 
 ```{r}
-n_colleagues <- 4  # number of colleagues invited to your meeting
+n_colleagues <- 3  # number of colleagues invited to your meeting
 p <- 3  # number of chosen appointment options per colleague
 o <- 30 # number of possible options to choose from
-r <- 1e4  # number of simulated samples
+r <- 1e3  # number of simulated samples
 ```
 
 
 
-# Choose your options
-
-
-```{r}
-for (i in 1:n_colleagues){
-  slots_chosen[[i]] <- sample(1:o, size = p)
-}
-```
 
 
 
-```{r}
-slots_chosen
-```
+# Funs
 
 
-```{r}
-slots_chosen_vec <- unlist(slots_chosen)
+## Count common solots
 
-slots_chosen_tbl <- slots_chosen_vec |> table() 
-
-slots_chosen_collision <- names(slots_chosen_tbl[slots_chosen_tbl > 1])
-slots_chosen_tbl <- slots_chosen_tbl[slots_chosen_tbl > 1]
-```
-
-
-Put it in a function:
 
 
 ```{r}
@@ -133,128 +114,214 @@ count_common_slots <- function(n_colleagues, o, p){
 Test it:
 
 ```{r}
-#debug(count_common_slots)
-slots_chosen_collision <- count_common_slots(n_colleagues = n_colleagues, o = o, p = p)
+undebug(count_common_slots)
+slots_chosen_collision <- count_common_slots(n_colleagues = 4, 
+                                             o = 20, 
+                                             p = 3)
 slots_chosen_collision
 ```
 
 
-# Repeat it many times
+## Estimate common slots
 
-```{r draw-many-simulated-samples}
-smples <- 
-  slots_chosen_collision |> 
-  mutate(id = 1)
 
-for (i in 2:r){
-  tmp <- count_common_slots(n_colleagues = n_colleagues, o = o, p = p)
-  tmp$id <- i
+
+```{r fun-estimate-common-slots}
+estimate_common_slots <- function(slots_chosen_collision, n_colleagues, o, p, r = 1e3){
   
-  smples <-
-    smples |> 
-    bind_rows(tmp)
+  smples <- 
+    slots_chosen_collision |> 
+    mutate(id = 1)
   
-  #print(paste0(i,"/",r))
+  for (i in 2:r) {
+    tmp <- count_common_slots(n_colleagues = n_colleagues, o = o, p = p)
+    tmp$id <- i
+    
+    smples <-
+      smples |> 
+      bind_rows(tmp)
+    
+    #print(paste0(i,"/",r))
   }
+  
+  return(smples)
+}
 ```
 
 
-# Results
+
+
+
+
+Check:
 
 ```{r}
-smples_tbl <-
-smples |> 
-  group_by(id) |> 
-  summarise(n_hits = n()) |> 
-  count(n_hits) |> 
-  mutate(prop = n / sum(n))
+smples <- estimate_common_slots(slots_chosen_collision = slots_chosen_collision,
+                                n_colleagues = n_colleagues,
+                                o = o,
+                                p = p)
+```
 
+
+
+## Samples summarized
+
+```{r}
+summarize_samples <- function(smples){
+  
+   smples_tbl <-
+   smples |> 
+   drop_na() |> 
+   group_by(Freq) |> 
+   summarise(n_matches = n()) |> 
+   mutate(prop_matches = n_matches / sum(n_matches))
+   
+   return(smples_tbl)
+  
+}
+```
+
+Check:
+
+```{r}
+smples_tbl <- summarize_samples(smples)
 smples_tbl
 ```
 
-```{r fig.width=9}
+
+## Proportion of matches
+
+
+
+```{r fun-prop-match}
+prop_match <- function(smples, n_colleagues){
+  
+ smples_tbl <- summarize_samples(smples)
+  
+  out_tbl <- smples_tbl |> 
+    group_by(we_found_slot = factor(Freq >= n_colleagues, levels = c(FALSE, TRUE)), .drop = FALSE) |> 
+    summarise(n_matches = sum(n_matches)) |> 
+    mutate(prop_matches = n_matches/sum(n_matches)) 
+  
+  out <- out_tbl$prop_matches[out_tbl$we_found_slot == TRUE]
+  
+  stopifnot(class(out) == "numeric")
+  
+  return(out)
+}
+```
+
+
+```{r}
+#undebug(prop_match)
+prop_match(smples, n_colleagues = 3)
+prop_match(smples, n_colleagues = 4)
+prop_match(smples, n_colleagues = 5)
+```
+
+
+
+
+## Plot results
+
+```{r}
+plot_matches <- function(smples_tbl){
+
 ggplot(smples_tbl) +
-  aes(x = n_hits, y = n) +
+  aes(x = Freq, y = prop_matches) +
   geom_vline(aes(xintercept = n_colleagues)) +
   geom_col() +
   labs(title = "Proportion of collisions",
        subtitle = paste0(n_colleagues, " colleagues, ", p, " picked time slots, ", o, " options to chose from, ", r, " simulated samples"),
        caption = "The vertical line indicates the event that enough colleagues chose the same time slot.") +
-  geom_label(aes(label = n, x = n_hits)) 
+  geom_label(aes(label = round(prop_matches, 2), x = Freq)) 
+}
 ```
 
 
-```{r fig.width=9}
-ggplot(smples_tbl) +
-  aes(x = n_hits, y = prop) +
-  geom_vline(aes(xintercept = n_colleagues)) +
-  geom_col() +
-  labs(title = "Proportion of collisions",
-       subtitle = paste0(n_colleagues, " colleagues, ", p, " picked time slots, ", o, " options to chose from, ", r, " simulated samples"),
-       caption = "The vertical line indicates the event that enough colleagues chose the same time slot.") +
-  geom_label(aes(label = prop, x = n_hits))
+```{r}
+plot_matches(smples_tbl)
 ```
+
+
+
+
+
+## All in once function
+
+Here's the do-it-all-in-once function:
+
+```{r fun-matching-prob}
+matching_prob <- function(n_colleagues,
+                          o,
+                          p,
+                          r = 1e3,
+                          return_prob = TRUE
+                          ) {
+  first_common_slot <- count_common_slots(n_colleagues, o = o, p = p)
+  all_common_slots <- estimate_common_slots(first_common_slot,
+                                            n_colleagues = n_colleagues,
+                                            o = o,
+                                            p = p)
+  out <- all_common_slots
+  
+  if (return_prob) {
+    out <- prop_match(all_common_slots, n_colleagues = n_colleagues)
+    stopifnot(class(out) == "numeric")
+  }
+  
+  return(out)
+}
+```
+
+
+Check it:
+
+```{r}
+undebug(matching_prob)
+matching_prob(n_colleagues = 5,
+              o = 10,
+              p = 3)
+```
+
+
+
+
+
 
 
 # Conclusion
 
-As can be seen, the probability of finding a matching time slot is quick small, given the parameter values above.
+As can be seen, the probability of finding a matching time slot is quite small, given the parameter values above.
 Not impossible, but too low to rely on this approach in my opinion.
 
 
-
-# Make a matching more probable
+# o=10; Make a matching more probable
 
 Let's provide less options too chose from in order to find a time slot for the meeting to your colleagues:
 
-```{r}
-o <- 12  # time slot options too chose from
-```
 
-
-
-```{r draw-many-simulated-samples2}
-smples <- 
-  slots_chosen_collision |> 
-  mutate(id = 1)
-
-for (i in 2:r){
-  tmp <- count_common_slots(n_colleagues = n_colleagues, o = o, p = p)
-  tmp$id <- i
-  
-  smples <-
-    smples |> 
-    bind_rows(tmp)
-  
-  #print(paste0(i,"/",r))
-  }
-```
-
-
-# Results 2
 
 ```{r}
-smples_tbl <-
-smples |> 
-  group_by(id) |> 
-  summarise(n_hits = n()) |> 
-  count(n_hits) |> 
-  mutate(prop = n / sum(n))
+n_colleagues <- 3
+o <- 7
 
-smples_tbl
+matching_prob(n_colleagues = n_colleagues,
+              o = o,
+              p = 3)
 ```
+
 
 
 
 ```{r fig.width=9}
-ggplot(smples_tbl) +
-  aes(x = n_hits, y = prop) +
-  geom_vline(aes(xintercept = n_colleagues)) +
-  geom_col() +
-  labs(title = "Proportion of collisions",
-       subtitle = paste0(n_colleagues, " colleagues, ", p, " picked time slots, ", o, " options to chose from, ", r, " simulated samples"),
-       caption = "The vertical line indicates the event that enough colleagues chose the same time slot.") +
-  geom_label(aes(label = prop, x = n_hits))
+smples2 <- matching_prob(n_colleagues = n_colleagues,
+              o = o,
+              p = p,
+              return_prob = FALSE)
+
+smples_tbl2 <- summarize_samples(smples2)
+plot_matches(smples_tbl2)
 ```
 
 # Conclusions 2
@@ -266,7 +333,7 @@ Now we can see that a matching has become more probable, although still not high
 
 
 
-# Make a matching highly probable
+# o=5; Make a matching highly probable
 
 Let's provide only a few options too chose from in order to find a time slot for the meeting to your colleagues:
 
@@ -276,55 +343,77 @@ o <- 5  # number of time slot options too chose from
 
 
 
-```{r draw-many-simulated-samples3}
-smples <- 
-  slots_chosen_collision |> 
-  mutate(id = 1)
-
-for (i in 2:r){
-  tmp <- count_common_slots(n_colleagues = n_colleagues, o = o, p = p)
-  tmp$id <- i
-  
-  smples <-
-    smples |> 
-    bind_rows(tmp)
-  
-  #print(paste0(i,"/",r))
-  }
-```
-
-
-# Results 3
-
-```{r}
-smples_tbl <-
-smples |> 
-  group_by(id) |> 
-  summarise(n_hits = n()) |> 
-  count(n_hits) |> 
-  mutate(prop = n / sum(n))
-
-smples_tbl
-```
 
 
 
 ```{r fig.width=9}
-ggplot(smples_tbl) +
-  aes(x = n_hits, y = prop) +
-  geom_vline(aes(xintercept = n_colleagues)) +
-  geom_col() +
-  labs(title = "Proportion of collisions",
-       subtitle = paste0(n_colleagues, " colleagues, ", p, " picked time slots, ", o, " options to chose from, ", r, " simulated samples"),
-       caption = "The vertical line indicates the event that enough colleagues chose the same time slot.") +
-  geom_label(aes(label = prop, x = n_hits))
+smples3 <- matching_prob(n_colleagues = n_colleagues,
+              o = o,
+              p = p,
+              return_prob = FALSE)
+
+smples_tbl3 <- summarize_samples(smples3)
+plot_matches(smples_tbl3)
 ```
 
-# Conclusions 3
-
-Now we can see that a matching has become highly probable.
+# Grid of different parameter values
 
 
+Let's try different parameter values and compute the probability of a match.
+
+Here's the grid as a cartesian expansion:
+
+```{r}
+d <- expand_grid(n_colleagues = 2:5,
+                 o = c(5, 10, 15, 20, 25, 30),
+                 p = c(3, 5))
+```
+
+
+
+
+Interestingly, with p=5 chosen options practically solves the problem:
+
+
+```{r}
+matching_prob(n_colleagues = 5,
+              o = 30,
+              p = 5)
+```
+
+# Populate grid
+
+
+```{r populate-grid}
+d_grid <-
+  d |> 
+  mutate(match_prob = pmap_dbl(
+    .l = list(n_colleagues, o, p), 
+    .f = matching_prob,
+    .progress = TRUE))
+```
+
+
+# Visualize grid
+
+
+```{r vis-grid, fig.asp = 2, out.width="100%"}
+d_grid_long <-
+  d_grid |> 
+  pivot_longer(cols = c(n_colleagues, o, p))
+
+d_grid |> 
+  rename(n = n_colleagues) |> 
+  ggplot(aes(x = o, y = match_prob)) +
+  geom_line() +
+  geom_point() +
+  facet_grid(n ~ p,
+             labeller = labeller(n = label_both, p = label_both)) +
+  labs(title = "Proportiong of a match when Doodling for an joint meeting",
+       subtile = "p: Number of options picked per colleague;\n
+       n: number of colleagues approached",
+       caption = paste0(r, " simulated samples for each case computed"))
+```
 
 
 # Reproducibility
