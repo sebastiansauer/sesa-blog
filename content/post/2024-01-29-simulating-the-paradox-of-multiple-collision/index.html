@@ -33,8 +33,9 @@ output:
 <li><a href="#grid-of-different-parameter-values" id="toc-grid-of-different-parameter-values"><span class="toc-section-number">7</span> Grid of different parameter values</a></li>
 <li><a href="#populate-grid" id="toc-populate-grid"><span class="toc-section-number">8</span> Populate grid</a></li>
 <li><a href="#visualize-grid" id="toc-visualize-grid"><span class="toc-section-number">9</span> Visualize grid</a></li>
-<li><a href="#conclusion" id="toc-conclusion"><span class="toc-section-number">10</span> Conclusion</a></li>
-<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">11</span> Reproducibility</a></li>
+<li><a href="#caveats" id="toc-caveats"><span class="toc-section-number">10</span> Caveats</a></li>
+<li><a href="#conclusion" id="toc-conclusion"><span class="toc-section-number">11</span> Conclusion</a></li>
+<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">12</span> Reproducibility</a></li>
 </ul>
 </div>
 
@@ -97,8 +98,7 @@ slots_chosen_collision &lt;- count_common_slots(n_colleagues = 4,
                                              p = 3)
 slots_chosen_collision
 #&gt;   slots_chosen_vec Freq
-#&gt; 1                1    4
-#&gt; 2                4    4</code></pre>
+#&gt; 1             &lt;NA&gt;   NA</code></pre>
 </div>
 <div id="estimate-common-slots" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Estimate common slots</h2>
@@ -128,11 +128,11 @@ slots_chosen_collision
                                 p = p)
 
 glimpse(smples)
-#&gt; Rows: 1,001
+#&gt; Rows: 1,000
 #&gt; Columns: 3
-#&gt; $ slots_chosen_vec &lt;fct&gt; 1, 4, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-#&gt; $ Freq             &lt;int&gt; 4, 4, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-#&gt; $ id               &lt;dbl&gt; 1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,…</code></pre>
+#&gt; $ slots_chosen_vec &lt;fct&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+#&gt; $ Freq             &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+#&gt; $ id               &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16…</code></pre>
 </div>
 <div id="samples-summarized" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Samples summarized</h2>
@@ -152,12 +152,11 @@ glimpse(smples)
 <p>Check:</p>
 <pre class="r"><code>smples_tbl &lt;- summarize_samples(smples)
 smples_tbl
-#&gt; # A tibble: 3 × 3
+#&gt; # A tibble: 2 × 3
 #&gt;    Freq n_matches prop_matches
 #&gt;   &lt;int&gt;     &lt;int&gt;        &lt;dbl&gt;
-#&gt; 1     3        33      0.0330 
-#&gt; 2     4         2      0.00200
-#&gt; 3     0       966      0.965</code></pre>
+#&gt; 1     3        24        0.024
+#&gt; 2     0       976        0.976</code></pre>
 </div>
 <div id="proportion-of-matches" class="section level2" number="4.4">
 <h2><span class="header-section-number">4.4</span> Proportion of matches</h2>
@@ -178,9 +177,9 @@ smples_tbl
 }</code></pre>
 <pre class="r"><code>#undebug(prop_match)
 prop_match(smples, n_colleagues = 3)
-#&gt; [1] 0.03496503
+#&gt; [1] 0.024
 prop_match(smples, n_colleagues = 4)
-#&gt; [1] 0.001998002
+#&gt; [1] 0
 prop_match(smples, n_colleagues = 5)
 #&gt; [1] 0</code></pre>
 </div>
@@ -233,7 +232,7 @@ prop_match(smples, n_colleagues = 5)
 matching_prob(n_colleagues = 5,
               o = 10,
               p = 3)
-#&gt; [1] 0.028</code></pre>
+#&gt; [1] 0.022</code></pre>
 <p>As can be seen, the probability of finding a matching time slot is quite small, given the parameter values above.
 Not impossible, but too low to rely on this approach in my opinion.</p>
 </div>
@@ -247,7 +246,7 @@ o &lt;- 7
 matching_prob(n_colleagues = n_colleagues,
               o = o,
               p = 3)
-#&gt; [1] 0.5474178</code></pre>
+#&gt; [1] 0.5116713</code></pre>
 <p>Looks much better; we have some chances of finding a match.</p>
 <pre class="r"><code>smples2 &lt;- matching_prob(n_colleagues = n_colleagues,
               o = o,
@@ -301,9 +300,9 @@ plot_matches(smples_tbl3,  n_colleagues, p = p, o = o)</code></pre>
   facet_grid(n ~ p,
              labeller = labeller(n = label_both, p = label_both)) +
   labs(title = &quot;Proportiong of a match when Doodling for an joint meeting&quot;,
-       subtile = &quot;p: Number of options picked per colleague;\n
-       n: number of colleagues approached&quot;,
-       caption = paste0(r, &quot; simulated samples for each case computed&quot;))</code></pre>
+       caption = &quot;p: Number of options picked per colleague;\n
+       n: number of colleagues approached&quot;
+       )</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/vis-grid-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Let’s try a different visualization:</p>
 <pre class="r"><code>d_grid_long &lt;-
@@ -318,16 +317,21 @@ d_grid |&gt;
   geom_point() +
   facet_wrap(~  p , labeller = labeller(p = label_both), ncol = 2) +
   labs(title = &quot;Proportiong of a match when Doodling for an joint meeting&quot;,
-       subtile = &quot;p: Number of options picked per colleague;\n
+       caption = &quot;p: Number of options picked per colleague;\n
        n: number of colleagues approached&quot;,
-       caption = paste0(r, &quot; simulated samples for each case computed&quot;),
        color = &quot;number of\ncolleagues&quot;) +
   theme_light() +
   theme(legend.position = &quot;bottom&quot;)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/vis-grid2-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="conclusion" class="section level1" number="10">
-<h1><span class="header-section-number">10</span> Conclusion</h1>
+<div id="caveats" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> Caveats</h1>
+<p>This analysis builds on some assumptions. One is that the the colleagues choose their slots randomly.
+However, assumption may fail.
+For example, if 3 have 5 options and ask to choose 3, people may feel pushed too hard and do crazy things.</p>
+</div>
+<div id="conclusion" class="section level1" number="11">
+<h1><span class="header-section-number">11</span> Conclusion</h1>
 <p>There are a number of things to be learnt from this simulation:</p>
 <ol style="list-style-type: decimal">
 <li>The higher the number of _o_ptions to pick from, the less likely is it to come to a match.</li>
@@ -341,8 +345,8 @@ d_grid |&gt;
 <li>If you can present 5 options only, you will be on the safe side and will likely come to a match.</li>
 </ul>
 </div>
-<div id="reproducibility" class="section level1" number="11">
-<h1><span class="header-section-number">11</span> Reproducibility</h1>
+<div id="reproducibility" class="section level1" number="12">
+<h1><span class="header-section-number">12</span> Reproducibility</h1>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value
 #&gt;  version  R version 4.2.1 (2022-06-23)
@@ -353,7 +357,7 @@ d_grid |&gt;
 #&gt;  collate  en_US.UTF-8
 #&gt;  ctype    en_US.UTF-8
 #&gt;  tz       Europe/Berlin
-#&gt;  date     2024-01-31
+#&gt;  date     2024-01-29
 #&gt;  pandoc   3.1.1 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
 #&gt; 
 #&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
@@ -364,6 +368,7 @@ d_grid |&gt;
 #&gt;  cachem        1.0.8   2023-05-01 [1] CRAN (R 4.2.0)
 #&gt;  callr         3.7.3   2022-11-02 [1] CRAN (R 4.2.0)
 #&gt;  cli           3.6.1   2023-03-23 [1] CRAN (R 4.2.0)
+#&gt;  codetools     0.2-19  2023-02-01 [1] CRAN (R 4.2.0)
 #&gt;  colorout    * 1.3-0   2023-11-08 [1] Github (jalvesaq/colorout@8384882)
 #&gt;  colorspace    2.1-0   2023-01-23 [1] CRAN (R 4.2.0)
 #&gt;  crayon        1.5.2   2022-09-29 [1] CRAN (R 4.2.1)

@@ -413,9 +413,9 @@ d_grid |>
   facet_grid(n ~ p,
              labeller = labeller(n = label_both, p = label_both)) +
   labs(title = "Proportiong of a match when Doodling for an joint meeting",
-       subtile = "p: Number of options picked per colleague;\n
-       n: number of colleagues approached",
-       caption = paste0(r, " simulated samples for each case computed"))
+       caption = "p: Number of options picked per colleague;\n
+       n: number of colleagues approached"
+       )
 ```
 
 
@@ -434,13 +434,20 @@ d_grid |>
   geom_point() +
   facet_wrap(~  p , labeller = labeller(p = label_both), ncol = 2) +
   labs(title = "Proportiong of a match when Doodling for an joint meeting",
-       subtile = "p: Number of options picked per colleague;\n
+       caption = "p: Number of options picked per colleague;\n
        n: number of colleagues approached",
-       caption = paste0(r, " simulated samples for each case computed"),
        color = "number of\ncolleagues") +
   theme_light() +
   theme(legend.position = "bottom")
 ```
+
+
+# Caveats
+
+This analysis builds on some assumptions. One is that the the colleagues choose their slots randomly. 
+However, assumption may fail.
+For example, if 3 have 5 options and ask to choose 3, people may feel pushed too hard and do crazy things.
+
 
 
 # Conclusion
