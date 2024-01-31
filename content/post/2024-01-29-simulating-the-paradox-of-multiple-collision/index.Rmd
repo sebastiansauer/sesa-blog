@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   message = FALSE,
   warning = FALSE,
-  cache = FALSE,
+  cache = TRUE,
   out.width = "100%",
   fig.align = 'center',
   fig.width = 6,
@@ -71,9 +71,9 @@ slots_chosen <- list()
 
 ```{r}
 n_colleagues <- 3  # number of colleagues invited to your meeting
-p <- 3  # number of chosen appointment options per colleague
-o <- 30 # number of possible options to choose from
-r <- 1e3  # number of simulated samples
+p <- 3  # number of appointment options _p_icked per colleague
+o <- 30 # number of possible _o_ptions to choose from
+r <- 1e3  # number of simulated _r_epetions/samples
 ```
 
 
@@ -88,8 +88,11 @@ r <- 1e3  # number of simulated samples
 
 
 
-```{r}
+```{r fun-count-common-slots}
 count_common_slots <- function(n_colleagues, o, p){
+  
+  # make sure that only so many options can be picked as are available:
+  if (p > o) p <- o
   
   for (i in 1:n_colleagues){
     slots_chosen[[i]] <- sample(1:o, size = p)
@@ -97,7 +100,7 @@ count_common_slots <- function(n_colleagues, o, p){
   slots_chosen_vec <- unlist(slots_chosen)
   slots_chosen_tbl <- slots_chosen_vec |> table() 
   
-  slots_chosen_collision <- slots_chosen_tbl[slots_chosen_tbl > 1]
+  slots_chosen_collision <- slots_chosen_tbl[slots_chosen_tbl >= n_colleagues]
   
   slots_chosen_df <- data.frame(slots_chosen_collision)
   
@@ -116,7 +119,7 @@ Test it:
 ```{r}
 undebug(count_common_slots)
 slots_chosen_collision <- count_common_slots(n_colleagues = 4, 
-                                             o = 20, 
+                                             o = 5, 
                                              p = 3)
 slots_chosen_collision
 ```
@@ -160,21 +163,24 @@ smples <- estimate_common_slots(slots_chosen_collision = slots_chosen_collision,
                                 n_colleagues = n_colleagues,
                                 o = o,
                                 p = p)
+
+glimpse(smples)
 ```
 
 
 
 ## Samples summarized
 
-```{r}
+```{r fun-summ-samples}
 summarize_samples <- function(smples){
   
    smples_tbl <-
    smples |> 
-   drop_na() |> 
+   #drop_na() |> 
    group_by(Freq) |> 
    summarise(n_matches = n()) |> 
-   mutate(prop_matches = n_matches / sum(n_matches))
+   mutate(prop_matches = n_matches / sum(n_matches)) |> 
+   mutate(Freq = replace_na(Freq, 0))
    
    return(smples_tbl)
   
@@ -225,22 +231,27 @@ prop_match(smples, n_colleagues = 5)
 ## Plot results
 
 ```{r}
-plot_matches <- function(smples_tbl){
+plot_matches <- function(smples_tbl, n_colleagues, p, o){
 
-ggplot(smples_tbl) +
-  aes(x = Freq, y = prop_matches) +
-  geom_vline(aes(xintercept = n_colleagues)) +
-  geom_col() +
-  labs(title = "Proportion of collisions",
-       subtitle = paste0(n_colleagues, " colleagues, ", p, " picked time slots, ", o, " options to chose from, ", r, " simulated samples"),
-       caption = "The vertical line indicates the event that enough colleagues chose the same time slot.") +
-  geom_label(aes(label = round(prop_matches, 2), x = Freq)) 
+  smples_tbl |> 
+    group_by(we_found_slot = 
+               factor(Freq >= n_colleagues, levels = c(FALSE, TRUE)), 
+             .drop = FALSE) |> 
+    summarise(n_matches = sum(n_matches),
+              prop_matches = sum(prop_matches)) |> 
+    ggplot() +
+  aes(x = we_found_slot, y = prop_matches) +
+    geom_col() +
+    labs(title = "Proportion of collisions",
+         subtitle = paste0(n_colleagues, " colleagues, ", p, " picked time slots, ", o, " options to chose from, ", r, " simulated samples"),
+         caption = "The vertical line indicates the event that enough colleagues chose the same time slot.") +
+    geom_label(aes(label = round(prop_matches, 2), x = we_found_slot)) 
 }
 ```
 
 
 ```{r}
-plot_matches(smples_tbl)
+plot_matches(smples_tbl, n_colleagues, p, o)
 ```
 
 
@@ -278,7 +289,7 @@ matching_prob <- function(n_colleagues,
 Check it:
 
 ```{r}
-undebug(matching_prob)
+#undebug(matching_prob)
 matching_prob(n_colleagues = 5,
               o = 10,
               p = 3)
@@ -290,7 +301,7 @@ matching_prob(n_colleagues = 5,
 
 
 
-# Conclusion
+
 
 As can be seen, the probability of finding a matching time slot is quite small, given the parameter values above.
 Not impossible, but too low to rely on this approach in my opinion.
@@ -312,6 +323,7 @@ matching_prob(n_colleagues = n_colleagues,
 ```
 
 
+Looks much better; we have some chances of finding a match.
 
 
 ```{r fig.width=9}
@@ -321,10 +333,9 @@ smples2 <- matching_prob(n_colleagues = n_colleagues,
               return_prob = FALSE)
 
 smples_tbl2 <- summarize_samples(smples2)
-plot_matches(smples_tbl2)
+plot_matches(smples_tbl2, n_colleagues, p = p, o = o)
 ```
 
-# Conclusions 2
 
 Now we can see that a matching has become more probable, although still not highly likely.
 
@@ -353,33 +364,28 @@ smples3 <- matching_prob(n_colleagues = n_colleagues,
               return_prob = FALSE)
 
 smples_tbl3 <- summarize_samples(smples3)
-plot_matches(smples_tbl3)
+plot_matches(smples_tbl3,  n_colleagues, p = p, o = o)
 ```
+
+
+
+That really looks good; that's a realistic chance to find a match.
 
 # Grid of different parameter values
 
 
 Let's try different parameter values and compute the probability of a match.
 
-Here's the grid as a cartesian expansion:
+Here's the grid using a cartesian expansion:
 
 ```{r}
 d <- expand_grid(n_colleagues = 2:5,
                  o = c(5, 10, 15, 20, 25, 30),
-                 p = c(3, 5))
+                 p = c(3, 5, 7, 10))
 ```
 
 
 
-
-Interestingly, with p=5 chosen options practically solves the problem:
-
-
-```{r}
-matching_prob(n_colleagues = 5,
-              o = 30,
-              p = 5)
-```
 
 # Populate grid
 
@@ -387,21 +393,18 @@ matching_prob(n_colleagues = 5,
 ```{r populate-grid}
 d_grid <-
   d |> 
-  mutate(match_prob = pmap_dbl(
-    .l = list(n_colleagues, o, p), 
-    .f = matching_prob,
-    .progress = TRUE))
+  mutate(match_prob = 
+           pmap_dbl(
+             .l = list(n_colleagues, o, p), 
+             .f = matching_prob,
+             .progress = TRUE))
 ```
 
 
 # Visualize grid
 
 
-```{r vis-grid, fig.asp = 2, out.width="100%"}
-d_grid_long <-
-  d_grid |> 
-  pivot_longer(cols = c(n_colleagues, o, p))
-
+```{r vis-grid, fig.asp = 1.5, out.width="100%"}
 d_grid |> 
   rename(n = n_colleagues) |> 
   ggplot(aes(x = o, y = match_prob)) +
@@ -414,6 +417,46 @@ d_grid |>
        n: number of colleagues approached",
        caption = paste0(r, " simulated samples for each case computed"))
 ```
+
+
+Let's try a different visualization:
+
+```{r vis-grid2, fig.asp = 1.5}
+d_grid_long <-
+  d_grid |> 
+  pivot_longer(cols = c(n_colleagues, p))
+
+d_grid |> 
+  rename(n = n_colleagues) |> 
+  mutate(n = factor(n)) |> 
+  ggplot(aes(x = o, y = match_prob, color = n, group = n)) +
+  geom_line() +
+  geom_point() +
+  facet_wrap(~  p , labeller = labeller(p = label_both), ncol = 2) +
+  labs(title = "Proportiong of a match when Doodling for an joint meeting",
+       subtile = "p: Number of options picked per colleague;\n
+       n: number of colleagues approached",
+       caption = paste0(r, " simulated samples for each case computed"),
+       color = "number of\ncolleagues") +
+  theme_light() +
+  theme(legend.position = "bottom")
+```
+
+
+# Conclusion
+
+There are a number of things to be learnt from this simulation:
+
+1. The higher the number of _o_ptions to pick from, the less likely is it to come to a match.
+2. The highher the number of _p_icked appointment options, the more likely it is to come to a match.
+3. The more colleagues are in the game, the less likely it is to come to a match.
+
+All these insights are straight forward. However, we can also make some quantitative conclusions:
+
+- More than 20 options to choose from is crazy no matter what.
+- If each colleagues picks 3 options only (what I would do), than you need to present less than 10 options. 
+- If you can present 5 options only, you will be on the safe side and will likely come to a match.
+
 
 
 # Reproducibility
