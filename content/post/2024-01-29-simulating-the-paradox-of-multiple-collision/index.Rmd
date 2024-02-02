@@ -125,9 +125,8 @@ One might think that the solution is
 
 $Pr =  \frac{1}{o}^{n-1} +  \frac{1}{o-1}^{n-1} + \frac{1}{o-2}^{n-1}$
 
-but this is not quite right.
+but this appears not to be quite right, at least quite different numbers are found using the Monte Carlo approach below.
 
-Unfortunately, I have not yet found the right analytical solution.
 
 
 
