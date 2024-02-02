@@ -34,12 +34,19 @@ knitr::opts_chunk$set(
 
 # Motivation
 
-Have you ever tried to find a time slot for a meeting using a tool such as "Doodle"?
+Have you ever tried to find a time slot for a meeting using a tool such as "[Doodle](https://doodle.com/en/)"?
+
+
 
 If not, consider yourself lucky.
 Otherwise you will be well aware of the chagrin of finding a time slot that suits all of your colleagues.
 
-Let's call a time slot where all of your colleagues invited for the meeting have a free time slot a *matching time slot*.
+Let's call a time slot where all of your colleagues invited for the meeting have a free time slot a *matching time slot*, or a *match* for short.
+
+
+Here's a sample image for a "doodle" in order to find a a match.
+
+![](doodle.png)
 
 Some persons find that the best way to find a matchting time slot is to offer a great number of time slots to your colleagues. 
 Personally I find this appraoch difficult as I would have to keep track of and block a lot of time slots in my calendar. In addition, I feel it would be difficult to find a matching time slot as most colleagues will not take the hazzle and report many free time slots.
@@ -55,14 +62,9 @@ Here's a simulation study for that.
 
 ```{r load-libs, message = FALSE, warning = FALSE}
 library(tidyverse)  # data wrangling
+library(tictoc)  # measure time
 ```
 
-
-Initialize variables:
-
-```{r}
-slots_chosen <- list()
-```
 
 
 
@@ -84,31 +86,55 @@ r <- 1e3  # number of simulated _r_epetions/samples
 # Funs
 
 
-## Count common solots
+## Count common slots
 
 
+This functions checks whether there's (at leat) one match.
+
+A match is defined as a sample where some picked options appears at least as often as colleagues were involved.
+For example, if you addressed 3 colleagues, and all there sayed that option number 1 is fine, than you have a match.
 
 ```{r fun-count-common-slots}
 count_common_slots <- function(n_colleagues, o, p){
   
+  slots_chosen_l <- list()
+
   # make sure that only so many options can be picked as are available:
   if (p > o) p <- o
   
-  for (i in 1:n_colleagues){
-    slots_chosen[[i]] <- sample(1:o, size = p)
+  for (i in 1:n_colleagues){  # for each collegue addressed:
+    slots_chosen_l[[i]] <- sample(1:o, size = p)  # pick p options from o possible options
   }
-  slots_chosen_vec <- unlist(slots_chosen)
-  slots_chosen_tbl <- slots_chosen_vec |> table() 
+  slots_chosen <- unlist(slots_chosen_l)
   
+  # a R table allows to easily find matches:
+  slots_chosen_tbl <- slots_chosen |> table() 
+  
+  # a match is where a picked options has a frequency of (at least) 3,
+  # if 3 colleagues were addressed, etc.:
   slots_chosen_collision <- slots_chosen_tbl[slots_chosen_tbl >= n_colleagues]
   
   slots_chosen_df <- data.frame(slots_chosen_collision)
   
-  if (nrow(slots_chosen_df) == 0) slots_chosen_df <- data.frame(slots_chosen_vec = factor(NA),
-                                                                Freq = NA_integer_)
-  if (ncol(slots_chosen_df) == 1) slots_chosen_df <- data.frame(slots_chosen_vec = factor(row.names(slots_chosen_df)),
-                                                                Freq = slots_chosen_df$slots_chosen_collision)
+  # take care of border cases, only different options chosen:
+  if (nrow(slots_chosen_df) == 0) slots_chosen_df <- 
+    data.frame(slots_chosen = factor(NA), Freq = NA_integer_)
   
+  # if there's 1 match, tabl() returns a single number only, 
+  # so we have to make sure it looks like a real table:
+  if (ncol(slots_chosen_df) == 1) slots_chosen_df <- 
+    data.frame(slots_chosen = factor(row.names(slots_chosen_df)), 
+               Freq = slots_chosen_df$slots_chosen_collision)
+  
+  # add a column indicatin whether we have a match or not:
+  slots_chosen_df$is_match <- FALSE
+  slots_chosen_df$is_match[!is.na(slots_chosen_df$slots_chosen)] <- TRUE
+  
+  # add the relevant parameters as attributes to the dataframe:
+  attr(slots_chosen_df, "n_colleagues") <- n_colleagues
+  attr(slots_chosen_df, "o") <- o
+  attr(slots_chosen_df, "p") <- p
+   
   return(slots_chosen_df)
 }
 ```
@@ -117,7 +143,7 @@ count_common_slots <- function(n_colleagues, o, p){
 Test it:
 
 ```{r}
-undebug(count_common_slots)
+#undebug(count_common_slots)
 slots_chosen_collision <- count_common_slots(n_colleagues = 4, 
                                              o = 5, 
                                              p = 3)
@@ -125,7 +151,15 @@ slots_chosen_collision
 ```
 
 
+```{r}
+attributes(slots_chosen_collision)
+```
+
+
 ## Estimate common slots
+
+
+This functions draws many simulated samples.
 
 
 
@@ -134,8 +168,10 @@ estimate_common_slots <- function(slots_chosen_collision, n_colleagues, o, p, r 
   
   smples <- 
     slots_chosen_collision |> 
+    # add id for further reference:
     mutate(id = 1)
   
+  # repeat r times, giving us many simulated samples:
   for (i in 2:r) {
     tmp <- count_common_slots(n_colleagues = n_colleagues, o = o, p = p)
     tmp$id <- i
@@ -143,9 +179,9 @@ estimate_common_slots <- function(slots_chosen_collision, n_colleagues, o, p, r 
     smples <-
       smples |> 
       bind_rows(tmp)
-    
-    #print(paste0(i,"/",r))
   }
+  
+  attr(smples, "n_simulated_samples") <- r
   
   return(smples)
 }
@@ -167,20 +203,28 @@ smples <- estimate_common_slots(slots_chosen_collision = slots_chosen_collision,
 glimpse(smples)
 ```
 
+```{r}
+attr(smples, "n_simulated_samples")
+attr(smples, c("o"))
+attr(smples, "p")
+```
+
 
 
 ## Samples summarized
+
+This function counts the matches.
 
 ```{r fun-summ-samples}
 summarize_samples <- function(smples){
   
    smples_tbl <-
    smples |> 
-   #drop_na() |> 
+   #mutate(Freq = replace_na(Freq, 0)) |> 
    group_by(Freq) |> 
    summarise(n_matches = n()) |> 
-   mutate(prop_matches = n_matches / sum(n_matches)) |> 
-   mutate(Freq = replace_na(Freq, 0))
+   mutate(prop_matches = n_matches / sum(n_matches)) 
+   #mutate(Freq = replace_na(Freq, 0))
    
    return(smples_tbl)
   
@@ -198,20 +242,21 @@ smples_tbl
 ## Proportion of matches
 
 
+This helper functions extracts the probability of a match - given the parameters n,p,o,r - from the data frame returned by `summarize_samples(smples)`.
+
+
 
 ```{r fun-prop-match}
-prop_match <- function(smples, n_colleagues){
+prop_match <- function(smples_tbl, n_colleagues){
   
- smples_tbl <- summarize_samples(smples)
-  
-  out_tbl <- smples_tbl |> 
-    group_by(we_found_slot = factor(Freq >= n_colleagues, levels = c(FALSE, TRUE)), .drop = FALSE) |> 
-    summarise(n_matches = sum(n_matches)) |> 
+  smples_tbl_we_found_slot <- 
+  smples_tbl |> 
+    mutate(Freq = replace_na(Freq, 0)) |> 
+     group_by(we_found_slot = factor(Freq >= n_colleagues, levels = c(FALSE, TRUE)), .drop = FALSE) |> 
+  summarise(n_matches = sum(n_matches)) |> 
     mutate(prop_matches = n_matches/sum(n_matches)) 
   
-  out <- out_tbl$prop_matches[out_tbl$we_found_slot == TRUE]
-  
-  stopifnot(class(out) == "numeric")
+  out <- smples_tbl_we_found_slot$prop_matches[smples_tbl_we_found_slot$we_found_slot == TRUE]
   
   return(out)
 }
@@ -219,10 +264,9 @@ prop_match <- function(smples, n_colleagues){
 
 
 ```{r}
-#undebug(prop_match)
-prop_match(smples, n_colleagues = 3)
-prop_match(smples, n_colleagues = 4)
-prop_match(smples, n_colleagues = 5)
+prop_match(smples_tbl, n_colleagues = n_colleagues)
+prop_match(smples_tbl, n_colleagues = n_colleagues + 1)
+prop_match(smples_tbl, n_colleagues = n_colleagues - 1)
 ```
 
 
@@ -234,6 +278,7 @@ prop_match(smples, n_colleagues = 5)
 plot_matches <- function(smples_tbl, n_colleagues, p, o){
 
   smples_tbl |> 
+    mutate(Freq = replace_na(Freq, -99)) |> 
     group_by(we_found_slot = 
                factor(Freq >= n_colleagues, levels = c(FALSE, TRUE)), 
              .drop = FALSE) |> 
@@ -274,10 +319,10 @@ matching_prob <- function(n_colleagues,
                                             n_colleagues = n_colleagues,
                                             o = o,
                                             p = p)
-  out <- all_common_slots
+  out <- summarize_samples(all_common_slots)
   
   if (return_prob) {
-    out <- prop_match(all_common_slots, n_colleagues = n_colleagues)
+    out <- prop_match(out, n_colleagues = n_colleagues)
     stopifnot(class(out) == "numeric")
   }
   
@@ -297,8 +342,29 @@ matching_prob(n_colleagues = 5,
 
 
 
+# Sampling distribution
+
+Get the sampling distribution:
 
 
+```{r smpl_distrib1}
+tic()
+smpl_distrib <- mosaic::do(50) * matching_prob(5, 10, 3)
+toc()
+```
+
+
+```{r}
+mean(smpl_distrib$matching_prob)
+sd(smpl_distrib$matching_prob)
+```
+
+
+```{r}
+ggplot(smpl_distrib) +
+  aes(x = matching_prob) +
+  geom_density()
+```
 
 
 
@@ -309,7 +375,7 @@ Not impossible, but too low to rely on this approach in my opinion.
 
 # o=10; Make a matching more probable
 
-Let's provide less options too chose from in order to find a time slot for the meeting to your colleagues:
+Let's provide less options to chose from in order to find a time slot for the meeting to your colleagues:
 
 
 
@@ -317,22 +383,20 @@ Let's provide less options too chose from in order to find a time slot for the m
 n_colleagues <- 3
 o <- 7
 
-matching_prob(n_colleagues = n_colleagues,
-              o = o,
-              p = 3)
+#debug(matching_prob)
+smples_tbl2 <- matching_prob(n_colleagues = n_colleagues,
+                              o = o,
+                              p = p,
+                              return_prob = FALSE)
+
+smples_tbl2
 ```
 
 
-Looks much better; we have some chances of finding a match.
+Looks much better; we have some realistic chances of finding a match.
 
 
 ```{r fig.width=9}
-smples2 <- matching_prob(n_colleagues = n_colleagues,
-              o = o,
-              p = p,
-              return_prob = FALSE)
-
-smples_tbl2 <- summarize_samples(smples2)
 plot_matches(smples_tbl2, n_colleagues, p = p, o = o)
 ```
 
@@ -348,22 +412,18 @@ Now we can see that a matching has become more probable, although still not high
 
 Let's provide only a few options too chose from in order to find a time slot for the meeting to your colleagues:
 
-```{r}
+
+
+
+
+```{r plot-smpls3, fig.width=9}
 o <- 5  # number of time slot options too chose from
-```
 
-
-
-
-
-
-```{r fig.width=9}
-smples3 <- matching_prob(n_colleagues = n_colleagues,
+smples_tbl3 <- matching_prob(n_colleagues = n_colleagues,
               o = o,
               p = p,
               return_prob = FALSE)
 
-smples_tbl3 <- summarize_samples(smples3)
 plot_matches(smples_tbl3,  n_colleagues, p = p, o = o)
 ```
 

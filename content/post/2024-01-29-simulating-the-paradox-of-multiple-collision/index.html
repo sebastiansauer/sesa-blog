@@ -21,30 +21,33 @@ output:
 <li><a href="#constantsparameters" id="toc-constantsparameters"><span class="toc-section-number">3</span> Constants/Parameters</a></li>
 <li><a href="#funs" id="toc-funs"><span class="toc-section-number">4</span> Funs</a>
 <ul>
-<li><a href="#count-common-solots" id="toc-count-common-solots"><span class="toc-section-number">4.1</span> Count common solots</a></li>
+<li><a href="#count-common-slots" id="toc-count-common-slots"><span class="toc-section-number">4.1</span> Count common slots</a></li>
 <li><a href="#estimate-common-slots" id="toc-estimate-common-slots"><span class="toc-section-number">4.2</span> Estimate common slots</a></li>
 <li><a href="#samples-summarized" id="toc-samples-summarized"><span class="toc-section-number">4.3</span> Samples summarized</a></li>
 <li><a href="#proportion-of-matches" id="toc-proportion-of-matches"><span class="toc-section-number">4.4</span> Proportion of matches</a></li>
 <li><a href="#plot-results" id="toc-plot-results"><span class="toc-section-number">4.5</span> Plot results</a></li>
 <li><a href="#all-in-once-function" id="toc-all-in-once-function"><span class="toc-section-number">4.6</span> All in once function</a></li>
 </ul></li>
-<li><a href="#o10-make-a-matching-more-probable" id="toc-o10-make-a-matching-more-probable"><span class="toc-section-number">5</span> o=10; Make a matching more probable</a></li>
-<li><a href="#o5-make-a-matching-highly-probable" id="toc-o5-make-a-matching-highly-probable"><span class="toc-section-number">6</span> o=5; Make a matching highly probable</a></li>
-<li><a href="#grid-of-different-parameter-values" id="toc-grid-of-different-parameter-values"><span class="toc-section-number">7</span> Grid of different parameter values</a></li>
-<li><a href="#populate-grid" id="toc-populate-grid"><span class="toc-section-number">8</span> Populate grid</a></li>
-<li><a href="#visualize-grid" id="toc-visualize-grid"><span class="toc-section-number">9</span> Visualize grid</a></li>
-<li><a href="#caveats" id="toc-caveats"><span class="toc-section-number">10</span> Caveats</a></li>
-<li><a href="#conclusion" id="toc-conclusion"><span class="toc-section-number">11</span> Conclusion</a></li>
-<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">12</span> Reproducibility</a></li>
+<li><a href="#sampling-distribution" id="toc-sampling-distribution"><span class="toc-section-number">5</span> Sampling distribution</a></li>
+<li><a href="#o10-make-a-matching-more-probable" id="toc-o10-make-a-matching-more-probable"><span class="toc-section-number">6</span> o=10; Make a matching more probable</a></li>
+<li><a href="#o5-make-a-matching-highly-probable" id="toc-o5-make-a-matching-highly-probable"><span class="toc-section-number">7</span> o=5; Make a matching highly probable</a></li>
+<li><a href="#grid-of-different-parameter-values" id="toc-grid-of-different-parameter-values"><span class="toc-section-number">8</span> Grid of different parameter values</a></li>
+<li><a href="#populate-grid" id="toc-populate-grid"><span class="toc-section-number">9</span> Populate grid</a></li>
+<li><a href="#visualize-grid" id="toc-visualize-grid"><span class="toc-section-number">10</span> Visualize grid</a></li>
+<li><a href="#caveats" id="toc-caveats"><span class="toc-section-number">11</span> Caveats</a></li>
+<li><a href="#conclusion" id="toc-conclusion"><span class="toc-section-number">12</span> Conclusion</a></li>
+<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">13</span> Reproducibility</a></li>
 </ul>
 </div>
 
 <div id="motivation" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Motivation</h1>
-<p>Have you ever tried to find a time slot for a meeting using a tool such as “Doodle”?</p>
+<p>Have you ever tried to find a time slot for a meeting using a tool such as “<a href="https://doodle.com/en/">Doodle</a>”?</p>
 <p>If not, consider yourself lucky.
 Otherwise you will be well aware of the chagrin of finding a time slot that suits all of your colleagues.</p>
-<p>Let’s call a time slot where all of your colleagues invited for the meeting have a free time slot a <em>matching time slot</em>.</p>
+<p>Let’s call a time slot where all of your colleagues invited for the meeting have a free time slot a <em>matching time slot</em>, or a <em>match</em> for short.</p>
+<p>Here’s a sample image for a “doodle” in order to find a a match.</p>
+<p><img src="doodle.png" /></p>
 <p>Some persons find that the best way to find a matchting time slot is to offer a great number of time slots to your colleagues.
 Personally I find this appraoch difficult as I would have to keep track of and block a lot of time slots in my calendar. In addition, I feel it would be difficult to find a matching time slot as most colleagues will not take the hazzle and report many free time slots.
 Call me pessimistic, but I suspect that most colleagues will choose about 3 time slots, but not more, because it would be too difficult for them to keep their calendars in sync. (A sentiment I share.)</p>
@@ -54,9 +57,8 @@ Call me pessimistic, but I suspect that most colleagues will choose about 3 time
 </div>
 <div id="setup" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Setup</h1>
-<pre class="r"><code>library(tidyverse)  # data wrangling</code></pre>
-<p>Initialize variables:</p>
-<pre class="r"><code>slots_chosen &lt;- list()</code></pre>
+<pre class="r"><code>library(tidyverse)  # data wrangling
+library(tictoc)  # measure time</code></pre>
 </div>
 <div id="constantsparameters" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Constants/Parameters</h1>
@@ -67,47 +69,91 @@ r &lt;- 1e3  # number of simulated _r_epetions/samples</code></pre>
 </div>
 <div id="funs" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> Funs</h1>
-<div id="count-common-solots" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> Count common solots</h2>
+<div id="count-common-slots" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Count common slots</h2>
+<p>This functions checks whether there’s (at leat) one match.</p>
+<p>A match is defined as a sample where some picked options appears at least as often as colleagues were involved.
+For example, if you addressed 3 colleagues, and all there sayed that option number 1 is fine, than you have a match.</p>
 <pre class="r"><code>count_common_slots &lt;- function(n_colleagues, o, p){
   
+  slots_chosen_l &lt;- list()
+
   # make sure that only so many options can be picked as are available:
   if (p &gt; o) p &lt;- o
   
-  for (i in 1:n_colleagues){
-    slots_chosen[[i]] &lt;- sample(1:o, size = p)
+  for (i in 1:n_colleagues){  # for each collegue addressed:
+    slots_chosen_l[[i]] &lt;- sample(1:o, size = p)  # pick p options from o possible options
   }
-  slots_chosen_vec &lt;- unlist(slots_chosen)
-  slots_chosen_tbl &lt;- slots_chosen_vec |&gt; table() 
+  slots_chosen &lt;- unlist(slots_chosen_l)
   
+  # a R table allows to easily find matches:
+  slots_chosen_tbl &lt;- slots_chosen |&gt; table() 
+  
+  # a match is where a picked options has a frequency of (at least) 3,
+  # if 3 colleagues were addressed, etc.:
   slots_chosen_collision &lt;- slots_chosen_tbl[slots_chosen_tbl &gt;= n_colleagues]
   
   slots_chosen_df &lt;- data.frame(slots_chosen_collision)
   
-  if (nrow(slots_chosen_df) == 0) slots_chosen_df &lt;- data.frame(slots_chosen_vec = factor(NA),
-                                                                Freq = NA_integer_)
-  if (ncol(slots_chosen_df) == 1) slots_chosen_df &lt;- data.frame(slots_chosen_vec = factor(row.names(slots_chosen_df)),
-                                                                Freq = slots_chosen_df$slots_chosen_collision)
+  # take care of border cases, only different options chosen:
+  if (nrow(slots_chosen_df) == 0) slots_chosen_df &lt;- 
+    data.frame(slots_chosen = factor(NA), Freq = NA_integer_)
   
+  # if there&#39;s 1 match, tabl() returns a single number only, 
+  # so we have to make sure it looks like a real table:
+  if (ncol(slots_chosen_df) == 1) slots_chosen_df &lt;- 
+    data.frame(slots_chosen = factor(row.names(slots_chosen_df)), 
+               Freq = slots_chosen_df$slots_chosen_collision)
+  
+  # add a column indicatin whether we have a match or not:
+  slots_chosen_df$is_match &lt;- FALSE
+  slots_chosen_df$is_match[!is.na(slots_chosen_df$slots_chosen)] &lt;- TRUE
+  
+  # add the relevant parameters as attributes to the dataframe:
+  attr(slots_chosen_df, &quot;n_colleagues&quot;) &lt;- n_colleagues
+  attr(slots_chosen_df, &quot;o&quot;) &lt;- o
+  attr(slots_chosen_df, &quot;p&quot;) &lt;- p
+   
   return(slots_chosen_df)
 }</code></pre>
 <p>Test it:</p>
-<pre class="r"><code>undebug(count_common_slots)
+<pre class="r"><code>#undebug(count_common_slots)
 slots_chosen_collision &lt;- count_common_slots(n_colleagues = 4, 
                                              o = 5, 
                                              p = 3)
 slots_chosen_collision
-#&gt;   slots_chosen_vec Freq
-#&gt; 1             &lt;NA&gt;   NA</code></pre>
+#&gt;   slots_chosen Freq is_match
+#&gt; 1            1    4     TRUE</code></pre>
+<pre class="r"><code>attributes(slots_chosen_collision)
+#&gt; $names
+#&gt; [1] &quot;slots_chosen&quot; &quot;Freq&quot;         &quot;is_match&quot;    
+#&gt; 
+#&gt; $row.names
+#&gt; [1] 1
+#&gt; 
+#&gt; $class
+#&gt; [1] &quot;data.frame&quot;
+#&gt; 
+#&gt; $n_colleagues
+#&gt; [1] 4
+#&gt; 
+#&gt; $o
+#&gt; [1] 5
+#&gt; 
+#&gt; $p
+#&gt; [1] 3</code></pre>
 </div>
 <div id="estimate-common-slots" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Estimate common slots</h2>
+<p>This functions draws many simulated samples.</p>
 <pre class="r"><code>estimate_common_slots &lt;- function(slots_chosen_collision, n_colleagues, o, p, r = 1e3){
   
   smples &lt;- 
     slots_chosen_collision |&gt; 
+    # add id for further reference:
     mutate(id = 1)
   
+  # repeat r times, giving us many simulated samples:
   for (i in 2:r) {
     tmp &lt;- count_common_slots(n_colleagues = n_colleagues, o = o, p = p)
     tmp$id &lt;- i
@@ -115,9 +161,9 @@ slots_chosen_collision
     smples &lt;-
       smples |&gt; 
       bind_rows(tmp)
-    
-    #print(paste0(i,&quot;/&quot;,r))
   }
+  
+  attr(smples, &quot;n_simulated_samples&quot;) &lt;- r
   
   return(smples)
 }</code></pre>
@@ -133,18 +179,25 @@ glimpse(smples)
 #&gt; $ slots_chosen_vec &lt;fct&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
 #&gt; $ Freq             &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
 #&gt; $ id               &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16…</code></pre>
+<pre class="r"><code>attr(smples, &quot;n_simulated_samples&quot;)
+#&gt; NULL
+attr(smples, c(&quot;o&quot;))
+#&gt; NULL
+attr(smples, &quot;p&quot;)
+#&gt; NULL</code></pre>
 </div>
 <div id="samples-summarized" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Samples summarized</h2>
+<p>This function counts the matches.</p>
 <pre class="r"><code>summarize_samples &lt;- function(smples){
   
    smples_tbl &lt;-
    smples |&gt; 
-   #drop_na() |&gt; 
+   #mutate(Freq = replace_na(Freq, 0)) |&gt; 
    group_by(Freq) |&gt; 
    summarise(n_matches = n()) |&gt; 
-   mutate(prop_matches = n_matches / sum(n_matches)) |&gt; 
-   mutate(Freq = replace_na(Freq, 0))
+   mutate(prop_matches = n_matches / sum(n_matches)) 
+   #mutate(Freq = replace_na(Freq, 0))
    
    return(smples_tbl)
   
@@ -156,38 +209,37 @@ smples_tbl
 #&gt;    Freq n_matches prop_matches
 #&gt;   &lt;int&gt;     &lt;int&gt;        &lt;dbl&gt;
 #&gt; 1     3        24        0.024
-#&gt; 2     0       976        0.976</code></pre>
+#&gt; 2    NA       976        0.976</code></pre>
 </div>
 <div id="proportion-of-matches" class="section level2" number="4.4">
 <h2><span class="header-section-number">4.4</span> Proportion of matches</h2>
-<pre class="r"><code>prop_match &lt;- function(smples, n_colleagues){
+<p>This helper functions extracts the probability of a match - given the parameters n,p,o,r - from the data frame returned by <code>summarize_samples(smples)</code>.</p>
+<pre class="r"><code>prop_match &lt;- function(smples_tbl, n_colleagues){
   
- smples_tbl &lt;- summarize_samples(smples)
-  
-  out_tbl &lt;- smples_tbl |&gt; 
-    group_by(we_found_slot = factor(Freq &gt;= n_colleagues, levels = c(FALSE, TRUE)), .drop = FALSE) |&gt; 
-    summarise(n_matches = sum(n_matches)) |&gt; 
+  smples_tbl_we_found_slot &lt;- 
+  smples_tbl |&gt; 
+    mutate(Freq = replace_na(Freq, 0)) |&gt; 
+     group_by(we_found_slot = factor(Freq &gt;= n_colleagues, levels = c(FALSE, TRUE)), .drop = FALSE) |&gt; 
+  summarise(n_matches = sum(n_matches)) |&gt; 
     mutate(prop_matches = n_matches/sum(n_matches)) 
   
-  out &lt;- out_tbl$prop_matches[out_tbl$we_found_slot == TRUE]
-  
-  stopifnot(class(out) == &quot;numeric&quot;)
+  out &lt;- smples_tbl_we_found_slot$prop_matches[smples_tbl_we_found_slot$we_found_slot == TRUE]
   
   return(out)
 }</code></pre>
-<pre class="r"><code>#undebug(prop_match)
-prop_match(smples, n_colleagues = 3)
+<pre class="r"><code>prop_match(smples_tbl, n_colleagues = n_colleagues)
 #&gt; [1] 0.024
-prop_match(smples, n_colleagues = 4)
+prop_match(smples_tbl, n_colleagues = n_colleagues + 1)
 #&gt; [1] 0
-prop_match(smples, n_colleagues = 5)
-#&gt; [1] 0</code></pre>
+prop_match(smples_tbl, n_colleagues = n_colleagues - 1)
+#&gt; [1] 0.024</code></pre>
 </div>
 <div id="plot-results" class="section level2" number="4.5">
 <h2><span class="header-section-number">4.5</span> Plot results</h2>
 <pre class="r"><code>plot_matches &lt;- function(smples_tbl, n_colleagues, p, o){
 
   smples_tbl |&gt; 
+    mutate(Freq = replace_na(Freq, -99)) |&gt; 
     group_by(we_found_slot = 
                factor(Freq &gt;= n_colleagues, levels = c(FALSE, TRUE)), 
              .drop = FALSE) |&gt; 
@@ -202,7 +254,7 @@ prop_match(smples, n_colleagues = 5)
     geom_label(aes(label = round(prop_matches, 2), x = we_found_slot)) 
 }</code></pre>
 <pre class="r"><code>plot_matches(smples_tbl, n_colleagues, p, o)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="all-in-once-function" class="section level2" number="4.6">
 <h2><span class="header-section-number">4.6</span> All in once function</h2>
@@ -218,10 +270,10 @@ prop_match(smples, n_colleagues = 5)
                                             n_colleagues = n_colleagues,
                                             o = o,
                                             p = p)
-  out &lt;- all_common_slots
+  out &lt;- summarize_samples(all_common_slots)
   
   if (return_prob) {
-    out &lt;- prop_match(all_common_slots, n_colleagues = n_colleagues)
+    out &lt;- prop_match(out, n_colleagues = n_colleagues)
     stopifnot(class(out) == &quot;numeric&quot;)
   }
   
@@ -233,55 +285,73 @@ matching_prob(n_colleagues = 5,
               o = 10,
               p = 3)
 #&gt; [1] 0.022</code></pre>
+</div>
+</div>
+<div id="sampling-distribution" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Sampling distribution</h1>
+<p>Get the sampling distribution:</p>
+<pre class="r"><code>tic()
+smpl_distrib &lt;- mosaic::do(50) * matching_prob(5, 10, 3)
+toc()
+#&gt; 50.085 sec elapsed</code></pre>
+<pre class="r"><code>mean(smpl_distrib$matching_prob)
+#&gt; [1] 0.02625537
+sd(smpl_distrib$matching_prob)
+#&gt; [1] 0.004522421</code></pre>
+<pre class="r"><code>ggplot(smpl_distrib) +
+  aes(x = matching_prob) +
+  geom_density()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>As can be seen, the probability of finding a matching time slot is quite small, given the parameter values above.
 Not impossible, but too low to rely on this approach in my opinion.</p>
 </div>
-</div>
-<div id="o10-make-a-matching-more-probable" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> o=10; Make a matching more probable</h1>
-<p>Let’s provide less options too chose from in order to find a time slot for the meeting to your colleagues:</p>
+<div id="o10-make-a-matching-more-probable" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> o=10; Make a matching more probable</h1>
+<p>Let’s provide less options to chose from in order to find a time slot for the meeting to your colleagues:</p>
 <pre class="r"><code>n_colleagues &lt;- 3
 o &lt;- 7
 
-matching_prob(n_colleagues = n_colleagues,
-              o = o,
-              p = 3)
-#&gt; [1] 0.5116713</code></pre>
-<p>Looks much better; we have some chances of finding a match.</p>
-<pre class="r"><code>smples2 &lt;- matching_prob(n_colleagues = n_colleagues,
-              o = o,
-              p = p,
-              return_prob = FALSE)
+#debug(matching_prob)
+smples_tbl2 &lt;- matching_prob(n_colleagues = n_colleagues,
+                              o = o,
+                              p = p,
+                              return_prob = FALSE)
 
-smples_tbl2 &lt;- summarize_samples(smples2)
-plot_matches(smples_tbl2, n_colleagues, p = p, o = o)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;" /></p>
+smples_tbl2
+#&gt; # A tibble: 2 × 3
+#&gt;    Freq n_matches prop_matches
+#&gt;   &lt;int&gt;     &lt;int&gt;        &lt;dbl&gt;
+#&gt; 1     3       568        0.532
+#&gt; 2    NA       500        0.468</code></pre>
+<p>Looks much better; we have some realistic chances of finding a match.</p>
+<pre class="r"><code>plot_matches(smples_tbl2, n_colleagues, p = p, o = o)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Now we can see that a matching has become more probable, although still not highly likely.</p>
 </div>
-<div id="o5-make-a-matching-highly-probable" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> o=5; Make a matching highly probable</h1>
+<div id="o5-make-a-matching-highly-probable" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> o=5; Make a matching highly probable</h1>
 <p>Let’s provide only a few options too chose from in order to find a time slot for the meeting to your colleagues:</p>
-<pre class="r"><code>o &lt;- 5  # number of time slot options too chose from</code></pre>
-<pre class="r"><code>smples3 &lt;- matching_prob(n_colleagues = n_colleagues,
+<pre class="r"><code>o &lt;- 5  # number of time slot options too chose from
+
+smples_tbl3 &lt;- matching_prob(n_colleagues = n_colleagues,
               o = o,
               p = p,
               return_prob = FALSE)
 
-smples_tbl3 &lt;- summarize_samples(smples3)
 plot_matches(smples_tbl3,  n_colleagues, p = p, o = o)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/plot-smpls3-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>That really looks good; that’s a realistic chance to find a match.</p>
 </div>
-<div id="grid-of-different-parameter-values" class="section level1" number="7">
-<h1><span class="header-section-number">7</span> Grid of different parameter values</h1>
+<div id="grid-of-different-parameter-values" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Grid of different parameter values</h1>
 <p>Let’s try different parameter values and compute the probability of a match.</p>
 <p>Here’s the grid using a cartesian expansion:</p>
 <pre class="r"><code>d &lt;- expand_grid(n_colleagues = 2:5,
                  o = c(5, 10, 15, 20, 25, 30),
                  p = c(3, 5, 7, 10))</code></pre>
 </div>
-<div id="populate-grid" class="section level1" number="8">
-<h1><span class="header-section-number">8</span> Populate grid</h1>
+<div id="populate-grid" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Populate grid</h1>
 <pre class="r"><code>d_grid &lt;-
   d |&gt; 
   mutate(match_prob = 
@@ -290,8 +360,8 @@ plot_matches(smples_tbl3,  n_colleagues, p = p, o = o)</code></pre>
              .f = matching_prob,
              .progress = TRUE))</code></pre>
 </div>
-<div id="visualize-grid" class="section level1" number="9">
-<h1><span class="header-section-number">9</span> Visualize grid</h1>
+<div id="visualize-grid" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> Visualize grid</h1>
 <pre class="r"><code>d_grid |&gt; 
   rename(n = n_colleagues) |&gt; 
   ggplot(aes(x = o, y = match_prob)) +
@@ -324,14 +394,14 @@ d_grid |&gt;
   theme(legend.position = &quot;bottom&quot;)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/vis-grid2-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="caveats" class="section level1" number="10">
-<h1><span class="header-section-number">10</span> Caveats</h1>
+<div id="caveats" class="section level1" number="11">
+<h1><span class="header-section-number">11</span> Caveats</h1>
 <p>This analysis builds on some assumptions. One is that the the colleagues choose their slots randomly.
 However, assumption may fail.
 For example, if 3 have 5 options and ask to choose 3, people may feel pushed too hard and do crazy things.</p>
 </div>
-<div id="conclusion" class="section level1" number="11">
-<h1><span class="header-section-number">11</span> Conclusion</h1>
+<div id="conclusion" class="section level1" number="12">
+<h1><span class="header-section-number">12</span> Conclusion</h1>
 <p>There are a number of things to be learnt from this simulation:</p>
 <ol style="list-style-type: decimal">
 <li>The higher the number of _o_ptions to pick from, the less likely is it to come to a match.</li>
@@ -345,8 +415,8 @@ For example, if 3 have 5 options and ask to choose 3, people may feel pushed too
 <li>If you can present 5 options only, you will be on the safe side and will likely come to a match.</li>
 </ul>
 </div>
-<div id="reproducibility" class="section level1" number="12">
-<h1><span class="header-section-number">12</span> Reproducibility</h1>
+<div id="reproducibility" class="section level1" number="13">
+<h1><span class="header-section-number">13</span> Reproducibility</h1>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value
 #&gt;  version  R version 4.2.1 (2022-06-23)
