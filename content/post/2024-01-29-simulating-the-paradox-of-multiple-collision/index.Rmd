@@ -104,10 +104,10 @@ We have one match: All chose the option 1. (And to choose the option, but that's
 # Analytical approach
 
 
-# Limiting to picking 1 option
+## Limiting to picking 1 option
 
 Finding an analytical solution for the probability of $n$ person picking 1 number from $o$ options is quite straight forward.
-For example, let's assume for simplicity $n=3, o=10$. Then we have
+For example, let's assume for the moment $n=3, o=10$. Then we have
 
 1. The first person can choose any number, i.e., $Pr_1=1$.
 2. The second person must choose the same number as the first one, so 1 out of 10, ie., $Pr_2=1/10$.

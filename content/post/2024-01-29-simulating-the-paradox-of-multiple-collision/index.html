@@ -22,32 +22,32 @@ output:
 <li><a href="#model" id="toc-model"><span class="toc-section-number">4</span> Model</a></li>
 <li><a href="#some-assumptions" id="toc-some-assumptions"><span class="toc-section-number">5</span> Some Assumptions</a></li>
 <li><a href="#example" id="toc-example"><span class="toc-section-number">6</span> Example:</a></li>
-<li><a href="#analytical-approach" id="toc-analytical-approach"><span class="toc-section-number">7</span> Analytical approach</a></li>
-<li><a href="#limiting-to-picking-1-option" id="toc-limiting-to-picking-1-option"><span class="toc-section-number">8</span> Limiting to picking 1 option</a>
+<li><a href="#analytical-approach" id="toc-analytical-approach"><span class="toc-section-number">7</span> Analytical approach</a>
 <ul>
-<li><a href="#generalizing-to-picking-p-options" id="toc-generalizing-to-picking-p-options"><span class="toc-section-number">8.1</span> Generalizing to picking <span class="math inline">\(p\)</span> options</a></li>
-<li><a href="#monte-carlo-as-an-alternative" id="toc-monte-carlo-as-an-alternative"><span class="toc-section-number">8.2</span> Monte Carlo as an alternative</a></li>
+<li><a href="#limiting-to-picking-1-option" id="toc-limiting-to-picking-1-option"><span class="toc-section-number">7.1</span> Limiting to picking 1 option</a></li>
+<li><a href="#generalizing-to-picking-p-options" id="toc-generalizing-to-picking-p-options"><span class="toc-section-number">7.2</span> Generalizing to picking <span class="math inline">\(p\)</span> options</a></li>
+<li><a href="#monte-carlo-as-an-alternative" id="toc-monte-carlo-as-an-alternative"><span class="toc-section-number">7.3</span> Monte Carlo as an alternative</a></li>
 </ul></li>
-<li><a href="#funs" id="toc-funs"><span class="toc-section-number">9</span> Funs</a>
+<li><a href="#funs" id="toc-funs"><span class="toc-section-number">8</span> Funs</a>
 <ul>
-<li><a href="#count-common-slots" id="toc-count-common-slots"><span class="toc-section-number">9.1</span> Count common slots</a></li>
-<li><a href="#estimate-common-slots" id="toc-estimate-common-slots"><span class="toc-section-number">9.2</span> Estimate common slots</a></li>
-<li><a href="#samples-summarized" id="toc-samples-summarized"><span class="toc-section-number">9.3</span> Samples summarized</a></li>
-<li><a href="#proportion-of-matches" id="toc-proportion-of-matches"><span class="toc-section-number">9.4</span> Proportion of matches</a></li>
-<li><a href="#plot-results" id="toc-plot-results"><span class="toc-section-number">9.5</span> Plot results</a></li>
-<li><a href="#all-in-once-function" id="toc-all-in-once-function"><span class="toc-section-number">9.6</span> All in once function</a></li>
+<li><a href="#count-common-slots" id="toc-count-common-slots"><span class="toc-section-number">8.1</span> Count common slots</a></li>
+<li><a href="#estimate-common-slots" id="toc-estimate-common-slots"><span class="toc-section-number">8.2</span> Estimate common slots</a></li>
+<li><a href="#samples-summarized" id="toc-samples-summarized"><span class="toc-section-number">8.3</span> Samples summarized</a></li>
+<li><a href="#proportion-of-matches" id="toc-proportion-of-matches"><span class="toc-section-number">8.4</span> Proportion of matches</a></li>
+<li><a href="#plot-results" id="toc-plot-results"><span class="toc-section-number">8.5</span> Plot results</a></li>
+<li><a href="#all-in-once-function" id="toc-all-in-once-function"><span class="toc-section-number">8.6</span> All in once function</a></li>
 </ul></li>
-<li><a href="#some-examples" id="toc-some-examples"><span class="toc-section-number">10</span> Some examples</a></li>
-<li><a href="#sampling-distribution" id="toc-sampling-distribution"><span class="toc-section-number">11</span> Sampling distribution</a></li>
-<li><a href="#o10-make-a-matching-more-probable" id="toc-o10-make-a-matching-more-probable"><span class="toc-section-number">12</span> o=10; Make a matching more probable</a></li>
-<li><a href="#o5-make-a-matching-highly-probable" id="toc-o5-make-a-matching-highly-probable"><span class="toc-section-number">13</span> o=5; Make a matching highly probable</a></li>
-<li><a href="#grid-of-different-parameter-values" id="toc-grid-of-different-parameter-values"><span class="toc-section-number">14</span> Grid of different parameter values</a></li>
-<li><a href="#populate-grid" id="toc-populate-grid"><span class="toc-section-number">15</span> Populate grid</a></li>
-<li><a href="#visualize-grid-1" id="toc-visualize-grid-1"><span class="toc-section-number">16</span> Visualize grid 1</a></li>
-<li><a href="#visualize-grid-2" id="toc-visualize-grid-2"><span class="toc-section-number">17</span> Visualize grid 2</a></li>
-<li><a href="#caveats" id="toc-caveats"><span class="toc-section-number">18</span> Caveats</a></li>
-<li><a href="#conclusion" id="toc-conclusion"><span class="toc-section-number">19</span> Conclusion</a></li>
-<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">20</span> Reproducibility</a></li>
+<li><a href="#some-examples" id="toc-some-examples"><span class="toc-section-number">9</span> Some examples</a></li>
+<li><a href="#sampling-distribution" id="toc-sampling-distribution"><span class="toc-section-number">10</span> Sampling distribution</a></li>
+<li><a href="#o10-make-a-matching-more-probable" id="toc-o10-make-a-matching-more-probable"><span class="toc-section-number">11</span> o=10; Make a matching more probable</a></li>
+<li><a href="#o5-make-a-matching-highly-probable" id="toc-o5-make-a-matching-highly-probable"><span class="toc-section-number">12</span> o=5; Make a matching highly probable</a></li>
+<li><a href="#grid-of-different-parameter-values" id="toc-grid-of-different-parameter-values"><span class="toc-section-number">13</span> Grid of different parameter values</a></li>
+<li><a href="#populate-grid" id="toc-populate-grid"><span class="toc-section-number">14</span> Populate grid</a></li>
+<li><a href="#visualize-grid-1" id="toc-visualize-grid-1"><span class="toc-section-number">15</span> Visualize grid 1</a></li>
+<li><a href="#visualize-grid-2" id="toc-visualize-grid-2"><span class="toc-section-number">16</span> Visualize grid 2</a></li>
+<li><a href="#caveats" id="toc-caveats"><span class="toc-section-number">17</span> Caveats</a></li>
+<li><a href="#conclusion" id="toc-conclusion"><span class="toc-section-number">18</span> Conclusion</a></li>
+<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">19</span> Reproducibility</a></li>
 </ul>
 </div>
 
@@ -100,11 +100,10 @@ Colleague 3: 1,7,11</p>
 </div>
 <div id="analytical-approach" class="section level1" number="7">
 <h1><span class="header-section-number">7</span> Analytical approach</h1>
-</div>
-<div id="limiting-to-picking-1-option" class="section level1" number="8">
-<h1><span class="header-section-number">8</span> Limiting to picking 1 option</h1>
+<div id="limiting-to-picking-1-option" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Limiting to picking 1 option</h2>
 <p>Finding an analytical solution for the probability of <span class="math inline">\(n\)</span> person picking 1 number from <span class="math inline">\(o\)</span> options is quite straight forward.
-For example, let’s assume for simplicity <span class="math inline">\(n=3, o=10\)</span>. Then we have</p>
+For example, let’s assume for the moment <span class="math inline">\(n=3, o=10\)</span>. Then we have</p>
 <ol style="list-style-type: decimal">
 <li>The first person can choose any number, i.e., <span class="math inline">\(Pr_1=1\)</span>.</li>
 <li>The second person must choose the same number as the first one, so 1 out of 10, ie., <span class="math inline">\(Pr_2=1/10\)</span>.</li>
@@ -112,22 +111,23 @@ For example, let’s assume for simplicity <span class="math inline">\(n=3, o=10
 </ol>
 <p>In total, <span class="math inline">\(Pr = Pr_1 \cdot Pr_2 \cdot Pr_3\)</span>.</p>
 <p>More generally, <span class="math inline">\(Pr = \frac{1}{o}^{n-1}\)</span>.</p>
-<div id="generalizing-to-picking-p-options" class="section level2" number="8.1">
-<h2><span class="header-section-number">8.1</span> Generalizing to picking <span class="math inline">\(p\)</span> options</h2>
+</div>
+<div id="generalizing-to-picking-p-options" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Generalizing to picking <span class="math inline">\(p\)</span> options</h2>
 <p>Let’s consider picking <span class="math inline">\(p=3\)</span> options.</p>
 <p>One might think that the solution is</p>
 <p><span class="math inline">\(Pr = \frac{1}{o}^{n-1} + \frac{1}{o-1}^{n-1} + \frac{1}{o-2}^{n-1}\)</span></p>
 <p>but this appears not to be quite right, at least quite different numbers are found using the Monte Carlo approach below.</p>
 </div>
-<div id="monte-carlo-as-an-alternative" class="section level2" number="8.2">
-<h2><span class="header-section-number">8.2</span> Monte Carlo as an alternative</h2>
+<div id="monte-carlo-as-an-alternative" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> Monte Carlo as an alternative</h2>
 <p>Anyhow, a simple alternative to an analytical solution is to use simulation, ie., a Monte Carlo approach.</p>
 </div>
 </div>
-<div id="funs" class="section level1" number="9">
-<h1><span class="header-section-number">9</span> Funs</h1>
-<div id="count-common-slots" class="section level2" number="9.1">
-<h2><span class="header-section-number">9.1</span> Count common slots</h2>
+<div id="funs" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Funs</h1>
+<div id="count-common-slots" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span> Count common slots</h2>
 <p>This functions checks whether there’s (at leat) one match.</p>
 <p>A match is defined as a sample where some picked options appears at least as often as colleagues were involved.
 For example, if you addressed 3 colleagues, and all there sayed that option number 1 is fine, than you have a match.</p>
@@ -200,8 +200,8 @@ slots_chosen_collision
 #&gt; $p
 #&gt; [1] 3</code></pre>
 </div>
-<div id="estimate-common-slots" class="section level2" number="9.2">
-<h2><span class="header-section-number">9.2</span> Estimate common slots</h2>
+<div id="estimate-common-slots" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> Estimate common slots</h2>
 <p>This functions draws many simulated samples.</p>
 <pre class="r"><code>estimate_common_slots &lt;- function(slots_chosen_collision, n_colleagues, o, p, r = 1e3){
   
@@ -243,8 +243,8 @@ attr(smples, c(&quot;o&quot;))
 attr(smples, &quot;p&quot;)
 #&gt; NULL</code></pre>
 </div>
-<div id="samples-summarized" class="section level2" number="9.3">
-<h2><span class="header-section-number">9.3</span> Samples summarized</h2>
+<div id="samples-summarized" class="section level2" number="8.3">
+<h2><span class="header-section-number">8.3</span> Samples summarized</h2>
 <p>This function counts the matches.</p>
 <pre class="r"><code>summarize_samples &lt;- function(smples){
   
@@ -268,8 +268,8 @@ smples_tbl
 #&gt; 1     3        24        0.024
 #&gt; 2    NA       976        0.976</code></pre>
 </div>
-<div id="proportion-of-matches" class="section level2" number="9.4">
-<h2><span class="header-section-number">9.4</span> Proportion of matches</h2>
+<div id="proportion-of-matches" class="section level2" number="8.4">
+<h2><span class="header-section-number">8.4</span> Proportion of matches</h2>
 <p>This helper functions extracts the probability of a match - given the parameters n,p,o,r - from the data frame returned by <code>summarize_samples(smples)</code>.</p>
 <pre class="r"><code>prop_match &lt;- function(smples_tbl, n_colleagues){
   
@@ -291,8 +291,8 @@ prop_match(smples_tbl, n_colleagues = n_colleagues + 1)
 prop_match(smples_tbl, n_colleagues = n_colleagues - 1)
 #&gt; [1] 0.024</code></pre>
 </div>
-<div id="plot-results" class="section level2" number="9.5">
-<h2><span class="header-section-number">9.5</span> Plot results</h2>
+<div id="plot-results" class="section level2" number="8.5">
+<h2><span class="header-section-number">8.5</span> Plot results</h2>
 <pre class="r"><code>plot_matches &lt;- function(smples_tbl, n_colleagues, p, o){
 
   smples_tbl |&gt; 
@@ -313,8 +313,8 @@ prop_match(smples_tbl, n_colleagues = n_colleagues - 1)
 <pre class="r"><code>plot_matches(smples_tbl, n_colleagues, p, o)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="all-in-once-function" class="section level2" number="9.6">
-<h2><span class="header-section-number">9.6</span> All in once function</h2>
+<div id="all-in-once-function" class="section level2" number="8.6">
+<h2><span class="header-section-number">8.6</span> All in once function</h2>
 <p>Here’s the do-it-all-in-once function:</p>
 <pre class="r"><code>matching_prob &lt;- function(n_colleagues,
                           o,
@@ -344,8 +344,8 @@ matching_prob(n_colleagues = 5,
 #&gt; [1] 0.022</code></pre>
 </div>
 </div>
-<div id="some-examples" class="section level1" number="10">
-<h1><span class="header-section-number">10</span> Some examples</h1>
+<div id="some-examples" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Some examples</h1>
 <p>3 colleagues pick 1 option from 10 options:</p>
 <pre class="r"><code>matching_prob(n_colleagues = 3,
               o = 8,
@@ -357,8 +357,8 @@ matching_prob(n_colleagues = 5,
               p = 2)
 #&gt; [1] 0.088</code></pre>
 </div>
-<div id="sampling-distribution" class="section level1" number="11">
-<h1><span class="header-section-number">11</span> Sampling distribution</h1>
+<div id="sampling-distribution" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> Sampling distribution</h1>
 <p>Get the sampling distribution:</p>
 <pre class="r"><code>tic()
 smpl_distrib &lt;- mosaic::do(50) * matching_prob(5, 10, 3)
@@ -375,8 +375,8 @@ sd(smpl_distrib$matching_prob)
 <p>As can be seen, the probability of finding a matching time slot is quite small, given the parameter values above.
 Not impossible, but too low to rely on this approach in my opinion.</p>
 </div>
-<div id="o10-make-a-matching-more-probable" class="section level1" number="12">
-<h1><span class="header-section-number">12</span> o=10; Make a matching more probable</h1>
+<div id="o10-make-a-matching-more-probable" class="section level1" number="11">
+<h1><span class="header-section-number">11</span> o=10; Make a matching more probable</h1>
 <p>Let’s provide less options to chose from in order to find a time slot for the meeting to your colleagues:</p>
 <pre class="r"><code>n_colleagues &lt;- 3
 o &lt;- 7
@@ -398,8 +398,8 @@ smples_tbl2
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-16-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Now we can see that a matching has become more probable, although still not highly likely.</p>
 </div>
-<div id="o5-make-a-matching-highly-probable" class="section level1" number="13">
-<h1><span class="header-section-number">13</span> o=5; Make a matching highly probable</h1>
+<div id="o5-make-a-matching-highly-probable" class="section level1" number="12">
+<h1><span class="header-section-number">12</span> o=5; Make a matching highly probable</h1>
 <p>Let’s provide only a few options too chose from in order to find a time slot for the meeting to your colleagues:</p>
 <pre class="r"><code>o &lt;- 5  # number of time slot options too chose from
 
@@ -412,16 +412,16 @@ plot_matches(smples_tbl3,  n_colleagues, p = p, o = o)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/plot-smpls3-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>That really looks good; that’s a realistic chance to find a match.</p>
 </div>
-<div id="grid-of-different-parameter-values" class="section level1" number="14">
-<h1><span class="header-section-number">14</span> Grid of different parameter values</h1>
+<div id="grid-of-different-parameter-values" class="section level1" number="13">
+<h1><span class="header-section-number">13</span> Grid of different parameter values</h1>
 <p>Let’s try different parameter values and compute the probability of a match.</p>
 <p>Here’s the grid using a cartesian expansion:</p>
 <pre class="r"><code>d &lt;- expand_grid(n_colleagues = 2:5,
                  o = c(5, 10, 15, 20, 25, 30),
                  p = c(3, 5, 7, 10))</code></pre>
 </div>
-<div id="populate-grid" class="section level1" number="15">
-<h1><span class="header-section-number">15</span> Populate grid</h1>
+<div id="populate-grid" class="section level1" number="14">
+<h1><span class="header-section-number">14</span> Populate grid</h1>
 <pre class="r"><code>tic()
 d_grid &lt;-
   d |&gt; 
@@ -441,8 +441,8 @@ toc()
 #&gt; $ p            &lt;dbl&gt; 3, 5, 7, 10, 3, 5, 7, 10, 3, 5, 7, 10, 3, 5, 7, 10, 3, 5,…
 #&gt; $ match_prob   &lt;dbl&gt; 1.0000000, 1.0000000, 1.0000000, 1.0000000, 0.7623846, 0.…</code></pre>
 </div>
-<div id="visualize-grid-1" class="section level1" number="16">
-<h1><span class="header-section-number">16</span> Visualize grid 1</h1>
+<div id="visualize-grid-1" class="section level1" number="15">
+<h1><span class="header-section-number">15</span> Visualize grid 1</h1>
 <pre class="r"><code>d_grid |&gt; 
   rename(n = n_colleagues) |&gt; 
   ggplot(aes(x = o, y = match_prob)) +
@@ -456,8 +456,8 @@ toc()
        )</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/vis-grid-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="visualize-grid-2" class="section level1" number="17">
-<h1><span class="header-section-number">17</span> Visualize grid 2</h1>
+<div id="visualize-grid-2" class="section level1" number="16">
+<h1><span class="header-section-number">16</span> Visualize grid 2</h1>
 <p>Let’s try a different visualization.</p>
 <p>Here’s a little love for the labels of the line:</p>
 <pre class="r"><code>d_grid_labels &lt;- 
@@ -499,14 +499,14 @@ d_grid |&gt;
   expand_limits(x = max(d_grid$o) + 1)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/vis-grid2-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="caveats" class="section level1" number="18">
-<h1><span class="header-section-number">18</span> Caveats</h1>
+<div id="caveats" class="section level1" number="17">
+<h1><span class="header-section-number">17</span> Caveats</h1>
 <p>This analysis builds on some assumptions. One is that the the colleagues choose their slots randomly.
 However, assumption may fail.
 For example, if 3 have 5 options and ask to choose 3, people may feel pushed too hard and do crazy things.</p>
 </div>
-<div id="conclusion" class="section level1" number="19">
-<h1><span class="header-section-number">19</span> Conclusion</h1>
+<div id="conclusion" class="section level1" number="18">
+<h1><span class="header-section-number">18</span> Conclusion</h1>
 <p>There are a number of things to be learnt from this simulation:</p>
 <ol style="list-style-type: decimal">
 <li>The higher the number of _o_ptions to pick from, the less likely is it to come to a match.</li>
@@ -520,8 +520,8 @@ For example, if 3 have 5 options and ask to choose 3, people may feel pushed too
 <li>If you can present 5 options only, you will be on the safe side and will likely come to a match.</li>
 </ul>
 </div>
-<div id="reproducibility" class="section level1" number="20">
-<h1><span class="header-section-number">20</span> Reproducibility</h1>
+<div id="reproducibility" class="section level1" number="19">
+<h1><span class="header-section-number">19</span> Reproducibility</h1>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value
 #&gt;  version  R version 4.2.1 (2022-06-23)
