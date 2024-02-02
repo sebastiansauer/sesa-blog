@@ -451,6 +451,7 @@ d <- expand_grid(n_colleagues = 2:5,
 
 
 ```{r populate-grid}
+tic()
 d_grid <-
   d |> 
   mutate(match_prob = 
@@ -458,10 +459,18 @@ d_grid <-
              .l = list(n_colleagues, o, p), 
              .f = matching_prob,
              .progress = TRUE))
+toc()
+```
+
+Quite slow.
+
+```{r}
+glimpse(d_grid)
 ```
 
 
-# Visualize grid
+
+# Visualize grid 1
 
 
 ```{r vis-grid, fig.asp = 1.5, out.width="100%"}
@@ -478,27 +487,49 @@ d_grid |>
        )
 ```
 
+# Visualize grid 2
 
-Let's try a different visualization:
+Let's try a different visualization.
+
+
+Here's a little love for the labels of the line:
+
+```{r}
+d_grid_labels <- 
+d_grid |> 
+  mutate(n_colleagues = factor(n_colleagues)) |> 
+  group_by(p, n_colleagues) |> 
+  summarise(X = max(o), 
+            Y = last(match_prob))
+
+glimpse(d_grid)
+```
+
 
 ```{r vis-grid2, fig.asp = 1.5}
-d_grid_long <-
-  d_grid |> 
-  pivot_longer(cols = c(n_colleagues, p))
+# d_grid_long <-
+#   d_grid |> 
+#   pivot_longer(cols = c(n_colleagues, p))
 
 d_grid |> 
   rename(n = n_colleagues) |> 
   mutate(n = factor(n)) |> 
-  ggplot(aes(x = o, y = match_prob, color = n, group = n)) +
-  geom_line() +
-  geom_point() +
+  ggplot(aes(x = o, y = match_prob)) +
+  geom_line(aes(color = n, group = n)) +
+  geom_point(aes(color = n, group = n)) +
   facet_wrap(~  p , labeller = labeller(p = label_both), ncol = 2) +
-  labs(title = "Proportiong of a match when Doodling for an joint meeting",
+  labs(title = "Proportiong of a match when 'doodling' for an joint meeting",
        caption = "p: Number of options picked per colleague;\n
-       n: number of colleagues approached",
-       color = "number of\ncolleagues") +
+       n: number of colleagues approached;\n
+       o: number of available time slot options to choose from",
+       color = "number of\ncolleagues",
+       text = "") +
   theme_light() +
-  theme(legend.position = "bottom")
+  theme(legend.position = "none") +
+  geom_label(data = d_grid_labels,
+             aes(label = paste0("n: ", n_colleagues), 
+                 x = X, y = Y, color = factor(n_colleagues))) +
+  expand_limits(x = max(d_grid$o) + 1)
 ```
 
 

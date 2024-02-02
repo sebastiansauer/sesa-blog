@@ -33,10 +33,11 @@ output:
 <li><a href="#o5-make-a-matching-highly-probable" id="toc-o5-make-a-matching-highly-probable"><span class="toc-section-number">7</span> o=5; Make a matching highly probable</a></li>
 <li><a href="#grid-of-different-parameter-values" id="toc-grid-of-different-parameter-values"><span class="toc-section-number">8</span> Grid of different parameter values</a></li>
 <li><a href="#populate-grid" id="toc-populate-grid"><span class="toc-section-number">9</span> Populate grid</a></li>
-<li><a href="#visualize-grid" id="toc-visualize-grid"><span class="toc-section-number">10</span> Visualize grid</a></li>
-<li><a href="#caveats" id="toc-caveats"><span class="toc-section-number">11</span> Caveats</a></li>
-<li><a href="#conclusion" id="toc-conclusion"><span class="toc-section-number">12</span> Conclusion</a></li>
-<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">13</span> Reproducibility</a></li>
+<li><a href="#visualize-grid-1" id="toc-visualize-grid-1"><span class="toc-section-number">10</span> Visualize grid 1</a></li>
+<li><a href="#visualize-grid-2" id="toc-visualize-grid-2"><span class="toc-section-number">11</span> Visualize grid 2</a></li>
+<li><a href="#caveats" id="toc-caveats"><span class="toc-section-number">12</span> Caveats</a></li>
+<li><a href="#conclusion" id="toc-conclusion"><span class="toc-section-number">13</span> Conclusion</a></li>
+<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">14</span> Reproducibility</a></li>
 </ul>
 </div>
 
@@ -352,16 +353,27 @@ plot_matches(smples_tbl3,  n_colleagues, p = p, o = o)</code></pre>
 </div>
 <div id="populate-grid" class="section level1" number="9">
 <h1><span class="header-section-number">9</span> Populate grid</h1>
-<pre class="r"><code>d_grid &lt;-
+<pre class="r"><code>tic()
+d_grid &lt;-
   d |&gt; 
   mutate(match_prob = 
            pmap_dbl(
              .l = list(n_colleagues, o, p), 
              .f = matching_prob,
-             .progress = TRUE))</code></pre>
+             .progress = TRUE))
+toc()
+#&gt; 95.567 sec elapsed</code></pre>
+<p>Quite slow.</p>
+<pre class="r"><code>glimpse(d_grid)
+#&gt; Rows: 96
+#&gt; Columns: 4
+#&gt; $ n_colleagues &lt;int&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
+#&gt; $ o            &lt;dbl&gt; 5, 5, 5, 5, 10, 10, 10, 10, 15, 15, 15, 15, 20, 20, 20, 2…
+#&gt; $ p            &lt;dbl&gt; 3, 5, 7, 10, 3, 5, 7, 10, 3, 5, 7, 10, 3, 5, 7, 10, 3, 5,…
+#&gt; $ match_prob   &lt;dbl&gt; 1.0000000, 1.0000000, 1.0000000, 1.0000000, 0.7623846, 0.…</code></pre>
 </div>
-<div id="visualize-grid" class="section level1" number="10">
-<h1><span class="header-section-number">10</span> Visualize grid</h1>
+<div id="visualize-grid-1" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> Visualize grid 1</h1>
 <pre class="r"><code>d_grid |&gt; 
   rename(n = n_colleagues) |&gt; 
   ggplot(aes(x = o, y = match_prob)) +
@@ -374,34 +386,58 @@ plot_matches(smples_tbl3,  n_colleagues, p = p, o = o)</code></pre>
        n: number of colleagues approached&quot;
        )</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/vis-grid-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>Let’s try a different visualization:</p>
-<pre class="r"><code>d_grid_long &lt;-
-  d_grid |&gt; 
-  pivot_longer(cols = c(n_colleagues, p))
+</div>
+<div id="visualize-grid-2" class="section level1" number="11">
+<h1><span class="header-section-number">11</span> Visualize grid 2</h1>
+<p>Let’s try a different visualization.</p>
+<p>Here’s a little love for the labels of the line:</p>
+<pre class="r"><code>d_grid_labels &lt;- 
+d_grid |&gt; 
+  mutate(n_colleagues = factor(n_colleagues)) |&gt; 
+  group_by(p, n_colleagues) |&gt; 
+  summarise(X = max(o), 
+            Y = last(match_prob))
+
+glimpse(d_grid)
+#&gt; Rows: 96
+#&gt; Columns: 4
+#&gt; $ n_colleagues &lt;int&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
+#&gt; $ o            &lt;dbl&gt; 5, 5, 5, 5, 10, 10, 10, 10, 15, 15, 15, 15, 20, 20, 20, 2…
+#&gt; $ p            &lt;dbl&gt; 3, 5, 7, 10, 3, 5, 7, 10, 3, 5, 7, 10, 3, 5, 7, 10, 3, 5,…
+#&gt; $ match_prob   &lt;dbl&gt; 1.0000000, 1.0000000, 1.0000000, 1.0000000, 0.7623846, 0.…</code></pre>
+<pre class="r"><code># d_grid_long &lt;-
+#   d_grid |&gt; 
+#   pivot_longer(cols = c(n_colleagues, p))
 
 d_grid |&gt; 
   rename(n = n_colleagues) |&gt; 
   mutate(n = factor(n)) |&gt; 
-  ggplot(aes(x = o, y = match_prob, color = n, group = n)) +
-  geom_line() +
-  geom_point() +
+  ggplot(aes(x = o, y = match_prob)) +
+  geom_line(aes(color = n, group = n)) +
+  geom_point(aes(color = n, group = n)) +
   facet_wrap(~  p , labeller = labeller(p = label_both), ncol = 2) +
-  labs(title = &quot;Proportiong of a match when Doodling for an joint meeting&quot;,
+  labs(title = &quot;Proportiong of a match when &#39;doodling&#39; for an joint meeting&quot;,
        caption = &quot;p: Number of options picked per colleague;\n
-       n: number of colleagues approached&quot;,
-       color = &quot;number of\ncolleagues&quot;) +
+       n: number of colleagues approached;\n
+       o: number of available time slot options to choose from&quot;,
+       color = &quot;number of\ncolleagues&quot;,
+       text = &quot;&quot;) +
   theme_light() +
-  theme(legend.position = &quot;bottom&quot;)</code></pre>
+  theme(legend.position = &quot;none&quot;) +
+  geom_label(data = d_grid_labels,
+             aes(label = paste0(&quot;n: &quot;, n_colleagues), 
+                 x = X, y = Y, color = factor(n_colleagues))) +
+  expand_limits(x = max(d_grid$o) + 1)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/vis-grid2-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="caveats" class="section level1" number="11">
-<h1><span class="header-section-number">11</span> Caveats</h1>
+<div id="caveats" class="section level1" number="12">
+<h1><span class="header-section-number">12</span> Caveats</h1>
 <p>This analysis builds on some assumptions. One is that the the colleagues choose their slots randomly.
 However, assumption may fail.
 For example, if 3 have 5 options and ask to choose 3, people may feel pushed too hard and do crazy things.</p>
 </div>
-<div id="conclusion" class="section level1" number="12">
-<h1><span class="header-section-number">12</span> Conclusion</h1>
+<div id="conclusion" class="section level1" number="13">
+<h1><span class="header-section-number">13</span> Conclusion</h1>
 <p>There are a number of things to be learnt from this simulation:</p>
 <ol style="list-style-type: decimal">
 <li>The higher the number of _o_ptions to pick from, the less likely is it to come to a match.</li>
@@ -415,8 +451,8 @@ For example, if 3 have 5 options and ask to choose 3, people may feel pushed too
 <li>If you can present 5 options only, you will be on the safe side and will likely come to a match.</li>
 </ul>
 </div>
-<div id="reproducibility" class="section level1" number="13">
-<h1><span class="header-section-number">13</span> Reproducibility</h1>
+<div id="reproducibility" class="section level1" number="14">
+<h1><span class="header-section-number">14</span> Reproducibility</h1>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value
 #&gt;  version  R version 4.2.1 (2022-06-23)
