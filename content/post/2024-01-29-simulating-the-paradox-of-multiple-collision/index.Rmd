@@ -79,7 +79,18 @@ r <- 1e3  # number of simulated _r_epetions/samples
 ```
 
 
+# Model
 
+A number of `n_colleague` colleagues pick *p* options from a list of *o* possible options.
+We are interested in the probability that all colleagues pick (at least) one time the same slot.
+We consider the the number picked options, *p*, fix.
+
+
+# Some Assumptions
+
+1. Picking slots (within a colleague) is independent, eg., picking slot 1 is indepent from picking slot 2. In other words, knowing that you have picked slot 1 does not tell my anythin new about the probability that you will pick slot 2.
+
+2. The colleagues pick slots independently from each other.
 
 
 
