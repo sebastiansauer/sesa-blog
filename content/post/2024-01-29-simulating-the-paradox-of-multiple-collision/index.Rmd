@@ -11,6 +11,8 @@ output:
   blogdown::html_page:
     toc: yes
     number_sections: yes
+editor_options: 
+  chunk_output_type: console
 ---
 
 
@@ -141,315 +143,33 @@ but this appears not to be quite right, at least quite different numbers are fou
 
 
 
-## Monte Carlo as an alternative
-
 Anyhow, a simple alternative to an analytical solution is to use simulation, ie., a Monte Carlo approach.
 
 
-# Funs
 
-## Sample with dependency
+# Monte Carlo as an alternative
 
+[The R package 'doodleproblem'](https://github.com/sebastiansauer/doodleproblem') provides Monte Carlo methods to compute the Doodle match probability.
+
+>   This repo analyzes the probability of finding an agreed time slot between multiple colleagues ("doodle problem"). Different influence factors are considered, different assumptions are tested, and their effect is compared. Monte Carlo methods are used.
+
+## Setup
+
+
+```{r message=FALSE}
+library(tidyverse)
+library(doodleproblem)
+```
+
+
+
+## Test
 
 ```{r}
-sample_with_dependency <- function(p_set, o, dep) {
-  
-  p <- length(p_set)
-  o_set <- 1:o
-  u_set <- setdiff(o_set, p_set)
-  u <- length(u_set)
-  
-  slots_chosen_l <- list()
-  Pr_P <-  p / o
-  Pr_pi = Pr_p / p
-  Pr_ui = u / o
-  Pr_U_new <- Pr_U - dep*Pr_U
-  Pr_Ui_new <- Pr_U_new / u
-  
-  Pr_P_new <- Pr_P + dep*Pr_U
-  Pr_Pi_new <- Pr_P_new / p
-
-  
-  slots_chosen_l[[1]] <- sample(c(p_set, u_set), 
-                                size = p, 
-                                prob = c(rep(Pr_Pi_new, p), rep(Pr_Ui_new, u)))
-  
-  return(slots_chosen_l[[1]])
-}
-```
-
-Check:
-```{r}
-#debug(sample_with_dependency)
-sample_with_dependency(p_set = c(1,2,3), o = o, dep = .6)
-```
-
-
-## Count common slots
-
-
-This functions checks whether there's (at leat) one match.
-
-A match is defined as a sample where some picked options appears at least as often as colleagues were involved.
-For example, if you addressed 3 colleagues, and all there sayed that option number 1 is fine, than you have a match.
-
-```{r fun-count-common-slots}
-count_common_slots <- function(n_colleagues, o, p, dep){
-  
-  slots_chosen_l <- list()
-
-  # make sure that only so many options can be picked as are available:
-  if (p > o) p <- o
-  
-  # the first colleagues serves as a attractor for the others:
-  slots_chosen_l[[1]] <- sample(1:o, size = p)  
-  
-  for (i in 2:n_colleagues){  # for each collegue addressed:
-    slots_chosen_l[[i]] <- sample_with_dependency(slots_chosen_l[[1]], o, dep)  # pick p options from o possible options
-  }
-  slots_chosen <- unlist(slots_chosen_l)
-  
-  # a R table allows to easily find matches:
-  slots_chosen_tbl <- slots_chosen |> table() 
-  
-  # a match is where a picked options has a frequency of (at least) 3,
-  # if 3 colleagues were addressed, etc.:
-  slots_chosen_collision <- slots_chosen_tbl[slots_chosen_tbl >= n_colleagues]
-  
-  slots_chosen_df <- data.frame(slots_chosen_collision)
-  
-  # take care of border cases, only different options chosen:
-  if (nrow(slots_chosen_df) == 0) slots_chosen_df <- 
-    data.frame(slots_chosen = factor(NA), Freq = NA_integer_)
-  
-  # if there's 1 match, tabl() returns a single number only, 
-  # so we have to make sure it looks like a real table:
-  if (ncol(slots_chosen_df) == 1) slots_chosen_df <- 
-    data.frame(slots_chosen = factor(row.names(slots_chosen_df)), 
-               Freq = slots_chosen_df$slots_chosen_collision)
-  
-  # add a column indicatin whether we have a match or not:
-  slots_chosen_df$is_match <- FALSE
-  slots_chosen_df$is_match[!is.na(slots_chosen_df$slots_chosen)] <- TRUE
-  
-  # add the relevant parameters as attributes to the dataframe:
-  attr(slots_chosen_df, "n_colleagues") <- n_colleagues
-  attr(slots_chosen_df, "o") <- o
-  attr(slots_chosen_df, "p") <- p
-  attr(slots_chosen_df, "chosen_options") <- slots_chosen
-  attr(slots_chosen_df, "attractor_slots") <- slots_chosen_l[[1]]
-   
-  return(slots_chosen_df)
-}
-```
-
-
-Test it:
-
-```{r}
-#undebug(count_common_slots)
-slots_chosen_collision <- count_common_slots(n_colleagues = n_colleagues, 
-                                             o = o, 
-                                             p = p,
-                                             dep = dep)
-slots_chosen_collision
-```
-
-
-```{r}
-attributes(slots_chosen_collision)
-```
-
-
-## Estimate common slots
-
-
-This functions draws many simulated samples.
-
-
-
-```{r fun-estimate-common-slots}
-estimate_common_slots <- function(slots_chosen_collision, n_colleagues, o, p, dep, r = 1e3){
-  
-  smples <- 
-    slots_chosen_collision |> 
-    # add id for further reference:
-    mutate(id = 1)
-  
-  # repeat r times, giving us many simulated samples:
-  for (i in 2:r) {
-    tmp <- count_common_slots(n_colleagues = n_colleagues, 
-                              o = o, 
-                              p = p, 
-                              dep = dep)
-    tmp$id <- i
-    
-    smples <-
-      smples |> 
-      bind_rows(tmp)
-  }
-  
-  attr(smples, "n_simulated_samples") <- r
-  
-  return(smples)
-}
-```
-
-
-
-
-
-
-Check:
-
-```{r}
-smples <- estimate_common_slots(slots_chosen_collision = slots_chosen_collision,
-                                n_colleagues = n_colleagues,
-                                o = o,
-                                dep = dep,
-                                p = p)
-
-glimpse(smples)
-```
-
-```{r}
-attr(smples, "n_simulated_samples")
-attr(smples, c("o"))
-attr(smples, "p")
-```
-
-
-
-## Samples summarized
-
-This function counts the matches.
-
-```{r fun-summ-samples}
-summarize_samples <- function(smples){
-  
-   smples_tbl <-
-   smples |> 
-   #mutate(Freq = replace_na(Freq, 0)) |> 
-   group_by(Freq) |> 
-   summarise(n_matches = n()) |> 
-   mutate(prop_matches = n_matches / sum(n_matches)) 
-   #mutate(Freq = replace_na(Freq, 0))
-   
-   return(smples_tbl)
-  
-}
-```
-
-Check:
-
-```{r}
-smples_tbl <- summarize_samples(smples)
-smples_tbl
-```
-
-
-## Proportion of matches
-
-
-This helper functions extracts the probability of a match - given the parameters n,p,o,r - from the data frame returned by `summarize_samples(smples)`.
-
-
-
-```{r fun-prop-match}
-prop_match <- function(smples_tbl, n_colleagues){
-  
-  smples_tbl_we_found_slot <- 
-  smples_tbl |> 
-    mutate(Freq = replace_na(Freq, 0)) |> 
-     group_by(we_found_slot = factor(Freq >= n_colleagues, levels = c(FALSE, TRUE)), .drop = FALSE) |> 
-  summarise(n_matches = sum(n_matches)) |> 
-    mutate(prop_matches = n_matches/sum(n_matches)) 
-  
-  out <- smples_tbl_we_found_slot$prop_matches[smples_tbl_we_found_slot$we_found_slot == TRUE]
-  
-  return(out)
-}
-```
-
-
-```{r}
-prop_match(smples_tbl, n_colleagues = n_colleagues)
-prop_match(smples_tbl, n_colleagues = n_colleagues + 1)
-prop_match(smples_tbl, n_colleagues = n_colleagues - 1)
-```
-
-
-
-
-## Plot results
-
-```{r fig.width=9}
-plot_matches <- function(smples_tbl, n_colleagues, p, o, dep){
-
-  smples_tbl |> 
-    mutate(Freq = replace_na(Freq, -99)) |> 
-    group_by(we_found_slot = 
-               factor(Freq >= n_colleagues, levels = c(FALSE, TRUE)), 
-             .drop = FALSE) |> 
-    summarise(n_matches = sum(n_matches),
-              prop_matches = sum(prop_matches)) |> 
-    ggplot() +
-  aes(x = we_found_slot, y = prop_matches) +
-    geom_col() +
-    labs(title = "Proportion of collisions",
-         subtitle = paste0(n_colleagues, " colleagues, ", p, " picked time slots, ", o, " options to chose from, ", r, " simulated samples"),
-         caption = paste0("Assumed dependency between colleagues: ", dep)) +
-    geom_label(aes(label = round(prop_matches, 2), x = we_found_slot)) 
-}
-```
-
-
-```{r}
-plot_matches(smples_tbl, n_colleagues, p = p, o = o, dep = dep)
-```
-
-
-
-
-
-## All in once function
-
-Here's the do-it-all-in-once function:
-
-```{r fun-matching-prob}
-matching_prob <- function(n_colleagues,
-                          o,
-                          p,
-                          r = 1e3,
-                          dep,
-                          return_prob = TRUE
-                          ) {
-  first_common_slot <- count_common_slots(n_colleagues, o = o, p = p, dep = dep)
-  all_common_slots <- estimate_common_slots(first_common_slot,
-                                            n_colleagues = n_colleagues,
-                                            o = o,
-                                            p = p,
-                                            dep = dep)
-  out <- summarize_samples(all_common_slots)
-  
-  if (return_prob) {
-    out <- prop_match(out, n_colleagues = n_colleagues)
-    stopifnot(class(out) == "numeric")
-  }
-  
-  return(out)
-}
-```
-
-
-Check it:
-
-```{r}
-#undebug(matching_prob)
-matching_prob(n_colleagues = 5,
-              o = 10,
-              p = 3,
-              dep = 0)
+prob_doodle_match(n_colleagues = 5,
+                  o = 10,
+                  p = 3,
+                  dep = 0)
 ```
 
 
@@ -460,7 +180,7 @@ matching_prob(n_colleagues = 5,
 3 colleagues pick 1 option from 10 options:
 
 ```{r}
-matching_prob(n_colleagues = 3,
+prob_doodle_match(n_colleagues = 3,
               o = 8,
               p = 1,
               dep = 0)
@@ -472,7 +192,7 @@ matching_prob(n_colleagues = 3,
 
 
 ```{r}
-matching_prob(n_colleagues = 3,
+prob_doodle_match(n_colleagues = 3,
               o = 10,
               p = 2,
               dep = 0)
@@ -485,7 +205,7 @@ Get the sampling distribution:
 
 ```{r smpl_distrib1}
 tic()
-smpl_distrib <- mosaic::do(5) * matching_prob(n_colleagues = 3,
+smpl_distrib <- mosaic::do(100) * prob_doodle_match(n_colleagues = 3,
               o = 10,
               p = 2,
               dep = 0)
@@ -494,14 +214,14 @@ toc()
 
 
 ```{r}
-mean(smpl_distrib$matching_prob)
-sd(smpl_distrib$matching_prob)
+mean(smpl_distrib$prob_doodle_match)
+sd(smpl_distrib$prob_doodle_match)
 ```
 
 
 ```{r}
 ggplot(smpl_distrib) +
-  aes(x = matching_prob) +
+  aes(x = prob_doodle_match) +
   geom_density()
 ```
 
@@ -522,8 +242,7 @@ Let's provide less options to chose from in order to find a time slot for the me
 n_colleagues <- 3
 o <- 7
 
-#debug(matching_prob)
-smples_tbl2 <- matching_prob(n_colleagues = n_colleagues,
+smples_tbl2 <- prob_doodle_match(n_colleagues = n_colleagues,
                              o = o,
                              p = p,
                              dep = dep,
@@ -559,7 +278,7 @@ Let's provide only a few options too chose from in order to find a time slot for
 ```{r plot-smpls3, fig.width=9}
 o <- 5  # number of time slot options too chose from
 
-smples_tbl3 <- matching_prob(n_colleagues = n_colleagues,
+smples_tbl3 <- prob_doodle_match(n_colleagues = n_colleagues,
               o = o,
               p = p,
               dep = dep,
@@ -579,13 +298,6 @@ Let's try different parameter values and compute the probability of a match.
 
 Here's the grid using a cartesian expansion:
 
-```{r define-grid1}
-d <- expand_grid(n_colleagues = 2:5,
-                 o = c(5, 10, 15, 20, 25, 30),
-                 p = c(3, 5, 7, 10),
-                 dep = 0)
-```
-
 
 
 
@@ -594,20 +306,18 @@ d <- expand_grid(n_colleagues = 2:5,
 
 ```{r populate-grid}
 tic()
-d_grid <-
-  d |> 
-  mutate(match_prob = 
-           pmap_dbl(
-             .l = list(n_colleagues, o, p, dep), 
-             .f = matching_prob,
-             .progress = TRUE))
+grid <- populate_grid(n_colleagues = 2:5, 
+                      o = c(5, 10, 15, 20, 25, 30), 
+                      p = c(3, 5, 7, 10), 
+                      dep = 0)
 toc()
+
 ```
 
 Quite slow.
 
 ```{r}
-glimpse(d_grid)
+glimpse(grid)
 ```
 
 
@@ -616,7 +326,7 @@ glimpse(d_grid)
 
 
 ```{r vis-grid, fig.asp = 1.5, out.width="100%"}
-d_grid |> 
+grid |> 
   rename(n = n_colleagues) |> 
   ggplot(aes(x = o, y = match_prob)) +
   geom_line() +
@@ -634,51 +344,8 @@ d_grid |>
 Let's try a different visualization.
 
 
-Here's a little love for the labels of the line:
-
-```{r grid-labels}
-d_grid_labels <- 
-d_grid |> 
-  mutate(n_colleagues = factor(n_colleagues)) |> 
-  group_by(p, n_colleagues) |> 
-  summarise(X = max(o), 
-            Y = last(match_prob))
-
-glimpse(d_grid)
-```
-
-
-```{r vis-grid2, fig.asp = 1.5}
-# d_grid_long <-
-#   d_grid |> 
-#   pivot_longer(cols = c(n_colleagues, p))
-
-vis_grid <- function(d_grid) {
-
-d_grid |> 
-  rename(n = n_colleagues) |> 
-  mutate(n = factor(n)) |> 
-  ggplot(aes(x = o, y = match_prob)) +
-  geom_line(aes(color = n, group = n)) +
-  geom_point(aes(color = n, group = n)) +
-  facet_wrap(~  p , labeller = labeller(p = label_both), ncol = 2) +
-  labs(title = "Proportiong of a match when 'doodling' for an joint meeting",
-       caption = "p: Number of options picked per colleague;\n
-       n: number of colleagues approached;\n
-       o: number of available time slot options to choose from",
-       y = "Probality of a match",
-       color = "number of\ncolleagues",
-       text = "") +
-  theme_light() +
-  theme(legend.position = "none") +
-  geom_label(data = d_grid_labels,
-             aes(label = paste0("n: ", n_colleagues), 
-                 x = X, y = Y, color = factor(n_colleagues))) +
-  expand_limits(x = max(d_grid$o) + 1)
-  
-}
-
-vis_grid(d_grid)
+```{r}
+vis_grid(grid)
 ```
 
 
@@ -735,7 +402,7 @@ Pr_P <-  p / o
 - $Pr_{pi} := \frac{|p|}{|o|}$
 
 ```{r}
-Pr_pi = Pr_p / p
+Pr_pi = Pr_P / p
 ```
 
 
@@ -752,14 +419,14 @@ Pr_ui = u / o
 - $Pr_U$: The probability of the set $U$.
 
 ```{r}
-Pr_U <- 1 - Pr_p
+Pr_U <- 1 - Pr_P
 ```
 
 
 
 
 Let's call the $d$ the degree of dependency between the colleagues. 
-For simplicaty, let's only allow the values 0, .3, .6., .9 for dependency,
+For simplicity, let's only allow the values 0, .3, .6., .9 for dependency,
 indicating no, weak, medium, and strong dependency.
 
 Let's call $P$ the set of picked options, $O$ the set of all options, and $U$ the set of unpicked options.
@@ -779,7 +446,7 @@ Pr_U_new <- Pr_U - d*Pr_U
 $Pr_{ui}^n$  is the new probability of the $i$th option in the set of *u*npicked options.
 
 ```{r}
-Pr_Ui_new <- Pr_u_new / u
+Pr_Ui_new <- Pr_U_new / u
 ```
 
 
@@ -807,7 +474,7 @@ Pr_Pi_new <- Pr_P_new / p
 Check:
 
 ```{r}
-sample_with_dependency(p_set = c(3, 1, 9), o = 10, d = .6)
+sample_with_dependency(p_set = c(3, 1, 9), o = 10, dep = .6)
 ```
 
 
@@ -815,12 +482,8 @@ sample_with_dependency(p_set = c(3, 1, 9), o = 10, d = .6)
 Check:
 
 ```{r}
-slots_chosen <- count_common_slots_with_dependency(3, 10, 3, .6)
+slots_chosen <- sample_with_dependency(p_set = c(3, 1, 9), o = 10, dep = .3)
 slots_chosen
-```
-
-```{r}
-attributes(slots_chosen)
 ```
 
 
@@ -829,10 +492,10 @@ attributes(slots_chosen)
 
 
 ```{r}
-matching_prob(n_colleagues = 3,
+prob_doodle_match(n_colleagues = 3,
               o = 8,
               p = 1,
-              d = .6)
+              dep = .6)
 ```
 
 
@@ -843,31 +506,40 @@ Let's try different parameter values and compute the probability of a match.
 
 Here's the grid using a cartesian expansion:
 
-```{r def-grid2}
-d2 <- expand_grid(n_colleagues = c(3,5),
-                 o = c(5, 10, 15),
-                 p = c(3),
-                 dep = c(0, .3, .9))
-```
-
-
 
 
 
 ## Populate grid with depedency
 
 
-```{r populate-grid-with-dep}
+
+```{r pop-grid, cache=TRUE}
+#| eval: true
 tic()
-d_grid_dep <-
-  d2 |> 
-  mutate(match_prob = 
-           pmap_dbl(
-             .l = list(n_colleagues, o, p, dep), 
-             .f = matching_prob,
-             .progress = TRUE))
+grid2 <- populate_grid(n_colleagues = 3:5, 
+                      o = c(5, 10, 15), 
+                      p = c(3, 5), 
+                      dep = c(0, .25, .5, .75))
 toc()
 ```
+
+It's quicker to load from disk:
+
+```{r}
+#| eval: false
+data(grid2)
+```
+
+
+## Vis grid
+
+
+
+
+```{r vis-grid2, fig.width=9, dpi=300, out.width="100%", fig.asp=1.5}
+vis_grid2(grid2, facet_var = "dep")
+```
+
 
 
 # Reproducibility
