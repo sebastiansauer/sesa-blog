@@ -76,6 +76,7 @@ n_colleagues <- 3  # number of colleagues invited to your meeting
 p <- 3  # number of appointment options _p_icked per colleague
 o <- 30 # number of possible _o_ptions to choose from
 r <- 1e3  # number of simulated _r_epetions/samples
+dep <- 0  # dependency between reviewers
 ```
 
 
@@ -147,6 +148,42 @@ Anyhow, a simple alternative to an analytical solution is to use simulation, ie.
 
 # Funs
 
+## Sample with dependency
+
+
+```{r}
+sample_with_dependency <- function(p_set, o, dep) {
+  
+  p <- length(p_set)
+  o_set <- 1:o
+  u_set <- setdiff(o_set, p_set)
+  u <- length(u_set)
+  
+  slots_chosen_l <- list()
+  Pr_P <-  p / o
+  Pr_pi = Pr_p / p
+  Pr_ui = u / o
+  Pr_U_new <- Pr_U - dep*Pr_U
+  Pr_Ui_new <- Pr_U_new / u
+  
+  Pr_P_new <- Pr_P + dep*Pr_U
+  Pr_Pi_new <- Pr_P_new / p
+
+  
+  slots_chosen_l[[1]] <- sample(c(p_set, u_set), 
+                                size = p, 
+                                prob = c(rep(Pr_Pi_new, p), rep(Pr_Ui_new, u)))
+  
+  return(slots_chosen_l[[1]])
+}
+```
+
+Check:
+```{r}
+#debug(sample_with_dependency)
+sample_with_dependency(p_set = c(1,2,3), o = o, dep = .6)
+```
+
 
 ## Count common slots
 
@@ -157,15 +194,18 @@ A match is defined as a sample where some picked options appears at least as oft
 For example, if you addressed 3 colleagues, and all there sayed that option number 1 is fine, than you have a match.
 
 ```{r fun-count-common-slots}
-count_common_slots <- function(n_colleagues, o, p){
+count_common_slots <- function(n_colleagues, o, p, dep){
   
   slots_chosen_l <- list()
 
   # make sure that only so many options can be picked as are available:
   if (p > o) p <- o
   
-  for (i in 1:n_colleagues){  # for each collegue addressed:
-    slots_chosen_l[[i]] <- sample(1:o, size = p)  # pick p options from o possible options
+  # the first colleagues serves as a attractor for the others:
+  slots_chosen_l[[1]] <- sample(1:o, size = p)  
+  
+  for (i in 2:n_colleagues){  # for each collegue addressed:
+    slots_chosen_l[[i]] <- sample_with_dependency(slots_chosen_l[[1]], o, dep)  # pick p options from o possible options
   }
   slots_chosen <- unlist(slots_chosen_l)
   
@@ -196,6 +236,8 @@ count_common_slots <- function(n_colleagues, o, p){
   attr(slots_chosen_df, "n_colleagues") <- n_colleagues
   attr(slots_chosen_df, "o") <- o
   attr(slots_chosen_df, "p") <- p
+  attr(slots_chosen_df, "chosen_options") <- slots_chosen
+  attr(slots_chosen_df, "attractor_slots") <- slots_chosen_l[[1]]
    
   return(slots_chosen_df)
 }
@@ -206,9 +248,10 @@ Test it:
 
 ```{r}
 #undebug(count_common_slots)
-slots_chosen_collision <- count_common_slots(n_colleagues = 4, 
-                                             o = 5, 
-                                             p = 3)
+slots_chosen_collision <- count_common_slots(n_colleagues = n_colleagues, 
+                                             o = o, 
+                                             p = p,
+                                             dep = dep)
 slots_chosen_collision
 ```
 
@@ -226,7 +269,7 @@ This functions draws many simulated samples.
 
 
 ```{r fun-estimate-common-slots}
-estimate_common_slots <- function(slots_chosen_collision, n_colleagues, o, p, r = 1e3){
+estimate_common_slots <- function(slots_chosen_collision, n_colleagues, o, p, dep, r = 1e3){
   
   smples <- 
     slots_chosen_collision |> 
@@ -235,7 +278,10 @@ estimate_common_slots <- function(slots_chosen_collision, n_colleagues, o, p, r 
   
   # repeat r times, giving us many simulated samples:
   for (i in 2:r) {
-    tmp <- count_common_slots(n_colleagues = n_colleagues, o = o, p = p)
+    tmp <- count_common_slots(n_colleagues = n_colleagues, 
+                              o = o, 
+                              p = p, 
+                              dep = dep)
     tmp$id <- i
     
     smples <-
@@ -260,6 +306,7 @@ Check:
 smples <- estimate_common_slots(slots_chosen_collision = slots_chosen_collision,
                                 n_colleagues = n_colleagues,
                                 o = o,
+                                dep = dep,
                                 p = p)
 
 glimpse(smples)
@@ -336,8 +383,8 @@ prop_match(smples_tbl, n_colleagues = n_colleagues - 1)
 
 ## Plot results
 
-```{r}
-plot_matches <- function(smples_tbl, n_colleagues, p, o){
+```{r fig.width=9}
+plot_matches <- function(smples_tbl, n_colleagues, p, o, dep){
 
   smples_tbl |> 
     mutate(Freq = replace_na(Freq, -99)) |> 
@@ -351,14 +398,14 @@ plot_matches <- function(smples_tbl, n_colleagues, p, o){
     geom_col() +
     labs(title = "Proportion of collisions",
          subtitle = paste0(n_colleagues, " colleagues, ", p, " picked time slots, ", o, " options to chose from, ", r, " simulated samples"),
-         caption = "The vertical line indicates the event that enough colleagues chose the same time slot.") +
+         caption = paste0("Assumed dependency between colleagues: ", dep)) +
     geom_label(aes(label = round(prop_matches, 2), x = we_found_slot)) 
 }
 ```
 
 
 ```{r}
-plot_matches(smples_tbl, n_colleagues, p, o)
+plot_matches(smples_tbl, n_colleagues, p = p, o = o, dep = dep)
 ```
 
 
@@ -374,13 +421,15 @@ matching_prob <- function(n_colleagues,
                           o,
                           p,
                           r = 1e3,
+                          dep,
                           return_prob = TRUE
                           ) {
-  first_common_slot <- count_common_slots(n_colleagues, o = o, p = p)
+  first_common_slot <- count_common_slots(n_colleagues, o = o, p = p, dep = dep)
   all_common_slots <- estimate_common_slots(first_common_slot,
                                             n_colleagues = n_colleagues,
                                             o = o,
-                                            p = p)
+                                            p = p,
+                                            dep = dep)
   out <- summarize_samples(all_common_slots)
   
   if (return_prob) {
@@ -399,18 +448,22 @@ Check it:
 #undebug(matching_prob)
 matching_prob(n_colleagues = 5,
               o = 10,
-              p = 3)
+              p = 3,
+              dep = 0)
 ```
 
 
-# Some examples
+# Modelling without dependency
+
+## Examples
 
 3 colleagues pick 1 option from 10 options:
 
 ```{r}
 matching_prob(n_colleagues = 3,
               o = 8,
-              p = 1)
+              p = 1,
+              dep = 0)
 ```
 
 
@@ -421,17 +474,21 @@ matching_prob(n_colleagues = 3,
 ```{r}
 matching_prob(n_colleagues = 3,
               o = 10,
-              p = 2)
+              p = 2,
+              dep = 0)
 ```
 
-# Sampling distribution
+## Sampling distribution
 
 Get the sampling distribution:
 
 
 ```{r smpl_distrib1}
 tic()
-smpl_distrib <- mosaic::do(50) * matching_prob(5, 10, 3)
+smpl_distrib <- mosaic::do(5) * matching_prob(n_colleagues = 3,
+              o = 10,
+              p = 2,
+              dep = 0)
 toc()
 ```
 
@@ -455,7 +512,7 @@ As can be seen, the probability of finding a matching time slot is quite small, 
 Not impossible, but too low to rely on this approach in my opinion.
 
 
-# o=10; Make a matching more probable
+## o=10; Make a matching more probable
 
 Let's provide less options to chose from in order to find a time slot for the meeting to your colleagues:
 
@@ -467,9 +524,10 @@ o <- 7
 
 #debug(matching_prob)
 smples_tbl2 <- matching_prob(n_colleagues = n_colleagues,
-                              o = o,
-                              p = p,
-                              return_prob = FALSE)
+                             o = o,
+                             p = p,
+                             dep = dep,
+                             return_prob = FALSE)
 
 smples_tbl2
 ```
@@ -479,7 +537,7 @@ Looks much better; we have some realistic chances of finding a match.
 
 
 ```{r fig.width=9}
-plot_matches(smples_tbl2, n_colleagues, p = p, o = o)
+plot_matches(smples_tbl2, n_colleagues, p = p, o = o, dep = dep)
 ```
 
 
@@ -490,7 +548,7 @@ Now we can see that a matching has become more probable, although still not high
 
 
 
-# o=5; Make a matching highly probable
+## o=5; Make a matching highly probable
 
 Let's provide only a few options too chose from in order to find a time slot for the meeting to your colleagues:
 
@@ -504,32 +562,34 @@ o <- 5  # number of time slot options too chose from
 smples_tbl3 <- matching_prob(n_colleagues = n_colleagues,
               o = o,
               p = p,
+              dep = dep,
               return_prob = FALSE)
 
-plot_matches(smples_tbl3,  n_colleagues, p = p, o = o)
+plot_matches(smples_tbl3,  n_colleagues, p = p, o = o, dep = dep)
 ```
 
 
 
 That really looks good; that's a realistic chance to find a match.
 
-# Grid of different parameter values
+## Grid of different parameter values
 
 
 Let's try different parameter values and compute the probability of a match.
 
 Here's the grid using a cartesian expansion:
 
-```{r}
+```{r define-grid1}
 d <- expand_grid(n_colleagues = 2:5,
                  o = c(5, 10, 15, 20, 25, 30),
-                 p = c(3, 5, 7, 10))
+                 p = c(3, 5, 7, 10),
+                 dep = 0)
 ```
 
 
 
 
-# Populate grid
+## Populate grid
 
 
 ```{r populate-grid}
@@ -538,7 +598,7 @@ d_grid <-
   d |> 
   mutate(match_prob = 
            pmap_dbl(
-             .l = list(n_colleagues, o, p), 
+             .l = list(n_colleagues, o, p, dep), 
              .f = matching_prob,
              .progress = TRUE))
 toc()
@@ -552,7 +612,7 @@ glimpse(d_grid)
 
 
 
-# Visualize grid 1
+## Visualize grid 1
 
 
 ```{r vis-grid, fig.asp = 1.5, out.width="100%"}
@@ -569,14 +629,14 @@ d_grid |>
        )
 ```
 
-# Visualize grid 2
+## Visualize grid 2
 
 Let's try a different visualization.
 
 
 Here's a little love for the labels of the line:
 
-```{r}
+```{r grid-labels}
 d_grid_labels <- 
 d_grid |> 
   mutate(n_colleagues = factor(n_colleagues)) |> 
@@ -592,6 +652,8 @@ glimpse(d_grid)
 # d_grid_long <-
 #   d_grid |> 
 #   pivot_longer(cols = c(n_colleagues, p))
+
+vis_grid <- function(d_grid) {
 
 d_grid |> 
   rename(n = n_colleagues) |> 
@@ -613,10 +675,14 @@ d_grid |>
              aes(label = paste0("n: ", n_colleagues), 
                  x = X, y = Y, color = factor(n_colleagues))) +
   expand_limits(x = max(d_grid$o) + 1)
+  
+}
+
+vis_grid(d_grid)
 ```
 
 
-# Caveats
+## Caveats
 
 This analysis builds on some assumptions. One is that the the colleagues choose their slots randomly. 
 However, assumption may fail.
@@ -624,7 +690,7 @@ For example, if 3 have 5 options and ask to choose 3, people may feel pushed too
 
 
 
-# Conclusion
+## Conclusion
 
 There are a number of things to be learnt from this simulation:
 
@@ -638,6 +704,170 @@ All these insights are straight forward. However, we can also make some quantita
 - If each colleagues picks 3 options only (what I would do), than you need to present less than 10 options. 
 - If you can present 5 options only, you will be on the safe side and will likely come to a match.
 
+
+
+# Introducing dependency between colleagues
+
+
+More realistically, there is dependency to be expected in the chosen slots between the reviewers.
+
+Let's try to model that.
+
+## Some notation
+
+First, let's note that we begin with a LaPlaceian assumption, ie. that the probability of a slot is uniformly distributed. In other words, we are indifferent to the plausibility of each option.
+That means the probability of chosing some option $i$ is 1 divided by the number of options:
+
+$$Pr_{oi} = \frac{1}{|o|}$$
+
+
+
+
+
+- $Pr_p$: The probability of the set of picked options.
+
+```{r}
+Pr_P <-  p / o
+```
+
+
+- $Pr_{pi}$: The probability of the $i$th picked option
+- $Pr_{pi} := \frac{|p|}{|o|}$
+
+```{r}
+Pr_pi = Pr_p / p
+```
+
+
+
+- $Pr_{ui}$: The probability of the $i$ *un*picked option
+- $Pr_{ui} := 1 - Pr_pi = \frac{|o-p|}{|o|} = \frac{|u|}{|o|}$, where $|u|$ indicates the cardinality of $U$.
+
+```{r}
+u <- o - p
+Pr_ui = u / o
+```
+
+
+- $Pr_U$: The probability of the set $U$.
+
+```{r}
+Pr_U <- 1 - Pr_p
+```
+
+
+
+
+Let's call the $d$ the degree of dependency between the colleagues. 
+For simplicaty, let's only allow the values 0, .3, .6., .9 for dependency,
+indicating no, weak, medium, and strong dependency.
+
+Let's call $P$ the set of picked options, $O$ the set of all options, and $U$ the set of unpicked options.
+
+
+## Reallocating probability
+
+For example, introducing a "strong" dependency is defined here as reallocating $d=.9$ of the probability from $U$ to $P$.
+
+$Pr_u^n$ is the *n*ew probability of $Pr_u$ after reallocating the probability.
+
+```{r}
+d <- .9
+Pr_U_new <- Pr_U - d*Pr_U
+```
+
+$Pr_{ui}^n$  is the new probability of the $i$th option in the set of *u*npicked options.
+
+```{r}
+Pr_Ui_new <- Pr_u_new / u
+```
+
+
+$Pr_p^n$ is the *n*ew probability of $Pr_p$ after reallocating the probability.
+
+
+
+
+```{r}
+Pr_P_new <- Pr_P + d*Pr_U
+```
+
+
+$Pr_{pi}^n$ is the new probability of the $i$th option in the set of *p*icked options.
+
+```{r}
+Pr_Pi_new <- Pr_P_new / p
+```
+
+
+## Function for reallocating probability
+
+
+
+Check:
+
+```{r}
+sample_with_dependency(p_set = c(3, 1, 9), o = 10, d = .6)
+```
+
+
+
+Check:
+
+```{r}
+slots_chosen <- count_common_slots_with_dependency(3, 10, 3, .6)
+slots_chosen
+```
+
+```{r}
+attributes(slots_chosen)
+```
+
+
+## Examples with dependency
+
+
+
+```{r}
+matching_prob(n_colleagues = 3,
+              o = 8,
+              p = 1,
+              d = .6)
+```
+
+
+## Grid of different parameter values
+
+
+Let's try different parameter values and compute the probability of a match.
+
+Here's the grid using a cartesian expansion:
+
+```{r def-grid2}
+d2 <- expand_grid(n_colleagues = c(3,5),
+                 o = c(5, 10, 15),
+                 p = c(3),
+                 dep = c(0, .3, .9))
+```
+
+
+
+
+
+## Populate grid with depedency
+
+
+```{r populate-grid-with-dep}
+tic()
+d_grid_dep <-
+  d2 |> 
+  mutate(match_prob = 
+           pmap_dbl(
+             .l = list(n_colleagues, o, p, dep), 
+             .f = matching_prob,
+             .progress = TRUE))
+toc()
+```
 
 
 # Reproducibility
