@@ -265,25 +265,27 @@ plot_matches(smples_tbl3,  n_colleagues, p = p, o = o, dep = dep)</code></pre>
 <div id="populate-grid" class="section level2" number="9.6">
 <h2><span class="header-section-number">9.6</span> Populate grid</h2>
 <pre class="r"><code>tic()
-grid &lt;- populate_grid(n_colleagues = 2:5, 
+grid1 &lt;- populate_grid(n_colleagues = 2:5, 
                       o = c(5, 10, 15, 20, 25, 30), 
                       p = c(3, 5, 7, 10), 
                       dep = 0)
 toc()
-#&gt; 100.953 sec elapsed</code></pre>
+</code></pre>
 <p>Quite slow.</p>
-<pre class="r"><code>glimpse(grid)
+<p>It’s quicker to load it from disk.</p>
+<pre class="r"><code>data(grid1)</code></pre>
+<pre class="r"><code>glimpse(grid1)
 #&gt; Rows: 96
 #&gt; Columns: 5
 #&gt; $ n_colleagues &lt;int&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
 #&gt; $ o            &lt;dbl&gt; 5, 5, 5, 5, 10, 10, 10, 10, 15, 15, 15, 15, 20, 20, 20, 2…
 #&gt; $ p            &lt;dbl&gt; 3, 5, 7, 10, 3, 5, 7, 10, 3, 5, 7, 10, 3, 5, 7, 10, 3, 5,…
 #&gt; $ dep          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-#&gt; $ match_prob   &lt;dbl&gt; 1.0000000, 1.0000000, 1.0000000, 1.0000000, 0.7403035, 0.…</code></pre>
+#&gt; $ match_prob   &lt;dbl&gt; 1.0000000, 1.0000000, 1.0000000, 1.0000000, 0.7635304, 0.…</code></pre>
 </div>
 <div id="visualize-grid-1" class="section level2" number="9.7">
 <h2><span class="header-section-number">9.7</span> Visualize grid 1</h2>
-<pre class="r"><code>grid |&gt; 
+<pre class="r"><code>grid1 |&gt; 
   rename(n = n_colleagues) |&gt; 
   ggplot(aes(x = o, y = match_prob)) +
   geom_line() +
@@ -299,8 +301,8 @@ toc()
 <div id="visualize-grid-2" class="section level2" number="9.8">
 <h2><span class="header-section-number">9.8</span> Visualize grid 2</h2>
 <p>Let’s try a different visualization.</p>
-<pre class="r"><code>vis_grid(grid)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>vis_grid(grid1)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="caveats" class="section level2" number="9.9">
 <h2><span class="header-section-number">9.9</span> Caveats</h2>
@@ -374,11 +376,11 @@ Pr_U_new &lt;- Pr_U - d*Pr_U</code></pre>
 <h2><span class="header-section-number">10.3</span> Function for reallocating probability</h2>
 <p>Check:</p>
 <pre class="r"><code>sample_with_dependency(p_set = c(3, 1, 9), o = 10, dep = .6)
-#&gt; [1] 1 6 2</code></pre>
+#&gt; [1]  4  9 10</code></pre>
 <p>Check:</p>
 <pre class="r"><code>slots_chosen &lt;- sample_with_dependency(p_set = c(3, 1, 9), o = 10, dep = .3)
 slots_chosen
-#&gt; [1] 4 3 1</code></pre>
+#&gt; [1] 9 1 4</code></pre>
 </div>
 <div id="examples-with-dependency" class="section level2" number="10.4">
 <h2><span class="header-section-number">10.4</span> Examples with dependency</h2>
@@ -386,7 +388,7 @@ slots_chosen
               o = 8,
               p = 1,
               dep = .6)
-#&gt; [1] 0.426</code></pre>
+#&gt; [1] 0.445</code></pre>
 </div>
 <div id="grid-of-different-parameter-values-1" class="section level2" number="10.5">
 <h2><span class="header-section-number">10.5</span> Grid of different parameter values</h2>

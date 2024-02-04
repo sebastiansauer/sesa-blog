@@ -304,9 +304,9 @@ Here's the grid using a cartesian expansion:
 ## Populate grid
 
 
-```{r populate-grid}
+```{r populate-grid1, eval=FALSE}
 tic()
-grid <- populate_grid(n_colleagues = 2:5, 
+grid1 <- populate_grid(n_colleagues = 2:5, 
                       o = c(5, 10, 15, 20, 25, 30), 
                       p = c(3, 5, 7, 10), 
                       dep = 0)
@@ -316,8 +316,15 @@ toc()
 
 Quite slow.
 
+It's quicker to load it from disk.
+
 ```{r}
-glimpse(grid)
+data(grid1)
+```
+
+
+```{r}
+glimpse(grid1)
 ```
 
 
@@ -325,8 +332,8 @@ glimpse(grid)
 ## Visualize grid 1
 
 
-```{r vis-grid, fig.asp = 1.5, out.width="100%"}
-grid |> 
+```{r vis-grid1, fig.asp = 1.5, out.width="100%"}
+grid1 |> 
   rename(n = n_colleagues) |> 
   ggplot(aes(x = o, y = match_prob)) +
   geom_line() +
@@ -345,7 +352,7 @@ Let's try a different visualization.
 
 
 ```{r}
-vis_grid(grid)
+vis_grid(grid1)
 ```
 
 
