@@ -536,10 +536,11 @@ data(grid2)
 
 
 
-```{r vis-grid2, fig.width=9, dpi=300, out.width="100%", fig.asp=1.5}
+```{r vis-grid2, fig.width=9, dpi=300, out.width="100%", fig.asp=1.5, eval=FALSE}
 vis_grid2(grid2, facet_var = "dep")
 ```
 
+![](sensitivity2.png){width="100%"}
 
 
 # Reproducibility
