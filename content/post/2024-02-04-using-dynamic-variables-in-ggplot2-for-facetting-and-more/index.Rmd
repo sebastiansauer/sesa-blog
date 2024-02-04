@@ -40,9 +40,32 @@ library(tidyverse)  # data wrangling
 ```
 
 
+# Static ggplot
+
+To see what we mean by "dynamic", let's digest an example of "static" variables passed to a ggplot.
+
+```{r}
+p <- ggplot(mtcars, aes(x = wt, y = mpg)) + 
+  geom_point() + # Plot points
+  facet_grid(rows = vars(cyl)) + # Separate panels by 'cyl', arranged in rows
+  labs(title = "MPG vs. Car Weight",
+       subtitle = "Faceted by Number of Cylinders",
+       x = "Weight (1000 lbs)",
+       y = "Miles per Gallon")
+
+# Print the plot
+print(p)
+```
+
+
+
+Note that `vars` is expected by the `rows` argument of `facet_grid`.
+
+
+
 # Dynamic facetting
 
-With `sym` you can capture the "symbol", i.e. the code, of an expression such as a string. In the second step, evaluate it using bang-bang (`!!`). If it's more than one variable, use the tribble-bang operator, `!!!`.
+With `sym` you can capture the "symbol", i.e. the code, of an expression such as a string. In the second step, evaluate it using bang-bang (`!!`). If it's more than one variable, use the triple-bang operator, `!!!`.
 
 ```{r}
 library(ggplot2)

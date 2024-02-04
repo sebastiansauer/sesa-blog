@@ -17,11 +17,12 @@ output:
 <div id="TOC">
 <ul>
 <li><a href="#load-packages" id="toc-load-packages"><span class="toc-section-number">1</span> Load packages</a></li>
-<li><a href="#dynamic-facetting" id="toc-dynamic-facetting"><span class="toc-section-number">2</span> Dynamic facetting</a></li>
-<li><a href="#dynamic-plots-using-the-data-pronoun" id="toc-dynamic-plots-using-the-data-pronoun"><span class="toc-section-number">3</span> Dynamic plots using the data pronoun</a></li>
-<li><a href="#data-pronoun-does-not-work-in-facetting" id="toc-data-pronoun-does-not-work-in-facetting"><span class="toc-section-number">4</span> Data pronoun does not work in facetting</a></li>
-<li><a href="#a-function-using-ggplot-with-unquoted-variables" id="toc-a-function-using-ggplot-with-unquoted-variables"><span class="toc-section-number">5</span> A function using ggplot with unquoted variables</a></li>
-<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">6</span> Reproducibility</a></li>
+<li><a href="#static-ggplot" id="toc-static-ggplot"><span class="toc-section-number">2</span> Static ggplot</a></li>
+<li><a href="#dynamic-facetting" id="toc-dynamic-facetting"><span class="toc-section-number">3</span> Dynamic facetting</a></li>
+<li><a href="#dynamic-plots-using-the-data-pronoun" id="toc-dynamic-plots-using-the-data-pronoun"><span class="toc-section-number">4</span> Dynamic plots using the data pronoun</a></li>
+<li><a href="#data-pronoun-does-not-work-in-facetting" id="toc-data-pronoun-does-not-work-in-facetting"><span class="toc-section-number">5</span> Data pronoun does not work in facetting</a></li>
+<li><a href="#a-function-using-ggplot-with-unquoted-variables" id="toc-a-function-using-ggplot-with-unquoted-variables"><span class="toc-section-number">6</span> A function using ggplot with unquoted variables</a></li>
+<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">7</span> Reproducibility</a></li>
 </ul>
 </div>
 
@@ -29,8 +30,24 @@ output:
 <h1><span class="header-section-number">1</span> Load packages</h1>
 <pre class="r"><code>library(tidyverse)  # data wrangling</code></pre>
 </div>
-<div id="dynamic-facetting" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> Dynamic facetting</h1>
+<div id="static-ggplot" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Static ggplot</h1>
+<p>To see what we mean by “dynamic”, let’s digest an example of “static” variables passed to a ggplot.</p>
+<pre class="r"><code>p &lt;- ggplot(mtcars, aes(x = wt, y = mpg)) + 
+  geom_point() + # Plot points
+  facet_grid(rows = vars(cyl)) + # Separate panels by &#39;cyl&#39;, arranged in rows
+  labs(title = &quot;MPG vs. Car Weight&quot;,
+       subtitle = &quot;Faceted by Number of Cylinders&quot;,
+       x = &quot;Weight (1000 lbs)&quot;,
+       y = &quot;Miles per Gallon&quot;)
+
+# Print the plot
+print(p)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Note that <code>vars</code> is expected by the <code>rows</code> argument of <code>facet_grid</code>.</p>
+</div>
+<div id="dynamic-facetting" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Dynamic facetting</h1>
 <p>With <code>sym</code> you can capture the “symbol”, i.e. the code, of an expression such as a string. In the second step, evaluate it using bang-bang (<code>!!</code>). If it’s more than one variable, use the tribble-bang operator, <code>!!!</code>.</p>
 <pre class="r"><code>library(ggplot2)
 library(rlang)
@@ -48,10 +65,10 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
   geom_point() +
   facet_grid(rows = vars(!!row_var_sym), cols = vars(!!col_var_sym),
              labeller = label_both)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="dynamic-plots-using-the-data-pronoun" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Dynamic plots using the data pronoun</h1>
+<div id="dynamic-plots-using-the-data-pronoun" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Dynamic plots using the data pronoun</h1>
 <p>The “data pronoun”, <code>.data[[name_of_var]]</code>, is a way to use dynamic variables in tidyverse function calls, when the variables are stored as string, see the example below.</p>
 <pre class="r"><code>library(ggplot2)
 library(rlang)
@@ -66,10 +83,10 @@ create_dynamic_plot &lt;- function(data, x_var, y_var) {
 
 # Example usage
 create_dynamic_plot(mpg, &quot;displ&quot;, &quot;hwy&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="data-pronoun-does-not-work-in-facetting" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Data pronoun does not work in facetting</h1>
+<div id="data-pronoun-does-not-work-in-facetting" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Data pronoun does not work in facetting</h1>
 <p>Note however that the data pronoun does not work in the facetting context for some reason:</p>
 <pre class="r"><code>library(ggplot2)
 library(rlang)
@@ -104,10 +121,10 @@ create_dynamic_plot &lt;- function(data, x_var, y_var, facet_row_var, facet_col_
 
 # Example usage
 create_dynamic_plot(mpg, &quot;displ&quot;, &quot;hwy&quot;, &quot;cyl&quot;, &quot;drv&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="a-function-using-ggplot-with-unquoted-variables" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> A function using ggplot with unquoted variables</h1>
+<div id="a-function-using-ggplot-with-unquoted-variables" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> A function using ggplot with unquoted variables</h1>
 <p>The curly-curly operator <code>{{</code> allows for supplying unquoted, “bare”, variable names to a function.</p>
 <p>If the variables are stored as strings, stick to the bang-bang operator instead.</p>
 <pre class="r"><code>plot_with_facets &lt;- function(data, x, y, facet_row, facet_col) {
@@ -118,10 +135,10 @@ create_dynamic_plot(mpg, &quot;displ&quot;, &quot;hwy&quot;, &quot;cyl&quot;, &q
 
 # Example usage
 plot_with_facets(mpg, displ, hwy, cyl, drv)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="reproducibility" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> Reproducibility</h1>
+<div id="reproducibility" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Reproducibility</h1>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value
 #&gt;  version  R version 4.2.1 (2022-06-23)
