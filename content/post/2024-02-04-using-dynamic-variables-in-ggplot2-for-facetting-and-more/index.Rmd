@@ -187,7 +187,6 @@ plot_with_facets(mpg, displ, hwy, cyl, drv)
 ## Reproducibility info
 options(width = 120)
 devtools::session_info()
-
 ```
 
 
