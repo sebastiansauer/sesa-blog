@@ -42,7 +42,7 @@ library(tidyverse)  # data wrangling
 ```
 
 
-```{python}
+```{python eval=FALSE}
 from transformers import pipeline  # Hugging Face Modelle
 ```
 
@@ -52,7 +52,7 @@ from transformers import pipeline  # Hugging Face Modelle
 
 # Pipeline
 
-```{python}
+```{python eval=FALSE}
 pipe = pipeline("text-generation", model="DRXD1000/Phoenix")
 ```
 
@@ -64,7 +64,6 @@ pipe = pipeline("text-generation", model="DRXD1000/Phoenix")
 ## Reproducibility info
 options(width = 120)
 devtools::session_info()
-
 ```
 
 

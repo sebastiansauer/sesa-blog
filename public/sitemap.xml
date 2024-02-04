@@ -2,26 +2,80 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://data-se.netlify.app/tags/markdown/</loc>
-    <lastmod>2023-11-22T00:00:00+00:00</lastmod>
+    <loc>https://data-se.netlify.app/categories/</loc>
+    <lastmod>2024-02-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/tags/ggplot2/</loc>
+    <lastmod>2024-02-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://data-se.netlify.app/post/</loc>
-    <lastmod>2023-11-22T00:00:00+00:00</lastmod>
+    <lastmod>2024-02-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/categories/rstats/</loc>
+    <lastmod>2024-02-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://data-se.netlify.app/</loc>
-    <lastmod>2023-11-22T00:00:00+00:00</lastmod>
+    <lastmod>2024-02-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://data-se.netlify.app/tags/</loc>
-    <lastmod>2023-11-22T00:00:00+00:00</lastmod>
+    <lastmod>2024-02-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/tags/tidyeval/</loc>
+    <lastmod>2024-02-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/2024/02/04/using-dynamic-variables-in-ggplot2-for-facetting-and-more/</loc>
+    <lastmod>2024-02-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/tags/visualization/</loc>
+    <lastmod>2024-02-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/tags/datawrangling/</loc>
+    <lastmod>2024-01-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/2024/01/30/prevent-dropping-from-non-occuring-levels-using-dplyr/</loc>
+    <lastmod>2024-01-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/tags/tidyverse/</loc>
+    <lastmod>2024-01-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/tags/bayes/</loc>
+    <lastmod>2024-01-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/2024/01/29/numerical-similarity-of-some-bayes-and-classical-models/</loc>
+    <lastmod>2024-01-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/tags/regression/</loc>
+    <lastmod>2024-01-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/2024/01/29/simulating-multiple-event-collision/</loc>
+    <lastmod>2024-01-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/tags/simulation/</loc>
+    <lastmod>2024-01-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/tags/markdown/</loc>
+    <lastmod>2024-01-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/tags/quiz/</loc>
+    <lastmod>2024-01-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/2024/01/18/using-quizzes-on-markdown-html-sites/</loc>
+    <lastmod>2024-01-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/tags/eda/</loc>
+    <lastmod>2024-01-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/2024/01/12/simple-contingency-tables-in-r/</loc>
+    <lastmod>2024-01-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/2023/12/20/logistic-regression-using-z-standardized-values/</loc>
+    <lastmod>2023-12-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/2023/12/13/test-if-return-value-is-in-tolerance2/</loc>
+    <lastmod>2023-12-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://data-se.netlify.app/2023/11/22/unicode/</loc>
     <lastmod>2023-11-22T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://data-se.netlify.app/categories/</loc>
-    <lastmod>2023-11-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://data-se.netlify.app/categories/rstats/</loc>
-    <lastmod>2023-11-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://data-se.netlify.app/tags/speed/</loc>
     <lastmod>2023-11-15T00:00:00+00:00</lastmod>
@@ -32,16 +86,10 @@
     <loc>https://data-se.netlify.app/tags/tidymodels/</loc>
     <lastmod>2023-11-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://data-se.netlify.app/tags/ggplot2/</loc>
-    <lastmod>2023-11-04T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://data-se.netlify.app/2023/11/04/normal-densities-animanted/</loc>
     <lastmod>2023-11-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://data-se.netlify.app/2023/11/04/normal-distribution-animated/</loc>
-    <lastmod>2023-11-04T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://data-se.netlify.app/tags/visualization/</loc>
     <lastmod>2023-11-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://data-se.netlify.app/2023/09/22/gantt-diagramme-mit-ganttrify/</loc>
@@ -53,9 +101,6 @@
     <loc>https://data-se.netlify.app/tags/basics/</loc>
     <lastmod>2023-07-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://data-se.netlify.app/tags/datawrangling/</loc>
-    <lastmod>2023-07-15T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://data-se.netlify.app/2023/07/15/filtering-vectors/</loc>
     <lastmod>2023-07-15T00:00:00+00:00</lastmod>
   </url><url>
@@ -65,13 +110,7 @@
     <loc>https://data-se.netlify.app/2023/06/30/farbpaletten/</loc>
     <lastmod>2023-06-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://data-se.netlify.app/tags/bayes/</loc>
-    <lastmod>2023-03-17T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://data-se.netlify.app/2023/03/17/estimating-simulation-variance-in-stan-models/</loc>
-    <lastmod>2023-03-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://data-se.netlify.app/tags/simulation/</loc>
     <lastmod>2023-03-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://data-se.netlify.app/2023/02/03/tables-plotted-as-ggplot-objects/</loc>
@@ -87,9 +126,6 @@
     <lastmod>2023-01-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://data-se.netlify.app/2023/01/16/setting-to-na-conditionally/</loc>
-    <lastmod>2023-01-16T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://data-se.netlify.app/tags/tidyverse/</loc>
     <lastmod>2023-01-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://data-se.netlify.app/2022/12/13/consistency-of-set-seed-across-different-systems/</loc>
@@ -170,9 +206,6 @@
     <loc>https://data-se.netlify.app/tags/modelling/</loc>
     <lastmod>2022-05-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://data-se.netlify.app/tags/regression/</loc>
-    <lastmod>2022-05-23T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://data-se.netlify.app/categories/statistics/</loc>
     <lastmod>2022-05-23T00:00:00+00:00</lastmod>
   </url><url>
@@ -245,9 +278,6 @@
     <loc>https://data-se.netlify.app/2022/03/11/programming-the-tidyverse-quoted-and-unqouted-parameters/</loc>
     <lastmod>2022-03-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://data-se.netlify.app/tags/tidyeval/</loc>
-    <lastmod>2022-03-11T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://data-se.netlify.app/2022/02/23/data-sets-for-for-teaching/</loc>
     <lastmod>2022-02-23T00:00:00+00:00</lastmod>
   </url><url>
@@ -273,9 +303,6 @@
     <lastmod>2022-01-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://data-se.netlify.app/2022/01/28/bayes-software-installieren-f%C3%BCr-r/</loc>
-    <lastmod>2022-01-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://data-se.netlify.app/tags/eda/</loc>
     <lastmod>2022-01-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://data-se.netlify.app/2022/01/28/kurs-bayes-start/</loc>

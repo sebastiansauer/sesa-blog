@@ -7,11 +7,17 @@ categories:
   - rstats
 tags:
   - visualization
+  - ggplot2
+  - tidyeval
 output:
   blogdown::html_page:
     toc: yes
     number_sections: yes
+editor_options: 
+  chunk_output_type: console
 ---
+
+
 
 
 
@@ -40,6 +46,7 @@ library(tidyverse)  # data wrangling
 ```
 
 
+
 # Static ggplot
 
 To see what we mean by "dynamic", let's digest an example of "static" variables passed to a ggplot.
@@ -65,7 +72,7 @@ Note that `vars` is expected by the `rows` argument of `facet_grid`.
 
 # Dynamic facetting
 
-With `sym` you can capture the "symbol", i.e. the code, of an expression such as a string. In the second step, evaluate it using bang-bang (`!!`). If it's more than one variable, use the triple-bang operator, `!!!`.
+With `sym` you can capture the "symbol", of an expression such as a string. In the second step, evaluate it using bang-bang (`!!`). If it's more than one variable, use the triple-bang operator, `!!!`.
 
 ```{r}
 library(ggplot2)
@@ -153,7 +160,6 @@ create_dynamic_plot <- function(data, x_var, y_var, facet_row_var, facet_col_var
 
 # Example usage
 create_dynamic_plot(mpg, "displ", "hwy", "cyl", "drv")
-
 ```
 
 
@@ -161,7 +167,7 @@ create_dynamic_plot(mpg, "displ", "hwy", "cyl", "drv")
 
 # A function using ggplot with unquoted variables
 
-The curly-curly operator `{{` allows for supplying unquoted, "bare", variable names to a function.
+The curly-curly operator allows for supplying unquoted, "bare", variable names to a function.
 
 If the variables are stored as strings, stick to the bang-bang operator instead.
 
@@ -188,5 +194,7 @@ plot_with_facets(mpg, displ, hwy, cyl, drv)
 options(width = 120)
 devtools::session_info()
 ```
+
+
 
 

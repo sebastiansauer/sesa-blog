@@ -6,13 +6,103 @@
     <description>Recent content in Tags on sesa blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 04 Feb 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ggplot2</title>
+      <link>https://data-se.netlify.app/tags/ggplot2/</link>
+      <pubDate>Sun, 04 Feb 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/tags/ggplot2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tidyeval</title>
+      <link>https://data-se.netlify.app/tags/tidyeval/</link>
+      <pubDate>Sun, 04 Feb 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/tags/tidyeval/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>visualization</title>
+      <link>https://data-se.netlify.app/tags/visualization/</link>
+      <pubDate>Sun, 04 Feb 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/tags/visualization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>datawrangling</title>
+      <link>https://data-se.netlify.app/tags/datawrangling/</link>
+      <pubDate>Tue, 30 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/tags/datawrangling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tidyverse</title>
+      <link>https://data-se.netlify.app/tags/tidyverse/</link>
+      <pubDate>Tue, 30 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/tags/tidyverse/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bayes</title>
+      <link>https://data-se.netlify.app/tags/bayes/</link>
+      <pubDate>Mon, 29 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/tags/bayes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>regression</title>
+      <link>https://data-se.netlify.app/tags/regression/</link>
+      <pubDate>Mon, 29 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/tags/regression/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>simulation</title>
+      <link>https://data-se.netlify.app/tags/simulation/</link>
+      <pubDate>Mon, 29 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/tags/simulation/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>markdown</title>
       <link>https://data-se.netlify.app/tags/markdown/</link>
-      <pubDate>Wed, 22 Nov 2023 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 18 Jan 2024 00:00:00 +0000</pubDate>
       
       <guid>https://data-se.netlify.app/tags/markdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>quiz</title>
+      <link>https://data-se.netlify.app/tags/quiz/</link>
+      <pubDate>Thu, 18 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/tags/quiz/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>eda</title>
+      <link>https://data-se.netlify.app/tags/eda/</link>
+      <pubDate>Fri, 12 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/tags/eda/</guid>
       <description></description>
     </item>
     
@@ -35,24 +125,6 @@
     </item>
     
     <item>
-      <title>ggplot2</title>
-      <link>https://data-se.netlify.app/tags/ggplot2/</link>
-      <pubDate>Sat, 04 Nov 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://data-se.netlify.app/tags/ggplot2/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>visualization</title>
-      <link>https://data-se.netlify.app/tags/visualization/</link>
-      <pubDate>Sat, 04 Nov 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://data-se.netlify.app/tags/visualization/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>plotting</title>
       <link>https://data-se.netlify.app/tags/plotting/</link>
       <pubDate>Fri, 22 Sep 2023 00:00:00 +0000</pubDate>
@@ -71,47 +143,11 @@
     </item>
     
     <item>
-      <title>datawrangling</title>
-      <link>https://data-se.netlify.app/tags/datawrangling/</link>
-      <pubDate>Sat, 15 Jul 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://data-se.netlify.app/tags/datawrangling/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>color</title>
       <link>https://data-se.netlify.app/tags/color/</link>
       <pubDate>Fri, 30 Jun 2023 00:00:00 +0000</pubDate>
       
       <guid>https://data-se.netlify.app/tags/color/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Bayes</title>
-      <link>https://data-se.netlify.app/tags/bayes/</link>
-      <pubDate>Fri, 17 Mar 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://data-se.netlify.app/tags/bayes/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>simulation</title>
-      <link>https://data-se.netlify.app/tags/simulation/</link>
-      <pubDate>Fri, 17 Mar 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://data-se.netlify.app/tags/simulation/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tidyverse</title>
-      <link>https://data-se.netlify.app/tags/tidyverse/</link>
-      <pubDate>Mon, 16 Jan 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://data-se.netlify.app/tags/tidyverse/</guid>
       <description></description>
     </item>
     
@@ -188,15 +224,6 @@
     </item>
     
     <item>
-      <title>regression</title>
-      <link>https://data-se.netlify.app/tags/regression/</link>
-      <pubDate>Mon, 23 May 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://data-se.netlify.app/tags/regression/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>tutorial</title>
       <link>https://data-se.netlify.app/tags/tutorial/</link>
       <pubDate>Wed, 11 May 2022 09:52:34 +0000</pubDate>
@@ -229,24 +256,6 @@
       <pubDate>Fri, 11 Mar 2022 00:00:00 +0000</pubDate>
       
       <guid>https://data-se.netlify.app/tags/programming/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tidyeval</title>
-      <link>https://data-se.netlify.app/tags/tidyeval/</link>
-      <pubDate>Fri, 11 Mar 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://data-se.netlify.app/tags/tidyeval/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>eda</title>
-      <link>https://data-se.netlify.app/tags/eda/</link>
-      <pubDate>Fri, 28 Jan 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://data-se.netlify.app/tags/eda/</guid>
       <description></description>
     </item>
     
