@@ -43,7 +43,7 @@ library(tidyverse)  # data wrangling
 # Are there Dictionaries in R
 
 There are not built-in dictionaries in R such in a way like they are in Python.
-But there's somthing similar. The R-way of working with dictionaries is using *named lists*.
+But there's somthing similar. The R-way of working with dictionaries is using *named vectors* or  *named lists*.
 
 
 
@@ -220,6 +220,32 @@ Synonymously:
 ```{r}
 cities[sort(names(cities))]
 ```
+
+
+# Lists instead of vectors
+
+It is possible to use a list instead of a vector:
+
+```{r}
+cities_list <- list("France" = "Paris", "Germany" = "Berlin", "UK" = "London")
+
+print(cities_list)
+```
+
+For indexing lists, it is usually more effective to use the double bracket operator:
+
+```{r}
+cities_list[[3]]
+```
+
+The simple bracket operator will not give back a simplified element, but instead a list:
+
+
+```{r}
+cities_list[2]
+```
+
+
 
 
 # Further reading

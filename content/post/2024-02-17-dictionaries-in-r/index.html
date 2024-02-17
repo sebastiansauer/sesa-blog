@@ -30,8 +30,9 @@ output:
 <li><a href="#check-whether-the-dictionary-contains-some-key" id="toc-check-whether-the-dictionary-contains-some-key"><span class="toc-section-number">12</span> Check whether the dictionary contains some key</a></li>
 <li><a href="#sort-values-alphabetically" id="toc-sort-values-alphabetically"><span class="toc-section-number">13</span> Sort values alphabetically</a></li>
 <li><a href="#sort-keys-alphabetically" id="toc-sort-keys-alphabetically"><span class="toc-section-number">14</span> Sort keys alphabetically</a></li>
-<li><a href="#further-reading" id="toc-further-reading"><span class="toc-section-number">15</span> Further reading</a></li>
-<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">16</span> Reproducibility</a></li>
+<li><a href="#lists-instead-of-vectors" id="toc-lists-instead-of-vectors"><span class="toc-section-number">15</span> Lists instead of vectors</a></li>
+<li><a href="#further-reading" id="toc-further-reading"><span class="toc-section-number">16</span> Further reading</a></li>
+<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">17</span> Reproducibility</a></li>
 </ul>
 </div>
 
@@ -42,7 +43,7 @@ output:
 <div id="are-there-dictionaries-in-r" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Are there Dictionaries in R</h1>
 <p>There are not built-in dictionaries in R such in a way like they are in Python.
-But there’s somthing similar. The R-way of working with dictionaries is using <em>named lists</em>.</p>
+But there’s somthing similar. The R-way of working with dictionaries is using <em>named vectors</em> or <em>named lists</em>.</p>
 </div>
 <div id="named-vectors-as-dictonaries" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Named vectors as dictonaries</h1>
@@ -163,8 +164,30 @@ sorted_keys
 #&gt;     China    France   Germany        UK 
 #&gt; &quot;Beijing&quot;   &quot;Paris&quot;  &quot;Berlin&quot;  &quot;London&quot;</code></pre>
 </div>
-<div id="further-reading" class="section level1" number="15">
-<h1><span class="header-section-number">15</span> Further reading</h1>
+<div id="lists-instead-of-vectors" class="section level1" number="15">
+<h1><span class="header-section-number">15</span> Lists instead of vectors</h1>
+<p>It is possible to use a list instead of a vector:</p>
+<pre class="r"><code>cities_list &lt;- list(&quot;France&quot; = &quot;Paris&quot;, &quot;Germany&quot; = &quot;Berlin&quot;, &quot;UK&quot; = &quot;London&quot;)
+
+print(cities_list)
+#&gt; $France
+#&gt; [1] &quot;Paris&quot;
+#&gt; 
+#&gt; $Germany
+#&gt; [1] &quot;Berlin&quot;
+#&gt; 
+#&gt; $UK
+#&gt; [1] &quot;London&quot;</code></pre>
+<p>For indexing lists, it is usually more effective to use the double bracket operator:</p>
+<pre class="r"><code>cities_list[[3]]
+#&gt; [1] &quot;London&quot;</code></pre>
+<p>The simple bracket operator will not give back a simplified element, but instead a list:</p>
+<pre class="r"><code>cities_list[2]
+#&gt; $Germany
+#&gt; [1] &quot;Berlin&quot;</code></pre>
+</div>
+<div id="further-reading" class="section level1" number="16">
+<h1><span class="header-section-number">16</span> Further reading</h1>
 <ul>
 <li><a href="https://chryswoods.com/beginning_r/dictionaries.html">chryswoods.com</a></li>
 <li><a href="https://www.rdocumentation.org/packages/dict/versions/0.10.0">R package “dict”</a></li>
@@ -173,8 +196,8 @@ sorted_keys
 <li><a href="https://stackoverflow.com/questions/2858014/working-with-dictionaries-lists-to-get-list-of-keys">Another SO post</a></li>
 </ul>
 </div>
-<div id="reproducibility" class="section level1" number="16">
-<h1><span class="header-section-number">16</span> Reproducibility</h1>
+<div id="reproducibility" class="section level1" number="17">
+<h1><span class="header-section-number">17</span> Reproducibility</h1>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value
 #&gt;  version  R version 4.2.1 (2022-06-23)
