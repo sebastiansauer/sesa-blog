@@ -91,7 +91,7 @@ We consider the the number picked options, *p*, fix.
 
 # Some Assumptions
 
-1. Picking slots (within a colleague) is independent, eg., picking slot 1 is indepent from picking slot 2. In other words, knowing that you have picked slot 1 does not tell my anythin new about the probability that you will pick slot 2.
+1. Picking slots (within a colleague) is independent, eg., picking slot 1 is dependent from picking slot 2. In other words, knowing that you have picked slot 1 does not tell my anythin new about the probability that you will pick slot 2.
 
 2. The colleagues pick slots independently from each other.
 
