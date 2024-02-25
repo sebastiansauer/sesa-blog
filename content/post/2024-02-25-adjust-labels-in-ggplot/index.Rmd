@@ -72,7 +72,7 @@ mariokart %>%
 ```
 
 
-# Adjusted labels
+# Adjusted labels manually
 
 `vjust = 2` does the trick:
 
@@ -97,6 +97,26 @@ mariokart %>%
   annotate("label", x =  mario_quantile$qs, y = 0, label =  mario_quantile$qs) +
   annotate("label", x =  mario_quantile$qs, y = Inf, label =  c("Q1", "Median", "Q3"), vjust = 2) 
 ```
+
+# Adjust labels automatically
+
+
+Using `vjust = "top"` (or "bottom") does the trick in an automatic, comfortable way.
+
+
+```{r}
+mariokart %>% 
+  filter(total_pr < 100) %>%  
+  ggplot(aes(x = total_pr)) +
+  geom_histogram() +
+  geom_vline(xintercept = mario_quantile$qs) +
+  annotate("label", x =  mario_quantile$qs, y = 0, label =  mario_quantile$qs, vjust = "bottom") +
+  annotate("label", x =  mario_quantile$qs, y = Inf, label =  c("Q1", "Median", "Q3"), vjust = "top") 
+```
+
+
+Similarly, one case use `hjust = "left"` for horizontal alignment.
+
 
 
 # Reproducibility

@@ -19,8 +19,9 @@ output:
 <li><a href="#load-packages" id="toc-load-packages"><span class="toc-section-number">1</span> Load packages</a></li>
 <li><a href="#data" id="toc-data"><span class="toc-section-number">2</span> Data</a></li>
 <li><a href="#unadjusted-labels" id="toc-unadjusted-labels"><span class="toc-section-number">3</span> Unadjusted labels</a></li>
-<li><a href="#adjusted-labels" id="toc-adjusted-labels"><span class="toc-section-number">4</span> Adjusted labels</a></li>
-<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">5</span> Reproducibility</a></li>
+<li><a href="#adjusted-labels-manually" id="toc-adjusted-labels-manually"><span class="toc-section-number">4</span> Adjusted labels manually</a></li>
+<li><a href="#adjust-labels-automatically" id="toc-adjust-labels-automatically"><span class="toc-section-number">5</span> Adjust labels automatically</a></li>
+<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">6</span> Reproducibility</a></li>
 </ul>
 </div>
 
@@ -55,8 +56,8 @@ mariokart %&gt;%
   annotate(&quot;label&quot;, x =  mario_quantile$qs, y = Inf, label =  c(&quot;Q1&quot;, &quot;Median&quot;, &quot;Q3&quot;)) </code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="adjusted-labels" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Adjusted labels</h1>
+<div id="adjusted-labels-manually" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Adjusted labels manually</h1>
 <p><code>vjust = 2</code> does the trick:</p>
 <pre class="r"><code>mario_quantile &lt;- 
 mariokart %&gt;% 
@@ -79,8 +80,21 @@ mariokart %&gt;%
   annotate(&quot;label&quot;, x =  mario_quantile$qs, y = Inf, label =  c(&quot;Q1&quot;, &quot;Median&quot;, &quot;Q3&quot;), vjust = 2) </code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="reproducibility" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> Reproducibility</h1>
+<div id="adjust-labels-automatically" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Adjust labels automatically</h1>
+<p>Using <code>vjust = "top"</code> (or “bottom”) does the trick in an automatic, comfortable way.</p>
+<pre class="r"><code>mariokart %&gt;% 
+  filter(total_pr &lt; 100) %&gt;%  
+  ggplot(aes(x = total_pr)) +
+  geom_histogram() +
+  geom_vline(xintercept = mario_quantile$qs) +
+  annotate(&quot;label&quot;, x =  mario_quantile$qs, y = 0, label =  mario_quantile$qs, vjust = &quot;bottom&quot;) +
+  annotate(&quot;label&quot;, x =  mario_quantile$qs, y = Inf, label =  c(&quot;Q1&quot;, &quot;Median&quot;, &quot;Q3&quot;), vjust = &quot;top&quot;) </code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Similarly, one case use <code>hjust = "left"</code> for horizontal alignment.</p>
+</div>
+<div id="reproducibility" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Reproducibility</h1>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value
 #&gt;  version  R version 4.2.1 (2022-06-23)
