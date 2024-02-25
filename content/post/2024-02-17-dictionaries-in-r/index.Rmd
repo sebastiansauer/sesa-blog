@@ -40,7 +40,7 @@ library(tidyverse)  # data wrangling
 ```
 
 
-# Are there Dictionaries in R
+# Are there Dictionaries in R?
 
 There are not built-in dictionaries in R such in a way like they are in Python.
 But there's somthing similar. The R-way of working with dictionaries is using *named vectors* or  *named lists*.

@@ -1,0 +1,111 @@
+---
+title: Adjust labels in ggplot
+author: Sebastian Sauer
+date: '2024-02-25'
+slug: adjust-labels-in-ggplot
+categories:
+  - rstats
+tags:
+  - ggplot2
+output:
+  blogdown::html_page:
+    toc: yes
+    number_sections: yes
+---
+
+
+
+```{r knitr-setup, echo = FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = TRUE,
+  out.width = "100%",
+  fig.align = 'center',
+  fig.width = 6,
+  fig.asp = 0.618,  # 1 / phi
+  fig.show = "hold",
+  size = "tiny"
+)
+```
+
+
+
+# Load packages
+
+```{r load-libs, message = FALSE, warning = FALSE}
+library(tidyverse)  # data wrangling
+```
+
+
+# Data
+
+```{r}
+data("mariokart", package = "openintro")
+```
+
+
+# Unadjusted labels
+
+```{r}
+mario_quantile <- 
+mariokart %>% 
+  filter(total_pr < 100) %>% 
+  summarise(q25 = quantile(total_pr, .25),
+            q50 = quantile(total_pr, .50),
+            q75 = quantile(total_pr, .75))
+
+mario_quantile <- 
+  mariokart %>% 
+  filter(total_pr < 100) %>% 
+  reframe(qs = quantile(total_pr, c(.25, .5, .75)))
+
+mariokart %>% 
+  filter(total_pr < 100) %>%  
+  ggplot(aes(x = total_pr)) +
+  geom_histogram() +
+  geom_vline(xintercept = mario_quantile$qs) +
+  annotate("label", x =  mario_quantile$qs, y = 0, label =  mario_quantile$qs) +
+  annotate("label", x =  mario_quantile$qs, y = Inf, label =  c("Q1", "Median", "Q3")) 
+```
+
+
+# Adjusted labels
+
+`vjust = 2` does the trick:
+
+```{r}
+mario_quantile <- 
+mariokart %>% 
+  filter(total_pr < 100) %>% 
+  summarise(q25 = quantile(total_pr, .25),
+            q50 = quantile(total_pr, .50),
+            q75 = quantile(total_pr, .75))
+
+mario_quantile <- 
+  mariokart %>% 
+  filter(total_pr < 100) %>% 
+  reframe(qs = quantile(total_pr, c(.25, .5, .75)))
+
+mariokart %>% 
+  filter(total_pr < 100) %>%  
+  ggplot(aes(x = total_pr)) +
+  geom_histogram() +
+  geom_vline(xintercept = mario_quantile$qs) +
+  annotate("label", x =  mario_quantile$qs, y = 0, label =  mario_quantile$qs) +
+  annotate("label", x =  mario_quantile$qs, y = Inf, label =  c("Q1", "Median", "Q3"), vjust = 2) 
+```
+
+
+# Reproducibility
+
+```{r reproducibility, echo = FALSE}
+## Reproducibility info
+options(width = 120)
+devtools::session_info()
+
+```
+
+
