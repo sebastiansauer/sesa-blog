@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>right-wing on sesa blog</title>
+    <title>Right-Wing on sesa blog</title>
     <link>https://data-se.netlify.app/tags/right-wing/</link>
-    <description>Recent content in right-wing on sesa blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Right-Wing on sesa blog</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 21 Feb 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/right-wing/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 21 Feb 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://data-se.netlify.app/tags/right-wing/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AfD Mining - basales Textmining zum AfD-Parteiprogramm</title>
       <link>https://data-se.netlify.app/2017/02/21/textmining_afd_01/</link>
       <pubDate>Tue, 21 Feb 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/02/21/textmining_afd_01/</guid>
-      <description>Für diesen Post benötigte R-Pakete:
-library(stringr) # Textverarbeitung library(tidytext) # Textmining library(pdftools) # PDF einlesen library(downloader) # Daten herunterladen # library(knitr) # HTML-Tabellen library(htmlTable) # HTML-Tabellen library(lsa) # Stopwörter library(SnowballC) # Wörter trunkieren library(wordcloud) # Wordcloud anzeigen library(gridExtra) # Kombinierte Plots library(dplyr) # Datenjudo library(ggplot2) # Visualisierung Ein einführendes Tutorial zu Textmining; analysiert wird das Parteiprogramm der Partei &amp;ldquo;Alternative für Deutschland&amp;rdquo; (AfD). Vor dem Hintergrund des gestiegenen Zuspruchs von Rechtspopulisten und der großen Gefahr, die von diesem Gedankengut ausdünstet, erscheint mir eine facettenreiche Analyse des Phänomens &amp;ldquo;Rechtspopulismus&amp;rdquo; nötig.</description>
+      <description>&lt;p&gt;Für diesen Post benötigte R-Pakete:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(stringr)  &lt;span style=&#34;color:#75715e&#34;&gt;# Textverarbeitung&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(tidytext)  &lt;span style=&#34;color:#75715e&#34;&gt;# Textmining&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(pdftools)  &lt;span style=&#34;color:#75715e&#34;&gt;# PDF einlesen&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(downloader)  &lt;span style=&#34;color:#75715e&#34;&gt;# Daten herunterladen&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# library(knitr)  # HTML-Tabellen&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(htmlTable)  &lt;span style=&#34;color:#75715e&#34;&gt;# HTML-Tabellen&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(lsa)  &lt;span style=&#34;color:#75715e&#34;&gt;# Stopwörter &lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(SnowballC)  &lt;span style=&#34;color:#75715e&#34;&gt;# Wörter trunkieren&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(wordcloud)  &lt;span style=&#34;color:#75715e&#34;&gt;# Wordcloud anzeigen&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(gridExtra)  &lt;span style=&#34;color:#75715e&#34;&gt;# Kombinierte Plots&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(dplyr)  &lt;span style=&#34;color:#75715e&#34;&gt;# Datenjudo&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(ggplot2)  &lt;span style=&#34;color:#75715e&#34;&gt;# Visualisierung &lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Ein einführendes Tutorial zu Textmining; analysiert wird das Parteiprogramm der Partei &amp;ldquo;Alternative für Deutschland&amp;rdquo; (AfD). Vor dem Hintergrund des gestiegenen Zuspruchs von Rechtspopulisten und der großen Gefahr, die von diesem Gedankengut ausdünstet, erscheint mir eine facettenreiche Analyse des Phänomens &amp;ldquo;Rechtspopulismus&amp;rdquo; nötig.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

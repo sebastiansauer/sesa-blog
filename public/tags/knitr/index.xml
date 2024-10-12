@@ -1,31 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>knitr on sesa blog</title>
+    <title>Knitr on sesa blog</title>
     <link>https://data-se.netlify.app/tags/knitr/</link>
-    <description>Recent content in knitr on sesa blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Knitr on sesa blog</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 15 Nov 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/knitr/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 15 Nov 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://data-se.netlify.app/tags/knitr/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Yart - Yet Another Markdown Report Template</title>
       <link>https://data-se.netlify.app/2017/11/15/yart/</link>
       <pubDate>Wed, 15 Nov 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/11/15/yart/</guid>
-      <description>It would be useful to have a RMarkdown template for typical (academic) reports such as class assigments and bachelor/master thesises. The LaTeX class &amp;ldquo;report&amp;rdquo; provides a suitable format for that. This package provides a simple wrapper around this class built on the standard pandoc template.
-Thanks to Yart, ie, this package leans on earlier work by Aaron Wolen in his pandoc-letter repository, and extends it for use from R via the rmarkdown package.</description>
+      <description>&lt;p&gt;It would be useful to have a RMarkdown template for typical (academic) reports such as class assigments and bachelor/master thesises. The LaTeX class &amp;ldquo;report&amp;rdquo; provides a suitable format for that. This package provides a simple wrapper around this class built on the standard pandoc template.&lt;/p&gt;&#xA;&lt;h2 id=&#34;thanks-to&#34;&gt;Thanks to&lt;/h2&gt;&#xA;&lt;p&gt;Yart, ie, this package leans on earlier work by &lt;a href=&#34;http://aaronwolen.com/&#34;&gt;Aaron Wolen&lt;/a&gt; in his&#xA;&lt;a href=&#34;https://github.com/aaronwolen/pandoc-letter&#34;&gt;pandoc-letter&lt;/a&gt; repository, and extends it for use from&#xA;R via the &lt;a href=&#34;https://cran.r-project.org/package=rmarkdown&#34;&gt;rmarkdown&lt;/a&gt; package. The structure of this package is heavily inspired by Dirk Eddenbuettel&amp;rsquo;s nice tamplate package &lt;a href=&#34;https://github.com/eddelbuettel/linl&#34;&gt;linl&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Two R plot side by side in .Rmd-Files</title>
       <link>https://data-se.netlify.app/2017/10/12/two-plots-rmd/</link>
       <pubDate>Thu, 12 Oct 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/10/12/two-plots-rmd/</guid>
-      <description>I kept wondering who to plot two R plots side by side (ie., in one &amp;ldquo;row&amp;rdquo;) in a .Rmd chunk. Here&amp;rsquo;s a way, well actually a number of ways, some good, some &amp;hellip; not.
-library(tidyverse) library(gridExtra) library(grid) library(png) library(downloader) library(grDevices) data(mtcars) Plots from ggplot Say, you have two plots from ggplot2, and you would like them to put them next to each other, side by side (not underneath each other):</description>
+      <description>&lt;p&gt;I kept wondering who to plot two R plots side by side (ie., in one &amp;ldquo;row&amp;rdquo;) in a .Rmd chunk. Here&amp;rsquo;s a way, well actually a number of ways, some good, some &amp;hellip; not.&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(tidyverse)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(gridExtra)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(grid)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(png)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(downloader)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(grDevices)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;(mtcars)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;plots-from-ggplot&#34;&gt;Plots from &lt;code&gt;ggplot&lt;/code&gt;&lt;/h1&gt;&#xA;&lt;p&gt;Say, you have two plots from &lt;code&gt;ggplot2&lt;/code&gt;, and you would like them to put them next to each other, side by side (not underneath each other):&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

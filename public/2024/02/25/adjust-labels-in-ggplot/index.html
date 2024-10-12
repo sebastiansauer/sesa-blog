@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.135.0">
+
+
+<title>Adjust labels in ggplot - sesa blog</title>
+<meta property="og:title" content="Adjust labels in ggplot - sesa blog">
+
+
+  <link href='https://data-se.netlify.app/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo-data-se.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="/privacy/">Data privacy</a></li>
+    
+    <li><a href="/tags/">Tags</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+
+<main class="content" role="main">
+
+    <h1 class="article-title">Adjust labels in ggplot</h1>
+
+
+    <span class="article-meta">
+      Sebastian Sauer / 5 mins read <br>
+    </span>
+
+
+
+    
+    <span class="article-date">2024-02-25</span>
+    
+
+    <div class="article-content">
+      
+
+<div id="TOC">
+<ul>
+<li><a href="#load-packages" id="toc-load-packages"><span class="toc-section-number">1</span> Load packages</a></li>
+<li><a href="#data" id="toc-data"><span class="toc-section-number">2</span> Data</a></li>
+<li><a href="#unadjusted-labels" id="toc-unadjusted-labels"><span class="toc-section-number">3</span> Unadjusted labels</a></li>
+<li><a href="#adjusted-labels-manually" id="toc-adjusted-labels-manually"><span class="toc-section-number">4</span> Adjusted labels manually</a></li>
+<li><a href="#adjust-labels-automatically" id="toc-adjust-labels-automatically"><span class="toc-section-number">5</span> Adjust labels automatically</a></li>
+<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">6</span> Reproducibility</a></li>
+</ul>
+</div>
+
+<div id="load-packages" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Load packages</h1>
+<pre class="r"><code>library(tidyverse)  # data wrangling</code></pre>
+</div>
+<div id="data" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Data</h1>
+<pre class="r"><code>data(&quot;mariokart&quot;, package = &quot;openintro&quot;)</code></pre>
+</div>
+<div id="unadjusted-labels" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Unadjusted labels</h1>
+<pre class="r"><code>mario_quantile &lt;- 
+mariokart %&gt;% 
+  filter(total_pr &lt; 100) %&gt;% 
+  summarise(q25 = quantile(total_pr, .25),
+            q50 = quantile(total_pr, .50),
+            q75 = quantile(total_pr, .75))
+
+mario_quantile &lt;- 
+  mariokart %&gt;% 
+  filter(total_pr &lt; 100) %&gt;% 
+  reframe(qs = quantile(total_pr, c(.25, .5, .75)))
+
+mariokart %&gt;% 
+  filter(total_pr &lt; 100) %&gt;%  
+  ggplot(aes(x = total_pr)) +
+  geom_histogram() +
+  geom_vline(xintercept = mario_quantile$qs) +
+  annotate(&quot;label&quot;, x =  mario_quantile$qs, y = 0, label =  mario_quantile$qs) +
+  annotate(&quot;label&quot;, x =  mario_quantile$qs, y = Inf, label =  c(&quot;Q1&quot;, &quot;Median&quot;, &quot;Q3&quot;)) </code></pre>
+<p><img src="https://data-se.netlify.app/2024/02/25/adjust-labels-in-ggplot/index_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="adjusted-labels-manually" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Adjusted labels manually</h1>
+<p><code>vjust = 2</code> does the trick:</p>
+<pre class="r"><code>mario_quantile &lt;- 
+mariokart %&gt;% 
+  filter(total_pr &lt; 100) %&gt;% 
+  summarise(q25 = quantile(total_pr, .25),
+            q50 = quantile(total_pr, .50),
+            q75 = quantile(total_pr, .75))
+
+mario_quantile &lt;- 
+  mariokart %&gt;% 
+  filter(total_pr &lt; 100) %&gt;% 
+  reframe(qs = quantile(total_pr, c(.25, .5, .75)))
+
+mariokart %&gt;% 
+  filter(total_pr &lt; 100) %&gt;%  
+  ggplot(aes(x = total_pr)) +
+  geom_histogram() +
+  geom_vline(xintercept = mario_quantile$qs) +
+  annotate(&quot;label&quot;, x =  mario_quantile$qs, y = 0, label =  mario_quantile$qs) +
+  annotate(&quot;label&quot;, x =  mario_quantile$qs, y = Inf, label =  c(&quot;Q1&quot;, &quot;Median&quot;, &quot;Q3&quot;), vjust = 2) </code></pre>
+<p><img src="https://data-se.netlify.app/2024/02/25/adjust-labels-in-ggplot/index_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="adjust-labels-automatically" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Adjust labels automatically</h1>
+<p>Using <code>vjust = "top"</code> (or “bottom”) does the trick in an automatic, comfortable way.</p>
+<pre class="r"><code>mariokart %&gt;% 
+  filter(total_pr &lt; 100) %&gt;%  
+  ggplot(aes(x = total_pr)) +
+  geom_histogram() +
+  geom_vline(xintercept = mario_quantile$qs) +
+  annotate(&quot;label&quot;, x =  mario_quantile$qs, y = 0, label =  mario_quantile$qs, vjust = &quot;bottom&quot;) +
+  annotate(&quot;label&quot;, x =  mario_quantile$qs, y = Inf, label =  c(&quot;Q1&quot;, &quot;Median&quot;, &quot;Q3&quot;), vjust = &quot;top&quot;) </code></pre>
+<p><img src="https://data-se.netlify.app/2024/02/25/adjust-labels-in-ggplot/index_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Similarly, one case use <code>hjust = "left"</code> for horizontal alignment.</p>
+</div>
+<div id="reproducibility" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Reproducibility</h1>
+<pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
+#&gt;  setting  value
+#&gt;  version  R version 4.2.1 (2022-06-23)
+#&gt;  os       macOS Big Sur ... 10.16
+#&gt;  system   x86_64, darwin17.0
+#&gt;  ui       X11
+#&gt;  language (EN)
+#&gt;  collate  en_US.UTF-8
+#&gt;  ctype    en_US.UTF-8
+#&gt;  tz       Europe/Berlin
+#&gt;  date     2024-02-25
+#&gt;  pandoc   3.1.12.1 @ /usr/local/bin/ (via rmarkdown)
+#&gt; 
+#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
+#&gt;  package     * version date (UTC) lib source
+#&gt;  blogdown      1.18    2023-06-19 [1] CRAN (R 4.2.0)
+#&gt;  bookdown      0.36    2023-10-16 [1] CRAN (R 4.2.0)
+#&gt;  bslib         0.6.1   2023-11-28 [1] CRAN (R 4.2.0)
+#&gt;  cachem        1.0.8   2023-05-01 [1] CRAN (R 4.2.0)
+#&gt;  callr         3.7.3   2022-11-02 [1] CRAN (R 4.2.0)
+#&gt;  cli           3.6.2   2023-12-11 [1] CRAN (R 4.2.0)
+#&gt;  codetools     0.2-19  2023-02-01 [1] CRAN (R 4.2.0)
+#&gt;  colorspace    2.1-0   2023-01-23 [1] CRAN (R 4.2.0)
+#&gt;  crayon        1.5.2   2022-09-29 [1] CRAN (R 4.2.1)
+#&gt;  devtools      2.4.5   2022-10-11 [1] CRAN (R 4.2.1)
+#&gt;  digest        0.6.33  2023-07-07 [1] CRAN (R 4.2.0)
+#&gt;  dplyr       * 1.1.4   2023-11-17 [1] CRAN (R 4.2.0)
+#&gt;  ellipsis      0.3.2   2021-04-29 [1] CRAN (R 4.2.0)
+#&gt;  evaluate      0.23    2023-11-01 [1] CRAN (R 4.2.0)
+#&gt;  fansi         1.0.6   2023-12-08 [1] CRAN (R 4.2.0)
+#&gt;  farver        2.1.1   2022-07-06 [1] CRAN (R 4.2.0)
+#&gt;  fastmap       1.1.1   2023-02-24 [1] CRAN (R 4.2.0)
+#&gt;  forcats     * 1.0.0   2023-01-29 [1] CRAN (R 4.2.0)
+#&gt;  fs            1.6.3   2023-07-20 [1] CRAN (R 4.2.0)
+#&gt;  generics      0.1.3   2022-07-05 [1] CRAN (R 4.2.0)
+#&gt;  ggplot2     * 3.5.0   2024-02-23 [1] CRAN (R 4.2.1)
+#&gt;  glue          1.6.2   2022-02-24 [1] CRAN (R 4.2.0)
+#&gt;  gtable        0.3.4   2023-08-21 [1] CRAN (R 4.2.0)
+#&gt;  highr         0.10    2022-12-22 [1] CRAN (R 4.2.0)
+#&gt;  hms           1.1.3   2023-03-21 [1] CRAN (R 4.2.0)
+#&gt;  htmltools     0.5.7   2023-11-03 [1] CRAN (R 4.2.0)
+#&gt;  htmlwidgets   1.6.2   2023-03-17 [1] CRAN (R 4.2.0)
+#&gt;  httpuv        1.6.11  2023-05-11 [1] CRAN (R 4.2.0)
+#&gt;  jquerylib     0.1.4   2021-04-26 [1] CRAN (R 4.2.0)
+#&gt;  jsonlite      1.8.8   2023-12-04 [1] CRAN (R 4.2.0)
+#&gt;  knitr         1.45    2023-10-30 [1] CRAN (R 4.2.1)
+#&gt;  labeling      0.4.3   2023-08-29 [1] CRAN (R 4.2.0)
+#&gt;  later         1.3.1   2023-05-02 [1] CRAN (R 4.2.0)
+#&gt;  lifecycle     1.0.4   2023-11-07 [1] CRAN (R 4.2.1)
+#&gt;  lubridate   * 1.9.3   2023-09-27 [1] CRAN (R 4.2.0)
+#&gt;  magrittr      2.0.3   2022-03-30 [1] CRAN (R 4.2.0)
+#&gt;  memoise       2.0.1   2021-11-26 [1] CRAN (R 4.2.0)
+#&gt;  mime          0.12    2021-09-28 [1] CRAN (R 4.2.0)
+#&gt;  miniUI        0.1.1.1 2018-05-18 [1] CRAN (R 4.2.0)
+#&gt;  munsell       0.5.0   2018-06-12 [1] CRAN (R 4.2.0)
+#&gt;  pillar        1.9.0   2023-03-22 [1] CRAN (R 4.2.0)
+#&gt;  pkgbuild      1.4.0   2022-11-27 [1] CRAN (R 4.2.0)
+#&gt;  pkgconfig     2.0.3   2019-09-22 [1] CRAN (R 4.2.0)
+#&gt;  pkgload       1.3.2.1 2023-07-08 [1] CRAN (R 4.2.0)
+#&gt;  prettyunits   1.1.1   2020-01-24 [1] CRAN (R 4.2.0)
+#&gt;  processx      3.8.2   2023-06-30 [1] CRAN (R 4.2.0)
+#&gt;  profvis       0.3.8   2023-05-02 [1] CRAN (R 4.2.0)
+#&gt;  promises      1.2.1   2023-08-10 [1] CRAN (R 4.2.0)
+#&gt;  ps            1.7.5   2023-04-18 [1] CRAN (R 4.2.0)
+#&gt;  purrr       * 1.0.2   2023-08-10 [1] CRAN (R 4.2.0)
+#&gt;  R6            2.5.1   2021-08-19 [1] CRAN (R 4.2.0)
+#&gt;  Rcpp          1.0.11  2023-07-06 [1] CRAN (R 4.2.0)
+#&gt;  readr       * 2.1.4   2023-02-10 [1] CRAN (R 4.2.0)
+#&gt;  remotes       2.4.2.1 2023-07-18 [1] CRAN (R 4.2.0)
+#&gt;  rlang         1.1.2   2023-11-04 [1] CRAN (R 4.2.0)
+#&gt;  rmarkdown     2.25    2023-09-18 [1] CRAN (R 4.2.0)
+#&gt;  rstudioapi    0.15.0  2023-07-07 [1] CRAN (R 4.2.0)
+#&gt;  sass          0.4.8   2023-12-06 [1] CRAN (R 4.2.0)
+#&gt;  scales        1.3.0   2023-11-28 [1] CRAN (R 4.2.0)
+#&gt;  sessioninfo   1.2.2   2021-12-06 [1] CRAN (R 4.2.0)
+#&gt;  shiny         1.8.0   2023-11-17 [1] CRAN (R 4.2.1)
+#&gt;  stringi       1.8.3   2023-12-11 [1] CRAN (R 4.2.0)
+#&gt;  stringr     * 1.5.1   2023-11-14 [1] CRAN (R 4.2.1)
+#&gt;  tibble      * 3.2.1   2023-03-20 [1] CRAN (R 4.2.0)
+#&gt;  tidyr       * 1.3.0   2023-01-24 [1] CRAN (R 4.2.0)
+#&gt;  tidyselect    1.2.0   2022-10-10 [1] CRAN (R 4.2.0)
+#&gt;  tidyverse   * 2.0.0   2023-02-22 [1] CRAN (R 4.2.0)
+#&gt;  timechange    0.2.0   2023-01-11 [1] CRAN (R 4.2.0)
+#&gt;  tzdb          0.4.0   2023-05-12 [1] CRAN (R 4.2.0)
+#&gt;  urlchecker    1.0.1   2021-11-30 [1] CRAN (R 4.2.0)
+#&gt;  usethis       2.2.2   2023-07-06 [1] CRAN (R 4.2.0)
+#&gt;  utf8          1.2.4   2023-10-22 [1] CRAN (R 4.2.0)
+#&gt;  vctrs         0.6.5   2023-12-01 [1] CRAN (R 4.2.0)
+#&gt;  withr         3.0.0   2024-01-16 [1] CRAN (R 4.2.1)
+#&gt;  xfun          0.41    2023-11-01 [1] CRAN (R 4.2.0)
+#&gt;  xtable        1.8-4   2019-04-21 [1] CRAN (R 4.2.0)
+#&gt;  yaml          2.3.8   2023-12-11 [1] CRAN (R 4.2.0)
+#&gt; 
+#&gt;  [1] /Users/sebastiansaueruser/Rlibs
+#&gt;  [2] /Library/Frameworks/R.framework/Versions/4.2/Resources/library
+#&gt; 
+#&gt; ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</code></pre>
+</div>
+
+    </div>
+
+
+  </article>
+
+
+
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script>
+  var disqus_config = function () {
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var d = document, s = d.createElement('script');
+    s.src = '//https-data-se-netlify-com.disqus.com/embed.js'; s.async = true;
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+

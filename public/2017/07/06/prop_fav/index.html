@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.101.0" />
+<meta name="generator" content="Hugo 0.135.0">
 
 
 <title>Programming with dplyr: Part 02, writing a function - sesa blog</title>
@@ -83,7 +83,7 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(tidyverse)
 </span></span></code></pre></div><p>Let&rsquo;s take the mtcars dataset, I know it&rsquo;s boring, but instructive, I hope.</p>
 <p>So, here comes the function <code>prop_fav</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>prop_fav <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(df, value, group, g1, g2){
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>prop_fav <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">function</span>(df, value, group, g1, g2){
 </span></span><span style="display:flex;"><span>  value <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">enquo</span>(value)
 </span></span><span style="display:flex;"><span>  group <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">enquo</span>(group)
 </span></span><span style="display:flex;"><span>
@@ -109,7 +109,7 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  fav_prop <span style="color:#f92672">&lt;-</span> fav_sum <span style="color:#f92672">/</span> <span style="color:#a6e22e">nrow</span>(comp_grid)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">return</span>(fav_prop)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span>(fav_prop)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h1 id="tidyeval-steps-explained">tidyeval steps explained</h1>

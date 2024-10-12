@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>fun on sesa blog</title>
+    <title>Fun on sesa blog</title>
     <link>https://data-se.netlify.app/categories/fun/</link>
-    <description>Recent content in fun on sesa blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Fun on sesa blog</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 23 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/categories/fun/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 23 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://data-se.netlify.app/categories/fun/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Data Science Memes</title>
       <link>https://data-se.netlify.app/2021/02/23/data-science-memes/</link>
       <pubDate>Tue, 23 Feb 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2021/02/23/data-science-memes/</guid>
-      <description> 1 What’s in here? 2 Some memes I like 1 What’s in here? This is a fun post. Let’s celebrate some memes about data science, statistics, and the like.
-2 Some memes I like </description>
+      <description>&lt;script src=&#34;https://data-se.netlify.app/2021/02/23/data-science-memes/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;TOC&#34;&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#whats-in-here&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; What’s in here?&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#some-memes-i-like&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Some memes I like&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;whats-in-here&#34; class=&#34;section level1&#34; number=&#34;1&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; What’s in here?&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;This is a fun post. Let’s celebrate some memes about data science, statistics, and the like.&lt;/p&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;some-memes-i-like&#34; class=&#34;section level1&#34; number=&#34;2&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; Some memes I like&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://analyticsindiamag.com/10-memes-data-scientists-absolutely-love/1o40ej/&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://analyticsindiamag.com/10-memes-data-scientists-absolutely-love/attachment/876789/&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://analyticsindiamag.com/10-memes-data-scientists-absolutely-love/jared-from-silicon-valley-a-data-scientist-is-a-data-analyst-working-in-silicon-valley/&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://%20analyticsindiamag.com/10-memes-data-scientists-absolutely-love/attachment/32005410/&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://analyticsindiamag.com/10-memes-data-scientists-absolutely-love/ea8853d740994d7a23b587d20033c262/&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://analyticsindiamag.com/10-memes-data-scientists-absolutely-love/trump_big_data_meme/&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0PjYFhd03S1XZlXpY7ThfY93I6dv9JbQ6zA&amp;amp;usqp=CAU&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://memegenerator.net/img/instances/65995649.jpg&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;http://www.quickmeme.com/img/b0/b0c18ff83ccb7544e18d0b70ac351c68759ce9603e0764422d436815ea2bc7e8.jpg&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://memegenerator.net/img/instances/45079408.jpg&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://images2.memedroid.com/images/UPLOADED11/50b14ace78673.jpeg&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;http://www.acheronanalytics.com/uploads/9/8/6/3/98636884/editor/51764130_1.jpg?1491762379&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2885666%2F55f8b4f1a5fce214ac53dbe3f99e482c%2F1577366623785.JPEG?generation=1577442854562948&amp;amp;alt=media&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;/div&gt;</description>
     </item>
-    
   </channel>
 </rss>

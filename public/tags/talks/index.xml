@@ -1,72 +1,54 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>talks on sesa blog</title>
+    <title>Talks on sesa blog</title>
     <link>https://data-se.netlify.app/tags/talks/</link>
-    <description>Recent content in talks on sesa blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Talks on sesa blog</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 25 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/talks/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 25 Jun 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://data-se.netlify.app/tags/talks/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Talk on the the quantitative method in the sciences</title>
       <link>https://data-se.netlify.app/2021/06/25/talk-on-the-the-quantitative-method-in-the-sciences/</link>
       <pubDate>Fri, 25 Jun 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2021/06/25/talk-on-the-the-quantitative-method-in-the-sciences/</guid>
-      <description>The slides of my talk on the use of the quantitative methods in the (neuro) sciences can be downloaded here (PDF file).
-Licenced under CC-By-Sa.</description>
+      <description>&lt;script src=&#34;https://data-se.netlify.app/2021/06/25/talk-on-the-the-quantitative-method-in-the-sciences/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;p&gt;The slides of my talk on the use of the quantitative methods in the (neuro) sciences can be &lt;a href=&#34;https://data-se.netlify.app/slides/Lecture-quantitative-method/Lecture-quantitative-method.pdf&#34;&gt;downloaded here&lt;/a&gt; (PDF file).&lt;/p&gt;&#xD;&#xA;&lt;p&gt;Licenced under CC-By-Sa.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Slides (in German) for my talk on &#34;Datenkompetenz für alle&#34; at the R-User-Group Nürnberg July 2019</title>
       <link>https://data-se.netlify.app/2019/07/17/slides-in-german-for-my-talk-on-datenkompetenz-f%C3%BCr-alle-at-the-r-user-group-n%C3%BCrnberg-july-2019/</link>
       <pubDate>Wed, 17 Jul 2019 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2019/07/17/slides-in-german-for-my-talk-on-datenkompetenz-f%C3%BCr-alle-at-the-r-user-group-n%C3%BCrnberg-july-2019/</guid>
-      <description>The slides (pdf) of my talk “Datenkompetenz für alle – Ein Werkstattbericht zum FOM-Statistik-Curriculum” can be found here.</description>
+      <description>&lt;p&gt;The slides (pdf) of my talk “Datenkompetenz für alle – Ein Werkstattbericht zum FOM-Statistik-Curriculum” can be found &lt;a href=&#34;https://data-se.netlify.com/slides/R-User-Nbg-2019-07/DataLiteracy-R-User-Nbg-2019-07.pdf&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Slides for the „hands-on data exploration workshop&#34;</title>
       <link>https://data-se.netlify.app/2018/11/12/slides-for-the-hands-on-data-exploration-workshop/</link>
       <pubDate>Mon, 12 Nov 2018 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2018/11/12/slides-for-the-hands-on-data-exploration-workshop/</guid>
-      <description>Find the slides for my workshop “hands-on data exploration using R” here: http://data-se.netlify.com/slides/hands-on-data-exploration/handson-data-workshop_2018-11-21.html.
-Note that the slides need access to the internet, in order to be rendered correctly.
-: Get PDF of slides here
-: Get Rmd source code of slides here
-The workshop is delivered at the Data Natives Conference 2018 Berlin.</description>
+      <description>&lt;link href=&#34;https://data-se.netlify.app/rmarkdown-libs/font-awesome/css/fontawesome-all.min.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;p&gt;Find the slides for my workshop “hands-on data exploration using R” here: &lt;a href=&#34;http://data-se.netlify.com/slides/hands-on-data-exploration/handson-data-workshop_2018-11-21.html&#34; class=&#34;uri&#34;&gt;http://data-se.netlify.com/slides/hands-on-data-exploration/handson-data-workshop_2018-11-21.html&lt;/a&gt;.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;Note that the slides need access to the internet, in order to be rendered correctly.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;i class=&#34;fas  fa-file-pdf &#34;&gt;&lt;/i&gt;: Get PDF of slides &lt;a href=&#34;http://data-se.netlify.com/slides/hands-on-data-exploration/hands-on-data-exploration-using-R.pdf&#34;&gt;here&lt;/a&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;i class=&#34;fab  fa-r-project &#34;&gt;&lt;/i&gt;: Get Rmd source code of slides &lt;a href=&#34;http://data-se.netlify.com/slides/hands-on-data-exploration/handson-data-workshop_2018-11-21.Rmd&#34;&gt;here&lt;/a&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;The workshop is delivered at the &lt;a href=&#34;https://datanatives.io/&#34;&gt;Data Natives Conference 2018 Berlin&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Reproducible academic writing with RMarkdown - Talk at DGPs 2018</title>
       <link>https://data-se.netlify.app/2018/09/03/reproducible-academic-writing-with-rmarkdown-talk-at-dgps-2018/</link>
       <pubDate>Mon, 03 Sep 2018 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2018/09/03/reproducible-academic-writing-with-rmarkdown-talk-at-dgps-2018/</guid>
-      <description>Talk at DGPs 2018.
-Get slides here: http://data-se.netlify.com/slides/rmd-writing/rmd-writing_dgps2018.html.</description>
+      <description>&lt;p&gt;Talk at DGPs 2018.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;Get slides here: &lt;a href=&#34;http://data-se.netlify.com/slides/rmd-writing/rmd-writing_dgps2018.html&#34; class=&#34;uri&#34;&gt;http://data-se.netlify.com/slides/rmd-writing/rmd-writing_dgps2018.html&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Talk - Predictors of AfD party success in the 2017 elections. A Bayesian modeling  approach</title>
       <link>https://data-se.netlify.app/2018/09/02/predictors-of-afd-party-success-in-the-2017-elections-a-bayesian-modeling-approach/</link>
       <pubDate>Sun, 02 Sep 2018 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2018/09/02/predictors-of-afd-party-success-in-the-2017-elections-a-bayesian-modeling-approach/</guid>
-      <description>Talk at DGPs 2018.
-Get slides here http://data-se.netlify.com/slides/afd_dgps2018/afd_dgps2018.html</description>
+      <description>&lt;p&gt;Talk at DGPs 2018.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;Get slides here &lt;a href=&#34;http://data-se.netlify.com/slides/afd_dgps2018/afd_dgps2018.html&#34; class=&#34;uri&#34;&gt;http://data-se.netlify.com/slides/afd_dgps2018/afd_dgps2018.html&lt;/a&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Einführung in die Datenanalyse mit R-Paket &#39;dplyr&#39; - R User Group Nürnberg</title>
       <link>https://data-se.netlify.app/2017/04/27/datenanalyse_mit_dplyr/</link>
       <pubDate>Thu, 27 Apr 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/04/27/datenanalyse_mit_dplyr/</guid>
-      <description>Datenjudo mit dplyr Einleitung Innerhalb der R-Landschaft hat sich das Paket dplyr binnen kurzer Zeit zu einem der verbreitesten Pakete entwickelt; es stellt ein innovatives Konzept der Datenanalyse zur Verfügung. dplyr zeichnet sich durch zwei Ideen aus. Die erste Idee ist, dass nur Tabellen (&amp;ldquo;dataframes&amp;rdquo; oder &amp;ldquo;tibbles&amp;rdquo;) verarbeitet werden, keine anderen Datenstrukturen. Diese Tabellen werden von Funktion zu Funktion durchgereicht. Der Fokus auf Tabellen vereinfacht die Analyse, da Spalten nicht einzeln oder mittels Schleifen werden müssen.</description>
+      <description>&lt;h1 id=&#34;datenjudo-mit-dplyr&#34;&gt;Datenjudo mit &lt;code&gt;dplyr&lt;/code&gt;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;einleitung&#34;&gt;Einleitung&lt;/h2&gt;&#xA;&lt;p&gt;Innerhalb der R-Landschaft hat sich das Paket &lt;a href=&#34;https://cran.r-project.org/web/packages/dplyr/index.html&#34;&gt;dplyr&lt;/a&gt; binnen kurzer Zeit zu einem der verbreitesten&#xA;Pakete entwickelt; es stellt ein innovatives Konzept der Datenanalyse&#xA;zur Verfügung. dplyr zeichnet sich durch zwei Ideen aus. Die erste Idee ist, dass&#xA;nur Tabellen (&amp;ldquo;dataframes&amp;rdquo; oder &amp;ldquo;tibbles&amp;rdquo;) verarbeitet werden, keine anderen Datenstrukturen. Diese Tabellen werden&#xA;von Funktion zu Funktion durchgereicht. Der Fokus auf Tabellen vereinfacht die&#xA;Analyse, da Spalten nicht einzeln oder mittels Schleifen werden müssen. Die zweite Idee ist, typische Tätigkeiten der Datenanalyse&#xA;anhand einer Taxonomie zu &amp;ldquo;grammatikalisieren&amp;rdquo;. Es lassen sich einige Bausteine identifizieren, mit der die typischen Aufgaben der Datenanalyse durchgeführt werden können. Der Workshop stellt beide Ideen von dplyr vor; dabei wird zuerst die Logik von dplyr erläutert ohne Rückgriff auf die R-Syntax. Danach wird die Funktionsweise von &lt;code&gt;dpyr&lt;/code&gt; praktisch eingeübt. Der Workshop dauert ca. 90-120 Minuten. Grundkenntnisse in R werden vorausgesetzt.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

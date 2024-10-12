@@ -4,233 +4,184 @@
     <title>Categories on sesa blog</title>
     <link>https://data-se.netlify.app/categories/</link>
     <description>Recent content in Categories on sesa blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 04 Feb 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 25 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://data-se.netlify.app/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>rstats</title>
+      <title>Rstats</title>
       <link>https://data-se.netlify.app/categories/rstats/</link>
-      <pubDate>Sun, 04 Feb 2024 00:00:00 +0000</pubDate>
-      
+      <pubDate>Sun, 25 Feb 2024 00:00:00 +0000</pubDate>
       <guid>https://data-se.netlify.app/categories/rstats/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>dataviz</title>
+      <title>Dataviz</title>
       <link>https://data-se.netlify.app/categories/dataviz/</link>
       <pubDate>Mon, 26 Sep 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/categories/dataviz/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>plotting</title>
+      <title>Plotting</title>
       <link>https://data-se.netlify.app/categories/plotting/</link>
       <pubDate>Mon, 26 Sep 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/categories/plotting/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>data</title>
+      <title>Data</title>
       <link>https://data-se.netlify.app/categories/data/</link>
       <pubDate>Mon, 12 Sep 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/categories/data/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>statistics</title>
+      <title>Statistics</title>
       <link>https://data-se.netlify.app/categories/statistics/</link>
       <pubDate>Mon, 23 May 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/categories/statistics/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>simulation</title>
+      <title>Simulation</title>
       <link>https://data-se.netlify.app/categories/simulation/</link>
       <pubDate>Mon, 28 Mar 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/categories/simulation/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>tutorial</title>
+      <title>Tutorial</title>
       <link>https://data-se.netlify.app/categories/tutorial/</link>
       <pubDate>Mon, 28 Mar 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/categories/tutorial/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>reaching</title>
+      <title>Reaching</title>
       <link>https://data-se.netlify.app/categories/reaching/</link>
       <pubDate>Wed, 23 Mar 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/categories/reaching/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>erbie</title>
+      <title>Erbie</title>
       <link>https://data-se.netlify.app/categories/erbie/</link>
       <pubDate>Mon, 31 Jan 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/categories/erbie/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>reprex</title>
+      <title>Reprex</title>
       <link>https://data-se.netlify.app/categories/reprex/</link>
       <pubDate>Mon, 31 Jan 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/categories/reprex/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>diverse</title>
+      <title>Diverse</title>
       <link>https://data-se.netlify.app/categories/diverse/</link>
       <pubDate>Fri, 25 Jun 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/categories/diverse/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>musing</title>
+      <title>Musing</title>
       <link>https://data-se.netlify.app/categories/musing/</link>
       <pubDate>Thu, 24 Jun 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/categories/musing/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>fun</title>
+      <title>Fun</title>
       <link>https://data-se.netlify.app/categories/fun/</link>
       <pubDate>Tue, 23 Feb 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/categories/fun/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>teaching</title>
+      <title>Teaching</title>
       <link>https://data-se.netlify.app/categories/teaching/</link>
       <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/categories/teaching/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>causal</title>
+      <title>Causal</title>
       <link>https://data-se.netlify.app/categories/causal/</link>
       <pubDate>Tue, 19 May 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/categories/causal/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>DAG</title>
       <link>https://data-se.netlify.app/categories/dag/</link>
       <pubDate>Tue, 19 May 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/categories/dag/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>research</title>
+      <title>Research</title>
       <link>https://data-se.netlify.app/categories/research/</link>
       <pubDate>Fri, 15 May 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/categories/research/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>science</title>
+      <title>Science</title>
       <link>https://data-se.netlify.app/categories/science/</link>
       <pubDate>Mon, 09 Sep 2019 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/categories/science/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Talks</title>
       <link>https://data-se.netlify.app/categories/talks/</link>
       <pubDate>Wed, 17 Jul 2019 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/categories/talks/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>publications</title>
+      <title>Publications</title>
       <link>https://data-se.netlify.app/categories/publications/</link>
       <pubDate>Thu, 24 Jan 2019 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/categories/publications/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Slides</title>
       <link>https://data-se.netlify.app/categories/slides/</link>
       <pubDate>Fri, 04 Jan 2019 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/categories/slides/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>rmarkdown</title>
+      <title>Rmarkdown</title>
       <link>https://data-se.netlify.app/categories/rmarkdown/</link>
       <pubDate>Sun, 01 Jul 2018 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/categories/rmarkdown/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>latex</title>
+      <title>Latex</title>
       <link>https://data-se.netlify.app/categories/latex/</link>
       <pubDate>Tue, 26 Jun 2018 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/categories/latex/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>rsta</title>
+      <title>Rsta</title>
       <link>https://data-se.netlify.app/categories/rsta/</link>
       <pubDate>Fri, 22 Jun 2018 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/categories/rsta/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>meta</title>
+      <title>Meta</title>
       <link>https://data-se.netlify.app/categories/meta/</link>
       <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/categories/meta/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

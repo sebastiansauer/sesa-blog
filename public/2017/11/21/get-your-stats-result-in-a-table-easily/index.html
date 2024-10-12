@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4321&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.135.0">
+
+
+<title>Get your stats result in a table easily - sesa blog</title>
+<meta property="og:title" content="Get your stats result in a table easily - sesa blog">
+
+
+  <link href='http://localhost:4321/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo-data-se.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="/privacy/">Data privacy</a></li>
+    
+    <li><a href="/tags/">Tags</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+
+<main class="content" role="main">
+
+    <h1 class="article-title">Get your stats result in a table easily</h1>
+
+
+    <span class="article-meta">
+      Sebastian Sauer / 3 mins read <br>
+    </span>
+
+
+
+    
+    <span class="article-date">2017-11-21</span>
+    
+
+    <div class="article-content">
+      
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>Having computed some staticis, one would like to display them. Either in a figure, on in a table, that’s the two typical ways.</p>
+<p>Let’s explore some helper functions to get your stats to a table easily.</p>
+<p>A nice overview on packages can be found <a href="https://stackoverflow.com/questions/5465314/tools-for-making-latex-tables-in-r">here</a>.</p>
+<p>Let’s have a quick glance at these steps. We will use the dataset <code>flights</code> of the package <code>nycflights13</code>.</p>
+<pre class="r"><code>data(flights, package = &quot;nycflights13&quot;)</code></pre>
+<p>This post will be tidyverse-driven:</p>
+<pre class="r"><code>library(tidyverse)
+library(skimr)</code></pre>
+<p>Let’s shorten the dataset:</p>
+<pre class="r"><code>flights %&gt;% 
+  select(air_time, distance, arr_delay) %&gt;% 
+  sample_n(1000) -&gt; flights_short</code></pre>
+<p>Let’s compute a summary:</p>
+<pre class="r"><code>mosaic::favstats(~arr_delay, data = flights_short)</code></pre>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-5">
+<col><col><col><col><col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">min</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Q1</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">median</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Q3</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">max</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">mean</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">sd</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">n</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">missing</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">-65</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">-16</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">-3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">14</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">377</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">7.29</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">41.6</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">976</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">24</td></tr>
+</table>
+
+<div id="descriptive-statistics" class="section level1">
+<h1>Descriptive statistics</h1>
+<div id="apatables-ad-apastyle" class="section level2">
+<h2><code>ApaTables</code> ad <code>apaStyle</code></h2>
+<p>A number of suitables packages exist, for example, checkout <code>apaTables</code>, <code>apaStyle</code>, or <code>xtable</code>.</p>
+<p>See:</p>
+<pre class="r"><code>apaStyle::apa.descriptives(data = flights[c(&quot;arr_delay&quot;, &quot;distance&quot;)],
+                           variables = c(&quot;arr_delay&quot;, &quot;distance&quot;))</code></pre>
+<p>With the result: “Word document succesfully generated in: /Users/sebastiansauer/Documents/RRRing/data_se”</p>
+</div>
+<div id="kable" class="section level2">
+<h2><code>kable</code></h2>
+<pre class="r"><code>library(knitr)</code></pre>
+<pre class="r"><code>kable
+#&gt; function (x, format, digits = getOption(&quot;digits&quot;), row.names = NA, 
+#&gt;     col.names = NA, align, caption = NULL, label = NULL, format.args = list(), 
+#&gt;     escape = TRUE, ...) 
+#&gt; {
+#&gt;     format = kable_format(format)
+#&gt;     if (!missing(align) &amp;&amp; length(align) == 1L &amp;&amp; !grepl(&quot;[^lcr]&quot;, 
+#&gt;         align)) 
+#&gt;         align = strsplit(align, &quot;&quot;)[[1]]
+#&gt;     if (inherits(x, &quot;list&quot;)) {
+#&gt;         format = kable_format_latex(format)
+#&gt;         res = lapply(x, kable, format = format, digits = digits, 
+#&gt;             row.names = row.names, col.names = col.names, align = align, 
+#&gt;             caption = NA, format.args = format.args, escape = escape, 
+#&gt;             ...)
+#&gt;         return(kables(res, format, caption, label))
+#&gt;     }
+#&gt;     caption = kable_caption(label, caption, format)
+#&gt;     if (!is.matrix(x)) 
+#&gt;         x = as.data.frame(x)
+#&gt;     if (identical(col.names, NA)) 
+#&gt;         col.names = colnames(x)
+#&gt;     m = ncol(x)
+#&gt;     isn = if (is.matrix(x)) 
+#&gt;         rep(is.numeric(x), m)
+#&gt;     else sapply(x, is.numeric)
+#&gt;     if (missing(align) || (format == &quot;latex&quot; &amp;&amp; is.null(align))) 
+#&gt;         align = ifelse(isn, &quot;r&quot;, &quot;l&quot;)
+#&gt;     digits = rep(digits, length.out = m)
+#&gt;     for (j in seq_len(m)) {
+#&gt;         if (is_numeric(x[, j])) 
+#&gt;             x[, j] = round(x[, j], digits[j])
+#&gt;     }
+#&gt;     if (any(isn)) {
+#&gt;         if (is.matrix(x)) {
+#&gt;             if (is.table(x) &amp;&amp; length(dim(x)) == 2) 
+#&gt;                 class(x) = &quot;matrix&quot;
+#&gt;             x = format_matrix(x, format.args)
+#&gt;         }
+#&gt;         else x[, isn] = format_args(x[, isn], format.args)
+#&gt;     }
+#&gt;     if (is.na(row.names)) 
+#&gt;         row.names = has_rownames(x)
+#&gt;     if (!is.null(align)) 
+#&gt;         align = rep(align, length.out = m)
+#&gt;     if (row.names) {
+#&gt;         x = cbind(` ` = rownames(x), x)
+#&gt;         if (!is.null(col.names)) 
+#&gt;             col.names = c(&quot; &quot;, col.names)
+#&gt;         if (!is.null(align)) 
+#&gt;             align = c(&quot;l&quot;, align)
+#&gt;     }
+#&gt;     n = nrow(x)
+#&gt;     x = replace_na(to_character(x), is.na(x))
+#&gt;     if (!is.matrix(x)) 
+#&gt;         x = matrix(x, nrow = n)
+#&gt;     x = trimws(x)
+#&gt;     colnames(x) = col.names
+#&gt;     if (format != &quot;latex&quot; &amp;&amp; length(align) &amp;&amp; !all(align %in% 
+#&gt;         c(&quot;l&quot;, &quot;r&quot;, &quot;c&quot;))) 
+#&gt;         stop(&quot;&#39;align&#39; must be a character vector of possible values &#39;l&#39;, &#39;r&#39;, and &#39;c&#39;&quot;)
+#&gt;     attr(x, &quot;align&quot;) = align
+#&gt;     res = do.call(paste(&quot;kable&quot;, format, sep = &quot;_&quot;), list(x = x, 
+#&gt;         caption = caption, escape = escape, ...))
+#&gt;     structure(res, format = format, class = &quot;knitr_kable&quot;)
+#&gt; }
+#&gt; &lt;bytecode: 0x7f9ee6b04d20&gt;
+#&gt; &lt;environment: namespace:knitr&gt;</code></pre>
+</div>
+<div id="xtable" class="section level2">
+<h2><code>xtable</code></h2>
+<p>Remember to use the chunk option <code>results = "asis"</code>.</p>
+<pre class="r"><code>library(xtable)</code></pre>
+<pre class="r"><code>options(xtable.comment = FALSE)  # prevent verbose comments
+flights_short %&gt;% 
+  head %&gt;% 
+  xtable %&gt;% 
+  print(type = &quot;html&quot;)</code></pre>
+<table border="1">
+<tr>
+<th>
+</th>
+<th>
+air_time
+</th>
+<th>
+distance
+</th>
+<th>
+arr_delay
+</th>
+</tr>
+<tr>
+<td align="right">
+1
+</td>
+<td align="right">
+295.00
+</td>
+<td align="right">
+2227.00
+</td>
+<td align="right">
+-13.00
+</td>
+</tr>
+<tr>
+<td align="right">
+2
+</td>
+<td align="right">
+184.00
+</td>
+<td align="right">
+1389.00
+</td>
+<td align="right">
+-37.00
+</td>
+</tr>
+<tr>
+<td align="right">
+3
+</td>
+<td align="right">
+315.00
+</td>
+<td align="right">
+2248.00
+</td>
+<td align="right">
+64.00
+</td>
+</tr>
+<tr>
+<td align="right">
+4
+</td>
+<td align="right">
+128.00
+</td>
+<td align="right">
+725.00
+</td>
+<td align="right">
+31.00
+</td>
+</tr>
+<tr>
+<td align="right">
+5
+</td>
+<td align="right">
+301.00
+</td>
+<td align="right">
+2475.00
+</td>
+<td align="right">
+-65.00
+</td>
+</tr>
+<tr>
+<td align="right">
+6
+</td>
+<td align="right">
+377.00
+</td>
+<td align="right">
+2586.00
+</td>
+<td align="right">
+0.00
+</td>
+</tr>
+</table>
+</div>
+<div id="stargazer" class="section level2">
+<h2><code>stargazer</code></h2>
+<p>Remember to use the chunk option <code>results = "asis"</code>.</p>
+<pre class="r"><code>library(stargazer)</code></pre>
+<pre class="r"><code>flights_short %&gt;% 
+  skim %&gt;% 
+  stargazer(type = &quot;html&quot;)</code></pre>
+<table style="text-align:center">
+<tr>
+<td colspan="8" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Statistic
+</td>
+<td>
+N
+</td>
+<td>
+Mean
+</td>
+<td>
+St. Dev.
+</td>
+<td>
+Min
+</td>
+<td>
+Pctl(25)
+</td>
+<td>
+Pctl(75)
+</td>
+<td>
+Max
+</td>
+</tr>
+<tr>
+<td colspan="8" style="border-bottom: 1px solid black">
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="linear-models" class="section level1">
+<h1>Linear models</h1>
+<pre class="r"><code>lm1 &lt;- lm(arr_delay ~ origin + distance, data = flights)</code></pre>
+<pre class="r"><code>stargazer(lm1, type = &quot;html&quot;)</code></pre>
+<table style="text-align:center">
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+arr_delay
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+originJFK
+</td>
+<td>
+-2.704<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.189)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+originLGA
+</td>
+<td>
+-4.456<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.194)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+distance
+</td>
+<td>
+-0.004<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.0001)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+13.414<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.175)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+327,346
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.006
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.005
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+44.511 (df = 327342)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+603.733<sup>***</sup> (df = 3; 327342)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+</div>
+
+    </div>
+
+
+  </article>
+
+
+
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script>
+  var disqus_config = function () {
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var d = document, s = d.createElement('script');
+    s.src = '//https-data-se-netlify-com.disqus.com/embed.js'; s.async = true;
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+

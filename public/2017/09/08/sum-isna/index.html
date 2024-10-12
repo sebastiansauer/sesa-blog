@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.101.0" />
+<meta name="generator" content="Hugo 0.135.0">
 
 
 <title>Different ways to count NAs over multiple columns - sesa blog</title>
@@ -78,7 +78,7 @@
       <p>There are a number of ways in R to count NAs (missing values). A common use case is to count the NAs over multiple columns, ie., a whole dataframe. That&rsquo;s basically the question &ldquo;how many NAs are there in each column of my dataframe&rdquo;? This post demonstrates some ways to answer this question.</p>
 <h1 id="way-1-using-sapply">Way 1: using <code>sapply</code></h1>
 <p>A typical way (or classical way) in R to achieve some iteration is using <code>apply</code> and friends. <code>sapply</code> renders through a list and simplifies (hence the &ldquo;s&rdquo; in sapply) if possible.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">sapply</span>(mtcars, <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">sum</span>(<span style="color:#a6e22e">is.na</span>(x)))
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">sapply</span>(mtcars, <span style="color:#66d9ef">function</span>(x) <span style="color:#a6e22e">sum</span>(<span style="color:#a6e22e">is.na</span>(x)))
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt;  mpg  cyl disp   hp drat   wt qsec   vs   am gear carb</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt;    0    0    0    0    0    0    0    0    0    0    0</span>
 </span></span></code></pre></div><p>Pros: Straightforward. No dependencies on other packages. Tried and true.<br>
@@ -136,7 +136,7 @@ Cons: Learning curve. Depends on package <code>tidyverse</code>.</p>
 Cons: Depends on package <code>tidyverse</code>.</p>
 <h1 id="way-4-counting-nas-rowwise-using-apply">Way 4: Counting NAs rowwise using <code>apply</code></h1>
 <p>Sometimes it is useful to count the NAs rowwise (case by case). <code>apply</code> allows for applying a function to each <em>row</em>  of a dataframe (that the <code>MARGIN</code> parameter).</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">apply</span>(mtcars, MARGIN <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">sum</span>(<span style="color:#a6e22e">is.na</span>(x)))
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">apply</span>(mtcars, MARGIN <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">function</span>(x) <span style="color:#a6e22e">sum</span>(<span style="color:#a6e22e">is.na</span>(x)))
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt;           Mazda RX4       Mazda RX4 Wag          Datsun 710</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt;                   0                   0                   0</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt;      Hornet 4 Drive   Hornet Sportabout             Valiant</span>

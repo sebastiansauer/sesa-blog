@@ -4,19 +4,16 @@
     <title>Github on sesa blog</title>
     <link>https://data-se.netlify.app/tags/github/</link>
     <description>Recent content in Github on sesa blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 12 Oct 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/github/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 12 Oct 2016 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://data-se.netlify.app/tags/github/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to read Github files into R easily</title>
       <link>https://data-se.netlify.app/2016/10/12/download-from-github/</link>
       <pubDate>Wed, 12 Oct 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2016/10/12/download-from-github/</guid>
-      <description>Downloading a folder (repository) from Github as a whole The most direct way to get data from Github to your computer/ into R, is to download the repository. That is, click the big green button:
-The big, green button saying &amp;ldquo;Clone or download&amp;rdquo;, click it and choose &amp;ldquo;download zip&amp;rdquo;.
-Of course, for those using Git and Github, it would be appropriate to clone the repository. And, although appearing more advanced, cloning has the definitive advantage that you&amp;rsquo;ll enjoy the whole of the Github features.</description>
+      <description>&lt;h2 id=&#34;downloading-a-folder-repository-from-github-as-a-whole&#34;&gt;Downloading a folder (repository) from Github as a whole&lt;/h2&gt;&#xA;&lt;p&gt;The most direct way to get data from Github to your computer/ into R, is to download the repository. That is, click the big green button:&lt;/p&gt;&#xA;&lt;img src=&#34;https://sebastiansauer.github.io/images/2016-10-12/repo_example.png&#34; width=&#34;700&#34;&gt;&#xD;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;The big, green button saying &amp;ldquo;Clone or download&amp;rdquo;, click it and choose &amp;ldquo;download zip&amp;rdquo;.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://data-se.netlify.app/images/2016-10-12/download_repo.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;Of course, for those using &lt;a href=&#34;https://www.google.de/webhp?sourceid=chrome-instant&amp;amp;rlz=1C5CHFA_enDE701DE701&amp;amp;ion=1&amp;amp;espv=2&amp;amp;ie=UTF-8#q=git&#34;&gt;Git&lt;/a&gt; and &lt;a href=&#34;https://github.com/&#34;&gt;Github&lt;/a&gt;, it would be appropriate to clone the repository. And, although appearing more advanced, cloning has the definitive advantage that you&amp;rsquo;ll enjoy the whole of the Github features. In fact, the whole purpose of Github is to provide a history of the file(s), so the purpose is not really served if one just downloads the most recent snapshot. But anyhow, that depends on you own will.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

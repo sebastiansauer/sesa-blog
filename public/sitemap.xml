@@ -2,23 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://data-se.netlify.app/categories/</loc>
-    <lastmod>2024-02-04T00:00:00+00:00</lastmod>
+    <loc>https://data-se.netlify.app/2024/10/11/ben%C3%B6tigte-r-pakete-f%C3%BCr-ein-projekt-pr%C3%BCfen/</loc>
+    <lastmod>2024-10-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://data-se.netlify.app/tags/ggplot2/</loc>
-    <lastmod>2024-02-04T00:00:00+00:00</lastmod>
+    <loc>https://data-se.netlify.app/tags/dependencies/</loc>
+    <lastmod>2024-10-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://data-se.netlify.app/post/</loc>
-    <lastmod>2024-02-04T00:00:00+00:00</lastmod>
+    <lastmod>2024-10-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://data-se.netlify.app/categories/rstats/</loc>
-    <lastmod>2024-02-04T00:00:00+00:00</lastmod>
+    <loc>https://data-se.netlify.app/tags/r/</loc>
+    <lastmod>2024-10-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://data-se.netlify.app/</loc>
-    <lastmod>2024-02-04T00:00:00+00:00</lastmod>
+    <lastmod>2024-10-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://data-se.netlify.app/tags/</loc>
-    <lastmod>2024-02-04T00:00:00+00:00</lastmod>
+    <lastmod>2024-10-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/2024/02/25/adjust-labels-in-ggplot/</loc>
+    <lastmod>2024-02-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/categories/</loc>
+    <lastmod>2024-02-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/tags/ggplot2/</loc>
+    <lastmod>2024-02-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/categories/rstats/</loc>
+    <lastmod>2024-02-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/tags/datawrangling/</loc>
+    <lastmod>2024-02-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/2024/02/17/dictionaries-in-r/</loc>
+    <lastmod>2024-02-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://data-se.netlify.app/tags/tidyeval/</loc>
     <lastmod>2024-02-04T00:00:00+00:00</lastmod>
@@ -28,9 +46,6 @@
   </url><url>
     <loc>https://data-se.netlify.app/tags/visualization/</loc>
     <lastmod>2024-02-04T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://data-se.netlify.app/tags/datawrangling/</loc>
-    <lastmod>2024-01-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://data-se.netlify.app/2024/01/30/prevent-dropping-from-non-occuring-levels-using-dplyr/</loc>
     <lastmod>2024-01-30T00:00:00+00:00</lastmod>
@@ -992,9 +1007,6 @@
     <loc>https://data-se.netlify.app/2018/09/03/reproducible-academic-writing-with-rmarkdown-talk-at-dgps-2018/</loc>
     <lastmod>2018-09-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://data-se.netlify.app/tags/r/</loc>
-    <lastmod>2018-09-02T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://data-se.netlify.app/2018/09/02/predictors-of-afd-party-success-in-the-2017-elections-a-bayesian-modeling-approach/</loc>
     <lastmod>2018-09-02T00:00:00+00:00</lastmod>
   </url><url>
@@ -1606,7 +1618,10 @@
   </url><url>
     <loc>https://data-se.netlify.app/1/01/01/</loc>
   </url><url>
+    <loc>https://data-se.netlify.app/1/01/01/</loc>
+  </url><url>
+    <loc>https://data-se.netlify.app/1/01/01/</loc>
+  </url><url>
     <loc>https://data-se.netlify.app/privacy/</loc>
-    <priority>0</priority>
   </url>
 </urlset>

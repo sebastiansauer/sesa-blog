@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.101.0" />
+<meta name="generator" content="Hugo 0.135.0">
 
 
 <title>Two R plot side by side in .Rmd-Files - sesa blog</title>
@@ -101,7 +101,7 @@
 </span></span></code></pre></div><img src="https://sebastiansauer.github.io/images/2017-10-12/p-test-1.png" title="plot of chunk p-test" alt="plot of chunk p-test" width="40%" style="display: block; margin: auto;" />
 <p>So, <code>grid.arrange</code> is the key.</p>
 <h1 id="plots-from-png-file">Plots from png-file</h1>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>comb2pngs <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(imgs, bottom_text <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>){
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>comb2pngs <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">function</span>(imgs, bottom_text <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>){
 </span></span><span style="display:flex;"><span>  img1 <span style="color:#f92672">&lt;-</span>  grid<span style="color:#f92672">::</span><span style="color:#a6e22e">rasterGrob</span>(<span style="color:#a6e22e">as.raster</span>(<span style="color:#a6e22e">readPNG</span>(imgs[1])),
 </span></span><span style="display:flex;"><span>                            interpolate <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
 </span></span><span style="display:flex;"><span>  img2 <span style="color:#f92672">&lt;-</span>  grid<span style="color:#f92672">::</span><span style="color:#a6e22e">rasterGrob</span>(<span style="color:#a6e22e">as.raster</span>(<span style="color:#a6e22e">readPNG</span>(imgs[2])),

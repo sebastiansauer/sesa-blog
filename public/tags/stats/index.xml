@@ -1,401 +1,264 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>stats on sesa blog</title>
+    <title>Stats on sesa blog</title>
     <link>https://data-se.netlify.app/tags/stats/</link>
-    <description>Recent content in stats on sesa blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Stats on sesa blog</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 23 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/stats/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 23 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://data-se.netlify.app/tags/stats/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Data Science Memes</title>
       <link>https://data-se.netlify.app/2021/02/23/data-science-memes/</link>
       <pubDate>Tue, 23 Feb 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2021/02/23/data-science-memes/</guid>
-      <description> 1 What’s in here? 2 Some memes I like 1 What’s in here? This is a fun post. Let’s celebrate some memes about data science, statistics, and the like.
-2 Some memes I like </description>
+      <description>&lt;script src=&#34;https://data-se.netlify.app/2021/02/23/data-science-memes/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;TOC&#34;&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#whats-in-here&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; What’s in here?&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#some-memes-i-like&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Some memes I like&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;whats-in-here&#34; class=&#34;section level1&#34; number=&#34;1&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; What’s in here?&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;This is a fun post. Let’s celebrate some memes about data science, statistics, and the like.&lt;/p&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;some-memes-i-like&#34; class=&#34;section level1&#34; number=&#34;2&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; Some memes I like&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://analyticsindiamag.com/10-memes-data-scientists-absolutely-love/1o40ej/&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://analyticsindiamag.com/10-memes-data-scientists-absolutely-love/attachment/876789/&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://analyticsindiamag.com/10-memes-data-scientists-absolutely-love/jared-from-silicon-valley-a-data-scientist-is-a-data-analyst-working-in-silicon-valley/&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://%20analyticsindiamag.com/10-memes-data-scientists-absolutely-love/attachment/32005410/&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://analyticsindiamag.com/10-memes-data-scientists-absolutely-love/ea8853d740994d7a23b587d20033c262/&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://analyticsindiamag.com/10-memes-data-scientists-absolutely-love/trump_big_data_meme/&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0PjYFhd03S1XZlXpY7ThfY93I6dv9JbQ6zA&amp;amp;usqp=CAU&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://memegenerator.net/img/instances/65995649.jpg&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;http://www.quickmeme.com/img/b0/b0c18ff83ccb7544e18d0b70ac351c68759ce9603e0764422d436815ea2bc7e8.jpg&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://memegenerator.net/img/instances/45079408.jpg&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://images2.memedroid.com/images/UPLOADED11/50b14ace78673.jpeg&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;http://www.acheronanalytics.com/uploads/9/8/6/3/98636884/editor/51764130_1.jpg?1491762379&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2885666%2F55f8b4f1a5fce214ac53dbe3f99e482c%2F1577366623785.JPEG?generation=1577442854562948&amp;amp;alt=media&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;/div&gt;</description>
     </item>
-    
     <item>
       <title>Execution time for largish data</title>
       <link>https://data-se.netlify.app/2020/12/05/execution-time-for-largish-data/</link>
       <pubDate>Sat, 05 Dec 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2020/12/05/execution-time-for-largish-data/</guid>
-      <description>1 Motivation 2 Setup 3 Data set 1 3.1 Import data 3.1.1 Download from website 3.1.2 Import from local disk 3.1.3 using read_csv() 3.1.4 Using fread() 3.2 Data set size 3.3 Typical data wrangling 4 Data Set 2 4.1 Import data 4.1.1 using read_csv() 4.1.2 Using fread() 4.2 Data set size 4.3 Typical data wrangling 4.4 Data viz 5 Reproducibility 1 Motivation In this post, we play around with some largish data set, approx.</description>
+      <description>&lt;script src=&#34;index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;index_files/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;index_files/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;TOC&#34;&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#motivation&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Motivation&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#setup&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Setup&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#data-set-1&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; Data set 1&lt;/a&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#import-data&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.1&lt;/span&gt; Import data&lt;/a&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#download-from-website&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.1.1&lt;/span&gt; Download from website&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#import-from-local-disk&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.1.2&lt;/span&gt; Import from local disk&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#using-read_csv&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.1.3&lt;/span&gt; using &lt;code&gt;read_csv()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#using-fread&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.1.4&lt;/span&gt; Using &lt;code&gt;fread()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#data-set-size&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.2&lt;/span&gt; Data set size&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#typical-data-wrangling&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.3&lt;/span&gt; Typical data wrangling&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#data-set-2&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Data Set 2&lt;/a&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#import-data-1&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.1&lt;/span&gt; Import data&lt;/a&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#using-read_csv-1&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.1.1&lt;/span&gt; using &lt;code&gt;read_csv()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#using-fread-1&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.1.2&lt;/span&gt; Using &lt;code&gt;fread()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#data-set-size-1&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.2&lt;/span&gt; Data set size&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#typical-data-wrangling-1&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.3&lt;/span&gt; Typical data wrangling&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#data-viz&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.4&lt;/span&gt; Data viz&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#reproducibility&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; Reproducibility&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;motivation&#34; class=&#34;section level1&#34; number=&#34;1&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; Motivation&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;In this post, we play around with some largish data set, approx. 1 GB, ~1.5 mio. rows. Primarily, we’ll have a look at execution times.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Introduction to Statistics: A modeling-based approach -- Course Syllabus</title>
       <link>https://data-se.netlify.app/2020/06/19/introduction-to-statistics-a-modeling-based-approach-course-syllabus/</link>
       <pubDate>Fri, 19 Jun 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2020/06/19/introduction-to-statistics-a-modeling-based-approach-course-syllabus/</guid>
-      <description>1 Load packages 2 Course description 3 Course prerequisites 4 Learning objectives 5 Course Literature 6 Course logistics 7 UPFRONT student preparation 8 Didactic outline 9 Schedule 9.1 Overview on topics covered 9.2 Block 1: Explorative Data Analysis 9.2.1 Visualization 9.2.2 Data Wrangling 9.2.3 Exercises / Case study 9.3 Block 2: Statistical Modelling: Basic 9.3.1 Theory 9.3.2 Case study 9.4 Block 3: Statistical Modelling: Multiple Regression and interaction 9.4.1 Theory 9.</description>
+      <description>&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;TOC&#34;&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#load-packages&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Load packages&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#course-description&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Course description&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#course-prerequisites&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; Course prerequisites&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#learning-objectives&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Learning objectives&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#course-literature&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; Course Literature&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#course-logistics&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6&lt;/span&gt; Course logistics&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#upfront-student-preparation&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;7&lt;/span&gt; UPFRONT student preparation&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#didactic-outline&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;8&lt;/span&gt; Didactic outline&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#schedule&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;9&lt;/span&gt; Schedule&lt;/a&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#overview-on-topics-covered&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;9.1&lt;/span&gt; Overview on topics covered&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#block-1-explorative-data-analysis&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;9.2&lt;/span&gt; Block 1: Explorative Data Analysis&lt;/a&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#visualization&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;9.2.1&lt;/span&gt; Visualization&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#data-wrangling&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;9.2.2&lt;/span&gt; Data Wrangling&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#exercises-case-study&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;9.2.3&lt;/span&gt; Exercises / Case study&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#block-2-statistical-modelling-basic&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;9.3&lt;/span&gt; Block 2: Statistical Modelling: Basic&lt;/a&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#theory&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;9.3.1&lt;/span&gt; Theory&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#case-study&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;9.3.2&lt;/span&gt; Case study&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#block-3-statistical-modelling-multiple-regression-and-interaction&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;9.4&lt;/span&gt; Block 3: Statistical Modelling: Multiple Regression and interaction&lt;/a&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#theory-1&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;9.4.1&lt;/span&gt; Theory&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#case-study-1&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;9.4.2&lt;/span&gt; Case study&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#block-4-project-coaching&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;9.5&lt;/span&gt; Block 4: Project coaching&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#instructor&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;10&lt;/span&gt; Instructor&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#contact-me&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;11&lt;/span&gt; Contact me&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#assessment-and-grades&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;12&lt;/span&gt; Assessment and grades&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#talk-to-me&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;13&lt;/span&gt; Talk to me&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#course-materials&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;14&lt;/span&gt; Course materials&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#more-resources&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;15&lt;/span&gt; More resources&lt;/a&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#recommendations&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;15.1&lt;/span&gt; Recommendations&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#r-packages&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;15.2&lt;/span&gt; R Packages&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#data&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;15.3&lt;/span&gt; Data&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#labs-case-studies&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;15.4&lt;/span&gt; Labs (case studies)&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#sketching-causal-models&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;15.5&lt;/span&gt; Sketching causal models&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#where-are-the-slides&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;16&lt;/span&gt; Where are the slides?&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;load-packages&#34; class=&#34;section level1&#34; number=&#34;1&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; Load packages&lt;/h1&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;course-description&#34; class=&#34;section level1&#34; number=&#34;2&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; Course description&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Models and modeling are of pivotal importance in many sciences, not only for providing an explanation of nature en miniature (theoretical models), but also for gauging how closely the empirical data at hand match the theoretical model. Translating a theoretical model into statistical language is called statistical modeling and provides the guiding principle in this introductory course. Regression models will be presented as a lingua franca of statistical modeling, and we will learn that many empirical questions can (comfortably) be analyzed using a regression framework. Depending on the background and aims of the participants (and time permitting), we will shed light on some standard topics such as model comparison, classification models, and typical pitfalls. Given a more advanced auditorium, we will explore how causal and non-causal associations can be translated and tested using simple linear statistical models. Foundational ideas of statistical modeling will be accompanied by short examples and case studies to facilitate transfer and practical application after the course. Time permitting, modern methods of statistical inference will be introduced in a intuitive, rather non-mathematical way. We will use the R environment for all computations (freely available). Please bring your own Laptop with R and RStudio installed (installation guides are provided). Data and R code will be provided.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>How to find the package of a R function</title>
       <link>https://data-se.netlify.app/2020/05/15/how-to-find-the-package-of-a-r-function/</link>
       <pubDate>Fri, 15 May 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2020/05/15/how-to-find-the-package-of-a-r-function/</guid>
-      <description>Load packages library(tidyverse) Where does my function reside? Finding the package of a given R function is some hassle. I am not aware of a quick built-in way in R to find the package of a function.
-That’s why I came up with my own function, check it out:
-Install package Speaking of packages of function, that’s the package where this function stays:
-library(devtools) install_github(&amp;quot;sebastiansauer/prada&amp;quot;) Example library(prada) find_funs(&amp;quot;select&amp;quot;) #&amp;gt; # A tibble: 11 x 3 #&amp;gt; package_name builtin_pckage loaded #&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;lgl&amp;gt; &amp;lt;lgl&amp;gt; #&amp;gt; 1 BDgraph FALSE FALSE #&amp;gt; 2 dplyr FALSE TRUE #&amp;gt; 3 jmvcore FALSE FALSE #&amp;gt; 4 jqr FALSE FALSE #&amp;gt; 5 MASS TRUE FALSE #&amp;gt; 6 plotly FALSE FALSE #&amp;gt; 7 raster FALSE FALSE #&amp;gt; 8 rstatix FALSE FALSE #&amp;gt; 9 tidygraph FALSE FALSE #&amp;gt; 10 tidylog FALSE FALSE #&amp;gt; 11 VGAM FALSE FALSE find_funs(&amp;quot;tidy&amp;quot;) #&amp;gt; # A tibble: 14 x 3 #&amp;gt; package_name builtin_pckage loaded #&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;lgl&amp;gt; &amp;lt;lgl&amp;gt; #&amp;gt; 1 broom FALSE FALSE #&amp;gt; 2 broom.</description>
+      <description>&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;load-packages&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Load packages&lt;/h1&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;where-does-my-function-reside&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Where does my function reside?&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Finding the package of a given R function is some hassle. I am not aware of a quick built-in way in R to find the package of a function.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;That’s why I came up with my own function, check it out:&lt;/p&gt;&#xD;&#xA;&lt;div id=&#34;install-package&#34; class=&#34;section level2&#34;&gt;&#xD;&#xA;&lt;h2&gt;Install package&lt;/h2&gt;&#xD;&#xA;&lt;p&gt;Speaking of packages of function, that’s the package where this function stays:&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(devtools)&#xD;&#xA;install_github(&amp;quot;sebastiansauer/prada&amp;quot;)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;example&#34; class=&#34;section level2&#34;&gt;&#xD;&#xA;&lt;h2&gt;Example&lt;/h2&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(prada)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;find_funs(&amp;quot;select&amp;quot;)&#xD;&#xA;#&amp;gt; # A tibble: 11 x 3&#xD;&#xA;#&amp;gt;    package_name builtin_pckage loaded&#xD;&#xA;#&amp;gt;    &amp;lt;chr&amp;gt;        &amp;lt;lgl&amp;gt;          &amp;lt;lgl&amp;gt; &#xD;&#xA;#&amp;gt;  1 BDgraph      FALSE          FALSE &#xD;&#xA;#&amp;gt;  2 dplyr        FALSE          TRUE  &#xD;&#xA;#&amp;gt;  3 jmvcore      FALSE          FALSE &#xD;&#xA;#&amp;gt;  4 jqr          FALSE          FALSE &#xD;&#xA;#&amp;gt;  5 MASS         TRUE           FALSE &#xD;&#xA;#&amp;gt;  6 plotly       FALSE          FALSE &#xD;&#xA;#&amp;gt;  7 raster       FALSE          FALSE &#xD;&#xA;#&amp;gt;  8 rstatix      FALSE          FALSE &#xD;&#xA;#&amp;gt;  9 tidygraph    FALSE          FALSE &#xD;&#xA;#&amp;gt; 10 tidylog      FALSE          FALSE &#xD;&#xA;#&amp;gt; 11 VGAM         FALSE          FALSE&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;find_funs(&amp;quot;tidy&amp;quot;)&#xD;&#xA;#&amp;gt; # A tibble: 14 x 3&#xD;&#xA;#&amp;gt;    package_name  builtin_pckage loaded&#xD;&#xA;#&amp;gt;    &amp;lt;chr&amp;gt;         &amp;lt;lgl&amp;gt;          &amp;lt;lgl&amp;gt; &#xD;&#xA;#&amp;gt;  1 broom         FALSE          FALSE &#xD;&#xA;#&amp;gt;  2 broom.mixed   FALSE          FALSE &#xD;&#xA;#&amp;gt;  3 broomExtra    FALSE          FALSE &#xD;&#xA;#&amp;gt;  4 geepack       FALSE          FALSE &#xD;&#xA;#&amp;gt;  5 generics      FALSE          FALSE &#xD;&#xA;#&amp;gt;  6 huxtable      FALSE          FALSE &#xD;&#xA;#&amp;gt;  7 parsnip       FALSE          FALSE &#xD;&#xA;#&amp;gt;  8 recipes       FALSE          FALSE &#xD;&#xA;#&amp;gt;  9 rsample       FALSE          FALSE &#xD;&#xA;#&amp;gt; 10 rstatix       FALSE          FALSE &#xD;&#xA;#&amp;gt; 11 tidyposterior FALSE          FALSE &#xD;&#xA;#&amp;gt; 12 tidypredict   FALSE          FALSE &#xD;&#xA;#&amp;gt; 13 tidytext      FALSE          FALSE &#xD;&#xA;#&amp;gt; 14 yardstick     FALSE          FALSE&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;p&gt;Note that his may take a while (up to a few seconds in some cases).&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>P-values are uniformly distributed under the H0, a simulation</title>
       <link>https://data-se.netlify.app/2019/10/11/p-values-are-equally-distributed-under-the-h0/</link>
       <pubDate>Fri, 11 Oct 2019 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2019/10/11/p-values-are-equally-distributed-under-the-h0/</guid>
-      <description>Load packages library(tidyverse) library(mosaic) Motivation The p-value is a ubiquituous tool for gauging the plausibility of a Null hypothesis. More specifically, the p-values indicates the probability of obtaining a test statistic at least as extreme as in the present data if the Null hypothesis was true and the experiment would be repeated an infinite number of times (under the same conditions except the data generating process).
-The distribution of the p-values depends on the strength of some effect (among other things).</description>
+      <description>&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;load-packages&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Load packages&lt;/h1&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&#xD;&#xA;library(mosaic)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;motivation&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Motivation&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;The p-value is a ubiquituous tool for gauging the plausibility of a Null hypothesis. More specifically, the p-values indicates the probability of obtaining a test statistic at least as extreme as in the present data if the Null hypothesis was true and the experiment would be repeated an infinite number of times (under the same conditions except the data generating process).&lt;/p&gt;&#xD;&#xA;&lt;p&gt;The distribution of the p-values depends on the strength of some effect (among other things). The bigger the effect, the smaller the p-values (ceteris paribus). In the extreme, if the effect is zero, that is, if the Null is true, the distribution will be equally spread out. As this sounds not overly intuitive maybe, let’s simulate it.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Some algebraic properties of z-scores</title>
       <link>https://data-se.netlify.app/2019/10/07/some-algebraic-properties-of-z-scores/</link>
       <pubDate>Mon, 07 Oct 2019 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2019/10/07/some-algebraic-properties-of-z-scores/</guid>
-      <description>Load packages library(tidyverse) Motivation Z-scores (z-values) are a useful and widely employed tool to gauge and compare measurements. For instance, z-scores help to compare the relative position of some measurements with respect to their distributions. In this post, we will prove some basic (algebraic) properties of z-values. There’s nothing new to that, it’s just I’d like to have it neat and concise somewhere to quickly find it. I’ll add some explanation for the ease of reception.</description>
+      <description>&lt;div id=&#34;load-packages&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Load packages&lt;/h1&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;motivation&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Motivation&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Z-scores (z-values) are a useful and widely employed tool to gauge and compare measurements. For instance, z-scores help to compare the relative position of some measurements with respect to their distributions. In this post, we will prove some basic (algebraic) properties of z-values. There’s nothing new to that, it’s just I’d like to have it neat and concise somewhere to quickly find it. I’ll add some explanation for the ease of reception.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Different ways to present summaries in ggplot2</title>
       <link>https://data-se.netlify.app/2017/09/08/ggplot-summaries/</link>
       <pubDate>Fri, 08 Sep 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/09/08/ggplot-summaries/</guid>
-      <description>A convenient and well applicable visualization for comparing groups with respect to a metric variable is the boxplot. However, often, comparing means is accompanied by t-tests, ANOVAs, and friends. Such tests test the mean, not the median, and hence the boxplot is presenting the tested statistic. It would be better to align test and diagram. How can that be achieved using ggplot2? This posts demonstrates some possibilities.
-First, let&amp;rsquo;s plot a boxplot.</description>
+      <description>&lt;p&gt;A convenient and well applicable visualization for comparing groups with respect to a metric variable is the boxplot. However, often, comparing means is accompanied by t-tests, ANOVAs, and friends. Such tests test the &lt;em&gt;mean&lt;/em&gt;, not the median, and hence the boxplot is presenting the tested statistic. It would be better to align test and diagram. How can that be achieved using &lt;code&gt;ggplot2&lt;/code&gt;? This posts demonstrates some possibilities.&lt;/p&gt;&#xA;&lt;p&gt;First, let&amp;rsquo;s plot a boxplot.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Effect sizes for the Mann-Whitney U Test: an intuition</title>
       <link>https://data-se.netlify.app/2017/07/04/effsize_utest/</link>
       <pubDate>Tue, 04 Jul 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/07/04/effsize_utest/</guid>
-      <description>The Mann-Whitney U-Test is a test with a wide applicability, wider than the t-Test. Why that? Because the U-Test is applicable for ordinal data, and it can be argued that confining the metric level of a psychological variable to ordinal niveau is a reasonable bet. Second, it is robust, more robust than the t-test, because it only considers ranks, not raw values. In addition, some say that the efficiency of the U-Test is very close to the t-Test (.</description>
+      <description>&lt;p&gt;The Mann-Whitney U-Test is a test with a wide applicability, wider than the t-Test. Why that? Because the U-Test is applicable for ordinal data, and it can be argued that confining the metric level of a psychological variable to ordinal niveau is a reasonable bet. Second, it is robust, more robust than the t-test, because it only considers ranks, not raw values. In addition, &lt;a href=&#34;https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U_test#cite_note-Lehmann_1999-13&#34;&gt;some say&lt;/a&gt; that the efficiency of the U-Test is very close to the t-Test (.95). In sum: use the U-Test.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>mean and sd of z-values</title>
       <link>https://data-se.netlify.app/2017/05/26/z-values/</link>
       <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/05/26/z-values/</guid>
-      <description>Edit: This post was updated, including two errors fixed - thanks to (private) comments from Norman Markgraf.
-z-values, aka values coming from an z-transformation are a frequent creature in statistics land. Among their properties are the following:
-mean is zero variance is one (and hence sd is one) But why is that? How come that this two properties are true? The goal of this post is to shed light on these two properties of z-values.</description>
+      <description>&lt;p&gt;&lt;em&gt;Edit&lt;/em&gt;: This post was updated, including two errors fixed - thanks to (private) comments from &lt;a href=&#34;http://www.sefiroth.net/npb/&#34;&gt;Norman Markgraf&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;z-values, aka values coming from an z-transformation are a frequent creature in statistics land. Among their properties are the following:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;mean is zero&lt;/li&gt;&#xA;&lt;li&gt;variance is one (and hence sd is one)&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;But why is that? How come that this two properties are true? The goal of this post is to shed light on these two properties of z-values.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Simple way of plotting normal/logistic/etc. curve</title>
       <link>https://data-se.netlify.app/2017/05/24/plotting_s-curve/</link>
       <pubDate>Wed, 24 May 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/05/24/plotting_s-curve/</guid>
-      <description>Plotting a function is often helpful to better understand what&amp;rsquo;s going on. Plotting curves in R base is simple by virtue of function curve. But how to draw curves using ggplot2?
-That&amp;rsquo;s a little bit more complicated by can still be accomplished by 1-2 lines.
-library(ggplot2) Normal curve p &amp;lt;- ggplot(data = data.frame(x = c(-3, 3)), aes(x)) p + stat_function(fun = dnorm, n = 101) stat_function is some kind of parallel function to curve.</description>
+      <description>&lt;p&gt;Plotting a function is often helpful to better understand what&amp;rsquo;s going on. Plotting curves in R &lt;code&gt;base&lt;/code&gt; is simple by virtue of function &lt;code&gt;curve&lt;/code&gt;. But how to draw curves using ggplot2?&lt;/p&gt;&#xA;&lt;p&gt;That&amp;rsquo;s a little bit more complicated by can still be accomplished by 1-2 lines.&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(ggplot2)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;normal-curve&#34;&gt;Normal curve&lt;/h1&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;p &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ggplot&lt;/span&gt;(data &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;data.frame&lt;/span&gt;(x &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;c&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;-3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;)), &lt;span style=&#34;color:#a6e22e&#34;&gt;aes&lt;/span&gt;(x))&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;p &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;stat_function&lt;/span&gt;(fun &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; dnorm, n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;101&lt;/span&gt;) &#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://sebastiansauer.github.io/images/2017-05-24/figure/unnamed-chunk-2-1.png&#34; alt=&#34;plot of chunk unnamed-chunk-2&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;code&gt;stat_function&lt;/code&gt; is some kind of parallel function to &lt;code&gt;curve&lt;/code&gt;. The parameter &lt;code&gt;n&lt;/code&gt; tells ggplot how finely granulated the curve should be. Compare to &lt;code&gt;n=10&lt;/code&gt;:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Variance explained vs. variance blurred</title>
       <link>https://data-se.netlify.app/2017/05/05/explained_variance/</link>
       <pubDate>Fri, 05 May 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/05/05/explained_variance/</guid>
-      <description>Frequently, someones says that some indicator variable X &amp;ldquo;explains&amp;rdquo; some proportion of some target variable, Y. What does this actually mean? By &amp;ldquo;mean&amp;rdquo; I am trying to find some intuition that &amp;ldquo;clicks&amp;rdquo; rather than citing the (well-known) formualas.
-To start with, let&amp;rsquo;s load some packages and make up some random data.
-library(tidyverse) n_rows &amp;lt;- 100 set.seed(271828) df &amp;lt;- data_frame( exp_clean = rnorm(n = n_rows, mean = 2, sd = 1), cntrl_clean = rnorm(n = n_rows, mean = 0, sd = 1), exp_noisy = exp_clean + rnorm(n = n_rows, mean = 0, sd = 3), cntrl_noisy = cntrl_clean + rnorm(n = n_rows, mean = 0, sd = 3), ID = 1:n_rows) Here, we drew 100 cases from the population of the &amp;ldquo;experimental group&amp;rdquo; (mue = 2) and 100 cases from the control group (mue = 0).</description>
+      <description>&lt;p&gt;Frequently, someones says that some indicator variable X &amp;ldquo;explains&amp;rdquo; some proportion of some target variable, Y. What does this actually mean? By &amp;ldquo;mean&amp;rdquo; I am trying to find some intuition that &amp;ldquo;clicks&amp;rdquo; rather than citing the (well-known) formualas.&lt;/p&gt;&#xA;&lt;p&gt;To start with, let&amp;rsquo;s load some packages and make up some random data.&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(tidyverse)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;n_rows &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;set.seed&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;271828&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;df &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;data_frame&lt;/span&gt;(&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  exp_clean &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rnorm&lt;/span&gt;(n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; n_rows, mean &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, sd &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;),&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  cntrl_clean &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rnorm&lt;/span&gt;(n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; n_rows, mean &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, sd &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;),&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  exp_noisy &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; exp_clean &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rnorm&lt;/span&gt;(n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; n_rows, mean &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, sd &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;),&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  cntrl_noisy &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; cntrl_clean &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rnorm&lt;/span&gt;(n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; n_rows, mean &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, sd &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;),&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  ID &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;n_rows)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Here, we drew 100 cases from the population of the &amp;ldquo;experimental group&amp;rdquo; (mue = 2) and 100 cases from the control group (mue = 0). We will investigate the effect of noise on our data. So for both groups we make up noisy data: We just add some random noise on the existing data.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Einführung in die Datenanalyse mit R-Paket &#39;dplyr&#39; - R User Group Nürnberg</title>
       <link>https://data-se.netlify.app/2017/04/27/datenanalyse_mit_dplyr/</link>
       <pubDate>Thu, 27 Apr 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/04/27/datenanalyse_mit_dplyr/</guid>
-      <description>Datenjudo mit dplyr Einleitung Innerhalb der R-Landschaft hat sich das Paket dplyr binnen kurzer Zeit zu einem der verbreitesten Pakete entwickelt; es stellt ein innovatives Konzept der Datenanalyse zur Verfügung. dplyr zeichnet sich durch zwei Ideen aus. Die erste Idee ist, dass nur Tabellen (&amp;ldquo;dataframes&amp;rdquo; oder &amp;ldquo;tibbles&amp;rdquo;) verarbeitet werden, keine anderen Datenstrukturen. Diese Tabellen werden von Funktion zu Funktion durchgereicht. Der Fokus auf Tabellen vereinfacht die Analyse, da Spalten nicht einzeln oder mittels Schleifen werden müssen.</description>
+      <description>&lt;h1 id=&#34;datenjudo-mit-dplyr&#34;&gt;Datenjudo mit &lt;code&gt;dplyr&lt;/code&gt;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;einleitung&#34;&gt;Einleitung&lt;/h2&gt;&#xA;&lt;p&gt;Innerhalb der R-Landschaft hat sich das Paket &lt;a href=&#34;https://cran.r-project.org/web/packages/dplyr/index.html&#34;&gt;dplyr&lt;/a&gt; binnen kurzer Zeit zu einem der verbreitesten&#xA;Pakete entwickelt; es stellt ein innovatives Konzept der Datenanalyse&#xA;zur Verfügung. dplyr zeichnet sich durch zwei Ideen aus. Die erste Idee ist, dass&#xA;nur Tabellen (&amp;ldquo;dataframes&amp;rdquo; oder &amp;ldquo;tibbles&amp;rdquo;) verarbeitet werden, keine anderen Datenstrukturen. Diese Tabellen werden&#xA;von Funktion zu Funktion durchgereicht. Der Fokus auf Tabellen vereinfacht die&#xA;Analyse, da Spalten nicht einzeln oder mittels Schleifen werden müssen. Die zweite Idee ist, typische Tätigkeiten der Datenanalyse&#xA;anhand einer Taxonomie zu &amp;ldquo;grammatikalisieren&amp;rdquo;. Es lassen sich einige Bausteine identifizieren, mit der die typischen Aufgaben der Datenanalyse durchgeführt werden können. Der Workshop stellt beide Ideen von dplyr vor; dabei wird zuerst die Logik von dplyr erläutert ohne Rückgriff auf die R-Syntax. Danach wird die Funktionsweise von &lt;code&gt;dpyr&lt;/code&gt; praktisch eingeübt. Der Workshop dauert ca. 90-120 Minuten. Grundkenntnisse in R werden vorausgesetzt.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Covariance as correlation</title>
       <link>https://data-se.netlify.app/2017/04/25/cor_as_cov/</link>
       <pubDate>Tue, 25 Apr 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/04/25/cor_as_cov/</guid>
-      <description>Correlation is one of the most widely used and a well-known measure of the assocation (linear association, that is) of two variables.
-Perhaps less well-known is that the correlation is in principle analoguous to the covariation.
-To see this, consider the a formula of the covariance of two empirical datasets, $X$ and $Y$:
-$$COV(X,Y) = \frac{1}{n} \cdot \big( \sum (X_i -\bar{X}) \cdot (Y_i - \bar{Y}) \big) $$
-In other words, the covariance of $X$ and $Y$ $COV(X,Y)$ is the average of difference of some value to its mean.</description>
+      <description>&lt;p&gt;Correlation is one of the most widely used and a well-known measure of the assocation (&lt;em&gt;linear&lt;/em&gt; association, that is) of two variables.&lt;/p&gt;&#xA;&lt;p&gt;Perhaps less well-known is that the correlation is in principle &lt;em&gt;analoguous to the covariation&lt;/em&gt;.&lt;/p&gt;&#xA;&lt;p&gt;To see this, consider &lt;del&gt;the&lt;/del&gt; a formula of the covariance of two empirical datasets, $X$ and $Y$:&lt;/p&gt;&#xA;&lt;p&gt;$$COV(X,Y) = \frac{1}{n} \cdot \big( \sum (X_i -\bar{X}) \cdot (Y_i - \bar{Y}) \big) $$&lt;/p&gt;&#xA;&lt;p&gt;In other words, the covariance of $X$ and $Y$ $COV(X,Y)$ is the average of difference of some value to its mean.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Plotting skewed distributions</title>
       <link>https://data-se.netlify.app/2017/04/19/skewed-distribs/</link>
       <pubDate>Wed, 19 Apr 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/04/19/skewed-distribs/</guid>
-      <description>Let&amp;rsquo;s plot some skewed stuff, aehm, distributions!
-Actually, the point I - initially - wanted to make is that in skewed distribution, don&amp;rsquo;t use means. Or at least, be very aware that (arithmetic) means can be grossly misleading. But for today, let&amp;rsquo;s focus on drawing skewed distributions.
-Some packages:
-library(tidyverse) library(fGarch) # for snorm Some skewed distribution include:
-&amp;ldquo;polluted&amp;rdquo; normal distributions, ie., mixtures of two normals Exponential distributions Gamma distributions Beta distributions One way to visualize them is to draw their curve, ie.</description>
+      <description>&lt;p&gt;Let&amp;rsquo;s plot some skewed stuff, aehm, distributions!&lt;/p&gt;&#xA;&lt;p&gt;Actually, the point I - initially - wanted to make is that in skewed distribution, don&amp;rsquo;t use means. Or at least, be very aware that (arithmetic) means can be grossly misleading. But for today, let&amp;rsquo;s focus on drawing skewed distributions.&lt;/p&gt;&#xA;&lt;p&gt;Some packages:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(tidyverse)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(fGarch) &lt;span style=&#34;color:#75715e&#34;&gt;# for snorm&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Some skewed distribution include:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&amp;ldquo;polluted&amp;rdquo; normal distributions, ie., mixtures of two normals&lt;/li&gt;&#xA;&lt;li&gt;Exponential distributions&lt;/li&gt;&#xA;&lt;li&gt;Gamma distributions&lt;/li&gt;&#xA;&lt;li&gt;Beta distributions&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;One way to visualize them is to draw their curve, ie., their functional (analytical) form:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>The effect of sample on p-values. A simulation.</title>
       <link>https://data-se.netlify.app/2017/04/13/pvalue_sample_size/</link>
       <pubDate>Thu, 13 Apr 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/04/13/pvalue_sample_size/</guid>
-      <description>It is well-known that the notorious p-values is sensitive to sample size: The larger the sample, the more bound the p-value is to fall below the magic number of .05.
-Of course, the p-value is also a function of the effect size, eg., the distance between two means and the respective variances. But still, the p-values tends to become significant in the face of larges samples, and non-significant otherwise.
-Theoretically, quite simple and well understood.</description>
+      <description>&lt;p&gt;It is well-known that the notorious p-values is sensitive to sample size: The larger the sample, the more bound the p-value is to fall below the magic number of .05.&lt;/p&gt;&#xA;&lt;p&gt;Of course, the p-value is also a function of the effect size, eg., the distance between two means and the respective variances. But still, the p-values tends to become significant in the face of larges samples, and non-significant otherwise.&lt;/p&gt;&#xA;&lt;p&gt;Theoretically, quite simple and well understood. But let&amp;rsquo;s take the test of &amp;ldquo;real&amp;rdquo; data and do a simulation to demonstrate or test this behavior.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Checklist for Data Cleansing</title>
       <link>https://data-se.netlify.app/2017/02/13/data_cleansing/</link>
       <pubDate>Mon, 13 Feb 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/02/13/data_cleansing/</guid>
-      <description>What this post is about: Data cleansing in practice with R Data analysis, in practice, consists typically of some different steps which can be subsumed as &amp;ldquo;preparing data&amp;rdquo; and &amp;ldquo;model data&amp;rdquo; (not considering communication here):
-(Inspired by this)
-Often, the first major part &amp;ndash; &amp;ldquo;prepare&amp;rdquo; &amp;ndash; is the most time consuming. This can be lamented since many analysts prefer the cool modeling aspects (since I want to show my math!). In practice, one rather has to get his (her) hands dirt&amp;hellip;</description>
+      <description>&lt;h1 id=&#34;what-this-post-is-about-data-cleansing-in-practice-with-r&#34;&gt;What this post is about: Data cleansing in practice with R&lt;/h1&gt;&#xA;&lt;p&gt;Data analysis, in practice, consists typically of some different steps which can be subsumed as &amp;ldquo;preparing data&amp;rdquo; and &amp;ldquo;model data&amp;rdquo; (not considering communication here):&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://sebastiansauer.github.io/images/2017-02-13/data_science_process.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;(Inspired by &lt;a href=&#34;http://r4ds.had.co.nz/introduction-1.html&#34;&gt;this&lt;/a&gt;)&lt;/p&gt;&#xA;&lt;p&gt;Often, the first major part &amp;ndash; &amp;ldquo;prepare&amp;rdquo; &amp;ndash; is the most time consuming. This can be lamented since many analysts prefer the cool modeling aspects (since I want to show my math!). In practice, one rather has to get his (her) hands dirt&amp;hellip;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Dataset &#39;performance in stats test&#39;</title>
       <link>https://data-se.netlify.app/2017/01/27/data_test_inference/</link>
       <pubDate>Fri, 27 Jan 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/01/27/data_test_inference/</guid>
-      <description>This posts shows data cleaning and preparation for a data set on a statistics test (NHST inference). Data is published under a CC-licence, see here.
-Data was collected 2015 to 2017 in statistics courses at the FOM university in different places in Germany. Several colleagues helped to collect the data. Thanks a lot! Now let&amp;rsquo;s enjoy the outcome (and make it freely available to all).
-Raw N is 743. The test consists of 40 items which are framed as propositions; students are asked to respond with either &amp;ldquo;true&amp;rdquo; or &amp;ldquo;false&amp;rdquo; to each item.</description>
+      <description>&lt;p&gt;This posts shows data cleaning and preparation for a data set on a statistics test (NHST inference). Data is published under a CC-licence, see &lt;a href=&#34;https://osf.io/sjhuy/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Data was collected 2015 to 2017 in statistics courses at the FOM university in different places in Germany. Several colleagues helped to collect the data. Thanks a lot! Now let&amp;rsquo;s enjoy the outcome (and make it freely available to all).&lt;/p&gt;&#xA;&lt;p&gt;Raw N is 743. The test consists of 40 items which are framed as propositions; students are asked to respond with either &amp;ldquo;true&amp;rdquo; or &amp;ldquo;false&amp;rdquo; to each item. In addition, self-rating of proportion correct, study time and interest in the subject are asked. Last column notes the number (proportion) of correct responses.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Convert logit to probability</title>
       <link>https://data-se.netlify.app/2017/01/24/convert_logit2prob/</link>
       <pubDate>Tue, 24 Jan 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/01/24/convert_logit2prob/</guid>
-      <description>Logistic regression may give a headache initially. While the structure and idea is the same as &amp;ldquo;normal&amp;rdquo; regression, the interpretation of the b&amp;rsquo;s (ie., the regression coefficients) can be more challenging.
-This post provides a convenience function for converting the output of the glm function to a probability. Or more generally, to convert logits (that&amp;rsquo;s what spit out by glm) to a probabilty.
-Note1: The objective of this post is to explain the mechanics of logits.</description>
+      <description>&lt;p&gt;Logistic regression may give a headache initially. While the structure and idea is the same as &amp;ldquo;normal&amp;rdquo; regression, the interpretation of the b&amp;rsquo;s (ie., the regression coefficients) can be more challenging.&lt;/p&gt;&#xA;&lt;p&gt;This post provides a convenience function for converting the output of the &lt;code&gt;glm&lt;/code&gt; function to a probability. Or more generally, to convert logits (that&amp;rsquo;s what spit out by &lt;code&gt;glm&lt;/code&gt;) to a probabilty.&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;Note1:&lt;/em&gt; The objective of this post is to explain the mechanics of logits. There are more convenient tools out there. (Thanks to Jack&amp;rsquo;s comment who made me adding this note.)&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Gentle intro to &#39;R-squared equals squared r&#39;</title>
       <link>https://data-se.netlify.app/2017/01/20/rsquared/</link>
       <pubDate>Fri, 20 Jan 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/01/20/rsquared/</guid>
-      <description>It comes as no surprise that $$R^2$$ (&amp;ldquo;coefficient of determination&amp;rdquo;) equals $$r^2$$ in simple regression (predictor X, criterion Y), where $$r(X,Y)$$ is Pearson&amp;rsquo;s correlation coefficient. $$R^2$$ equals the fraction of explained variance in a simple regression. However, the statistical (mathematical) background is often less clear or buried in less-intuitive formula.
-The goal of this post is to offer a gentle explanantion why
-$$R^2 = r^2$$,
-where $$r$$ is $$r(Y,\hat{Y})$$ and $$\hat{Y}$$ are the predicted values.</description>
+      <description>&lt;p&gt;It comes as no surprise that $$R^2$$ (&amp;ldquo;coefficient of determination&amp;rdquo;) equals $$r^2$$ in simple regression (predictor X, criterion Y), where $$r(X,Y)$$ is Pearson&amp;rsquo;s correlation coefficient. $$R^2$$ equals the fraction of explained variance in a simple regression. However, the statistical (mathematical) background is often less clear or buried in less-intuitive formula.&lt;/p&gt;&#xA;&lt;p&gt;The goal of this post is to offer a &lt;em&gt;gentle&lt;/em&gt; explanantion why&lt;/p&gt;&#xA;&lt;p&gt;$$R^2 = r^2$$,&lt;/p&gt;&#xA;&lt;p&gt;where $$r$$ is $$r(Y,\hat{Y})$$ and $$\hat{Y}$$ are the predicted values.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Why is the variance additive? An intuition.</title>
       <link>https://data-se.netlify.app/2017/01/04/additivity_variance/</link>
       <pubDate>Wed, 04 Jan 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/01/04/additivity_variance/</guid>
-      <description>The variance of some data can be defined in rough terms as the mean of the squared deviations from the mean.
-Let&amp;rsquo;s repeat that because it is important:
-Variance: Mean of squared deviations from the mean.
-An example helps to illustrate. Assume some class of students are forced to write an exam in a statistics class (OMG). Let&amp;rsquo;s say the grades range fom 1 to 6, 1 being the best and 6 the worst.</description>
+      <description>&lt;p&gt;The variance of some data can be defined in rough terms as the mean of the squared deviations from the mean.&lt;/p&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s repeat that because it is important:&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Variance: Mean of squared deviations from the mean.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;An example helps to illustrate. Assume some class of students are forced to write an exam in a statistics class (OMG). Let&amp;rsquo;s say the grades range fom 1 to 6, 1 being the best and 6 the worst. We can compute the mean of this class (eg., 2.3); once we know the mean, we can subtract the mean from each individual grade. If Anna scored a 3 (OK but not exciting), &amp;ldquo;her&amp;rdquo; residual, delta or deviation would 3 - 2.3 = 0.7, and so on. The following picture illustrates this example.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Müncher Mietpreis: Übung zum p-Wert</title>
       <link>https://data-se.netlify.app/2016/12/21/mietpreis_p-wert/</link>
       <pubDate>Wed, 21 Dec 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2016/12/21/mietpreis_p-wert/</guid>
-      <description>Sie möchten die Hypothese (H0) testen, dass der mittlere Mietpreis in München 16,28€ beträgt (wie der Münchner Merkur einmal behauptet hat). Dafür ziehen Sie eine Stichprobe der Größe n = 36. Gehen Sie von einer SD von 3€ in der Population aus (Menge aller Mietwohnungen in München). Alpha sei 5%. Der Mittelwert Ihrer Stichprobe ist 16,79€. Nehmen Sie als H1 die Hypothese, dass der wahre mittlere Mietpreis höher ist.
-Gesucht Was ist der z-Wert des Stichprobenergebnisses?</description>
+      <description>&lt;p&gt;Sie möchten die Hypothese (H0) testen, dass der mittlere Mietpreis in München 16,28€ beträgt (wie der Münchner Merkur einmal behauptet hat). Dafür ziehen Sie eine Stichprobe der Größe n = 36. Gehen Sie von einer SD von 3€ in der Population aus (Menge aller Mietwohnungen in München). Alpha sei 5%. Der Mittelwert Ihrer Stichprobe ist 16,79€. Nehmen Sie als H1 die Hypothese, dass der wahre mittlere Mietpreis höher ist.&lt;/p&gt;&#xA;&lt;h1 id=&#34;gesucht&#34;&gt;Gesucht&lt;/h1&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Was ist der z-Wert des Stichprobenergebnisses?&lt;/li&gt;&#xA;&lt;li&gt;Wie hoch ist die Wahrscheinlichkeit dieses Ergebnisses (oder noch extremerer), wenn die H0 gilt? Sprich: Was ist der p-Wert (2 Dezimalen)?&lt;/li&gt;&#xA;&lt;li&gt;Verwerfen Sie die H0?&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h1 id=&#34;lösung&#34;&gt;Lösung&lt;/h1&gt;&#xA;&lt;p&gt;Wir fassen die gegebenen Informationen zusammen:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Some thoughts on &#39;Dear stats curriculum developers&#39;</title>
       <link>https://data-se.netlify.app/2016/12/08/stats_curriculum/</link>
       <pubDate>Thu, 08 Dec 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2016/12/08/stats_curriculum/</guid>
-      <description>Recently, Andrew Gelman (@StatModeling at Twitter) published a post with this title - &amp;ldquo;“Dear Major Textbook Publisher”: A Rant&amp;rdquo;.
-In essence, he discussed how a good stats intro text book should be like. And complained about the low quality of some many textbooks out there.
-As I am also in the business guilty of coming up with stats curriculum for my students (applied courses for business type students mostly), I discuss some thoughts for &amp;ldquo;stats curriculum developers&amp;rdquo; (like myself).</description>
+      <description>&lt;p&gt;Recently, Andrew Gelman (@StatModeling at Twitter) published a post with &lt;a href=&#34;http://andrewgelman.com/2016/12/07/dear-major-academic-publisher/&#34;&gt;this title&lt;/a&gt; - &amp;ldquo;“Dear Major Textbook Publisher”: A Rant&amp;rdquo;.&lt;/p&gt;&#xA;&lt;p&gt;In essence, he discussed how a good stats intro text book should be like. And complained about the low quality of &lt;del&gt;some&lt;/del&gt; many textbooks out there.&lt;/p&gt;&#xA;&lt;p&gt;As I am also &lt;del&gt;in the business&lt;/del&gt; guilty of coming up with stats curriculum for my students (applied courses for business type students mostly), I discuss some thoughts for &amp;ldquo;stats curriculum developers&amp;rdquo; (like myself).&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Simulation of p-values</title>
       <link>https://data-se.netlify.app/2016/12/01/simu_p/</link>
       <pubDate>Thu, 01 Dec 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2016/12/01/simu_p/</guid>
-      <description>Teaching or learning stats can be a challenging endeavor. In my experience, starting with concrete (as opposed to abstract) examples helps many a learner. What also helps (for me) is visualizing.
-As p-values are still part and parcel of probably any given stats curriculum, here is a convenient function to simulate p-values and to plot them.
-&amp;ldquo;Simulating p-values&amp;rdquo; amounts to drawing many samples from a given, specified population (eg., µ=100, s=15, normally distributed).</description>
+      <description>&lt;p&gt;Teaching or learning stats can be a challenging endeavor. In my experience, starting with concrete (as opposed to abstract) examples helps many a learner. What also helps (for me) is visualizing.&lt;/p&gt;&#xA;&lt;p&gt;As p-values are still part and parcel of probably any given stats curriculum, here is a convenient function to simulate p-values and to plot them.&lt;/p&gt;&#xA;&lt;p&gt;&amp;ldquo;Simulating p-values&amp;rdquo; amounts to drawing many samples from a given, specified population (eg., µ=100, s=15, normally distributed). We could ourselves go out and draw samples (eg., testing IQ of strangers). As the computer can do that too and does not mourn about repetitive tasks, let&amp;rsquo;s leave that task to the machine.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Crashkurs zur Erstellung von Barplots für Umfrage-Daten</title>
       <link>https://data-se.netlify.app/2016/11/13/crashkurs_barplots/</link>
       <pubDate>Sun, 13 Nov 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2016/11/13/crashkurs_barplots/</guid>
-      <description>Eine recht häufige Art von Daten in der Wirtschaft kommen von Umfragen in der Belegschaft. Diese Daten gilt es dann aufzubereiten und graphisch wiederzugeben. Dafür gibt dieser Post einige grundlegende Hinweise. Grundwissen mit R setzen wir voraus :-)
-Eine ausführlichere Beschreibung hier sich z.B. hier.
-Packages laden Nicht vergessen: Ein Computerprogramm (z.B. ein R-Package) kann man nur dann laden, wenn man es vorher installier hat (aber es reicht, das Programm/R-Package einmal zu installieren).</description>
+      <description>&lt;p&gt;Eine recht häufige Art von Daten in der Wirtschaft kommen von Umfragen in der Belegschaft. Diese Daten gilt es dann aufzubereiten und graphisch wiederzugeben. Dafür gibt dieser Post einige grundlegende Hinweise. Grundwissen mit R setzen wir voraus :-)&lt;/p&gt;&#xA;&lt;p&gt;Eine ausführlichere Beschreibung hier sich z.B. &lt;a href=&#34;https://sebastiansauer.github.io/plotting_surveys/&#34;&gt;hier&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h1 id=&#34;packages-laden&#34;&gt;Packages laden&lt;/h1&gt;&#xA;&lt;p&gt;Nicht vergessen: Ein Computerprogramm (z.B. ein R-Package) kann man nur dann laden, wenn man es vorher installier hat (aber es reicht, das Programm/R-Package &lt;em&gt;einmal&lt;/em&gt; zu installieren).&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Some thoughts (and simulation) on overfitting</title>
       <link>https://data-se.netlify.app/2016/11/13/overfitting_simulation/</link>
       <pubDate>Sun, 13 Nov 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2016/11/13/overfitting_simulation/</guid>
-      <description>Overfitting is a common problem in data analysis. Some go as far as saying that &amp;ldquo;most of&amp;rdquo; published research is false (John Ionnadis); overfitting being one, maybe central, problem of it. In this post, we explore some aspects on the notion of overfitting.
-Assume we have 10 metric variables v (personality/health/behavior/gene indicator variables), and, say, 10 variables for splitting up subgroups (aged vs. young, female vs. male, etc.), so 10 dichotomic variables.</description>
+      <description>&lt;p&gt;Overfitting is a common problem in data analysis. Some go as far as saying that &amp;ldquo;most of&amp;rdquo; published research is false (John Ionnadis); overfitting being one, maybe central, problem of it. In this post, we explore some aspects on the notion of overfitting.&lt;/p&gt;&#xA;&lt;p&gt;Assume we have 10 metric variables &lt;code&gt;v&lt;/code&gt; (personality/health/behavior/gene indicator variables), and, say, 10 variables for splitting up subgroups (aged vs. young, female vs. male, etc.), so 10 dichotomic variables. Further assume there are no association whatsoever between these variables. How likely is it we find something publishable? Apparently quite probably; but let&amp;rsquo;s give it a try.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Some reflections on stochastic independence</title>
       <link>https://data-se.netlify.app/2016/11/08/stochastic_independence/</link>
       <pubDate>Tue, 08 Nov 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2016/11/08/stochastic_independence/</guid>
-      <description>We are often interested in the question whether two variables are &amp;ldquo;associated&amp;rdquo;, &amp;ldquo;correlated&amp;rdquo; (I mean the normal English term) or &amp;ldquo;dependent&amp;rdquo;. What exactly, or rather in normal words, does that mean? Let&amp;rsquo;s look at some easy case.
-NOTE: The example has been updated to reflect a more tangible and sensible scenario (find the old one in the previous commit at Github).
-Titanic data For example, let&amp;rsquo;s look at survival rates of the Titanic disaster, to see whether the probability of survival (event A) depends on the whether you embarked for 1st class (event B).</description>
+      <description>&lt;script src=&#34;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#34; type=&#34;text/javascript&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;p&gt;We are often interested in the question whether two variables are &amp;ldquo;associated&amp;rdquo;, &amp;ldquo;correlated&amp;rdquo; (I mean the normal English term) or &amp;ldquo;dependent&amp;rdquo;. What exactly, or rather in normal words, does that mean? Let&amp;rsquo;s look at some easy case.&lt;/p&gt;&#xA;&lt;p&gt;NOTE: The example has been updated to reflect a more tangible and sensible scenario (find the old one in the previous commit at Github).&lt;/p&gt;&#xA;&lt;h1 id=&#34;titanic-data&#34;&gt;Titanic data&lt;/h1&gt;&#xA;&lt;p&gt;For example, let&amp;rsquo;s look at survival rates of the Titanic disaster, to see whether the probability of survival (event A) depends on the whether you embarked for 1st class (event B).&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>CLES plot</title>
       <link>https://data-se.netlify.app/2016/10/17/cles-plot/</link>
       <pubDate>Mon, 17 Oct 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2016/10/17/cles-plot/</guid>
-      <description>In data analysis, we often ask &amp;ldquo;Do these two groups differ in the outcome variable&amp;rdquo;? Asking this question, a tacit assumption may be that the grouping variable is the cause of the difference in the outcome variable. For example, assume the two groups are &amp;ldquo;treatment group&amp;rdquo; and &amp;ldquo;control group&amp;rdquo;, and the outcome variable is &amp;ldquo;pain reduction&amp;rdquo;.
-A typical approach would be to report the strenght of the difference by help of Cohen&amp;rsquo;s d.</description>
+      <description>&lt;p&gt;In data analysis, we often ask &amp;ldquo;Do these two groups differ in the outcome variable&amp;rdquo;? Asking this question, a tacit assumption may be that the grouping variable is the cause of the difference in the outcome variable. For example, assume the two groups are &amp;ldquo;treatment group&amp;rdquo; and &amp;ldquo;control group&amp;rdquo;, and the outcome variable is &amp;ldquo;pain reduction&amp;rdquo;.&lt;/p&gt;&#xA;&lt;p&gt;A typical approach would be to report the strenght of the difference by help of Cohen&amp;rsquo;s d. Even better (probably, but this atttitude is not undebated) is to report confidence intervals for d.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Why is SD(X) unequal to MAD(X)?</title>
       <link>https://data-se.netlify.app/2016/08/31/why-sd-is-unequal-to-mad/</link>
       <pubDate>Wed, 31 Aug 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2016/08/31/why-sd-is-unequal-to-mad/</guid>
-      <description>It may seem bewildering that the standard deviation (sd) of a vector X is (generally) unequal to the mean absolute deviation from the mean (MAD) of X, ie.
-$$sd(X) \ne MAD(X)$$.
-One could now argue this way: well, sd(X) involves computing the mean of the squared $$x_i$$, then taking the square root of this mean, thereby &amp;ldquo;coming back&amp;rdquo; to the initial size or dimension of x (i.e, first squaring, then taking the square root).</description>
+      <description>&lt;script type=&#34;text/x-mathjax-config&#34;&gt;&#xD;&#xA;MathJax.Hub.Config({&#xD;&#xA;  tex2jax: {inlineMath: [[&#39;$&#39;,&#39;$&#39;], [&#39;\\(&#39;,&#39;\\)&#39;]]}&#xD;&#xA;});&#xD;&#xA;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#34; type=&#34;text/javascript&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;p&gt;It may seem bewildering that the standard deviation (sd) of a vector X is&#xA;(generally) &lt;em&gt;unequal&lt;/em&gt; to the mean absolute deviation from the mean (MAD) of X, ie.&lt;/p&gt;&#xA;&lt;p&gt;$$sd(X) \ne MAD(X)$$.&lt;/p&gt;&#xA;&lt;p&gt;One could now argue this way: well, sd(X) involves computing the mean of the squared&#xA;$$x_i$$, then taking the square root of this mean, thereby &amp;ldquo;coming back&amp;rdquo; to the initial size&#xA;or dimension of x (i.e, first squaring, then taking the square root). And, MAD(X)&#xA;is nothing else then the mean deviation from the mean. So both quantities are&#xA;very similar, right? So one could expect that both statistics yield the same number, given they operate on the same input vector X.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Why absolute correlation value (r) cannot exceed 1. An intuition.</title>
       <link>https://data-se.netlify.app/2016/08/28/why-abs-correlation-is-max-1/</link>
       <pubDate>Sun, 28 Aug 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2016/08/28/why-abs-correlation-is-max-1/</guid>
-      <description>Pearson&amp;rsquo;s correlation is a well-known and widely used instrument to gauge the degree of linear association of two variables (see this post for an intuition on correlation).
-There a many formulas for correlation, but a short and easy one is this one:
-$$r = \varnothing(z_x z_y)$$.
-In words, $$r$$ can be seen as the average product of z-scores.
-In &amp;ldquo;raw values&amp;rdquo;, r is given by
-$$ r = \frac{\frac{1}{n}\sum{\Delta X \Delta Y}}{\sqrt{\frac{1}{n}\sum{\Delta X^2}} \sqrt{\frac{1}{n}\sum{\Delta Y^2}}} $$.</description>
+      <description>&lt;script src=&#34;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#34; type=&#34;text/javascript&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Pearson_product-moment_correlation_coefficient&#34;&gt;Pearson&amp;rsquo;s correlation&lt;/a&gt; is a well-known and widely used instrument to gauge the degree of linear association of two variables (see &lt;a href=&#34;https://sebastiansauer.github.io/correlation-intuition/&#34;&gt;this post&lt;/a&gt; for an intuition on correlation).&lt;/p&gt;&#xA;&lt;p&gt;There a many formulas for correlation, but a short and easy one is this one:&lt;/p&gt;&#xA;&lt;p&gt;$$r = \varnothing(z_x z_y)$$.&lt;/p&gt;&#xA;&lt;p&gt;In words, $$r$$ can be seen as the average product of z-scores.&lt;/p&gt;&#xA;&lt;p&gt;In &amp;ldquo;raw values&amp;rdquo;, r is given by&lt;/p&gt;&#xA;&lt;p&gt;$$ r = \frac{\frac{1}{n}\sum{\Delta X \Delta Y}}{\sqrt{\frac{1}{n}\sum{\Delta X^2}} \sqrt{\frac{1}{n}\sum{\Delta Y^2}}} $$.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Multiple t-Tests with dplyr</title>
       <link>https://data-se.netlify.app/2016/08/18/multiple-t-tests-with-dplyr/</link>
       <pubDate>Thu, 18 Aug 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2016/08/18/multiple-t-tests-with-dplyr/</guid>
-      <description>t-Test on multiple columns Suppose you have a data set where you want to perform a t-Test on multiple columns with some grouping variable. As an example, say you a data frame where each column depicts the score on some test (1st, 2nd, 3rd assignment&amp;hellip;). In each row is a different student. So you glance at the grading list (OMG!) of a teacher!
-How to do do that in R? Probably, the most &amp;ldquo;natural&amp;rdquo; solution would be some lapply() call.</description>
+      <description>&lt;h2 id=&#34;t-test-on-multiple-columns&#34;&gt;t-Test on multiple columns&lt;/h2&gt;&#xA;&lt;p&gt;Suppose you have a data set where you want to perform a t-Test on multiple columns with some grouping variable. As an example, say you a data frame where each column depicts the score on some test (1st, 2nd, 3rd assignment&amp;hellip;). In each row is a different student. So you glance at the grading list (OMG!) of a teacher!&lt;/p&gt;&#xA;&lt;p&gt;How to do do that in R? Probably, the most &amp;ldquo;natural&amp;rdquo; solution would be some &lt;code&gt;lapply()&lt;/code&gt; call.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Introduction to the measurement theory, and conjoint measurement theory</title>
       <link>https://data-se.netlify.app/2016/08/17/intro_measurement/</link>
       <pubDate>Wed, 17 Aug 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2016/08/17/intro_measurement/</guid>
-      <description>What is measurement? Why should I care?
-Measurement is a basis of an empirical science. Image a geometer (a person measuring distances on the earth) with a metering rul made of rubber! Poor guy! Without proper measurement, even the smartest theory cannot be expected to be found, precisely because it cannot be measured.
-So, what exactly is measurement? Measurement can be seen as tying numbers to empirical objects. But not in some arbritrary style.</description>
+      <description>&lt;p&gt;What is measurement? Why should I care?&lt;/p&gt;&#xA;&lt;p&gt;Measurement is a basis of an empirical science. Image a geometer (a person measuring distances on the earth) with a metering rul made of rubber! Poor guy! Without proper measurement, even the smartest theory cannot be expected to be found, precisely because it cannot be measured.&lt;/p&gt;&#xA;&lt;p&gt;So, what exactly is measurement? Measurement can be seen as tying numbers to empirical objects. But not in some arbritrary style. Measurement is achieved, if and only if the relations found in the empirical objects do also hold in the numbers. What does that mean? Suppose you have three rods: A, B and C. You hold them next to each other and find that A is longer than B and B longer than C. So you are entitled to give whatever numbers to the rods as long as the number of rod A is &lt;em&gt;greater&lt;/em&gt; than the number of rod B, which in turn must be greater than the number assigned to rod C; in short: l(A) &amp;gt; l(B) &amp;gt; l(C), where &lt;code&gt;l&lt;/code&gt; is the length of the rod. It goes without saying that if l(A) &amp;gt; l(B), and l(B) &amp;gt; l(C), then it must hold that l(A) &amp;gt; l(C) (transitivity). Given these relations hold for all objects, we have achieved something like an &lt;em&gt;ordinal scale&lt;/em&gt;.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Intuition on correlation</title>
       <link>https://data-se.netlify.app/2016/07/25/correlation-intuition/</link>
       <pubDate>Mon, 25 Jul 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2016/07/25/correlation-intuition/</guid>
-      <description>reading time: 10 min.
-Pearson’s correlation (short: correlation) is one of statistics’ all time classics. With an age of about a century, it is some kind of grand dad of analytic tools – but an oldie who is still very busy!
-Formula, interpretation and application of correlation is well known.
-In some non-technical lay terms, correlation captures the (linear) degree of co-variation of two linear variables. For example: if tall people have large feet (and small people small feet), on average, we say that height and foot size are correlated.</description>
+      <description>&lt;p&gt;&lt;em&gt;reading time: 10 min.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;Pearson’s correlation (short: correlation) is one of statistics’ all time classics. With an age of about a century, it is some kind of grand dad of analytic tools – but an oldie who is still very busy!&lt;/p&gt;&#xA;&lt;p&gt;Formula, interpretation and application of correlation is well known.&lt;/p&gt;&#xA;&lt;p&gt;In some non-technical lay terms, correlation captures the (linear) degree of co-variation of two linear variables. For example: if tall people have large feet (and small people small feet), on average, we say that height and foot size are correlated.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Practical data cleansing in R</title>
       <link>https://data-se.netlify.app/2016/07/24/data-cleansing/</link>
       <pubDate>Sun, 24 Jul 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2016/07/24/data-cleansing/</guid>
-      <description>What is “data cleansing” about?
-Data analysis, in practice, consists typically of some different steps which can be subsumed as “preparing data” and “model data” (not considering communication here):
-(Inspired by this)
-Often, the first major part — “prepare” — is the most time consuming. This can be lamented since many analysts prefer the cool modeling aspects (since I want to show my math!). In practice, one rather has to get his (her) hands dirt…</description>
+      <description>&lt;p&gt;What is “data cleansing” about?&lt;/p&gt;&#xA;&lt;p&gt;Data analysis, in practice, consists typically of some different steps which can be subsumed as “preparing data” and “model data” (not considering communication here):&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://data-se.netlify.app/images/data_science_process.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;(Inspired by &lt;a href=&#34;http://r4ds.had.co.nz/introduction-1.html&#34;&gt;this&lt;/a&gt;)&lt;/p&gt;&#xA;&lt;p&gt;Often, the first major part — “prepare” — is the most time consuming. This can be lamented since many analysts prefer the cool modeling aspects (since I want to show my math!). In practice, one rather has to get his (her) hands dirt…&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Why metric scale level cannot be taken for granted</title>
       <link>https://data-se.netlify.app/2016/07/21/measurement-01/</link>
       <pubDate>Thu, 21 Jul 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2016/07/21/measurement-01/</guid>
-      <description>One main business for psychologists is to examine questionnaire data. Extraversion, intelligence, attitudes… That’s bread-and-butter job for (research) psychologists.
-Similarly, it is common to take the metric level of questionnaire data for granted. Well, not for the item level, it is said. But for the aggregated level, oh yes, that’s OK.
-Despite its popularity, the measurement basics of such practice are less clear. On which grounds can this comfortable practice be defended?</description>
+      <description>&lt;p&gt;One main business for psychologists is to examine questionnaire data. Extraversion, intelligence, attitudes… That’s bread-and-butter job for (research) psychologists.&lt;/p&gt;&#xA;&lt;p&gt;Similarly, it is common to take the metric level of questionnaire data for granted. Well, not  for the item level, it is said. But for the aggregated level, oh yes, that’s OK.&lt;/p&gt;&#xA;&lt;p&gt;Despite its popularity, the measurement basics of such practice are less clear. On which grounds can this comfortable practice be defended?&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Intuition on Cohen&#39;s d</title>
       <link>https://data-se.netlify.app/2016/07/15/cohens-d-intuition/</link>
       <pubDate>Fri, 15 Jul 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2016/07/15/cohens-d-intuition/</guid>
-      <description>reading time: 5-10 min.
-Cohen&amp;rsquo;s d is a widely known and extensively used measure of effect size. That is, d is used to gauge how strong an effect is (given the fact that the effect exists). For example, one way to estimate d is as follows:
-data(tips, package = &amp;#34;reshape2&amp;#34;) library(compute.es) t1 &amp;lt;- t.test(tip ~ sex, data = tips) t1$statistic ## t ## -1.489536 table(tips$sex) ## ## Female Male ## 87 157 tes(t1$statistic, 87, 157) ## Mean Differences ES: ## ## d [ 95 %CI] = -0.</description>
+      <description>&lt;p&gt;&lt;em&gt;reading time: 5-10 min.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;Cohen&amp;rsquo;s d is a widely known and extensively used measure of effect size. That is, &lt;em&gt;d&lt;/em&gt; is used to gauge how strong an effect is (given the fact that the effect exists). For example, one way to estimate d is as follows:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;(tips, package &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;reshape2&amp;#34;&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(compute.es)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;t1 &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;t.test&lt;/span&gt;(tip &lt;span style=&#34;color:#f92672&#34;&gt;~&lt;/span&gt; sex, data &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; tips)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;t1&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;statistic&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;##         t &#xD;&#xA;## -1.489536&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;table&lt;/span&gt;(tips&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;sex)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;## &#xD;&#xA;## Female   Male &#xD;&#xA;##     87    157&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;tes&lt;/span&gt;(t1&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;statistic, &lt;span style=&#34;color:#ae81ff&#34;&gt;87&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;157&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;## Mean Differences ES: &#xD;&#xA;##  &#xD;&#xA;##  d [ 95 %CI] = -0.2 [ -0.46 , 0.06 ] &#xD;&#xA;##   var(d) = 0.02 &#xD;&#xA;##   p-value(d) = 0.14 &#xD;&#xA;##   U3(d) = 42.11 % &#xD;&#xA;##   CLES(d) = 44.4 % &#xD;&#xA;##   Cliff&amp;#39;s Delta = -0.11 &#xD;&#xA;##  &#xD;&#xA;##  g [ 95 %CI] = -0.2 [ -0.46 , 0.06 ] &#xD;&#xA;##   var(g) = 0.02 &#xD;&#xA;##   p-value(g) = 0.14 &#xD;&#xA;##   U3(g) = 42.13 % &#xD;&#xA;##   CLES(g) = 44.42 % &#xD;&#xA;##  &#xD;&#xA;##  Correlation ES: &#xD;&#xA;##  &#xD;&#xA;##  r [ 95 %CI] = 0.1 [ -0.03 , 0.22 ] &#xD;&#xA;##   var(r) = 0 &#xD;&#xA;##   p-value(r) = 0.14 &#xD;&#xA;##  &#xD;&#xA;##  z [ 95 %CI] = 0.1 [ -0.03 , 0.22 ] &#xD;&#xA;##   var(z) = 0 &#xD;&#xA;##   p-value(z) = 0.14 &#xD;&#xA;##  &#xD;&#xA;##  Odds Ratio ES: &#xD;&#xA;##  &#xD;&#xA;##  OR [ 95 %CI] = 0.7 [ 0.43 , 1.12 ] &#xD;&#xA;##   p-value(OR) = 0.14 &#xD;&#xA;##  &#xD;&#xA;##  Log OR [ 95 %CI] = -0.36 [ -0.84 , 0.12 ] &#xD;&#xA;##   var(lOR) = 0.06 &#xD;&#xA;##   p-value(Log OR) = 0.14 &#xD;&#xA;##  &#xD;&#xA;##  Other: &#xD;&#xA;##  &#xD;&#xA;##  NNT = -19.61 &#xD;&#xA;##  Total N = 244&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;However, what does Cohen&amp;rsquo;s d mean eventually?&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Why have z-transformed values a mean of zero and a sd of 1?</title>
       <link>https://data-se.netlify.app/2016/07/02/z-value-intuition/</link>
       <pubDate>Sat, 02 Jul 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2016/07/02/z-value-intuition/</guid>
-      <description>z-transformation is an ubiquitous operation in data analysis. It is often quite practical.
-Example: Assume Dr Zack scored 42 points on a test (say, IQ). Average score is 40 in the relevant population, and SD is 1, let’s say. So Zack’s score is 2 points above average. 2 points equals to SDs in this example. We can thus safely infer that Zack is about 2 SDs above average (leaving measurement precision and other issues at side).</description>
+      <description>&lt;p&gt;z-transformation is an ubiquitous operation in data analysis. It is often quite practical.&lt;/p&gt;&#xA;&lt;p&gt;Example: Assume Dr Zack scored 42 points on a test (say, IQ). Average score is 40 in the relevant population, and SD is 1, let’s say. So Zack’s score is 2 points above average. 2 points equals to SDs in this example. We can thus safely infer that Zack is about 2 SDs above average (leaving measurement precision and other issues at side).&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>simulation on sesa blog</title>
+    <title>Simulation on sesa blog</title>
     <link>https://data-se.netlify.app/categories/simulation/</link>
-    <description>Recent content in simulation on sesa blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Simulation on sesa blog</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 28 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/categories/simulation/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 28 Mar 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://data-se.netlify.app/categories/simulation/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Simulation des wiederholten Stichprobenziehens</title>
       <link>https://data-se.netlify.app/2022/03/28/simulation-des-wiederholten-stichprobenziehens/</link>
       <pubDate>Mon, 28 Mar 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2022/03/28/simulation-des-wiederholten-stichprobenziehens/</guid>
-      <description>1 Vorbereitung 2 Kann man wirklich von einer Stichprobe auf eine Grundgesamtheit schließen? 3 Hier ist eine Population 4 Wir ziehen eine Stichprobe 5 Moment 6 Also gut, ziehen wir viele Stichproben 7 Zusammenfassen der Stichproben 8 Visualisierung 9 Fazit 10 Reproduzierbarkeit 1 Vorbereitung library(tidyverse) # Datenjudo library(infer) # Inferenzstatistik 2 Kann man wirklich von einer Stichprobe auf eine Grundgesamtheit schließen? Alle Welt behauptet, dass man von einer Stichprobe auf eine Grundgesamtheit schließen könne.</description>
+      <description>&lt;h1 id=&#34;vorbereitung&#34;&gt;Vorbereitung&lt;/h1&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(tidyverse)  &lt;span style=&#34;color:#75715e&#34;&gt;# Datenjudo&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(infer)  &lt;span style=&#34;color:#75715e&#34;&gt;# Inferenzstatistik&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;kann-man-wirklich-von-einer-stichprobe-auf-eine-grundgesamtheit-schließen&#34;&gt;Kann man wirklich von einer Stichprobe auf eine Grundgesamtheit schließen?&lt;/h1&gt;&#xA;&lt;p&gt;Alle Welt behauptet, dass man von einer Stichprobe auf eine Grundgesamtheit schließen könne.&#xA;Aber stimmt das wirklich? Welcher von den Profs,&#xA;die das tagaus, tagein gebetsmühlenartig von sich geben,&#xA;hat das eigentlich bewiesen?&lt;/p&gt;&#xA;&lt;p&gt;Tja.&lt;/p&gt;&#xA;&lt;p&gt;Probieren wir es einfach aus.&lt;/p&gt;&#xA;&lt;h1 id=&#34;hier-ist-eine-population&#34;&gt;Hier ist eine Population&lt;/h1&gt;&#xA;&lt;p&gt;Wir definieren uns eine Population bzw. eine Verteilung für eine Variable.&lt;/p&gt;&#xA;&lt;p&gt;Sagen wir, um es konkret zu machen,&#xA;uns interessiert die Zeit, die mittelfränkisch junge Erwachsene pro Tag am Handy verbringen (im Schnitt).&#xA;Um uns Tipperei zu sparen,&#xA;geben wir dieser Variablen den Namen $X$.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

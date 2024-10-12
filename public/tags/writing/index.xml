@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>writing on sesa blog</title>
+    <title>Writing on sesa blog</title>
     <link>https://data-se.netlify.app/tags/writing/</link>
-    <description>Recent content in writing on sesa blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Writing on sesa blog</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 26 Apr 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/writing/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 26 Apr 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://data-se.netlify.app/tags/writing/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Tools for Academic Writing - Comparison</title>
       <link>https://data-se.netlify.app/2017/04/26/writing_tools/</link>
       <pubDate>Wed, 26 Apr 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/04/26/writing_tools/</guid>
-      <description>Many tools exist for academic writing including the notorious W.O.R.D.; but many more are out there. Let&amp;rsquo;s have a look at those tools, and discuss what&amp;rsquo;s important (what we expect the tool to deliver, eg., beautiful typesetting).
-Typical tools for academic writing MS Word: A &amp;ldquo;classical&amp;rdquo; choice, relied upon by myriads of white collar workers&amp;hellip; I myself have used it extensively for academic writing; the main advantage being its simplicity, that is, well, everybody knows it, and knows more or less how to handle it.</description>
+      <description>&lt;p&gt;Many tools exist for academic writing including the notorious W.O.R.D.; but many more are out there. Let&amp;rsquo;s have a look at those tools, and discuss what&amp;rsquo;s important (what we expect the tool to deliver, eg., beautiful typesetting).&lt;/p&gt;&#xA;&lt;h1 id=&#34;typical-tools-for-academic-writing&#34;&gt;Typical tools for academic writing&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;em&gt;MS Word&lt;/em&gt;: A &amp;ldquo;classical&amp;rdquo; choice, relied upon by myriads of white collar workers&amp;hellip; I myself have used it extensively for academic writing; the main advantage being its simplicity, that is, well, everybody knows it, and knows more or less how to handle it. It&amp;rsquo;s widespread use is of course an advantage.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

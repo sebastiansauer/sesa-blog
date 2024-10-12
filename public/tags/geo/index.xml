@@ -1,34 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>geo on sesa blog</title>
+    <title>Geo on sesa blog</title>
     <link>https://data-se.netlify.app/tags/geo/</link>
-    <description>Recent content in geo on sesa blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Geo on sesa blog</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 25 Aug 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/geo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 25 Aug 2018 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://data-se.netlify.app/tags/geo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Bayesian modeling of populist party success in German federal elections - A notebook from the lab</title>
       <link>https://data-se.netlify.app/2018/08/25/bayesian-modeling-of-populist-party-success-in-german-federal-elections/</link>
       <pubDate>Sat, 25 Aug 2018 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2018/08/25/bayesian-modeling-of-populist-party-success-in-german-federal-elections/</guid>
-      <description>Following up on an earlier post, we will model the voting success of the (most prominent) populist party, AfD, in the recent federal elections. This time, Bayesian modeling techniques will be used, drawing on the excellent textbook my McElreath.
-Note that this post is rather a notebook of my thinking, doing, and erring. I’ve made no efforts to hide scaffolding. I think it will be confusing to the uniniate and the initiate as well …</description>
+      <description>&lt;p&gt;Following up on an &lt;a href=&#34;https://data-se.netlify.com/2017/10/10/afd-map/&#34;&gt;earlier post&lt;/a&gt;, we will model the voting success of the (most prominent) populist party, AfD, in the recent federal elections. This time, Bayesian modeling techniques will be used, drawing on the &lt;a href=&#34;https://xcelab.net/rm/statistical-rethinking/&#34;&gt;excellent textbook&lt;/a&gt; my McElreath.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;Note that this post is rather a notebook of my thinking, doing, and erring. I’ve made no efforts to hide scaffolding. I think it will be confusing to the uniniate and the initiate as well …&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Playing around with geo mapping: combining demographic data with spatial data</title>
       <link>https://data-se.netlify.app/2018/05/28/playing-around-with-geo-mapping-combining-demographic-data-with-spatial-data/</link>
       <pubDate>Mon, 28 May 2018 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2018/05/28/playing-around-with-geo-mapping-combining-demographic-data-with-spatial-data/</guid>
-      <description>In this post, we will play around with some basic geo mapping. More preciseyl, we will explore some easy ways to plot a choropleth map.
-First, let’s load some geo data from Bundeswahlleiter, and combine it with some socio demographic data from the same source.
-Preparation Let’s load some packages:
-library(tidyverse) ## Warning: package &amp;#39;dplyr&amp;#39; was built under R version 3.5.1 library(sf) library(viridis) suppressPackageStartupMessages(library(googleVis)) Geo data:
-my_path_wahlkreise &amp;lt;- &amp;quot;~/Documents/datasets/geo_maps/btw17_geometrie_wahlkreise_shp/Geometrie_Wahlkreise_19DBT.shp&amp;quot; file.</description>
+      <description>&lt;p&gt;In this post, we will play around with some basic geo mapping. More preciseyl, we will explore some easy ways to plot a choropleth map.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;First, let’s load some geo data from &lt;a href=&#34;https://www.bundeswahlleiter.de/bundestagswahlen/2017/ergebnisse.html&#34;&gt;Bundeswahlleiter&lt;/a&gt;, and combine it with some socio demographic data from the same source.&lt;/p&gt;&#xD;&#xA;&lt;div id=&#34;preparation&#34; class=&#34;section level2&#34;&gt;&#xD;&#xA;&lt;h2&gt;Preparation&lt;/h2&gt;&#xD;&#xA;&lt;p&gt;Let’s load some packages:&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;dplyr&amp;#39; was built under R version 3.5.1&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(sf)&#xD;&#xA;library(viridis)&#xD;&#xA;suppressPackageStartupMessages(library(googleVis))&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;p&gt;Geo data:&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;my_path_wahlkreise &amp;lt;- &amp;quot;~/Documents/datasets/geo_maps/btw17_geometrie_wahlkreise_shp/Geometrie_Wahlkreise_19DBT.shp&amp;quot;&#xD;&#xA;file.exists(my_path_wahlkreise)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;pre&gt;&lt;code&gt;## [1] TRUE&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;p&gt;socio demographic data:&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

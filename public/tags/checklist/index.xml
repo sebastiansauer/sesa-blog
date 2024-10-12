@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>checklist on sesa blog</title>
+    <title>Checklist on sesa blog</title>
     <link>https://data-se.netlify.app/tags/checklist/</link>
-    <description>Recent content in checklist on sesa blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Checklist on sesa blog</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Feb 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/checklist/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 Feb 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://data-se.netlify.app/tags/checklist/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Checklist for Data Cleansing</title>
       <link>https://data-se.netlify.app/2017/02/13/data_cleansing/</link>
       <pubDate>Mon, 13 Feb 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/02/13/data_cleansing/</guid>
-      <description>What this post is about: Data cleansing in practice with R Data analysis, in practice, consists typically of some different steps which can be subsumed as &amp;ldquo;preparing data&amp;rdquo; and &amp;ldquo;model data&amp;rdquo; (not considering communication here):
-(Inspired by this)
-Often, the first major part &amp;ndash; &amp;ldquo;prepare&amp;rdquo; &amp;ndash; is the most time consuming. This can be lamented since many analysts prefer the cool modeling aspects (since I want to show my math!). In practice, one rather has to get his (her) hands dirt&amp;hellip;</description>
+      <description>&lt;h1 id=&#34;what-this-post-is-about-data-cleansing-in-practice-with-r&#34;&gt;What this post is about: Data cleansing in practice with R&lt;/h1&gt;&#xA;&lt;p&gt;Data analysis, in practice, consists typically of some different steps which can be subsumed as &amp;ldquo;preparing data&amp;rdquo; and &amp;ldquo;model data&amp;rdquo; (not considering communication here):&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://sebastiansauer.github.io/images/2017-02-13/data_science_process.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;(Inspired by &lt;a href=&#34;http://r4ds.had.co.nz/introduction-1.html&#34;&gt;this&lt;/a&gt;)&lt;/p&gt;&#xA;&lt;p&gt;Often, the first major part &amp;ndash; &amp;ldquo;prepare&amp;rdquo; &amp;ndash; is the most time consuming. This can be lamented since many analysts prefer the cool modeling aspects (since I want to show my math!). In practice, one rather has to get his (her) hands dirt&amp;hellip;&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

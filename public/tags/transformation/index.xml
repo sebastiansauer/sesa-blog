@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>transformation on sesa blog</title>
+    <title>Transformation on sesa blog</title>
     <link>https://data-se.netlify.app/tags/transformation/</link>
-    <description>Recent content in transformation on sesa blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Transformation on sesa blog</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 06 Jan 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/transformation/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 06 Jan 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://data-se.netlify.app/tags/transformation/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Convert data frame from &#39;wide&#39; to &#39;long&#39;</title>
       <link>https://data-se.netlify.app/2017/01/06/facial_beauty/</link>
       <pubDate>Fri, 06 Jan 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/01/06/facial_beauty/</guid>
-      <description>Thanks to my student Marie Halbich who took the pains to collect the data!
-At times, your data set will be in &amp;ldquo;wide&amp;rdquo; format, i.e, many columns in comparison to rows. For some analyses however, it is more suitable to have the data in &amp;ldquo;long&amp;rdquo; format. That is, many rows in comparison to columns.
-Let&amp;rsquo;s have a look at this data set, for example.
-d &amp;lt;- read.csv(&amp;#34;https://sebastiansauer.github.io/data/facial_beauty_raw.csv&amp;#34;) This is the data from a study tapping into the effect of computerized &amp;ldquo;beautification&amp;rdquo; of some faces on subjective &amp;ldquo;like&amp;rdquo;.</description>
+      <description>&lt;p&gt;Thanks to my student Marie Halbich who took the pains to collect the data!&lt;/p&gt;&#xA;&lt;p&gt;At times, your data set will be in &amp;ldquo;wide&amp;rdquo; format, i.e, many columns in comparison to rows. For some analyses however, it is more suitable to have the data in &amp;ldquo;long&amp;rdquo; format. That is, many rows in comparison to columns.&lt;/p&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s have a look at this data set, for example.&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;d &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;read.csv&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://sebastiansauer.github.io/data/facial_beauty_raw.csv&amp;#34;&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This is the data from a study tapping into the effect of computerized &amp;ldquo;beautification&amp;rdquo; of some faces on subjective &amp;ldquo;like&amp;rdquo;.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

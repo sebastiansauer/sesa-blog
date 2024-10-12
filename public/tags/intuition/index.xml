@@ -1,167 +1,110 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>intuition on sesa blog</title>
+    <title>Intuition on sesa blog</title>
     <link>https://data-se.netlify.app/tags/intuition/</link>
-    <description>Recent content in intuition on sesa blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Intuition on sesa blog</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 18 Nov 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/intuition/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://data-se.netlify.app/tags/intuition/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Some intution on the Gaussian distribution formula</title>
       <link>https://data-se.netlify.app/2019/11/18/some-intution-on-the-gaussian-distribution-formula/</link>
       <pubDate>Mon, 18 Nov 2019 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2019/11/18/some-intution-on-the-gaussian-distribution-formula/</guid>
-      <description>Load packages library(tidyverse) library(mosaic) The Gaussian The ubiquituous Gaussian (aka normal) distribution is probably the most widely known distribution for stochastic process (although maybe as frequently encountered as a unicorn).
-Here it is in all its glory.
-gf_dist(&amp;quot;norm&amp;quot;) There are two typical ways, why it may be considered “normal”, one is using the Galton Board, and one approach is building on the Central Limit Theorem. While such considerations are great for understanding “where” the Gaussian distribution comes from, this post explore some other direction of intuiton.</description>
+      <description>&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;load-packages&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Load packages&lt;/h1&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&#xD;&#xA;library(mosaic)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;the-gaussian&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;The Gaussian&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;The ubiquituous Gaussian (aka normal) distribution is probably the most widely known distribution for stochastic process (a&lt;a href=&#34;https://psycnet.apa.org/record/1989-14214-001&#34;&gt;lthough maybe as frequently encountered as a unicorn&lt;/a&gt;).&lt;/p&gt;&#xD;&#xA;&lt;p&gt;Here it is in all its glory.&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_dist(&amp;quot;norm&amp;quot;)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://data-se.netlify.app/post/2019-11-18-some-intution-on-the-gaussian-distribution-formula_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;70%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;There are two typical ways, why it may be considered “normal”, one is using the &lt;a href=&#34;https://www.edumedia-sciences.com/en/media/905-galton-board&#34;&gt;Galton Board&lt;/a&gt;, and one approach is building on the &lt;a href=&#34;https://en.wikipedia.org/wiki/Central_limit_theorem&#34;&gt;Central Limit Theorem&lt;/a&gt;. While such considerations are great for understanding “where” the Gaussian distribution comes from, this post explore some other direction of intuiton. Namely, how can one make sense of the formula of the Gaussian distribution?&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Why &#34;n-1&#34; in empirical variance? A simulation.</title>
       <link>https://data-se.netlify.app/2018/03/24/why-n-1-in-empirical-variance-a-simulation/</link>
       <pubDate>Sat, 24 Mar 2018 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2018/03/24/why-n-1-in-empirical-variance-a-simulation/</guid>
-      <description>It is well-known that the empirical variance underestimates the population variance. Specifically, the empirical variance is defined as: \(var_{emp} = \frac{\sum_i (x_i - \bar{x})^2}{n-1}\). But why \(n-1\), why not just \(n\), as intuition (of some) dictates? Put shortly, as the variance of a sample tends to underestimate the population variance we have to inflate it artificially, to enlarge it, that’s why we do put a smaller number (the “n-1”) in the denominator, resulting in a larger value of the whole fraction.</description>
+      <description>&lt;p&gt;It is well-known that the empirical variance underestimates the population variance. Specifically, the empirical variance is defined as: &lt;span class=&#34;math inline&#34;&gt;\(var_{emp} = \frac{\sum_i (x_i - \bar{x})^2}{n-1}\)&lt;/span&gt;. But why &lt;span class=&#34;math inline&#34;&gt;\(n-1\)&lt;/span&gt;, why not just &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;, as intuition (of some) dictates? Put shortly, as the variance of a sample tends to underestimate the population variance we have to inflate it artificially, to enlarge it, that’s why we do put a &lt;em&gt;smaller&lt;/em&gt; number (the “n-1”) in the denominator, resulting in a &lt;em&gt;larger&lt;/em&gt; value of the whole fraction. This larger value is called the empirical variance, it estimates the “real” population variance well.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Effect sizes for the Mann-Whitney U Test: an intuition</title>
       <link>https://data-se.netlify.app/2017/07/04/effsize_utest/</link>
       <pubDate>Tue, 04 Jul 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/07/04/effsize_utest/</guid>
-      <description>The Mann-Whitney U-Test is a test with a wide applicability, wider than the t-Test. Why that? Because the U-Test is applicable for ordinal data, and it can be argued that confining the metric level of a psychological variable to ordinal niveau is a reasonable bet. Second, it is robust, more robust than the t-test, because it only considers ranks, not raw values. In addition, some say that the efficiency of the U-Test is very close to the t-Test (.</description>
+      <description>&lt;p&gt;The Mann-Whitney U-Test is a test with a wide applicability, wider than the t-Test. Why that? Because the U-Test is applicable for ordinal data, and it can be argued that confining the metric level of a psychological variable to ordinal niveau is a reasonable bet. Second, it is robust, more robust than the t-test, because it only considers ranks, not raw values. In addition, &lt;a href=&#34;https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U_test#cite_note-Lehmann_1999-13&#34;&gt;some say&lt;/a&gt; that the efficiency of the U-Test is very close to the t-Test (.95). In sum: use the U-Test.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>mean and sd of z-values</title>
       <link>https://data-se.netlify.app/2017/05/26/z-values/</link>
       <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/05/26/z-values/</guid>
-      <description>Edit: This post was updated, including two errors fixed - thanks to (private) comments from Norman Markgraf.
-z-values, aka values coming from an z-transformation are a frequent creature in statistics land. Among their properties are the following:
-mean is zero variance is one (and hence sd is one) But why is that? How come that this two properties are true? The goal of this post is to shed light on these two properties of z-values.</description>
+      <description>&lt;p&gt;&lt;em&gt;Edit&lt;/em&gt;: This post was updated, including two errors fixed - thanks to (private) comments from &lt;a href=&#34;http://www.sefiroth.net/npb/&#34;&gt;Norman Markgraf&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;z-values, aka values coming from an z-transformation are a frequent creature in statistics land. Among their properties are the following:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;mean is zero&lt;/li&gt;&#xA;&lt;li&gt;variance is one (and hence sd is one)&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;But why is that? How come that this two properties are true? The goal of this post is to shed light on these two properties of z-values.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Squares maximize area - a visualization</title>
       <link>https://data-se.netlify.app/2017/05/19/maximize_area/</link>
       <pubDate>Fri, 19 May 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/05/19/maximize_area/</guid>
-      <description>An old story is that one of the farmer with a fence of some given length, say 20m. Now this farmer wants to put up his fence so that he claims the largest piece of land possible. What width (w) and height (h) should we pick?
-Instead of a formal proof, let&amp;rsquo;s start with a visualization.
-First, we need some packages.
-library(tidyverse) library(gganimate) library(RColorBrewer) library(scales) library(knitr) Now, let&amp;rsquo;s make up serveral ways to split up a rectengular piece of land.</description>
+      <description>&lt;p&gt;An old story is that one of the farmer with a fence of some given length, say 20m. Now this farmer wants to put up his fence so that he claims the largest piece of land possible. What width (w) and height (h) should we pick?&lt;/p&gt;&#xA;&lt;p&gt;Instead of a formal proof, let&amp;rsquo;s start with a visualization.&lt;/p&gt;&#xA;&lt;p&gt;First, we need some packages.&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(tidyverse)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(gganimate)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(RColorBrewer)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(scales)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(knitr)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now, let&amp;rsquo;s make up serveral ways to split up a rectengular piece of land. Note that we only need to define two sides (width and height), as the circumference of a rectangle is $$c = 2w + sh$$.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>A predictor&#39;s unique contribution - (visual) demonstration</title>
       <link>https://data-se.netlify.app/2017/05/17/storks/</link>
       <pubDate>Wed, 17 May 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/05/17/storks/</guid>
-      <description>A well-known property of regression models is that they capture the unique contribution of a predictor. By &amp;ldquo;unique&amp;rdquo; we mean the effect of the predictor (on the criterion) if the other predictor(s) is/are held constant. A typical classroom example goes along the following lines.
-All about storks There&amp;rsquo;s a correlation between babies and storks. Counties with lots of storks enjoy large number of babies and v.v.
-However, I have children, I know the storks are not overly involved in that business, so says the teacher (polite laughters in the audience).</description>
+      <description>&lt;p&gt;A well-known property of regression models is that they capture the &lt;em&gt;unique&lt;/em&gt; contribution of a predictor. By &amp;ldquo;unique&amp;rdquo; we mean the effect of the predictor (on the criterion) &lt;em&gt;if the other predictor(s) is/are held constant&lt;/em&gt;. A typical classroom example goes along the following lines.&lt;/p&gt;&#xA;&lt;h1 id=&#34;all-about-storks&#34;&gt;All about storks&lt;/h1&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;There&amp;rsquo;s a correlation between babies and storks. Counties with lots of storks enjoy large number of babies and v.v.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;However, I have children, I know the storks are not overly involved in that business, so says the teacher (polite laughters in the audience).&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Variance explained vs. variance blurred</title>
       <link>https://data-se.netlify.app/2017/05/05/explained_variance/</link>
       <pubDate>Fri, 05 May 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/05/05/explained_variance/</guid>
-      <description>Frequently, someones says that some indicator variable X &amp;ldquo;explains&amp;rdquo; some proportion of some target variable, Y. What does this actually mean? By &amp;ldquo;mean&amp;rdquo; I am trying to find some intuition that &amp;ldquo;clicks&amp;rdquo; rather than citing the (well-known) formualas.
-To start with, let&amp;rsquo;s load some packages and make up some random data.
-library(tidyverse) n_rows &amp;lt;- 100 set.seed(271828) df &amp;lt;- data_frame( exp_clean = rnorm(n = n_rows, mean = 2, sd = 1), cntrl_clean = rnorm(n = n_rows, mean = 0, sd = 1), exp_noisy = exp_clean + rnorm(n = n_rows, mean = 0, sd = 3), cntrl_noisy = cntrl_clean + rnorm(n = n_rows, mean = 0, sd = 3), ID = 1:n_rows) Here, we drew 100 cases from the population of the &amp;ldquo;experimental group&amp;rdquo; (mue = 2) and 100 cases from the control group (mue = 0).</description>
+      <description>&lt;p&gt;Frequently, someones says that some indicator variable X &amp;ldquo;explains&amp;rdquo; some proportion of some target variable, Y. What does this actually mean? By &amp;ldquo;mean&amp;rdquo; I am trying to find some intuition that &amp;ldquo;clicks&amp;rdquo; rather than citing the (well-known) formualas.&lt;/p&gt;&#xA;&lt;p&gt;To start with, let&amp;rsquo;s load some packages and make up some random data.&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(tidyverse)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;n_rows &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;set.seed&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;271828&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;df &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;data_frame&lt;/span&gt;(&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  exp_clean &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rnorm&lt;/span&gt;(n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; n_rows, mean &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, sd &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;),&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  cntrl_clean &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rnorm&lt;/span&gt;(n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; n_rows, mean &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, sd &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;),&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  exp_noisy &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; exp_clean &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rnorm&lt;/span&gt;(n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; n_rows, mean &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, sd &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;),&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  cntrl_noisy &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; cntrl_clean &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rnorm&lt;/span&gt;(n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; n_rows, mean &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, sd &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;),&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  ID &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;n_rows)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Here, we drew 100 cases from the population of the &amp;ldquo;experimental group&amp;rdquo; (mue = 2) and 100 cases from the control group (mue = 0). We will investigate the effect of noise on our data. So for both groups we make up noisy data: We just add some random noise on the existing data.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Covariance as correlation</title>
       <link>https://data-se.netlify.app/2017/04/25/cor_as_cov/</link>
       <pubDate>Tue, 25 Apr 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/04/25/cor_as_cov/</guid>
-      <description>Correlation is one of the most widely used and a well-known measure of the assocation (linear association, that is) of two variables.
-Perhaps less well-known is that the correlation is in principle analoguous to the covariation.
-To see this, consider the a formula of the covariance of two empirical datasets, $X$ and $Y$:
-$$COV(X,Y) = \frac{1}{n} \cdot \big( \sum (X_i -\bar{X}) \cdot (Y_i - \bar{Y}) \big) $$
-In other words, the covariance of $X$ and $Y$ $COV(X,Y)$ is the average of difference of some value to its mean.</description>
+      <description>&lt;p&gt;Correlation is one of the most widely used and a well-known measure of the assocation (&lt;em&gt;linear&lt;/em&gt; association, that is) of two variables.&lt;/p&gt;&#xA;&lt;p&gt;Perhaps less well-known is that the correlation is in principle &lt;em&gt;analoguous to the covariation&lt;/em&gt;.&lt;/p&gt;&#xA;&lt;p&gt;To see this, consider &lt;del&gt;the&lt;/del&gt; a formula of the covariance of two empirical datasets, $X$ and $Y$:&lt;/p&gt;&#xA;&lt;p&gt;$$COV(X,Y) = \frac{1}{n} \cdot \big( \sum (X_i -\bar{X}) \cdot (Y_i - \bar{Y}) \big) $$&lt;/p&gt;&#xA;&lt;p&gt;In other words, the covariance of $X$ and $Y$ $COV(X,Y)$ is the average of difference of some value to its mean.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Some reflections on stochastic independence</title>
       <link>https://data-se.netlify.app/2016/11/08/stochastic_independence/</link>
       <pubDate>Tue, 08 Nov 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2016/11/08/stochastic_independence/</guid>
-      <description>We are often interested in the question whether two variables are &amp;ldquo;associated&amp;rdquo;, &amp;ldquo;correlated&amp;rdquo; (I mean the normal English term) or &amp;ldquo;dependent&amp;rdquo;. What exactly, or rather in normal words, does that mean? Let&amp;rsquo;s look at some easy case.
-NOTE: The example has been updated to reflect a more tangible and sensible scenario (find the old one in the previous commit at Github).
-Titanic data For example, let&amp;rsquo;s look at survival rates of the Titanic disaster, to see whether the probability of survival (event A) depends on the whether you embarked for 1st class (event B).</description>
+      <description>&lt;script src=&#34;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#34; type=&#34;text/javascript&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;p&gt;We are often interested in the question whether two variables are &amp;ldquo;associated&amp;rdquo;, &amp;ldquo;correlated&amp;rdquo; (I mean the normal English term) or &amp;ldquo;dependent&amp;rdquo;. What exactly, or rather in normal words, does that mean? Let&amp;rsquo;s look at some easy case.&lt;/p&gt;&#xA;&lt;p&gt;NOTE: The example has been updated to reflect a more tangible and sensible scenario (find the old one in the previous commit at Github).&lt;/p&gt;&#xA;&lt;h1 id=&#34;titanic-data&#34;&gt;Titanic data&lt;/h1&gt;&#xA;&lt;p&gt;For example, let&amp;rsquo;s look at survival rates of the Titanic disaster, to see whether the probability of survival (event A) depends on the whether you embarked for 1st class (event B).&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Why is SD(X) unequal to MAD(X)?</title>
       <link>https://data-se.netlify.app/2016/08/31/why-sd-is-unequal-to-mad/</link>
       <pubDate>Wed, 31 Aug 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2016/08/31/why-sd-is-unequal-to-mad/</guid>
-      <description>It may seem bewildering that the standard deviation (sd) of a vector X is (generally) unequal to the mean absolute deviation from the mean (MAD) of X, ie.
-$$sd(X) \ne MAD(X)$$.
-One could now argue this way: well, sd(X) involves computing the mean of the squared $$x_i$$, then taking the square root of this mean, thereby &amp;ldquo;coming back&amp;rdquo; to the initial size or dimension of x (i.e, first squaring, then taking the square root).</description>
+      <description>&lt;script type=&#34;text/x-mathjax-config&#34;&gt;&#xD;&#xA;MathJax.Hub.Config({&#xD;&#xA;  tex2jax: {inlineMath: [[&#39;$&#39;,&#39;$&#39;], [&#39;\\(&#39;,&#39;\\)&#39;]]}&#xD;&#xA;});&#xD;&#xA;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#34; type=&#34;text/javascript&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;p&gt;It may seem bewildering that the standard deviation (sd) of a vector X is&#xA;(generally) &lt;em&gt;unequal&lt;/em&gt; to the mean absolute deviation from the mean (MAD) of X, ie.&lt;/p&gt;&#xA;&lt;p&gt;$$sd(X) \ne MAD(X)$$.&lt;/p&gt;&#xA;&lt;p&gt;One could now argue this way: well, sd(X) involves computing the mean of the squared&#xA;$$x_i$$, then taking the square root of this mean, thereby &amp;ldquo;coming back&amp;rdquo; to the initial size&#xA;or dimension of x (i.e, first squaring, then taking the square root). And, MAD(X)&#xA;is nothing else then the mean deviation from the mean. So both quantities are&#xA;very similar, right? So one could expect that both statistics yield the same number, given they operate on the same input vector X.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Why absolute correlation value (r) cannot exceed 1. An intuition.</title>
       <link>https://data-se.netlify.app/2016/08/28/why-abs-correlation-is-max-1/</link>
       <pubDate>Sun, 28 Aug 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2016/08/28/why-abs-correlation-is-max-1/</guid>
-      <description>Pearson&amp;rsquo;s correlation is a well-known and widely used instrument to gauge the degree of linear association of two variables (see this post for an intuition on correlation).
-There a many formulas for correlation, but a short and easy one is this one:
-$$r = \varnothing(z_x z_y)$$.
-In words, $$r$$ can be seen as the average product of z-scores.
-In &amp;ldquo;raw values&amp;rdquo;, r is given by
-$$ r = \frac{\frac{1}{n}\sum{\Delta X \Delta Y}}{\sqrt{\frac{1}{n}\sum{\Delta X^2}} \sqrt{\frac{1}{n}\sum{\Delta Y^2}}} $$.</description>
+      <description>&lt;script src=&#34;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#34; type=&#34;text/javascript&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Pearson_product-moment_correlation_coefficient&#34;&gt;Pearson&amp;rsquo;s correlation&lt;/a&gt; is a well-known and widely used instrument to gauge the degree of linear association of two variables (see &lt;a href=&#34;https://sebastiansauer.github.io/correlation-intuition/&#34;&gt;this post&lt;/a&gt; for an intuition on correlation).&lt;/p&gt;&#xA;&lt;p&gt;There a many formulas for correlation, but a short and easy one is this one:&lt;/p&gt;&#xA;&lt;p&gt;$$r = \varnothing(z_x z_y)$$.&lt;/p&gt;&#xA;&lt;p&gt;In words, $$r$$ can be seen as the average product of z-scores.&lt;/p&gt;&#xA;&lt;p&gt;In &amp;ldquo;raw values&amp;rdquo;, r is given by&lt;/p&gt;&#xA;&lt;p&gt;$$ r = \frac{\frac{1}{n}\sum{\Delta X \Delta Y}}{\sqrt{\frac{1}{n}\sum{\Delta X^2}} \sqrt{\frac{1}{n}\sum{\Delta Y^2}}} $$.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Intuition on correlation</title>
       <link>https://data-se.netlify.app/2016/07/25/correlation-intuition/</link>
       <pubDate>Mon, 25 Jul 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2016/07/25/correlation-intuition/</guid>
-      <description>reading time: 10 min.
-Pearson’s correlation (short: correlation) is one of statistics’ all time classics. With an age of about a century, it is some kind of grand dad of analytic tools – but an oldie who is still very busy!
-Formula, interpretation and application of correlation is well known.
-In some non-technical lay terms, correlation captures the (linear) degree of co-variation of two linear variables. For example: if tall people have large feet (and small people small feet), on average, we say that height and foot size are correlated.</description>
+      <description>&lt;p&gt;&lt;em&gt;reading time: 10 min.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;Pearson’s correlation (short: correlation) is one of statistics’ all time classics. With an age of about a century, it is some kind of grand dad of analytic tools – but an oldie who is still very busy!&lt;/p&gt;&#xA;&lt;p&gt;Formula, interpretation and application of correlation is well known.&lt;/p&gt;&#xA;&lt;p&gt;In some non-technical lay terms, correlation captures the (linear) degree of co-variation of two linear variables. For example: if tall people have large feet (and small people small feet), on average, we say that height and foot size are correlated.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Intuition on Cohen&#39;s d</title>
       <link>https://data-se.netlify.app/2016/07/15/cohens-d-intuition/</link>
       <pubDate>Fri, 15 Jul 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2016/07/15/cohens-d-intuition/</guid>
-      <description>reading time: 5-10 min.
-Cohen&amp;rsquo;s d is a widely known and extensively used measure of effect size. That is, d is used to gauge how strong an effect is (given the fact that the effect exists). For example, one way to estimate d is as follows:
-data(tips, package = &amp;#34;reshape2&amp;#34;) library(compute.es) t1 &amp;lt;- t.test(tip ~ sex, data = tips) t1$statistic ## t ## -1.489536 table(tips$sex) ## ## Female Male ## 87 157 tes(t1$statistic, 87, 157) ## Mean Differences ES: ## ## d [ 95 %CI] = -0.</description>
+      <description>&lt;p&gt;&lt;em&gt;reading time: 5-10 min.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;Cohen&amp;rsquo;s d is a widely known and extensively used measure of effect size. That is, &lt;em&gt;d&lt;/em&gt; is used to gauge how strong an effect is (given the fact that the effect exists). For example, one way to estimate d is as follows:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;(tips, package &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;reshape2&amp;#34;&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(compute.es)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;t1 &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;t.test&lt;/span&gt;(tip &lt;span style=&#34;color:#f92672&#34;&gt;~&lt;/span&gt; sex, data &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; tips)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;t1&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;statistic&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;##         t &#xD;&#xA;## -1.489536&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;table&lt;/span&gt;(tips&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;sex)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;## &#xD;&#xA;## Female   Male &#xD;&#xA;##     87    157&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;tes&lt;/span&gt;(t1&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;statistic, &lt;span style=&#34;color:#ae81ff&#34;&gt;87&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;157&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;## Mean Differences ES: &#xD;&#xA;##  &#xD;&#xA;##  d [ 95 %CI] = -0.2 [ -0.46 , 0.06 ] &#xD;&#xA;##   var(d) = 0.02 &#xD;&#xA;##   p-value(d) = 0.14 &#xD;&#xA;##   U3(d) = 42.11 % &#xD;&#xA;##   CLES(d) = 44.4 % &#xD;&#xA;##   Cliff&amp;#39;s Delta = -0.11 &#xD;&#xA;##  &#xD;&#xA;##  g [ 95 %CI] = -0.2 [ -0.46 , 0.06 ] &#xD;&#xA;##   var(g) = 0.02 &#xD;&#xA;##   p-value(g) = 0.14 &#xD;&#xA;##   U3(g) = 42.13 % &#xD;&#xA;##   CLES(g) = 44.42 % &#xD;&#xA;##  &#xD;&#xA;##  Correlation ES: &#xD;&#xA;##  &#xD;&#xA;##  r [ 95 %CI] = 0.1 [ -0.03 , 0.22 ] &#xD;&#xA;##   var(r) = 0 &#xD;&#xA;##   p-value(r) = 0.14 &#xD;&#xA;##  &#xD;&#xA;##  z [ 95 %CI] = 0.1 [ -0.03 , 0.22 ] &#xD;&#xA;##   var(z) = 0 &#xD;&#xA;##   p-value(z) = 0.14 &#xD;&#xA;##  &#xD;&#xA;##  Odds Ratio ES: &#xD;&#xA;##  &#xD;&#xA;##  OR [ 95 %CI] = 0.7 [ 0.43 , 1.12 ] &#xD;&#xA;##   p-value(OR) = 0.14 &#xD;&#xA;##  &#xD;&#xA;##  Log OR [ 95 %CI] = -0.36 [ -0.84 , 0.12 ] &#xD;&#xA;##   var(lOR) = 0.06 &#xD;&#xA;##   p-value(Log OR) = 0.14 &#xD;&#xA;##  &#xD;&#xA;##  Other: &#xD;&#xA;##  &#xD;&#xA;##  NNT = -19.61 &#xD;&#xA;##  Total N = 244&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;However, what does Cohen&amp;rsquo;s d mean eventually?&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Why have z-transformed values a mean of zero and a sd of 1?</title>
       <link>https://data-se.netlify.app/2016/07/02/z-value-intuition/</link>
       <pubDate>Sat, 02 Jul 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2016/07/02/z-value-intuition/</guid>
-      <description>z-transformation is an ubiquitous operation in data analysis. It is often quite practical.
-Example: Assume Dr Zack scored 42 points on a test (say, IQ). Average score is 40 in the relevant population, and SD is 1, let’s say. So Zack’s score is 2 points above average. 2 points equals to SDs in this example. We can thus safely infer that Zack is about 2 SDs above average (leaving measurement precision and other issues at side).</description>
+      <description>&lt;p&gt;z-transformation is an ubiquitous operation in data analysis. It is often quite practical.&lt;/p&gt;&#xA;&lt;p&gt;Example: Assume Dr Zack scored 42 points on a test (say, IQ). Average score is 40 in the relevant population, and SD is 1, let’s say. So Zack’s score is 2 points above average. 2 points equals to SDs in this example. We can thus safely infer that Zack is about 2 SDs above average (leaving measurement precision and other issues at side).&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

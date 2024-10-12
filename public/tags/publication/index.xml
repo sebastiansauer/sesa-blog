@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>publication on sesa blog</title>
+    <title>Publication on sesa blog</title>
     <link>https://data-se.netlify.app/tags/publication/</link>
-    <description>Recent content in publication on sesa blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Publication on sesa blog</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 27 Aug 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/publication/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 27 Aug 2016 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://data-se.netlify.app/tags/publication/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The effect of a status symbol on success in online dating: an experimental study (data paper)</title>
       <link>https://data-se.netlify.app/2016/08/27/data_status_dating/</link>
       <pubDate>Sat, 27 Aug 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2016/08/27/data_status_dating/</guid>
-      <description>This article has been published at The Winnower, it is distributed under the terms of the Creative Commons Attribution 4.0 International License, which permits unrestricted use, distribution, and redistribution in any medium, provided that the original author and source are credited.
-Data can be accessed here.
-Access the paper here.
-CITATION: Sebastian Sauer, Alexander Wolff, The effect of a status symbol on success in online dating: an experimental study (data paper), The Winnower 3:e147241.</description>
+      <description>&lt;p&gt;This article has been published at &lt;a href=&#34;https://thewinnower.com/&#34;&gt;The Winnower&lt;/a&gt;, it is distributed under the terms of the &lt;a href=&#34;https://creativecommons.org/licenses/by/4.0/&#34;&gt;Creative Commons Attribution 4.0 International License&lt;/a&gt;, which permits unrestricted use, distribution, and redistribution in any medium, provided that the original author and source are credited.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Data can be accessed &lt;a href=&#34;https://osf.io/4hkjm/&#34;&gt;here&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Access the paper &lt;a href=&#34;https://thewinnower.com/papers/5202-the-effect-of-a-status-symbol-on-success-in-online-dating-an-experimental-study-data-paper?review_it=true&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;CITATION: Sebastian Sauer, Alexander Wolff, The effect of a status symbol on success in online dating: an experimental study (data paper), The Winnower 3:e147241.13309 (2016). DOI: 10.15200/winn.147241.13309&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

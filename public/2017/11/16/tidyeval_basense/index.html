@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.101.0" />
+<meta name="generator" content="Hugo 0.135.0">
 
 
 <title>Some thoughts on tidyveal and environments in R - sesa blog</title>
@@ -100,7 +100,7 @@ respectively.</p>
 <p>And why should I bother?</p>
 <p>Let&rsquo;s look at some border case that show the difference quite strikingly.</p>
 <p>Consider this base nse code:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>base_NSE_fun <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(some_arg) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>base_NSE_fun <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">function</span>(some_arg) {
 </span></span><span style="display:flex;"><span>  some_var <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">10</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">quote</span>(some_var <span style="color:#f92672">+</span> some_arg)
 </span></span><span style="display:flex;"><span>}
@@ -109,7 +109,7 @@ respectively.</p>
 </code></pre><p>It does not work. <code>eval()</code> has no idea about the environment in which <code>some_var</code> is defined. (And in addition, <code>quote()</code> will take its arguments too literally, but we spare that for later.)</p>
 <p>We might had expected the code above to work, however. That&rsquo;s where tidyeval comes into play:</p>
 <p>See here:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>tidy_eval_fun <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(some_arg) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>tidy_eval_fun <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">function</span>(some_arg) {
 </span></span><span style="display:flex;"><span>  some_var <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">10</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">quo</span>(some_var <span style="color:#f92672">+</span> some_arg)
 </span></span><span style="display:flex;"><span>}
@@ -145,7 +145,7 @@ respectively.</p>
 <h1 id="what-substitute-can-and-cannot-do">What <code>substitute()</code> can and cannot do</h1>
 <p><code>substitute()</code> is the counterpart of <code>quote()</code> for use within functions. Do not use <code>quote()</code> within functions, use <code>substitue()</code> instead (or the tidyeval counterpart).</p>
 <p>Consider:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>base_eval_fun2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(some_arg) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>base_eval_fun2 <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">function</span>(some_arg) {
 </span></span><span style="display:flex;"><span>  some_var <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">10</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">substitute</span>(some_var <span style="color:#f92672">+</span> some_arg)
 </span></span><span style="display:flex;"><span>}
@@ -156,7 +156,7 @@ call <code>tidy_eval_fun2(4)</code> is actually returning:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">base_eval_fun2</span>(<span style="color:#ae81ff">4</span>)
 </span></span></code></pre></div><pre tabindex="0"><code>## 10 + 4
 </code></pre><p>The result is quite hard coded (Thanks Edwin for pointing that out!). Compare the tidyeval variant:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>tidy_eval_fun2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(some_arg) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>tidy_eval_fun2 <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">function</span>(some_arg) {
 </span></span><span style="display:flex;"><span>  some_var <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">10</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">quo</span>(some_var <span style="color:#f92672">+</span> some_arg)
 </span></span><span style="display:flex;"><span>}

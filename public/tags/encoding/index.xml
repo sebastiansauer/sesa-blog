@@ -4,17 +4,16 @@
     <title>Encoding on sesa blog</title>
     <link>https://data-se.netlify.app/tags/encoding/</link>
     <description>Recent content in Encoding on sesa blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 25 Jan 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/encoding/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 25 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://data-se.netlify.app/tags/encoding/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Reading text files and Umlaute hassle</title>
       <link>https://data-se.netlify.app/2019/01/25/reading-text-files-and-umlaute-hassle/</link>
       <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2019/01/25/reading-text-files-and-umlaute-hassle/</guid>
-      <description>Data is often stored as plain text file. That’s good because it is a simple format. However, simplicity comes with a cost: Not all questions may have definite answers. The most common hassle when reading/importing text files is that the encoding scheme is unknown, aka wrong. This problem mostly occurs when, say, a Mac user stores a text file, where per default UTF8 text encoding is applied. In contrast, on a Windows machine, Windows-encoding (often dubbed “latin1”,“Windows 1252” or “ISO-8859-1”) is the default.</description>
+      <description>&lt;p&gt;Data is often stored as plain text file. That’s good because it is a simple format. However, simplicity comes with a cost: Not all questions may have definite answers. The most common hassle when reading/importing text files is that the encoding scheme is unknown, aka wrong. This problem mostly occurs when, say, a Mac user stores a text file, where per default UTF8 text encoding is applied. In contrast, on a Windows machine, Windows-encoding (often dubbed “latin1”,“Windows 1252” or “ISO-8859-1”) is the default. What happens then is similar to what would happen if type a letter any you read thinking that it is in French – confusion guaranted.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

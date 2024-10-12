@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>tools on sesa blog</title>
+    <title>Tools on sesa blog</title>
     <link>https://data-se.netlify.app/tags/tools/</link>
-    <description>Recent content in tools on sesa blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Tools on sesa blog</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 12 Jun 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/tools/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 12 Jun 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://data-se.netlify.app/tags/tools/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Identifying the package of a function</title>
       <link>https://data-se.netlify.app/2017/06/12/finds_funs/</link>
       <pubDate>Mon, 12 Jun 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/06/12/finds_funs/</guid>
-      <description>tl;dr Suppose you want to know which package(s) a given R function belongs to, say filter. Here come find_funsto help you:
-find_funs(&amp;#34;filter&amp;#34;) ## # A tibble: 4 x 3 ## package_name builtin_pckage loaded ## &amp;lt;chr&amp;gt; &amp;lt;lgl&amp;gt; &amp;lt;lgl&amp;gt; ## 1 base TRUE TRUE ## 2 dplyr FALSE TRUE ## 3 plotly FALSE FALSE ## 4 stats TRUE TRUE This function will search all installed packages for this function name. It will return all the package names that match the function name (ie.</description>
+      <description>&lt;h1 id=&#34;tldr&#34;&gt;tl;dr&lt;/h1&gt;&#xA;&lt;p&gt;Suppose you want to know which package(s) a given R function belongs to, say &lt;code&gt;filter&lt;/code&gt;. Here come &lt;code&gt;find_funs&lt;/code&gt;to help you:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;find_funs&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;filter&amp;#34;&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;## # A tibble: 4 x 3&#xD;&#xA;##   package_name builtin_pckage loaded&#xD;&#xA;##          &amp;lt;chr&amp;gt;          &amp;lt;lgl&amp;gt;  &amp;lt;lgl&amp;gt;&#xD;&#xA;## 1         base           TRUE   TRUE&#xD;&#xA;## 2        dplyr          FALSE   TRUE&#xD;&#xA;## 3       plotly          FALSE  FALSE&#xD;&#xA;## 4        stats           TRUE   TRUE&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This function will search all &lt;em&gt;installed&lt;/em&gt; packages for this function name. It will return all the package names that match the function name (ie., packages which include a function by the respective name). In addition, the function raises a flag as to whether the packages is a standard (built-in) packge and whether the package is currently loaded/attached.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

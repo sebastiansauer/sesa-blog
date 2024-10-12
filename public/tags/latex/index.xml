@@ -4,47 +4,37 @@
     <title>LaTeX on sesa blog</title>
     <link>https://data-se.netlify.app/tags/latex/</link>
     <description>Recent content in LaTeX on sesa blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 05 Jul 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/latex/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 Jul 2018 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://data-se.netlify.app/tags/latex/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Work with bibtex bib files like a pro</title>
       <link>https://data-se.netlify.app/2018/07/05/work-with-bibtex-bib-files-like-a-pro/</link>
       <pubDate>Thu, 05 Jul 2018 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2018/07/05/work-with-bibtex-bib-files-like-a-pro/</guid>
-      <description>Recently, I had to curate a list of publications for our institution. Where’s the point? One might ask. Let’s leave aside that a number of colleagues do not use citation management software to work with their publications. They just hack the citation, if and when needed, in some word files. Done. Fair enough, unless someone tries to come up with a list of all the publication of that institution. In that case, the curator will need some structured data, otherwise he or she will end up copy-pasting the rest of the day.</description>
+      <description>&lt;p&gt;Recently, I had to curate a list of publications for our institution. Where’s the point? One might ask. Let’s leave aside that a number of colleagues do not use citation management software to work with their publications. They just hack the citation, if and when needed, in some word files. Done. Fair enough, unless someone tries to come up with a list of all the publication of that institution. In that case, the curator will need some structured data, otherwise he or she will end up copy-pasting the rest of the day.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>How to cite &#34;in press&#34; using Bibtex</title>
       <link>https://data-se.netlify.app/2018/07/01/how-to-cite-in-press-using-bibtex/</link>
       <pubDate>Sun, 01 Jul 2018 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2018/07/01/how-to-cite-in-press-using-bibtex/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Bibtex entry type for conference talks suitable for APA</title>
       <link>https://data-se.netlify.app/2018/06/26/bibtex-entry-type-for-conference-talks-suitable-for-apa/</link>
       <pubDate>Tue, 26 Jun 2018 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2018/06/26/bibtex-entry-type-for-conference-talks-suitable-for-apa/</guid>
-      <description>I’ ve wondered how to best cite a talk given at a conference that is not “really” published in the sense that there’s no ISBN or similar identifier
-One can argue that it is not worth citing a non-identifiable source - I agree with that basically. However, for some reasons it maybe helpful to cite anyway. For example, one may have to document the talks being given.
-For that purpose, I found this bibtex entry type helpful:</description>
+      <description>&lt;p&gt;I’ ve wondered how to best cite a talk given at a conference that is not “really” published in the sense that there’s no ISBN or similar identifier&lt;/p&gt;&#xD;&#xA;&lt;p&gt;One can argue that it is not worth citing a non-identifiable source - I agree with that basically. However, for some reasons it maybe helpful to cite anyway. For example, one may have to document the talks being given.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;For that purpose, I found this bibtex entry type helpful:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Yart - Yet Another Markdown Report Template</title>
       <link>https://data-se.netlify.app/2017/11/15/yart/</link>
       <pubDate>Wed, 15 Nov 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/11/15/yart/</guid>
-      <description>It would be useful to have a RMarkdown template for typical (academic) reports such as class assigments and bachelor/master thesises. The LaTeX class &amp;ldquo;report&amp;rdquo; provides a suitable format for that. This package provides a simple wrapper around this class built on the standard pandoc template.
-Thanks to Yart, ie, this package leans on earlier work by Aaron Wolen in his pandoc-letter repository, and extends it for use from R via the rmarkdown package.</description>
+      <description>&lt;p&gt;It would be useful to have a RMarkdown template for typical (academic) reports such as class assigments and bachelor/master thesises. The LaTeX class &amp;ldquo;report&amp;rdquo; provides a suitable format for that. This package provides a simple wrapper around this class built on the standard pandoc template.&lt;/p&gt;&#xA;&lt;h2 id=&#34;thanks-to&#34;&gt;Thanks to&lt;/h2&gt;&#xA;&lt;p&gt;Yart, ie, this package leans on earlier work by &lt;a href=&#34;http://aaronwolen.com/&#34;&gt;Aaron Wolen&lt;/a&gt; in his&#xA;&lt;a href=&#34;https://github.com/aaronwolen/pandoc-letter&#34;&gt;pandoc-letter&lt;/a&gt; repository, and extends it for use from&#xA;R via the &lt;a href=&#34;https://cran.r-project.org/package=rmarkdown&#34;&gt;rmarkdown&lt;/a&gt; package. The structure of this package is heavily inspired by Dirk Eddenbuettel&amp;rsquo;s nice tamplate package &lt;a href=&#34;https://github.com/eddelbuettel/linl&#34;&gt;linl&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

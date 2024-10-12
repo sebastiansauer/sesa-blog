@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>missing on sesa blog</title>
+    <title>Missing on sesa blog</title>
     <link>https://data-se.netlify.app/tags/missing/</link>
-    <description>Recent content in missing on sesa blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Missing on sesa blog</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 16 Oct 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/missing/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 16 Oct 2016 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://data-se.netlify.app/tags/missing/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Checking for NA with dplyr</title>
       <link>https://data-se.netlify.app/2016/10/16/nas-with-dplyr/</link>
       <pubDate>Sun, 16 Oct 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2016/10/16/nas-with-dplyr/</guid>
-      <description>Often, we want to check for missing values (NAs). There are of course many ways to do so. dplyr provides a quite nice one.
-First, let&amp;rsquo;s load some data:
-library(readr) extra_file &amp;lt;- &amp;#34;https://raw.github.com/sebastiansauer/Daten_Unterricht/master/extra.csv&amp;#34; extra_df &amp;lt;- read_csv(extra_file) Note that extra is a data frame consisting of survey items regarding extraversion and related behavior.
-In case the dataframe is quite largish (many columns) it is helpful to have some quick way. Here, we have 25 columns.</description>
+      <description>&lt;p&gt;Often, we want to check for missing values (&lt;code&gt;NA&lt;/code&gt;s). There are of course many ways to do so. &lt;code&gt;dplyr&lt;/code&gt; provides a quite nice one.&lt;/p&gt;&#xA;&lt;p&gt;First, let&amp;rsquo;s load some data:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(readr)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;extra_file &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://raw.github.com/sebastiansauer/Daten_Unterricht/master/extra.csv&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;extra_df &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;read_csv&lt;/span&gt;(extra_file)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Note that &lt;code&gt;extra&lt;/code&gt; is a data frame consisting of survey items regarding extraversion and related behavior.&lt;/p&gt;&#xA;&lt;p&gt;In case the dataframe is quite largish (many columns) it is helpful to have some quick way. Here, we have 25 columns. That is not enormous, but ok, let&amp;rsquo;s stick with that for now.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

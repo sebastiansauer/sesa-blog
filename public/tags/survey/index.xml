@@ -1,53 +1,40 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>survey on sesa blog</title>
+    <title>Survey on sesa blog</title>
     <link>https://data-se.netlify.app/tags/survey/</link>
-    <description>Recent content in survey on sesa blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Survey on sesa blog</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 24 Jun 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/survey/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 24 Jun 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://data-se.netlify.app/tags/survey/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Preparation of extraversion survey data</title>
       <link>https://data-se.netlify.app/2017/06/24/extra_prep/</link>
       <pubDate>Sat, 24 Jun 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2017/06/24/extra_prep/</guid>
-      <description>For teaching purposes and out of curiosity towards some psychometric questions, I have run a survey on extraversion here. The dataset has been published at OSF (DOI 10.17605/OSF.IO/4KGZH). The survey is base on a google form, which in turn saves the data in Google spreadsheet. Before the data can be analyzed, some preparation and makeup is in place. This posts shows some general makeup, typical for survey data.
-Download the data and load packages Download the data from source (Google spreadsheets); the package gsheet provides an easy interface for that purpose.</description>
+      <description>&lt;p&gt;For teaching purposes and out of curiosity towards some psychometric questions, I have run a survey on extraversion &lt;a href=&#34;https://docs.google.com/forms/d/e/1FAIpQLSfD4wQuhDV_edx1WBfN3Qos7XqoVbe41VpiKLRKtGLeuUD09Q/viewform?usp=sf_link&#34;&gt;here&lt;/a&gt;. The dataset has been published at &lt;a href=&#34;https://osf.io/4kgzh/&#34;&gt;OSF&lt;/a&gt; (DOI 10.17605/OSF.IO/4KGZH). The survey is base on a google form, which in turn saves the data in Google spreadsheet. Before the data can be analyzed, some preparation and makeup is in place. This posts shows some general makeup, typical for survey data.&lt;/p&gt;&#xA;&lt;h1 id=&#34;download-the-data-and-load-packages&#34;&gt;Download the data and load packages&lt;/h1&gt;&#xA;&lt;p&gt;Download the data from source (Google spreadsheets); the package &lt;code&gt;gsheet&lt;/code&gt; provides an easy interface for that purpose.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Some musings on the validation of Satow&#39;s Extraversion questionnaire</title>
       <link>https://data-se.netlify.app/2016/11/23/validation_extraversion_questionnaire/</link>
       <pubDate>Wed, 23 Nov 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2016/11/23/validation_extraversion_questionnaire/</guid>
-      <description>Measuring personality traits is one of (the?) bread-and-butter business of psychologists, at least for quantitatively oriented ones. Literally, thousand of psychometric questionnaires exits. Measures abound. Extroversion, part of the Big Five personality theory approach, is one of the most widely used, and extensively scrutinized questionnaire tapping into human personality.
-One rather new, but quite often used questionnaire, is Satow&amp;rsquo;s (2012) B5T. The reason for the popularity of this instrument is that it runs under a CC-licence - in contrast to the old ducks, which coute chere.</description>
+      <description>&lt;p&gt;Measuring personality traits is one of (the?) bread-and-butter business of psychologists, at least for quantitatively oriented ones. Literally, thousand of psychometric questionnaires exits. Measures abound. Extroversion, part of the Big Five personality &lt;del&gt;theory&lt;/del&gt; approach, is one of the most widely used, and extensively scrutinized questionnaire tapping into human personality.&lt;/p&gt;&#xA;&lt;p&gt;One rather new, but quite often used questionnaire, is &lt;a href=&#34;https://www.zpid.de/pub/tests/PT_9006357_B5T_Forschungsbericht.pdf&#34;&gt;Satow&amp;rsquo;s (2012)&lt;/a&gt; &lt;strong&gt;B5T&lt;/strong&gt;. The reason for the popularity of this instrument is that it runs under a CC-licence - in contrast to the old ducks, which coute chere. The B5T has undergone some psychometric scrutiny, and a number of results support the notion that it is a valid instrument.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Preparing survey results data</title>
       <link>https://data-se.netlify.app/2016/11/19/preparing_survey_data/</link>
       <pubDate>Sat, 19 Nov 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2016/11/19/preparing_survey_data/</guid>
-      <description>Analyzing survey results is a frequent endeavor (for some including me). Let&amp;rsquo;s not think about arguments whether and when surveys are useful or not (for some recent criticism see Briggs&amp;rsquo; book).
-Typically, respondents circle some option ranging from &amp;ldquo;don&amp;rsquo;t agree at all&amp;rdquo; to &amp;ldquo;completely agree&amp;rdquo; for each question (or &amp;ldquo;item&amp;rdquo;). Typically, four to six boxes are given where one is expected to tick one.
-In this tutorial, I will discuss some typical steps to prepare the data for subsequent analyses.</description>
+      <description>&lt;p&gt;Analyzing survey results is a frequent endeavor (for some including me). Let&amp;rsquo;s not think about arguments whether and when surveys are useful or not (for some recent criticism see &lt;a href=&#34;http://www.springer.com/de/book/9783319397559&#34;&gt;Briggs&amp;rsquo; book&lt;/a&gt;).&lt;/p&gt;&#xA;&lt;p&gt;Typically, respondents circle some option ranging from &amp;ldquo;don&amp;rsquo;t agree at all&amp;rdquo; to &amp;ldquo;completely agree&amp;rdquo; for each question (or &amp;ldquo;item&amp;rdquo;). Typically, four to six boxes are given where one is expected to tick one.&lt;/p&gt;&#xA;&lt;p&gt;In this tutorial, I will discuss some typical steps to prepare the data for subsequent analyses. The goal is that we have the dataset ready for analyzing with basic preparations (eg. recoding of reversed variables) already done.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Plotting survey results using `ggplot2`</title>
       <link>https://data-se.netlify.app/2016/11/12/plotting_surveys/</link>
       <pubDate>Sat, 12 Nov 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://data-se.netlify.app/2016/11/12/plotting_surveys/</guid>
-      <description>Plotting (and more generally, analyzing) survey results is a frequent endeavor in many business environments. Let&amp;rsquo;s not think about arguments whether and when surveys are useful (for some recent criticism see Briggs&amp;rsquo; book).
-Typically, respondents circle some option ranging from &amp;ldquo;don&amp;rsquo;t agree at all&amp;rdquo; to &amp;ldquo;completely agree&amp;rdquo; for each question (or &amp;ldquo;item&amp;rdquo;). Typically, four to six boxes are given where one is expected to tick one.
-In this tutorial, I will discuss some barplot type visualizations; the presentation is based on ggplot2 (within the R environment) .</description>
+      <description>&lt;p&gt;Plotting (and more generally, analyzing) survey results is a frequent endeavor in many business environments. Let&amp;rsquo;s not think about arguments whether and when surveys are useful (for some recent criticism see &lt;a href=&#34;http://www.springer.com/de/book/9783319397559&#34;&gt;Briggs&amp;rsquo; book&lt;/a&gt;).&lt;/p&gt;&#xA;&lt;p&gt;Typically, respondents circle some option ranging from &amp;ldquo;don&amp;rsquo;t agree at all&amp;rdquo; to &amp;ldquo;completely agree&amp;rdquo; for each question (or &amp;ldquo;item&amp;rdquo;). Typically, four to six boxes are given where one is expected to tick one.&lt;/p&gt;&#xA;&lt;p&gt;In this tutorial, I will discuss some barplot type visualizations; the presentation is based on &lt;code&gt;ggplot2&lt;/code&gt; (within the &lt;code&gt;R&lt;/code&gt; environment) . Sure, much more can be done than will be presented here, but for the scope of this post, we will stick to the plain barplot (although some variations of it).&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>
