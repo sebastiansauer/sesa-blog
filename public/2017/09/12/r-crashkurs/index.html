@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.135.0">
+<meta name="generator" content="Hugo 0.101.0" />
 
 
 <title>Crashkurs Datenanalyse mit R - sesa blog</title>
@@ -324,7 +324,7 @@
 <h2 id="umkodieren">Umkodieren</h2>
 <p>Gerade bei der Analyse von Fragebogendaten ist es immer wieder nötig, Daten umzukodieren. Klassisches Beispiel: Ein Item ist negativ kodiert. Zum Beispiel das Item &ldquo;Ich bin ein Couch-Potato&rdquo; in einem Fragebogen für Extraversion.</p>
 <p>Nehmen wir an, das Item &ldquo;i04&rdquo; hat die Werte 1 (&ldquo;stimme überhaupt nicht zu&rdquo;) bis 4 (&ldquo;stimme voll und ganz zu&rdquo;). Kreuzt jemand das Couch-Potato-Item mit 4 an, so sollte er nicht die maximale Extraversion-Punktzahl (4), sondern die <em>minimale</em> Extraversion-Punktzahl (1) erhalten. Also</p>
-<p><code> 1 --&gt; 4 2 --&gt; 3 3 --&gt; 2 4 --&gt; 1 </code></p>
+<p><code>1 --&gt; 4 2 --&gt; 3 3 --&gt; 2 4 --&gt; 1</code></p>
 <p>Am einfachsten ist dies zu bewerkstelligen mit folgendem R-Befehl:</p>
 <pre tabindex="0"><code>meine_tabelle$i04_r &lt;- 5 - meine_Tabelle$i04
 </code></pre><p>Rechnet man <code>5-i04</code> so kommt der richtige, &ldquo;neue&rdquo; Wert heraus (vorausgesetzt, das Item hatte 4 Antwortstufen).</p>
@@ -1085,90 +1085,90 @@ Wie groß ist der (lineare) Zusammenhang von Beurteilung und Schönheit eines Do
 <p>Daten kommunizieren heißt praktisch zumeist, Tabellen oder Diagramme zu erstellen. Meist gibt es dazu Richtlinien von Seiten irgendeiner (selbsternannten) Autorität wie Dozenten oder Fachgesellschaften. Zum Beispiel hat die <a href="http://www.apa.org">APA</a> ein umfangreiches Manual zum Thema Manuskriptgestaltung publiziert; die deutsche Fachgesellschaft der Psychologie entsprechend. Googeln Sie mal, wie in ihren Richtlinien Tabellen und Diagramme zu erstellen sind (oder fragen Sie Ihren Gutachter).</p>
 <p>So sieht zum Beispiel eine schöne Tabelle aus:</p>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">rowname</th>
-          <th style="text-align: right">X</th>
-          <th style="text-align: right">age</th>
-          <th style="text-align: right">beauty</th>
-          <th style="text-align: right">eval</th>
-          <th style="text-align: right">students</th>
-          <th style="text-align: right">allstudents</th>
-          <th style="text-align: right">prof</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">X</td>
-          <td style="text-align: right">NA</td>
-          <td style="text-align: right">NA</td>
-          <td style="text-align: right">NA</td>
-          <td style="text-align: right">NA</td>
-          <td style="text-align: right">NA</td>
-          <td style="text-align: right">NA</td>
-          <td style="text-align: right">NA</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">age</td>
-          <td style="text-align: right">0.09</td>
-          <td style="text-align: right">NA</td>
-          <td style="text-align: right">NA</td>
-          <td style="text-align: right">NA</td>
-          <td style="text-align: right">NA</td>
-          <td style="text-align: right">NA</td>
-          <td style="text-align: right">NA</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">beauty</td>
-          <td style="text-align: right">-0.02</td>
-          <td style="text-align: right">-0.30</td>
-          <td style="text-align: right">NA</td>
-          <td style="text-align: right">NA</td>
-          <td style="text-align: right">NA</td>
-          <td style="text-align: right">NA</td>
-          <td style="text-align: right">NA</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">eval</td>
-          <td style="text-align: right">0.07</td>
-          <td style="text-align: right">-0.05</td>
-          <td style="text-align: right">0.19</td>
-          <td style="text-align: right">NA</td>
-          <td style="text-align: right">NA</td>
-          <td style="text-align: right">NA</td>
-          <td style="text-align: right">NA</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">students</td>
-          <td style="text-align: right">0.01</td>
-          <td style="text-align: right">-0.03</td>
-          <td style="text-align: right">0.13</td>
-          <td style="text-align: right">0.04</td>
-          <td style="text-align: right">NA</td>
-          <td style="text-align: right">NA</td>
-          <td style="text-align: right">NA</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">allstudents</td>
-          <td style="text-align: right">0.01</td>
-          <td style="text-align: right">-0.01</td>
-          <td style="text-align: right">0.10</td>
-          <td style="text-align: right">0.00</td>
-          <td style="text-align: right">0.97</td>
-          <td style="text-align: right">NA</td>
-          <td style="text-align: right">NA</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">prof</td>
-          <td style="text-align: right">0.65</td>
-          <td style="text-align: right">0.08</td>
-          <td style="text-align: right">0.05</td>
-          <td style="text-align: right">0.02</td>
-          <td style="text-align: right">0.02</td>
-          <td style="text-align: right">0.03</td>
-          <td style="text-align: right">NA</td>
-      </tr>
-  </tbody>
+<thead>
+<tr>
+<th style="text-align:left">rowname</th>
+<th style="text-align:right">X</th>
+<th style="text-align:right">age</th>
+<th style="text-align:right">beauty</th>
+<th style="text-align:right">eval</th>
+<th style="text-align:right">students</th>
+<th style="text-align:right">allstudents</th>
+<th style="text-align:right">prof</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">X</td>
+<td style="text-align:right">NA</td>
+<td style="text-align:right">NA</td>
+<td style="text-align:right">NA</td>
+<td style="text-align:right">NA</td>
+<td style="text-align:right">NA</td>
+<td style="text-align:right">NA</td>
+<td style="text-align:right">NA</td>
+</tr>
+<tr>
+<td style="text-align:left">age</td>
+<td style="text-align:right">0.09</td>
+<td style="text-align:right">NA</td>
+<td style="text-align:right">NA</td>
+<td style="text-align:right">NA</td>
+<td style="text-align:right">NA</td>
+<td style="text-align:right">NA</td>
+<td style="text-align:right">NA</td>
+</tr>
+<tr>
+<td style="text-align:left">beauty</td>
+<td style="text-align:right">-0.02</td>
+<td style="text-align:right">-0.30</td>
+<td style="text-align:right">NA</td>
+<td style="text-align:right">NA</td>
+<td style="text-align:right">NA</td>
+<td style="text-align:right">NA</td>
+<td style="text-align:right">NA</td>
+</tr>
+<tr>
+<td style="text-align:left">eval</td>
+<td style="text-align:right">0.07</td>
+<td style="text-align:right">-0.05</td>
+<td style="text-align:right">0.19</td>
+<td style="text-align:right">NA</td>
+<td style="text-align:right">NA</td>
+<td style="text-align:right">NA</td>
+<td style="text-align:right">NA</td>
+</tr>
+<tr>
+<td style="text-align:left">students</td>
+<td style="text-align:right">0.01</td>
+<td style="text-align:right">-0.03</td>
+<td style="text-align:right">0.13</td>
+<td style="text-align:right">0.04</td>
+<td style="text-align:right">NA</td>
+<td style="text-align:right">NA</td>
+<td style="text-align:right">NA</td>
+</tr>
+<tr>
+<td style="text-align:left">allstudents</td>
+<td style="text-align:right">0.01</td>
+<td style="text-align:right">-0.01</td>
+<td style="text-align:right">0.10</td>
+<td style="text-align:right">0.00</td>
+<td style="text-align:right">0.97</td>
+<td style="text-align:right">NA</td>
+<td style="text-align:right">NA</td>
+</tr>
+<tr>
+<td style="text-align:left">prof</td>
+<td style="text-align:right">0.65</td>
+<td style="text-align:right">0.08</td>
+<td style="text-align:right">0.05</td>
+<td style="text-align:right">0.02</td>
+<td style="text-align:right">0.02</td>
+<td style="text-align:right">0.03</td>
+<td style="text-align:right">NA</td>
+</tr>
+</tbody>
 </table>
 <h2 id="für-fortgeschrittene-rmarkdown">Für Fortgeschrittene: RMarkdown</h2>
 <p>Wäre das nicht cool: Jegliches Formatieren wird automatisch übernommen und sogar so, das es schick aussieht? Außerdem wird Ihr R-Code und dessen Ergebnisse (Tabellen und Diagramme oder reine Zahlen) automatisch in Ihr Dokument übernommen. Keine Copy-Paste-Fehler mehr. Keine händisches Aktualisieren, weil Sie Daten oder die vorhergehende Analyse geändert haben. Hört sich gut an? Probieren Sie mal <a href="http://rmarkdown.rstudio.com">RMarkdown</a> aus.</p>

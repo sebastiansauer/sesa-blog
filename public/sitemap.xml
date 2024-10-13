@@ -2,34 +2,55 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://data-se.netlify.app/categories/</loc>
+    <lastmod>2024-10-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/tags/list/</loc>
+    <lastmod>2024-10-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/tags/loops/</loc>
+    <lastmod>2024-10-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/post/</loc>
+    <lastmod>2024-10-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/tags/purrr/</loc>
+    <lastmod>2024-10-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/categories/rstats/</loc>
+    <lastmod>2024-10-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/</loc>
+    <lastmod>2024-10-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/tags/</loc>
+    <lastmod>2024-10-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/2024/10/13/working-with-list-columns-an-example/</loc>
+    <lastmod>2024-10-13T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://data-se.netlify.app/2024/10/11/ben%C3%B6tigte-r-pakete-f%C3%BCr-ein-projekt-pr%C3%BCfen/</loc>
     <lastmod>2024-10-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://data-se.netlify.app/tags/dependencies/</loc>
     <lastmod>2024-10-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://data-se.netlify.app/post/</loc>
-    <lastmod>2024-10-11T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://data-se.netlify.app/tags/r/</loc>
     <lastmod>2024-10-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://data-se.netlify.app/</loc>
-    <lastmod>2024-10-11T00:00:00+00:00</lastmod>
+    <loc>https://data-se.netlify.app/tags/association/</loc>
+    <lastmod>2024-03-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://data-se.netlify.app/tags/</loc>
-    <lastmod>2024-10-11T00:00:00+00:00</lastmod>
+    <loc>https://data-se.netlify.app/tags/correlation/</loc>
+    <lastmod>2024-03-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://data-se.netlify.app/2024/03/05/dead-man-bias-in-correlation/</loc>
+    <lastmod>2024-03-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://data-se.netlify.app/2024/02/25/adjust-labels-in-ggplot/</loc>
     <lastmod>2024-02-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://data-se.netlify.app/categories/</loc>
-    <lastmod>2024-02-25T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://data-se.netlify.app/tags/ggplot2/</loc>
-    <lastmod>2024-02-25T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://data-se.netlify.app/categories/rstats/</loc>
     <lastmod>2024-02-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://data-se.netlify.app/tags/datawrangling/</loc>
@@ -746,9 +767,6 @@
     <loc>https://data-se.netlify.app/2019/11/25/pictogram-waffle-plot-using-emojifont/</loc>
     <lastmod>2019-11-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://data-se.netlify.app/tags/correlation/</loc>
-    <lastmod>2019-11-19T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://data-se.netlify.app/2019/11/19/correlation-cannot-be-more-extreme-than-1-1-proof-using-cauchy-schwartz-inequality/</loc>
     <lastmod>2019-11-19T00:00:00+00:00</lastmod>
   </url><url>
@@ -780,9 +798,6 @@
     <lastmod>2019-10-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://data-se.netlify.app/2019/09/28/looping-over-function-arguments-using-purrr/</loc>
-    <lastmod>2019-09-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://data-se.netlify.app/tags/purrr/</loc>
     <lastmod>2019-09-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://data-se.netlify.app/tags/reproducibility/</loc>
@@ -1340,9 +1355,6 @@
     <loc>https://data-se.netlify.app/tags/writing/</loc>
     <lastmod>2017-04-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://data-se.netlify.app/tags/association/</loc>
-    <lastmod>2017-04-25T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://data-se.netlify.app/2017/04/25/cor_as_cov/</loc>
     <lastmod>2017-04-25T00:00:00+00:00</lastmod>
   </url><url>
@@ -1618,10 +1630,7 @@
   </url><url>
     <loc>https://data-se.netlify.app/1/01/01/</loc>
   </url><url>
-    <loc>https://data-se.netlify.app/1/01/01/</loc>
-  </url><url>
-    <loc>https://data-se.netlify.app/1/01/01/</loc>
-  </url><url>
     <loc>https://data-se.netlify.app/privacy/</loc>
+    <priority>0</priority>
   </url>
 </urlset>

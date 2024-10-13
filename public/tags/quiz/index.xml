@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Quiz on sesa blog</title>
+    <title>quiz on sesa blog</title>
     <link>https://data-se.netlify.app/tags/quiz/</link>
-    <description>Recent content in Quiz on sesa blog</description>
-    <generator>Hugo</generator>
+    <description>Recent content in quiz on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 18 Jan 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://data-se.netlify.app/tags/quiz/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 18 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/quiz/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Using quizzes on markdown html sites</title>
       <link>https://data-se.netlify.app/2024/01/18/using-quizzes-on-markdown-html-sites/</link>
       <pubDate>Thu, 18 Jan 2024 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2024/01/18/using-quizzes-on-markdown-html-sites/</guid>
-      <description>&lt;div id=&#34;TOC&#34;&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#motivation&#34; id=&#34;toc-motivation&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Motivation&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#simple-quiz-implementation-using-html-and-js&#34; id=&#34;toc-simple-quiz-implementation-using-html-and-js&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Simple quiz implementation using HTML and JS&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#demo&#34; id=&#34;toc-demo&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; Demo&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#reproducibility&#34; id=&#34;toc-reproducibility&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Reproducibility&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;motivation&#34; class=&#34;section level1&#34; number=&#34;1&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; Motivation&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;As a teacher, I often write exercises for my students and post the exercises on my &lt;a href=&#34;https://datenwerk.netlify.app/&#34;&gt;Datenwerk site&lt;/a&gt;.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;As many questions are of multiple choice type it would come handy to have a quiz function.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;I first hoped that Quarto markdown would supply such a feature out of the box.&#xD;&#xA;However, this is not (yet) the case.&#xD;&#xA;The good news is that it can be achieved with some simple html/js code.&lt;/p&gt;</description>
+      <description>1 Motivation 2 Simple quiz implementation using HTML and JS 3 Demo 4 Reproducibility 1 Motivation As a teacher, I often write exercises for my students and post the exercises on my Datenwerk site.
+As many questions are of multiple choice type it would come handy to have a quiz function.
+I first hoped that Quarto markdown would supply such a feature out of the box. However, this is not (yet) the case.</description>
     </item>
+    
   </channel>
 </rss>

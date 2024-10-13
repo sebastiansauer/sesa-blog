@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.135.0">
+<meta name="generator" content="Hugo 0.101.0" />
 
 
 <title>Some musings on the validation of Satow&#39;s Extraversion questionnaire - sesa blog</title>
@@ -558,7 +558,7 @@
 <h1 id="validity-next-step">Validity, next step</h1>
 <p>Let&rsquo;s go back to some &ldquo;validity&rdquo; concerns, as this step is more important than reliability.</p>
 <h2 id="single-item-external-validity">Single-item external validity</h2>
-<p>Let&rsquo;s compute the correlation of each item with a given external criterion. If the correlation of a single item is not worse than the total score, <del>we</del> the item score, that is the instrument is in trouble.</p>
+<p>Let&rsquo;s compute the correlation of each item with a given external criterion. If the correlation of a single item is not worse than the total score, ~we~ the item score, that is the instrument is in trouble.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>e <span style="color:#f92672">%&gt;%</span> 
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">select</span>(i01<span style="color:#f92672">:</span>i10, n_facebook_friends) <span style="color:#f92672">%&gt;%</span>
 </span></span><span style="display:flex;"><span>  correlate <span style="color:#f92672">%&gt;%</span> 

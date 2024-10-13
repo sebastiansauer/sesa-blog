@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.135.0">
+<meta name="generator" content="Hugo 0.101.0" />
 
 
 <title>Plot many ggplot diagrams using nest() and map() - sesa blog</title>
@@ -162,7 +162,10 @@ For example, good ol’ for-loops are out there.
 However, here we can make use of R’s beautiful vectorization capabilities.
 In addition, <code>dplyr::do()</code> is a similar way to map list elements to a function.
 However, this function <del>is</del>will probably get deprecated:</p>
-<p></p>
+<p><blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://twitter.com/ijlyttle?ref_src=twsrc%5Etfw">@ijlyttle</a> btw dplyr::do() is now basically deprecated in favour of the purrr approach</p>&mdash; Hadley Wickham (@hadleywickham) <a href="https://twitter.com/hadleywickham/status/719542847045636096?ref_src=twsrc%5Etfw">April 11, 2016</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</p>
 <p>In addition, <code>nest()</code> bears the advantage,
 that the (processed plotting) data is nicely stored in a data frame.</p>
 <p>For the sake of completeness:</p>

@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Speed on sesa blog</title>
+    <title>speed on sesa blog</title>
     <link>https://data-se.netlify.app/tags/speed/</link>
-    <description>Recent content in Speed on sesa blog</description>
-    <generator>Hugo</generator>
+    <description>Recent content in speed on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 15 Nov 2023 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://data-se.netlify.app/tags/speed/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 15 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/speed/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Speed test for parallel processing </title>
       <link>https://data-se.netlify.app/2023/11/15/speed-test-for-parallel-processing/</link>
       <pubDate>Wed, 15 Nov 2023 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2023/11/15/speed-test-for-parallel-processing/</guid>
-      <description>&lt;div id=&#34;TOC&#34;&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#how-fast-is-fast&#34; id=&#34;toc-how-fast-is-fast&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;0.0.1&lt;/span&gt; How fast is fast?&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#tidymodels-pipeline&#34; id=&#34;toc-tidymodels-pipeline&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;0.0.2&lt;/span&gt; Tidymodels pipeline&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#setup&#34; id=&#34;toc-setup&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;0.0.3&lt;/span&gt; Setup&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#simple-fit&#34; id=&#34;toc-simple-fit&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;0.0.4&lt;/span&gt; Simple Fit&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#resampling&#34; id=&#34;toc-resampling&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;0.0.5&lt;/span&gt; Resampling&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#tuning&#34; id=&#34;toc-tuning&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;0.0.6&lt;/span&gt; Tuning&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#more-tuning-params&#34; id=&#34;toc-more-tuning-params&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;0.0.7&lt;/span&gt; More tuning params&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#parallel-processing&#34; id=&#34;toc-parallel-processing&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;0.0.8&lt;/span&gt; Parallel processing&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#parallel-processing---explicitly&#34; id=&#34;toc-parallel-processing---explicitly&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;0.0.9&lt;/span&gt; Parallel processing - explicitly&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#anova-race&#34; id=&#34;toc-anova-race&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;0.0.10&lt;/span&gt; ANOVA race&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#acknowledgements&#34; id=&#34;toc-acknowledgements&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;0.0.11&lt;/span&gt; Acknowledgements&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#reproducibility&#34; id=&#34;toc-reproducibility&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;0.0.12&lt;/span&gt; Reproducibility&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;how-fast-is-fast&#34; class=&#34;section level3&#34; number=&#34;0.0.1&#34;&gt;&#xD;&#xA;&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;0.0.1&lt;/span&gt; How fast is fast?&lt;/h3&gt;&#xD;&#xA;&lt;p&gt;Let’s see how quickly some predictive model runs, in order to estimate time consumption for larger machine learning pipelines.&#xD;&#xA;In addtion, let’s see how much time is saves when using multiples cores, ie. when parallel processing is enabled.&lt;/p&gt;</description>
+      <description>0.0.1 How fast is fast? 0.0.2 Tidymodels pipeline 0.0.3 Setup 0.0.4 Simple Fit 0.0.5 Resampling 0.0.6 Tuning 0.0.7 More tuning params 0.0.8 Parallel processing 0.0.9 Parallel processing - explicitly 0.0.10 ANOVA race 0.0.11 Acknowledgements 0.0.12 Reproducibility 0.0.1 How fast is fast? Let’s see how quickly some predictive model runs, in order to estimate time consumption for larger machine learning pipelines. In addtion, let’s see how much time is saves when using multiples cores, ie.</description>
     </item>
+    
   </channel>
 </rss>

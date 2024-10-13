@@ -1,33 +1,45 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Measurement on sesa blog</title>
+    <title>measurement on sesa blog</title>
     <link>https://data-se.netlify.app/tags/measurement/</link>
-    <description>Recent content in Measurement on sesa blog</description>
-    <generator>Hugo</generator>
+    <description>Recent content in measurement on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 07 Sep 2016 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://data-se.netlify.app/tags/measurement/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 07 Sep 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/measurement/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Why Likert scales are (in general) not metric</title>
       <link>https://data-se.netlify.app/2016/09/07/likert-not-metric/</link>
       <pubDate>Wed, 07 Sep 2016 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2016/09/07/likert-not-metric/</guid>
-      <description>&lt;p&gt;Likert scales are psychologists&amp;rsquo; bread-and-butter tool. Literally, thousands (!) of such &amp;ldquo;scales&amp;rdquo; (as they are called, rightfully or not) do exist. To get a feeling: The &lt;a href=&#34;http://www.apa.org/science/programs/testing/find-tests.aspx&#34;&gt;APA&lt;/a&gt; links to &lt;a href=&#34;https://www.ets.org/test_link/about&#34;&gt;this database&lt;/a&gt; where &lt;em&gt;25,000&lt;/em&gt; tests are listed (as stated by the website)! That is indeed an enormous number.&lt;/p&gt;&#xA;&lt;p&gt;Most of these psychological tests use so called &lt;em&gt;Likert scales&lt;/em&gt; (see &lt;a href=&#34;https://en.wikipedia.org/wiki/Likert_scale&#34;&gt;this Wikipedia article&lt;/a&gt;). For example:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Example_Likert_Scale.svg/587px-Example_Likert_Scale.svg.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;(Source: Wikipedia by Nicholas Smith)&lt;/p&gt;&#xA;&lt;p&gt;Given their widespread use, the question how useful such tests are has arisen many times; see &lt;a href=&#34;http://thescipub.com/PDF/jssp.2007.106.116.pdf&#34;&gt;here&lt;/a&gt;, &lt;a href=&#34;http://sgo.sagepub.com/content/4/1/2158244013516768.full-text.pdf+html&#34;&gt;here&lt;/a&gt;, or &lt;a href=&#34;http://papers.ssrn.com/sol3/papers.cfm?abstract_id=2419366&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;</description>
+      <description>Likert scales are psychologists&amp;rsquo; bread-and-butter tool. Literally, thousands (!) of such &amp;ldquo;scales&amp;rdquo; (as they are called, rightfully or not) do exist. To get a feeling: The APA links to this database where 25,000 tests are listed (as stated by the website)! That is indeed an enormous number.
+Most of these psychological tests use so called Likert scales (see this Wikipedia article). For example:
+(Source: Wikipedia by Nicholas Smith)
+Given their widespread use, the question how useful such tests are has arisen many times; see here, here, or here.</description>
     </item>
+    
     <item>
       <title>Introduction to the measurement theory, and conjoint measurement theory</title>
       <link>https://data-se.netlify.app/2016/08/17/intro_measurement/</link>
       <pubDate>Wed, 17 Aug 2016 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2016/08/17/intro_measurement/</guid>
-      <description>&lt;p&gt;What is measurement? Why should I care?&lt;/p&gt;&#xA;&lt;p&gt;Measurement is a basis of an empirical science. Image a geometer (a person measuring distances on the earth) with a metering rul made of rubber! Poor guy! Without proper measurement, even the smartest theory cannot be expected to be found, precisely because it cannot be measured.&lt;/p&gt;&#xA;&lt;p&gt;So, what exactly is measurement? Measurement can be seen as tying numbers to empirical objects. But not in some arbritrary style. Measurement is achieved, if and only if the relations found in the empirical objects do also hold in the numbers. What does that mean? Suppose you have three rods: A, B and C. You hold them next to each other and find that A is longer than B and B longer than C. So you are entitled to give whatever numbers to the rods as long as the number of rod A is &lt;em&gt;greater&lt;/em&gt; than the number of rod B, which in turn must be greater than the number assigned to rod C; in short: l(A) &amp;gt; l(B) &amp;gt; l(C), where &lt;code&gt;l&lt;/code&gt; is the length of the rod. It goes without saying that if l(A) &amp;gt; l(B), and l(B) &amp;gt; l(C), then it must hold that l(A) &amp;gt; l(C) (transitivity). Given these relations hold for all objects, we have achieved something like an &lt;em&gt;ordinal scale&lt;/em&gt;.&lt;/p&gt;</description>
+      <description>What is measurement? Why should I care?
+Measurement is a basis of an empirical science. Image a geometer (a person measuring distances on the earth) with a metering rul made of rubber! Poor guy! Without proper measurement, even the smartest theory cannot be expected to be found, precisely because it cannot be measured.
+So, what exactly is measurement? Measurement can be seen as tying numbers to empirical objects. But not in some arbritrary style.</description>
     </item>
+    
     <item>
       <title>Why metric scale level cannot be taken for granted</title>
       <link>https://data-se.netlify.app/2016/07/21/measurement-01/</link>
       <pubDate>Thu, 21 Jul 2016 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2016/07/21/measurement-01/</guid>
-      <description>&lt;p&gt;One main business for psychologists is to examine questionnaire data. Extraversion, intelligence, attitudes… That’s bread-and-butter job for (research) psychologists.&lt;/p&gt;&#xA;&lt;p&gt;Similarly, it is common to take the metric level of questionnaire data for granted. Well, not  for the item level, it is said. But for the aggregated level, oh yes, that’s OK.&lt;/p&gt;&#xA;&lt;p&gt;Despite its popularity, the measurement basics of such practice are less clear. On which grounds can this comfortable practice be defended?&lt;/p&gt;</description>
+      <description>One main business for psychologists is to examine questionnaire data. Extraversion, intelligence, attitudes… That’s bread-and-butter job for (research) psychologists.
+Similarly, it is common to take the metric level of questionnaire data for granted. Well, not for the item level, it is said. But for the aggregated level, oh yes, that’s OK.
+Despite its popularity, the measurement basics of such practice are less clear. On which grounds can this comfortable practice be defended?</description>
     </item>
+    
   </channel>
 </rss>

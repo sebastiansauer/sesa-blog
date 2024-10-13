@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Judo on sesa blog</title>
+    <title>judo on sesa blog</title>
     <link>https://data-se.netlify.app/tags/judo/</link>
-    <description>Recent content in Judo on sesa blog</description>
-    <generator>Hugo</generator>
+    <description>Recent content in judo on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 15 Oct 2016 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://data-se.netlify.app/tags/judo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Oct 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/judo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Multiple ways to subsetting data frames in R</title>
       <link>https://data-se.netlify.app/2016/10/15/indexing-in-r/</link>
       <pubDate>Sat, 15 Oct 2016 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2016/10/15/indexing-in-r/</guid>
-      <description>&lt;p&gt;Subsetting a data frame is an essential and frequently performed task. Here, some basic ideas are presented.&lt;/p&gt;&#xA;&lt;p&gt;Get some data first.&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;str&lt;/span&gt;(mtcars)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;## &amp;#39;data.frame&amp;#39;:&#x9;32 obs. of  11 variables:&#xD;&#xA;##  $ mpg : num  21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...&#xD;&#xA;##  $ cyl : num  6 6 4 6 8 6 8 4 4 6 ...&#xD;&#xA;##  $ disp: num  160 160 108 258 360 ...&#xD;&#xA;##  $ hp  : num  110 110 93 110 175 105 245 62 95 123 ...&#xD;&#xA;##  $ drat: num  3.9 3.9 3.85 3.08 3.15 2.76 3.21 3.69 3.92 3.92 ...&#xD;&#xA;##  $ wt  : num  2.62 2.88 2.32 3.21 3.44 ...&#xD;&#xA;##  $ qsec: num  16.5 17 18.6 19.4 17 ...&#xD;&#xA;##  $ vs  : num  0 0 1 1 0 1 0 1 1 1 ...&#xD;&#xA;##  $ am  : num  1 1 1 0 0 0 0 0 0 0 ...&#xD;&#xA;##  $ gear: num  4 4 4 3 3 3 3 4 4 4 ...&#xD;&#xA;##  $ carb: num  4 4 1 1 2 1 4 2 2 4 ...&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mtcars &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;head&lt;/span&gt;(mtcars)  &lt;span style=&#34;color:#75715e&#34;&gt;# for shorter output&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mtcars&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb&#xD;&#xA;## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4&#xD;&#xA;## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4&#xD;&#xA;## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1&#xD;&#xA;## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1&#xD;&#xA;## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2&#xD;&#xA;## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;one-addressing-dataframe-as-list-vector-1-dim-structure&#34;&gt;One: Addressing dataframe as list (vector, 1-dim structure)&lt;/h2&gt;&#xA;&lt;p&gt;Data frames can be understood/addressed as lists, ie., as some type of vectors. Vectors have one dimension. Thus, we can access/subset with one index only (one dimension). For example &lt;code&gt;mtcars[1]&lt;/code&gt; selects the first element (ie., column) of &lt;code&gt;mtcars&lt;/code&gt;.&lt;/p&gt;</description>
+      <description>Subsetting a data frame is an essential and frequently performed task. Here, some basic ideas are presented.
+Get some data first.
+str(mtcars) ## &amp;#39;data.frame&amp;#39;:	32 obs. of 11 variables: ## $ mpg : num 21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ... ## $ cyl : num 6 6 4 6 8 6 8 4 4 6 ... ## $ disp: num 160 160 108 258 360 .</description>
     </item>
+    
   </channel>
 </rss>

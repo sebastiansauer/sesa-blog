@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.135.0">
+<meta name="generator" content="Hugo 0.101.0" />
 
 
 <title>Crashkurs Datenanalyse mit R - sesa blog</title>
@@ -75,9 +75,9 @@
     
 
     <div class="article-content">
-      <p>Nicht jeder liebt Datenanalyse und Statistik&hellip; in gleichem Maße. Das ist zumindest meine Erfahrung aus dem Unterricht :neckbeard: &#x1f525;. Crashkurse zu R sind vergleichbar zu Crahskursen zu Französisch - kann man machen, aber es sollte die Maxime gelten &ldquo;If everything else fails&rdquo;.</p>
+      <p>Nicht jeder liebt Datenanalyse und Statistik&hellip; in gleichem Maße. Das ist zumindest meine Erfahrung aus dem Unterricht :neckbeard: 🔥. Crashkurse zu R sind vergleichbar zu Crahskursen zu Französisch - kann man machen, aber es sollte die Maxime gelten &ldquo;If everything else fails&rdquo;.</p>
 <p>Dieser Crashkurs ist für Studierende oder Anfänger der Datenanalyse gedacht, die in kurzer Zeit einen verzweifelten Versuch &hellip; äh &hellip; einen grundständigen Überblick über die Datenanalyse erwerben wollen.</p>
-<p>Ok, also los geht&rsquo;s im Schweingalopp durch die Datenanalyse &#x1f3b6; &#x1f483;.</p>
+<p>Ok, also los geht&rsquo;s im Schweingalopp durch die Datenanalyse 🎶 💃.</p>
 <h1 id="software">Software</h1>
 <p>Bevor wir uns die Schritte näher anschauen, ein paar Worte zur Software.</p>
 <h2 id="programme">Programme</h2>
@@ -94,9 +94,9 @@
 <li><code>tidyverse</code></li>
 <li><code>mosaic</code></li>
 </ul>
-<p>&#x26a0;&#xfe0f; Um einen Befehl zu verwenden, der <em>nicht</em> im Standard-R, sondern in einer Erweiterung von R (&ldquo;Paket&rdquo;) wohnt, müssen sie dieses Paket erst starten (laden). Dazu können Sie den Befehl <code>library</code> verwenden. Oder Sie klicken den Namen des Pakets hier an:</p>
+<p>⚠️ Um einen Befehl zu verwenden, der <em>nicht</em> im Standard-R, sondern in einer Erweiterung von R (&ldquo;Paket&rdquo;) wohnt, müssen sie dieses Paket erst starten (laden). Dazu können Sie den Befehl <code>library</code> verwenden. Oder Sie klicken den Namen des Pakets hier an:</p>
 <p><img src="https://sebastiansauer.github.io/images/2017-05-16/figure/packages_load.png" alt=""></p>
-<p>&#x26a0;&#xfe0f; Um ein Paket zu laden, muss es installiert sein. Klicken Sie auf den Button &ldquo;Install&rdquo; unter dem Reiter &ldquo;Packages&rdquo; in RStudio:</p>
+<p>⚠️ Um ein Paket zu laden, muss es installiert sein. Klicken Sie auf den Button &ldquo;Install&rdquo; unter dem Reiter &ldquo;Packages&rdquo; in RStudio:</p>
 <p><img src="https://sebastiansauer.github.io/images/2017-05-16/figure/install_packages.png" alt=""></p>
 <p>Starten Sie jetzt die beiden Erweiterungen (per Klick oder mit folgenden Befehlen).</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(mosaic)
@@ -110,11 +110,11 @@
 <p>Der einfachste Weg, Daten einzulesen, ist über den Button &ldquo;Import Dataset&rdquo; in RStudio.</p>
 <p><img src="https://sebastiansauer.github.io/images/2017-05-16/figure/import_RStudio.png" alt=""></p>
 <p>So lassen sich verschiedene Formate - wie XLS(X) oder CSV - importieren.</p>
-<p>&#x26a0;&#xfe0f; Beim Importieren von CSV-Dateien ist zu beachten, dass R davon von <em>us-amerikanisch</em> formatierten CSV-Dateien ausgeht. Was heißt das? Das bedeutet, das Spaltentrennzeichen (delimiter) ist ein Kommma <code>,</code>. <em>Deutsch</em> formatierte CSV-Dateien, wie sie ein deutsch-eingestellltes Excel ausgibt, nutzen aber ein Semikolon <code>;</code> (Strichpunkt) als Spaltentrennzeichen.</p>
+<p>⚠️ Beim Importieren von CSV-Dateien ist zu beachten, dass R davon von <em>us-amerikanisch</em> formatierten CSV-Dateien ausgeht. Was heißt das? Das bedeutet, das Spaltentrennzeichen (delimiter) ist ein Kommma <code>,</code>. <em>Deutsch</em> formatierte CSV-Dateien, wie sie ein deutsch-eingestellltes Excel ausgibt, nutzen aber ein Semikolon <code>;</code> (Strichpunkt) als Spaltentrennzeichen.</p>
 <p>Ggf. müssen Sie also in der Import-Maske von RStudio als <em>delimiter</em> ein <em>semicolon</em> auswählen.</p>
 <p><img src="https://sebastiansauer.github.io/images/2017-05-16/figure/delimiter.png" alt=""></p>
 <p>Alternativ können Sie natürlich eine XLS- oder XLSX-Datei importieren.</p>
-<p>&#x1f4a1; Am einfachsten ist es, XLSX-Dateien zu importieren.</p>
+<p>💡 Am einfachsten ist es, XLSX-Dateien zu importieren.</p>
 <h2 id="tidy-data---tabellen-in-normalform">tidy data - Tabellen in Normalform</h2>
 <p>Damit Sie in R vernünftig mit Ihren Daten arbeiten können, sollten die Daten &ldquo;tidy&rdquo; sein, d.h. in Normalform. Was ist Normalform? Betrachten Sie folgende Abbildung:</p>
 <p><img src="https://sebastiansauer.github.io/images/2017-05-16/figure/Normalform.png" alt=""></p>
@@ -122,8 +122,8 @@
 <blockquote>
 <p>In jeder Zeile steht eine Beobachtung (z.B. Person). In jeder Spalte eine Variable (z.B. Geschlecht). In der ersten Zeile stehen die Spaltennamen, danach folgen die Werte. Sonst steht nichts in der Tabelle.</p>
 </blockquote>
-<p>&#x26a0;&#xfe0f; Falls Ihre Daten <em>nicht</em> in Normalform sind, sollten Sie diese zunächst in Normalform bringen.</p>
-<p>&#x1f4a1; Der einfachste Weg (von der Lernkurve her betrachtet, nicht vom Zeitaufwand), Daten in Normalform zu bringen, ist sie in Excel passend umzubauen.</p>
+<p>⚠️ Falls Ihre Daten <em>nicht</em> in Normalform sind, sollten Sie diese zunächst in Normalform bringen.</p>
+<p>💡 Der einfachste Weg (von der Lernkurve her betrachtet, nicht vom Zeitaufwand), Daten in Normalform zu bringen, ist sie in Excel passend umzubauen.</p>
 <h2 id="beispiel-für-daten-in-nicht-normalform">Beispiel für Daten in Nicht-Normalform</h2>
 <p>Sie denken, dass Ihre Daten immer/auf jeden Fall in Normalform sind? Dann scheuen Sie sich mal dieses Bild an:</p>
 <p><img src="https://sebastiansauer.github.io/images/2017-05-16/figure/breit_lang.png" alt=""></p>
@@ -142,11 +142,11 @@
 <li>Logische Variablen bilden</li>
 </ul>
 <h2 id="auf-fehler-prüfen">Auf Fehler prüfen</h2>
-<p>&#x26a0;&#xfe0f; Ein häufiger Fehler ist, dass die Daten nicht richtig eingelesen werden. Zum Beispiel werden die Spaltentrennzeichen nicht richtig erkannt. Das kann dann so aussehen.</p>
+<p>⚠️ Ein häufiger Fehler ist, dass die Daten nicht richtig eingelesen werden. Zum Beispiel werden die Spaltentrennzeichen nicht richtig erkannt. Das kann dann so aussehen.</p>
 <p><img src="https://sebastiansauer.github.io/images/2017-05-16/figure/delimiter_wrong.png" alt=""></p>
 <p>Unter &ldquo;delimiter&rdquo; in der Maske können Sie das Trennzeichen anpassen.</p>
-<p>&#x26a0;&#xfe0f; &ldquo;Deutsche&rdquo; CSV-Dateien verwenden als <em>Dezimaltrennzeichen</em> ein Komma; englisch-formatierte CSV-Dateien hingegen einen Punk. R geht per Default von englisch-formatierten CSV-Dateien aus. Importieren Sie eine deutsch-formatierte CSV-Datei, müssen Sie das Dezimaltrennzeichen von Hand ändern; es wird nicht automatisch erkannt.</p>
-<p>&#x1f4a1; Unter &ldquo;locale&rdquo; können Sie das Dezimaltrennzeichen anpassen.</p>
+<p>⚠️ &ldquo;Deutsche&rdquo; CSV-Dateien verwenden als <em>Dezimaltrennzeichen</em> ein Komma; englisch-formatierte CSV-Dateien hingegen einen Punk. R geht per Default von englisch-formatierten CSV-Dateien aus. Importieren Sie eine deutsch-formatierte CSV-Datei, müssen Sie das Dezimaltrennzeichen von Hand ändern; es wird nicht automatisch erkannt.</p>
+<p>💡 Unter &ldquo;locale&rdquo; können Sie das Dezimaltrennzeichen anpassen.</p>
 <h2 id="spaltennamen-korrigieren">Spaltennamen korrigieren</h2>
 <p>Spaltennamen müssen auch &ldquo;tidy&rdquo; sein. Das heißt in diesem Fall:</p>
 <ul>
@@ -157,11 +157,11 @@
 <blockquote>
 <p>Spaltennamen sollten nur Buchstaben (ohne Umlaute) und Ziffern enthalten.</p>
 </blockquote>
-<p>&#x1f4a1; Für Textdaten in den Spalten sind diese Regeln auch sinnvoll.</p>
+<p>💡 Für Textdaten in den Spalten sind diese Regeln auch sinnvoll.</p>
 <h2 id="umkodieren">Umkodieren</h2>
 <p>Gerade bei der Analyse von Fragebogendaten ist es immer wieder nötig, Daten umzukodieren. Klassisches Besispiel: Ein Item ist negativ kodiert. Zum Beispiel das Item &ldquo;Ich bin ein Couch-Potato&rdquo; in einem Fragebogen für Extraversion.</p>
 <p>Nehmen wir an, das Item &ldquo;i04&rdquo; hat die Werte 1 (&ldquo;stimme überhaupt nicht zu&rdquo;) bis 4 (&ldquo;stimme voll und ganz zu&rdquo;). Kreuzt jemand das Couch-Potato-Item mit 4 an, so sollte er nicht die maximale Extraversion-Punktzahl (4), sondern die <em>minimale</em> Extraversion-Punktzahl (1) erhalten. Also</p>
-<p><code> 1 --&gt; 4 2 --&gt; 3 3 --&gt; 2 4 --&gt; 1 </code></p>
+<p><code>1 --&gt; 4 2 --&gt; 3 3 --&gt; 2 4 --&gt; 1</code></p>
 <p>Am einfachsten ist dies zu bewerkstelligen mit folgendem R-Befehl:</p>
 <pre tabindex="0"><code>meine_tabelle$i04_r &lt;- 5 - meine_Tabelle$i04
 </code></pre><p>Rechnet man <code>5-i04</code> so kommt der richtige, &ldquo;neue&rdquo; Wert heraus.</p>
@@ -172,7 +172,7 @@
 </ul>
 <h2 id="fehlende-werte">Fehlende Werte</h2>
 <p>Der einfachste Umgang mit fehlenden Werten ist: nichts machen. Denken Sie nur daran, dass viele R-Befehle von Natur aus nervös sind - beim Anblick von fehlenden Werten werden sie panisch und machen nix mehr. Zum Beispiel der Befehl <code>mean</code>. Haben sie fehlende Werte in ihren Daten, so verwenden Sie den Parameter <code>na.rm = TRUE</code>. <code>na</code> steht für &ldquo;not available&rdquo;, also fehlende Werte. <code>rm</code> steht für &ldquo;remove&rdquo;. Also <code>mean(meine_tabelle$i04_r, na.rm = TRUE)</code>.</p>
-<p>&#x1f4a1; Der R-Befehl <code>summary</code> zeigt Ihnen an, ob es fehlende Werte gibt:</p>
+<p>💡 Der R-Befehl <code>summary</code> zeigt Ihnen an, ob es fehlende Werte gibt:</p>
 <p><code>summary(meine_daten)</code>.</p>
 <h2 id="komische-werte">Komische Werte</h2>
 <p>Hat ein Spaßvogel beim Alter 999 oder -1 angegeben, kann das Ihre Daten ganz schön verhageln. Prüfen Sie die Daten auf komische Werte. Der einfachste Weg ist, sich die Daten in Excel anzuschauen. Cleverer ist noch, sich Zusammenfassungen auszugeben, wie der kleinste oder der größte Wert, oder der Mittelwert etc., und dann zu schauen, ob einem etwas spanisch vorkommt. Diagramme sind ebenfalls hilfreich.</p>
@@ -216,7 +216,7 @@
 ##  Max.   :1.0000   Max.   :5.000   Max.   :8.000
 </code></pre><p>Hilfe zu diesem Datensatz bekommen Sie so:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">help</span>(mtcars)
-</span></span></code></pre></div><p>&#x1f4a1; mit <code>help(Befehl)</code> bekommt man Hilfe zu einem Befehl oder einem sonstigen Objekt (z.B. Datensatz).</p>
+</span></span></code></pre></div><p>💡 mit <code>help(Befehl)</code> bekommt man Hilfe zu einem Befehl oder einem sonstigen Objekt (z.B. Datensatz).</p>
 <h3 id="numerische-variablen">Numerische Variablen</h3>
 <p>Der einfachste Weg, um Deskriptivstatistik für eine <em>numerische Variable</em> auf einen Abwasch zu erledigen ist dieser Befehl:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">favstats</span>(mtcars<span style="color:#f92672">$</span>mpg)
@@ -251,7 +251,7 @@
 ##   8     7    7
 </code></pre><h2 id="zeilenmittelwerte-bilden">Zeilenmittelwerte bilden</h2>
 <p>Bei Umfragen kommt es häufig vor, dass man Zeilenmittelwerte bildet. Wieso? Man möchte z.B. in einer Mitarbeiterbefragung den &ldquo;Engagementwert&rdquo; jedes Beschäftigten wissen (klingt einfach gut). Dazu addiert man die Werte jedes passenden Items auf. Diese Summe teilen Sie durch die Anzahl der Spalten</p>
-<p>&#x1f4a1; Zeilenmittelwerte bilden Sie am einfachsten in Excel.</p>
+<p>💡 Zeilenmittelwerte bilden Sie am einfachsten in Excel.</p>
 <p>In R können Sie Zeilen einfach mit dem <code>+</code> Zeichen addieren:</p>
 <pre tabindex="0"><code>meine_tabelle$zeilenmittelwert &lt;- (meine_tabelle$item1 + meine Tabelle$item2) / 2
 </code></pre><h1 id="schritt-3-visualisieren">Schritt 3: Visualisieren</h1>
@@ -281,17 +281,17 @@
 </span></span><span style="display:flex;"><span>      geom <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;boxplot&#34;</span>)
 </span></span></code></pre></div><img src="https://sebastiansauer.github.io/images/2017-05-16/figure/unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="70%" style="display: block; margin: auto;" />
 <p>Beachten Sie, dass <code>qplot</code> nur dann <em>mehrere</em> Boxplots zeichnet, wenn auf der X-Achse eine nominal skalierte Variable steht.</p>
-<p>&#x1f4a1; Eine metrische Variable wandeln Sie in eine nominal skalierte Variable um mit dem Befehl <code>factor(meine_metrische_variable)</code>.</p>
+<p>💡 Eine metrische Variable wandeln Sie in eine nominal skalierte Variable um mit dem Befehl <code>factor(meine_metrische_variable)</code>.</p>
 <p>Oder mal nur eine Variable:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">qplot</span>(x <span style="color:#f92672">=</span> hp,
 </span></span><span style="display:flex;"><span>      data <span style="color:#f92672">=</span> mtcars,
 </span></span><span style="display:flex;"><span>      geom <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;histogram&#34;</span>)
 </span></span></code></pre></div><img src="https://sebastiansauer.github.io/images/2017-05-16/figure/unnamed-chunk-13-1.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" width="70%" style="display: block; margin: auto;" />
-<p>&#x1f4a1; Geben wir keine Y-Variable an, nimmt qplot eigenständig die Häufigkeit pro X-Wert!</p>
-<p>&#x1f4a1; Tauschen Sie mal &ldquo;histogram&rdquo; mit &ldquo;density&rdquo;!</p>
+<p>💡 Geben wir keine Y-Variable an, nimmt qplot eigenständig die Häufigkeit pro X-Wert!</p>
+<p>💡 Tauschen Sie mal &ldquo;histogram&rdquo; mit &ldquo;density&rdquo;!</p>
 <h1 id="schritt-4-modellieren">Schritt 4: Modellieren</h1>
 <p>Modellieren hört sich kompliziert an. Für uns hier heißt es vor allem ein inferenzstatistisches Verfahren anzuwenden.</p>
-<p>&#x1f4a1; Das Schweizer Taschenmesser und den Modellierungsverfahren ist die Regressionsanalyse. Man kann sie für viele Zwecke einsetzen.</p>
+<p>💡 Das Schweizer Taschenmesser und den Modellierungsverfahren ist die Regressionsanalyse. Man kann sie für viele Zwecke einsetzen.</p>
 <h2 id="wann-welchen-test">Wann welchen Test?</h2>
 <p>Es gibt in vielen Lehrbüchern Übersichten zur Frage, wann man welchen Test rechnen soll. Googeln hilft hier auch weiter. Eine Übersicht findet man hier: <a href="http://www.methodenberatung.uzh.ch/de/datenanalyse.html">http://www.methodenberatung.uzh.ch/de/datenanalyse.html</a>.</p>
 <h2 id="wie-heißt-der-jeweilige-r-befehl">Wie heißt der jeweilige R-Befehl?</h2>
@@ -332,7 +332,7 @@
 </code></pre><p>Aha. Pro Gallone kämmen wir 2 Meilen. Schluckspecht.</p>
 <h2 id="visualisierung-des-modells">Visualisierung des Modells</h2>
 <p>Schauen wir uns das Modell mal an, damit es nicht so theoretisch ist. Wie gesagt, ein Regressionsmodell ist nichts anderes als eine Trendgerade in einer Punktewolke.</p>
-<p>&#x1f4a1; Gerade sind durch Achsenabschnitt (engl. &ldquo;intercept&rdquo;) f(x=0) und Steigung (englisch: &ldquo;slope&rdquo;) definiert. Der Steigungswert ist die Zahl, die der lm-Befehl für den Prädiktor ausspuckt</p>
+<p>💡 Gerade sind durch Achsenabschnitt (engl. &ldquo;intercept&rdquo;) f(x=0) und Steigung (englisch: &ldquo;slope&rdquo;) definiert. Der Steigungswert ist die Zahl, die der lm-Befehl für den Prädiktor ausspuckt</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">qplot</span>(x <span style="color:#f92672">=</span> cyl,
 </span></span><span style="display:flex;"><span>      y <span style="color:#f92672">=</span> mpg,
 </span></span><span style="display:flex;"><span>      data <span style="color:#f92672">=</span> mtcars,
@@ -353,7 +353,7 @@
 <h2 id="für-fortgeschrittene-rmarkdown">Für Fortgeschrittene: RMarkdown</h2>
 <p>Wäre das nicht cool: Jegliches Formatieren wird automatisch übernommen und sogar so, das ses schick aussieht? Außerdem wird Ihr R-Code und dessen Ergebnisse (Tabellen und Diagramme oder reine Zahlen) automatisch in Ihr Dokument übernommen. Keine Copy-Paste-Fehler mehr. Keine händisches Aktualisieren, weil Sie Daten oder die vorhergehende Analyse geändert haben. Hört sich gut an? Probieren Sie mal <a href="http://rmarkdown.rstudio.com">RMarkdown</a> aus :one_up:.</p>
 <h1 id="fazit">Fazit</h1>
-<p>Glück auf &#x1f604;</p>
+<p>Glück auf 😄</p>
 <p><a href="https://sebastiansauer.github.io/Lieblingsbefehle/">Hier</a> finden Sie einen Überblick an einige &ldquo;Lieblings-R-Befehle&rdquo;.</p>
 
     </div>

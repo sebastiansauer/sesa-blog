@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.135.0">
+<meta name="generator" content="Hugo 0.101.0" />
 
 
 <title>YACSDA (Fallstudie) zum Datensatz &#39;Affairs&#39; - sesa blog</title>
@@ -556,52 +556,52 @@ Unterschied? Der Vergleich von Modell 3 vs. Modell 4 beantwortet diese Frage.</p
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(knitr)
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">tidy</span>(lm10) <span style="color:#f92672">%&gt;%</span> kable
 </span></span></code></pre></div><table>
-  <thead>
-      <tr>
-          <th style="text-align: left">term</th>
-          <th style="text-align: right">estimate</th>
-          <th style="text-align: right">std.error</th>
-          <th style="text-align: right">statistic</th>
-          <th style="text-align: right">p.value</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">(Intercept)</td>
-          <td style="text-align: right">0.5157777</td>
-          <td style="text-align: right">0.0793438</td>
-          <td style="text-align: right">6.500538</td>
-          <td style="text-align: right">0.0000000</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">gendermale</td>
-          <td style="text-align: right">0.0379445</td>
-          <td style="text-align: right">0.0342179</td>
-          <td style="text-align: right">1.108908</td>
-          <td style="text-align: right">0.2679172</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">childrenyes</td>
-          <td style="text-align: right">0.0540322</td>
-          <td style="text-align: right">0.0463072</td>
-          <td style="text-align: right">1.166821</td>
-          <td style="text-align: right">0.2437495</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">rating</td>
-          <td style="text-align: right">-0.0903369</td>
-          <td style="text-align: right">0.0159849</td>
-          <td style="text-align: right">-5.651387</td>
-          <td style="text-align: right">0.0000000</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">yearsmarried</td>
-          <td style="text-align: right">0.0039468</td>
-          <td style="text-align: right">0.0037867</td>
-          <td style="text-align: right">1.042290</td>
-          <td style="text-align: right">0.2976998</td>
-      </tr>
-  </tbody>
+<thead>
+<tr>
+<th style="text-align:left">term</th>
+<th style="text-align:right">estimate</th>
+<th style="text-align:right">std.error</th>
+<th style="text-align:right">statistic</th>
+<th style="text-align:right">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">(Intercept)</td>
+<td style="text-align:right">0.5157777</td>
+<td style="text-align:right">0.0793438</td>
+<td style="text-align:right">6.500538</td>
+<td style="text-align:right">0.0000000</td>
+</tr>
+<tr>
+<td style="text-align:left">gendermale</td>
+<td style="text-align:right">0.0379445</td>
+<td style="text-align:right">0.0342179</td>
+<td style="text-align:right">1.108908</td>
+<td style="text-align:right">0.2679172</td>
+</tr>
+<tr>
+<td style="text-align:left">childrenyes</td>
+<td style="text-align:right">0.0540322</td>
+<td style="text-align:right">0.0463072</td>
+<td style="text-align:right">1.166821</td>
+<td style="text-align:right">0.2437495</td>
+</tr>
+<tr>
+<td style="text-align:left">rating</td>
+<td style="text-align:right">-0.0903369</td>
+<td style="text-align:right">0.0159849</td>
+<td style="text-align:right">-5.651387</td>
+<td style="text-align:right">0.0000000</td>
+</tr>
+<tr>
+<td style="text-align:left">yearsmarried</td>
+<td style="text-align:right">0.0039468</td>
+<td style="text-align:right">0.0037867</td>
+<td style="text-align:right">1.042290</td>
+<td style="text-align:right">0.2976998</td>
+</tr>
+</tbody>
 </table>
 <h1 id="visualisieren-wir-mal-was">Visualisieren wir mal was!</h1>
 <p>Ok, wie wäre es damit:</p>

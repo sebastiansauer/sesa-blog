@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.135.0">
+<meta name="generator" content="Hugo 0.101.0" />
 
 
 <title>The effect of sample on p-values. A simulation. - sesa blog</title>
@@ -89,8 +89,8 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>m <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">matrix</span>(nrow <span style="color:#f92672">=</span> k, ncol <span style="color:#f92672">=</span> k)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (i <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">seq_len</span>(<span style="color:#a6e22e">ncol</span>(df))) {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (j <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">seq_len</span>(<span style="color:#a6e22e">ncol</span>(df))) {
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">for </span>(i in <span style="color:#a6e22e">seq_len</span>(<span style="color:#a6e22e">ncol</span>(df))) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">for </span>(j in <span style="color:#a6e22e">seq_len</span>(<span style="color:#a6e22e">ncol</span>(df))) {
 </span></span><span style="display:flex;"><span>    m[i, j] <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">t.test</span>(df[i], df[j])<span style="color:#f92672">$</span>p.value
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
@@ -98,7 +98,7 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>m<span style="color:#a6e22e">[lower.tri</span>(m)] <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">NA</span>
 </span></span><span style="display:flex;"><span>m<span style="color:#a6e22e">[diag</span>(m)] <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">NA</span>
 </span></span></code></pre></div><p>Let&rsquo;s come up with a logical matrix indicating whether one cell (ie., one t-test) indicates a significant t-test (<code>TRUE</code>) or not (<code>FALSE</code>).</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>m_significant <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">apply</span>(m, <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>), <span style="color:#66d9ef">function</span>(x) x <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">.05</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>m_significant <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">apply</span>(m, <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>), <span style="color:#a6e22e">function</span>(x) x <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">.05</span>)
 </span></span></code></pre></div><p>Finally, let&rsquo;s count the number of significant results, and sum then up.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>m_significant <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">sum</span>(<span style="color:#66d9ef">TRUE</span>, na.rm <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
 </span></span></code></pre></div><pre tabindex="0"><code>## [1] 191
@@ -110,7 +110,7 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">rm</span>(df)
 </span></span></code></pre></div><h1 id="simulate-data-with-small-sample-size">Simulate data with small sample size</h1>
 <p>Now, we repeat the same thing with a small sample.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>simulate_ps <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">function</span>(n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e06</span>, k <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>){
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>simulate_ps <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e06</span>, k <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>){
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e"># arguments:</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e"># n: number of rows</span>
@@ -126,8 +126,8 @@
 </span></span><span style="display:flex;"><span>m <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">matrix</span>(nrow <span style="color:#f92672">=</span> k, ncol <span style="color:#f92672">=</span> k)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># cartesian product of all t-tests</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (i <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">seq_len</span>(<span style="color:#a6e22e">ncol</span>(df))) {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (j <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">seq_len</span>(<span style="color:#a6e22e">ncol</span>(df))) {
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">for </span>(i in <span style="color:#a6e22e">seq_len</span>(<span style="color:#a6e22e">ncol</span>(df))) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">for </span>(j in <span style="color:#a6e22e">seq_len</span>(<span style="color:#a6e22e">ncol</span>(df))) {
 </span></span><span style="display:flex;"><span>    m[i, j] <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">t.test</span>(df[i], df[j])<span style="color:#f92672">$</span>p.value
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
@@ -137,7 +137,7 @@
 </span></span><span style="display:flex;"><span>m<span style="color:#a6e22e">[diag</span>(m)] <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">NA</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># compute matrix to count number of significant t-tests</span>
-</span></span><span style="display:flex;"><span>m_significant <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">apply</span>(m, <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>), <span style="color:#66d9ef">function</span>(x) x <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">.05</span>)
+</span></span><span style="display:flex;"><span>m_significant <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">apply</span>(m, <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>), <span style="color:#a6e22e">function</span>(x) x <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">.05</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># count</span>
@@ -148,7 +148,7 @@
 </span></span><span style="display:flex;"><span>prop_significant <span style="color:#f92672">&lt;-</span> sum_significant <span style="color:#f92672">/</span> sum_distinct_tests
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">rm</span>(df)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span>(prop_significant)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">return</span>(prop_significant)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
@@ -160,7 +160,7 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>ps <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">vector</span>(mode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;numeric&#34;</span>, length <span style="color:#f92672">=</span> <span style="color:#a6e22e">length</span>(ns))
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (i <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">seq_along</span>(ns)){
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">for </span>(i in <span style="color:#a6e22e">seq_along</span>(ns)){
 </span></span><span style="display:flex;"><span>  ps[i] <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">simulate_ps</span>(n <span style="color:#f92672">=</span> ns[i], k <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>)
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">print</span>(ps[i])
 </span></span><span style="display:flex;"><span>}

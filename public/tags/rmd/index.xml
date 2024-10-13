@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Rmd on sesa blog</title>
+    <title>rmd on sesa blog</title>
     <link>https://data-se.netlify.app/tags/rmd/</link>
-    <description>Recent content in Rmd on sesa blog</description>
-    <generator>Hugo</generator>
+    <description>Recent content in rmd on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 19 Dec 2018 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://data-se.netlify.app/tags/rmd/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 19 Dec 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/rmd/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Generating mass reports using Rmarkdown in R</title>
       <link>https://data-se.netlify.app/2018/12/19/generating-mass-reports/</link>
       <pubDate>Wed, 19 Dec 2018 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2018/12/19/generating-mass-reports/</guid>
-      <description>&lt;p&gt;Sometimes, one document must be recreated in similar fashions a lot of times. For instance, invoices to customers, grading schemes for students, progress reports in projects, and so on. In this post, I demonstrate one way to do that in R using RMarkdown.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;Specifically, it is assumed that there’s a tabular data set, where each row refers to a document instance (eg., a mail or report to one given person),&#xD;&#xA;and each column holds the variables to appear in each reports (see examples below).&#xD;&#xA;In addition, a template is provided where the variables are then parsed into.&#xD;&#xA;This template is built on latex, so that the output document is a pdf file.&lt;/p&gt;</description>
+      <description>Sometimes, one document must be recreated in similar fashions a lot of times. For instance, invoices to customers, grading schemes for students, progress reports in projects, and so on. In this post, I demonstrate one way to do that in R using RMarkdown.
+Specifically, it is assumed that there’s a tabular data set, where each row refers to a document instance (eg., a mail or report to one given person), and each column holds the variables to appear in each reports (see examples below).</description>
     </item>
+    
   </channel>
 </rss>

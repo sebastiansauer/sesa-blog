@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Function on sesa blog</title>
+    <title>function on sesa blog</title>
     <link>https://data-se.netlify.app/tags/function/</link>
-    <description>Recent content in Function on sesa blog</description>
-    <generator>Hugo</generator>
+    <description>Recent content in function on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 06 Jul 2017 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://data-se.netlify.app/tags/function/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 06 Jul 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/function/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Programming with dplyr: Part 02, writing a function</title>
       <link>https://data-se.netlify.app/2017/07/06/prop_fav/</link>
       <pubDate>Thu, 06 Jul 2017 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2017/07/06/prop_fav/</guid>
-      <description>&lt;p&gt;Recently, since &lt;code&gt;dplyr&lt;/code&gt; &amp;lt;= 0.6.0 a new way of dealing with &lt;a href=&#34;http://adv-r.had.co.nz/Computing-on-the-language.html&#34;&gt;NSE&lt;/a&gt; was introduced, called &lt;a href=&#34;https://cran.r-project.org/web/packages/rlang/vignettes/tidy-evaluation.html&#34;&gt;tidyeval&lt;/a&gt;. As with every topic that begs our attention, the question &amp;ldquo;why bother&amp;rdquo; is in place. &lt;del&gt;The&lt;/del&gt;one answer is &amp;ldquo;you&amp;rsquo;ll need this stuff if you want to lock dplyr verbs inside a function&amp;rdquo;. Once you like &lt;code&gt;dplyr&lt;/code&gt; and friends, a natural second step is to use the ideas not only for interactive use, but for more &amp;ldquo;programming&amp;rdquo; type, ie., writing functions.&lt;/p&gt;</description>
+      <description>Recently, since dplyr &amp;lt;= 0.6.0 a new way of dealing with NSE was introduced, called tidyeval. As with every topic that begs our attention, the question &amp;ldquo;why bother&amp;rdquo; is in place. Theone answer is &amp;ldquo;you&amp;rsquo;ll need this stuff if you want to lock dplyr verbs inside a function&amp;rdquo;. Once you like dplyr and friends, a natural second step is to use the ideas not only for interactive use, but for more &amp;ldquo;programming&amp;rdquo; type, ie.</description>
     </item>
+    
   </channel>
 </rss>

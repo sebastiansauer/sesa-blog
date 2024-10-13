@@ -4,86 +4,122 @@
     <title>RMarkdown on sesa blog</title>
     <link>https://data-se.netlify.app/tags/rmarkdown/</link>
     <description>Recent content in RMarkdown on sesa blog</description>
-    <generator>Hugo</generator>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 27 Jul 2022 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://data-se.netlify.app/tags/rmarkdown/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 27 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/rmarkdown/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>FontAwesome in R and R Markdown</title>
       <link>https://data-se.netlify.app/2022/07/27/fontawesome-in-r-and-r-markdown/</link>
       <pubDate>Wed, 27 Jul 2022 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2022/07/27/fontawesome-in-r-and-r-markdown/</guid>
-      <description>&lt;div id=&#34;TOC&#34;&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#load-packages&#34; id=&#34;toc-load-packages&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Load packages&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#use-case&#34; id=&#34;toc-use-case&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Use Case&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#way&#34; id=&#34;toc-way&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; Way&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#reproducibility&#34; id=&#34;toc-reproducibility&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Reproducibility&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;load-packages&#34; class=&#34;section level1&#34; number=&#34;1&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; Load packages&lt;/h1&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)  # data wrangling&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;use-case&#34; class=&#34;section level1&#34; number=&#34;2&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; Use Case&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Some times some nice emojis or icons are of benefit for your new post, right?&lt;/p&gt;&#xD;&#xA;&lt;p&gt;But, what’s a useful way to implement icons?&lt;/p&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;way&#34; class=&#34;section level1&#34; number=&#34;3&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;3&lt;/span&gt; Way&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Here’s a quick way of incorporating &lt;a href=&#34;https://fontawesome.com/&#34;&gt;FontAwesome&lt;/a&gt; icons to your RMarkdown document:&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;markdown&#34;&gt;&lt;code&gt;&#xD;&#xA;&amp;lt;center&amp;gt;&#xD;&#xA;&amp;lt;font size=&amp;quot;15&amp;quot;&amp;gt; &#xD;&#xA;&#xD;&#xA;```r&#xD;&#xA;library(fontawesome)&#xD;&#xA;fa(&amp;quot;r-project&amp;quot;, fill = &amp;quot;steelblue&amp;quot;)&#xD;&#xA;fa(&amp;quot;bolt-lightning&amp;quot;, fill = &amp;quot;steelblue&amp;quot;)&#xD;&#xA;fa(&amp;quot;discourse&amp;quot;, fill = &amp;quot;steelblue&amp;quot;)&#xD;&#xA;fa(&amp;quot;rocket&amp;quot;, fill = &amp;quot;steelblue&amp;quot;)&#xD;&#xA;```&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&amp;lt;/font&amp;gt;&#xD;&#xA;&amp;lt;/center&amp;gt;&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;p&gt;Which renders as:&lt;/p&gt;</description>
+      <description>1 Load packages 2 Use Case 3 Way 4 Reproducibility 1 Load packages library(tidyverse) # data wrangling 2 Use Case Some times some nice emojis or icons are of benefit for your new post, right?
+But, what’s a useful way to implement icons?
+3 Way Here’s a quick way of incorporating FontAwesome icons to your RMarkdown document:
+&amp;lt;center&amp;gt; &amp;lt;font size=&amp;quot;15&amp;quot;&amp;gt; ```r library(fontawesome) fa(&amp;quot;r-project&amp;quot;, fill = &amp;quot;steelblue&amp;quot;) fa(&amp;quot;bolt-lightning&amp;quot;, fill = &amp;quot;steelblue&amp;quot;) fa(&amp;quot;discourse&amp;quot;, fill = &amp;quot;steelblue&amp;quot;) fa(&amp;quot;rocket&amp;quot;, fill = &amp;quot;steelblue&amp;quot;) ``` &amp;lt;/font&amp;gt; &amp;lt;/center&amp;gt; Which renders as:</description>
     </item>
+    
     <item>
       <title>Links in Markdown-Tabellen</title>
       <link>https://data-se.netlify.app/2021/07/14/links-in-markdown-tabellen/</link>
       <pubDate>Wed, 14 Jul 2021 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2021/07/14/links-in-markdown-tabellen/</guid>
-      <description>&lt;script src=&#34;https://data-se.netlify.app/2021/07/14/links-in-markdown-tabellen/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/2021/07/14/links-in-markdown-tabellen/index_files/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/2021/07/14/links-in-markdown-tabellen/index_files/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://data-se.netlify.app/2021/07/14/links-in-markdown-tabellen/index_files/datatables-css/datatables-crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/2021/07/14/links-in-markdown-tabellen/index_files/datatables-binding/datatables.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://data-se.netlify.app/2021/07/14/links-in-markdown-tabellen/index_files/dt-core/css/jquery.dataTables.min.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;link href=&#34;https://data-se.netlify.app/2021/07/14/links-in-markdown-tabellen/index_files/dt-core/css/jquery.dataTables.extra.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/2021/07/14/links-in-markdown-tabellen/index_files/dt-core/js/jquery.dataTables.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://data-se.netlify.app/2021/07/14/links-in-markdown-tabellen/index_files/crosstalk/css/crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/2021/07/14/links-in-markdown-tabellen/index_files/crosstalk/js/crosstalk.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;TOC&#34;&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#hintergrund&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Hintergrund&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#beispiel-daten-laden&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Beispiel-Daten laden&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#daten-aufbereiten&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; Daten aufbereiten&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#tabelle-1-gt&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Tabelle 1: &lt;code&gt;gt()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#tabelle-2-kable&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; Tabelle 2: &lt;code&gt;kable()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#tabelle-3-pander&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6&lt;/span&gt; Tabelle 3: &lt;code&gt;pander&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#tabelle-4-datatable&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;7&lt;/span&gt; Tabelle 4: &lt;code&gt;datatable()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#fazit&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;8&lt;/span&gt; Fazit:&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&#xD;&#xA;library(gt)&#xD;&#xA;library(here)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;div id=&#34;hintergrund&#34; class=&#34;section level1&#34; number=&#34;1&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; Hintergrund&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Tabellen in Markdown sind mitunter nervig zu erstellen.&#xD;&#xA;Am einfachsten ist es, wenn die Daten in Form einer CSV- oder Excel-Tabelle vorliegen.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;Tipp: Große Mengen von (nur) Text (keine Zahlen) sind vielleicht besser nicht in Form einer Tabelle, sondern einer Liste anzuführen.&lt;/p&gt;</description>
+      <description>1 Hintergrund 2 Beispiel-Daten laden 3 Daten aufbereiten 4 Tabelle 1: gt() 5 Tabelle 2: kable() 6 Tabelle 3: pander 7 Tabelle 4: datatable() 8 Fazit: library(tidyverse) library(gt) library(here) 1 Hintergrund Tabellen in Markdown sind mitunter nervig zu erstellen. Am einfachsten ist es, wenn die Daten in Form einer CSV- oder Excel-Tabelle vorliegen.
+Tipp: Große Mengen von (nur) Text (keine Zahlen) sind vielleicht besser nicht in Form einer Tabelle, sondern einer Liste anzuführen.</description>
     </item>
+    
     <item>
       <title>Slides for my workshop on Markdown and Git</title>
       <link>https://data-se.netlify.app/2019/09/09/slides-for-my-workshop-on-markdown-and-git/</link>
       <pubDate>Mon, 09 Sep 2019 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2019/09/09/slides-for-my-workshop-on-markdown-and-git/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://data-se.netlify.com/slides/ws-md-git-2019/ws-md-git-2019.html&#34;&gt;Here&lt;/a&gt; are my slides for my Workshop on Markdown and Git (2019-09-16). Note that you need to be online to render the slides (due to heavy use of JS).&lt;/p&gt;&#xD;&#xA;&lt;p&gt;The Rmd source code (master file) can be found &lt;a href=&#34;https://data-se.netlify.com/slides/ws-md-git-2019/ws-md-git-2019.Rmd&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;The PDF version of the slides can be found &lt;a href=&#34;https://data-se.netlify.com/slides/ws-md-git-2019/ws-md-git-2019.pdf&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;</description>
+      <description>Here are my slides for my Workshop on Markdown and Git (2019-09-16). Note that you need to be online to render the slides (due to heavy use of JS).
+The Rmd source code (master file) can be found here.
+The PDF version of the slides can be found here.</description>
     </item>
+    
     <item>
       <title>Force bibtex to show the exact date</title>
       <link>https://data-se.netlify.app/2018/12/29/force-bibtex-to-show-the-exact-date/</link>
       <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2018/12/29/force-bibtex-to-show-the-exact-date/</guid>
-      <description>&lt;p&gt;Citing (aka scientific citation) is quite straight forward in RMarkdown. However, there are some shortcomings. Primarily, as citations are rendered via Pandoc’s reference engine, bibtex is used as a standard. Though is quite commonly used, bibtex has been, over and above, replaced by biblatex. biblatex is much more straight forward than bibtex (as text is formatted using latex and not bibtex, still making use of bibtex for the collection of references).&lt;/p&gt;</description>
+      <description>Citing (aka scientific citation) is quite straight forward in RMarkdown. However, there are some shortcomings. Primarily, as citations are rendered via Pandoc’s reference engine, bibtex is used as a standard. Though is quite commonly used, bibtex has been, over and above, replaced by biblatex. biblatex is much more straight forward than bibtex (as text is formatted using latex and not bibtex, still making use of bibtex for the collection of references).</description>
     </item>
+    
     <item>
       <title>Using BibLaTeX instead of Bibtex in Rmarkdown for finer control</title>
       <link>https://data-se.netlify.app/2018/12/28/using-biblatex-instead-of-bibtex-in-rmarkdown-for-finer-control/</link>
       <pubDate>Fri, 28 Dec 2018 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2018/12/28/using-biblatex-instead-of-bibtex-in-rmarkdown-for-finer-control/</guid>
-      <description>&lt;p&gt;As a standard, bibtex is used as a citation-renderer in Pandoc’s Markdown, that is, in RMarkdown as well. bibtex is useful for a fair amount of citation task, but biblatex allows for a finer control. For instance, multiple bibliographies for one document are possible.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;For instance, citing a newspaper article using bibtex left me scratching my head, as I wanted to have the &lt;em&gt;exact day&lt;/em&gt; of the date (not only the year) cited. However, I could not convince bibtex to show these details.&lt;/p&gt;</description>
+      <description>As a standard, bibtex is used as a citation-renderer in Pandoc’s Markdown, that is, in RMarkdown as well. bibtex is useful for a fair amount of citation task, but biblatex allows for a finer control. For instance, multiple bibliographies for one document are possible.
+For instance, citing a newspaper article using bibtex left me scratching my head, as I wanted to have the exact day of the date (not only the year) cited.</description>
     </item>
+    
     <item>
       <title>Generating mass reports using Rmarkdown in R</title>
       <link>https://data-se.netlify.app/2018/12/19/generating-mass-reports/</link>
       <pubDate>Wed, 19 Dec 2018 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2018/12/19/generating-mass-reports/</guid>
-      <description>&lt;p&gt;Sometimes, one document must be recreated in similar fashions a lot of times. For instance, invoices to customers, grading schemes for students, progress reports in projects, and so on. In this post, I demonstrate one way to do that in R using RMarkdown.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;Specifically, it is assumed that there’s a tabular data set, where each row refers to a document instance (eg., a mail or report to one given person),&#xD;&#xA;and each column holds the variables to appear in each reports (see examples below).&#xD;&#xA;In addition, a template is provided where the variables are then parsed into.&#xD;&#xA;This template is built on latex, so that the output document is a pdf file.&lt;/p&gt;</description>
+      <description>Sometimes, one document must be recreated in similar fashions a lot of times. For instance, invoices to customers, grading schemes for students, progress reports in projects, and so on. In this post, I demonstrate one way to do that in R using RMarkdown.
+Specifically, it is assumed that there’s a tabular data set, where each row refers to a document instance (eg., a mail or report to one given person), and each column holds the variables to appear in each reports (see examples below).</description>
     </item>
+    
     <item>
       <title>Image paths in Hugo/blogdown</title>
       <link>https://data-se.netlify.app/2018/11/28/image-paths-in-hugo-blogdown/</link>
       <pubDate>Wed, 28 Nov 2018 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2018/11/28/image-paths-in-hugo-blogdown/</guid>
-      <description>&lt;p&gt;Images from R are instantly included into (R) markdown files, and the&#xD;&#xA;same applies for blogdown posts.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;See:&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x &amp;lt;- 1:10&#xD;&#xA;plot(x)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://data-se.netlify.app/post/2018-11-28-image-paths-in-hugo-blogdown_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;100%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;However, for external images - such as photos - things are more complicated. First, all is still fine, if an image is found on some URL/server on the internet:&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;knitr::include_graphics(&amp;quot;https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/310px-R_logo.svg.png&amp;quot;)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/310px-R_logo.svg.png&#34; width=&#34;100%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;Of course, one can apply direct markdown syntax for including external images:&lt;/p&gt;</description>
+      <description>Images from R are instantly included into (R) markdown files, and the same applies for blogdown posts.
+See:
+x &amp;lt;- 1:10 plot(x) However, for external images - such as photos - things are more complicated. First, all is still fine, if an image is found on some URL/server on the internet:
+knitr::include_graphics(&amp;quot;https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/310px-R_logo.svg.png&amp;quot;) Of course, one can apply direct markdown syntax for including external images:
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/310px-R_logo.svg.png){width=20%} Now assume we are in an R project that gives the base for a blogdown blog.</description>
     </item>
+    
     <item>
       <title>Reproducible academic writing with RMarkdown - Talk at DGPs 2018</title>
       <link>https://data-se.netlify.app/2018/09/03/reproducible-academic-writing-with-rmarkdown-talk-at-dgps-2018/</link>
       <pubDate>Mon, 03 Sep 2018 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2018/09/03/reproducible-academic-writing-with-rmarkdown-talk-at-dgps-2018/</guid>
-      <description>&lt;p&gt;Talk at DGPs 2018.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;Get slides here: &lt;a href=&#34;http://data-se.netlify.com/slides/rmd-writing/rmd-writing_dgps2018.html&#34; class=&#34;uri&#34;&gt;http://data-se.netlify.com/slides/rmd-writing/rmd-writing_dgps2018.html&lt;/a&gt;.&lt;/p&gt;</description>
+      <description>Talk at DGPs 2018.
+Get slides here: http://data-se.netlify.com/slides/rmd-writing/rmd-writing_dgps2018.html.</description>
     </item>
+    
     <item>
       <title>Talk - Predictors of AfD party success in the 2017 elections. A Bayesian modeling  approach</title>
       <link>https://data-se.netlify.app/2018/09/02/predictors-of-afd-party-success-in-the-2017-elections-a-bayesian-modeling-approach/</link>
       <pubDate>Sun, 02 Sep 2018 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2018/09/02/predictors-of-afd-party-success-in-the-2017-elections-a-bayesian-modeling-approach/</guid>
-      <description>&lt;p&gt;Talk at DGPs 2018.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;Get slides here &lt;a href=&#34;http://data-se.netlify.com/slides/afd_dgps2018/afd_dgps2018.html&#34; class=&#34;uri&#34;&gt;http://data-se.netlify.com/slides/afd_dgps2018/afd_dgps2018.html&lt;/a&gt;&lt;/p&gt;</description>
+      <description>Talk at DGPs 2018.
+Get slides here http://data-se.netlify.com/slides/afd_dgps2018/afd_dgps2018.html</description>
     </item>
+    
     <item>
       <title>How to cite &#34;in press&#34; using Bibtex</title>
       <link>https://data-se.netlify.app/2018/07/01/how-to-cite-in-press-using-bibtex/</link>
       <pubDate>Sun, 01 Jul 2018 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2018/07/01/how-to-cite-in-press-using-bibtex/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>Yart - Yet Another Markdown Report Template</title>
       <link>https://data-se.netlify.app/2017/11/15/yart/</link>
       <pubDate>Wed, 15 Nov 2017 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2017/11/15/yart/</guid>
-      <description>&lt;p&gt;It would be useful to have a RMarkdown template for typical (academic) reports such as class assigments and bachelor/master thesises. The LaTeX class &amp;ldquo;report&amp;rdquo; provides a suitable format for that. This package provides a simple wrapper around this class built on the standard pandoc template.&lt;/p&gt;&#xA;&lt;h2 id=&#34;thanks-to&#34;&gt;Thanks to&lt;/h2&gt;&#xA;&lt;p&gt;Yart, ie, this package leans on earlier work by &lt;a href=&#34;http://aaronwolen.com/&#34;&gt;Aaron Wolen&lt;/a&gt; in his&#xA;&lt;a href=&#34;https://github.com/aaronwolen/pandoc-letter&#34;&gt;pandoc-letter&lt;/a&gt; repository, and extends it for use from&#xA;R via the &lt;a href=&#34;https://cran.r-project.org/package=rmarkdown&#34;&gt;rmarkdown&lt;/a&gt; package. The structure of this package is heavily inspired by Dirk Eddenbuettel&amp;rsquo;s nice tamplate package &lt;a href=&#34;https://github.com/eddelbuettel/linl&#34;&gt;linl&lt;/a&gt;.&lt;/p&gt;</description>
+      <description>It would be useful to have a RMarkdown template for typical (academic) reports such as class assigments and bachelor/master thesises. The LaTeX class &amp;ldquo;report&amp;rdquo; provides a suitable format for that. This package provides a simple wrapper around this class built on the standard pandoc template.
+Thanks to Yart, ie, this package leans on earlier work by Aaron Wolen in his pandoc-letter repository, and extends it for use from R via the rmarkdown package.</description>
     </item>
+    
   </channel>
 </rss>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.135.0">
+<meta name="generator" content="Hugo 0.101.0" />
 
 
 <title>Simple way of plotting normal/logistic/etc. curve - sesa blog</title>
@@ -88,16 +88,16 @@
 </span></span></code></pre></div><p><img src="https://sebastiansauer.github.io/images/2017-05-24/figure/unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3"></p>
 <h1 id="logistic-curve">Logistic curve</h1>
 <p>The logitistic curve plays an eniment role in many statistical methods, e.g., regression for binary events, and Rasch model in psychometric. It is sometimes called &ldquo;s-type&rdquo; curve (or &ldquo;ogive&rdquo;) due to its form vaguely resembling an &ldquo;S&rdquo;:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>scurve <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">function</span>(x){
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>scurve <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x){
 </span></span><span style="display:flex;"><span>  y <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">exp</span>(x) <span style="color:#f92672">/</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">exp</span>(x))
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span>(y)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">return</span>(y)
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>p <span style="color:#f92672">+</span> <span style="color:#a6e22e">stat_function</span>(fun <span style="color:#f92672">=</span> scurve, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>) 
 </span></span></code></pre></div><p><img src="https://sebastiansauer.github.io/images/2017-05-24/figure/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"></p>
 <p>As our function does not have a prebottled version in base R, we have defined a function beforehand. That function is then passed over to ggplot2.</p>
 <p>Alternatively, we could have done that in one step:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>p <span style="color:#f92672">+</span> <span style="color:#a6e22e">stat_function</span>(fun <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(x) <span style="color:#a6e22e">exp</span>(x)<span style="color:#f92672">/</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">+</span><span style="color:#a6e22e">exp</span>(x)), n <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>) 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>p <span style="color:#f92672">+</span> <span style="color:#a6e22e">stat_function</span>(fun <span style="color:#f92672">=</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">exp</span>(x)<span style="color:#f92672">/</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">+</span><span style="color:#a6e22e">exp</span>(x)), n <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>) 
 </span></span></code></pre></div><p><img src="https://sebastiansauer.github.io/images/2017-05-24/figure/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"></p>
 <p>Which is shorter but somewhat less readable.</p>
 <h1 id="ln-function">Ln-Function</h1>

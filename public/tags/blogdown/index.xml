@@ -1,33 +1,49 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blogdown on sesa blog</title>
+    <title>blogdown on sesa blog</title>
     <link>https://data-se.netlify.app/tags/blogdown/</link>
-    <description>Recent content in Blogdown on sesa blog</description>
-    <generator>Hugo</generator>
+    <description>Recent content in blogdown on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 28 Nov 2018 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://data-se.netlify.app/tags/blogdown/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 28 Nov 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/blogdown/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Image paths in Hugo/blogdown</title>
       <link>https://data-se.netlify.app/2018/11/28/image-paths-in-hugo-blogdown/</link>
       <pubDate>Wed, 28 Nov 2018 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2018/11/28/image-paths-in-hugo-blogdown/</guid>
-      <description>&lt;p&gt;Images from R are instantly included into (R) markdown files, and the&#xD;&#xA;same applies for blogdown posts.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;See:&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x &amp;lt;- 1:10&#xD;&#xA;plot(x)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://data-se.netlify.app/post/2018-11-28-image-paths-in-hugo-blogdown_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;100%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;However, for external images - such as photos - things are more complicated. First, all is still fine, if an image is found on some URL/server on the internet:&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;knitr::include_graphics(&amp;quot;https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/310px-R_logo.svg.png&amp;quot;)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/310px-R_logo.svg.png&#34; width=&#34;100%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;Of course, one can apply direct markdown syntax for including external images:&lt;/p&gt;</description>
+      <description>Images from R are instantly included into (R) markdown files, and the same applies for blogdown posts.
+See:
+x &amp;lt;- 1:10 plot(x) However, for external images - such as photos - things are more complicated. First, all is still fine, if an image is found on some URL/server on the internet:
+knitr::include_graphics(&amp;quot;https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/310px-R_logo.svg.png&amp;quot;) Of course, one can apply direct markdown syntax for including external images:
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/310px-R_logo.svg.png){width=20%} Now assume we are in an R project that gives the base for a blogdown blog.</description>
     </item>
+    
     <item>
       <title>Image path for blogdown</title>
       <link>https://data-se.netlify.app/2017/11/28/image-path-for-blogdown/</link>
       <pubDate>Tue, 28 Nov 2017 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2017/11/28/image-path-for-blogdown/</guid>
-      <description>&lt;p&gt;How to include external images to a hugo post?&lt;/p&gt;&#xD;&#xA;&lt;p&gt;Suppose we have a file &lt;code&gt;img1.png&lt;/code&gt; in &lt;code&gt;project1&lt;/code&gt;, ie., &lt;code&gt;project1/img1.png&lt;/code&gt;.&#xD;&#xA;Do this:&lt;/p&gt;&#xD;&#xA;&lt;ol style=&#34;list-style-type: decimal&#34;&gt;&#xD;&#xA;&lt;li&gt;Copy your folder with images to &lt;code&gt;static/&lt;/code&gt;.&lt;/li&gt;&#xD;&#xA;&lt;li&gt;Use this path in your blogdown post: &lt;code&gt;/project/img1.png&lt;/code&gt;.&lt;/li&gt;&#xD;&#xA;&lt;/ol&gt;&#xD;&#xA;&lt;blockquote&gt;&#xD;&#xA;&lt;pre&gt;&lt;code&gt;Mind the leading slash!&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;/blockquote&gt;&#xD;&#xA;&lt;div id=&#34;example-time&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Example time&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;This code (on &lt;em&gt;my&lt;/em&gt; machine)&#xD;&#xA;&lt;code&gt;![](/images/textmining/tidytext-crop.png){ width=&amp;quot;20%&amp;quot; }&lt;/code&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;renders this:&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://data-se.netlify.app/images/textmining/tidytext-crop.png&#34; style=&#34;width:20.0%&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;Note the nice &lt;code&gt;width&lt;/code&gt; option.&lt;/p&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;knitr-way&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Knitr way&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;The knitr way works similarly:&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;knitr::include_graphics(&amp;quot;/images/textmining/tidytext-crop.png&amp;quot;)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://data-se.netlify.app/images/textmining/tidytext-crop.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;</description>
+      <description> How to include external images to a hugo post?
+Suppose we have a file img1.png in project1, ie., project1/img1.png. Do this:
+Copy your folder with images to static/. Use this path in your blogdown post: /project/img1.png. Mind the leading slash! Example time This code (on my machine) ![](/images/textmining/tidytext-crop.png){ width=&amp;quot;20%&amp;quot; }
+renders this:
+Note the nice width option.
+Knitr way The knitr way works similarly:
+knitr::include_graphics(&amp;quot;/images/textmining/tidytext-crop.png&amp;quot;) </description>
     </item>
+    
     <item>
       <title>Hello World, this is Blogdown</title>
       <link>https://data-se.netlify.app/2017/11/21/hello-world-this-is-blogdown/</link>
       <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2017/11/21/hello-world-this-is-blogdown/</guid>
-      <description>&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;p&gt;My blog at &lt;a href=&#34;https://sebastiansauer.github.io/posts/&#34; class=&#34;uri&#34;&gt;https://sebastiansauer.github.io/posts/&lt;/a&gt; has moved. It is now here! This is the new home of my blog. In (the unlikely) case you are asking yourself “Why did you move your blog?”, here is the answer.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;I was using Jekyll at Github pages which is great as long as you do not have a lot of R in your posts. But I did have a lot of R in my posts. The problem is that there is no builtin support for rendering R codes to the markdown file. That means that I ended up fixing images links all day long (well, every littel now and then).&lt;/p&gt;</description>
+      <description>My blog at https://sebastiansauer.github.io/posts/ has moved. It is now here! This is the new home of my blog. In (the unlikely) case you are asking yourself “Why did you move your blog?”, here is the answer.
+I was using Jekyll at Github pages which is great as long as you do not have a lot of R in your posts. But I did have a lot of R in my posts.</description>
     </item>
+    
   </channel>
 </rss>

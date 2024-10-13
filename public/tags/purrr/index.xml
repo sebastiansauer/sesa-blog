@@ -1,40 +1,62 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Purrr on sesa blog</title>
+    <title>purrr on sesa blog</title>
     <link>https://data-se.netlify.app/tags/purrr/</link>
-    <description>Recent content in Purrr on sesa blog</description>
-    <generator>Hugo</generator>
+    <description>Recent content in purrr on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 28 Sep 2019 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://data-se.netlify.app/tags/purrr/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 13 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/purrr/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Working with list columns - an example</title>
+      <link>https://data-se.netlify.app/2024/10/13/working-with-list-columns-an-example/</link>
+      <pubDate>Sun, 13 Oct 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2024/10/13/working-with-list-columns-an-example/</guid>
+      <description>1 Load packages 2 Introduction 3 Example data 4 Add list column 1 5 Add list column 2 6 Extract list column 7 Reproducibility 1 Load packages library(tidyverse) # data wrangling 2 Introduction In this post, I want to show you how to work with list columns in R. List columns are a powerful feature of the tidyverse that allow you to store multiple objects in a single column of a data frame.</description>
+    </item>
+    
     <item>
       <title>Looping over function arguments using purrr</title>
       <link>https://data-se.netlify.app/2019/09/28/looping-over-function-arguments-using-purrr/</link>
       <pubDate>Sat, 28 Sep 2019 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2019/09/28/looping-over-function-arguments-using-purrr/</guid>
-      <description>&lt;div id=&#34;load-packages&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Load packages&lt;/h1&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;problem-statement&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Problem statement&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Assume you have to call a function multiple times, but each with (possibly) different argument. Given enough repitioons, you will not want to repeat yourself.&lt;br /&gt;&#xD;&#xA;In other words, we would like to loop over function arguments, each round in the loop giving the respective argument’value(s) to the function.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;One example would be to generate many random values but each with different mean and/or sd:&lt;/p&gt;</description>
+      <description>Load packages library(tidyverse) Problem statement Assume you have to call a function multiple times, but each with (possibly) different argument. Given enough repitioons, you will not want to repeat yourself.
+In other words, we would like to loop over function arguments, each round in the loop giving the respective argument’value(s) to the function.
+One example would be to generate many random values but each with different mean and/or sd:</description>
     </item>
+    
     <item>
       <title>Generalized rowwise operations using purrr::pmap</title>
       <link>https://data-se.netlify.app/2019/07/03/generalized-rowwise-operations-using-purrr-pmap/</link>
       <pubDate>Wed, 03 Jul 2019 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2019/07/03/generalized-rowwise-operations-using-purrr-pmap/</guid>
-      <description>&lt;div id=&#34;load-packages&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Load packages&lt;/h1&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;p&gt;Rowwwise operations are a quite frequent operations in data analysis. The R language environment is particularly strong in &lt;em&gt;column&lt;/em&gt; wise operations. This is due to technical reasons, as data frames are internally built as column-by-column structures, hence column wise operations are simple, rowwise more difficult.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;This post looks at some rather general way to comput rowwise statistics. Of course, numerous ways exist and there are quite a few tutorials around, notably by &lt;a href=&#34;https://github.com/jennybc/row-oriented-workflows&#34;&gt;Jenny Bryant&lt;/a&gt;, and by &lt;a href=&#34;https://www.hvitfeldt.me/blog/purrr-tips-and-tricks/&#34;&gt;Emil Hvitfeldt&lt;/a&gt; to name a few.&lt;/p&gt;</description>
+      <description>Load packages library(tidyverse) Rowwwise operations are a quite frequent operations in data analysis. The R language environment is particularly strong in column wise operations. This is due to technical reasons, as data frames are internally built as column-by-column structures, hence column wise operations are simple, rowwise more difficult.
+This post looks at some rather general way to comput rowwise statistics. Of course, numerous ways exist and there are quite a few tutorials around, notably by Jenny Bryant, and by Emil Hvitfeldt to name a few.</description>
     </item>
+    
     <item>
       <title>Testing for equality rowwise</title>
       <link>https://data-se.netlify.app/2019/07/03/testing-for-equality-rowwise/</link>
       <pubDate>Wed, 03 Jul 2019 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2019/07/03/testing-for-equality-rowwise/</guid>
-      <description>&lt;div id=&#34;load-packages&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Load packages&lt;/h1&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;basic-testing-for-equality&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Basic testing for equality&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Testing for equality in a kind of very basic function in computer (and data) science. There is a straightforward function in R to test for equality:&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;identical(1, 1)&#xD;&#xA;#&amp;gt; [1] TRUE&#xD;&#xA;identical(&amp;quot;A&amp;quot;, &amp;quot;A&amp;quot;)&#xD;&#xA;#&amp;gt; [1] TRUE&#xD;&#xA;identical(1, 2)&#xD;&#xA;#&amp;gt; [1] FALSE&#xD;&#xA;identical(1, NA)&#xD;&#xA;#&amp;gt; [1] FALSE&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;p&gt;However this get more complicated if we want to compare more than two elements. One way to achieve this is to compute the number of the different items. If there’s only one different item, then all &lt;del&gt;maybe&lt;/del&gt; are the same. But, luckily we can at least say, if there are different numbers of different elements, the vectors are not the same.&lt;/p&gt;</description>
+      <description>Load packages library(tidyverse) Basic testing for equality Testing for equality in a kind of very basic function in computer (and data) science. There is a straightforward function in R to test for equality:
+identical(1, 1) #&amp;gt; [1] TRUE identical(&amp;quot;A&amp;quot;, &amp;quot;A&amp;quot;) #&amp;gt; [1] TRUE identical(1, 2) #&amp;gt; [1] FALSE identical(1, NA) #&amp;gt; [1] FALSE However this get more complicated if we want to compare more than two elements. One way to achieve this is to compute the number of the different items.</description>
     </item>
+    
     <item>
       <title>Summary for multiple variables using purrr</title>
       <link>https://data-se.netlify.app/2016/09/28/summary-mult-cols-purrr/</link>
       <pubDate>Wed, 28 Sep 2016 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2016/09/28/summary-mult-cols-purrr/</guid>
-      <description>&lt;p&gt;A frequent task in data analysis is to get a summary of a bunch of variables. Often, graphical summaries (diagrams) are wanted. However, at times numerical summaries are in order. How to get that in R? That&amp;rsquo;s the question of the present post.&lt;/p&gt;&#xA;&lt;p&gt;Of course, there are several ways. One way, using &lt;code&gt;purrr&lt;/code&gt;, is the following. I liked it quite a bit that&amp;rsquo;s why I am showing it here.&lt;/p&gt;&#xA;&lt;p&gt;First, let&amp;rsquo;s load some data and some packages we will make use of.&lt;/p&gt;</description>
+      <description>A frequent task in data analysis is to get a summary of a bunch of variables. Often, graphical summaries (diagrams) are wanted. However, at times numerical summaries are in order. How to get that in R? That&amp;rsquo;s the question of the present post.
+Of course, there are several ways. One way, using purrr, is the following. I liked it quite a bit that&amp;rsquo;s why I am showing it here.
+First, let&amp;rsquo;s load some data and some packages we will make use of.</description>
     </item>
+    
   </channel>
 </rss>

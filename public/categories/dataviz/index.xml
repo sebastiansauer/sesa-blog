@@ -1,75 +1,112 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Dataviz on sesa blog</title>
+    <title>dataviz on sesa blog</title>
     <link>https://data-se.netlify.app/categories/dataviz/</link>
-    <description>Recent content in Dataviz on sesa blog</description>
-    <generator>Hugo</generator>
+    <description>Recent content in dataviz on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 26 Sep 2022 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://data-se.netlify.app/categories/dataviz/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 26 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/categories/dataviz/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Some ways to plot the distribution of each variable of a data frame</title>
       <link>https://data-se.netlify.app/2022/09/26/some-ways-to-plot-the-distribution-of-each-variable-of-a-data-frame/</link>
       <pubDate>Mon, 26 Sep 2022 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2022/09/26/some-ways-to-plot-the-distribution-of-each-variable-of-a-data-frame/</guid>
-      <description>&lt;div id=&#34;TOC&#34;&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#motivation&#34; id=&#34;toc-motivation&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Motivation&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#load-packages&#34; id=&#34;toc-load-packages&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Load packages&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#load-data&#34; id=&#34;toc-load-data&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; Load data&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#lets-plot&#34; id=&#34;toc-lets-plot&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Let’s plot&lt;/a&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#way-1&#34; id=&#34;toc-way-1&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.1&lt;/span&gt; Way 1&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#way-2&#34; id=&#34;toc-way-2&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.2&lt;/span&gt; Way 2&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#way-3&#34; id=&#34;toc-way-3&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.3&lt;/span&gt; Way 3&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#way-4&#34; id=&#34;toc-way-4&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.4&lt;/span&gt; Way 4&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#reproducibility&#34; id=&#34;toc-reproducibility&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; Reproducibility&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;motivation&#34; class=&#34;section level1&#34; number=&#34;1&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; Motivation&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Often times, in explorative data analysis, one would like to plot the distribution of the relevant variables.&#xD;&#xA;Whereas ggplot provides handy tools to plot &lt;em&gt;one&lt;/em&gt; variable after each other,&#xD;&#xA;it would come handy to plot ’em all in one go.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;Of course, there are many ways to achieve this comfort. This posts presents some of them in brevity.&lt;/p&gt;</description>
+      <description>1 Motivation 2 Load packages 3 Load data 4 Let’s plot 4.1 Way 1 4.2 Way 2 4.3 Way 3 4.4 Way 4 5 Reproducibility 1 Motivation Often times, in explorative data analysis, one would like to plot the distribution of the relevant variables. Whereas ggplot provides handy tools to plot one variable after each other, it would come handy to plot ’em all in one go.
+Of course, there are many ways to achieve this comfort.</description>
     </item>
+    
     <item>
       <title>Change standard theme of ggplot</title>
       <link>https://data-se.netlify.app/2018/10/10/change-standard-theme-of-ggplot/</link>
       <pubDate>Wed, 10 Oct 2018 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2018/10/10/change-standard-theme-of-ggplot/</guid>
-      <description>&lt;p&gt;&lt;code&gt;ggplot2&lt;/code&gt; is customizeable. Frankly, one can change a heap of details - not everything probably, but a lot. Of course, one can add a theme to the ggplot call, in order to change the theme. However, a more catch-it-all approach would be to change the standard theme of ggplot itself. In this post, we’ll investigate this option.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;Load some data and the right packages:&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data(mtcars)&#xD;&#xA;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;p&gt;Here’s the standard theme of ggplot, let’s have a look at it&lt;/p&gt;</description>
+      <description>ggplot2 is customizeable. Frankly, one can change a heap of details - not everything probably, but a lot. Of course, one can add a theme to the ggplot call, in order to change the theme. However, a more catch-it-all approach would be to change the standard theme of ggplot itself. In this post, we’ll investigate this option.
+Load some data and the right packages:
+data(mtcars) library(tidyverse) Here’s the standard theme of ggplot, let’s have a look at it</description>
     </item>
+    
     <item>
       <title>Playing around with dumbbell plots</title>
       <link>https://data-se.netlify.app/2018/05/23/playing-around-with-dumbbell-plots/</link>
       <pubDate>Wed, 23 May 2018 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2018/05/23/playing-around-with-dumbbell-plots/</guid>
-      <description>&lt;p&gt;Dumbbell plots can be used to show differences between two groups. &lt;a href=&#34;https://rud.is/b/&#34;&gt;Bob Rudis&lt;/a&gt; demonstrated a beautiful application of such plots using ggplot2 board methods.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;In this plot, I will explain or comment his code, and adapt a few changes.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;First, load some packages.&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pacman::p_load(tidyverse, ggalt)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;p&gt;Let’s make up some data. Tip: Make up some data conveniently in Excel, copy it to the clipboard, and then paste it as tribble (see below) into R. For the last step, there is this RStudio Add-in available “Dataset Loads”. Then use the menu item “Paste as Tribble”.&lt;/p&gt;</description>
+      <description>Dumbbell plots can be used to show differences between two groups. Bob Rudis demonstrated a beautiful application of such plots using ggplot2 board methods.
+In this plot, I will explain or comment his code, and adapt a few changes.
+First, load some packages.
+pacman::p_load(tidyverse, ggalt) Let’s make up some data. Tip: Make up some data conveniently in Excel, copy it to the clipboard, and then paste it as tribble (see below) into R.</description>
     </item>
+    
     <item>
       <title>Playing around with dataviz: Comparing distributions between groups</title>
       <link>https://data-se.netlify.app/2018/05/18/playing-around-dataviz-comparing-distributions-between-groups/</link>
       <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2018/05/18/playing-around-dataviz-comparing-distributions-between-groups/</guid>
-      <description>&lt;p&gt;What’ a nice way to display distributional differences between a (larger) number of groups? Boxplots is one way to go. In addition, the raw data may be shown as dots, but should be demphasized. Third, a trend or big picture comparing the groups will make sense in some cases.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;Ok, based on this reasoning, let’s do som visualizing. Let’s load some data (movies), and the usual culprits of packages.&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)  &#xD;&#xA;library(mosaic)&#xD;&#xA;&#xD;&#xA;data(movies, package = &amp;quot;ggplot2movies&amp;quot;)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;p&gt;Now let’s add a variable for &lt;code&gt;decade&lt;/code&gt; as &lt;code&gt;year&lt;/code&gt; is too fine grained..&lt;/p&gt;</description>
+      <description>What’ a nice way to display distributional differences between a (larger) number of groups? Boxplots is one way to go. In addition, the raw data may be shown as dots, but should be demphasized. Third, a trend or big picture comparing the groups will make sense in some cases.
+Ok, based on this reasoning, let’s do som visualizing. Let’s load some data (movies), and the usual culprits of packages.</description>
     </item>
+    
     <item>
       <title>Playing around with dataviz: Showing correlations</title>
       <link>https://data-se.netlify.app/2018/05/18/playing-around-with-dataviz-showing-correlations/</link>
       <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2018/05/18/playing-around-with-dataviz-showing-correlations/</guid>
-      <description>&lt;p&gt;In this plot, we are looking into some ways of displaying association between (two) quantitative variables, aka correlation. Our goal is to present a rich representation of the correlation.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;Let’s take the dataset &lt;code&gt;flights&lt;/code&gt; as an example.&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data(flights, package = &amp;quot;nycflights13&amp;quot;)&#xD;&#xA;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;dplyr&amp;#39; was built under R version 3.5.1&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(viridis)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;flights %&amp;gt;% &#xD;&#xA;  filter(arr_delay &amp;lt; 100, dep_delay &amp;lt; 100) %&amp;gt;% &#xD;&#xA;  ggplot(aes(x = dep_delay, y = arr_delay, color = origin)) +&#xD;&#xA;  geom_point(alpha = .01) +&#xD;&#xA;  geom_smooth(se = FALSE, color = &amp;quot;grey20&amp;quot;) +&#xD;&#xA;  geom_rug() +&#xD;&#xA;  facet_wrap(~origin) +&#xD;&#xA;  scale_color_viridis_d()&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;pre&gt;&lt;code&gt;## `geom_smooth()` using method = &amp;#39;gam&amp;#39; and formula &amp;#39;y ~ s(x, bs = &amp;quot;cs&amp;quot;)&amp;#39;&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://data-se.netlify.app/post/2018-05-18-playing-around-with-dataviz-showing-correlations_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;</description>
+      <description>In this plot, we are looking into some ways of displaying association between (two) quantitative variables, aka correlation. Our goal is to present a rich representation of the correlation.
+Let’s take the dataset flights as an example.
+data(flights, package = &amp;quot;nycflights13&amp;quot;) library(tidyverse) ## Warning: package &amp;#39;dplyr&amp;#39; was built under R version 3.5.1 library(viridis) flights %&amp;gt;% filter(arr_delay &amp;lt; 100, dep_delay &amp;lt; 100) %&amp;gt;% ggplot(aes(x = dep_delay, y = arr_delay, color = origin)) + geom_point(alpha = .</description>
     </item>
+    
     <item>
       <title>Showcase of Viridis, maps, and ggcounty</title>
       <link>https://data-se.netlify.app/2018/05/18/showcase-of-viridis-maps-and-ggounty/</link>
       <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2018/05/18/showcase-of-viridis-maps-and-ggounty/</guid>
-      <description>&lt;p&gt;This posts shows how easy it can be to build an visually pleasing plot. We will use &lt;a href=&#34;https://github.com/hrbrmstr&#34;&gt;hrbrmster&lt;/a&gt;’s &lt;code&gt;ggcounty&lt;/code&gt;, which is an R package at this &lt;a href=&#34;https://github.com/hrbrmstr/ggcounty&#34;&gt;Github repo&lt;/a&gt;. Graphics engine is as mostly in my plots, Hadley Wickhams &lt;code&gt;ggplot&lt;/code&gt;. All build on R. Standing on shoulders…&lt;/p&gt;&#xD;&#xA;&lt;p&gt;Disclaimer: This example heavily draws on hrbrmster example on &lt;a href=&#34;https://github.com/hrbrmstr/ggcounty&#34;&gt;this page&lt;/a&gt;. All credit is due to Rudy, and those on whose work he built up on.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;First, load the relevant packages:&lt;/p&gt;</description>
+      <description>This posts shows how easy it can be to build an visually pleasing plot. We will use hrbrmster’s ggcounty, which is an R package at this Github repo. Graphics engine is as mostly in my plots, Hadley Wickhams ggplot. All build on R. Standing on shoulders…
+Disclaimer: This example heavily draws on hrbrmster example on this page. All credit is due to Rudy, and those on whose work he built up on.</description>
     </item>
+    
     <item>
       <title>Visualizing a logistic regression the easy way</title>
       <link>https://data-se.netlify.app/2018/01/23/visualizing-a-logistic-regression-the-easy-way/</link>
       <pubDate>Tue, 23 Jan 2018 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2018/01/23/visualizing-a-logistic-regression-the-easy-way/</guid>
-      <description>&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;p&gt;Let’s visualize a GLM (logistic regression).&lt;/p&gt;&#xD;&#xA;&lt;p&gt;First laod some data:&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data(tips, package = &amp;quot;reshape2&amp;quot;)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;p&gt;Compute a glm:&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;glm_tips &amp;lt;- glm(sex ~ tip, data = tips,&#xD;&#xA;            family = &amp;quot;binomial&amp;quot;)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;p&gt;Plot the model using &lt;code&gt;mosaic&lt;/code&gt;:&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mosaic)&#xD;&#xA;plotModel(glm_tips)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://data-se.netlify.app/post/2018-01-23-visualizing-a-logistic-regression-the-easy-way_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;The curve does not look really s-typed (ogive) but that’s ok because the data suggest not a strong trend. The plot is not very beautiful either, but hey - it’s quick to produce 😁.&lt;/p&gt;</description>
+      <description>Let’s visualize a GLM (logistic regression).
+First laod some data:
+data(tips, package = &amp;quot;reshape2&amp;quot;) Compute a glm:
+glm_tips &amp;lt;- glm(sex ~ tip, data = tips, family = &amp;quot;binomial&amp;quot;) Plot the model using mosaic:
+library(mosaic) plotModel(glm_tips) The curve does not look really s-typed (ogive) but that’s ok because the data suggest not a strong trend. The plot is not very beautiful either, but hey - it’s quick to produce 😁.</description>
     </item>
+    
     <item>
       <title>Interactive diagrams in lieu of shiny?</title>
       <link>https://data-se.netlify.app/2017/11/27/interactive-diagrams-in-lieu-of-shiny/</link>
       <pubDate>Mon, 27 Nov 2017 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2017/11/27/interactive-diagrams-in-lieu-of-shiny/</guid>
-      <description>&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/plotly-binding/plotly.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/typedarray/typedarray.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://data-se.netlify.app/rmarkdown-libs/crosstalk/css/crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/crosstalk/js/crosstalk.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://data-se.netlify.app/rmarkdown-libs/plotly-htmlwidgets-css/plotly-htmlwidgets.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/plotly-main/plotly-latest.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://data-se.netlify.app/rmarkdown-libs/bokehjs/bokeh.min.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;link href=&#34;https://data-se.netlify.app/rmarkdown-libs/bokehjs/loader.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/bokehjs/bokeh.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/rbokeh-binding/rbokeh.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/d3v4/d3-4.13.0.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/d3v4/d3-legend.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://data-se.netlify.app/rmarkdown-libs/d3.lasso-plugin/lasso.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/d3.lasso-plugin/lasso.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://data-se.netlify.app/rmarkdown-libs/scatterD3/scatterD3.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/scatterD3/scatterD3-utils.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/scatterD3/scatterD3-setup.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/scatterD3/scatterD3-axes.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/scatterD3/scatterD3-dots.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/scatterD3/scatterD3-arrows.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/scatterD3/scatterD3-labels.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/scatterD3/scatterD3-lines.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/scatterD3/scatterD3-ellipses.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/scatterD3/scatterD3-legend.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/scatterD3/scatterD3-lasso.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/scatterD3/scatterD3-exports.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/scatterD3-binding/scatterD3.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/d3/d3.v3.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://data-se.netlify.app/rmarkdown-libs/pairsD3/style.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/pairsD3-binding/pairsD3.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/chart.js/./dist/Chart.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/chartJSRadar-binding/chartJSRadar.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;p&gt;One frequent use of the Shiny server software is displaying interactive data diagrams. The pro of using&#xD;&#xA;Shiny is the great flexibility; much more than “just graphics” can be done. Basically Shiny provides a flexible&#xD;&#xA;GUI for your R program. &lt;em&gt;But&lt;/em&gt; if you simply aiming at displaying or exploring some data interactively, a much&#xD;&#xA;simplor approach may do it for you; there are some nice libraries available in R for that. The aim of this post is to present some examples, and to that’s easy to use them in R.&lt;/p&gt;</description>
+      <description>One frequent use of the Shiny server software is displaying interactive data diagrams. The pro of using Shiny is the great flexibility; much more than “just graphics” can be done. Basically Shiny provides a flexible GUI for your R program. But if you simply aiming at displaying or exploring some data interactively, a much simplor approach may do it for you; there are some nice libraries available in R for that.</description>
     </item>
+    
     <item>
       <title>Great dataviz examples in rstats</title>
       <link>https://data-se.netlify.app/2017/11/20/great-dataviz-examples-in-rstats/</link>
       <pubDate>Mon, 20 Nov 2017 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2017/11/20/great-dataviz-examples-in-rstats/</guid>
-      <description>&lt;p&gt;Here come some stunning examples of data visualizations, all built with R. R code of each diagram is available at the source. Enjoy! #beautiful.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;UPDATE: I&amp;rsquo;ve included links to the R source!&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h1 id=&#34;plotting-geo-maps-along-with-subplots-in-ggplot2&#34;&gt;Plotting geo maps along with subplots in &lt;code&gt;ggplot2&lt;/code&gt;&lt;/h1&gt;&#xA;&lt;p&gt;I like this one by Ilya Kashnitsky:&lt;/p&gt;&#xA;&lt;img src=&#34;https://ikashnitsky.github.io/images/170522/s-fig-01.png&#34; width = &#34;800&#34;&gt;&#xD;&#xA;&lt;p&gt;Similarly, by the same author:&lt;/p&gt;&#xA;&lt;img src = &#34;https://pbs.twimg.com/media/DDRrLeRWsAACFCh.jpg&#34; width=&#34;800&#34;&gt;&#xD;&#xA;&lt;p&gt;&lt;a href=&#34;https://ikashnitsky.github.io/2017/align-six-maps/?utm_content=bufferc04f2&amp;amp;utm_medium=social&amp;amp;utm_source=twitter.com&amp;amp;utm_campaign=buffer&#34;&gt;Source&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Great work, @ikashnitsky!&lt;/p&gt;&#xA;&lt;h1 id=&#34;cirlize-chord-diagrams&#34;&gt;Cirlize (Chord) diagrams&lt;/h1&gt;&#xA;&lt;p&gt;Plotting association in a circular form yields aesthetic examples of diagrams, see the following examples&lt;/p&gt;</description>
+      <description>Here come some stunning examples of data visualizations, all built with R. R code of each diagram is available at the source. Enjoy! #beautiful.
+UPDATE: I&amp;rsquo;ve included links to the R source!
+Plotting geo maps along with subplots in ggplot2 I like this one by Ilya Kashnitsky:
+Similarly, by the same author:
+Source
+Great work, @ikashnitsky!
+Cirlize (Chord) diagrams Plotting association in a circular form yields aesthetic examples of diagrams, see the following examples</description>
     </item>
+    
   </channel>
 </rss>

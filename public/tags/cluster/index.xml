@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Cluster on sesa blog</title>
+    <title>cluster on sesa blog</title>
     <link>https://data-se.netlify.app/tags/cluster/</link>
-    <description>Recent content in Cluster on sesa blog</description>
-    <generator>Hugo</generator>
+    <description>Recent content in cluster on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 Jan 2020 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://data-se.netlify.app/tags/cluster/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 10 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/cluster/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cluster analysis and image size reduction</title>
       <link>https://data-se.netlify.app/2020/01/10/cluster-analysis-and-image-size-reduction/</link>
       <pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2020/01/10/cluster-analysis-and-image-size-reduction/</guid>
-      <description>&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/elevate-section-attrs/elevate-section-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;idea&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Idea&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;This post is a remake of this casestudy: &lt;a href=&#34;https://fallstudien.netlify.com/fallstudie_bildanalyse/bildanalyse&#34; class=&#34;uri&#34;&gt;https://fallstudien.netlify.com/fallstudie_bildanalyse/bildanalyse&lt;/a&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;brought to you by Karsten Lübke.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;The main purpose is to replace the base R command that Karsten used with a more tidyverse-friendly style. I think that’s easier (for me).&lt;/p&gt;&#xD;&#xA;&lt;p&gt;We will compute a cluster analysis to find the typical RGB color per cluster.&lt;/p&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;warning&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;WARNING&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;There’s still a bug in the code. That’s why the image at the end appear blurred. I suspect that rows and columns need to be transposed.&lt;/p&gt;</description>
+      <description>Idea This post is a remake of this casestudy: https://fallstudien.netlify.com/fallstudie_bildanalyse/bildanalyse
+brought to you by Karsten Lübke.
+The main purpose is to replace the base R command that Karsten used with a more tidyverse-friendly style. I think that’s easier (for me).
+We will compute a cluster analysis to find the typical RGB color per cluster.
+WARNING There’s still a bug in the code. That’s why the image at the end appear blurred.</description>
     </item>
+    
   </channel>
 </rss>

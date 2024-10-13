@@ -1,40 +1,71 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Correlation on sesa blog</title>
+    <title>correlation on sesa blog</title>
     <link>https://data-se.netlify.app/tags/correlation/</link>
-    <description>Recent content in Correlation on sesa blog</description>
-    <generator>Hugo</generator>
+    <description>Recent content in correlation on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 19 Nov 2019 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://data-se.netlify.app/tags/correlation/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/correlation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dead Man Bias in correlation</title>
+      <link>https://data-se.netlify.app/2024/03/05/dead-man-bias-in-correlation/</link>
+      <pubDate>Tue, 05 Mar 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://data-se.netlify.app/2024/03/05/dead-man-bias-in-correlation/</guid>
+      <description>1 Load packages 2 Background 3 Data example 4 Discussion 5 Reproducibility 1 Load packages library(tidyverse) # data wrangling 2 Background Nassim Taleb points out in the paper Fooled by Correlation: Common Misinterpretations in Social “Science” that spurious correlation may appear due to various reasons. One reason is what he calls the “Dead Man Bias”, occuring if constant data is added to uniformly distributed data. The thing is if the data is uniformly distributed and non-correlated, you will get a spurious correlation if constant data is added.</description>
+    </item>
+    
     <item>
       <title>Correlation cannot be more extreme than &#43;1/-1, proof using Cauchy-Schwarz inequality</title>
       <link>https://data-se.netlify.app/2019/11/19/correlation-cannot-be-more-extreme-than-1-1-proof-using-cauchy-schwartz-inequality/</link>
       <pubDate>Tue, 19 Nov 2019 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2019/11/19/correlation-cannot-be-more-extreme-than-1-1-proof-using-cauchy-schwartz-inequality/</guid>
-      <description>&lt;div id=&#34;load-packages&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Load packages&lt;/h1&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;the-correlation-coefficient-cannot-exceed-an-absolute-value-of-1&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;The correlation coefficient cannot exceed an absolute value of 1&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;This is well-known. But why is that the case? How can we proof it? This post gives one explanation using the Cauchy-Schwarz inequality.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;Here’s one version of the definition of correlation:&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[&#xD;&#xA;r = \frac{\sum(\Delta x \Delta y)}{\sqrt{\sum \Delta x^2} \sqrt{\sum \Delta y^2}}&#xD;&#xA;\]&lt;/span&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;where &lt;span class=&#34;math inline&#34;&gt;\(\Delta x\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\Delta y\)&lt;/span&gt; are the &lt;em&gt;differences&lt;/em&gt; of &lt;span class=&#34;math inline&#34;&gt;\(x_i\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\bar{x}\)&lt;/span&gt;, that is: &lt;span class=&#34;math inline&#34;&gt;\(\Delta x_i = x_i - \bar{x}\)&lt;/span&gt;, and similarly for &lt;span class=&#34;math inline&#34;&gt;\(\Delta y_i\)&lt;/span&gt;.&lt;/p&gt;</description>
+      <description>Load packages library(tidyverse) The correlation coefficient cannot exceed an absolute value of 1 This is well-known. But why is that the case? How can we proof it? This post gives one explanation using the Cauchy-Schwarz inequality.
+Here’s one version of the definition of correlation:
+\[ r = \frac{\sum(\Delta x \Delta y)}{\sqrt{\sum \Delta x^2} \sqrt{\sum \Delta y^2}} \]
+where \(\Delta x\) and \(\Delta y\) are the differences of \(x_i\) and \(\bar{x}\), that is: \(\Delta x_i = x_i - \bar{x}\), and similarly for \(\Delta y_i\).</description>
     </item>
+    
     <item>
       <title>Covariance as correlation</title>
       <link>https://data-se.netlify.app/2017/04/25/cor_as_cov/</link>
       <pubDate>Tue, 25 Apr 2017 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2017/04/25/cor_as_cov/</guid>
-      <description>&lt;p&gt;Correlation is one of the most widely used and a well-known measure of the assocation (&lt;em&gt;linear&lt;/em&gt; association, that is) of two variables.&lt;/p&gt;&#xA;&lt;p&gt;Perhaps less well-known is that the correlation is in principle &lt;em&gt;analoguous to the covariation&lt;/em&gt;.&lt;/p&gt;&#xA;&lt;p&gt;To see this, consider &lt;del&gt;the&lt;/del&gt; a formula of the covariance of two empirical datasets, $X$ and $Y$:&lt;/p&gt;&#xA;&lt;p&gt;$$COV(X,Y) = \frac{1}{n} \cdot \big( \sum (X_i -\bar{X}) \cdot (Y_i - \bar{Y}) \big) $$&lt;/p&gt;&#xA;&lt;p&gt;In other words, the covariance of $X$ and $Y$ $COV(X,Y)$ is the average of difference of some value to its mean.&lt;/p&gt;</description>
+      <description>Correlation is one of the most widely used and a well-known measure of the assocation (linear association, that is) of two variables.
+Perhaps less well-known is that the correlation is in principle analoguous to the covariation.
+To see this, consider the a formula of the covariance of two empirical datasets, $X$ and $Y$:
+$$COV(X,Y) = \frac{1}{n} \cdot \big( \sum (X_i -\bar{X}) \cdot (Y_i - \bar{Y}) \big) $$
+In other words, the covariance of $X$ and $Y$ $COV(X,Y)$ is the average of difference of some value to its mean.</description>
     </item>
+    
     <item>
       <title>Why absolute correlation value (r) cannot exceed 1. An intuition.</title>
       <link>https://data-se.netlify.app/2016/08/28/why-abs-correlation-is-max-1/</link>
       <pubDate>Sun, 28 Aug 2016 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2016/08/28/why-abs-correlation-is-max-1/</guid>
-      <description>&lt;script src=&#34;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#34; type=&#34;text/javascript&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Pearson_product-moment_correlation_coefficient&#34;&gt;Pearson&amp;rsquo;s correlation&lt;/a&gt; is a well-known and widely used instrument to gauge the degree of linear association of two variables (see &lt;a href=&#34;https://sebastiansauer.github.io/correlation-intuition/&#34;&gt;this post&lt;/a&gt; for an intuition on correlation).&lt;/p&gt;&#xA;&lt;p&gt;There a many formulas for correlation, but a short and easy one is this one:&lt;/p&gt;&#xA;&lt;p&gt;$$r = \varnothing(z_x z_y)$$.&lt;/p&gt;&#xA;&lt;p&gt;In words, $$r$$ can be seen as the average product of z-scores.&lt;/p&gt;&#xA;&lt;p&gt;In &amp;ldquo;raw values&amp;rdquo;, r is given by&lt;/p&gt;&#xA;&lt;p&gt;$$ r = \frac{\frac{1}{n}\sum{\Delta X \Delta Y}}{\sqrt{\frac{1}{n}\sum{\Delta X^2}} \sqrt{\frac{1}{n}\sum{\Delta Y^2}}} $$.&lt;/p&gt;</description>
+      <description>Pearson&amp;rsquo;s correlation is a well-known and widely used instrument to gauge the degree of linear association of two variables (see this post for an intuition on correlation).
+There a many formulas for correlation, but a short and easy one is this one:
+$$r = \varnothing(z_x z_y)$$.
+In words, $$r$$ can be seen as the average product of z-scores.
+In &amp;ldquo;raw values&amp;rdquo;, r is given by
+$$ r = \frac{\frac{1}{n}\sum{\Delta X \Delta Y}}{\sqrt{\frac{1}{n}\sum{\Delta X^2}} \sqrt{\frac{1}{n}\sum{\Delta Y^2}}} $$.</description>
     </item>
+    
     <item>
       <title>Intuition on correlation</title>
       <link>https://data-se.netlify.app/2016/07/25/correlation-intuition/</link>
       <pubDate>Mon, 25 Jul 2016 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2016/07/25/correlation-intuition/</guid>
-      <description>&lt;p&gt;&lt;em&gt;reading time: 10 min.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;Pearson’s correlation (short: correlation) is one of statistics’ all time classics. With an age of about a century, it is some kind of grand dad of analytic tools – but an oldie who is still very busy!&lt;/p&gt;&#xA;&lt;p&gt;Formula, interpretation and application of correlation is well known.&lt;/p&gt;&#xA;&lt;p&gt;In some non-technical lay terms, correlation captures the (linear) degree of co-variation of two linear variables. For example: if tall people have large feet (and small people small feet), on average, we say that height and foot size are correlated.&lt;/p&gt;</description>
+      <description>reading time: 10 min.
+Pearson’s correlation (short: correlation) is one of statistics’ all time classics. With an age of about a century, it is some kind of grand dad of analytic tools – but an oldie who is still very busy!
+Formula, interpretation and application of correlation is well known.
+In some non-technical lay terms, correlation captures the (linear) degree of co-variation of two linear variables. For example: if tall people have large feet (and small people small feet), on average, we say that height and foot size are correlated.</description>
     </item>
+    
   </channel>
 </rss>

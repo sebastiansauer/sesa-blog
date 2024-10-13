@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Resources on sesa blog</title>
+    <title>resources on sesa blog</title>
     <link>https://data-se.netlify.app/tags/resources/</link>
-    <description>Recent content in Resources on sesa blog</description>
-    <generator>Hugo</generator>
+    <description>Recent content in resources on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Jun 2022 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://data-se.netlify.app/tags/resources/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/resources/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Free resources for aspiring data adepts</title>
       <link>https://data-se.netlify.app/2022/06/13/free-resources-for-aspiring-data-adepts/</link>
       <pubDate>Mon, 13 Jun 2022 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2022/06/13/free-resources-for-aspiring-data-adepts/</guid>
-      <description>&lt;div id=&#34;TOC&#34;&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#why-data-science&#34; id=&#34;toc-why-data-science&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Why data science?&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#free-resources-overview&#34; id=&#34;toc-free-resources-overview&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Free resources overview&lt;/a&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#machine-learning-conceps&#34; id=&#34;toc-machine-learning-conceps&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.1&lt;/span&gt; Machine learning conceps&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#math-basics&#34; id=&#34;toc-math-basics&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.2&lt;/span&gt; Math basics&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#r-basics&#34; id=&#34;toc-r-basics&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.3&lt;/span&gt; R basics&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#machine-learning-framework-with-r&#34; id=&#34;toc-machine-learning-framework-with-r&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.4&lt;/span&gt; Machine learning framework with R&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#r-online-environment&#34; id=&#34;toc-r-online-environment&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.5&lt;/span&gt; R online environment&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#online-course&#34; id=&#34;toc-online-course&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.6&lt;/span&gt; Online course&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#beautiful-intuition&#34; id=&#34;toc-beautiful-intuition&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.7&lt;/span&gt; Beautiful intuition&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#blogs&#34; id=&#34;toc-blogs&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.8&lt;/span&gt; Blogs&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#help&#34; id=&#34;toc-help&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.9&lt;/span&gt; Help&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#youtube-channels&#34; id=&#34;toc-youtube-channels&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.10&lt;/span&gt; YouTube channels&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;why-data-science&#34; class=&#34;section level1&#34; number=&#34;1&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; Why data science?&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Data science is of of the most vibrating fields of research and industries at present.&#xD;&#xA;Its ubiquity and importance is likely on the rise.&#xD;&#xA;Due to its importance, it’s a great place for vivid minds to contribute and to develop.&#xD;&#xA;Joining this field allows to participate in of the leadings fields allows for personal growth and give access to a vibrant community.&#xD;&#xA;Of course, there are other highly exciting fields too!&lt;/p&gt;</description>
+      <description>1 Why data science? 2 Free resources overview 2.1 Machine learning conceps 2.2 Math basics 2.3 R basics 2.4 Machine learning framework with R 2.5 R online environment 2.6 Online course 2.7 Beautiful intuition 2.8 Blogs 2.9 Help 2.10 YouTube channels 1 Why data science? Data science is of of the most vibrating fields of research and industries at present. Its ubiquity and importance is likely on the rise. Due to its importance, it’s a great place for vivid minds to contribute and to develop.</description>
     </item>
+    
   </channel>
 </rss>

@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Big Data on sesa blog</title>
+    <title>big data on sesa blog</title>
     <link>https://data-se.netlify.app/tags/big-data/</link>
-    <description>Recent content in Big Data on sesa blog</description>
-    <generator>Hugo</generator>
+    <description>Recent content in big data on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 09 Dec 2020 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://data-se.netlify.app/tags/big-data/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 09 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/big-data/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Example for Meng&#39;s 2018 article on big data bias</title>
       <link>https://data-se.netlify.app/2020/12/09/example-for-meng-s-2018-article-on-big-data-bias/</link>
       <pubDate>Wed, 09 Dec 2020 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2020/12/09/example-for-meng-s-2018-article-on-big-data-bias/</guid>
-      <description>&lt;script src=&#34;index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;index_files/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;index_files/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;TOC&#34;&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#load-packages&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Load packages&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#motivation&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Motivation&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#computing-the-effective-sample-size-in-the-2016-us-federal-elections&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; Computing the effective sample size in the 2016’ US federal elections&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#conclusion&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Conclusion&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#further-reading&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; Further reading&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#reproducibility&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6&lt;/span&gt; Reproducibility&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;load-packages&#34; class=&#34;section level1&#34; number=&#34;1&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; Load packages&lt;/h1&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)  # data wrangling&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;motivation&#34; class=&#34;section level1&#34; number=&#34;2&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; Motivation&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;My colleague, &lt;a href=&#34;https://twitter.com/luebby42&#34;&gt;Karsten Lübke&lt;/a&gt;, first grade statistician, pointed me out to a paper …&lt;/p&gt;&#xD;&#xA;&lt;p&gt;In 2018, the statistican Meng wrote a paper about biases in big data &lt;a href=&#34;https://projecteuclid.org/euclid.aoas/1532743473&#34;&gt;see here&lt;/a&gt;. In a nutshell, he argues that non-random samples will be worse when data is larger. Yes, you heard correctly: &lt;em&gt;Big data is bad data, if not randomly drawn&lt;/em&gt;. That’s bold a claim.&lt;/p&gt;</description>
+      <description>1 Load packages 2 Motivation 3 Computing the effective sample size in the 2016’ US federal elections 4 Conclusion 5 Further reading 6 Reproducibility 1 Load packages library(tidyverse) # data wrangling 2 Motivation My colleague, Karsten Lübke, first grade statistician, pointed me out to a paper …
+In 2018, the statistican Meng wrote a paper about biases in big data see here. In a nutshell, he argues that non-random samples will be worse when data is larger.</description>
     </item>
+    
   </channel>
 </rss>

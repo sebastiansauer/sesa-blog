@@ -1,26 +1,35 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Power on sesa blog</title>
+    <title>power on sesa blog</title>
     <link>https://data-se.netlify.app/tags/power/</link>
-    <description>Recent content in Power on sesa blog</description>
-    <generator>Hugo</generator>
+    <description>Recent content in power on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 24 Jul 2018 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://data-se.netlify.app/tags/power/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 24 Jul 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/power/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Power calculation for the general linear model</title>
       <link>https://data-se.netlify.app/2018/07/24/power-calculation-for-the-general-linear-model/</link>
       <pubDate>Tue, 24 Jul 2018 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2018/07/24/power-calculation-for-the-general-linear-model/</guid>
-      <description>&lt;p&gt;Before conducting an experiment, one should compute the power - or, preferably, estimate the precision of the expected results. There are numerous way to achieve this, here’s one using the R package &lt;code&gt;pwr&lt;/code&gt;.&lt;/p&gt;&#xD;&#xA;&lt;div id=&#34;package-pwr&#34; class=&#34;section level2&#34;&gt;&#xD;&#xA;&lt;h2&gt;Package pwr&lt;/h2&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(pwr)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;p&gt;The workhorse function here is &lt;code&gt;pwr.f2.test&lt;/code&gt;. Note that &lt;code&gt;f2&lt;/code&gt; refers to the effect size &lt;span class=&#34;math inline&#34;&gt;\(f^2\)&lt;/span&gt; (see &lt;a href=&#34;https://en.wikipedia.org/wiki/Effect_size#Cohen&amp;#39;s_%C6%922&#34;&gt;here&lt;/a&gt;), defined as:&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[f^2 = \frac{R^2}{1-R^2}\]&lt;/span&gt;.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;See for details of the function its help page:&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;help(&amp;quot;pwr.f2.test&amp;quot;)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;pre&gt;&lt;code&gt;pwr.f2.test(u = NULL, v = NULL, f2 = NULL, sig.level = 0.05, power = NULL)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;p&gt;Note that &lt;code&gt;u&lt;/code&gt; is the number of predictors (&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;) minus 1, that’s the numerator degrees of freedom (df). The intercepts counts a predictor, too in this case!&lt;/p&gt;</description>
+      <description>Before conducting an experiment, one should compute the power - or, preferably, estimate the precision of the expected results. There are numerous way to achieve this, here’s one using the R package pwr.
+Package pwr library(pwr) The workhorse function here is pwr.f2.test. Note that f2 refers to the effect size \(f^2\) (see here), defined as:
+\[f^2 = \frac{R^2}{1-R^2}\].
+See for details of the function its help page:
+help(&amp;quot;pwr.f2.test&amp;quot;) pwr.f2.test(u = NULL, v = NULL, f2 = NULL, sig.</description>
     </item>
+    
     <item>
       <title>One-way ANOVA power analysis</title>
       <link>https://data-se.netlify.app/2018/04/11/one-way-anova-power-analysis/</link>
       <pubDate>Wed, 11 Apr 2018 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2018/04/11/one-way-anova-power-analysis/</guid>
-      <description>&lt;p&gt;Computing or estimating power is a very useful procedure in order to weigh the reliability of study results.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;One frequent procedure in inferential statistics is the ANOVA, with the simplest form being the one-way ANOVA. This post shows how to compute power for this test.&lt;/p&gt;&#xD;&#xA;&lt;div id=&#34;whats-the-effect-size&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;What’s the effect size?&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;The first thing to not is that there is no such thing as “power” - in the sense that a sample or a test would have “its power”. Rather power is relative to the sample size and the effect size, that are the most important factors at least.&lt;/p&gt;</description>
+      <description>Computing or estimating power is a very useful procedure in order to weigh the reliability of study results.
+One frequent procedure in inferential statistics is the ANOVA, with the simplest form being the one-way ANOVA. This post shows how to compute power for this test.
+What’s the effect size? The first thing to not is that there is no such thing as “power” - in the sense that a sample or a test would have “its power”.</description>
     </item>
+    
   </channel>
 </rss>

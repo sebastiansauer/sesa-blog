@@ -1,26 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Web on sesa blog</title>
+    <title>web on sesa blog</title>
     <link>https://data-se.netlify.app/tags/web/</link>
-    <description>Recent content in Web on sesa blog</description>
-    <generator>Hugo</generator>
+    <description>Recent content in web on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 04 Nov 2022 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://data-se.netlify.app/tags/web/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 04 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/web/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Accessing Google Trends</title>
       <link>https://data-se.netlify.app/2022/11/04/accessing-google-trends/</link>
       <pubDate>Fri, 04 Nov 2022 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2022/11/04/accessing-google-trends/</guid>
-      <description>&lt;div id=&#34;TOC&#34;&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#load-packages&#34; id=&#34;toc-load-packages&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Load packages&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#motivation&#34; id=&#34;toc-motivation&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Motivation&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#restrictions-and-quotas&#34; id=&#34;toc-restrictions-and-quotas&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; Restrictions and quotas&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#access-via-r&#34; id=&#34;toc-access-via-r&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Access via R&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#options&#34; id=&#34;toc-options&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; Options&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#get-data&#34; id=&#34;toc-get-data&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6&lt;/span&gt; Get data&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#plot-it&#34; id=&#34;toc-plot-it&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;7&lt;/span&gt; Plot it&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#reproducibility&#34; id=&#34;toc-reproducibility&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;8&lt;/span&gt; Reproducibility&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;load-packages&#34; class=&#34;section level1&#34; number=&#34;1&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; Load packages&lt;/h1&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)  # data wrangling&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;motivation&#34; class=&#34;section level1&#34; number=&#34;2&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; Motivation&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;&lt;a href=&#34;https://trends.google.com/&#34;&gt;Google Trends&lt;/a&gt; is, according to &lt;a href=&#34;https://en.wikipedia.org/wiki/Google_Trends&#34;&gt;Wikipedia&lt;/a&gt;:&lt;/p&gt;&#xD;&#xA;&lt;blockquote&gt;&#xD;&#xA;&lt;p&gt;Google Trends is a website by Google that analyzes the popularity of top search queries in Google Search across various regions and languages. The website uses graphs to compare the search volume of different queries over time.On August 5, 2008, Google launched Google Insights for Search, a more sophisticated and advanced service displaying search trends data. On September 27, 2012, Google merged Google Insights for Search into Google Trends.[1]&lt;/p&gt;</description>
+      <description>1 Load packages 2 Motivation 3 Restrictions and quotas 4 Access via R 5 Options 6 Get data 7 Plot it 8 Reproducibility 1 Load packages library(tidyverse) # data wrangling 2 Motivation Google Trends is, according to Wikipedia:
+Google Trends is a website by Google that analyzes the popularity of top search queries in Google Search across various regions and languages. The website uses graphs to compare the search volume of different queries over time.</description>
     </item>
+    
     <item>
       <title>Zeitungsartikel per API herunterladen</title>
       <link>https://data-se.netlify.app/2021/07/07/zeitungsartikel-per-api-herunterladen/</link>
       <pubDate>Wed, 07 Jul 2021 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2021/07/07/zeitungsartikel-per-api-herunterladen/</guid>
-      <description>&lt;script src=&#34;https://data-se.netlify.app/2021/07/07/zeitungsartikel-per-api-herunterladen/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&#xD;&#xA;library(newsanchor)&#xD;&#xA;library(printr)&#xD;&#xA;library(httr)&#xD;&#xA;library(jsonlite)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;div id=&#34;news-api&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;News API&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Es gibt eine Seite &lt;a href=&#34;https://newsapi.org/&#34;&gt;News API&lt;/a&gt;, die es erlaubt, per API News (Artikel, Schlagzeilen) von weltweiten Quellen herunterzuladen, per JSON API.&lt;/p&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;gibts-da-auch-ein-r-paket&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Gibt’s da auch ein R-Paket?&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Ja - &lt;a href=&#34;https://cran.r-project.org/web/packages/newsanchor/vignettes/usage-newsanchor.html&#34;&gt;NewsAnchor&lt;/a&gt;.&lt;/p&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;setup&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Setup&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Zuerst muss man sich bei der Seite eine API Key holen, für Entwicklerzwecke kostenlos. Komfortabel ist, sich den Schlüssel in die R-environment-Datei (&lt;code&gt;.Renviron&lt;/code&gt;) zu schreiben, s. &lt;a href=&#34;https://cran.r-project.org/web/packages/newsanchor/vignettes/usage-newsanchor.html&#34;&gt;hier&lt;/a&gt; für mehr Infos.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;Das kann man z.B. so machen:&lt;/p&gt;</description>
+      <description>library(tidyverse) library(newsanchor) library(printr) library(httr) library(jsonlite) News API Es gibt eine Seite News API, die es erlaubt, per API News (Artikel, Schlagzeilen) von weltweiten Quellen herunterzuladen, per JSON API.
+Gibt’s da auch ein R-Paket? Ja - NewsAnchor.
+Setup Zuerst muss man sich bei der Seite eine API Key holen, für Entwicklerzwecke kostenlos. Komfortabel ist, sich den Schlüssel in die R-environment-Datei (.Renviron) zu schreiben, s. hier für mehr Infos.
+Das kann man z.</description>
     </item>
+    
   </channel>
 </rss>

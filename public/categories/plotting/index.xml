@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Plotting on sesa blog</title>
+    <title>plotting on sesa blog</title>
     <link>https://data-se.netlify.app/categories/plotting/</link>
-    <description>Recent content in Plotting on sesa blog</description>
-    <generator>Hugo</generator>
+    <description>Recent content in plotting on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 26 Sep 2022 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://data-se.netlify.app/categories/plotting/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 26 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/categories/plotting/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Some ways to plot the distribution of each variable of a data frame</title>
       <link>https://data-se.netlify.app/2022/09/26/some-ways-to-plot-the-distribution-of-each-variable-of-a-data-frame/</link>
       <pubDate>Mon, 26 Sep 2022 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2022/09/26/some-ways-to-plot-the-distribution-of-each-variable-of-a-data-frame/</guid>
-      <description>&lt;div id=&#34;TOC&#34;&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#motivation&#34; id=&#34;toc-motivation&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Motivation&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#load-packages&#34; id=&#34;toc-load-packages&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Load packages&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#load-data&#34; id=&#34;toc-load-data&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; Load data&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#lets-plot&#34; id=&#34;toc-lets-plot&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Let’s plot&lt;/a&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#way-1&#34; id=&#34;toc-way-1&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.1&lt;/span&gt; Way 1&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#way-2&#34; id=&#34;toc-way-2&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.2&lt;/span&gt; Way 2&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#way-3&#34; id=&#34;toc-way-3&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.3&lt;/span&gt; Way 3&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#way-4&#34; id=&#34;toc-way-4&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.4&lt;/span&gt; Way 4&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#reproducibility&#34; id=&#34;toc-reproducibility&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; Reproducibility&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;motivation&#34; class=&#34;section level1&#34; number=&#34;1&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; Motivation&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Often times, in explorative data analysis, one would like to plot the distribution of the relevant variables.&#xD;&#xA;Whereas ggplot provides handy tools to plot &lt;em&gt;one&lt;/em&gt; variable after each other,&#xD;&#xA;it would come handy to plot ’em all in one go.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;Of course, there are many ways to achieve this comfort. This posts presents some of them in brevity.&lt;/p&gt;</description>
+      <description>1 Motivation 2 Load packages 3 Load data 4 Let’s plot 4.1 Way 1 4.2 Way 2 4.3 Way 3 4.4 Way 4 5 Reproducibility 1 Motivation Often times, in explorative data analysis, one would like to plot the distribution of the relevant variables. Whereas ggplot provides handy tools to plot one variable after each other, it would come handy to plot ’em all in one go.
+Of course, there are many ways to achieve this comfort.</description>
     </item>
+    
     <item>
       <title>Talent and Looks -- Collider bias</title>
       <link>https://data-se.netlify.app/2021/06/24/talent-and-looks-collider-bias/</link>
       <pubDate>Thu, 24 Jun 2021 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2021/06/24/talent-and-looks-collider-bias/</guid>
-      <description>&lt;script src=&#34;https://data-se.netlify.app/2021/06/24/talent-and-looks-collider-bias/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;background&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Background&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Some musing on the collider bias.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;Let’s try to reverse engineer this image&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://brilliant-staff-media.s3-us-west-2.amazonaws.com/tiffany-wang/1Mvt8RPtlU.png&#34; style=&#34;width:70.0%&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;setup&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Setup&lt;/h1&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&#xD;&#xA;library(ggdag)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;simulate-some-data&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Simulate some data&lt;/h1&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;n &amp;lt;- 1000&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;&#xD;&#xA;d &amp;lt;- tibble(&#xD;&#xA;  x = rnorm(n, mean = 0, sd = 1),&#xD;&#xA;  y = rnorm(n, mean = 0, sd = 1),&#xD;&#xA;  e = rnorm(n, mean = 0, sd = 0.3),&#xD;&#xA;  z = abs(x) * abs(y))&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;d-uncorrelated-data&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;d: Uncorrelated data&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;The farer from the centroid the lighter the color.&lt;/p&gt;</description>
+      <description>Background Some musing on the collider bias.
+Let’s try to reverse engineer this image
+Setup library(tidyverse) library(ggdag) Simulate some data n &amp;lt;- 1000 d &amp;lt;- tibble( x = rnorm(n, mean = 0, sd = 1), y = rnorm(n, mean = 0, sd = 1), e = rnorm(n, mean = 0, sd = 0.3), z = abs(x) * abs(y)) d: Uncorrelated data The farer from the centroid the lighter the color.</description>
     </item>
+    
   </channel>
 </rss>

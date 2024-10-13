@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Datajudo on sesa blog</title>
+    <title>datajudo on sesa blog</title>
     <link>https://data-se.netlify.app/tags/datajudo/</link>
-    <description>Recent content in Datajudo on sesa blog</description>
-    <generator>Hugo</generator>
+    <description>Recent content in datajudo on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 03 Jul 2019 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://data-se.netlify.app/tags/datajudo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 03 Jul 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/datajudo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Testing multiple vectors for equality</title>
       <link>https://data-se.netlify.app/2019/07/03/testing-multiple-vectors-for-equality/</link>
       <pubDate>Wed, 03 Jul 2019 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2019/07/03/testing-multiple-vectors-for-equality/</guid>
-      <description>&lt;div id=&#34;load-packages&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Load packages&lt;/h1&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;problem-statement&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Problem statement&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Assume we have some vectors (eg, 3), and we want to check if they are equal (the same elements in each vector). Assume further we do not in advance the number of vectors to check.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;Here’s some toy data.&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;a&amp;lt;- c(1,2,3,4)&#xD;&#xA;b&amp;lt;- c(1,2,3,5)&#xD;&#xA;c&amp;lt;- c(1,3,4,5)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;the-gist&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;The gist&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;This soluation is based on the code of &lt;code&gt;Akrun&lt;/code&gt; from &lt;a href=&#34;https://stackoverflow.com/questions/27470481/compare-multiple-vectors-at-the-same-time-in-r&#34;&gt;this SO post&lt;/a&gt; (slightly adapted).&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sum(reduce(map2(list(a,b,c), list(a), `==`), `&amp;amp;`))&#xD;&#xA;#&amp;gt; [1] 1&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;explanation&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Explanation&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Let’s break that in handy pieces to get a grip on it.&lt;/p&gt;</description>
+      <description>Load packages library(tidyverse) Problem statement Assume we have some vectors (eg, 3), and we want to check if they are equal (the same elements in each vector). Assume further we do not in advance the number of vectors to check.
+Here’s some toy data.
+a&amp;lt;- c(1,2,3,4) b&amp;lt;- c(1,2,3,5) c&amp;lt;- c(1,3,4,5) The gist This soluation is based on the code of Akrun from this SO post (slightly adapted).
+sum(reduce(map2(list(a,b,c), list(a), `==`), `&amp;amp;`)) #&amp;gt; [1] 1 Explanation Let’s break that in handy pieces to get a grip on it.</description>
     </item>
+    
   </channel>
 </rss>

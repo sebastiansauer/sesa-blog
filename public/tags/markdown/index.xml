@@ -1,82 +1,120 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Markdown on sesa blog</title>
+    <title>markdown on sesa blog</title>
     <link>https://data-se.netlify.app/tags/markdown/</link>
-    <description>Recent content in Markdown on sesa blog</description>
-    <generator>Hugo</generator>
+    <description>Recent content in markdown on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 18 Jan 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://data-se.netlify.app/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 18 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Using quizzes on markdown html sites</title>
       <link>https://data-se.netlify.app/2024/01/18/using-quizzes-on-markdown-html-sites/</link>
       <pubDate>Thu, 18 Jan 2024 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2024/01/18/using-quizzes-on-markdown-html-sites/</guid>
-      <description>&lt;div id=&#34;TOC&#34;&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#motivation&#34; id=&#34;toc-motivation&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Motivation&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#simple-quiz-implementation-using-html-and-js&#34; id=&#34;toc-simple-quiz-implementation-using-html-and-js&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Simple quiz implementation using HTML and JS&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#demo&#34; id=&#34;toc-demo&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; Demo&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#reproducibility&#34; id=&#34;toc-reproducibility&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Reproducibility&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;motivation&#34; class=&#34;section level1&#34; number=&#34;1&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; Motivation&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;As a teacher, I often write exercises for my students and post the exercises on my &lt;a href=&#34;https://datenwerk.netlify.app/&#34;&gt;Datenwerk site&lt;/a&gt;.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;As many questions are of multiple choice type it would come handy to have a quiz function.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;I first hoped that Quarto markdown would supply such a feature out of the box.&#xD;&#xA;However, this is not (yet) the case.&#xD;&#xA;The good news is that it can be achieved with some simple html/js code.&lt;/p&gt;</description>
+      <description>1 Motivation 2 Simple quiz implementation using HTML and JS 3 Demo 4 Reproducibility 1 Motivation As a teacher, I often write exercises for my students and post the exercises on my Datenwerk site.
+As many questions are of multiple choice type it would come handy to have a quiz function.
+I first hoped that Quarto markdown would supply such a feature out of the box. However, this is not (yet) the case.</description>
     </item>
+    
     <item>
       <title>Unicode in R und in Markdown</title>
       <link>https://data-se.netlify.app/2023/11/22/unicode/</link>
       <pubDate>Wed, 22 Nov 2023 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2023/11/22/unicode/</guid>
-      <description>&lt;div id=&#34;TOC&#34;&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#unicode-in-r&#34; id=&#34;toc-unicode-in-r&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Unicode in R&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#unicode-in-markdown&#34; id=&#34;toc-unicode-in-markdown&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Unicode in Markdown&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#emojis-in-markdown&#34; id=&#34;toc-emojis-in-markdown&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; Emojis in Markdown&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#fontawesome&#34; id=&#34;toc-fontawesome&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; FontAwesome&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#warum-icons-nicht-emojis&#34; id=&#34;toc-warum-icons-nicht-emojis&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; Warum Icons, nicht Emojis?&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#fontawesome---quarto&#34; id=&#34;toc-fontawesome---quarto&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6&lt;/span&gt; FontAwesome - Quarto&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#fontawesome---r-paket&#34; id=&#34;toc-fontawesome---r-paket&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;7&lt;/span&gt; FontAwesome - R-Paket&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#latex&#34; id=&#34;toc-latex&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;8&lt;/span&gt; Latex&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#reproducibility&#34; id=&#34;toc-reproducibility&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;9&lt;/span&gt; Reproducibility&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;unicode-in-r&#34; class=&#34;section level1&#34; number=&#34;1&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; Unicode in R&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;&lt;code&gt;25FB&lt;/code&gt; ist der Unicode für weißes Quadrat:&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cat(&amp;quot;\u25FB\n&amp;quot;)&#xD;&#xA;#&amp;gt; ◻&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;unicode-in-markdown&#34; class=&#34;section level1&#34; number=&#34;2&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; Unicode in Markdown&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;In Markdown kann man den HTML-Code verwenden, also z.B. &lt;code&gt;&amp;amp;#x25FB;&lt;/code&gt;. Das ergibt dann:&lt;/p&gt;&#xD;&#xA;&lt;p&gt;◻&lt;/p&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;emojis-in-markdown&#34; class=&#34;section level1&#34; number=&#34;3&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;3&lt;/span&gt; Emojis in Markdown&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Da Emojis natürlich auch einen Unicode haben, kann man so auch einfach Emojis darstellen.&lt;/p&gt;</description>
+      <description>1 Unicode in R 2 Unicode in Markdown 3 Emojis in Markdown 4 FontAwesome 5 Warum Icons, nicht Emojis? 6 FontAwesome - Quarto 7 FontAwesome - R-Paket 8 Latex 9 Reproducibility 1 Unicode in R 25FB ist der Unicode für weißes Quadrat:
+cat(&amp;quot;\u25FB\n&amp;quot;) #&amp;gt; ◻ 2 Unicode in Markdown In Markdown kann man den HTML-Code verwenden, also z.B. &amp;amp;#x25FB;. Das ergibt dann:
+◻
+3 Emojis in Markdown Da Emojis natürlich auch einen Unicode haben, kann man so auch einfach Emojis darstellen.</description>
     </item>
+    
     <item>
       <title>FontAwesome in R and R Markdown</title>
       <link>https://data-se.netlify.app/2022/07/27/fontawesome-in-r-and-r-markdown/</link>
       <pubDate>Wed, 27 Jul 2022 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2022/07/27/fontawesome-in-r-and-r-markdown/</guid>
-      <description>&lt;div id=&#34;TOC&#34;&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#load-packages&#34; id=&#34;toc-load-packages&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Load packages&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#use-case&#34; id=&#34;toc-use-case&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Use Case&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#way&#34; id=&#34;toc-way&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; Way&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#reproducibility&#34; id=&#34;toc-reproducibility&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Reproducibility&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;load-packages&#34; class=&#34;section level1&#34; number=&#34;1&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; Load packages&lt;/h1&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)  # data wrangling&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;use-case&#34; class=&#34;section level1&#34; number=&#34;2&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; Use Case&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Some times some nice emojis or icons are of benefit for your new post, right?&lt;/p&gt;&#xD;&#xA;&lt;p&gt;But, what’s a useful way to implement icons?&lt;/p&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;way&#34; class=&#34;section level1&#34; number=&#34;3&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;3&lt;/span&gt; Way&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Here’s a quick way of incorporating &lt;a href=&#34;https://fontawesome.com/&#34;&gt;FontAwesome&lt;/a&gt; icons to your RMarkdown document:&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;markdown&#34;&gt;&lt;code&gt;&#xD;&#xA;&amp;lt;center&amp;gt;&#xD;&#xA;&amp;lt;font size=&amp;quot;15&amp;quot;&amp;gt; &#xD;&#xA;&#xD;&#xA;```r&#xD;&#xA;library(fontawesome)&#xD;&#xA;fa(&amp;quot;r-project&amp;quot;, fill = &amp;quot;steelblue&amp;quot;)&#xD;&#xA;fa(&amp;quot;bolt-lightning&amp;quot;, fill = &amp;quot;steelblue&amp;quot;)&#xD;&#xA;fa(&amp;quot;discourse&amp;quot;, fill = &amp;quot;steelblue&amp;quot;)&#xD;&#xA;fa(&amp;quot;rocket&amp;quot;, fill = &amp;quot;steelblue&amp;quot;)&#xD;&#xA;```&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&amp;lt;/font&amp;gt;&#xD;&#xA;&amp;lt;/center&amp;gt;&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;p&gt;Which renders as:&lt;/p&gt;</description>
+      <description>1 Load packages 2 Use Case 3 Way 4 Reproducibility 1 Load packages library(tidyverse) # data wrangling 2 Use Case Some times some nice emojis or icons are of benefit for your new post, right?
+But, what’s a useful way to implement icons?
+3 Way Here’s a quick way of incorporating FontAwesome icons to your RMarkdown document:
+&amp;lt;center&amp;gt; &amp;lt;font size=&amp;quot;15&amp;quot;&amp;gt; ```r library(fontawesome) fa(&amp;quot;r-project&amp;quot;, fill = &amp;quot;steelblue&amp;quot;) fa(&amp;quot;bolt-lightning&amp;quot;, fill = &amp;quot;steelblue&amp;quot;) fa(&amp;quot;discourse&amp;quot;, fill = &amp;quot;steelblue&amp;quot;) fa(&amp;quot;rocket&amp;quot;, fill = &amp;quot;steelblue&amp;quot;) ``` &amp;lt;/font&amp;gt; &amp;lt;/center&amp;gt; Which renders as:</description>
     </item>
+    
     <item>
       <title>Links in Markdown-Tabellen</title>
       <link>https://data-se.netlify.app/2021/07/14/links-in-markdown-tabellen/</link>
       <pubDate>Wed, 14 Jul 2021 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2021/07/14/links-in-markdown-tabellen/</guid>
-      <description>&lt;script src=&#34;https://data-se.netlify.app/2021/07/14/links-in-markdown-tabellen/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/2021/07/14/links-in-markdown-tabellen/index_files/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/2021/07/14/links-in-markdown-tabellen/index_files/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://data-se.netlify.app/2021/07/14/links-in-markdown-tabellen/index_files/datatables-css/datatables-crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/2021/07/14/links-in-markdown-tabellen/index_files/datatables-binding/datatables.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://data-se.netlify.app/2021/07/14/links-in-markdown-tabellen/index_files/dt-core/css/jquery.dataTables.min.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;link href=&#34;https://data-se.netlify.app/2021/07/14/links-in-markdown-tabellen/index_files/dt-core/css/jquery.dataTables.extra.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/2021/07/14/links-in-markdown-tabellen/index_files/dt-core/js/jquery.dataTables.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://data-se.netlify.app/2021/07/14/links-in-markdown-tabellen/index_files/crosstalk/css/crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/2021/07/14/links-in-markdown-tabellen/index_files/crosstalk/js/crosstalk.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;TOC&#34;&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#hintergrund&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Hintergrund&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#beispiel-daten-laden&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Beispiel-Daten laden&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#daten-aufbereiten&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; Daten aufbereiten&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#tabelle-1-gt&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Tabelle 1: &lt;code&gt;gt()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#tabelle-2-kable&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; Tabelle 2: &lt;code&gt;kable()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#tabelle-3-pander&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6&lt;/span&gt; Tabelle 3: &lt;code&gt;pander&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#tabelle-4-datatable&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;7&lt;/span&gt; Tabelle 4: &lt;code&gt;datatable()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#fazit&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;8&lt;/span&gt; Fazit:&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&#xD;&#xA;library(gt)&#xD;&#xA;library(here)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;div id=&#34;hintergrund&#34; class=&#34;section level1&#34; number=&#34;1&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; Hintergrund&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Tabellen in Markdown sind mitunter nervig zu erstellen.&#xD;&#xA;Am einfachsten ist es, wenn die Daten in Form einer CSV- oder Excel-Tabelle vorliegen.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;Tipp: Große Mengen von (nur) Text (keine Zahlen) sind vielleicht besser nicht in Form einer Tabelle, sondern einer Liste anzuführen.&lt;/p&gt;</description>
+      <description>1 Hintergrund 2 Beispiel-Daten laden 3 Daten aufbereiten 4 Tabelle 1: gt() 5 Tabelle 2: kable() 6 Tabelle 3: pander 7 Tabelle 4: datatable() 8 Fazit: library(tidyverse) library(gt) library(here) 1 Hintergrund Tabellen in Markdown sind mitunter nervig zu erstellen. Am einfachsten ist es, wenn die Daten in Form einer CSV- oder Excel-Tabelle vorliegen.
+Tipp: Große Mengen von (nur) Text (keine Zahlen) sind vielleicht besser nicht in Form einer Tabelle, sondern einer Liste anzuführen.</description>
     </item>
+    
     <item>
       <title>Slides for my workshop on Markdown and Git</title>
       <link>https://data-se.netlify.app/2019/09/09/slides-for-my-workshop-on-markdown-and-git/</link>
       <pubDate>Mon, 09 Sep 2019 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2019/09/09/slides-for-my-workshop-on-markdown-and-git/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://data-se.netlify.com/slides/ws-md-git-2019/ws-md-git-2019.html&#34;&gt;Here&lt;/a&gt; are my slides for my Workshop on Markdown and Git (2019-09-16). Note that you need to be online to render the slides (due to heavy use of JS).&lt;/p&gt;&#xD;&#xA;&lt;p&gt;The Rmd source code (master file) can be found &lt;a href=&#34;https://data-se.netlify.com/slides/ws-md-git-2019/ws-md-git-2019.Rmd&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;The PDF version of the slides can be found &lt;a href=&#34;https://data-se.netlify.com/slides/ws-md-git-2019/ws-md-git-2019.pdf&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;</description>
+      <description>Here are my slides for my Workshop on Markdown and Git (2019-09-16). Note that you need to be online to render the slides (due to heavy use of JS).
+The Rmd source code (master file) can be found here.
+The PDF version of the slides can be found here.</description>
     </item>
+    
     <item>
       <title>Hello World, this is Blogdown</title>
       <link>https://data-se.netlify.app/2017/11/21/hello-world-this-is-blogdown/</link>
       <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2017/11/21/hello-world-this-is-blogdown/</guid>
-      <description>&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;p&gt;My blog at &lt;a href=&#34;https://sebastiansauer.github.io/posts/&#34; class=&#34;uri&#34;&gt;https://sebastiansauer.github.io/posts/&lt;/a&gt; has moved. It is now here! This is the new home of my blog. In (the unlikely) case you are asking yourself “Why did you move your blog?”, here is the answer.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;I was using Jekyll at Github pages which is great as long as you do not have a lot of R in your posts. But I did have a lot of R in my posts. The problem is that there is no builtin support for rendering R codes to the markdown file. That means that I ended up fixing images links all day long (well, every littel now and then).&lt;/p&gt;</description>
+      <description>My blog at https://sebastiansauer.github.io/posts/ has moved. It is now here! This is the new home of my blog. In (the unlikely) case you are asking yourself “Why did you move your blog?”, here is the answer.
+I was using Jekyll at Github pages which is great as long as you do not have a lot of R in your posts. But I did have a lot of R in my posts.</description>
     </item>
+    
     <item>
       <title>A Plain Markdown Post</title>
       <link>https://data-se.netlify.app/2016/12/30/hello-markdown/</link>
       <pubDate>Fri, 30 Dec 2016 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2016/12/30/hello-markdown/</guid>
-      <description>&lt;p&gt;This is a post written in plain Markdown (&lt;code&gt;*.md&lt;/code&gt;) instead of R Markdown (&lt;code&gt;*.Rmd&lt;/code&gt;). The major differences are:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;You cannot run any R code in a plain Markdown document, whereas in an R Markdown document, you can embed R code chunks (&lt;code&gt;```{r}&lt;/code&gt;);&lt;/li&gt;&#xA;&lt;li&gt;A plain Markdown post is rendered through &lt;a href=&#34;https://gohugo.io/overview/configuration/&#34;&gt;Blackfriday&lt;/a&gt;, and an R Markdown document is compiled by &lt;a href=&#34;http://rmarkdown.rstudio.com&#34;&gt;&lt;strong&gt;rmarkdown&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&#34;http://pandoc.org&#34;&gt;Pandoc&lt;/a&gt;.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;There are many differences in syntax between Blackfriday&amp;rsquo;s Markdown and Pandoc&amp;rsquo;s Markdown. For example, you can write a task list with Blackfriday but not with Pandoc:&lt;/p&gt;</description>
+      <description>This is a post written in plain Markdown (*.md) instead of R Markdown (*.Rmd). The major differences are:
+You cannot run any R code in a plain Markdown document, whereas in an R Markdown document, you can embed R code chunks (```{r}); A plain Markdown post is rendered through Blackfriday, and an R Markdown document is compiled by rmarkdown and Pandoc. There are many differences in syntax between Blackfriday&amp;rsquo;s Markdown and Pandoc&amp;rsquo;s Markdown.</description>
     </item>
+    
     <item>
       <title>Different ways to set figure size in RMarkdown</title>
       <link>https://data-se.netlify.app/2016/11/02/figure_sizing_knitr/</link>
       <pubDate>Wed, 02 Nov 2016 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2016/11/02/figure_sizing_knitr/</guid>
-      <description>&lt;p&gt;Markdown is thought as a &amp;ldquo;lightweight&amp;rdquo; markup language, hence the name&#xA;&lt;code&gt;markdown&lt;/code&gt;. That&amp;rsquo;s why formatting options are scarce. However, there are some&#xA;extensions, for instance brought by RMarkdown.&lt;/p&gt;&#xA;&lt;p&gt;One point of particular interest is the sizing of figures. Let&amp;rsquo;s look at some&#xA;ways how to size a figure with RMarkdown.&lt;/p&gt;&#xA;&lt;p&gt;We take some data first:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;(mtcars) &#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;names&lt;/span&gt;(mtcars) &#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;##  [1] &amp;#34;mpg&amp;#34;  &amp;#34;cyl&amp;#34;  &amp;#34;disp&amp;#34; &amp;#34;hp&amp;#34;   &amp;#34;drat&amp;#34; &amp;#34;wt&amp;#34;   &amp;#34;qsec&amp;#34; &amp;#34;vs&amp;#34;   &amp;#34;am&amp;#34;   &amp;#34;gear&amp;#34;&#xD;&#xA;## [11] &amp;#34;carb&amp;#34;&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Not let&amp;rsquo;s plot.&lt;/p&gt;</description>
+      <description>Markdown is thought as a &amp;ldquo;lightweight&amp;rdquo; markup language, hence the name markdown. That&amp;rsquo;s why formatting options are scarce. However, there are some extensions, for instance brought by RMarkdown.
+One point of particular interest is the sizing of figures. Let&amp;rsquo;s look at some ways how to size a figure with RMarkdown.
+We take some data first:
+data(mtcars) names(mtcars) ## [1] &amp;#34;mpg&amp;#34; &amp;#34;cyl&amp;#34; &amp;#34;disp&amp;#34; &amp;#34;hp&amp;#34; &amp;#34;drat&amp;#34; &amp;#34;wt&amp;#34; &amp;#34;qsec&amp;#34; &amp;#34;vs&amp;#34; &amp;#34;am&amp;#34; &amp;#34;gear&amp;#34; ## [11] &amp;#34;carb&amp;#34; Not let&amp;rsquo;s plot.</description>
     </item>
+    
     <item>
       <title>Simple (R-)Markdown template for &#39;Onepager-reports&#39; etc. </title>
       <link>https://data-se.netlify.app/2016/10/05/template-onepager/</link>
       <pubDate>Wed, 05 Oct 2016 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2016/10/05/template-onepager/</guid>
-      <description>&lt;p&gt;In my role as a teacher, I (have to) write a lot of marking feedback reports. My university provides a website to facilitate the process, that&amp;rsquo;s great. I have also been writing my reports with Pages, Word, or friends. But somewhat cooler, more attractive, and more reproducible would be using (a markup language such as) Markdown. Basically, that&amp;rsquo;s easy, but it would be of help to have a template that makes up a nice and nicely formatted report, like this:&lt;/p&gt;</description>
+      <description>In my role as a teacher, I (have to) write a lot of marking feedback reports. My university provides a website to facilitate the process, that&amp;rsquo;s great. I have also been writing my reports with Pages, Word, or friends. But somewhat cooler, more attractive, and more reproducible would be using (a markup language such as) Markdown. Basically, that&amp;rsquo;s easy, but it would be of help to have a template that makes up a nice and nicely formatted report, like this:</description>
     </item>
+    
     <item>
       <title>How to add a logo to a slidify presentation</title>
       <link>https://data-se.netlify.app/2016/07/05/slidify-logo/</link>
       <pubDate>Tue, 05 Jul 2016 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2016/07/05/slidify-logo/</guid>
-      <description>&lt;p&gt;&lt;em&gt;reading time: 15-20 min.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;Slidify is a cool tool to render HTML5 slide decks, see &lt;a href=&#34;http://slidify.org/samples/intro/#1&#34;&gt;here&lt;/a&gt;, &lt;a href=&#34;http://ramnathv.github.io/slidifyExamples/examples/io2012/#1&#34;&gt;here&lt;/a&gt; or &lt;a href=&#34;http://sebastiansauer.github.io/dplyr_WS/#1&#34;&gt;here&lt;/a&gt; for examples.&lt;/p&gt;&#xA;&lt;p&gt;Features include:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;reproducibility. You write your slide deck as you would write any other text, similar to Latex/Beamer. But you write using Markdown, which is easier and less clumsy. As you write plain text, you are free to use git.&lt;/li&gt;&#xA;&lt;li&gt;modern look. Just a website, nothing more. But with cool, modern features.&lt;/li&gt;&#xA;&lt;li&gt;techiwecki. Well, probably techie-minded persons will love that more than non-techies&amp;hellip;&#xA;Check &lt;a href=&#34;http://slidify.github.io/&#34;&gt;this tutorial&lt;/a&gt; out as a starter.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Basically, slidify procudes a website:&lt;/p&gt;</description>
+      <description>reading time: 15-20 min.
+Slidify is a cool tool to render HTML5 slide decks, see here, here or here for examples.
+Features include:
+reproducibility. You write your slide deck as you would write any other text, similar to Latex/Beamer. But you write using Markdown, which is easier and less clumsy. As you write plain text, you are free to use git. modern look. Just a website, nothing more. But with cool, modern features.</description>
     </item>
+    
   </channel>
 </rss>

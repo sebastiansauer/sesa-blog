@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.135.0">
+<meta name="generator" content="Hugo 0.101.0" />
 
 
 <title>Plotting survey results using `ggplot2` - sesa blog</title>
@@ -249,87 +249,87 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">head</span>(data6) <span style="color:#f92672">%&gt;%</span> kable
 </span></span></code></pre></div><table>
-  <thead>
-      <tr>
-          <th style="text-align: right">items_num</th>
-          <th style="text-align: right">start_1</th>
-          <th style="text-align: right">end_1</th>
-          <th style="text-align: right">start_2</th>
-          <th style="text-align: right">end_2</th>
-          <th style="text-align: right">start_3</th>
-          <th style="text-align: right">end_3</th>
-          <th style="text-align: right">start_4</th>
-          <th style="text-align: right">end_4</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: right">1</td>
-          <td style="text-align: right">0</td>
-          <td style="text-align: right">7</td>
-          <td style="text-align: right">7</td>
-          <td style="text-align: right">46</td>
-          <td style="text-align: right">46</td>
-          <td style="text-align: right">273</td>
-          <td style="text-align: right">273</td>
-          <td style="text-align: right">493</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">2</td>
-          <td style="text-align: right">0</td>
-          <td style="text-align: right">17</td>
-          <td style="text-align: right">17</td>
-          <td style="text-align: right">97</td>
-          <td style="text-align: right">97</td>
-          <td style="text-align: right">318</td>
-          <td style="text-align: right">318</td>
-          <td style="text-align: right">493</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">3</td>
-          <td style="text-align: right">0</td>
-          <td style="text-align: right">203</td>
-          <td style="text-align: right">203</td>
-          <td style="text-align: right">366</td>
-          <td style="text-align: right">366</td>
-          <td style="text-align: right">461</td>
-          <td style="text-align: right">461</td>
-          <td style="text-align: right">493</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">4</td>
-          <td style="text-align: right">0</td>
-          <td style="text-align: right">3</td>
-          <td style="text-align: right">3</td>
-          <td style="text-align: right">79</td>
-          <td style="text-align: right">79</td>
-          <td style="text-align: right">290</td>
-          <td style="text-align: right">290</td>
-          <td style="text-align: right">493</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">5</td>
-          <td style="text-align: right">0</td>
-          <td style="text-align: right">11</td>
-          <td style="text-align: right">11</td>
-          <td style="text-align: right">110</td>
-          <td style="text-align: right">110</td>
-          <td style="text-align: right">344</td>
-          <td style="text-align: right">344</td>
-          <td style="text-align: right">493</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">6</td>
-          <td style="text-align: right">0</td>
-          <td style="text-align: right">23</td>
-          <td style="text-align: right">23</td>
-          <td style="text-align: right">114</td>
-          <td style="text-align: right">114</td>
-          <td style="text-align: right">383</td>
-          <td style="text-align: right">383</td>
-          <td style="text-align: right">493</td>
-      </tr>
-  </tbody>
+<thead>
+<tr>
+<th style="text-align:right">items_num</th>
+<th style="text-align:right">start_1</th>
+<th style="text-align:right">end_1</th>
+<th style="text-align:right">start_2</th>
+<th style="text-align:right">end_2</th>
+<th style="text-align:right">start_3</th>
+<th style="text-align:right">end_3</th>
+<th style="text-align:right">start_4</th>
+<th style="text-align:right">end_4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">46</td>
+<td style="text-align:right">46</td>
+<td style="text-align:right">273</td>
+<td style="text-align:right">273</td>
+<td style="text-align:right">493</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">17</td>
+<td style="text-align:right">17</td>
+<td style="text-align:right">97</td>
+<td style="text-align:right">97</td>
+<td style="text-align:right">318</td>
+<td style="text-align:right">318</td>
+<td style="text-align:right">493</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">203</td>
+<td style="text-align:right">203</td>
+<td style="text-align:right">366</td>
+<td style="text-align:right">366</td>
+<td style="text-align:right">461</td>
+<td style="text-align:right">461</td>
+<td style="text-align:right">493</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">79</td>
+<td style="text-align:right">79</td>
+<td style="text-align:right">290</td>
+<td style="text-align:right">290</td>
+<td style="text-align:right">493</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">11</td>
+<td style="text-align:right">11</td>
+<td style="text-align:right">110</td>
+<td style="text-align:right">110</td>
+<td style="text-align:right">344</td>
+<td style="text-align:right">344</td>
+<td style="text-align:right">493</td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">23</td>
+<td style="text-align:right">23</td>
+<td style="text-align:right">114</td>
+<td style="text-align:right">114</td>
+<td style="text-align:right">383</td>
+<td style="text-align:right">383</td>
+<td style="text-align:right">493</td>
+</tr>
+</tbody>
 </table>
 <p>OK, we have that, pooh, quite a mess.</p>
 <p>So, now we need it in long form. Here come a not so elegant, but rather simple, solution for that.</p>
@@ -343,52 +343,52 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>data7 <span style="color:#f92672">%&gt;%</span> head <span style="color:#f92672">%&gt;%</span> kable
 </span></span></code></pre></div><table>
-  <thead>
-      <tr>
-          <th style="text-align: right">items</th>
-          <th style="text-align: right">start</th>
-          <th style="text-align: right">end</th>
-          <th style="text-align: right">answer</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: right">1</td>
-          <td style="text-align: right">0</td>
-          <td style="text-align: right">7</td>
-          <td style="text-align: right">1</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">2</td>
-          <td style="text-align: right">0</td>
-          <td style="text-align: right">17</td>
-          <td style="text-align: right">1</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">3</td>
-          <td style="text-align: right">0</td>
-          <td style="text-align: right">203</td>
-          <td style="text-align: right">1</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">4</td>
-          <td style="text-align: right">0</td>
-          <td style="text-align: right">3</td>
-          <td style="text-align: right">1</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">5</td>
-          <td style="text-align: right">0</td>
-          <td style="text-align: right">11</td>
-          <td style="text-align: right">1</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">6</td>
-          <td style="text-align: right">0</td>
-          <td style="text-align: right">23</td>
-          <td style="text-align: right">1</td>
-      </tr>
-  </tbody>
+<thead>
+<tr>
+<th style="text-align:right">items</th>
+<th style="text-align:right">start</th>
+<th style="text-align:right">end</th>
+<th style="text-align:right">answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">17</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">203</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">11</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">23</td>
+<td style="text-align:right">1</td>
+</tr>
+</tbody>
 </table>
 <p>Now let&rsquo;s plot the bar graph with the rectangle plot.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>data7<span style="color:#f92672">$</span>answer <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">factor</span>(data7<span style="color:#f92672">$</span>answer)

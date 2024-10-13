@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.135.0">
+<meta name="generator" content="Hugo 0.101.0" />
 
 
 <title>Checklist for Data Cleansing - sesa blog</title>
@@ -155,58 +155,58 @@
 </span></span><span style="display:flex;"><span>data <span style="color:#f92672">%&gt;%</span> 
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">summarise_all</span>(<span style="color:#a6e22e">funs</span>(<span style="color:#a6e22e">sum</span>(<span style="color:#a6e22e">is.na</span>(.)))) <span style="color:#f92672">%&gt;%</span> kable
 </span></span></code></pre></div><table>
-  <thead>
-      <tr>
-          <th style="text-align: right">age</th>
-          <th style="text-align: right">body_type</th>
-          <th style="text-align: right">diet</th>
-          <th style="text-align: right">drinks</th>
-          <th style="text-align: right">drugs</th>
-          <th style="text-align: right">education</th>
-          <th style="text-align: right">ethnicity</th>
-          <th style="text-align: right">height</th>
-          <th style="text-align: right">income</th>
-          <th style="text-align: right">job</th>
-          <th style="text-align: right">last_online</th>
-          <th style="text-align: right">location</th>
-          <th style="text-align: right">offspring</th>
-          <th style="text-align: right">orientation</th>
-          <th style="text-align: right">pets</th>
-          <th style="text-align: right">religion</th>
-          <th style="text-align: right">sex</th>
-          <th style="text-align: right">sign</th>
-          <th style="text-align: right">smokes</th>
-          <th style="text-align: right">speaks</th>
-          <th style="text-align: right">status</th>
-          <th style="text-align: right">essay0</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: right">0</td>
-          <td style="text-align: right">5296</td>
-          <td style="text-align: right">24395</td>
-          <td style="text-align: right">2985</td>
-          <td style="text-align: right">14080</td>
-          <td style="text-align: right">6628</td>
-          <td style="text-align: right">5680</td>
-          <td style="text-align: right">3</td>
-          <td style="text-align: right">48442</td>
-          <td style="text-align: right">8198</td>
-          <td style="text-align: right">0</td>
-          <td style="text-align: right">0</td>
-          <td style="text-align: right">35561</td>
-          <td style="text-align: right">0</td>
-          <td style="text-align: right">19921</td>
-          <td style="text-align: right">20226</td>
-          <td style="text-align: right">0</td>
-          <td style="text-align: right">11056</td>
-          <td style="text-align: right">5512</td>
-          <td style="text-align: right">50</td>
-          <td style="text-align: right">0</td>
-          <td style="text-align: right">5485</td>
-      </tr>
-  </tbody>
+<thead>
+<tr>
+<th style="text-align:right">age</th>
+<th style="text-align:right">body_type</th>
+<th style="text-align:right">diet</th>
+<th style="text-align:right">drinks</th>
+<th style="text-align:right">drugs</th>
+<th style="text-align:right">education</th>
+<th style="text-align:right">ethnicity</th>
+<th style="text-align:right">height</th>
+<th style="text-align:right">income</th>
+<th style="text-align:right">job</th>
+<th style="text-align:right">last_online</th>
+<th style="text-align:right">location</th>
+<th style="text-align:right">offspring</th>
+<th style="text-align:right">orientation</th>
+<th style="text-align:right">pets</th>
+<th style="text-align:right">religion</th>
+<th style="text-align:right">sex</th>
+<th style="text-align:right">sign</th>
+<th style="text-align:right">smokes</th>
+<th style="text-align:right">speaks</th>
+<th style="text-align:right">status</th>
+<th style="text-align:right">essay0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">5296</td>
+<td style="text-align:right">24395</td>
+<td style="text-align:right">2985</td>
+<td style="text-align:right">14080</td>
+<td style="text-align:right">6628</td>
+<td style="text-align:right">5680</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">48442</td>
+<td style="text-align:right">8198</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">35561</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">19921</td>
+<td style="text-align:right">20226</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">11056</td>
+<td style="text-align:right">5512</td>
+<td style="text-align:right">50</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">5485</td>
+</tr>
+</tbody>
 </table>
 <p>The function <code>kable</code> prints a html table (package <code>knitr</code>).</p>
 <p>There seem to be quite a bit missings. Maybe better plot it.</p>
@@ -228,7 +228,7 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># alterntively:</span>
 </span></span><span style="display:flex;"><span>data <span style="color:#f92672">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">select_if</span>(<span style="color:#66d9ef">function</span>(col) <span style="color:#a6e22e">mean</span>(<span style="color:#a6e22e">is.na</span>(col)) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">.1</span>) <span style="color:#f92672">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">select_if</span>(<span style="color:#a6e22e">function</span>(col) <span style="color:#a6e22e">mean</span>(<span style="color:#a6e22e">is.na</span>(col)) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">.1</span>) <span style="color:#f92672">%&gt;%</span> 
 </span></span><span style="display:flex;"><span>  head
 </span></span></code></pre></div><pre tabindex="0"><code>##   age      body_type   drinks           ethnicity height
 ## 1  22 a little extra socially        asian, white     75
@@ -317,50 +317,50 @@ divide most frequent category by least frequent category</p>
 </span></span><span style="display:flex;"><span>  arrange <span style="color:#f92672">%&gt;%</span> 
 </span></span><span style="display:flex;"><span>  kable
 </span></span></code></pre></div><table>
-  <thead>
-      <tr>
-          <th style="text-align: right">body_type</th>
-          <th style="text-align: right">diet</th>
-          <th style="text-align: right">drinks</th>
-          <th style="text-align: right">drugs</th>
-          <th style="text-align: right">education</th>
-          <th style="text-align: right">ethnicity</th>
-          <th style="text-align: right">job</th>
-          <th style="text-align: right">location</th>
-          <th style="text-align: right">offspring</th>
-          <th style="text-align: right">orientation</th>
-          <th style="text-align: right">pets</th>
-          <th style="text-align: right">religion</th>
-          <th style="text-align: right">sex</th>
-          <th style="text-align: right">sign</th>
-          <th style="text-align: right">smokes</th>
-          <th style="text-align: right">speaks</th>
-          <th style="text-align: right">status</th>
-          <th style="text-align: right">essay0</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: right">74</td>
-          <td style="text-align: right">1507.727</td>
-          <td style="text-align: right">129.7516</td>
-          <td style="text-align: right">92.00976</td>
-          <td style="text-align: right">2178.091</td>
-          <td style="text-align: right">32831</td>
-          <td style="text-align: right">37.20098</td>
-          <td style="text-align: right">31064</td>
-          <td style="text-align: right">360</td>
-          <td style="text-align: right">18.65052</td>
-          <td style="text-align: right">336.6818</td>
-          <td style="text-align: right">209.5385</td>
-          <td style="text-align: right">1.485632</td>
-          <td style="text-align: right">43.46341</td>
-          <td style="text-align: right">29.65946</td>
-          <td style="text-align: right">21828</td>
-          <td style="text-align: right">5569.7</td>
-          <td style="text-align: right">14</td>
-      </tr>
-  </tbody>
+<thead>
+<tr>
+<th style="text-align:right">body_type</th>
+<th style="text-align:right">diet</th>
+<th style="text-align:right">drinks</th>
+<th style="text-align:right">drugs</th>
+<th style="text-align:right">education</th>
+<th style="text-align:right">ethnicity</th>
+<th style="text-align:right">job</th>
+<th style="text-align:right">location</th>
+<th style="text-align:right">offspring</th>
+<th style="text-align:right">orientation</th>
+<th style="text-align:right">pets</th>
+<th style="text-align:right">religion</th>
+<th style="text-align:right">sex</th>
+<th style="text-align:right">sign</th>
+<th style="text-align:right">smokes</th>
+<th style="text-align:right">speaks</th>
+<th style="text-align:right">status</th>
+<th style="text-align:right">essay0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">74</td>
+<td style="text-align:right">1507.727</td>
+<td style="text-align:right">129.7516</td>
+<td style="text-align:right">92.00976</td>
+<td style="text-align:right">2178.091</td>
+<td style="text-align:right">32831</td>
+<td style="text-align:right">37.20098</td>
+<td style="text-align:right">31064</td>
+<td style="text-align:right">360</td>
+<td style="text-align:right">18.65052</td>
+<td style="text-align:right">336.6818</td>
+<td style="text-align:right">209.5385</td>
+<td style="text-align:right">1.485632</td>
+<td style="text-align:right">43.46341</td>
+<td style="text-align:right">29.65946</td>
+<td style="text-align:right">21828</td>
+<td style="text-align:right">5569.7</td>
+<td style="text-align:right">14</td>
+</tr>
+</tbody>
 </table>
 <h2 id="plausibility-check">Plausibility check</h2>
 <p>Plausibility check can includes checking orders of magnitude, looking for implausible values (negative body weight), among others. A good starter is to differentiate between numeric and non-numeric variables.</p>

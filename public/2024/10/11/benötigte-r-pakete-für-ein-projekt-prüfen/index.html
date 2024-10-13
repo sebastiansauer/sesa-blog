@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.135.0">
+<meta name="generator" content="Hugo 0.101.0" />
 
 
 <title>Benötigte R-Pakete für ein Projekt prüfen - sesa blog</title>
@@ -106,6 +106,8 @@ there’s a function that checks the dependencies:</p>
 
 deps$Package |&gt; unique() |&gt; head()</code></pre>
 <p>Okay, now we know which packages are needed.</p>
+<p>You may want to save the list of your installed packages. This may prove handy after updating a new version of R such as from 4.4.0 to 4.5.</p>
+<pre class="r"><code>writeRDS(deps, &quot;deps.rds&quot;)</code></pre>
 </div>
 <div id="install-missing-packages-from-cran" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> Install missing packages from CRAN</h1>

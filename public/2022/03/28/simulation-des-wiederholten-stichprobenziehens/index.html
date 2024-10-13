@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.135.0">
+<meta name="generator" content="Hugo 0.101.0" />
 
 
 <title>Simulation des wiederholten Stichprobenziehens - sesa blog</title>
@@ -75,125 +75,162 @@
     
 
     <div class="article-content">
-      <h1 id="vorbereitung">Vorbereitung</h1>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(tidyverse)  <span style="color:#75715e"># Datenjudo</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(infer)  <span style="color:#75715e"># Inferenzstatistik</span>
-</span></span></code></pre></div><h1 id="kann-man-wirklich-von-einer-stichprobe-auf-eine-grundgesamtheit-schließen">Kann man wirklich von einer Stichprobe auf eine Grundgesamtheit schließen?</h1>
+      
+<script src="https://data-se.netlify.app/2022/03/28/simulation-des-wiederholten-stichprobenziehens/index_files/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+<ul>
+<li><a href="#vorbereitung"><span class="toc-section-number">1</span> Vorbereitung</a></li>
+<li><a href="#kann-man-wirklich-von-einer-stichprobe-auf-eine-grundgesamtheit-schließen"><span class="toc-section-number">2</span> Kann man wirklich von einer Stichprobe auf eine Grundgesamtheit schließen?</a></li>
+<li><a href="#hier-ist-eine-population"><span class="toc-section-number">3</span> Hier ist eine Population</a></li>
+<li><a href="#wir-ziehen-eine-stichprobe"><span class="toc-section-number">4</span> Wir ziehen eine Stichprobe</a></li>
+<li><a href="#moment"><span class="toc-section-number">5</span> Moment</a></li>
+<li><a href="#also-gut-ziehen-wir-viele-stichproben"><span class="toc-section-number">6</span> Also gut, ziehen wir viele Stichproben</a></li>
+<li><a href="#zusammenfassen-der-stichproben"><span class="toc-section-number">7</span> Zusammenfassen der Stichproben</a></li>
+<li><a href="#visualisierung"><span class="toc-section-number">8</span> Visualisierung</a></li>
+<li><a href="#fazit"><span class="toc-section-number">9</span> Fazit</a></li>
+<li><a href="#reproduzierbarkeit"><span class="toc-section-number">10</span> Reproduzierbarkeit</a></li>
+</ul>
+</div>
+
+<div id="vorbereitung" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Vorbereitung</h1>
+<pre class="r"><code>library(tidyverse)  # Datenjudo
+library(infer)  # Inferenzstatistik</code></pre>
+</div>
+<div id="kann-man-wirklich-von-einer-stichprobe-auf-eine-grundgesamtheit-schließen" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Kann man wirklich von einer Stichprobe auf eine Grundgesamtheit schließen?</h1>
 <p>Alle Welt behauptet, dass man von einer Stichprobe auf eine Grundgesamtheit schließen könne.
 Aber stimmt das wirklich? Welcher von den Profs,
 die das tagaus, tagein gebetsmühlenartig von sich geben,
 hat das eigentlich bewiesen?</p>
 <p>Tja.</p>
 <p>Probieren wir es einfach aus.</p>
-<h1 id="hier-ist-eine-population">Hier ist eine Population</h1>
+</div>
+<div id="hier-ist-eine-population" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Hier ist eine Population</h1>
 <p>Wir definieren uns eine Population bzw. eine Verteilung für eine Variable.</p>
 <p>Sagen wir, um es konkret zu machen,
 uns interessiert die Zeit, die mittelfränkisch junge Erwachsene pro Tag am Handy verbringen (im Schnitt).
 Um uns Tipperei zu sparen,
-geben wir dieser Variablen den Namen $X$.</p>
-<p>Sagen wir weiter, wir würden die die Handy-Daddel-Zeiten aller Menschen minütiös nachverfolgen und kennen also die wahre Daddelzeit, $X$.</p>
-<p>Sagen wir, um die Sache einfach zu halten, $X$ ist normalverteilt mit Mittelwert 120 und Streuung 20 (in Minuten):</p>
-<p>$$X \sim \mathcal{N}(\mu = 120,\sigma = 20).$$</p>
-<p>Auf dieser Basis &ldquo;erzeugen&rdquo; wir uns die täglichen mittleren Daddelzeiten. Sagen wir, die Population umfasse $n=10^6$ Personen.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">42</span>)  <span style="color:#75715e"># Zufallszahlen festlegen</span>
-</span></span><span style="display:flex;"><span>d <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tibble</span>(
-</span></span><span style="display:flex;"><span>  x <span style="color:#f92672">=</span> <span style="color:#a6e22e">rnorm</span>(<span style="color:#ae81ff">1e6</span>, mean <span style="color:#f92672">=</span> <span style="color:#ae81ff">120</span>, sd <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>)
-</span></span><span style="display:flex;"><span>)
-</span></span></code></pre></div><h1 id="wir-ziehen-eine-stichprobe">Wir ziehen eine Stichprobe</h1>
+geben wir dieser Variablen den Namen <span class="math inline">\(X\)</span>.</p>
+<p>Sagen wir weiter, wir würden die die Handy-Daddel-Zeiten aller Menschen minütiös nachverfolgen und kennen also die wahre Daddelzeit, <span class="math inline">\(X\)</span>.</p>
+<p>Sagen wir, um die Sache einfach zu halten, <span class="math inline">\(X\)</span> ist normalverteilt mit Mittelwert 120 und Streuung 20 (in Minuten):</p>
+<p><span class="math display">\[X \sim \mathcal{N}(\mu = 120,\sigma = 20).\]</span></p>
+<p>Auf dieser Basis “erzeugen” wir uns die täglichen mittleren Daddelzeiten. Sagen wir, die Population umfasse <span class="math inline">\(n=10^6\)</span> Personen.</p>
+<pre class="r"><code>set.seed(42)  # Zufallszahlen festlegen
+d &lt;- tibble(
+  x = rnorm(1e6, mean = 120, sd = 20)
+)</code></pre>
+</div>
+<div id="wir-ziehen-eine-stichprobe" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Wir ziehen eine Stichprobe</h1>
 <p>Wir ziehen eine Stichprobe (sample, <code>smple</code>),
-sagen wir der Größe $n=50$:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">42</span>)
-</span></span><span style="display:flex;"><span>smple <span style="color:#f92672">&lt;-</span> 
-</span></span><span style="display:flex;"><span>  d <span style="color:#f92672">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">sample_n</span>(size <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>smple <span style="color:#f92672">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">summarise</span>(x_mean <span style="color:#f92672">=</span> <span style="color:#a6e22e">mean</span>(x),
-</span></span><span style="display:flex;"><span>            x_sd <span style="color:#f92672">=</span> <span style="color:#a6e22e">sd</span>(x))
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; # A tibble: 1 × 2</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt;   x_mean  x_sd</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt;    &lt;dbl&gt; &lt;dbl&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; 1   122.  18.3</span>
-</span></span></code></pre></div><p>Ah! Unsere Stichprobe gibt die Population (synonym: Grundgesamtheit ordentlich wieder).</p>
-<h1 id="moment">Moment</h1>
+sagen wir der Größe <span class="math inline">\(n=50\)</span>:</p>
+<pre class="r"><code>set.seed(42)
+smple &lt;- 
+  d %&gt;% 
+  sample_n(size = 50)</code></pre>
+<pre class="r"><code>smple %&gt;% 
+  summarise(x_mean = mean(x),
+            x_sd = sd(x))
+#&gt; # A tibble: 1 × 2
+#&gt;   x_mean  x_sd
+#&gt;    &lt;dbl&gt; &lt;dbl&gt;
+#&gt; 1   122.  18.3</code></pre>
+<p>Ah! Unsere Stichprobe gibt die Population (synonym: Grundgesamtheit ordentlich wieder).</p>
+</div>
+<div id="moment" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Moment</h1>
 <p>Halt, könnten Sie jetzt sagen.
 Das war ja bestimmt nur Zufall. Glück gehabt. Blindes Huhn und so weiter.</p>
-<h1 id="also-gut-ziehen-wir-viele-stichproben">Also gut, ziehen wir viele Stichproben</h1>
+</div>
+<div id="also-gut-ziehen-wir-viele-stichproben" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Also gut, ziehen wir viele Stichproben</h1>
 <p>Um uns zu überzeugen,
 ob es sich um einen Zufallsbefund gehandelt hat oder nicht,
-ziehen wir also viele (sagen wir, $k=1000$) Stichproben (mit Zurücklegen) aus der Population und schauen uns dann deren Mittelwerte und Streuungen an.
+ziehen wir also viele (sagen wir, <span class="math inline">\(k=1000\)</span>) Stichproben (mit Zurücklegen) aus der Population und schauen uns dann deren Mittelwerte und Streuungen an.
 Dann werden wir sehen,
 ob die Stichproben überwiegend die Population gut wiedergeben bzw.
 wie eng die Stichproben-Mittelwerte um den wahren Populationsparameter,
 also dem Mittelwert der Population, herum streuen.</p>
 <p>Dazu hilft uns das Paket <code>infer</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(infer)
-</span></span></code></pre></div><p>Mit <code>rep_sample_n()</code> können wir viele Stichproben ziehen:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">42</span>)
-</span></span><span style="display:flex;"><span>viele_stipros <span style="color:#f92672">&lt;-</span>
-</span></span><span style="display:flex;"><span>  d <span style="color:#f92672">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">rep_sample_n</span>(size <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>,
-</span></span><span style="display:flex;"><span>               replace <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>,
-</span></span><span style="display:flex;"><span>               reps <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">head</span>(viele_stipros)
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; # A tibble: 6 × 2</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; # Groups:   replicate [1]</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt;   replicate     x</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt;       &lt;int&gt; &lt;dbl&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; 1         1 156. </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; 2         1 153. </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; 3         1 117. </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; 4         1 135. </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; 5         1 132. </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; 6         1  95.9</span>
-</span></span></code></pre></div><p>Ach ja, das Schließen von einer Stichprobe auf eine Grundgesamtheit nennt man</p>
-<p><del>Interferenzstatistik</del>, <del>Inderfernestatistik</del> &ndash; schließende Statistik oder <em>Inferenzstatistik</em>.</p>
-<h1 id="zusammenfassen-der-stichproben">Zusammenfassen der Stichproben</h1>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>viele_stipros_zfsg <span style="color:#f92672">&lt;-</span> 
-</span></span><span style="display:flex;"><span>  viele_stipros <span style="color:#f92672">%&gt;%</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">group_by</span>(replicate) <span style="color:#f92672">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">summarise</span>(x_mean <span style="color:#f92672">=</span> <span style="color:#a6e22e">mean</span>(x),
-</span></span><span style="display:flex;"><span>            x_sd <span style="color:#f92672">=</span> <span style="color:#a6e22e">sd</span>(x))
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">head</span>(viele_stipros_zfsg)
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; # A tibble: 6 × 3</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt;   replicate x_mean  x_sd</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt;       &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; 1         1   122.  17.2</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; 2         2   121.  22.3</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; 3         3   120.  19.1</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; 4         4   121.  20.0</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; 5         5   122.  18.3</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; 6         6   124.  18.6</span>
-</span></span></code></pre></div><p>Ein paar Statistiken:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>viele_stipros_zfsg <span style="color:#f92672">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">summarise</span>(mu_dach <span style="color:#f92672">=</span> <span style="color:#a6e22e">mean</span>(x_mean),
-</span></span><span style="display:flex;"><span>            sigma_dach <span style="color:#f92672">=</span> <span style="color:#a6e22e">mean</span>(x_sd),
-</span></span><span style="display:flex;"><span>            q05 <span style="color:#f92672">=</span> <span style="color:#a6e22e">quantile</span>(x_mean, <span style="color:#ae81ff">.05</span>),
-</span></span><span style="display:flex;"><span>            q95 <span style="color:#f92672">=</span> <span style="color:#a6e22e">quantile</span>(x_mean, <span style="color:#ae81ff">.90</span>))
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; # A tibble: 1 × 4</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt;   mu_dach sigma_dach   q05   q95</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt;     &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; 1    120.       19.9  115.  124.</span>
-</span></span></code></pre></div><h1 id="visualisierung">Visualisierung</h1>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>viele_stipros_zfsg <span style="color:#f92672">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ggplot</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> x_mean)) <span style="color:#f92672">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">geom_histogram</span>() <span style="color:#f92672">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">geom_vline</span>(xintercept <span style="color:#f92672">=</span> <span style="color:#ae81ff">119.91</span>) <span style="color:#f92672">+</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">geom_rect</span>(xmin <span style="color:#f92672">=</span> <span style="color:#ae81ff">115.23</span>, xmax <span style="color:#f92672">=</span> <span style="color:#ae81ff">123.57</span>, 
-</span></span><span style="display:flex;"><span>            ymin <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, ymax <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>,
-</span></span><span style="display:flex;"><span>            fill <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;blue&#34;</span>,
-</span></span><span style="display:flex;"><span>            alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">.5</span>) <span style="color:#f92672">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">labs</span>(caption <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Die vertikale Linie zeigt den Mittelwert.\nDer horizontale Balken zeigt das 90%-PI.&#34;</span>)
-</span></span></code></pre></div><img src="index_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" />
-<h1 id="fazit">Fazit</h1>
+<pre class="r"><code>library(infer)</code></pre>
+<p>Mit <code>rep_sample_n()</code> können wir viele Stichproben ziehen:</p>
+<pre class="r"><code>set.seed(42)
+viele_stipros &lt;-
+  d %&gt;% 
+  rep_sample_n(size = 50,
+               replace = TRUE,
+               reps = 1000)
+
+head(viele_stipros)
+#&gt; # A tibble: 6 × 2
+#&gt; # Groups:   replicate [1]
+#&gt;   replicate     x
+#&gt;       &lt;int&gt; &lt;dbl&gt;
+#&gt; 1         1 156. 
+#&gt; 2         1 153. 
+#&gt; 3         1 117. 
+#&gt; 4         1 135. 
+#&gt; 5         1 132. 
+#&gt; 6         1  95.9</code></pre>
+<p>Ach ja, das Schließen von einer Stichprobe auf eine Grundgesamtheit nennt man</p>
+<p><del>Interferenzstatistik</del>, <del>Inderfernestatistik</del> – schließende Statistik oder <em>Inferenzstatistik</em>.</p>
+</div>
+<div id="zusammenfassen-der-stichproben" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Zusammenfassen der Stichproben</h1>
+<pre class="r"><code>viele_stipros_zfsg &lt;- 
+  viele_stipros %&gt;%
+  group_by(replicate) %&gt;% 
+  summarise(x_mean = mean(x),
+            x_sd = sd(x))
+
+head(viele_stipros_zfsg)
+#&gt; # A tibble: 6 × 3
+#&gt;   replicate x_mean  x_sd
+#&gt;       &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt;
+#&gt; 1         1   122.  17.2
+#&gt; 2         2   121.  22.3
+#&gt; 3         3   120.  19.1
+#&gt; 4         4   121.  20.0
+#&gt; 5         5   122.  18.3
+#&gt; 6         6   124.  18.6</code></pre>
+<p>Ein paar Statistiken:</p>
+<pre class="r"><code>viele_stipros_zfsg %&gt;% 
+  summarise(mu_dach = mean(x_mean),
+            sigma_dach = mean(x_sd),
+            q05 = quantile(x_mean, .05),
+            q95 = quantile(x_mean, .90))
+#&gt; # A tibble: 1 × 4
+#&gt;   mu_dach sigma_dach   q05   q95
+#&gt;     &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+#&gt; 1    120.       19.9  115.  124.</code></pre>
+</div>
+<div id="visualisierung" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Visualisierung</h1>
+<pre class="r"><code>viele_stipros_zfsg %&gt;% 
+  ggplot(aes(x = x_mean)) +
+  geom_histogram() +
+  geom_vline(xintercept = 119.91) +
+   geom_rect(xmin = 115.23, xmax = 123.57, 
+            ymin = 0, ymax = 5,
+            fill = &quot;blue&quot;,
+            alpha = .5) +
+  labs(caption = &quot;Die vertikale Linie zeigt den Mittelwert.\nDer horizontale Balken zeigt das 90%-PI.&quot;)</code></pre>
+<p><img src="https://data-se.netlify.app/2022/03/28/simulation-des-wiederholten-stichprobenziehens/index_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fazit" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Fazit</h1>
 <p>Hey, das Zeug scheint zu klappen!</p>
 <p>Das könnte auch der Grund sein,
 warum ein Koch einfach nur einen kleinen Löffel seiner Supper abschmeckt (nachdem er gut umgerüht hat),
-und nicht eine &ldquo;Vollerhebung&rdquo; seiner Supper machen muss,
+und nicht eine “Vollerhebung” seiner Supper machen muss,
 um sich zu vergewissern, dass sie gut schmeckt.</p>
-<h1 id="reproduzierbarkeit">Reproduzierbarkeit</h1>
-<pre tabindex="0"><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
+</div>
+<div id="reproduzierbarkeit" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> Reproduzierbarkeit</h1>
+<pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value                       
 #&gt;  version  R version 4.1.3 (2022-03-10)
 #&gt;  os       macOS Big Sur/Monterey 10.16
@@ -294,8 +331,9 @@ um sich zu vergewissern, dass sie gut schmeckt.</p>
 #&gt;  yaml          2.2.2   2022-01-25 [1] CRAN (R 4.1.2)                    
 #&gt; 
 #&gt; [1] /Users/sebastiansaueruser/Library/R/x86_64/4.1/library
-#&gt; [2] /Library/Frameworks/R.framework/Versions/4.1/Resources/library
-</code></pre>
+#&gt; [2] /Library/Frameworks/R.framework/Versions/4.1/Resources/library</code></pre>
+</div>
+
     </div>
 
 

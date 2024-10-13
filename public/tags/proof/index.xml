@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Proof on sesa blog</title>
+    <title>proof on sesa blog</title>
     <link>https://data-se.netlify.app/tags/proof/</link>
-    <description>Recent content in Proof on sesa blog</description>
-    <generator>Hugo</generator>
+    <description>Recent content in proof on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 26 May 2017 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://data-se.netlify.app/tags/proof/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 26 May 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/proof/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>mean and sd of z-values</title>
       <link>https://data-se.netlify.app/2017/05/26/z-values/</link>
       <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2017/05/26/z-values/</guid>
-      <description>&lt;p&gt;&lt;em&gt;Edit&lt;/em&gt;: This post was updated, including two errors fixed - thanks to (private) comments from &lt;a href=&#34;http://www.sefiroth.net/npb/&#34;&gt;Norman Markgraf&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;z-values, aka values coming from an z-transformation are a frequent creature in statistics land. Among their properties are the following:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;mean is zero&lt;/li&gt;&#xA;&lt;li&gt;variance is one (and hence sd is one)&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;But why is that? How come that this two properties are true? The goal of this post is to shed light on these two properties of z-values.&lt;/p&gt;</description>
+      <description>Edit: This post was updated, including two errors fixed - thanks to (private) comments from Norman Markgraf.
+z-values, aka values coming from an z-transformation are a frequent creature in statistics land. Among their properties are the following:
+mean is zero variance is one (and hence sd is one) But why is that? How come that this two properties are true? The goal of this post is to shed light on these two properties of z-values.</description>
     </item>
+    
   </channel>
 </rss>

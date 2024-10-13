@@ -1,40 +1,56 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Textmining on sesa blog</title>
+    <title>textmining on sesa blog</title>
     <link>https://data-se.netlify.app/tags/textmining/</link>
-    <description>Recent content in Textmining on sesa blog</description>
-    <generator>Hugo</generator>
+    <description>Recent content in textmining on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 07 Jul 2021 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://data-se.netlify.app/tags/textmining/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 07 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/textmining/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Zeitungsartikel per API herunterladen</title>
       <link>https://data-se.netlify.app/2021/07/07/zeitungsartikel-per-api-herunterladen/</link>
       <pubDate>Wed, 07 Jul 2021 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2021/07/07/zeitungsartikel-per-api-herunterladen/</guid>
-      <description>&lt;script src=&#34;https://data-se.netlify.app/2021/07/07/zeitungsartikel-per-api-herunterladen/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&#xD;&#xA;library(newsanchor)&#xD;&#xA;library(printr)&#xD;&#xA;library(httr)&#xD;&#xA;library(jsonlite)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;div id=&#34;news-api&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;News API&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Es gibt eine Seite &lt;a href=&#34;https://newsapi.org/&#34;&gt;News API&lt;/a&gt;, die es erlaubt, per API News (Artikel, Schlagzeilen) von weltweiten Quellen herunterzuladen, per JSON API.&lt;/p&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;gibts-da-auch-ein-r-paket&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Gibt’s da auch ein R-Paket?&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Ja - &lt;a href=&#34;https://cran.r-project.org/web/packages/newsanchor/vignettes/usage-newsanchor.html&#34;&gt;NewsAnchor&lt;/a&gt;.&lt;/p&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;setup&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Setup&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Zuerst muss man sich bei der Seite eine API Key holen, für Entwicklerzwecke kostenlos. Komfortabel ist, sich den Schlüssel in die R-environment-Datei (&lt;code&gt;.Renviron&lt;/code&gt;) zu schreiben, s. &lt;a href=&#34;https://cran.r-project.org/web/packages/newsanchor/vignettes/usage-newsanchor.html&#34;&gt;hier&lt;/a&gt; für mehr Infos.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;Das kann man z.B. so machen:&lt;/p&gt;</description>
+      <description>library(tidyverse) library(newsanchor) library(printr) library(httr) library(jsonlite) News API Es gibt eine Seite News API, die es erlaubt, per API News (Artikel, Schlagzeilen) von weltweiten Quellen herunterzuladen, per JSON API.
+Gibt’s da auch ein R-Paket? Ja - NewsAnchor.
+Setup Zuerst muss man sich bei der Seite eine API Key holen, für Entwicklerzwecke kostenlos. Komfortabel ist, sich den Schlüssel in die R-environment-Datei (.Renviron) zu schreiben, s. hier für mehr Infos.
+Das kann man z.</description>
     </item>
+    
     <item>
       <title>Grundlagen des Textminings mit R</title>
       <link>https://data-se.netlify.app/2017/11/28/textmining-grundlagen/</link>
       <pubDate>Tue, 28 Nov 2017 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2017/11/28/textmining-grundlagen/</guid>
-      <description>&lt;blockquote&gt;&#xD;&#xA;&lt;p&gt;Lernziele:&lt;/p&gt;&#xD;&#xA;&lt;/blockquote&gt;&#xD;&#xA;&lt;pre&gt;&lt;code&gt;  - Sie kennen zentrale Ziele und Begriffe des Textminings.&#xD;&#xA;  - Sie wissen, was ein &amp;#39;tidy text dataframe&amp;#39; ist.&#xD;&#xA;  - Sie können Worthäufigkeiten auszählen.&#xD;&#xA;  - Sie können Worthäufigkeiten anhand einer Wordcloud visualisieren.&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;p&gt;In dieser Übung benötigte R-Pakete:&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)  # Datenjudo&#xD;&#xA;library(stringr)  # Textverarbeitung&#xD;&#xA;library(tidytext)  # Textmining&#xD;&#xA;library(lsa)  # Stopwörter &#xD;&#xA;library(SnowballC)  # Wörter trunkieren&#xD;&#xA;library(wordcloud)  # Wordcloud anzeigen&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;blockquote&gt;&#xD;&#xA;&lt;p&gt;Bitte installieren Sie &lt;em&gt;rechtzeitig&lt;/em&gt; alle Pakete, z.B. in RStudio über den Reiter &lt;em&gt;Packages &amp;gt; Install&lt;/em&gt;.&lt;/p&gt;</description>
+      <description>Lernziele:
+- Sie kennen zentrale Ziele und Begriffe des Textminings. - Sie wissen, was ein &amp;#39;tidy text dataframe&amp;#39; ist. - Sie können Worthäufigkeiten auszählen. - Sie können Worthäufigkeiten anhand einer Wordcloud visualisieren. In dieser Übung benötigte R-Pakete:
+library(tidyverse) # Datenjudo library(stringr) # Textverarbeitung library(tidytext) # Textmining library(lsa) # Stopwörter library(SnowballC) # Wörter trunkieren library(wordcloud) # Wordcloud anzeigen Bitte installieren Sie rechtzeitig alle Pakete, z.B. in RStudio über den Reiter Packages &amp;gt; Install.</description>
     </item>
+    
     <item>
       <title>Grundlagen des Textminings mit R - Teil 2</title>
       <link>https://data-se.netlify.app/2017/11/28/grundlagen-des-textminings-mit-r-teil-2/</link>
       <pubDate>Tue, 28 Nov 2017 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2017/11/28/grundlagen-des-textminings-mit-r-teil-2/</guid>
-      <description>&lt;p&gt;In dieser Übung benötigte R-Pakete:&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)  # Datenjudo&#xD;&#xA;library(stringr)  # Textverarbeitung&#xD;&#xA;library(tidytext)  # Textmining&#xD;&#xA;library(lsa)  # Stopwörter &#xD;&#xA;library(SnowballC)  # Wörter trunkieren&#xD;&#xA;library(wordcloud)  # Wordcloud anzeigen&#xD;&#xA;library(skimr)  # Überblicksstatistiken&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;blockquote&gt;&#xD;&#xA;&lt;p&gt;Bitte installieren Sie &lt;em&gt;rechtzeitig&lt;/em&gt; alle Pakete, z.B. in RStudio über den Reiter &lt;em&gt;Packages … Install&lt;/em&gt;.&lt;/p&gt;&#xD;&#xA;&lt;/blockquote&gt;&#xD;&#xA;&lt;div id=&#34;aus-dem-letzten-post&#34; class=&#34;section level2&#34;&gt;&#xD;&#xA;&lt;h2&gt;Aus dem letzten Post&lt;/h2&gt;&#xD;&#xA;&lt;p&gt;Daten einlesen:&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;osf_link &amp;lt;- paste0(&amp;quot;https://osf.io/b35r7/?action=download&amp;quot;)&#xD;&#xA;afd &amp;lt;- read_csv(osf_link)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;pre&gt;&lt;code&gt;## Rows: 96 Columns: 2&#xD;&#xA;## ── Column specification ────────────────────────────────────────────────────────&#xD;&#xA;## Delimiter: &amp;quot;,&amp;quot;&#xD;&#xA;## chr (1): content&#xD;&#xA;## dbl (1): page&#xD;&#xA;## &#xD;&#xA;## ℹ Use `spec()` to retrieve the full column specification for this data.&#xD;&#xA;## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;p&gt;Aus breit mach lang:&lt;/p&gt;</description>
+      <description>In dieser Übung benötigte R-Pakete:
+library(tidyverse) # Datenjudo library(stringr) # Textverarbeitung library(tidytext) # Textmining library(lsa) # Stopwörter library(SnowballC) # Wörter trunkieren library(wordcloud) # Wordcloud anzeigen library(skimr) # Überblicksstatistiken Bitte installieren Sie rechtzeitig alle Pakete, z.B. in RStudio über den Reiter Packages … Install.
+Aus dem letzten Post Daten einlesen:
+osf_link &amp;lt;- paste0(&amp;quot;https://osf.io/b35r7/?action=download&amp;quot;) afd &amp;lt;- read_csv(osf_link) ## Rows: 96 Columns: 2 ## ── Column specification ──────────────────────────────────────────────────────── ## Delimiter: &amp;quot;,&amp;quot; ## chr (1): content ## dbl (1): page ## ## ℹ Use `spec()` to retrieve the full column specification for this data.</description>
     </item>
+    
     <item>
       <title>AfD Mining - basales Textmining zum AfD-Parteiprogramm</title>
       <link>https://data-se.netlify.app/2017/02/21/textmining_afd_01/</link>
       <pubDate>Tue, 21 Feb 2017 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2017/02/21/textmining_afd_01/</guid>
-      <description>&lt;p&gt;Für diesen Post benötigte R-Pakete:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(stringr)  &lt;span style=&#34;color:#75715e&#34;&gt;# Textverarbeitung&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(tidytext)  &lt;span style=&#34;color:#75715e&#34;&gt;# Textmining&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(pdftools)  &lt;span style=&#34;color:#75715e&#34;&gt;# PDF einlesen&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(downloader)  &lt;span style=&#34;color:#75715e&#34;&gt;# Daten herunterladen&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# library(knitr)  # HTML-Tabellen&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(htmlTable)  &lt;span style=&#34;color:#75715e&#34;&gt;# HTML-Tabellen&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(lsa)  &lt;span style=&#34;color:#75715e&#34;&gt;# Stopwörter &lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(SnowballC)  &lt;span style=&#34;color:#75715e&#34;&gt;# Wörter trunkieren&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(wordcloud)  &lt;span style=&#34;color:#75715e&#34;&gt;# Wordcloud anzeigen&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(gridExtra)  &lt;span style=&#34;color:#75715e&#34;&gt;# Kombinierte Plots&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(dplyr)  &lt;span style=&#34;color:#75715e&#34;&gt;# Datenjudo&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(ggplot2)  &lt;span style=&#34;color:#75715e&#34;&gt;# Visualisierung &lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Ein einführendes Tutorial zu Textmining; analysiert wird das Parteiprogramm der Partei &amp;ldquo;Alternative für Deutschland&amp;rdquo; (AfD). Vor dem Hintergrund des gestiegenen Zuspruchs von Rechtspopulisten und der großen Gefahr, die von diesem Gedankengut ausdünstet, erscheint mir eine facettenreiche Analyse des Phänomens &amp;ldquo;Rechtspopulismus&amp;rdquo; nötig.&lt;/p&gt;</description>
+      <description>Für diesen Post benötigte R-Pakete:
+library(stringr) # Textverarbeitung library(tidytext) # Textmining library(pdftools) # PDF einlesen library(downloader) # Daten herunterladen # library(knitr) # HTML-Tabellen library(htmlTable) # HTML-Tabellen library(lsa) # Stopwörter library(SnowballC) # Wörter trunkieren library(wordcloud) # Wordcloud anzeigen library(gridExtra) # Kombinierte Plots library(dplyr) # Datenjudo library(ggplot2) # Visualisierung Ein einführendes Tutorial zu Textmining; analysiert wird das Parteiprogramm der Partei &amp;ldquo;Alternative für Deutschland&amp;rdquo; (AfD). Vor dem Hintergrund des gestiegenen Zuspruchs von Rechtspopulisten und der großen Gefahr, die von diesem Gedankengut ausdünstet, erscheint mir eine facettenreiche Analyse des Phänomens &amp;ldquo;Rechtspopulismus&amp;rdquo; nötig.</description>
     </item>
+    
   </channel>
 </rss>

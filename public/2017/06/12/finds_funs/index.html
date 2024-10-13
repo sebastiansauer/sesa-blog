@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.135.0">
+<meta name="generator" content="Hugo 0.101.0" />
 
 
 <title>Identifying the package of a function - sesa blog</title>
@@ -93,7 +93,7 @@
 <p>Additionally, sometimes we have in mind &lsquo;oh I should make use of this function <code>filter</code> here&rsquo;, but cannot remember which package should be loaded for that function.</p>
 <p>A number of ways exist to address this question. Our convenience function here takes the name of the function for which we search its residential package as its input (that&rsquo;s the only parameter). The function will then return the one more packgages in which the function was found. In addition, it returns for each package found whether that package comes with standard R (is &lsquo;built-in&rsquo;). That information can be useful to know whether someone needs to install a package in order to use some function. The function also returns whether the function is currently loaded.</p>
 <h1 id="code">Code</h1>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>find_funs <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">function</span>(f) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>find_funs <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(f) {
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Returns dataframe with two columns:</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e"># `package_name`: packages(s) which the function is part of (chr)</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e"># `builtin_package`:  whether the package comes with standard R (a &#39;builtin&#39;  package)</span>
@@ -102,7 +102,7 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e"># f: name of function for which the package(s) are to be identified.</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#e6db74">&#34;tidyverse&#34;</span> <span style="color:#f92672">%in%</span> <span style="color:#a6e22e">rownames</span>(<span style="color:#a6e22e">installed.packages</span>()) <span style="color:#f92672">==</span> <span style="color:#66d9ef">FALSE</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">if </span>(<span style="color:#e6db74">&#34;tidyverse&#34;</span> <span style="color:#f92672">%in%</span> <span style="color:#a6e22e">rownames</span>(<span style="color:#a6e22e">installed.packages</span>()) <span style="color:#f92672">==</span> <span style="color:#66d9ef">FALSE</span>) {
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;tidyverse is needed for this fuction. Please install. Stopping&#34;</span>)
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">stop</span>()}
 </span></span><span style="display:flex;"><span>
@@ -115,7 +115,7 @@
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e"># extract package name from help file</span>
 </span></span><span style="display:flex;"><span>  pckg_hits <span style="color:#f92672">&lt;-</span> help_installed<span style="color:#f92672">$</span>matches[,<span style="color:#e6db74">&#34;Package&#34;</span>]
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">length</span>(pckg_hits) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) pckg_hits <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;No_results_found&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">if </span>(<span style="color:#a6e22e">length</span>(pckg_hits) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) pckg_hits <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;No_results_found&#34;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e"># get list of built-in packages</span>
@@ -134,7 +134,7 @@
 </span></span><span style="display:flex;"><span>    loaded <span style="color:#f92672">=</span> <span style="color:#a6e22e">match</span>(<span style="color:#a6e22e">paste</span>(<span style="color:#e6db74">&#34;package:&#34;</span>,pckg_hits, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>), <span style="color:#a6e22e">search</span>(), nomatch <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>
 </span></span><span style="display:flex;"><span>  )
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span>(results)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">return</span>(results)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h1 id="example">Example</h1>

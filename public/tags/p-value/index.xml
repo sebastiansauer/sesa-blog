@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>P-Value on sesa blog</title>
+    <title>p-value on sesa blog</title>
     <link>https://data-se.netlify.app/tags/p-value/</link>
-    <description>Recent content in P-Value on sesa blog</description>
-    <generator>Hugo</generator>
+    <description>Recent content in p-value on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 24 Jan 2018 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://data-se.netlify.app/tags/p-value/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 24 Jan 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/p-value/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Simulate p-hacking - adding observations</title>
       <link>https://data-se.netlify.app/2018/01/24/simulate-p-hacking-adding-observations/</link>
       <pubDate>Wed, 24 Jan 2018 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2018/01/24/simulate-p-hacking-adding-observations/</guid>
-      <description>&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/plotly-binding/plotly.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/typedarray/typedarray.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://data-se.netlify.app/rmarkdown-libs/crosstalk/css/crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/crosstalk/js/crosstalk.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://data-se.netlify.app/rmarkdown-libs/plotly-htmlwidgets-css/plotly-htmlwidgets.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/plotly-main/plotly-latest.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;p&gt;Let’s simulate p-values as a funtion of sample size. We assume that some researcher collects one data point, computes the p-value, and repeats until p-value falls below some arbitrary threshold. Oh and yes, there is no real effect. For the sake of spending the budget, assume that our researcher collects a sample size of &lt;span class=&#34;math inline&#34;&gt;\(n=100\)&lt;/span&gt;.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;This idea stems from this great article &lt;a href=&#34;http://journals.sagepub.com/doi/abs/10.1177/0956797611417632&#34;&gt;False-Positive Psychology: Undisclosed Flexibility in Data Collection and Analysis Allows Presenting Anything as Significant&lt;/a&gt;; cf. Figure 2. However, source coude is not given and the right to reprint is confined (AFAIK).&lt;/p&gt;</description>
+      <description>Let’s simulate p-values as a funtion of sample size. We assume that some researcher collects one data point, computes the p-value, and repeats until p-value falls below some arbitrary threshold. Oh and yes, there is no real effect. For the sake of spending the budget, assume that our researcher collects a sample size of \(n=100\).
+This idea stems from this great article False-Positive Psychology: Undisclosed Flexibility in Data Collection and Analysis Allows Presenting Anything as Significant; cf.</description>
     </item>
+    
   </channel>
 </rss>

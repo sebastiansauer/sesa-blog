@@ -1,33 +1,48 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Causality on sesa blog</title>
+    <title>causality on sesa blog</title>
     <link>https://data-se.netlify.app/tags/causality/</link>
-    <description>Recent content in Causality on sesa blog</description>
-    <generator>Hugo</generator>
+    <description>Recent content in causality on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Dec 2021 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://data-se.netlify.app/tags/causality/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/causality/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Simulation on controlling confounders</title>
       <link>https://data-se.netlify.app/2021/12/01/simulation-on-controlling-confounders/</link>
       <pubDate>Wed, 01 Dec 2021 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2021/12/01/simulation-on-controlling-confounders/</guid>
-      <description>&lt;script src=&#34;https://data-se.netlify.app/2021/12/01/simulation-on-controlling-confounders/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;confounder&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Confounder&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;A confounder is on of the few (maybe three) “atoms” of causality, following the framework of Judea Parl and others.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;A confounder can be depicted like this:&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;chunk-img/unnamed-chunk-1-1.png&#34; width=&#34;100%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;a href=&#34;http://www.nejm.org/doi/abs/10.1056/NEJMon1211064&#34;&gt;Following a study&lt;/a&gt; that reported a strong correlation between chocolate consumption and Nobel prices.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&lt;img src=&#34;https://i0.wp.com/knowingneurons.com/wp-content/uploads/2013/06/correlation_550.png?w=550&amp;ssl=1&#34; width=&#34;50%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;simulating-a-confounder-structure&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Simulating a confounder structure&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Now let’s simulate a simple confounder structure.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;Here’s some code that will help us:&lt;/p&gt;</description>
+      <description>Confounder A confounder is on of the few (maybe three) “atoms” of causality, following the framework of Judea Parl and others.
+A confounder can be depicted like this:
+Following a study that reported a strong correlation between chocolate consumption and Nobel prices.
+Simulating a confounder structure Now let’s simulate a simple confounder structure.
+Here’s some code that will help us:
+Let’s have a look at the code:
+## ## n &amp;lt;- 100 ## ## set.</description>
     </item>
+    
     <item>
       <title>When adding variable hurts – The collider bias</title>
       <link>https://data-se.netlify.app/2020/06/04/when-adding-variable-hurts-the-collider-bias/</link>
       <pubDate>Thu, 04 Jun 2020 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2020/06/04/when-adding-variable-hurts-the-collider-bias/</guid>
-      <description>&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://data-se.netlify.app/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;load-packages&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Load packages&lt;/h1&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&#xD;&#xA;library(conflicted)&#xD;&#xA;library(ggdag)&#xD;&#xA;library(broom)&#xD;&#xA;library(GGally)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;motivation&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Motivation&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Assume there is some scientist with some theory. Her theory holds that X and Z are causes of Y. &lt;code&gt;dag1&lt;/code&gt; shows her DAG (ie., her theory depicted as a causal diagram). Our scientist is concerned with the causal effect of X on Y, where X is a treatment variable (exposure) and Y is the dependent variable under scrutiny (outcome).&lt;/p&gt;&#xD;&#xA;&lt;p&gt;See e.g,. &lt;a href=&#34;https://journals.sagepub.com/doi/full/10.1177/2515245917745629&#34;&gt;here&lt;/a&gt; or &lt;a href=&#34;https://amstat.tandfonline.com/doi/full/10.1080/10691898.2020.1752859&#34;&gt;here&lt;/a&gt; for intros to DAGs and causality.&lt;/p&gt;</description>
+      <description>Load packages library(tidyverse) library(conflicted) library(ggdag) library(broom) library(GGally) Motivation Assume there is some scientist with some theory. Her theory holds that X and Z are causes of Y. dag1 shows her DAG (ie., her theory depicted as a causal diagram). Our scientist is concerned with the causal effect of X on Y, where X is a treatment variable (exposure) and Y is the dependent variable under scrutiny (outcome).
+See e.g,. here or here for intros to DAGs and causality.</description>
     </item>
+    
     <item>
       <title>Simulating Berkson&#39;s paradox</title>
       <link>https://data-se.netlify.app/2020/04/16/simulation-berkson-s-paradox/</link>
       <pubDate>Thu, 16 Apr 2020 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2020/04/16/simulation-berkson-s-paradox/</guid>
-      <description>&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;p&gt;This post was inspired by &lt;a href=&#34;https://www.tandfonline.com/doi/full/10.1080/10691898.2020.1752859&#34;&gt;this paper&lt;/a&gt; of Karsten Luebke and coauthors.&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggdag)&#xD;&#xA;library(ggthemes)&#xD;&#xA;library(mosaic)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;p&gt;We’ll stratify our sample into two groups: students (Studium) and non-students (kein Studium).&lt;/p&gt;&#xD;&#xA;&lt;div id=&#34;structural-causal-model&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;Structural causal model&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;First, we define the structure of our causal model.&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;set.seed(42)  # reproducibilty&#xD;&#xA;N &amp;lt;- 1e03&#xD;&#xA;IQ = rnorm(N)&#xD;&#xA;Fleiss = rnorm(N)&#xD;&#xA;Eignung = 1/2 * IQ + 1/2 * Fleiss + rnorm(N, 0, .1)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;p&gt;That is, aptitude (Eignung) is a function of intelligence (IQ) and dilligence (Fleiss), where the input variables have the same impact on the outcome variable (aptitude). Throw in some Gaussian noise.&lt;/p&gt;</description>
+      <description>This post was inspired by this paper of Karsten Luebke and coauthors.
+library(ggdag) library(ggthemes) library(mosaic) We’ll stratify our sample into two groups: students (Studium) and non-students (kein Studium).
+Structural causal model First, we define the structure of our causal model.
+set.seed(42) # reproducibilty N &amp;lt;- 1e03 IQ = rnorm(N) Fleiss = rnorm(N) Eignung = 1/2 * IQ + 1/2 * Fleiss + rnorm(N, 0, .1) That is, aptitude (Eignung) is a function of intelligence (IQ) and dilligence (Fleiss), where the input variables have the same impact on the outcome variable (aptitude).</description>
     </item>
+    
   </channel>
 </rss>

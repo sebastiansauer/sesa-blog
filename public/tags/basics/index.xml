@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Basics on sesa blog</title>
+    <title>basics on sesa blog</title>
     <link>https://data-se.netlify.app/tags/basics/</link>
-    <description>Recent content in Basics on sesa blog</description>
-    <generator>Hugo</generator>
+    <description>Recent content in basics on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 15 Jul 2023 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://data-se.netlify.app/tags/basics/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/basics/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Filtering vectors in R</title>
       <link>https://data-se.netlify.app/2023/07/15/filtering-vectors/</link>
       <pubDate>Sat, 15 Jul 2023 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2023/07/15/filtering-vectors/</guid>
-      <description>&lt;div id=&#34;TOC&#34;&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#motivation&#34; id=&#34;toc-motivation&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Motivation&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#setup&#34; id=&#34;toc-setup&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Setup&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#way-1-base-r&#34; id=&#34;toc-way-1-base-r&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; Way 1: Base R&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#way-2-magrittr&#34; id=&#34;toc-way-2-magrittr&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Way 2: magrittr&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#way-3-tidyverse&#34; id=&#34;toc-way-3-tidyverse&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; Way 3: tidyverse&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#way-4-purrr&#34; id=&#34;toc-way-4-purrr&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6&lt;/span&gt; Way 4: purrr&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#conclusions&#34; id=&#34;toc-conclusions&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;7&lt;/span&gt; Conclusions&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;motivation&#34; class=&#34;section level1&#34; number=&#34;1&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; Motivation&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;We have a vector and we want to filter it by name.&lt;/p&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div id=&#34;setup&#34; class=&#34;section level1&#34; number=&#34;2&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; Setup&lt;/h1&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──&#xD;&#xA;## ✔ dplyr     1.1.2     ✔ readr     2.1.4&#xD;&#xA;## ✔ forcats   1.0.0     ✔ stringr   1.5.0&#xD;&#xA;## ✔ ggplot2   3.4.2     ✔ tibble    3.2.1&#xD;&#xA;## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0&#xD;&#xA;## ✔ purrr     1.0.1     &#xD;&#xA;## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──&#xD;&#xA;## ✖ dplyr::filter() masks stats::filter()&#xD;&#xA;## ✖ dplyr::lag()    masks stats::lag()&#xD;&#xA;## ℹ Use the conflicted package (&amp;lt;http://conflicted.r-lib.org/&amp;gt;) to force all conflicts to become errors&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;p&gt;Demo vector:&lt;/p&gt;</description>
+      <description>1 Motivation 2 Setup 3 Way 1: Base R 4 Way 2: magrittr 5 Way 3: tidyverse 6 Way 4: purrr 7 Conclusions 1 Motivation We have a vector and we want to filter it by name.
+2 Setup library(tidyverse) ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ── ## ✔ dplyr 1.1.2 ✔ readr 2.1.4 ## ✔ forcats 1.0.0 ✔ stringr 1.5.0 ## ✔ ggplot2 3.4.2 ✔ tibble 3.</description>
     </item>
+    
   </channel>
 </rss>

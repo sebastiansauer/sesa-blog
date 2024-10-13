@@ -1,26 +1,38 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Plot on sesa blog</title>
+    <title>plot on sesa blog</title>
     <link>https://data-se.netlify.app/tags/plot/</link>
-    <description>Recent content in Plot on sesa blog</description>
-    <generator>Hugo</generator>
+    <description>Recent content in plot on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 12 Dec 2018 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://data-se.netlify.app/tags/plot/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 12 Dec 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/tags/plot/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Changing the default color scheme in ggplot2</title>
       <link>https://data-se.netlify.app/2018/12/12/changing-the-default-color-scheme-in-ggplot2/</link>
       <pubDate>Wed, 12 Dec 2018 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2018/12/12/changing-the-default-color-scheme-in-ggplot2/</guid>
-      <description>&lt;script src=&#34;https://data-se.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;hr /&gt;&#xD;&#xA;&lt;p&gt;UPDATE: see update below based on comments from &lt;a href=&#34;https://disqus.com/by/nmarkgraf/?utm_source=reply&amp;amp;utm_medium=email&amp;amp;utm_content=comment_author&#34;&gt;nmarkgraf&lt;/a&gt;.&lt;/p&gt;&#xD;&#xA;&lt;hr /&gt;&#xD;&#xA;&lt;hr /&gt;&#xD;&#xA;&lt;p&gt;UPDATE 2: I changed the theme to &lt;code&gt;theme_minimal&lt;/code&gt; thanks to the comment from &lt;span class=&#34;citation&#34;&gt;@neuwirthe&lt;/span&gt;.&lt;/p&gt;&#xD;&#xA;&lt;hr /&gt;&#xD;&#xA;&lt;hr /&gt;&#xD;&#xA;&lt;p&gt;UPDATE 3: A more efficient way to plot a discrete scale using viridis. Thanks to &lt;a href=&#34;https://stackoverflow.com/users/247482/flying-sheep&#34;&gt;flying sheep&lt;/a&gt;; see way 4 below&lt;/p&gt;&#xD;&#xA;&lt;hr /&gt;&#xD;&#xA;&lt;p&gt;The default color scheme in ggplot2 is suitable for many purposes, but, for instance, it is not suitable for b/w printing, and maybe not suitable for persons with limited color perception.&lt;/p&gt;</description>
+      <description>UPDATE: see update below based on comments from nmarkgraf.
+UPDATE 2: I changed the theme to theme_minimal thanks to the comment from @neuwirthe.
+UPDATE 3: A more efficient way to plot a discrete scale using viridis. Thanks to flying sheep; see way 4 below
+The default color scheme in ggplot2 is suitable for many purposes, but, for instance, it is not suitable for b/w printing, and maybe not suitable for persons with limited color perception.</description>
     </item>
+    
     <item>
       <title>Great dataviz examples in rstats</title>
       <link>https://data-se.netlify.app/2017/11/20/great-dataviz-examples-in-rstats/</link>
       <pubDate>Mon, 20 Nov 2017 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2017/11/20/great-dataviz-examples-in-rstats/</guid>
-      <description>&lt;p&gt;Here come some stunning examples of data visualizations, all built with R. R code of each diagram is available at the source. Enjoy! #beautiful.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;UPDATE: I&amp;rsquo;ve included links to the R source!&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h1 id=&#34;plotting-geo-maps-along-with-subplots-in-ggplot2&#34;&gt;Plotting geo maps along with subplots in &lt;code&gt;ggplot2&lt;/code&gt;&lt;/h1&gt;&#xA;&lt;p&gt;I like this one by Ilya Kashnitsky:&lt;/p&gt;&#xA;&lt;img src=&#34;https://ikashnitsky.github.io/images/170522/s-fig-01.png&#34; width = &#34;800&#34;&gt;&#xD;&#xA;&lt;p&gt;Similarly, by the same author:&lt;/p&gt;&#xA;&lt;img src = &#34;https://pbs.twimg.com/media/DDRrLeRWsAACFCh.jpg&#34; width=&#34;800&#34;&gt;&#xD;&#xA;&lt;p&gt;&lt;a href=&#34;https://ikashnitsky.github.io/2017/align-six-maps/?utm_content=bufferc04f2&amp;amp;utm_medium=social&amp;amp;utm_source=twitter.com&amp;amp;utm_campaign=buffer&#34;&gt;Source&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Great work, @ikashnitsky!&lt;/p&gt;&#xA;&lt;h1 id=&#34;cirlize-chord-diagrams&#34;&gt;Cirlize (Chord) diagrams&lt;/h1&gt;&#xA;&lt;p&gt;Plotting association in a circular form yields aesthetic examples of diagrams, see the following examples&lt;/p&gt;</description>
+      <description>Here come some stunning examples of data visualizations, all built with R. R code of each diagram is available at the source. Enjoy! #beautiful.
+UPDATE: I&amp;rsquo;ve included links to the R source!
+Plotting geo maps along with subplots in ggplot2 I like this one by Ilya Kashnitsky:
+Similarly, by the same author:
+Source
+Great work, @ikashnitsky!
+Cirlize (Chord) diagrams Plotting association in a circular form yields aesthetic examples of diagrams, see the following examples</description>
     </item>
+    
   </channel>
 </rss>

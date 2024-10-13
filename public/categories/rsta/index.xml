@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Rsta on sesa blog</title>
+    <title>rsta on sesa blog</title>
     <link>https://data-se.netlify.app/categories/rsta/</link>
-    <description>Recent content in Rsta on sesa blog</description>
-    <generator>Hugo</generator>
+    <description>Recent content in rsta on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 22 Jun 2018 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://data-se.netlify.app/categories/rsta/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 22 Jun 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/categories/rsta/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Easy way to convert factors zu numbers</title>
       <link>https://data-se.netlify.app/2018/06/22/easy-way-to-convert-factors-zu-numbers/</link>
       <pubDate>Fri, 22 Jun 2018 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2018/06/22/easy-way-to-convert-factors-zu-numbers/</guid>
-      <description>&lt;p&gt;Converting factors to numbers in R can be frustrating. Consider the following sitation: We have some data, and try to convert a factor (&lt;code&gt;sex&lt;/code&gt; in &lt;code&gt;tips&lt;/code&gt;, see below) to a numeric variable:&lt;/p&gt;&#xD;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&#xD;&#xA;library(sjmisc)   # for recoding&#xD;&#xA;data(tips, package = &amp;quot;reshape2&amp;quot;)&#xD;&#xA;glimpse(tips)&#xD;&#xA;#&amp;gt; Observations: 244&#xD;&#xA;#&amp;gt; Variables: 7&#xD;&#xA;#&amp;gt; $ total_bill &amp;lt;dbl&amp;gt; 16.99, 10.34, 21.01, 23.68, 24.59, 25.29, 8.77, 26....&#xD;&#xA;#&amp;gt; $ tip        &amp;lt;dbl&amp;gt; 1.01, 1.66, 3.50, 3.31, 3.61, 4.71, 2.00, 3.12, 1.9...&#xD;&#xA;#&amp;gt; $ sex        &amp;lt;fct&amp;gt; Female, Male, Male, Male, Female, Male, Male, Male,...&#xD;&#xA;#&amp;gt; $ smoker     &amp;lt;fct&amp;gt; No, No, No, No, No, No, No, No, No, No, No, No, No,...&#xD;&#xA;#&amp;gt; $ day        &amp;lt;fct&amp;gt; Sun, Sun, Sun, Sun, Sun, Sun, Sun, Sun, Sun, Sun, S...&#xD;&#xA;#&amp;gt; $ time       &amp;lt;fct&amp;gt; Dinner, Dinner, Dinner, Dinner, Dinner, Dinner, Din...&#xD;&#xA;#&amp;gt; $ size       &amp;lt;int&amp;gt; 2, 3, 3, 2, 4, 4, 2, 4, 2, 2, 2, 4, 2, 4, 2, 2, 3, ...&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;p&gt;Ok, here we go. Say, we want &lt;code&gt;&amp;quot;Female&amp;quot; = 1&lt;/code&gt; and &lt;code&gt;&amp;quot;Male&amp;quot; = 0&lt;/code&gt;.&lt;/p&gt;</description>
+      <description>Converting factors to numbers in R can be frustrating. Consider the following sitation: We have some data, and try to convert a factor (sex in tips, see below) to a numeric variable:
+library(tidyverse) library(sjmisc) # for recoding data(tips, package = &amp;quot;reshape2&amp;quot;) glimpse(tips) #&amp;gt; Observations: 244 #&amp;gt; Variables: 7 #&amp;gt; $ total_bill &amp;lt;dbl&amp;gt; 16.99, 10.34, 21.01, 23.68, 24.59, 25.29, 8.77, 26.... #&amp;gt; $ tip &amp;lt;dbl&amp;gt; 1.01, 1.66, 3.50, 3.31, 3.61, 4.</description>
     </item>
+    
   </channel>
 </rss>

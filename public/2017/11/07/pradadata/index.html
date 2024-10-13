@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.135.0">
+<meta name="generator" content="Hugo 0.101.0" />
 
 
 <title>Package &#39;pradadata&#39; on Github - feature social science data - sesa blog</title>
@@ -78,7 +78,7 @@
       <p>Recently, I&rsquo;ve put a package on Github featureing some social science data set. Some data came from official sites; my contribution was to clear &rsquo;em up, and render comfortably accessable for automatic inquiry (nice header lines, no special enconding, flat csvs&hellip;.). In other cases it&rsquo;s unpublished data collected by friends, students of mine or myself.</p>
 <p>Let&rsquo;s check its contents using a function by <a href="https://stackoverflow.com/users/313163/maiasaura">Maiasaura</a> from this <a href="https://stackoverflow.com/questions/12575098/to-see-all-the-content-not-just-objects-in-a-package-in-r">SO post</a>.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(pradadata)
-</span></span><span style="display:flex;"><span>lsp <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">function</span> (package, all.names <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, pattern) {
+</span></span><span style="display:flex;"><span>lsp <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function </span>(package, all.names <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, pattern) {
 </span></span><span style="display:flex;"><span>    package <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">deparse</span>(<span style="color:#a6e22e">substitute</span>(package))
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ls</span>(pos <span style="color:#f92672">=</span> <span style="color:#a6e22e">paste</span>(<span style="color:#e6db74">&#34;package&#34;</span>, package, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;:&#34;</span>), all.names <span style="color:#f92672">=</span> all.names, 
 </span></span><span style="display:flex;"><span>        pattern <span style="color:#f92672">=</span> pattern)

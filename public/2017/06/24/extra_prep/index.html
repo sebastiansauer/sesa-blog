@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.135.0">
+<meta name="generator" content="Hugo 0.101.0" />
 
 
 <title>Preparation of extraversion survey data - sesa blog</title>
@@ -168,18 +168,18 @@
 </span></span></code></pre></div><h1 id="compute-summaries-extraversion-score">Compute summaries (extraversion score)</h1>
 <p>Let&rsquo;s compute the mean but also the median and mode for each <em>person</em> (ie., row) with regard to the 10 extraversion items.</p>
 <p>For that, we&rsquo;ll use a helper function to compute the mode (most frequent value).</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>most <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">function</span>(x){
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>(<span style="color:#a6e22e">is.numeric</span>(x))) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>most <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x){
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">if </span>(<span style="color:#f92672">!</span>(<span style="color:#a6e22e">is.numeric</span>(x))) {
 </span></span><span style="display:flex;"><span>    out <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">NA</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span>(out)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">return</span>(out)
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>  x <span style="color:#f92672">&lt;-</span> stats<span style="color:#f92672">::</span><span style="color:#a6e22e">na.omit</span>(x)
 </span></span><span style="display:flex;"><span>  t <span style="color:#f92672">&lt;-</span> base<span style="color:#f92672">::</span><span style="color:#a6e22e">table</span>(x)
 </span></span><span style="display:flex;"><span>  m <span style="color:#f92672">&lt;-</span> base<span style="color:#f92672">::</span><span style="color:#a6e22e">max</span>(t)
 </span></span><span style="display:flex;"><span>  out <span style="color:#f92672">&lt;-</span> base<span style="color:#f92672">::</span><span style="color:#a6e22e">as.numeric</span>(base<span style="color:#f92672">::</span><span style="color:#a6e22e">names</span>(t)[t<span style="color:#f92672">==</span>m])
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (base<span style="color:#f92672">::</span><span style="color:#a6e22e">length</span>(out) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) out <span style="color:#f92672">&lt;-</span> out[1]
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (base<span style="color:#f92672">::</span><span style="color:#a6e22e">length</span>(out) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) out <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">NA</span>
-</span></span><span style="display:flex;"><span>  base<span style="color:#f92672">::</span><span style="color:#66d9ef">return</span>(out)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">if </span>(base<span style="color:#f92672">::</span><span style="color:#a6e22e">length</span>(out) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) out <span style="color:#f92672">&lt;-</span> out[1]
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">if </span>(base<span style="color:#f92672">::</span><span style="color:#a6e22e">length</span>(out) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) out <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">NA</span>
+</span></span><span style="display:flex;"><span>  base<span style="color:#f92672">::</span><span style="color:#a6e22e">return</span>(out)
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>extra <span style="color:#f92672">%&gt;%</span> 
 </span></span><span style="display:flex;"><span>  rowwise <span style="color:#f92672">%&gt;%</span> 
@@ -226,7 +226,7 @@
 </code></pre><p>Neat! Now let&rsquo;s bind that to the main df.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>extra <span style="color:#f92672">%&gt;%</span> 
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">bind_cols</span>(extra_scores) <span style="color:#f92672">-&gt;</span> extra
-</span></span></code></pre></div><p>Done! Enyoj the freshly juiced data frame &#x1f60e;</p>
+</span></span></code></pre></div><p>Done! Enyoj the freshly juiced data frame 😎</p>
 
     </div>
 

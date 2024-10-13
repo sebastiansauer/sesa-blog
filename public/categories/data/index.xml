@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Data on sesa blog</title>
+    <title>data on sesa blog</title>
     <link>https://data-se.netlify.app/categories/data/</link>
-    <description>Recent content in Data on sesa blog</description>
-    <generator>Hugo</generator>
+    <description>Recent content in data on sesa blog</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 12 Sep 2022 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://data-se.netlify.app/categories/data/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 12 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://data-se.netlify.app/categories/data/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Great open-access data sets of public interest</title>
       <link>https://data-se.netlify.app/2022/09/12/great-open-access-data-sets-of-public-interest/</link>
       <pubDate>Mon, 12 Sep 2022 00:00:00 +0000</pubDate>
+      
       <guid>https://data-se.netlify.app/2022/09/12/great-open-access-data-sets-of-public-interest/</guid>
-      <description>&lt;div id=&#34;TOC&#34;&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#data&#34; id=&#34;toc-data&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Data&lt;/a&gt;&#xD;&#xA;&lt;ul&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#licences&#34; id=&#34;toc-licences&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1.1&lt;/span&gt; Licences&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#general&#34; id=&#34;toc-general&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1.2&lt;/span&gt; General&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#environment&#34; id=&#34;toc-environment&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1.3&lt;/span&gt; Environment&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#health&#34; id=&#34;toc-health&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1.4&lt;/span&gt; Health&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;li&gt;&lt;a href=&#34;#psychology&#34; id=&#34;toc-psychology&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1.5&lt;/span&gt; Psychology&lt;/a&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&lt;/li&gt;&#xD;&#xA;&lt;/ul&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;data&#34; class=&#34;section level1&#34; number=&#34;1&#34;&gt;&#xD;&#xA;&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; Data&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;This posts lists some great open-access data sets of public or broad interest.&#xD;&#xA;This list is by no means comprehensiv, it’s just a casual curation of interesting sources.&#xD;&#xA;Note that this post is not updated, so more frequent releases than documented here are possible.&lt;/p&gt;&#xD;&#xA;&lt;p&gt;You’ll find both links to repositories as well as to particular datasets, in no special order.&lt;/p&gt;</description>
+      <description>1 Data 1.1 Licences 1.2 General 1.3 Environment 1.4 Health 1.5 Psychology 1 Data This posts lists some great open-access data sets of public or broad interest. This list is by no means comprehensiv, it’s just a casual curation of interesting sources. Note that this post is not updated, so more frequent releases than documented here are possible.
+You’ll find both links to repositories as well as to particular datasets, in no special order.</description>
     </item>
+    
   </channel>
 </rss>
