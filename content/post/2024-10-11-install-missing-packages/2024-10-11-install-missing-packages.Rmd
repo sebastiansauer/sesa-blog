@@ -67,6 +67,13 @@ deps$Package |> unique() |> head()
 
 Okay, now we know which packages are needed.
 
+You may want to save the list of your installed packages. This may prove handy after updating a new version of R such as from 4.4.0 to 4.5.
+
+```{r eval=FALSE}
+writeRDS(deps, "deps.rds")
+```
+
+
 # Install missing packages from CRAN
 
 

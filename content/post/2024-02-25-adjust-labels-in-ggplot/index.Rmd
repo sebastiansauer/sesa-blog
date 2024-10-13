@@ -37,6 +37,7 @@ knitr::opts_chunk$set(
 
 ```{r load-libs, message = FALSE, warning = FALSE}
 library(tidyverse)  # data wrangling
+library(see)  # okabeito_colors
 ```
 
 
@@ -116,6 +117,167 @@ mariokart %>%
 
 
 Similarly, one case use `hjust = "left"` for horizontal alignment.
+
+# Expanding the limits
+
+Let's consider a second example, where it helped to expand the limits of the coordinates.
+
+In this example, we use Weather data from the German DWD  [i.e., Deutschen Wetterdienst, DWD](https://www.dwd.de/DE/Home/home_node.html) .
+
+After some [data wrangling, which will not discussed here](https://data-se.netlify.app/2022/07/24/preparing-german-weather-data/), there's a nice data set waiting for further scrutiny.
+
+
+```{r}
+wetter_path <- "https://raw.githubusercontent.com/sebastiansauer/Lehre/main/data/wetter-dwd/precip_temp_DWD.csv"
+wetter <- read.csv(wetter_path)
+```
+
+
+Some data preparation:
+
+
+
+```{r}
+wetter <-
+  wetter %>% 
+  mutate(after_1950 = year > 1950) %>% 
+  filter(region != "Deutschland")  # ohne Daten für Gesamt-Deutschland
+```
+
+Here's a linear model for our weather data:
+
+```{r}
+lm_wetter_region <- lm(temp ~ region, data = wetter)
+```
+
+
+```{r}
+wetter_summ <- 
+  wetter %>% 
+  group_by(region) %>% 
+  summarise(temp = mean(temp)) %>% 
+  mutate(id = 0:15) %>% 
+  ungroup() %>%
+  mutate(grandmean = mean(temp),
+         delta = temp - grandmean)
+
+wetter_summ %>%  
+  ggplot(aes(y = region, x = temp)) +
+  theme_minimal() +
+  geom_label(aes(label = paste0("b", id),
+                 x = grandmean + delta), 
+             vjust = 1,
+             size = 2,
+             color = okabeito_colors()[1]) +
+  geom_vline(xintercept = coef(lm_wetter_region)[1], linetype = "dashed", color = okabeito_colors()[2]) +
+  
+  #coord_cartesian(xlim = c(7, 10), ylim = c(0, 16))  +
+ 
+  annotate("label",
+           y = 1,
+           x = coef(lm_wetter_region)[1],
+           vjust = 1,
+           label = paste0("b0"),
+           #size = 6,
+           color = okabeito_colors()[2]) +
+  annotate("point", 
+           y = 1, 
+           x = coef(lm_wetter_region)[1], 
+           color = okabeito_colors()[2],
+           #vjust = 1,
+           size = 4) +
+  geom_segment(aes(yend = region, xend = temp), 
+               x = coef(lm_wetter_region)[1], 
+               color = okabeito_colors()[1])  +
+    geom_point() +
+  labs(y = "",
+       x = "Temperatur")
+```
+
+Behold the label right at the bottom of the diagram, "b0".
+It is not displayed properly.
+
+One way to get it back into the picture is bay extending the limits of the y-axis:
+
+
+```{r}
+
+wetter_summ %>%  
+  ggplot(aes(y = region, x = temp)) +
+  theme_minimal() +
+  geom_label(aes(label = paste0("b", id),
+                 x = grandmean + delta), 
+             vjust = 1,
+             size = 2,
+             color = okabeito_colors()[1]) +
+  geom_vline(xintercept = coef(lm_wetter_region)[1], linetype = "dashed", color = okabeito_colors()[2]) +
+  
+ coord_cartesian(xlim = c(7, 10), ylim = c(0, 16))  +  # back in the game!
+ 
+  annotate("label",
+           y = 1,
+           x = coef(lm_wetter_region)[1],
+           vjust = 1,
+           label = paste0("b0"),
+           #size = 6,
+           color = okabeito_colors()[2]) +
+  annotate("point", 
+           y = 1, 
+           x = coef(lm_wetter_region)[1], 
+           color = okabeito_colors()[2],
+           #vjust = 1,
+           size = 4) +
+  geom_segment(aes(yend = region, xend = temp), 
+               x = coef(lm_wetter_region)[1], 
+               color = okabeito_colors()[1])  +
+    geom_point() +
+  labs(y = "",
+       x = "Temperatur")
+```
+
+
+# Duckdive the problem: tinyfy the label
+
+It may feel like cheating, but, hey, problem solved: just decrease the size of the label.
+
+
+```{r}
+
+wetter_summ %>%  
+  ggplot(aes(y = region, x = temp)) +
+  theme_minimal() +
+  geom_point() +
+  annotate("point", 
+           y = 1, 
+           x = coef(lm_wetter_region)[1], 
+           color = okabeito_colors()[2],
+           size = 4,
+           alpha = .5) +
+  geom_label(aes(label = paste0("b", id),
+                 x = grandmean + delta), 
+             vjust = 1,
+             size = 2,
+             color = okabeito_colors()[1]) +
+  geom_vline(xintercept = coef(lm_wetter_region)[1], 
+             linetype = "dashed", color = okabeito_colors()[2]) +
+  
+  #coord_cartesian(xlim = c(7, 10), ylim = c(0, 16))  +
+ 
+  annotate("label",
+           y = 1,
+           x = coef(lm_wetter_region)[1],
+           vjust = 1,
+           label = paste0("b0"),
+           size = 2,
+           color = okabeito_colors()[2]) +
+
+  geom_segment(aes(yend = region, xend = temp), 
+               x = coef(lm_wetter_region)[1], 
+               color = okabeito_colors()[1])  +
+  labs(y = "",
+       x = "Temperatur")
+```
+
 
 
 

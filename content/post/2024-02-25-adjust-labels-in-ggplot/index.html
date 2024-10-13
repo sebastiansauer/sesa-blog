@@ -21,13 +21,16 @@ output:
 <li><a href="#unadjusted-labels" id="toc-unadjusted-labels"><span class="toc-section-number">3</span> Unadjusted labels</a></li>
 <li><a href="#adjusted-labels-manually" id="toc-adjusted-labels-manually"><span class="toc-section-number">4</span> Adjusted labels manually</a></li>
 <li><a href="#adjust-labels-automatically" id="toc-adjust-labels-automatically"><span class="toc-section-number">5</span> Adjust labels automatically</a></li>
-<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">6</span> Reproducibility</a></li>
+<li><a href="#expanding-the-limits" id="toc-expanding-the-limits"><span class="toc-section-number">6</span> Expanding the limits</a></li>
+<li><a href="#duckdive-the-problem-tinyfy-the-label" id="toc-duckdive-the-problem-tinyfy-the-label"><span class="toc-section-number">7</span> Duckdive the problem: tinyfy the label</a></li>
+<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">8</span> Reproducibility</a></li>
 </ul>
 </div>
 
 <div id="load-packages" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Load packages</h1>
-<pre class="r"><code>library(tidyverse)  # data wrangling</code></pre>
+<pre class="r"><code>library(tidyverse)  # data wrangling
+library(see)  # okabeito_colors</code></pre>
 </div>
 <div id="data" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Data</h1>
@@ -93,8 +96,139 @@ mariokart %&gt;%
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Similarly, one case use <code>hjust = "left"</code> for horizontal alignment.</p>
 </div>
-<div id="reproducibility" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> Reproducibility</h1>
+<div id="expanding-the-limits" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Expanding the limits</h1>
+<p>Let’s consider a second example, where it helped to expand the limits of the coordinates.</p>
+<p>In this example, we use Weather data from the German DWD <a href="https://www.dwd.de/DE/Home/home_node.html">i.e., Deutschen Wetterdienst, DWD</a> .</p>
+<p>After some <a href="https://data-se.netlify.app/2022/07/24/preparing-german-weather-data/">data wrangling, which will not discussed here</a>, there’s a nice data set waiting for further scrutiny.</p>
+<pre class="r"><code>wetter_path &lt;- &quot;https://raw.githubusercontent.com/sebastiansauer/Lehre/main/data/wetter-dwd/precip_temp_DWD.csv&quot;
+wetter &lt;- read.csv(wetter_path)</code></pre>
+<p>Some data preparation:</p>
+<pre class="r"><code>wetter &lt;-
+  wetter %&gt;% 
+  mutate(after_1950 = year &gt; 1950) %&gt;% 
+  filter(region != &quot;Deutschland&quot;)  # ohne Daten für Gesamt-Deutschland</code></pre>
+<p>Here’s a linear model for our weather data:</p>
+<pre class="r"><code>lm_wetter_region &lt;- lm(temp ~ region, data = wetter)</code></pre>
+<pre class="r"><code>wetter_summ &lt;- 
+  wetter %&gt;% 
+  group_by(region) %&gt;% 
+  summarise(temp = mean(temp)) %&gt;% 
+  mutate(id = 0:15) %&gt;% 
+  ungroup() %&gt;%
+  mutate(grandmean = mean(temp),
+         delta = temp - grandmean)
+
+wetter_summ %&gt;%  
+  ggplot(aes(y = region, x = temp)) +
+  theme_minimal() +
+  geom_label(aes(label = paste0(&quot;b&quot;, id),
+                 x = grandmean + delta), 
+             vjust = 1,
+             size = 2,
+             color = okabeito_colors()[1]) +
+  geom_vline(xintercept = coef(lm_wetter_region)[1], linetype = &quot;dashed&quot;, color = okabeito_colors()[2]) +
+  
+  #coord_cartesian(xlim = c(7, 10), ylim = c(0, 16))  +
+ 
+  annotate(&quot;label&quot;,
+           y = 1,
+           x = coef(lm_wetter_region)[1],
+           vjust = 1,
+           label = paste0(&quot;b0&quot;),
+           #size = 6,
+           color = okabeito_colors()[2]) +
+  annotate(&quot;point&quot;, 
+           y = 1, 
+           x = coef(lm_wetter_region)[1], 
+           color = okabeito_colors()[2],
+           #vjust = 1,
+           size = 4) +
+  geom_segment(aes(yend = region, xend = temp), 
+               x = coef(lm_wetter_region)[1], 
+               color = okabeito_colors()[1])  +
+    geom_point() +
+  labs(y = &quot;&quot;,
+       x = &quot;Temperatur&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Behold the label right at the bottom of the diagram, “b0”.
+It is not displayed properly.</p>
+<p>One way to get it back into the picture is bay extending the limits of the y-axis:</p>
+<pre class="r"><code>
+wetter_summ %&gt;%  
+  ggplot(aes(y = region, x = temp)) +
+  theme_minimal() +
+  geom_label(aes(label = paste0(&quot;b&quot;, id),
+                 x = grandmean + delta), 
+             vjust = 1,
+             size = 2,
+             color = okabeito_colors()[1]) +
+  geom_vline(xintercept = coef(lm_wetter_region)[1], linetype = &quot;dashed&quot;, color = okabeito_colors()[2]) +
+  
+ coord_cartesian(xlim = c(7, 10), ylim = c(0, 16))  +  # back in the game!
+ 
+  annotate(&quot;label&quot;,
+           y = 1,
+           x = coef(lm_wetter_region)[1],
+           vjust = 1,
+           label = paste0(&quot;b0&quot;),
+           #size = 6,
+           color = okabeito_colors()[2]) +
+  annotate(&quot;point&quot;, 
+           y = 1, 
+           x = coef(lm_wetter_region)[1], 
+           color = okabeito_colors()[2],
+           #vjust = 1,
+           size = 4) +
+  geom_segment(aes(yend = region, xend = temp), 
+               x = coef(lm_wetter_region)[1], 
+               color = okabeito_colors()[1])  +
+    geom_point() +
+  labs(y = &quot;&quot;,
+       x = &quot;Temperatur&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="duckdive-the-problem-tinyfy-the-label" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Duckdive the problem: tinyfy the label</h1>
+<p>It may feel like cheating, but, hey, problem solved: just decrease the size of the label.</p>
+<pre class="r"><code>
+wetter_summ %&gt;%  
+  ggplot(aes(y = region, x = temp)) +
+  theme_minimal() +
+  geom_point() +
+  annotate(&quot;point&quot;, 
+           y = 1, 
+           x = coef(lm_wetter_region)[1], 
+           color = okabeito_colors()[2],
+           size = 4,
+           alpha = .5) +
+  geom_label(aes(label = paste0(&quot;b&quot;, id),
+                 x = grandmean + delta), 
+             vjust = 1,
+             size = 2,
+             color = okabeito_colors()[1]) +
+  geom_vline(xintercept = coef(lm_wetter_region)[1], 
+             linetype = &quot;dashed&quot;, color = okabeito_colors()[2]) +
+  
+  #coord_cartesian(xlim = c(7, 10), ylim = c(0, 16))  +
+ 
+  annotate(&quot;label&quot;,
+           y = 1,
+           x = coef(lm_wetter_region)[1],
+           vjust = 1,
+           label = paste0(&quot;b0&quot;),
+           size = 2,
+           color = okabeito_colors()[2]) +
+
+  geom_segment(aes(yend = region, xend = temp), 
+               x = coef(lm_wetter_region)[1], 
+               color = okabeito_colors()[1])  +
+  labs(y = &quot;&quot;,
+       x = &quot;Temperatur&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="reproducibility" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Reproducibility</h1>
 <pre><code>#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt;  setting  value
 #&gt;  version  R version 4.2.1 (2022-06-23)
